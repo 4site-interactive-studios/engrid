@@ -4,7 +4,8 @@
   "description": "Event Listeners for the ENGRID project",
   "repository": {
     "type": "git",
-    "url": "https://github.com/4site-interactive-studios/engrid-scripts.git"
+    "url": "https://github.com/4site-interactive-studios/engrid-scripts.git",
+    "directory": "packages/events"
   },
   "keywords": [
     "ENGRID",
