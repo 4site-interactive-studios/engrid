@@ -12,6 +12,8 @@ export class ProcessingFees {
 
   private _subscribe?: () => void;
 
+  private static instance: ProcessingFees;
+
   constructor() {
     // console.log('%c Processing Fees Constructor', 'font-size: 30px; background-color: #000; color: #FF0');
     // Run only if it is a Donation Page with a Donation Amount field
@@ -35,6 +37,13 @@ export class ProcessingFees {
     }
 
     // this._amount = amount;
+  }
+  public static getInstance(): ProcessingFees {
+    if (!ProcessingFees.instance) {
+      ProcessingFees.instance = new ProcessingFees();
+    }
+
+    return ProcessingFees.instance;
   }
   public get onFeeChange() {
     return this._onFeeChange.asEvent();

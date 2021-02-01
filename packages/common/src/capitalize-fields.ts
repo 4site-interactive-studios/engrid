@@ -1,9 +1,11 @@
-import { form } from "../index";
+import { EnForm } from "@4site/engrid-events";
 
-export default class CapitalizeFields {
+export class CapitalizeFields {
+
+    public _form: EnForm = EnForm.getInstance();
 
     constructor() {
-        form.onSubmit.subscribe(() => this.capitalizeFields('en__field_supporter_firstName', 'en__field_supporter_lastName', 'en__field_supporter_address1', 'en__field_supporter_city'));
+        this._form.onSubmit.subscribe(() => this.capitalizeFields('en__field_supporter_firstName', 'en__field_supporter_lastName', 'en__field_supporter_address1', 'en__field_supporter_city'));
     }
 
     private capitalizeFields(...fields: string[]) {

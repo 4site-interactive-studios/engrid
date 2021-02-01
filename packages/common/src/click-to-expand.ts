@@ -1,6 +1,6 @@
 // Depends on engrid-click-to-expand.scss to work
 // Works when the user has adds ".click-to-expand" as a class to any field
-export default class ClickToExpand {
+export class ClickToExpand {
     clickToExpandWrapper = document.querySelectorAll('div.click-to-expand');
     constructor() {
         if (this.clickToExpandWrapper.length) {

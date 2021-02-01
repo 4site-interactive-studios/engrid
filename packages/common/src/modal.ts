@@ -1,13 +1,14 @@
 import * as cookie from "./cookie";
-import { amount } from "../index";
-import { frequency } from "../index";
-import { form } from "../index";
+import { DonationAmount, DonationFrequency, EnForm } from "@4site/engrid-events";
 
-export default class Modal {
+export class Modal {
   public debug: boolean = false;
   private overlay: HTMLDivElement;
   private upsellModal: HTMLElement | null;
   private exitModal: HTMLElement | null;
+  private _amount: DonationAmount = DonationAmount.getInstance();
+  private _frequency: DonationFrequency = DonationFrequency.getInstance();
+  private _form: EnForm = EnForm.getInstance();
 
   constructor() {
     this.upsellModal = document.getElementById("upsellModal");
@@ -35,7 +36,7 @@ export default class Modal {
     document.body.appendChild(overlay);
 
     if (this.upsellModal) {
-      form.onSubmit.subscribe(() => this.openUpsell());
+      this._form.onSubmit.subscribe(() => this.openUpsell());
     }
     if (this.exitModal) {
       document.addEventListener("mouseout", (evt: any) => {
@@ -55,17 +56,17 @@ export default class Modal {
   }
   private openUpsell() {
     if (this.debug) console.log("Upsell Triggered");
-    const freq = frequency.frequency;
+    const freq = this._frequency.frequency;
     // Only open Upsell Modal if Frequency == Single & if the Modal is closed
     if (freq == "single" && this.overlay.classList.contains("is-hidden")) {
       this.open(this.upsellModal);
       window.scrollTo(0, 0);
       // Avoid form submission so you can see the modal
-      form.submit = false;
+      this._form.submit = false;
       return false;
     } else {
       // @TODO Only submits the form IF monthly (Delete this)
-      form.submit = true;
+      this._form.submit = true;
       // @TODO Maybe we need to force a resubmit
       return true;
     }
@@ -86,8 +87,8 @@ export default class Modal {
     // Add modal content to overlay
     overlayContent.innerHTML = modal.innerHTML;
     // Load Values
-    amount.load();
-    frequency.load();
+    this._amount.load();
+    this._frequency.load();
     // @TODO After the Modal is open we need to find a way to register that there are new buttons with the "monthly-upsell" class that should be watched for clicks
     // Show Modal
     this.overlay.classList.remove("is-hidden");

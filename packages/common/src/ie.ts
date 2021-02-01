@@ -1,6 +1,6 @@
 import * as cookie from "./cookie";
 
-export default class IE {
+export class IE {
     public debug: boolean = false;
     private overlay: HTMLDivElement = document.createElement("div");
 

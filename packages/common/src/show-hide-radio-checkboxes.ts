@@ -1,4 +1,4 @@
-export default class ShowHideRadioCheckboxes {
+export class ShowHideRadioCheckboxes {
   // All Affected Elements
   public elements: NodeList;
   // Class used on Show/Hide Divs + Input Value

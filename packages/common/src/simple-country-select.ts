@@ -1,5 +1,5 @@
 // This class works when the user has added ".simple_country_select" as a class in page builder for the Country select
-export default class SimpleCountrySelect {
+export class SimpleCountrySelect {
 
     public countryWrapper: HTMLDivElement = document.querySelector('.simple_country_select') as HTMLDivElement;
     public countrySelect: HTMLSelectElement = document.querySelector('#en__field_supporter_country') as HTMLSelectElement;

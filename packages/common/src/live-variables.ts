@@ -1,34 +1,26 @@
-import DonationAmount from "../events/donation-amount";
-import DonationFrequency from "../events/donation-frequency";
-import ProcessingFees from "../events/processing-fees";
+import { DonationAmount, EnForm, DonationFrequency, ProcessingFees } from "@4site/engrid-events";
 
-import { amount } from "../index";
-import { frequency } from "../index";
-import { fees } from "../index";
-import { form } from "../index";
-
-export default class LiveVariables {
-  public _amount: DonationAmount;
-  public _fees: ProcessingFees;
-  private _frequency: DonationFrequency;
+export class LiveVariables {
+  public _amount: DonationAmount = DonationAmount.getInstance();
+  public _fees: ProcessingFees = ProcessingFees.getInstance();
+  private _frequency: DonationFrequency = DonationFrequency.getInstance();
+  private _form: EnForm = EnForm.getInstance();
   private multiplier: number = 1 / 12;
 
+
   constructor(submitLabel: string) {
-    this._amount = amount;
-    this._frequency = frequency;
-    this._fees = fees;
-    amount.onAmountChange.subscribe(() => this.changeSubmitButton(submitLabel));
-    amount.onAmountChange.subscribe(() => this.changeLiveAmount());
-    amount.onAmountChange.subscribe(() => this.changeLiveUpsellAmount());
-    fees.onFeeChange.subscribe(() => this.changeLiveAmount());
-    fees.onFeeChange.subscribe(() => this.changeLiveUpsellAmount());
-    fees.onFeeChange.subscribe(() => this.changeSubmitButton(submitLabel));
-    frequency.onFrequencyChange.subscribe(() => this.changeLiveFrequency());
-    frequency.onFrequencyChange.subscribe(() =>
+    this._amount.onAmountChange.subscribe(() => this.changeSubmitButton(submitLabel));
+    this._amount.onAmountChange.subscribe(() => this.changeLiveAmount());
+    this._amount.onAmountChange.subscribe(() => this.changeLiveUpsellAmount());
+    this._fees.onFeeChange.subscribe(() => this.changeLiveAmount());
+    this._fees.onFeeChange.subscribe(() => this.changeLiveUpsellAmount());
+    this._fees.onFeeChange.subscribe(() => this.changeSubmitButton(submitLabel));
+    this._frequency.onFrequencyChange.subscribe(() => this.changeLiveFrequency());
+    this._frequency.onFrequencyChange.subscribe(() =>
       this.changeSubmitButton(submitLabel)
     );
-    form.onSubmit.subscribe(() => this.loadingSubmitButton());
-    form.onError.subscribe(() => this.changeSubmitButton(submitLabel));
+    this._form.onSubmit.subscribe(() => this.loadingSubmitButton());
+    this._form.onError.subscribe(() => this.changeSubmitButton(submitLabel));
 
     // Watch the monthly-upsell links
     document.addEventListener("click", (e: Event) => {
@@ -38,7 +30,7 @@ export default class LiveVariables {
           this.upsold(e);
         } else if (element.classList.contains("form-submit")) {
           e.preventDefault();
-          form.submitForm();
+          this._form.submitForm();
         }
       }
     });
@@ -118,8 +110,8 @@ export default class LiveVariables {
     const live_frequency = document.querySelectorAll(".live-giving-frequency");
     live_frequency.forEach(
       elem =>
-        (elem.innerHTML =
-          this._frequency.frequency == "single" ? "" : "monthly")
+      (elem.innerHTML =
+        this._frequency.frequency == "single" ? "" : "monthly")
     );
   }
 
@@ -151,8 +143,8 @@ export default class LiveVariables {
       enFieldOtherAmount.value = this.getUpsellAmountRaw(
         this._amount.amount * this.multiplier
       );
-      amount.load();
-      frequency.load();
+      this._amount.load();
+      this._frequency.load();
       if (enFieldOtherAmount.parentElement) {
         enFieldOtherAmount.parentElement.classList.remove(
           "en__field__item--hidden"
@@ -164,7 +156,7 @@ export default class LiveVariables {
     if (target && target.classList.contains("form-submit")) {
       e.preventDefault();
       // Form submit
-      form.submitForm();
+      this._form.submitForm();
     }
   }
 }

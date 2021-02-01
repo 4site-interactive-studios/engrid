@@ -1,4 +1,4 @@
-import { DonationAmount } from "@4site/engrid-events";
+import { DonationAmount, EnForm } from "@4site/engrid-events";
 
 /*global window */
 const ApplePaySession = (window as any).ApplePaySession;
@@ -15,10 +15,11 @@ const merchantSupportedNetworks = (window as any).merchantSupportedNetworks;
 const merchantCapabilities = (window as any).merchantCapabilities;
 const merchantTotalLabel = (window as any).merchantTotalLabel;
 
-export default class ApplePay {
+export class ApplePay {
 
     public applePay: HTMLInputElement = document.querySelector('.en__field__input.en__field__input--radio[value="applepay"]') as HTMLInputElement;
-    public _amount: DonationAmount = amount;
+    public _amount: DonationAmount = DonationAmount.getInstance();
+    public _form: EnForm = EnForm.getInstance();
     constructor() {
         this.checkApplePay();
     }
@@ -37,7 +38,7 @@ export default class ApplePay {
                 input.setAttribute("name", "PkPaymentToken");
                 input.setAttribute("id", "applePayToken");
                 pageform.appendChild(input);
-                form.onSubmit.subscribe(() => this.onPayClicked());
+                this._form.onSubmit.subscribe(() => this.onPayClicked());
             }
         });
         console.log('applePayEnabled', applePayEnabled);
