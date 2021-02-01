@@ -1,0 +1,30 @@
+// Depends on click-to-expand.ts
+body:not(#en__pagebuilder) .click-to-expand:not(.expanded){
+    cursor: pointer;
+    height: var(--theme-click-to-expand-copy-total-height);
+    overflow: hidden;
+
+    // Works with transparent backgrounds for when the ENGrid is in its embedded state
+    // REF: https://stackoverflow.com/a/58740440/815683
+    .click-to-expand-text-wrapper {
+        height: calc(var(--theme-click-to-expand-copy-total-height) - var(--theme-click-to-expand-cta-image-height));
+        -webkit-mask-image: linear-gradient(180deg,rgba(0,0,0,1) 0px, rgba(255,255,255,0) calc(var(--theme-click-to-expand-copy-total-height) - var(--theme-click-to-expand-cta-image-height) - var(--theme-click-to-expand-cta-image-height)));
+        mask-image: linear-gradient(180deg,rgba(0,0,0,1) 0px, rgba(255,255,255,0) calc(var(--theme-click-to-expand-copy-total-height) - var(--theme-click-to-expand-cta-image-height) - var(--theme-click-to-expand-cta-image-height)));        
+    }
+
+    .click-to-expand-cta {
+        background: var(--theme-click-to-expand-cta-image-url);
+        background-position: center bottom;
+        background-repeat: no-repeat;
+        background-size: var(--theme-click-to-expand-cta-image-width) var(--theme-click-to-expand-cta-image-height);
+        z-index: 100;
+        width: var(--theme-click-to-expand-cta-image-width);
+        height: var(--theme-click-to-expand-cta-image-height);
+        bottom: 0em;
+        position: absolute;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+    }
+}

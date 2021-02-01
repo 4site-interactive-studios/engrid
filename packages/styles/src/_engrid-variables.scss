@@ -1,0 +1,299 @@
+// NOTE: Any CSS Custom Properties changes should also be made in themes/starter-theme/sass/variables.scss
+
+// @TODO There has to be a better way of defining breakpoints as a default and then adjust them up stream in the themes
+$slicer-breakpoints: 0 400px 600px 1024px 1200px;
+
+// @TODO Look into replicating "Teach a System of Space Visually" as a Development page that shows all styling decisions for the brand https://medium.com/eightshapes-llc/space-in-design-systems-188bcbae0d62#.fwng4aef7
+:root{
+    // FIXED COLOR PALETTE
+    --color-transparent: transparent;
+    --color-white: rgba(255, 255, 255, 1);
+    --color-black: rgba(0, 0, 0, 1);
+    --en-pagebuilder-background-color: #C1C0C0;
+
+    // GRAYSCALE COLOR PALETTE
+    --theme-off-white: #DFDFDF;
+    --theme-light-gray: #BFBFBF;
+    --theme-gray: #9F9F9F;
+    --theme-dark-gray: #808080;
+    --theme-off-black: #404040;
+
+    // SEMANTIC COLOR PALETTE
+    --theme-success: #33CC33;
+    --theme-warning: #FCAC00;
+    --theme-error: #F12222;
+
+     // SEMANTIC GEOMETRIC SCALING
+     --scale-up-20pct: 1.2;
+     --scale-up-40pct: 1.4;
+     --scale-up-80pct: 1.8;
+     --scale-up-160pct: 2.6;
+     --scale-down-20pct: 0.8;
+     --scale-down-40pct: 0.6;
+     --scale-down-80pct: 0.2;
+
+    // FONT STACKS
+    --theme-font-stack-browser-fonts: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+    // TYPOGRAPHY DEFAULT
+    --theme-typography-default-font-family: var(--theme-font-stack-browser-fonts);
+    --theme-typography-default-color: initial;
+    --theme-typography-default-font-size: var(--theme-root-font-size);
+    --theme-typography-default-font-weight: initial;
+    --theme-typography-default-line-height: initial;
+        
+    // TYPOGRAPHY H1
+    --theme-typography-h1-font-family: var(--theme-font-stack-browser-fonts);
+    --theme-typography-h1-color: initial;
+    --theme-typography-h1-font-size: calc(var(--theme-root-font-size) * var(--scale-up-160pct));
+    --theme-typography-h1-font-weight: initial;
+    --theme-typography-h1-line-height: initial;
+        
+    // TYPOGRAPHY H2
+    --theme-typography-h2-font-family: var(--theme-typography-h1-font-family);
+    --theme-typography-h2-color: initial;
+    --theme-typography-h2-font-size: calc(var(--theme-root-font-size) * var(--scale-up-80pct));
+    --theme-typography-h2-font-weight: initial;
+    --theme-typography-h2-line-height: initial;
+        
+    // TYPOGRAPHY H3
+    --theme-typography-h3-font-family: var(--theme-typography-h1-font-family);
+    --theme-typography-h3-color: initial;
+    --theme-typography-h3-font-size: calc(var(--theme-root-font-size) * var(--scale-up-40pct));
+    --theme-typography-h3-font-weight: initial;
+    --theme-typography-h3-line-height: initial;
+        
+    // TYPOGRAPHY P
+    --theme-typography-p-font-family: var(--theme-typography-default-font-family);
+    --theme-typography-p-color: initial;
+    --theme-typography-p-font-size: var(--theme-root-font-size);
+    --theme-typography-p-font-weight: initial;
+    --theme-typography-p-line-height: initial;
+        
+    // TYPOGRAPHY STRONG
+    --theme-typography-strong-font-family: var(--theme-typography-default-font-family);
+    --theme-typography-strong-color: initial;
+    --theme-typography-strong-font-size: var(--theme-root-font-size);
+    --theme-typography-strong-font-weight: bold;
+    --theme-typography-strong-line-height: initial;
+        
+    // TYPOGRAPHY LABEL
+    --theme-typography-label-font-family: var(--theme-typography-default-font-family);
+    --theme-typography-label-color: initial;
+    --theme-typography-label-font-size: var(--theme-root-font-size);
+    --theme-typography-label-font-weight: initial;
+    --theme-typography-label-line-height: initial;
+        
+    // TYPOGRAPHY INPUT
+    --theme-typography-input-font-family: var(--theme-typography-default-font-family);
+    --theme-typography-input-color: initial;
+    --theme-typography-input-font-size: var(--theme-root-font-size);
+    --theme-typography-input-font-weight: initial;
+    --theme-typography-input-line-height: initial;
+    --theme-typography-input-background-color: var(--color-white);
+    --theme-typography-input-border-width: 1px;
+    --theme-typography-input-border-color: var(--color-black);
+    --theme-typography-input-border-radius: initial;
+    --theme-typography-input-placeholder-color: var(--theme-light-gray);
+        
+    // TYPOGRAPHY INPUT:FOCUS
+    // TYPOGRAPHY INPUT:HOVER
+    --theme-typography-input-focus-hover-color: var(--theme-typography-input-color);
+    --theme-typography-input-focus-hover-background-color: var(--theme-typography-input-background-color);
+    --theme-typography-input-focus-hover-border-color: var(--theme-cta);
+        
+    // TYPOGRAPHY RADIO
+    --theme-typography-radio-content: initial;
+    --theme-typography-radio-color: var(--theme-cta);
+    --theme-typography-radio-background-color: var(--color-white);
+    --theme-typography-radio-border-width: 1px;
+    --theme-typography-radio-border-color: var(--color-black);
+    --theme-typography-radio-border-radius: 50%;
+
+    // TYPOGRAPHY RADIO INPUT:FOCUS
+    // TYPOGRAPHY RADIO INPUT:HOVER
+    --theme-typography-radio-focus-hover-color: var(--theme-typography-radio-color);
+    --theme-typography-radio-focus-hover-background-color: var(--theme-typography-radio-background-color);
+    --theme-typography-radio-focus-hover-border-color: var(--theme-typography-radio-border-color);
+
+    // TYPOGRAPHY RADIO INPUT:CHECKED
+    --theme-typography-radio-selected-color: var(--theme-typography-radio-background-color);
+    --theme-typography-radio-selected-background-color: var(--theme-cta);
+    --theme-typography-radio-selected-border-color: var(--theme-typography-radio-border-color);
+
+    // TYPOGRAPHY CHECKBOX
+    --theme-typography-checkbox-color: var(--color-white);
+    --theme-typography-checkbox-background-color: var(--color-white);
+    --theme-typography-checkbox-border-width: 1px;
+    --theme-typography-checkbox-border-color: var(--theme-black);
+    --theme-typography-checkbox-border-radius: 50%;
+
+    // TYPOGRAPHY CHECKBOX INPUT:FOCUS
+    // TYPOGRAPHY CHECKBOX INPUT:HOVER
+    --theme-typography-checkbox-focus-hover-color: var(--theme-typography-checkbox-color);
+    --theme-typography-checkbox-focus-hover-background-color: var(--theme-typography-checkbox-background-color);
+    --theme-typography-checkbox-focus-hover-border-color: var(--theme-typography-checkbox-border-color);
+
+    // TYPOGRAPHY CHECKBOX INPUT:CHECKED
+    --theme-typography-checkbox-checked-content:"✓";
+    --theme-typography-checkbox-checked-color: var(--theme-typography-checkbox-background-color);
+    --theme-typography-checkbox-checked-background-color: var(--theme-cta);
+    --theme-typography-checkbox-checked-border-color: var(--theme-typography-checkbox-border-color);
+
+    // TYPOGRAPHY SELECT
+    --theme-typography-select-font-family: var(--theme-typography-default-font-family);
+    --theme-typography-select-color: var(--color-black);
+    --theme-typography-select-font-size: var(--theme-root-font-size);
+    --theme-typography-select-font-weight: initial;
+    --theme-typography-select-line-height: initial;
+    --theme-typography-select-background-color: var(--color-white);
+    --theme-typography-select-border-width: 1px;
+    --theme-typography-select-border-color: var(--color-black);
+    --theme-typography-select-border-radius: initial;
+
+    // TYPOGRAPHY SELECT:FOCUS
+    // TYPOGRAPHY SELECT:HOVER
+    --theme-typography-select-focus-hover-color: var(--theme-typography-select-color);
+    --theme-typography-select-focus-hover-background-color: var(--theme-typography-select-background-color);
+    --theme-typography-select-focus-hover-border-color: var(--theme-cta-hover);
+
+    // TYPOGRAPHY TEXTAREA
+    --theme-typography-textarea-font-family: var(--theme-typography-default-font-family);
+    --theme-typography-textarea-color: initial;
+    --theme-typography-textarea-font-size: var(--theme-root-font-size);
+    --theme-typography-textarea-font-weight: initial;
+    --theme-typography-textarea-line-height: initial;
+    --theme-typography-textarea-background-color: var(--color-white);
+    --theme-typography-textarea-border-width: 1px;
+    --theme-typography-textarea-border-color: var(--color-black);
+    --theme-typography-textarea-border-radius: initial;
+    --theme-typography-textarea-placeholder-color: var(--theme-light-gray);
+        
+    // TYPOGRAPHY TEXTAREA:FOCUS
+    // TYPOGRAPHY TEXTAREA:HOVER
+    --theme-typography-textarea-focus-hover-color: var(--theme-typography-textarea-color);
+    --theme-typography-textarea-focus-hover-background-color: var(--theme-typography-textarea-background-color);
+    --theme-typography-textarea-focus-hover-border-color: var(--theme-cta);
+
+    // TYPOGRAPHY BUTTON
+    --theme-typography-button-font-family: var(--theme-typography-default-font-family);
+    --theme-typography-button-color: var(--color-white);
+    --theme-typography-button-font-size: var(--theme-root-font-size);
+    --theme-typography-button-font-weight: initial;
+    --theme-typography-button-line-height: initial;
+    --theme-typography-button-background-color: var(--color-black);
+    --theme-typography-button-border-width: initial;
+    --theme-typography-button-border-color: var(--color-black);
+    --theme-typography-button-border-radius: initial;
+    
+    // TYPOGRAPHY BUTTON:FOCUS
+    // TYPOGRAPHY BUTTON:HOVER
+    --theme-typography-button-focus-hover-color: var(--theme-typography-button-color);
+    --theme-typography-button-focus-hover-background-color: var(--theme-cta-hover);
+    --theme-typography-button-focus-hover-border-color: var(--theme-cta-hover);
+
+    // TYPOGRAPHY PRIMARY BUTTON
+    --theme-typography-primary-button-font-family: var(--theme-typography-button-font-family);
+    --theme-typography-primary-button-color: var(--color-white);
+    --theme-typography-primary-button-font-size: var(--theme-typography-button-font-size);
+    --theme-typography-primary-button-font-weight: var(--theme-typography-button-font-weight);
+    --theme-typography-primary-button-line-height: var(--theme-typography-button-line-height);
+    --theme-typography-primary-button-background-color: var(--theme-cta);
+    --theme-typography-primary-button-border-width: var(--theme-typography-button-border-width);
+    --theme-typography-primary-button-border-color: var(--theme-cta);
+    --theme-typography-primary-button-border-radius: var(--theme-typography-button-border-radius);
+
+    // TYPOGRAPHY PRIMARY BUTTON:FOCUS
+    // TYPOGRAPHY PRIMARY BUTTON:HOVER  
+    --theme-typography-primary-button-focus-hover-color: var(--theme-typography-button-focus-hover-color);
+    --theme-typography-primary-button-focus-hover-background-color: var(--theme-cta-hover);
+    --theme-typography-primary-button-focus-hover-border-color: var(--theme-typography-button-focus-hover-border-color);
+    
+    // TYPOGRAPHY A
+    --theme-typography-a-font-family: var(--theme-typography-default-font-family);
+    --theme-typography-a-color: initial;
+    --theme-typography-a-font-size: var(--theme-root-font-size);
+    --theme-typography-a-font-weight: initial;
+    --theme-typography-a-line-height: initial;
+    --theme-typography-a-text-decoration: initial;
+
+    // TYPOGRAPHY A:FOCUS
+    // TYPOGRAPHY A:HOVER
+    --theme-typography-a-focus-hover-color: var(--theme-typography-a-color);
+    --theme-typography-a-focus-hover-text-decoration: initial;
+
+    // CTA COLORS
+    --theme-cta: #0070BA;
+    --theme-cta-hover: #22a3cb;
+
+    // PAGE, CONTENT, and BODY BACKGROUND COLOR
+    // Quick set the background color on all corresponding sections
+    --theme-page-background-color: var(--color-transparent);
+    --theme-content-background-color: var(--color-transparent);
+    --theme-body-background-color: var(--color-white);
+
+    // ENGRID SECTIONS BACKGROUND COLOR
+    --theme-page-alert-background-color: var(--theme-page-background-color);
+    --theme-content-header-background-color: var(--theme-content-background-color);
+    --theme-body-headerOutside-background-color: var(--color-transparent);
+    --theme-body-header-background-color: var(--theme-body-background-color);
+    --theme-body-banner-background-color: var(--theme-body-background-color);
+    --theme-body-bannerOverlay-background-color: var(--color-transparent);
+    --theme-body-top-background-color: var(--theme-body-background-color);
+    --theme-body-side-background-color: var(--theme-body-background-color);
+    --theme-body-main-background-color: var(--theme-body-background-color);
+    --theme-body-bottom-background-color: var(--theme-body-background-color);
+    --theme-body-footer-background-color: var(--theme-body-background-color);
+    --theme-body-footerOutside-background-color: var(--color-transparent);
+    --theme-content-footerSpacer-background-color: var(--theme-content-background-color);
+    --theme-content-preFooter-background-color: var(--theme-content-background-color);
+    --theme-content-footer-background-color: var(--theme-content-background-color);
+    --theme-page-backgroundImage-background-color: var(--theme-page-background-color);
+    --theme-page-backgroundImageOverlay-background-color: var(--color-transparent);
+    --theme-page-customCode-background-color: var(--theme-page-background-color);
+
+    // LAZY LOADED BANNER IMAGE PLACEHOLDER COLOR
+    --theme-body-banner-image-background-color: var(--color-transparent);
+
+    // BODY BORDER RADIUS
+    --theme-body-border-radius: 0px;
+    
+    // ENGRID BACKGROUND IMAGE SECTION'S BACKGROUND PATTERN
+    // This is a background pattern that is shown before the hi-resolution background image is lazy loaded in, if at all
+    // It's background color "--theme-page-backgroundImage-background-color" should be the average color of the image 
+    // REF: (https://doodad.dev/pattern-generator/)
+    --theme-page-backgroundImage-background-pattern: "url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)"; // Invisible GIF
+
+    // REF: http://www.standardista.com/px-to-rem-conversion-if-root-font-size-is-16px/
+    --theme-root-font-size: 16px; // Sets a baseline font size for all other REM based font-sizes to relatively build off of
+
+    --theme-page-backgroundImage-url: "url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)"; // Invisible GIF
+
+    // @TODO Revisit these spacing values and calculations
+    // @BODY Look into replicating "Teach a System of Space Visually" as a Development page that shows all styling decisions for the brand https://medium.com/eightshapes-llc/space-in-design-systems-188bcbae0d62#.fwng4aef7
+    --theme-spacing-sm: 0.8652rem;
+    --theme-spacing: calc(0.8652rem * 0.75);
+    --theme-spacing-lg: calc(0.8652rem * 2.5);
+    --theme-spacing-xlg: calc(0.8652rem * 5);
+
+    // ERRORS
+    --theme-error-red: var(--theme-error);
+    --theme-error-red-grayscale: #949494;
+    --theme-error-red-faded: #FFEAE9;
+    --theme-error-page-group-background: #FFEAE9;
+    --theme-error-input-border-width: var(--theme-typography-input-border-width);
+
+    // HIGHLIGHTS
+    --theme-highlight-background-color: #227F9E;
+    --theme-highlight-font-color: #FFFFFF;
+
+    // CLICK TO EXPAND
+    --theme-click-to-expand-copy-height-before-fade-starts: 100px;
+    --theme-click-to-expand-copy-total-height: 450px;
+    --theme-click-to-expand-cta-image-url: url("https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_open.png");
+    --theme-click-to-expand-cta-image-width: 16px;
+    --theme-click-to-expand-cta-image-height: 16px;
+
+    // ADD THEME CUSTOM CSS PROPERTIES HERE
+}
+  

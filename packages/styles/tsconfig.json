@@ -1,0 +1,14 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    // Target latest version of ECMAScript.
+    "target": "es6",
+    // Search under node_modules for non-relative imports.
+    "moduleResolution": "node",
+    "outDir": "dist",
+    "declaration": true,
+    "strict": true
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
+}

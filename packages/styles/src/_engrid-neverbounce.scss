@@ -1,0 +1,63 @@
+/* Utilizes the standard NeverBounce Implimentation but styles it to match the client brand */
+/* Note, we add "async" to the javascript file call */
+/* Note, NeverBounce's CDN uses HTTP 1. You can self host the file to get around this */
+/* @TODO Check support for "fancyerrors" and float labels, as well as input fields with rounded borders
+/*
+    <script type="text/javascript">
+        _NBSettings = {
+            apiKey: 'CLIENT-API-KEY'
+        };
+    </script>
+    <script async type="text/javascript" src="https://cdn.neverbounce.com/widget/dist/NeverBounce.js"></script>
+*/
+
+div[id^=nb-field-]{
+    max-width: 100% !important;
+    width: 100% !important;
+    
+    div.nb-feedback{
+
+        display: block !important;
+        margin-top: 0px !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        position: absolute !important;
+        left: -99999px !important;
+        padding: .25rem .5rem !important;
+        font-size: 1.125em !important;
+        font-size: .75rem !important;
+        font-family: HarmoniaSansStd !important; //@TODO Update to match the default/theme font
+        font-weight: 400 !important;
+        font-stretch: normal !important;
+        font-style: normal !important;
+        line-height: 1.44 !important;
+        letter-spacing: normal !important;
+        transition-timing-function: cubic-bezier(0,1,0,1) !important;
+
+        .nb-poweredby{
+            display: none !important;
+        }
+    }
+}
+
+div[id^=nb-field-].nb-error{
+    input{
+        border-color: var(--theme-error-red) !important;
+        background-color: var(--theme-error-red-faded) !important;
+
+        .nb-feedback{
+            position: initial !important;
+            border: none !important;
+            background-color: var(--theme-error-red) !important;
+            color: #ffffff !important;
+
+            .nb-icon-cancel{
+                display: none !important;
+            }
+        }
+    }
+}
+
+div[id^=nb-field-].nb-success input{
+    border-color: initial !important;
+}

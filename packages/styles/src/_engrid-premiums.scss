@@ -1,0 +1,43 @@
+.en__pg__body{
+    display: flex;
+    flex-direction: row;
+}
+
+.en__pg__select{
+    flex-basis: 15px;
+    padding: 0;
+}
+
+.en__pg__display{
+    flex-basis: 150px;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.en__pg__detail{
+    flex-basis: calc(100% - 150px - 15px);
+    margin-top: 0;
+    padding-top: 0;
+    padding-bottom: 0;        
+}
+
+.en__pg__name{
+    margin-top: 0;
+}
+
+.en__pg__optionType{
+    display: flex;
+}
+
+.en__pg__optionType select{
+    width: auto;
+}
+
+.en__pg--selected .en__pg__image--selected{
+    outline-color: var(--theme-cta-hover);
+}
+
+.en__pgList[data-nogift] .en__pg:last-of-type .en__pg__display{
+    flex-basis: 0;
+    padding: 0;
+}

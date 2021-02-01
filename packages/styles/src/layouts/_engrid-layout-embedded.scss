@@ -1,0 +1,88 @@
+/*
+* ####################################################################################################################
+* # ENGRID EMBEDDED LAYOUT
+* # Embedded Layout for Seamless Embedding
+* ####################################################################################################################
+*/
+
+[data-engrid-embedded] {
+
+  // Remove each sections background colors
+  --theme-page-background-color: var(--color-transparent) !important;
+  --theme-content-background-color: var(--color-transparent) !important;
+  --theme-body-background-color: var(--color-transparent) !important;
+  --theme-page-alert-background-color: var(--color-transparent) !important;
+  --theme-content-header-background-color: var(--color-transparent) !important;
+  --theme-body-headerOutside-background-color: var(--color-transparent) !important;
+  --theme-body-header-background-color: var(--color-transparent) !important;
+  --theme-body-banner-background-color: var(--color-transparent) !important;
+  --theme-body-bannerOverlay-background-color: var(--color-transparent) !important;
+  --theme-body-top-background-color: var(--color-transparent) !important;
+  --theme-body-side-background-color: var(--color-transparent) !important;
+  --theme-body-main-background-color: var(--color-transparent) !important;
+  --theme-body-bottom-background-color: var(--color-transparent) !important;
+  --theme-body-footer-background-color: var(--color-transparent) !important;
+  --theme-body-footerOutside-background-color: var(--color-transparent) !important;
+  --theme-content-footerSpacer-background-color: var(--color-transparent) !important;
+  --theme-content-preFooter-background-color: var(--color-transparent) !important;
+  --theme-content-footer-background-color: var(--color-transparent) !important;
+  --theme-page-backgroundImage-background-color: var(--color-transparent) !important;
+  --theme-page-backgroundImageOverlay-background-color: var(--color-transparent) !important;
+  --theme-page-customCode-background-color: var(--color-transparent) !important;
+
+  /* prettier-ignore */
+  .en__component--advrow,
+  .en__component--advrow .pseudo-subgrid {
+    /* autoprefixer grid: off */
+    grid-template-columns:
+    [
+      pc-start lpc-start]  minmax(0px, 0px)    [lpc-end
+      cc-start lcc-start]  minmax(0px, 0px)    [lcc-end
+      bc-start lbc-start]  minmax(0px, 50vw)   [lbc-end
+      rbc-start]           minmax(0px, 50vw)   [rbc-end bc-end
+      rcc-start]           minmax(0px, 0px)    [rcc-end cc-end
+      rpc-start]           minmax(0px, 0px)    [rpc-end pc-end               
+    ] !important;
+  }
+
+  // When embedded "content-footerSpacer" does not need to be set to 1fr
+  // Define all the named rows of the ENGrid
+  /* prettier-ignore */
+  .en__component--advrow{
+    /* autoprefixer grid: off */
+    grid-template-rows:
+    [
+      page-start page-alert-start]        min-content  [page-alert-end
+      content-header-start]               min-content  [content-header-end
+      body-headerOutside-start]           min-content  [body-headerOutside-end
+      body-header-start]                  min-content  [body-header-end
+      body-banner-start]                  min-content  [body-banner-end
+      body-bannerOverlay-start]           min-content  [body-bannerOverlay-end
+      body-top-start]                     min-content  [body-top-end
+      body-side-start]                    min-content  [body-side-end  
+      body-main-start]                    min-content  [body-main-end  
+      body-bottom-start]                  min-content  [body-bottom-end  
+      body-footer-start]                  min-content  [body-footer-end
+      body-footerOutside-start]           min-content  [body-footerOutside-end  
+      content-footerSpacer-start]         min-content  [content-footerSpacer-end
+      content-preFooter-start]            min-content  [content-preFooter-end
+      content-footer-start]               min-content  [content-footer-end
+      page-backgroundImage-start]         min-content  [page-backgroundImage-end
+      page-backgroundImageOverlay-start]  min-content  [page-backgroundImageOverlay-end page-end
+      page-customCode-start]              min-content  [page-customCode-end        
+    ] !important;        
+
+    // Remove each sections box shadow
+    .body-bannerOverlay:before,
+    .body-banner:before,
+    .body-bottom:before,
+    .body-footer:before,
+    .body-header:before,
+    .body-main:before,
+    .body-side:before,
+    .body-top:before {
+      box-shadow: none !important;
+    }
+  }
+
+}

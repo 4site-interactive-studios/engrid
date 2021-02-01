@@ -1,0 +1,288 @@
+// The most common typographic elements for pages
+// @TODO Implement a more advanced SASS based method for fluidly scaling type size
+// @BODY https://css-tricks.com/snippets/css/fluid-typography/
+
+body{
+    font-family: var(--theme-typography-default-font-family);
+    color: var(--theme-typography-default-color);
+    font-size: var(--theme-typography-default-font-size);
+    font-weight: var(--theme-typography-default-font-weight);
+    line-height: var(--theme-typography-default-line-height);
+}
+
+h1{
+    font-family: var(--theme-typography-h1-font-family);
+    color: var(--theme-typography-h1-color);
+    font-size: var(--theme-typography-h1-font-size);
+    font-weight: var(--theme-typography-h1-font-weight);
+    line-height: var(--theme-typography-h1-line-height);
+}
+
+h2{
+    font-family: var(--theme-typography-h2-font-family);
+    color: var(--theme-typography-h2-color);
+    font-size: var(--theme-typography-h2-font-size);
+    font-weight: var(--theme-typography-h2-font-weight);
+    line-height: var(--theme-typography-h2-line-height);
+}
+
+h3{
+    font-family: var(--theme-typography-h3-font-family);
+    color: var(--theme-typography-h3-color);
+    font-size: var(--theme-typography-h3-font-size);
+    font-weight: var(--theme-typography-h3-font-weight);
+    line-height: var(--theme-typography-h3-line-height);
+}
+
+h4,
+h5,
+h6{
+    font-family: var(--theme-typography-h3-font-family);
+    color: var(--theme-typography-h3-color);
+    font-size: var(--theme-typography-h3-font-size);
+    font-weight: var(--theme-typography-h3-font-weight);
+    line-height: var(--theme-typography-h3-line-height);
+}
+
+p{
+    font-family: var(--theme-typography-p-font-family);
+    color: var(--theme-typography-p-color);
+    font-size: var(--theme-typography-p-font-size);
+    font-weight: var(--theme-typography-p-font-weight);
+    line-height: var(--theme-typography-p-line-height);
+}
+
+strong{
+    font-family: var(--theme-typography-strong-font-family);
+    color: var(--theme-typography-strong-color);
+    font-size: var(--theme-typography-strong-font-size);
+    font-weight: var(--theme-typography-strong-font-weight);
+    line-height: var(--theme-typography-strong-line-height);
+}
+
+label{
+    font-family: var(--theme-typography-label-font-family);
+    color: var(--theme-typography-label-color);
+    font-size: var(--theme-typography-label-font-size);
+    font-weight: var(--theme-typography-label-font-weight);
+    line-height: var(--theme-typography-label-line-height);
+}
+
+// The use of "input.en__field__input" is needed to provide enough specificity to suprass class selectors like ".en__field__input--calendar" in enPage.css
+input,
+input.en__field__input{
+    font-family: var(--theme-typography-input-font-family);
+    color: var(--theme-typography-input-color);
+    font-size: var(--theme-typography-input-font-size);
+    font-weight: var(--theme-typography-input-font-weight);
+    line-height: var(--theme-typography-input-line-height);
+    background-color: var(--theme-typography-input-background-color);
+    border-width: var(--theme-typography-input-border-width);
+    border-color: var(--theme-typography-input-border-color);
+    border-radius: var(--theme-typography-input-border-radius);
+    height: auto; // Shared between input, textarea, and select
+    max-width: 100%; // Shared between input, textarea, and select
+    width: 100%; // Shared between input, textarea, and select
+    min-width: initial; // Shared between input, textarea, and select
+    display: block; // Shared between input, textarea, and select
+    -webkit-box-sizing: border-box; // Shared between input, textarea, and select
+    box-sizing: border-box; // Shared between input, textarea, and select
+    margin: 0rem; // Shared between input, textarea, and select
+    padding: 1ch; // Shared between input, textarea, and select
+    box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1); // Shared between input, textarea, and select
+    transition: box-shadow 0.25s, border-color 0.25s ease-in-out; // Shared between input, textarea, and select
+    border-style: solid; // Shared between input, textarea, and select
+}
+
+input:focus,
+input:hover{
+    color: var(--theme-typography-input-focus-hover-color);
+    background-color: var(--theme-typography-input-focus-hover-background-color);
+    border-color: var(--theme-typography-input-focus-hover-border-color);
+    outline: none; // Shared between input:focus, textarea:focus, and select:focus
+    box-shadow: 0 0 0.3125rem var(--theme-light-gray); // Shared between input:focus, textarea:focus, and select:focus
+}
+
+input[type="radio"]{
+    content: var(--theme-typography-radio-content);
+    color: var(--theme-typography-radio-color);
+    background-color: var(--theme-typography-radio-background-color);
+    border-width: var(--theme-typography-radio-border-width);
+    border-color: var(--theme-typography-radio-border-color);
+    border-radius: var(--theme-typography-radio-border-radius);
+}
+
+input[type="radio"]:focus,
+input[type="radio"]:hover{
+    color: var(--theme-typography-radio-focus-hover-color);
+    background-color: var(--theme-typography-radio-focus-hover-background-color);
+    border-color: var(--theme-typography-radio-focus-hover-border-color);
+}
+
+// ✓
+input[type="checkbox"]{
+    content: var(--theme-typography-checkbox-checked-content);
+    color: var(--theme-typography-checkbox-color);
+    background-color: var(--theme-typography-checkbox-background-color);
+    border-width: var(--theme-typography-checkbox-border-width);
+    border-color: var(--theme-typography-checkbox-border-color);
+    border-radius: var(--theme-typography-checkbox-border-radius);
+}
+
+input[type="checkbox"]:focus,
+input[type="checkbox"]:hover{
+    color: var(--theme-typography-checkbox-focus-hover-color);
+    background-color: var(--theme-typography-checkbox-focus-hover-background-color);
+    border-color: var(--theme-typography-checkbox-focus-hover-border-color);
+}
+
+select,
+select.en__field__input--select{
+    font-family: var(--theme-typography-select-font-family);
+    color: var(--theme-typography-select-color);
+    font-size: var(--theme-typography-select-font-size);
+    font-weight: var(--theme-typography-select-font-weight);
+    line-height: var(--theme-typography-select-line-height);
+    background-color: var(--theme-typography-select-background-color);
+    border-width: var(--theme-typography-select-border-width);
+    border-color: var(--theme-typography-select-border-color);
+    border-radius: var(--theme-typography-select-border-radius);
+    cursor: pointer;
+    height: auto; // Shared between input, textarea, and select
+    max-width: 100%; // Shared between input, textarea, and select
+    width: 100%; // Shared between input, textarea, and select
+    min-width: initial; // Shared between input, textarea, and select
+    display: block; // Shared between input, textarea, and select
+    -webkit-box-sizing: border-box; // Shared between input, textarea, and select
+    box-sizing: border-box; // Shared between input, textarea, and select
+    margin: 0rem; // Shared between input, textarea, and select
+    padding: 1ch; // Shared between input, textarea, and select
+    box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1); // Shared between input, textarea, and select
+    transition: box-shadow 0.25s, border-color 0.25s ease-in-out; // Shared between input, textarea, and select
+    border-style: solid; // Shared between input, textarea, and select
+    appearance: none; // This hides the native down arrow and replaces it with our custom down arrow set as the background-image
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'><polygon points='0,0 32,0 16,24' style='fill: rgb%28138, 138, 138%29'></polygon></svg>");
+    background-origin: content-box;
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-size: 0.5625rem 0.375rem;
+
+}
+
+select:focus,
+select:hover{
+    color: var(--theme-typography-select-focus-hover-color);
+    background-color: var(--theme-typography-select-focus-hover-background-color);
+    border-color: var(--theme-typography-select-focus-hover-border-color);
+    outline: none; // Shared between input:focus, textarea:focus, and select:focus
+    box-shadow: 0 0 0.3125rem var(--theme-light-gray); // Shared between input:focus, textarea:focus, and select:focus
+}
+
+textarea{
+    font-family: var(--theme-typography-textarea-font-family);
+    color: var(--theme-typography-textarea-color);
+    font-size: var(--theme-typography-textarea-font-size);
+    font-weight: var(--theme-typography-textarea-font-weight);
+    line-height: var(--theme-typography-textarea-line-height);
+    background-color: var(--theme-typography-textarea-background-color);
+    border-width: var(--theme-typography-textarea-border-width);
+    border-color: var(--theme-typography-textarea-border-color);
+    border-radius: var(--theme-typography-textarea-border-radius);
+    height: auto; // Shared between input, textarea, and select
+    max-width: 100%; // Shared between input, textarea, and select
+    width: 100%; // Shared between input, textarea, and select
+    min-width: initial; // Shared between input, textarea, and select
+    display: block; // Shared between input, textarea, and select
+    -webkit-box-sizing: border-box; // Shared between input, textarea, and select
+    box-sizing: border-box; // Shared between input, textarea, and select
+    margin: 0rem; // Shared between input, textarea, and select
+    padding: 1ch; // Shared between input, textarea, and select
+    border-style: solid; // Shared between input, textarea, and select
+    box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1); // Shared between input, textarea, and select
+    transition: box-shadow 0.25s, border-color 0.25s ease-in-out; // Shared between input, textarea, and select
+    height: 7rem;
+    resize: vertical;
+}
+
+textarea:focus,
+textarea:hover{
+    color: var(--theme-typography-textarea-focus-hover-color);
+    background-color: var(--theme-typography-textarea-focus-hover-background-color);
+    border-color: var(--theme-typography-textarea-focus-hover-border-color);
+    outline: none; // Shared between input:focus, textarea:focus, and select:focus
+    box-shadow: 0 0 0.3125rem var(--theme-light-gray); // Shared between input:focus, textarea:focus, and select:focus
+}
+
+button,
+.button{
+    font-family: var(--theme-typography-button-font-family);
+    color: var(--theme-typography-button-color);
+    font-size: var(--theme-typography-button-font-size);
+    font-weight: var(--theme-typography-button-font-weight);
+    line-height: var(--theme-typography-button-line-height);
+    background-color: var(--theme-typography-button-background-color);
+    border-width: var(--theme-typography-button-border-width);
+    border-color: var(--theme-typography-button-border-color);
+    border-radius: var(--theme-typography-button-border-radius);    
+    cursor: pointer;
+}
+
+/* Placeholder styling */
+/* Chrome, Firefox, Opera, Safari 10.1+ */
+::-webkit-input-placeholder {
+    color: var(--theme-light-gray);
+    opacity: 1;
+    /* Firefox */
+  }
+  
+  :-ms-input-placeholder {
+    color: var(--theme-light-gray);
+    opacity: 1;
+    /* Firefox */
+  }
+  
+  ::-ms-input-placeholder {
+    color: var(--theme-light-gray);
+    opacity: 1;
+    /* Firefox */
+  }
+  
+  ::placeholder {
+    color: var(--theme-light-gray);
+    opacity: 1;
+    /* Firefox */
+  }
+  
+  /* Internet Explorer 10-11 */
+  :-ms-input-placeholder {
+    color: var(--theme-light-gray);
+  }
+  
+  /* Microsoft Edge */
+  ::-ms-input-placeholder {
+    color: var(--theme-light-gray);
+  }
+
+button:focus,
+button:hover,
+.button:focus
+.button:hover{
+    color: var(--theme-typography-button-focus-hover-color);
+    background-color: var(--theme-typography-button-focus-hover-background-color);
+    border-color: var(--theme-typography-button-focus-hover-border-color);
+}
+
+a{
+    font-family: var(--theme-typography-a-font-family);
+    color: var(--theme-typography-a-color);
+    font-size: var(--theme-typography-a-font-size);
+    font-weight: var(--theme-typography-a-font-weight);
+    line-height: var(--theme-typography-a-line-height);
+    text-decoration: var(--theme-typography-a-text-decoration);
+}
+
+a:focus,
+a:hover{
+    color: var(--theme-typography-a-focus-hover-color);
+    text-decoration: var(--theme-typography-a-focus-hover-text-decoration);
+}

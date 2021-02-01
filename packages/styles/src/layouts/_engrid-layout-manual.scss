@@ -1,0 +1,283 @@
+// Grid Related Manual Utility Classes
+.i1-25 .en__field:nth-of-type(1),
+.i2-25 .en__field:nth-of-type(2),
+.i3-25 .en__field:nth-of-type(3),
+.i4-25 .en__field:nth-of-type(4),
+.i5-25 .en__field:nth-of-type(5),
+.i6-25 .en__field:nth-of-type(6),
+.i7-25 .en__field:nth-of-type(7),
+.i8-25 .en__field:nth-of-type(8),
+.i9-25 .en__field:nth-of-type(9),
+.i10-25 .en__field:nth-of-type(10) {
+  flex-basis: 25%;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.i1-33 .en__field:nth-of-type(1),
+.i2-33 .en__field:nth-of-type(2),
+.i3-33 .en__field:nth-of-type(3),
+.i4-33 .en__field:nth-of-type(4),
+.i5-33 .en__field:nth-of-type(5),
+.i6-33 .en__field:nth-of-type(6),
+.i7-33 .en__field:nth-of-type(7),
+.i8-33 .en__field:nth-of-type(8),
+.i9-33 .en__field:nth-of-type(9),
+.i10-33 .en__field:nth-of-type(10) {
+  flex-basis: 33.33333%;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.i1-50 .en__field:nth-of-type(1),
+.i2-50 .en__field:nth-of-type(2),
+.i3-50 .en__field:nth-of-type(3),
+.i4-50 .en__field:nth-of-type(4),
+.i5-50 .en__field:nth-of-type(5),
+.i6-50 .en__field:nth-of-type(6),
+.i7-50 .en__field:nth-of-type(7),
+.i8-50 .en__field:nth-of-type(8),
+.i9-50 .en__field:nth-of-type(9),
+.i10-50 .en__field:nth-of-type(10) {
+  flex-basis: 50%;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.i1-66 .en__field:nth-of-type(1),
+.i2-66 .en__field:nth-of-type(2),
+.i3-66 .en__field:nth-of-type(3),
+.i4-66 .en__field:nth-of-type(4),
+.i5-66 .en__field:nth-of-type(5),
+.i6-66 .en__field:nth-of-type(6),
+.i7-66 .en__field:nth-of-type(7),
+.i8-66 .en__field:nth-of-type(8),
+.i9-66 .en__field:nth-of-type(9),
+.i10-66 .en__field:nth-of-type(10) {
+  flex-basis: 66.66666%;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.i1-75 .en__field:nth-of-type(1),
+.i2-75 .en__field:nth-of-type(2),
+.i3-75 .en__field:nth-of-type(3),
+.i4-75 .en__field:nth-of-type(4),
+.i5-75 .en__field:nth-of-type(5),
+.i6-75 .en__field:nth-of-type(6),
+.i7-75 .en__field:nth-of-type(7),
+.i8-75 .en__field:nth-of-type(8),
+.i9-75 .en__field:nth-of-type(9),
+.i10-75 .en__field:nth-of-type(10) {
+  flex-basis: 75%;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.i1-100 .en__field:nth-of-type(1),
+.i2-100 .en__field:nth-of-type(2),
+.i3-100 .en__field:nth-of-type(3),
+.i4-100 .en__field:nth-of-type(4),
+.i5-100 .en__field:nth-of-type(5),
+.i6-100 .en__field:nth-of-type(6),
+.i7-100 .en__field:nth-of-type(7),
+.i8-100 .en__field:nth-of-type(8),
+.i9-100 .en__field:nth-of-type(9),
+.i10-100 .en__field:nth-of-type(10) {
+  flex-basis: 100%;
+  padding-left: 0rem;
+  padding-right: 0rem;
+}
+
+/* For items at the start of a row, remove left padding */
+.i1-start .en__field:nth-of-type(1),
+.i2-start .en__field:nth-of-type(2),
+.i3-start .en__field:nth-of-type(3),
+.i4-start .en__field:nth-of-type(4),
+.i5-start .en__field:nth-of-type(5),
+.i6-start .en__field:nth-of-type(6),
+.i7-start .en__field:nth-of-type(7),
+.i8-start .en__field:nth-of-type(8),
+.i9-start .en__field:nth-of-type(9),
+.i10-start .en__field:nth-of-type(10) {
+  padding-left: 0;
+}
+
+/* For items at the end of a row, remove right padding */
+.i1-end .en__field:nth-of-type(1),
+.i2-end .en__field:nth-of-type(2),
+.i3-end .en__field:nth-of-type(3),
+.i4-end .en__field:nth-of-type(4),
+.i5-end .en__field:nth-of-type(5),
+.i6-end .en__field:nth-of-type(6),
+.i7-end .en__field:nth-of-type(7),
+.i8-end .en__field:nth-of-type(8),
+.i9-end .en__field:nth-of-type(9),
+.i10-end .en__field:nth-of-type(10) {
+  padding-right: 0;
+}
+
+.i1-center .en__field:nth-of-type(1),
+.i2-center .en__field:nth-of-type(2),
+.i3-center .en__field:nth-of-type(3),
+.i4-center .en__field:nth-of-type(4),
+.i5-center .en__field:nth-of-type(5),
+.i6-center .en__field:nth-of-type(6),
+.i7-center .en__field:nth-of-type(7),
+.i8-center .en__field:nth-of-type(8),
+.i9-center .en__field:nth-of-type(9),
+.i10-center .en__field:nth-of-type(10) {
+  align-items: center;
+}
+
+#en__pagebuilder {
+  .i1-hide .en__field:nth-of-type(1),
+  .i2-hide .en__field:nth-of-type(2),
+  .i3-hide .en__field:nth-of-type(3),
+  .i4-hide .en__field:nth-of-type(4),
+  .i5-hide .en__field:nth-of-type(5),
+  .i6-hide .en__field:nth-of-type(6),
+  .i7-hide .en__field:nth-of-type(7),
+  .i8-hide .en__field:nth-of-type(8),
+  .i9-hide .en__field:nth-of-type(9),
+  .i10-hide .en__field:nth-of-type(10) {
+    background-color: #ff00001a !important;
+  }
+}
+
+body:not(#en__pagebuilder){
+  .i1-hide .en__field:nth-of-type(1),
+  .i2-hide .en__field:nth-of-type(2),
+  .i3-hide .en__field:nth-of-type(3),
+  .i4-hide .en__field:nth-of-type(4),
+  .i5-hide .en__field:nth-of-type(5),
+  .i6-hide .en__field:nth-of-type(6),
+  .i7-hide .en__field:nth-of-type(7),
+  .i8-hide .en__field:nth-of-type(8),
+  .i9-hide .en__field:nth-of-type(9),
+  .i10-hide .en__field:nth-of-type(10) {
+    display: none;
+  }
+}
+
+/* Force input visibility */
+/* Still needs JS to auto select last radio on input */
+/* prettier-ignore */
+.i1-show-hidden-radio-input .en__field:nth-of-type(1) .en__field__element--radio .en__field__item:nth-last-child(1),
+  .i2-show-hidden-radio-input .en__field:nth-of-type(2) .en__field__element--radio .en__field__item:nth-last-child(1),
+  .i3-show-hidden-radio-input .en__field:nth-of-type(3) .en__field__element--radio .en__field__item:nth-last-child(1),
+  .i4-show-hidden-radio-input .en__field:nth-of-type(4) .en__field__element--radio .en__field__item:nth-last-child(1),
+  .i5-show-hidden-radio-input .en__field:nth-of-type(5) .en__field__element--radio .en__field__item:nth-last-child(1),
+  .i6-show-hidden-radio-input .en__field:nth-of-type(6) .en__field__element--radio .en__field__item:nth-last-child(1),
+  .i7-show-hidden-radio-input .en__field:nth-of-type(7) .en__field__element--radio .en__field__item:nth-last-child(1),
+  .i8-show-hidden-radio-input .en__field:nth-of-type(8) .en__field__element--radio .en__field__item:nth-last-child(1),
+  .i9-show-hidden-radio-input .en__field:nth-of-type(9) .en__field__element--radio .en__field__item:nth-last-child(1),
+  .i10-show-hidden-radio-input .en__field:nth-of-type(10) .en__field__element--radio .en__field__item:nth-last-child(1){
+    display: flex !important;
+  }
+
+/* Hide Other Input Radio Value because it is auto-selected with JS when a value is entered in the Other Input Text field. */
+/* prettier-ignore */
+.i1-show-hidden-radio-input .en__field:nth-of-type(1) .en__field__element--radio .en__field__item:nth-last-child(2),
+  .i2-show-hidden-radio-input .en__field:nth-of-type(2) .en__field__element--radio .en__field__item:nth-last-child(2),
+  .i3-show-hidden-radio-input .en__field:nth-of-type(3) .en__field__element--radio .en__field__item:nth-last-child(2),
+  .i4-show-hidden-radio-input .en__field:nth-of-type(4) .en__field__element--radio .en__field__item:nth-last-child(2),
+  .i5-show-hidden-radio-input .en__field:nth-of-type(5) .en__field__element--radio .en__field__item:nth-last-child(2),
+  .i6-show-hidden-radio-input .en__field:nth-of-type(6) .en__field__element--radio .en__field__item:nth-last-child(2),
+  .i7-show-hidden-radio-input .en__field:nth-of-type(7) .en__field__element--radio .en__field__item:nth-last-child(2),
+  .i8-show-hidden-radio-input .en__field:nth-of-type(8) .en__field__element--radio .en__field__item:nth-last-child(2),
+  .i9-show-hidden-radio-input .en__field:nth-of-type(9) .en__field__element--radio .en__field__item:nth-last-child(2),
+  .i10-show-hidden-radio-input .en__field:nth-of-type(10) .en__field__element--radio .en__field__item:nth-last-child(2){
+    display: none !important;
+  }
+
+/* On error, restyle if the field is also centered */
+/* prettier-ignore */
+.i1-show-hidden-radio-input.i1-center .en__field:nth-of-type(1).en__field--validationFailed .en__field__element--radio,
+  .i2-show-hidden-radio-input.i2-center .en__field:nth-of-type(2).en__field--validationFailed .en__field__element--radio,
+  .i3-show-hidden-radio-input.i3-center .en__field:nth-of-type(3).en__field--validationFailed .en__field__element--radio,
+  .i4-show-hidden-radio-input.i4-center .en__field:nth-of-type(4).en__field--validationFailed .en__field__element--radio,
+  .i5-show-hidden-radio-input.i5-center .en__field:nth-of-type(5).en__field--validationFailed .en__field__element--radio,
+  .i6-show-hidden-radio-input.i6-center .en__field:nth-of-type(6).en__field--validationFailed .en__field__element--radio,
+  .i7-show-hidden-radio-input.i7-center .en__field:nth-of-type(7).en__field--validationFailed .en__field__element--radio,
+  .i8-show-hidden-radio-input.i8-center .en__field:nth-of-type(8).en__field--validationFailed .en__field__element--radio,
+  .i9-show-hidden-radio-input.i9-center .en__field:nth-of-type(9).en__field--validationFailed .en__field__element--radio,
+  .i10-show-hidden-radio-input.i9-center .en__field:nth-of-type(10).en__field--validationFailed .en__field__element--radio{
+    border-radius: 0.3rem !important;
+    margin-bottom: 0.5rem;
+  }
+
+/* On error, restyle if the field is also centered */
+/* prettier-ignore */
+.i1-show-hidden-radio-input.i1-center .en__field:nth-of-type(1).en__field--validationFailed .en__field__error,
+  .i2-show-hidden-radio-input.i2-center .en__field:nth-of-type(2).en__field--validationFailed .en__field__error,
+  .i3-show-hidden-radio-input.i3-center .en__field:nth-of-type(3).en__field--validationFailed .en__field__error,
+  .i4-show-hidden-radio-input.i4-center .en__field:nth-of-type(4).en__field--validationFailed .en__field__error,
+  .i5-show-hidden-radio-input.i5-center .en__field:nth-of-type(5).en__field--validationFailed .en__field__error,
+  .i6-show-hidden-radio-input.i6-center .en__field:nth-of-type(6).en__field--validationFailed .en__field__error,
+  .i7-show-hidden-radio-input.i7-center .en__field:nth-of-type(7).en__field--validationFailed .en__field__error,
+  .i8-show-hidden-radio-input.i8-center .en__field:nth-of-type(8).en__field--validationFailed .en__field__error,
+  .i9-show-hidden-radio-input.i9-center .en__field:nth-of-type(9).en__field--validationFailed .en__field__error,
+  .i10-show-hidden-radio-input.i9-center .en__field:nth-of-type(10).en__field--validationFailed .en__field__erro{
+    border-radius: 0.3rem !important;
+  }
+
+@media screen and (max-width: 40em) {
+  .i1-m50 .en__field:nth-of-type(1),
+  .i2-m50 .en__field:nth-of-type(2),
+  .i3-m50 .en__field:nth-of-type(3),
+  .i4-m50 .en__field:nth-of-type(4),
+  .i5-m50 .en__field:nth-of-type(5),
+  .i6-m50 .en__field:nth-of-type(6),
+  .i7-m50 .en__field:nth-of-type(7),
+  .i8-m50 .en__field:nth-of-type(8),
+  .i9-m50 .en__field:nth-of-type(9),
+  .i10-m50 .en__field:nth-of-type(10) {
+    flex-basis: 50%;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  /* For items at the start of a row, remove left padding */
+  .i1-mstart .en__field:nth-of-type(1),
+  .i2-mstart .en__field:nth-of-type(2),
+  .i3-mstart .en__field:nth-of-type(3),
+  .i4-mstart .en__field:nth-of-type(4),
+  .i5-mstart .en__field:nth-of-type(5),
+  .i6-mstart .en__field:nth-of-type(6),
+  .i7-mstart .en__field:nth-of-type(7),
+  .i8-mstart .en__field:nth-of-type(8),
+  .i9-mstart .en__field:nth-of-type(9),
+  .i10-mstart .en__field:nth-of-type(10) {
+    padding-left: 0;
+  }
+
+  /* For items at the end of a row, remove right padding */
+  .i1-mend .en__field:nth-of-type(1),
+  .i2-mend .en__field:nth-of-type(2),
+  .i3-mend .en__field:nth-of-type(3),
+  .i4-mend .en__field:nth-of-type(4),
+  .i5-mend .en__field:nth-of-type(5),
+  .i6-mend .en__field:nth-of-type(6),
+  .i7-mend .en__field:nth-of-type(7),
+  .i8-mend .en__field:nth-of-type(8),
+  .i9-mend .en__field:nth-of-type(9),
+  .i10-mend .en__field:nth-of-type(10) {
+    padding-right: 0;
+  }
+
+  .i1-m100 .en__field:nth-of-type(1),
+  .i2-m100 .en__field:nth-of-type(2),
+  .i3-m100 .en__field:nth-of-type(3),
+  .i4-m100 .en__field:nth-of-type(4),
+  .i5-m100 .en__field:nth-of-type(5),
+  .i6-m100 .en__field:nth-of-type(6),
+  .i7-m100 .en__field:nth-of-type(7),
+  .i8-m100 .en__field:nth-of-type(8),
+  .i9-m100 .en__field:nth-of-type(9),
+  .i10-m100 .en__field:nth-of-type(10) {
+    flex-basis: 100%;
+    padding-left: 0rem;
+    padding-right: 0rem;
+  }
+}

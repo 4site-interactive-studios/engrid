@@ -1,0 +1,67 @@
+//Tweet to target theming
+
+/* Make sure that background colors are not hard coded */
+.en__twitterTarget,
+.en__tweetBackgroundText,
+.en__tweet,
+.en__tweetDisabled,
+.en__tweetButton,
+.en__tweetContact {
+  background-color: initial;
+}
+
+.en__component--tweetcontactblock .en__contacts {
+  flex-direction: column;
+}
+
+.en__tweetContact {
+  margin: 0 0 1rem 0;
+  padding: 0;
+  width: initial;
+}
+
+.en__twitterTarget__image {
+  margin-left: 0;
+  margin-right: 1rem;
+}
+
+.en__twitterTarget__details span {
+  display: block;
+}
+
+.en__twitterTarget__details br {
+  display: none;
+}
+
+// .en__tweetButton__send,
+// .en__tweetButton__sent {
+//   background-color: #f1700b;
+//   border-radius: 0;
+// }
+
+.en__twitterTarget,
+.en__tweet,
+.en__tweetButton{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.en__tweetButton a{
+    font-family: var(--theme-typography-primary-button-font-family);
+    color: var(--theme-typography-primary-button-color);
+    font-size: var(--theme-typography-primary-button-font-size);
+    font-weight: var(--theme-typography-primary-button-font-weight);
+    line-height: var(--theme-typography-primary-button-line-height);
+    background-color: var(--theme-typography-primary-button-background-color);
+    border-width: var(--theme-typography-primary-button-border-width);
+    border-color: var(--theme-typography-primary-button-border-color);
+    border-radius: var(--theme-typography-primary-button-border-radius);    
+    cursor: pointer;
+}
+
+.en__tweetButton a:focus,
+.en__tweetButton a:hover{
+    color: var(--theme-typography-primary-button-focus-hover-color);
+    background-color: var(--theme-typography-primary-button-focus-hover-background-color);
+    border-color: var(--theme-typography-primary-button-focus-hover-border-color);
+}

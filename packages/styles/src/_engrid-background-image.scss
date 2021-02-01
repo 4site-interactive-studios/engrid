@@ -1,0 +1,41 @@
+// High resolution imagery can cause FPS drops when scrolling due to page redraws. 
+// REF: Fix scrolling performance with CSS will-change property (https://www.fourkitchens.com/blog/article/fix-scrolling-performance-css-will-change-property/)
+
+body:not(#en__pagebuilder)
+  .en__component--advrow
+  .page-backgroundImage{
+    overflow: hidden; // added for before pseudo-element to help improve page redraw and subsequent page scroll FPS
+    position: relative; // added for before pseudo-element to help improve page redraw and subsequent page scroll FPS
+    z-index: -3;
+  }
+
+body:not(#en__pagebuilder)
+  .en__component--advrow
+  .page-backgroundImage:not(.page-backgroundImageSet):before {
+  background-position: top left;
+  background-repeat: repeat;
+  background-image: var(--theme-page-backgroundImage-url); //@TODO Get SCSS variable working
+  will-change: transform; // creates a new paint layer
+}
+
+// This code seems clinet specific and should not be in ENGrid
+body:not(#en__pagebuilder)[data-engrid-footer-below-fold]
+  .en__component--advrow
+  .page-backgroundImage:before {
+  -webkit-clip-path: polygon(100% 0, 100% 90vh, 50% 110vh, 0 90vh, 0 0);
+  clip-path: polygon(100% 0, 100% 90vh, 50% 110vh, 0 90vh, 0 0);
+  height: 120vh;
+  background-color: var(--theme-page-backgroundImage-background-color);
+}
+
+body:not(#en__pagebuilder).legacy
+  .en__component--advrow
+  .page-backgroundImage {
+  background-position: top right;
+}
+
+body:not(#en__pagebuilder)
+  .en__component--advrow
+  .page-backgroundImageOverlay {
+  z-index: -1;
+}

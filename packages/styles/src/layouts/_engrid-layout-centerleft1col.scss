@@ -1,0 +1,68 @@
+/*
+* ####################################################################################################################
+* # ENGRID CLIENT LAYOUT
+* # Center Left 1 Column
+* ####################################################################################################################
+*/
+
+/*
+* ##########################################################
+* # MOBILE FIRST BREAKPOINT
+* ##########################################################
+*/
+
+[data-engrid-layout="centerleft1col"] {
+  /* prettier-ignore */
+  .en__component--advrow,
+  .en__component--advrow .pseudo-subgrid {
+    /* autoprefixer grid: off */
+    grid-template-columns:
+    [
+    pc-start lpc-start]  minmax(0px, 1fr)                  [lpc-end
+    cc-start lcc-start]  minmax(15px, 1fr)                 [lcc-end
+    bc-start lbc-start]  minmax(calc(50vw - 15px), 250px)  [lbc-end
+    rbc-start]           minmax(calc(50vw - 15px), 250px)  [rbc-end bc-end
+    rcc-start]           minmax(15px, 1fr)                 [rcc-end cc-end
+    rpc-start]           minmax(0px, 1fr)                  [rpc-end pc-end               
+    ];
+  }
+}
+
+body:not(#en__pagebuilder)[data-engrid-layout="centerleft1col"] {
+  .page-backgroundImage {
+    grid-row: page-start / content-footerSpacer-end;
+  }
+}
+
+/*
+* ##########################################################
+* # BODY BREAKPOINT
+* # Sum of all MIN values of the Body Columns
+* ##########################################################
+*/
+
+@media screen and (min-width: 600px) {
+  [data-engrid-layout="centerleft1col"] {
+    /* prettier-ignore */
+    .en__component--advrow,
+    .en__component--advrow .pseudo-subgrid {
+      /* autoprefixer grid: off */
+      grid-template-columns:
+      [
+        pc-start lpc-start]  minmax(25px, 1fr)     [lpc-end
+        cc-start lcc-start]  minmax(25px, 25px)    [lcc-end
+        bc-start lbc-start]  minmax(250px, 340px)  [lbc-end
+        rbc-start]           minmax(250px, 340px)  [rbc-end bc-end
+        rcc-start]           minmax(25px, 475px)   [rcc-end cc-end
+        rpc-start]           minmax(25px, 1fr)     [rpc-end pc-end            
+      ]; 
+    }
+  }
+}
+
+/*
+* ##########################################################
+* # CONTENT BREAKPOINT
+* # Sum of all MAX values of the Body Columns + 1px
+* ##########################################################
+*/

@@ -1,0 +1,34 @@
+@supports (-webkit-appearance: -apple-pay-button) {
+  .apple-pay-button {
+    display: inline-block;
+    -webkit-appearance: -apple-pay-button;
+    -apple-pay-button-type: donate; /* Use any supported button type. */
+    -apple-pay-button-style: white-outline;
+  }
+  .apple-pay-button-white-with-line {
+    -apple-pay-button-style: white-outline;
+  }
+  .en__field__input.en__field__input--radio[value="applepay"] {
+    + label {
+      border-width: 0 !important;
+    }
+    &:checked {
+      + label {
+        background-color: transparent !important;
+        .apple-pay-button {
+          -apple-pay-button-style: inherit !important;
+        }
+      }
+    }
+  }
+}
+
+@supports not (-webkit-appearance: -apple-pay-button) {
+  .apple-pay-container,
+  .apple-pay-button {
+    display: none;
+  }
+  .en__field__input.en__field__input--radio[value="applepay"] + label {
+    display: none;
+  }
+}

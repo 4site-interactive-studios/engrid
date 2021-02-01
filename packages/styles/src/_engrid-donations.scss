@@ -1,0 +1,99 @@
+/* prettier-ignore */
+.radio-to-buttons .en__field--radio input[type="radio"] + label,
+  .give-by-select .en__field--radio input[type="radio"] + label,
+  .en__field--donationAmt.en__field--radio input[type="radio"] + label,
+  .en__field--donationAmt .en__field__item--other input
+  {
+    border-radius: var(--theme-typography-button-border-radius);
+  }
+
+/* prettier-ignore */
+.radio-to-buttons .en__field--radio .en__field__input--radio + .en__field__label,
+  .give-by-select .en__field--radio .en__field__input--radio + .en__field__label,
+  .en__field--donationAmt.en__field--radio .en__field__input--radio + .en__field__label {
+    margin-left: 0rem !important;
+  }
+
+/* prettier-ignore */
+.radio-to-buttons .en__field--radio .en__field__input--radio + .en__field__label:before,
+  .give-by-select .en__field--radio .en__field__input--radio + .en__field__label:before,
+  .en__field--donationAmt.en__field--radio .en__field__input--radio + .en__field__label:before {
+    display: none !important;
+  }
+
+/* prettier-ignore */
+.radio-to-buttons .en__field--radio input[type="radio"] + label,
+  .radio-to-buttons .en__field--radio .en__field__item--other input[type="text"],
+  .give-by-select .en__field--radio input[type="radio"] + label,
+  .give-by-select .en__field--radio .en__field__item--other input[type="text"],
+  .en__field--donationAmt.en__field--radio input[type="radio"] + label,
+  .en__field--donationAmt.en__field--radio .en__field__item--other input[type="text"],
+  .en__field--donationAmt.en__field--radio .en__field__item--other input[type="tel"],
+  .en__field--donationAmt.en__field--radio .en__field__item--other input[type="number"] {
+    background-color: var(--theme-typography-button-background-color);
+    color: var(--theme-typography-button-color);
+  }
+
+/* prettier-ignore */
+.radio-to-buttons .en__field--radio input[type="radio"]:checked + label,
+  .radio-to-buttons .en__field--radio .en__field__item--other.has-value input,
+  .radio-to-buttons .en__field--radio .en__field__item--other:not(.en__field__item--hidden) input,
+  .give-by-select .en__field--radio input[type="radio"]:checked + label,
+  .give-by-select .en__field--radio .en__field__item--other.has-value input,
+  .give-by-select .en__field--radio .en__field__item--other:not(.en__field__item--hidden) input,
+  .en__field--donationAmt.en__field--radio input[type="radio"]:checked + label,
+  .en__field--donationAmt.en__field--radio .en__field__item--other.has-value input,
+  .en__field--donationAmt.en__field--radio .en__field__item--other:not(.en__field__item--hidden) input {
+    text-transform: none;
+    background-color: var(--theme-typography-button-focus-hover-background-color);
+    // border-color: var(--theme-typography-button-focus-hover-border-color); // Removed because I think this is unnecisary given other CSS changes
+    color: var(--theme-typography-button-focus-hover-color);
+  }
+
+/* prettier-ignore */
+.radio-to-buttons .en__field--radio label.en__field__label.en__field__label--item,
+  .give-by-select .en__field--radio label.en__field__label.en__field__label--item,
+  .en__field--donationAmt.en__field--radio label.en__field__label.en__field__label--item {
+    border: 1px solid var(--theme-typography-button-border-color);
+    background-position-x: 40px;
+  }
+
+/* prettier-ignore */
+.radio-to-buttons .en__field__input--other,
+  .give-by-select .en__field__input--other,
+  .en__field--donationAmt.en__field__input--other {
+    height: auto !important;
+  }
+
+/* prettier-ignore */
+.radio-to-buttons .en__field--radio input[type="radio"]:focus + label,
+  .give-by-select .en__field--radio input[type="radio"]:focus + label,
+  .en__field--donationAmt.en__field--radio input[type="radio"]:focus + label {
+    outline: none !important;
+    border: 1px solid #666666 !important;
+    -webkit-box-shadow: 0 0 0.3125rem var(--theme-light-gray) !important;
+    box-shadow: 0 0 0.3125rem var(--theme-light-gray) !important;
+    transition: box-shadow 0.25s, border-color 0.125s ease-in-out, -webkit-box-shadow 0.25s !important;
+  }
+
+// Remove Number Input Spinners on Other Input Gift Amount field https://stackoverflow.com/a/4298216
+.en__field--donationAmt input[type="number"]::-webkit-inner-spin-button,
+.en__field--donationAmt input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+  -moz-appearance: textfield;
+}
+
+// Add "/mo" to giving amount labels
+// @TODO Make "content" use a ENGRID CSS Property
+.has-give-monthly
+  .en__field--donationAmt
+  div:not(.en__field__item--other)
+  .en__field__label--item::after {
+  content: "/mo";
+  line-height: 2;
+  font-size: 75%;
+  margin-left: 0.1875rem;
+  opacity: 0.5;
+  text-transform: lowercase;
+}

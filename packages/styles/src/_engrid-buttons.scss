@@ -1,0 +1,99 @@
+// @TODO reconcile with engrid-typography.scss
+
+/* @TODO Design buttons with style (Primary, Secondary, Text Only, Outine)
+ * See #3 https://medium.com/eightshapes-llc/component-examples-9c4b3bb3b308
+ */
+
+/* Buttons */
+button,
+.button {
+  display: block;
+  margin: 0 0 1rem 0;
+  font-family: inherit;
+  padding: 0.85rem 1rem;
+  -webkit-appearance: none;
+  border: 1px solid transparent;
+  border-radius: var(--theme-typography-input-border-radius);
+  -webkit-transition: background-color 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out;
+  transition: background-color 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out;
+  font-size: 1rem;
+  text-align: center;
+  cursor: pointer;
+  background-color: var(--theme-typography-button-background-color);
+  color: var(--theme-typography-button-color);
+}
+
+.en__submit button,
+.en__submit .button {
+  margin-top: 2rem;
+  background-color: var(--theme-typography-primary-button-background-color);
+  border-color: var(--theme-typography-primary-button-background-color);
+  color: var(--theme-typography-primary-button-color);
+  border-radius: var(--theme-typography-button-border-radius);
+  display: block;
+  font-size: calc(0.05552rem * 24);
+  font-weight: 900;
+  line-height: 1;
+  padding: 18px 0;
+}
+
+.en__submit,
+.en__submit button,
+.en__submit .button {
+  width: 100%;
+}
+
+.en__submit button:hover,
+.en__submit button:focus,
+.en__submit .button:hover,
+.en__submit .button:focus,
+button.cta.primary:hover,
+button.cta.primary:focus,
+.button.cta.primary:hover,
+.button.cta.primary:focus  {
+  color: var(--theme-typography-primary-button-focus-hover-color);
+  background-color: var(--theme-typography-primary-button-focus-hover-background-color);
+  border-color: var(--theme-typography-primary-button-focus-hover-border-color);
+}
+
+.arrow .en__submit button::after,
+.arrow .en__submit .button::after {
+  content: "→";
+  float: right;
+  margin-right: 1rem;
+  opacity: 0.9;
+}
+
+.arrow .en__submit button:disabled::after,
+.arrow .en__submit .button:disabled::after {
+  display: none;
+}
+
+.next-step .en__submit button,
+.next-step .en__submit .button {
+  width: initial;
+  margin-left: auto;
+}
+
+button:hover,
+button:focus,
+.button:hover,
+.button:focus {
+  background-color: var(--theme-typography-button-focus-hover-background-color);
+}
+
+button[disabled],
+button[disabled]:hover,
+button[disabled]:focus
+.button[disabled],
+.button[disabled]:hover,
+.button[disabled]:focus {
+  content: "Processing...";
+}
+
+button[disabled],
+.button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: grayscale(1);
+}

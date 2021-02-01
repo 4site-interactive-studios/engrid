@@ -1,0 +1,138 @@
+//Event styling
+.en__additional__amount,
+.en__additional__label,
+.en__ticket__currency,
+.en__ticket__name,
+.en__ticket__price {
+  font-size: inherit;
+}
+
+.en__ticket__selector {
+  display: flex;
+}
+
+.en__additional__amount,
+.en__ticket__field--cost {
+  width: initial;
+}
+
+.en__ticket__field--quantity {
+  width: initial;
+}
+
+.en__ticket__minus,
+.en__ticket__plus {
+  background-color: transparent;
+}
+
+.en__ticket__minus:hover,
+.en__ticket__minus:focus,
+.en__ticket__plus:hover,
+.en__ticket__plus:focus {
+  background-color: #ffffff;
+}
+
+.en__ticketBlock{
+  border: none;
+  background-color: initial;
+}
+
+.en__tickets{
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.en__ticket__field--info{
+  padding-left: 0;
+}
+
+.en__ticket__selector{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.en__ticket__minus,
+.en__ticket__plus{
+  border: none;
+  flex-basis: 20px;
+  height: auto;
+}
+
+.en__ticket__minus:focus,
+.en__ticket__minus:hover,
+.en__ticket__plus:focus,
+.en__ticket__plus:hover{
+  background-color: initial;
+}
+
+.en__ticket__field--quantity{
+  padding-right: 0;
+  height: auto;
+}
+
+.en__ticket__remaining{
+  text-align: right;
+}
+
+input[type=text].en__ticket__quantity{
+  height: fit-content !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding-left: 0;
+  padding-right: 0;
+  flex-basis: 25px;
+}
+
+.en__registrants{
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.en__registrants__registrantDetails {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.en__registrants__registrant{
+  padding-left: 0;
+  padding-right: 0;
+  width: 100%;
+}
+
+.en__registrants__registrantDetails .en__field.en__field--text.en__field {
+  flex-basis: calc(100% / 3);
+}
+
+.en__registrants__registrantDetails .en__field.en__field--text.en__field:first-of-type {
+  padding-left: 0;
+}
+
+.en__registrants__registrantDetails .en__field.en__field--text.en__field:last-of-type {
+  padding-right: 0;
+}
+
+.en__ticketSummary{
+  padding-top: 14px;
+}
+
+.en__ticketSummary{
+  display: none;
+}
+
+.en__additional__label{
+  padding-left: 0;
+}
+
+.en__orderSummary {
+  padding: 0;
+  margin-left: -7px;
+}
+
+@media screen and (max-width: 599px){
+  .en__registrants__registrantDetails .en__field.en__field--text.en__field{
+      flex-basis: 100%;
+      padding-left: 0;
+      padding-right: 0;
+  }
+}

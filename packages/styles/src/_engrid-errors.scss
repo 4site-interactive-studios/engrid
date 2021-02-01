@@ -1,0 +1,144 @@
+/************************************
+* Error Messages
+***********************************/
+
+/* Page Level Errors */
+.en__errorHeader {
+  padding: 0.5rem 2rem;
+  color: var(--theme-error-red);
+  font-weight: 700;
+  text-align: center;
+  background-color: var(--theme-error-page-group-background);
+}
+
+.en__errorList > .en__error {
+  padding: 0.5rem 2rem;
+  list-style: none;
+  color: var(--theme-error-red);
+  text-align: center;
+  background-color: var(--theme-error-page-group-background);
+}
+
+.en__errorList > .en__error:last-child {
+  border-bottom: 5px solid var(--theme-error-red);
+}
+
+/* Field Level Inline Errors */
+
+/* Pick up the normal spacing on the error element to contunue form pacing continues as expected when in an error state */
+.en__component .en__field.en__field--select.en__field--validationFailed,
+.en__component .en__field.en__field--radio.en__field--validationFailed,
+.en__component .en__field.en__field--checkbox.en__field--validationFailed,
+.en__component .en__field.en__field--splittext.en__field--validationFailed,
+.en__component .en__field.en__field--tripletext.en__field--validationFailed,
+.en__component .en__field.en__field--splitselect.en__field--validationFailed,
+.en__component .en__field.en__field--tripleselect.en__field--validationFailed {
+  margin-bottom: 1rem;
+}
+
+.en__component .en__field__error {
+  padding: 0.25rem 0.5rem 0 0;
+  color: var(--theme-error-red);
+  font-size: 0.75rem;
+  order: 3;
+}
+
+/* @TODO Not working anymore since we removed our corresponding JS */
+/* When EN's field validator flags an error it jumps the user to the first error on thepage. Our custom error JS executes after EN's and sets a body level class that we can reorder the field presentation on. If we don't wait to re-order the fields, the page will jump to the error which appears below the input resulting in the user having to scroll up to make the change. This is something that should be fixed on EN's end and how they handle errors, but until then we need this work around */
+/* Code dependent on "oc-en-error-helpers.js" which must execute after EN's "pagedata.js" */
+body.error-jump-assist .en__component .en__field__error {
+  order: 1;
+}
+
+.en__field--text.en__field--validationFailed input,
+.en__field--email.en__field--validationFailed input,
+.en__field--telephone.en__field--validationFailed input,
+.en__field--number.en__field--validationFailed input,
+.en__field--textarea.en__field--validationFailed textarea,
+.en__field--select.en__field--validationFailed select {
+  border-color: var(--theme-error-red);
+  background-color: var(--theme-error-red-faded);
+}
+
+.en__component
+  .en__field.en__field--select.en__field--withOther.en__field--validationFailed
+  .en__field__element,
+.en__component
+  .en__field.en__field--radio.en__field--validationFailed
+  .en__field__element,
+.en__component
+  .en__field.en__field--checkbox.en__field--validationFailed
+  .en__field__element,
+.en__component
+  .en__field.en__field--splittext.en__field--validationFailed
+  .en__field__element,
+.en__component
+  .en__field.en__field--tripletext.en__field--validationFailed
+  .en__field__element,
+.en__component
+  .en__field.en__field--splitselect.en__field--validationFailed
+  .en__field__element,
+.en__component
+  .en__field.en__field--tripleselect.en__field--validationFailed
+  .en__field__element {
+  border: var(--theme-error-input-border-width) solid var(--theme-error-red);
+  background-color: var(--theme-error-red-faded);
+  padding: 0.5rem 0.5rem 0rem 0.5rem;
+  border-radius: var(--theme-typography-input-border-radius);
+}
+
+.en__field--text.en__field--validationFailed .en__field__error,
+.en__field--email.en__field--validationFailed .en__field__error,
+.en__field--telephone.en__field--validationFailed .en__field__error,
+.en__field--number.en__field--validationFailed .en__field__error,
+.en__field--textarea.en__field--validationFailed .en__field__error,
+.en__field--select.en__field--validationFailed .en__field__error,
+.en__component
+  .en__field.en__field--select.en__field--withOther.en__field--validationFailed
+  .en__field__error,
+.en__component
+  .en__field.en__field--radio.en__field--validationFailed
+  .en__field__error,
+.en__component
+  .en__field.en__field--checkbox.en__field--validationFailed
+  .en__field__error,
+.en__component
+  .en__field.en__field--splittext.en__field--validationFailed
+  .en__field__error,
+.en__component
+  .en__field.en__field--tripletext.en__field--validationFailed
+  .en__field__error,
+.en__component
+  .en__field.en__field--splitselect.en__field--validationFailed
+  .en__field__error,
+.en__component
+  .en__field.en__field--tripleselect.en__field--validationFailed
+  .en__field__error {
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
+}
+
+.en__field--radio.en__field--validationFailed
+  .en__field--checkbox.en__field--validationFailed {
+  border-color: var(--theme-error-red);
+}
+
+.en__field--validationFailed.has-value input,
+.en__field--validationFailed.has-value textarea,
+.en__field--select.en__field--validationFailed.has-value select {
+  border-color: var(--theme-error-red-grayscale);
+  background-color: initial;
+}
+
+div:not(.manual-form-layout) {
+  .en__field--donationAmt.en__field--withOther.en__field--validationFailed
+    .en__field__element--radio {
+    border-radius: 0.3rem !important;
+    margin-bottom: 0.5rem;
+  }
+
+  .en__field--donationAmt.en__field--withOther.en__field--validationFailed
+    .en__field__error {
+    border-radius: 0.3rem !important;
+  }
+}
