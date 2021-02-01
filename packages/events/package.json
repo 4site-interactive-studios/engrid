@@ -1,6 +1,6 @@
 {
   "name": "@4site/engrid-events",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Event Listeners for the ENGRID project",
   "repository": {
     "type": "git",
