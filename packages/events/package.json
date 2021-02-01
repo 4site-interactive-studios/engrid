@@ -2,6 +2,8 @@
   "name": "@4site/engrid-events",
   "version": "0.0.4",
   "description": "Event Listeners for the ENGRID project",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "build": "del-cli dist & tsc",
     "prepublishOnly": "npm run build",
@@ -27,5 +29,5 @@
     "del-cli": "^3.0.1",
     "strongly-typed-events": "^2.0.9"
   },
-  "gitHead": "811dbd2465e5516100f1853d90271d2f2037f5cc"
+  "gitHead": "7ca3b726da595f41166338fbfa8590c0779fa939"
 }
