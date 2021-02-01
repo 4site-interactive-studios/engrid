@@ -1,7 +1,7 @@
 export * from './apple-pay';
 export * from './capitalize-fields';
 export * from './click-to-expand';
-export * from './custom-methods';
+export * as engrid from './custom-methods';
 export * from './ie';
 export * from './iframe';
 export * from './live-variables';
