@@ -1,9 +1,10 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
-    "target": "es2018",
-    "module": "commonjs",
-    "lib": ["es2018"],
+    // Target latest version of ECMAScript.
+    "target": "es5",
+    // Search under node_modules for non-relative imports.
+    "moduleResolution": "node",
     "outDir": "dist",
     "declaration": true,
     "strict": true

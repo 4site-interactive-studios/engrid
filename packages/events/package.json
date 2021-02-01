@@ -2,6 +2,11 @@
   "name": "@4site/engrid-events",
   "version": "0.0.2",
   "description": "Event Listeners for the ENGRID project",
+  "scripts": {
+    "build": "del-cli dist & tsc",
+    "prepublishOnly": "npm run build",
+    "postpublish": "git push origin --tags"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/4site-interactive-studios/engrid-scripts.git",
@@ -19,6 +24,7 @@
   },
   "homepage": "https://github.com/4site-interactive-studios/engrid-scripts#readme",
   "dependencies": {
-    "strongly-typed-events": "^2.0.9"
+    "strongly-typed-events": "^2.0.9",
+    "del-cli": "^3.0.1"
   }
 }

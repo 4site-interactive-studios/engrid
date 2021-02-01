@@ -2,6 +2,11 @@
   "name": "@4site/engrid-common",
   "version": "0.0.2",
   "description": "Common scripts for the ENGRID Project",
+  "scripts": {
+    "build": "del-cli dist & tsc",
+    "prepublishOnly": "npm run build",
+    "postpublish": "git push origin --tags"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/4site-interactive-studios/engrid-scripts.git",
@@ -16,7 +21,8 @@
     "@4site/engrid-events": "^0.0.2"
   },
   "peerDependencies": {
-    "@4site/engrid-events": "^1.0.0"
+    "@4site/engrid-events": "*",
+    "del-cli": "^3.0.1"
   },
   "homepage": "https://github.com/4site-interactive-studios/engrid-scripts#readme"
 }
