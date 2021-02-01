@@ -1,0 +1,23 @@
+{
+  "name": "@4site/engrid-events",
+  "version": "1.0.0",
+  "description": "Event Listeners for the ENGRID project",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/4site-interactive-studios/engrid-scripts.git"
+  },
+  "keywords": [
+    "ENGRID",
+    "Engaging Networks",
+    "4Site"
+  ],
+  "author": "4Site Studios",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/4site-interactive-studios/engrid-scripts/issues"
+  },
+  "homepage": "https://github.com/4site-interactive-studios/engrid-scripts#readme",
+  "dependencies": {
+    "strongly-typed-events": "^2.0.9"
+  }
+}

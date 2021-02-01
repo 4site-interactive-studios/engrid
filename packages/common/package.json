@@ -1,0 +1,21 @@
+{
+  "name": "@4site/engrid-common",
+  "version": "1.0.0",
+  "description": "Common scripts for the ENGRID Project",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/4site-interactive-studios/engrid-scripts.git"
+  },
+  "author": "4Site Studios",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/4site-interactive-studios/engrid-scripts/issues"
+  },
+  "dependencies": {
+    "@4site/engrid-events": "^1.0.0"
+  },
+  "peerDependencies": {
+    "@4site/engrid-events": "^1.0.0"
+  },
+  "homepage": "https://github.com/4site-interactive-studios/engrid-scripts#readme"
+}
