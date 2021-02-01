@@ -1,6 +1,6 @@
 {
   "name": "@4site/engrid-common",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Common scripts for the ENGRID Project",
   "repository": {
     "type": "git",
@@ -12,7 +12,7 @@
     "url": "https://github.com/4site-interactive-studios/engrid-scripts/issues"
   },
   "dependencies": {
-    "@4site/engrid-events": "^1.0.0"
+    "@4site/engrid-events": "^0.0.1"
   },
   "peerDependencies": {
     "@4site/engrid-events": "^1.0.0"
