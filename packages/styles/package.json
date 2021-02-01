@@ -1,10 +1,11 @@
 {
   "name": "@4site/engrid-styles",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Main SASS Styles for the ENGRID Project",
   "main": "./src/main.scss",
   "scripts": {
-    "build": "node-sass src -o dist"
+    "build": "node-sass src -o dist",
+    "postpublish": "git push origin --tags"
   },
   "keywords": [
     "Engaging Networks",
@@ -18,6 +19,10 @@
   ],
   "author": "4Site Studios",
   "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/4site-interactive-studios/engrid-scripts/issues"
+  },
+  "homepage": "https://github.com/4site-interactive-studios/engrid-scripts#readme",
   "url": "https://github.com/4site-interactive-studios/engrid-scripts",
   "devDependencies": {
     "breakpoint-sass": "^2.7.1",
@@ -29,10 +34,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/4site-interactive-studios/engrid-scripts.git"
-  },
-  "bugs": {
-    "url": "https://github.com/4site-interactive-studios/engrid-scripts/issues"
-  },
-  "homepage": "https://github.com/4site-interactive-studios/engrid-scripts#readme"
+    "url": "https://github.com/4site-interactive-studios/engrid-scripts.git",
+    "directory": "packages/styles"
+  }
 }
