@@ -26,5 +26,6 @@
   "dependencies": {
     "del-cli": "^3.0.1",
     "strongly-typed-events": "^2.0.9"
-  }
+  },
+  "gitHead": "811dbd2465e5516100f1853d90271d2f2037f5cc"
 }

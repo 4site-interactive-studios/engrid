@@ -24,5 +24,6 @@
     "@4site/engrid-events": "*",
     "del-cli": "^3.0.1"
   },
-  "homepage": "https://github.com/4site-interactive-studios/engrid-scripts#readme"
+  "homepage": "https://github.com/4site-interactive-studios/engrid-scripts#readme",
+  "gitHead": "811dbd2465e5516100f1853d90271d2f2037f5cc"
 }
