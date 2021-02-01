@@ -1,7 +1,7 @@
 import { SimpleEventDispatcher } from "strongly-typed-events";
-import EnForm from "./en-form";
-import DonationAmount from "./donation-amount";
-export default class ProcessingFees {
+import { EnForm } from "./en-form";
+import { DonationAmount } from "./donation-amount";
+export class ProcessingFees {
   private _onFeeChange = new SimpleEventDispatcher<number>();
   public _amount: DonationAmount = DonationAmount.getInstance();
   public _form: EnForm = EnForm.getInstance();

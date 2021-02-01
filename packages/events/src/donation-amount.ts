@@ -1,6 +1,6 @@
 import { SimpleEventDispatcher } from "strongly-typed-events";
 
-export default class DonationAmount {
+export class DonationAmount {
   private _onAmountChange = new SimpleEventDispatcher<number>();
   private _amount: number = 0;
   private _radios: string = "";

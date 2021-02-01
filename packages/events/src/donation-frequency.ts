@@ -1,6 +1,6 @@
 import { SimpleEventDispatcher } from "strongly-typed-events";
 
-export default class DonationFrequency {
+export class DonationFrequency {
   private _onFrequencyChange = new SimpleEventDispatcher<string>();
   private _frequency: string = "single";
   private _radios: string = "";

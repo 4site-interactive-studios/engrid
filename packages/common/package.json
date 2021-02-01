@@ -18,12 +18,12 @@
     "url": "https://github.com/4site-interactive-studios/engrid-scripts/issues"
   },
   "dependencies": {
-    "@4site/engrid-events": "^0.0.5",
+    "@4site/engrid-events": "*",
     "del-cli": "^3.0.1"
   },
   "peerDependencies": {
     "@4site/engrid-events": "*"
   },
   "homepage": "https://github.com/4site-interactive-studios/engrid-scripts#readme",
-  "gitHead": "7ca3b726da595f41166338fbfa8590c0779fa939"
+  "gitHead": "4192b6fdf26f56ea4798184e27411f178b2de279"
 }
