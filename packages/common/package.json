@@ -2,6 +2,8 @@
   "name": "@4site/engrid-common",
   "version": "0.1.0",
   "description": "Common scripts for the ENGRID Project",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "build": "del-cli dist & tsc",
     "prepublishOnly": "npm run build",
