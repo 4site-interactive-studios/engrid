@@ -68,7 +68,7 @@ Designed and Developed by [4Site Studios](http://4sitestudios.com/en?ms=github) 
 
 # Interested in a project or have questions?
 
-We would love to hear from you!
+We would love to hear from you.
 
 Bryan Casler  
 Director of Digital Strategy  
