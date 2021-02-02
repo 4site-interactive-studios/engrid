@@ -1,3 +1,6 @@
+export { Options } from './interfaces/options';
+
+export * from './app';
 export * from './apple-pay';
 export * from './capitalize-fields';
 export * from './click-to-expand';

@@ -2,7 +2,7 @@ import * as cookie from "./cookie";
 import { DonationAmount, DonationFrequency, EnForm } from "@4site/engrid-events";
 
 export class Modal {
-  public debug: boolean = false;
+  public debug: boolean | undefined = false;
   private overlay: HTMLDivElement;
   private upsellModal: HTMLElement | null;
   private exitModal: HTMLElement | null;
