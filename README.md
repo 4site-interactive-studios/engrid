@@ -70,7 +70,7 @@ Designed and Developed by [4Site Studios](http://4sitestudios.com/en?ms=github) 
 
 We would love to hear from you.
 
-**Bryan Casler**
+Bryan Casler
 Director of Digital Strategy  
 4Site Interactive Studios  
 Cell: (315) 877-3420  
