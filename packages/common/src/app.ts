@@ -1,5 +1,5 @@
 import { DonationAmount, DonationFrequency, EnForm, ProcessingFees } from '@4site/engrid-events';
-import { Options, ApplePay, CapitalizeFields, ClickToExpand, engrid, getUrlParameter, IE, LiveVariables, Modal, sendIframeHeight, ShowHideRadioCheckboxes, SimpleCountrySelect } from './';
+import { Options, OptionsDefaults, ApplePay, CapitalizeFields, ClickToExpand, engrid, getUrlParameter, IE, LiveVariables, Modal, sendIframeHeight, ShowHideRadioCheckboxes, SimpleCountrySelect } from './';
 
 export class App {
 
@@ -12,10 +12,13 @@ export class App {
     );
     private _frequency: DonationFrequency = DonationFrequency.getInstance("transaction.recurrpay");
 
+    private options: Options;
+
     public enID = getUrlParameter('en_id');
 
 
-    constructor(private options: Options) {
+    constructor(options: Options) {
+        this.options = { ...OptionsDefaults, ...options };
         // Document Load
         if (document.readyState !== "loading") {
             this.run();
@@ -83,7 +86,7 @@ export class App {
         this.loadIFrame();
 
         // Live Variables
-        new LiveVariables(this.options.submitLabel);
+        new LiveVariables(this.options);
 
         // Modal
         const modal = new Modal();

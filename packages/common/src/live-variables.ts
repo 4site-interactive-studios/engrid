@@ -1,26 +1,32 @@
 import { DonationAmount, EnForm, DonationFrequency, ProcessingFees } from "@4site/engrid-events";
-
+import { Options, OptionsDefaults } from './';
 export class LiveVariables {
   public _amount: DonationAmount = DonationAmount.getInstance();
   public _fees: ProcessingFees = ProcessingFees.getInstance();
   private _frequency: DonationFrequency = DonationFrequency.getInstance();
   private _form: EnForm = EnForm.getInstance();
   private multiplier: number = 1 / 12;
+  private submitLabel;
+  private options: Options;
 
 
-  constructor(submitLabel: string) {
-    this._amount.onAmountChange.subscribe(() => this.changeSubmitButton(submitLabel));
+  constructor(options: Options) {
+    this.options = { ...OptionsDefaults, ...options };
+    this.submitLabel = document.querySelector<HTMLButtonElement>(
+      ".en__submit button"
+    )?.innerHTML || "Donate";
+    this._amount.onAmountChange.subscribe(() => this.changeSubmitButton());
     this._amount.onAmountChange.subscribe(() => this.changeLiveAmount());
     this._amount.onAmountChange.subscribe(() => this.changeLiveUpsellAmount());
     this._fees.onFeeChange.subscribe(() => this.changeLiveAmount());
     this._fees.onFeeChange.subscribe(() => this.changeLiveUpsellAmount());
-    this._fees.onFeeChange.subscribe(() => this.changeSubmitButton(submitLabel));
+    this._fees.onFeeChange.subscribe(() => this.changeSubmitButton());
     this._frequency.onFrequencyChange.subscribe(() => this.changeLiveFrequency());
     this._frequency.onFrequencyChange.subscribe(() =>
-      this.changeSubmitButton(submitLabel)
+      this.changeSubmitButton()
     );
     this._form.onSubmit.subscribe(() => this.loadingSubmitButton());
-    this._form.onError.subscribe(() => this.changeSubmitButton(submitLabel));
+    this._form.onError.subscribe(() => this.changeSubmitButton());
 
     // Watch the monthly-upsell links
     document.addEventListener("click", (e: Event) => {
@@ -37,14 +43,16 @@ export class LiveVariables {
   }
 
   private getAmountTxt(amount: number = 0) {
+    const symbol = this.options.CurrencySymbol ?? '$';
+    const separator = this.options.CurrencySeparator ?? '.';
     const amountTxt = Number.isInteger(amount)
-      ? "$" + amount
-      : "$" + amount.toFixed(2);
+      ? <string>symbol + amount
+      : symbol + amount.toFixed(2).replace('.', separator);
     return amount > 0 ? amountTxt : "";
   }
 
   private getUpsellAmountTxt(amount: number = 0) {
-    const amountTxt = "$" + Math.ceil(amount / 5) * 5;
+    const amountTxt = <string>this.options.CurrencySymbol + Math.ceil(amount / 5) * 5;
     return amount > 0 ? amountTxt : "";
   }
 
@@ -53,20 +61,17 @@ export class LiveVariables {
     return amount > 0 ? amountRaw.toString() : "";
   }
 
-  public changeSubmitButton(submitLabel: string) {
+  public changeSubmitButton() {
     const submit = document.querySelector(
-      ".dynamic-giving-button button"
+      ".en__submit button"
     ) as HTMLButtonElement;
     const amount = this.getAmountTxt(this._amount.amount + this._fees.fee);
+    const frequency = this._frequency.frequency == "single" ? "" : this._frequency.frequency;
+    let label = this.submitLabel;
 
-    if (amount) {
-      const frequency = this._frequency.frequency == "single" ? "" : " Monthly";
-      const label =
-        amount != ""
-          ? submitLabel + " " + amount + frequency
-          : submitLabel + " Now";
-      submit.innerHTML = label;
-    }
+    if (amount) label = label.replace("$AMOUNT", amount);
+    label = label.replace("$FREQUENCY", frequency);
+    submit.innerHTML = label;
   }
   public loadingSubmitButton() {
     const submit = document.querySelector(
@@ -111,7 +116,7 @@ export class LiveVariables {
     live_frequency.forEach(
       elem =>
       (elem.innerHTML =
-        this._frequency.frequency == "single" ? "" : "monthly")
+        this._frequency.frequency == "single" ? "" : this._frequency.frequency)
     );
   }
 
@@ -138,8 +143,6 @@ export class LiveVariables {
       "input[name='transaction.donationAmt.other']"
     ) as HTMLInputElement;
     if (enFieldOtherAmount) {
-      // @TODO Needs to use getUpsellAmountRaw to set value
-
       enFieldOtherAmount.value = this.getUpsellAmountRaw(
         this._amount.amount * this.multiplier
       );

@@ -1,4 +1,4 @@
-export { Options } from './interfaces/options';
+export { Options, OptionsDefaults } from './interfaces/options';
 
 export * from './app';
 export * from './apple-pay';
