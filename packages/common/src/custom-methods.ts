@@ -3,6 +3,7 @@ declare global {
     pageJson: any;
     enOnSubmit: any;
     enOnError: any;
+    EngagingNetworks: any;
   }
 }
 export const body = document.body;
@@ -909,19 +910,19 @@ const getCardType = (cc_partial: string) => {
     case "3":
       field_credit_card.className = field_credit_card_classes.join(" ").trim();
       field_credit_card.classList.add("live-card-type-amex");
-      return "American Express";
+      return "amex";
     case "4":
       field_credit_card.className = field_credit_card_classes.join(" ").trim();
       field_credit_card.classList.add("live-card-type-visa");
-      return "Visa";
+      return "visa";
     case "5":
       field_credit_card.className = field_credit_card_classes.join(" ").trim();
       field_credit_card.classList.add("live-card-type-mastercard");
-      return "MasterCard";
+      return "mastercard";
     case "6":
       field_credit_card.className = field_credit_card_classes.join(" ").trim();
       field_credit_card.classList.add("live-card-type-discover");
-      return "Discover";
+      return "discover";
     case "7":
       field_credit_card.className = field_credit_card_classes.join(" ").trim();
       field_credit_card.classList.add("live-card-type-invalid");
@@ -946,13 +947,22 @@ const getCardType = (cc_partial: string) => {
  */
 const handleCCUpdate = () => {
   const card_type = getCardType(field_credit_card.value);
+  const card_values = {
+    amex: ['amex', 'american express', 'americanexpress', 'amx', 'ax'],
+    visa: ['visa', 'vi'],
+    mastercard: ['mastercard', 'master card', 'mc'],
+    discover: ['discover', 'di']
+  }
   const payment_text =
     field_payment_type.options[field_payment_type.selectedIndex].text;
 
   if (card_type && payment_text != card_type) {
     field_payment_type.value = Array.from(field_payment_type.options).filter(
-      d => d.text === card_type
+      d => card_values[card_type].includes(d.value.toLowerCase())
     )[0].value;
+    if (window.EngagingNetworks && typeof window.EngagingNetworks?.require?._defined?.enDependencies?.dependencies?.parseDependencies === "function") {
+      window.EngagingNetworks.require._defined.enDependencies.dependencies.parseDependencies(window.EngagingNetworks.dependencies);
+    }
   }
 };
 
