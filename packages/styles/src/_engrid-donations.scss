@@ -82,13 +82,21 @@
 	-moz-appearance: textfield;
 }
 
-// Add "/mo" to giving amount labels
-// @TODO Make "content" use a ENGRID CSS Property
-.has-give-monthly .en__field--donationAmt div:not(.en__field__item--other) .en__field__label--item::after {
-	content: "/mo";
+.has-give-monthly .en__field--donationAmt div:not(.en__field__item--other) .en__field__label--item::after,
+.has-give-annually .en__field--donationAmt div:not(.en__field__item--other) .en__field__label--item::after {
 	line-height: 2;
 	font-size: 75%;
 	margin-left: 0.1875rem;
 	opacity: 0.5;
 	text-transform: lowercase;
+}
+
+// Append "/mo" to giving amount labels
+.has-give-monthly .en__field--donationAmt div:not(.en__field__item--other) .en__field__label--item::after{
+  content: var(--give-monthly-donation-amount-appended-label);
+}
+
+// Append "/yr" to giving amount labels
+.has-give-annually .en__field--donationAmt div:not(.en__field__item--other) .en__field__label--item::after {
+	content: var(--give-annually-donation-amount-appended-label);
 }

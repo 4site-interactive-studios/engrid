@@ -294,6 +294,10 @@ $slicer-breakpoints: 0 400px 600px 1024px 1200px;
     --theme-click-to-expand-cta-image-width: 16px;
     --theme-click-to-expand-cta-image-height: 16px;
 
+    // LABEL APPENDED TO DONTIONAL GIVING AMOUNTS BASED ON GIVING FREQUENCY
+    --give-monthly-donation-amount-appended-label: "/mo";
+    --give-annually-donation-amount-appended-label: "/yr";
+
     // ADD THEME CUSTOM CSS PROPERTIES HERE
 }
   
