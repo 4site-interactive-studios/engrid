@@ -2,21 +2,24 @@
 .radio-to-buttons .en__field--radio input[type="radio"]+label,
 .give-by-select .en__field--radio input[type="radio"]+label,
 .en__field--donationAmt.en__field--radio input[type="radio"]+label,
-.en__field--donationAmt .en__field__item--other input {
+.en__field--donationAmt .en__field__item--other input,
+.en__field--recurrfreq.en__field--radio input[type="radio"]+label {
 	border-radius: var(--theme-typography-button-border-radius);
 }
 
 /* prettier-ignore */
 .radio-to-buttons .en__field--radio .en__field__input--radio+.en__field__label,
 .give-by-select .en__field--radio .en__field__input--radio+.en__field__label,
-.en__field--donationAmt.en__field--radio .en__field__input--radio+.en__field__label {
+.en__field--donationAmt.en__field--radio .en__field__input--radio+.en__field__label,
+.en__field--recurrfreq.en__field--radio .en__field__input--radio+.en__field__label {
 	margin-left: 0rem !important;
 }
 
 /* prettier-ignore */
 .radio-to-buttons .en__field--radio .en__field__input--radio+.en__field__label:before,
 .give-by-select .en__field--radio .en__field__input--radio+.en__field__label:before,
-.en__field--donationAmt.en__field--radio .en__field__input--radio+.en__field__label:before {
+.en__field--donationAmt.en__field--radio .en__field__input--radio+.en__field__label:before,
+.en__field--recurrfreq.en__field--radio .en__field__input--radio+.en__field__label:before {
 	display: none !important;
 }
 
@@ -28,7 +31,8 @@
 .en__field--donationAmt.en__field--radio input[type="radio"]+label,
 .en__field--donationAmt.en__field--radio .en__field__item--other input[type="text"],
 .en__field--donationAmt.en__field--radio .en__field__item--other input[type="tel"],
-.en__field--donationAmt.en__field--radio .en__field__item--other input[type="number"] {
+.en__field--donationAmt.en__field--radio .en__field__item--other input[type="number"],
+.en__field--recurrfreq.en__field--radio input[type="radio"]+label {
 	background-color: var(--theme-typography-button-background-color);
 	color: var(--theme-typography-button-color);
 }
@@ -42,16 +46,18 @@
 .give-by-select .en__field--radio .en__field__item--other:not(.en__field__item--hidden) input,
 .en__field--donationAmt.en__field--radio input[type="radio"]:checked+label,
 .en__field--donationAmt.en__field--radio .en__field__item--other.has-value input,
-.en__field--donationAmt.en__field--radio .en__field__item--other:not(.en__field__item--hidden) input {
+.en__field--donationAmt.en__field--radio .en__field__item--other:not(.en__field__item--hidden) input,
+.en__field--recurrfreq.en__field--radio input[type="radio"]:checked+label {
 	text-transform: none;
-	background-color: var(--theme-typography-button-focus-hover-background-color); // border-color: var(--theme-typography-button-focus-hover-border-color); // Removed because I think this is unnecisary given other CSS changes
+	background-color: var(--theme-typography-button-focus-hover-background-color);
 	color: var(--theme-typography-button-focus-hover-color);
 }
 
 /* prettier-ignore */
 .radio-to-buttons .en__field--radio label.en__field__label.en__field__label--item,
 .give-by-select .en__field--radio label.en__field__label.en__field__label--item,
-.en__field--donationAmt.en__field--radio label.en__field__label.en__field__label--item {
+.en__field--donationAmt.en__field--radio label.en__field__label.en__field__label--item,
+.en__field--recurrfreq.en__field--radio label.en__field__label.en__field__label--item  {
 	border: 1px solid var(--theme-typography-button-border-color);
 	background-position-x: 40px;
 }
@@ -59,14 +65,14 @@
 /* prettier-ignore */
 .radio-to-buttons .en__field__input--other,
 .give-by-select .en__field__input--other,
-.en__field--donationAmt.en__field__input--other {
+.en__field--donationAmt.en__field__input--other{
 	height: auto !important;
 }
 
 /* prettier-ignore */
 .radio-to-buttons .en__field--radio input[type="radio"]:focus+label,
 .give-by-select .en__field--radio input[type="radio"]:focus+label,
-.en__field--donationAmt.en__field--radio input[type="radio"]:focus+label {
+.en__field--donationAmt.en__field--radio input[type="radio"]:focus+label{
 	outline: none !important;
 	border: 1px solid #666666 !important;
 	-webkit-box-shadow: 0 0 0.3125rem var(--theme-light-gray) !important;
