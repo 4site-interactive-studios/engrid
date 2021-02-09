@@ -5,7 +5,7 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "del-cli dist & tsc",
+    "build": "tsc",
     "prepublishOnly": "npm run build",
     "postpublish": "git push origin --tags"
   },
@@ -26,7 +26,6 @@
   },
   "homepage": "https://github.com/4site-interactive-studios/engrid-scripts#readme",
   "dependencies": {
-    "del-cli": "^3.0.1",
     "strongly-typed-events": "^2.0.9"
   },
   "gitHead": "e982be0d9357b5d7cc58db104ba3b43f956aa124"

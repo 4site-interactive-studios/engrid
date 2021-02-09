@@ -2,8 +2,7 @@
   "name": "engrid-scripts",
   "private": true,
   "devDependencies": {
-    "lerna": "^3.22.1",
-    "del-cli": "^3.0.1"
+    "lerna": "^3.22.1"
   },
   "scripts": {
     "build": "lerna bootstrap & lerna run build",
