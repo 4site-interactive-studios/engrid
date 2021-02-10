@@ -11,7 +11,7 @@
 /* ENGRID DEFAULT VAIRABLES */
 @import "engrid-variables";
 
-/* ENGRID BASE LAYOUTS */
+/* ENGRID LAYOUTS */
 @import "layouts/engrid-layout";
 @import "layouts/engrid-layout-centercenter1col";
 @import "layouts/engrid-layout-centercenter1col-wide";
@@ -20,14 +20,10 @@
 @import "layouts/engrid-layout-centerright1col";
 @import "layouts/engrid-layout-leftleft1col";
 @import "layouts/engrid-layout-rightright1col";
-
-/* ENGRID MANUAL AND EMBEDDED LAYOUT */
-/* THESE COME LAST SO THEY SUPERSEDES ANY PREVIOUS LAYOUTS IN THE CSS CASCADE */
-@import "layouts/engrid-layout-manual";
-@import "layouts/engrid-layout-embedded";
+@import "layouts/engrid-layout-embedded"; // COMES LAST SO IT SUPERSEDES ANY PREVIOUS LAYOUTS IN THE CSS CASCADE
 
 /* ENGRID STYLINGS */
-@import "engrid-enpage-overrides"; // Until this is reconciled with other styles it should come first and not alphabetically
+@import "engrid-enpage-overrides"; // COMES FIRST SO OUR ENDGRID STYLES SUPERSEDES IT IN THE CSS CASCADE
 @import "engrid-apple-pay";
 @import "engrid-autofill";
 @import "engrid-background-image";
@@ -37,13 +33,15 @@
 @import "engrid-click-to-expand";
 @import "engrid-columns";
 @import "engrid-common-fields";
+@import "engrid-components-layout";
 @import "engrid-donations";
-@import "engrid-ecard";
+@import "engrid-ecards";
 @import "engrid-ellipsis-animation";
 @import "engrid-errors";
 @import "engrid-events";
 @import "engrid-fancy-errors";
 @import "engrid-fields";
+@import "engrid-grayscale";
 @import "engrid-images";
 @import "engrid-letter-to-target";
 @import "engrid-live-card-type";
@@ -56,14 +54,14 @@
 @import "engrid-tweet-to-target";
 @import "engrid-typography";
 
-/* ENGRID PAGE TEMPLATE MAKES THE BODY INVISIBLE */
-/* ENGRID MAIN.CSS MAKES THE BODY VISIBLE AFTER IT'S CSS IS PARSED BY THE BROWSER */
-body {
-  opacity: 1;
-  transition: opacity 0.1s;
-}
-
 /* ENGRID ADMIN ONLY STYLINGS */
 /* @TODO Move Debug and Page Builder styles into their own CSS file or Repo / NPM dependency */
 @import "engrid-debug";
 @import "engrid-page-builder";
+
+/* ENGRID PAGE TEMPLATES MAKES THE BODY INVISIBLE SO THE USER NEVER SEE'S AN UNSTYLED PAGE*/
+/* THIS MAKES THE BODY VISIBLE AFTER IT'S DOWNLOADED AND PARSED BY THE BROWSER */
+body {
+  opacity: 1;
+  transition: opacity 0.1s;
+}

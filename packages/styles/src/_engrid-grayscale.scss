@@ -1,0 +1,7 @@
+// Grayscale Utility Classes
+.grayscale,
+.grayscale-image img,
+.grayscale-image picture,
+.grayscale-video video{
+    filter: grayscale(100%);
+}
