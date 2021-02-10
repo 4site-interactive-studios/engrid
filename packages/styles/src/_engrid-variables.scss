@@ -101,6 +101,7 @@ $slicer-breakpoints: 0 400px 600px 1024px 1200px;
     --theme-typography-input-focus-hover-color: var(--theme-typography-input-color);
     --theme-typography-input-focus-hover-background-color: var(--theme-typography-input-background-color);
     --theme-typography-input-focus-hover-border-color: var(--theme-cta);
+    --theme-typography-input-focus-hover-border-bottom-color: var(--theme-typography-input-focus-hover-border-color);
         
     // TYPOGRAPHY RADIO
     --theme-typography-radio-content: initial;

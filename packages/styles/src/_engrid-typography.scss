@@ -99,6 +99,7 @@ input:hover{
     color: var(--theme-typography-input-focus-hover-color);
     background-color: var(--theme-typography-input-focus-hover-background-color);
     border-color: var(--theme-typography-input-focus-hover-border-color);
+    border-bottom-color: var(--theme-typography-input-focus-hover-border-bottom-color);
     outline: none; // Shared between input:focus, textarea:focus, and select:focus
     box-shadow: 0 0 0.3125rem var(--theme-light-gray); // Shared between input:focus, textarea:focus, and select:focus
 }
