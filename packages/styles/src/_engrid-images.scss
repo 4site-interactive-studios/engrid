@@ -3,4 +3,5 @@ img {
   max-width: 100%;
   margin: 0 auto;
   display: inherit;
+  aspect-ratio: attr(width) / attr(height); // https://developer.mozilla.org/en-US/docs/Web/Media/images/aspect_ratio_mapping
 }
