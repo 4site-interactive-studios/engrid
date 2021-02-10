@@ -2,6 +2,9 @@
 .grayscale,
 .grayscale-image img,
 .grayscale-image picture,
-.grayscale-video video{
+.grayscale-video video,
+img.grayscale-image
+picture.grayscale-image,
+video.grayscale-video {
     filter: grayscale(100%);
 }
