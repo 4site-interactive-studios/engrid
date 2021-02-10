@@ -40,7 +40,7 @@ export class App {
     private run() {
         // IE Warning
         new IE();
-        // Set background Image
+        // Set Background Image
         if (this.options.backgroundImage) {
             engrid.setBackgroundImages(this.options.backgroundImage);
         }

@@ -11,7 +11,7 @@ export class DonationAmount {
   private constructor(radios = "transaction.donationAmt", other = "transaction.donationAmt.other") {
     this._other = other;
     this._radios = radios;
-    // Watch the Radios for Changes
+    // Watch Radios Inputs for Changes
     document.addEventListener("change", (e: Event) => {
       const element = e.target as HTMLInputElement;
       if (element && (element.name == radios || element.name == other)) {
