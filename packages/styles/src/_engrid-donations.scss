@@ -75,8 +75,6 @@
 .en__field--donationAmt.en__field--radio input[type="radio"]:focus+label{
 	outline: none !important;
 	border: var(--theme-typography-button-border-width) solid var(--theme-typography-button-focus-hover-border-color) !important;
-	box-shadow: 0 0 0.3125rem var(--theme-light-gray) !important;
-	transition: box-shadow 0.25s, border-color 0.125s ease-in-out, -webkit-box-shadow 0.25s !important;
 }
 
 // Remove Number Input Spinners on Other Input Gift Amount field https://stackoverflow.com/a/4298216
