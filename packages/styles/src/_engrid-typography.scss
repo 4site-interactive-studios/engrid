@@ -89,7 +89,7 @@ input.en__field__input{
     box-sizing: border-box; // Shared between input, textarea, and select
     margin: 0rem; // Shared between input, textarea, and select
     padding: 1ch; // Shared between input, textarea, and select
-    box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1); // Shared between input, textarea, and select
+    box-shadow: var(--theme-typography-input-box-shadow);
     transition: box-shadow 0.25s, border-color 0.25s ease-in-out; // Shared between input, textarea, and select
     border-style: solid; // Shared between input, textarea, and select
 }
@@ -101,7 +101,7 @@ input:hover{
     border-color: var(--theme-typography-input-focus-hover-border-color);
     border-bottom-color: var(--theme-typography-input-focus-hover-border-bottom-color);
     outline: none; // Shared between input:focus, textarea:focus, and select:focus
-    box-shadow: 0 0 0.3125rem var(--theme-light-gray); // Shared between input:focus, textarea:focus, and select:focus
+    box-shadow: var(--theme-typography-input-focus-hover-box-shadow);
 }
 
 input[type="radio"]{
@@ -158,7 +158,7 @@ select.en__field__input--select{
     box-sizing: border-box; // Shared between input, textarea, and select
     margin: 0rem; // Shared between input, textarea, and select
     padding: 1ch; // Shared between input, textarea, and select
-    box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1); // Shared between input, textarea, and select
+    box-shadow: var(--theme-typography-select-box-shadow);
     transition: box-shadow 0.25s, border-color 0.25s ease-in-out; // Shared between input, textarea, and select
     border-style: solid; // Shared between input, textarea, and select
     appearance: none; // This hides the native down arrow and replaces it with our custom down arrow set as the background-image
@@ -199,7 +199,7 @@ textarea{
     margin: 0rem; // Shared between input, textarea, and select
     padding: 1ch; // Shared between input, textarea, and select
     border-style: solid; // Shared between input, textarea, and select
-    box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1); // Shared between input, textarea, and select
+    box-shadow: var(--theme-typography-textarea-box-shadow);
     transition: box-shadow 0.25s, border-color 0.25s ease-in-out; // Shared between input, textarea, and select
     height: 7rem;
     resize: vertical;
@@ -211,7 +211,7 @@ textarea:hover{
     background-color: var(--theme-typography-textarea-focus-hover-background-color);
     border-color: var(--theme-typography-textarea-focus-hover-border-color);
     outline: none; // Shared between input:focus, textarea:focus, and select:focus
-    box-shadow: 0 0 0.3125rem var(--theme-light-gray); // Shared between input:focus, textarea:focus, and select:focus
+    box-shadow: var(--theme-typography-textarea-focus-hover-box-shadow);
 }
 
 button,
