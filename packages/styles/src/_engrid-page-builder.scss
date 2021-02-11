@@ -104,6 +104,7 @@
   .content-header,
   .body-headerOutside,
   .body-header,
+  .body-title,
   .body-banner,
   .body-bannerOverlay,
   .body-top,
@@ -160,6 +161,8 @@
   /* prettier-ignore */
   .body-header .messageOverlay.hidden:only-child:before { content: "Body Header Spacer"; }
   /* prettier-ignore */
+  .body-title .messageOverlay.hidden:only-child:before { content: "Body Title"; }  
+  /* prettier-ignore */
   .body-banner .messageOverlay.hidden:only-child:before { content: "Body Banner"; }
   /* prettier-ignore */
   .body-bannerOverlay .messageOverlay.hidden:only-child:before { content: "Body Banner Overlay"; }
@@ -206,6 +209,7 @@
         content-header-start]               minmax(0,auto) [content-header-end 
         body-headerOutside-start]           minmax(0,auto) [body-headerOutside-end 
         body-header-start]                  minmax(0,auto) [body-header-end 
+        body-title-start]                   minmax(0,auto) [body-title-end 
         body-banner-start]                  minmax(0,auto) [body-banner-end 
         body-bannerOverlay-start]           minmax(0,auto) [body-bannerOverlay-end 
         body-top-start]                     minmax(0,auto) [body-top-end 
@@ -281,7 +285,11 @@
       &.body-header:before {
         content: "Body Header Spacer";
       }
-    
+
+      &.body-title:before {
+        content: "Body Title";
+      }      
+
       &.body-banner:before {
         content: "Body Banner";
       }

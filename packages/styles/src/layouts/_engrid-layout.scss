@@ -70,6 +70,7 @@ body:not([data-engrid-embedded]) .en__component--advrow {
     content-header-start]               min-content        [content-header-end
     body-headerOutside-start]           min-content        [body-headerOutside-end
     body-header-start]                  min-content        [body-header-end
+    body-title-start]                   min-content        [body-title-end
     body-banner-start]                  min-content        [body-banner-end
     body-bannerOverlay-start]           min-content        [body-bannerOverlay-end
     body-top-start]                     min-content        [body-top-end
@@ -118,6 +119,12 @@ body:not([data-engrid-embedded]) .en__component--advrow {
   border-top-left-radius: var(--theme-body-header-border-radius);
   border-top-right-radius: var(--theme-body-header-border-radius);
   min-height: var(--theme-body-header-border-radius);
+}
+
+.body-title{
+  grid-column: bc;
+  grid-row: body-title;
+  background-color: var(--theme-body-title-background-color)
 }
 
 .body-banner{
@@ -229,6 +236,7 @@ body:not(#en__pagebuilder) .page-customCode {
 */
 
 .body-header,
+.body-title,
 .body-top,
 .body-side,
 .body-main,
@@ -250,6 +258,7 @@ body:not(#en__pagebuilder) .page-customCode {
 
 // Add drop shadows to the body sections
 .body-header:before,
+.body-title:before,
 .body-banner:before,
 .body-top:before,
 .body-side:before,
@@ -304,6 +313,7 @@ body:not(#en__pagebuilder) .page-customCode {
 // content-header pseudo-subgrid
 // body-headerOutside
 // body-header
+// body-title
 // body-banner
 // body-bannerOverlay
 // body-top
@@ -323,6 +333,7 @@ body:not(#en__pagebuilder) .page-customCode {
 // .content-header,
 // .body-headerOutside,
 // .body-header,
+// .body-title,
 // .body-banner,
 // .body-bannerOverlay,
 // .body-top,
