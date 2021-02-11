@@ -176,7 +176,7 @@ select:hover{
     background-color: var(--theme-typography-select-focus-hover-background-color);
     border-color: var(--theme-typography-select-focus-hover-border-color);
     outline: none; // Shared between input:focus, textarea:focus, and select:focus
-    box-shadow: 0 0 0.3125rem var(--theme-light-gray); // Shared between input:focus, textarea:focus, and select:focus
+    box-shadow: var(--theme-typography-select-focus-hover-box-shadow);
 }
 
 textarea{
