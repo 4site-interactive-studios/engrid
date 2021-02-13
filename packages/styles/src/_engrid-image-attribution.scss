@@ -1,0 +1,72 @@
+figure.image-with-attribution {
+	margin: 2.5rem auto 2.5rem auto;
+	position: relative;
+
+    img {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    figattribution {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.3);
+        /* Optional */
+        margin: 1.25ch 1.5ch;
+        /* Optional */
+        text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
+        font-size: 75%;
+        font-family: sans-serif;
+        color: rgba(255, 255, 255, 0.9);
+        display: inline-block;
+        padding: 1.25ch 1.5ch;
+    }
+
+    figattribution a {
+        color: rgba(255, 255, 255, 0.9);
+        text-decoration: none;
+    }
+
+    figattribution.attribution-topright {
+        top: 0;
+        right: 0;
+        bottom: auto;
+        left: auto;
+        text-align: right;
+    }
+
+    figattribution.attribution-bottomright {
+        top: auto;
+        right: 0;
+        bottom: 0;
+        left: auto;
+        text-align: right;
+    }
+
+    figattribution.attribution-bottomleft {
+        top: auto;
+        right: auto;
+        bottom: 0;
+        left: 0;
+        text-align: left;
+    }
+
+    figattribution.attribution-topleft {
+        top: 0;
+        right: auto;
+        bottom: auto;
+        left: 0;
+        text-align: left;
+    }
+
+    /* If for some reason there is no set alignment for the attribution overlay, set it to bottom right */
+    figattribution:not([class*="attribution-"]) {
+        top: auto;
+        right: 0;
+        bottom: 0;
+        left: auto;
+        text-align: left;
+    }
+
+}

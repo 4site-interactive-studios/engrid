@@ -1,5 +1,5 @@
 import { DonationAmount, DonationFrequency, EnForm, ProcessingFees } from '@4site/engrid-events';
-import { Options, OptionsDefaults, ApplePay, CapitalizeFields, ClickToExpand, engrid, getUrlParameter, IE, LiveVariables, Modal, sendIframeHeight, ShowHideRadioCheckboxes, SimpleCountrySelect } from './';
+import { Options, OptionsDefaults, ImageAttribution, ApplePay, CapitalizeFields, ClickToExpand, engrid, getUrlParameter, IE, LiveVariables, Modal, sendIframeHeight, ShowHideRadioCheckboxes, SimpleCountrySelect } from './';
 
 export class App {
 
@@ -59,7 +59,7 @@ export class App {
         engrid.enInput.init();
 
         new ShowHideRadioCheckboxes("transaction.giveBySelect", "giveBySelect-");
-        new ShowHideRadioCheckboxes("supporter.questions.180165", "giveBySelect-");
+        new ShowHideRadioCheckboxes("supporter.questions.180165", "giveBySelect-"); // @TODO this value "180165" shouldn't be hard coced
         new ShowHideRadioCheckboxes("transaction.inmem", "inmem-");
         new ShowHideRadioCheckboxes("transaction.recurrpay", "recurrpay-");
 
@@ -98,6 +98,8 @@ export class App {
 
         // Simple Country Select
         new SimpleCountrySelect();
+        // Add Image Attribution
+        if (this.options.ImageAttribution) new ImageAttribution();
         // Apple Pay
         if (this.options.applePay) new ApplePay();
         // Capitalize Fields

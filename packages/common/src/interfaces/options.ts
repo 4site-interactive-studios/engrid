@@ -1,6 +1,7 @@
 export interface Options {
     backgroundImage?: string | string[],
     ModalDebug?: boolean,
+    ImageAttribution?: boolean,
     applePay?: boolean,
     CapitalizeFields?: boolean,
     ClickToExpand?: boolean,

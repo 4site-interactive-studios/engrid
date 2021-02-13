@@ -7,6 +7,7 @@ export * from './click-to-expand';
 export * as engrid from './custom-methods';
 export * from './ie';
 export * from './iframe';
+export * from './image-attribution';
 export * from './live-variables';
 export * from './modal';
 export * from './query-string';
