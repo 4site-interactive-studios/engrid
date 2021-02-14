@@ -14,6 +14,7 @@ export interface Options {
 export const OptionsDefaults: Options = {
     backgroundImage: '',
     ModalDebug: false,
+    ImageAttribution: true,
     applePay: false,
     CapitalizeFields: false,
     ClickToExpand: true,
