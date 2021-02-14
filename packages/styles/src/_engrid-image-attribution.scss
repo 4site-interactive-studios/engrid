@@ -1,12 +1,13 @@
 figure.image-with-attribution {
 	margin: 2.5rem auto 2.5rem auto;
 	position: relative;
+    display: inline-block;
 
     img {
         position: relative;
         display: block;
-        width: 100%;
         height: auto;
+        max-width: 100%;
     }
 
     figattribution {
