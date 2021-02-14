@@ -61,7 +61,7 @@ figure.image-with-attribution {
         text-align: left;
     }
 
-    /* If for some reason there is no set alignment for the attribution overlay, set it to bottom right */
+    // If for some reason there is no set alignment for the attribution overlay, set it to bottom right
     figattribution:not([class*="attribution-"]) {
         top: auto;
         right: 0;
