@@ -192,16 +192,16 @@ body:not(#en__pagebuilder){
 }
 
 #en__pagebuilder {
-  .i1-hide-label .en__field:nth-of-type(1) label,
-  .i2-hide-label .en__field:nth-of-type(2) label,
-  .i3-hide-label .en__field:nth-of-type(3) label,
-  .i4-hide-label .en__field:nth-of-type(4) label,
-  .i5-hide-label .en__field:nth-of-type(5) label,
-  .i6-hide-label .en__field:nth-of-type(6) label,
-  .i7-hide-label .en__field:nth-of-type(7) label,
-  .i8-hide-label .en__field:nth-of-type(8) label,
-  .i9-hide-label .en__field:nth-of-type(9) label,
-  .i10-hide-label .en__field:nth-of-type(10) label {
+  .i1-hide-label .en__field:nth-of-type(1) > label,
+  .i2-hide-label .en__field:nth-of-type(2) > label,
+  .i3-hide-label .en__field:nth-of-type(3) > label,
+  .i4-hide-label .en__field:nth-of-type(4) > label,
+  .i5-hide-label .en__field:nth-of-type(5) > label,
+  .i6-hide-label .en__field:nth-of-type(6) > label,
+  .i7-hide-label .en__field:nth-of-type(7) > label,
+  .i8-hide-label .en__field:nth-of-type(8) > label,
+  .i9-hide-label .en__field:nth-of-type(9) > label,
+  .i10-hide-label .en__field:nth-of-type(10) > label {
     background-color: #ff00001a !important;
   }
 }
@@ -209,16 +209,16 @@ body:not(#en__pagebuilder){
 // Hide labels for sited visitors but keep them accessible for assistive technologies like screen readers
 // REFL https://stackoverflow.com/a/26032207
 body:not(#en__pagebuilder){
-  .i1-hide-label .en__field:nth-of-type(1) label,
-  .i2-hide-label .en__field:nth-of-type(2) label,
-  .i3-hide-label .en__field:nth-of-type(3) label,
-  .i4-hide-label .en__field:nth-of-type(4) label,
-  .i5-hide-label .en__field:nth-of-type(5) label,
-  .i6-hide-label .en__field:nth-of-type(6) label,
-  .i7-hide-label .en__field:nth-of-type(7) label,
-  .i8-hide-label .en__field:nth-of-type(8) label,
-  .i9-hide-label .en__field:nth-of-type(9) label,
-  .i10-hide-label .en__field:nth-of-type(10) label {
+  .i1-hide-label .en__field:nth-of-type(1) > label,
+  .i2-hide-label .en__field:nth-of-type(2) > label,
+  .i3-hide-label .en__field:nth-of-type(3) > label,
+  .i4-hide-label .en__field:nth-of-type(4) > label,
+  .i5-hide-label .en__field:nth-of-type(5) > label,
+  .i6-hide-label .en__field:nth-of-type(6) > label,
+  .i7-hide-label .en__field:nth-of-type(7) > label,
+  .i8-hide-label .en__field:nth-of-type(8) > label,
+  .i9-hide-label .en__field:nth-of-type(9) > label,
+  .i10-hide-label .en__field:nth-of-type(10) > label {
     position: absolute !important; /* Outside the DOM flow */
     height: 1px; width: 1px; /* Nearly collapsed */
     overflow: hidden;
