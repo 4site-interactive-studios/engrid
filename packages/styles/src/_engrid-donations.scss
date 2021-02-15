@@ -85,8 +85,7 @@
 	-moz-appearance: textfield;
 }
 
-.has-give-monthly .en__field--donationAmt div:not(.en__field__item--other) .en__field__label--item::after,
-.has-give-annually .en__field--donationAmt div:not(.en__field__item--other) .en__field__label--item::after {
+[data-engrid-transaction-recurring-frequency] .en__field--donationAmt div:not(.en__field__item--other) .en__field__label--item::after{
 	line-height: 2;
 	font-size: 75%;
 	margin-left: 0.1875rem;
@@ -95,11 +94,70 @@
 }
 
 // Append "/mo" to giving amount labels
-.has-give-monthly .en__field--donationAmt div:not(.en__field__item--other) .en__field__label--item::after{
+[data-engrid-transaction-recurring-frequency="monthly"] .en__field--donationAmt div:not(.en__field__item--other) .en__field__label--item::after{
   content: var(--give-monthly-donation-amount-appended-label);
 }
 
 // Append "/yr" to giving amount labels
-.has-give-annually .en__field--donationAmt div:not(.en__field__item--other) .en__field__label--item::after {
-	content: var(--give-annually-donation-amount-appended-label);
+[data-engrid-transaction-recurring-frequency="annual"] .en__field--donationAmt div:not(.en__field__item--other) .en__field__label--item::after {
+	content: var(--give-annual-donation-amount-appended-label);
+}
+
+
+// Helper classes to hide/show content based on if a the gift is one-time or recurring
+body:not([data-engrid-transaction-recurring="y"]) .recurring-frequency-y-show {
+	display: none;
+}
+
+body:not([data-engrid-transaction-recurring="n"]) .recurring-frequency-n-show {
+	display: none;
+}
+
+body[data-engrid-transaction-recurring="y"] .recurring-frequency-y-hide {
+	display: none;
+}
+
+body[data-engrid-transaction-recurring="n"] .recurring-frequency-n-hide {
+	display: none;
+}
+
+// Helper classes to hide/show content based on the recurring gift's frequency
+body:not([data-engrid-transaction-recurring-frequency="once"]) .recurring-frequency-once-show {
+	display: none;
+}
+
+body:not([data-engrid-transaction-recurring-frequency="monthly"]) .recurring-frequency-monthly-show {
+	display: none;
+}
+
+body:not([data-engrid-transaction-recurring-frequency="quarterly"]) .recurring-frequency-quarterly-show {
+	display: none;
+}
+
+body:not([data-engrid-transaction-recurring-frequency="semi-annual"]) .recurring-frequency-semi-annual-show {
+	display: none;
+}
+
+body:not([data-engrid-transaction-recurring-frequency="annual"]) .recurring-frequency-annual-show {
+	display: none;
+}
+
+body[data-engrid-transaction-recurring-frequency="once"] .recurring-frequency-once-hide {
+	display: none;
+}
+
+body[data-engrid-transaction-recurring-frequency="monthly"] .recurring-frequency-monthly-hide {
+	display: none;
+}
+
+body[data-engrid-transaction-recurring-frequency="quarterly"] .recurring-frequency-quarterly-hide {
+	display: none;
+}
+
+body[data-engrid-transaction-recurring-frequency="semi-annual"] .recurring-frequency-semi-annual-hide {
+	display: none;
+}
+
+body[data-engrid-transaction-recurring-frequency="annual"] .recurring-frequency-annual-hide {
+	display: none;
 }
