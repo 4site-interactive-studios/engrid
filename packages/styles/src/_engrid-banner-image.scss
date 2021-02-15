@@ -4,11 +4,12 @@
     background-color: var(--theme-body-banner-image-background-color);
 }
 
+// Retired because placeholder data-uri's are now being used for all images. And banner images will always fill the width of its container while retaining its aspect ratio for its height.
 // Make the images inserted into the Banner Area as responsive as possible
-.body-banner img {
-    max-height: calc(min(50vw, 300px)); // Sets the initial height to help minimalize page draw reflow. 50vw helps with smaller screens. Without "calc" the SCSS compiler throws a unit compatability error: https://stackoverflow.com/questions/54090345/sass-incompatible-units-vw-and-px
-    width: 100%;
-    object-fit: cover; // For inline <img>'s added to the Banner
-    background-size: cover; // In the event a background image is used
-    background-position: center; // In the event a background image is used
-}
+// .body-banner img {
+//     max-height: calc(min(50vw, 300px)); // Sets the initial height to help minimalize page draw reflow. 50vw helps with smaller screens. Without "calc" the SCSS compiler throws a unit compatability error: https://stackoverflow.com/questions/54090345/sass-incompatible-units-vw-and-px
+//     width: 100%;
+//     object-fit: cover; // For inline <img>'s added to the Banner
+//     background-size: cover; // In the event a background image is used
+//     background-position: center; // In the event a background image is used
+// }
