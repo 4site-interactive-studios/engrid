@@ -103,61 +103,22 @@
 	content: var(--give-annual-donation-amount-appended-label);
 }
 
-
-// Helper classes to hide/show content based on if a the gift is one-time or recurring
-body:not([data-engrid-transaction-recurring="y"]) .recurring-frequency-y-show {
-	display: none;
-}
-
-body:not([data-engrid-transaction-recurring="n"]) .recurring-frequency-n-show {
-	display: none;
-}
-
-body[data-engrid-transaction-recurring="y"] .recurring-frequency-y-hide {
-	display: none;
-}
-
-body[data-engrid-transaction-recurring="n"] .recurring-frequency-n-hide {
-	display: none;
-}
-
-// Helper classes to hide/show content based on the recurring gift's frequency
-body:not([data-engrid-transaction-recurring-frequency="once"]) .recurring-frequency-once-show {
-	display: none;
-}
-
-body:not([data-engrid-transaction-recurring-frequency="monthly"]) .recurring-frequency-monthly-show {
-	display: none;
-}
-
-body:not([data-engrid-transaction-recurring-frequency="quarterly"]) .recurring-frequency-quarterly-show {
-	display: none;
-}
-
-body:not([data-engrid-transaction-recurring-frequency="semi-annual"]) .recurring-frequency-semi-annual-show {
-	display: none;
-}
-
-body:not([data-engrid-transaction-recurring-frequency="annual"]) .recurring-frequency-annual-show {
-	display: none;
-}
-
-body[data-engrid-transaction-recurring-frequency="once"] .recurring-frequency-once-hide {
-	display: none;
-}
-
-body[data-engrid-transaction-recurring-frequency="monthly"] .recurring-frequency-monthly-hide {
-	display: none;
-}
-
-body[data-engrid-transaction-recurring-frequency="quarterly"] .recurring-frequency-quarterly-hide {
-	display: none;
-}
-
-body[data-engrid-transaction-recurring-frequency="semi-annual"] .recurring-frequency-semi-annual-hide {
-	display: none;
-}
-
-body[data-engrid-transaction-recurring-frequency="annual"] .recurring-frequency-annual-hide {
-	display: none;
+// Helper classes to hide/show content based on if a the gift is one-time or recurring and the gift's frequency
+body{
+	&[data-engrid-transaction-recurring="n"] .recurring-frequency-n-hide,
+	&[data-engrid-transaction-recurring="n"] .recurring-frequency-once-hide, // Doesn't need data-engrid-transaction-recurring-frequency="once" defined to know the gift will be processed as one-time
+	&:not([data-engrid-transaction-recurring="n"]) .recurring-frequency-n-show,
+	&:not([data-engrid-transaction-recurring="n"]) .recurring-frequency-once-show, // Doesn't need data-engrid-transaction-recurring-frequency="once" defined to know the gift will be processed as one-time
+	&[data-engrid-transaction-recurring="y"] .recurring-frequency-y-hide,
+	&[data-engrid-transaction-recurring="y"][data-engrid-transaction-recurring-frequency="monthly"] .recurring-frequency-monthly-hide,
+	&[data-engrid-transaction-recurring="y"][data-engrid-transaction-recurring-frequency="quarterly"] .recurring-frequency-quarterly-hide,
+	&[data-engrid-transaction-recurring="y"][data-engrid-transaction-recurring-frequency="semi-annual"] .recurring-frequency-semi-annual-hide,
+	&[data-engrid-transaction-recurring="y"][data-engrid-transaction-recurring-frequency="annual"] .recurring-frequency-annual-hide,
+	&:not([data-engrid-transaction-recurring="y"]) .recurring-frequency-y-show,
+	&:not([data-engrid-transaction-recurring="y"][data-engrid-transaction-recurring-frequency="monthly"]) .recurring-frequency-monthly-show,
+	&:not([data-engrid-transaction-recurring="y"][data-engrid-transaction-recurring-frequency="quarterly"]) .recurring-frequency-quarterly-show,
+	&:not([data-engrid-transaction-recurring="y"][data-engrid-transaction-recurring-frequency="semi-annual"]) .recurring-frequency-semi-annual-show,
+	&:not([data-engrid-transaction-recurring="y"][data-engrid-transaction-recurring-frequency="annual"]) .recurring-frequency-annual-show{
+		display: none;
+	}
 }
