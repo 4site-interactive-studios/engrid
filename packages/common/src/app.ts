@@ -48,7 +48,6 @@ export class App {
         // TODO: Abstract everything to the App class so we can remove custom-methods
         engrid.inputPlaceholder();
         engrid.watchInmemField();
-        engrid.watchRecurrpayField();
         engrid.watchGiveBySelectField();
         engrid.watchLegacyGiveBySelectField();
         engrid.SetEnFieldOtherAmountRadioStepValue();
@@ -68,9 +67,7 @@ export class App {
 
         // Event Listener Examples
         this._amount.onAmountChange.subscribe((s) => console.log(`Live Amount: ${s}`));
-        this._frequency.onFrequencyChange.subscribe((s) =>
-            console.log(`Live Frequency: ${s}`)
-        );
+        this._frequency.onFrequencyChange.subscribe((s) => console.log(`Live Frequency: ${s}`));
         this._form.onSubmit.subscribe((s) => console.log('Submit: ', s));
         this._form.onError.subscribe((s) => console.log('Error:', s));
 

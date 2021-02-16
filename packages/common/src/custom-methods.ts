@@ -564,30 +564,32 @@ export const watchRecurrpayField = () => {
   ) as HTMLInputElement;
 
   const handleEnFieldRecurrpay = (e: Event) => {
-    enFieldRecurrpayCurrentValue = document.querySelector(
-      'input[name="transaction.recurrpay"]:checked'
-    ) as HTMLInputElement;
-    if (enFieldRecurrpayCurrentValue.value.toLowerCase() == "y" && enGrid) {
-      enGrid.classList.remove("has-give-once");
-      enGrid.classList.add("has-give-monthly");
-    } else if (enFieldRecurrpayCurrentValue.value.toLowerCase() == "n" && enGrid) {
-      enGrid.classList.remove("has-give-monthly");
-      enGrid.classList.add("has-give-once");
-    }
+    // enFieldRecurrpayCurrentValue = document.querySelector(
+    //   'input[name="transaction.recurrpay"]:checked'
+    // ) as HTMLInputElement;
+    // if (enFieldRecurrpayCurrentValue.value.toLowerCase() == "y" && enGrid) {
+    //   enGrid.classList.remove("has-give-once");
+    //   enGrid.classList.add("has-give-monthly");
+    // } else if (enFieldRecurrpayCurrentValue.value.toLowerCase() == "n" && enGrid) {
+    //   enGrid.classList.remove("has-give-monthly");
+    //   enGrid.classList.add("has-give-once");
+    // }
+    // getGiftRecurranceAndRecurrance();
   };
 
   // Check Giving Frequency on page load
   if (enFieldRecurrpay) {
-    enFieldRecurrpayCurrentValue = document.querySelector(
-      'input[name="transaction.recurrpay"]:checked'
-    ) as HTMLInputElement;
-    if (enFieldRecurrpayCurrentValue.value.toLowerCase() == "y" && enGrid) {
-      enGrid.classList.remove("has-give-once");
-      enGrid.classList.add("has-give-monthly");
-    } else if (enFieldRecurrpayCurrentValue.value.toLowerCase() == "n" && enGrid) {
-      enGrid.classList.add("has-give-once");
-      enGrid.classList.remove("has-give-monthly");
-    }
+    // enFieldRecurrpayCurrentValue = document.querySelector(
+    //   'input[name="transaction.recurrpay"]:checked'
+    // ) as HTMLInputElement;
+    // if (enFieldRecurrpayCurrentValue.value.toLowerCase() == "y" && enGrid) {
+    //   enGrid.classList.remove("has-give-once");
+    //   enGrid.classList.add("has-give-monthly");
+    // } else if (enFieldRecurrpayCurrentValue.value.toLowerCase() == "n" && enGrid) {
+    //   enGrid.classList.add("has-give-once");
+    //   enGrid.classList.remove("has-give-monthly");
+    // }
+    // getGiftRecurranceAndRecurrance();
   }
 
   // Watch each Giving Frequency radio input for a change
@@ -597,6 +599,66 @@ export const watchRecurrpayField = () => {
       element.addEventListener("change", handleEnFieldRecurrpay);
     });
   }
+};
+
+
+export const getGiftRecurranceAndRecurrance = () => {
+
+
+  // Find the "transaction.recurrpay" field and get its value
+
+
+  // if(document.querySelector('input[type="radio"][name="transaction.recurrfreq"]:checked')){
+  //   let reccurFreqValue = document.querySelector('input[type="radio"][name="transaction.recurrfreq"]:checked') as HTMLInputElement;
+  //   if(reccurFreqValue.value !== ""){
+  //     console.log("transaction.recurrfreq is a radio input with a value of: ", reccurFreqValue.value.toLowerCase());
+  //     body.setAttribute("data-engrid-transaction-recurring-frequency", reccurFreqValue.value.toLowerCase());
+  //   } else {
+  //     console.log("transaction.recurrfreq is a radio input with a value that is blank");
+  //     body.setAttribute("data-engrid-transaction-recurring-frequency", "once");
+  //   }
+  // } else if(document.querySelector('input[type="text"][name="transaction.recurrfreq"]')) {
+  //   let reccurFreqValue = document.querySelector('input[type="text"][name="transaction.recurrfreq"]') as HTMLInputElement;
+  //   if(reccurFreqValue.value !== ""){
+  //     console.log("transaction.recurrfreq is a text input with a value of: ", reccurFreqValue.value.toLowerCase());
+  //     body.setAttribute("data-engrid-transaction-recurring-frequency", reccurFreqValue.value.toLowerCase());
+  //   } else {
+  //     console.log("transaction.recurrfreq is a text input with a value that is blank");
+  //     body.setAttribute("data-engrid-transaction-recurring-frequency", "once");
+  //   }
+  // } else if(document.querySelector('input[name="transaction.recurrfreq"]')) {
+  //   console.log("transaction.recurrfreq exists but has no value");
+  //   body.removeAttribute("data-engrid-transaction-recurring-frequency");
+  // } else {
+  //   console.log("transaction.recurrfreq does not exist");
+  //   body.removeAttribute("data-engrid-transaction-recurring-frequency");
+  // }
+};
+
+export const getGiftFrequency = () => {
+  // if(document.querySelector('input[type="radio"][name="transaction.recurrpay"]:checked')){
+  //   let recurrPayValue = document.querySelector('input[type="radio"][name="transaction.recurrpay"]:checked') as HTMLInputElement;
+  //   if(recurrPayValue){
+  //     console.log("transaction.recurrpay is a radio input with a value of: ", recurrPayValue.value.toLowerCase());
+  //     body.setAttribute("data-engrid-transaction-recurring", recurrPayValue.value.toLowerCase());
+  //     getGiftRecurrance();
+  //   }
+  // } else if(document.querySelector('input[type="text"][name="transaction.recurrpay"]')) {
+  //   let recurrPayValue = document.querySelector('input[type="text"][name="transaction.recurrpay"]') as HTMLInputElement;
+  //   if(recurrPayValue){
+  //     console.log("transaction.recurrpay is a text input with a value of: ", recurrPayValue.value.toLowerCase());
+  //     body.setAttribute("data-engrid-transaction-recurring", recurrPayValue.value.toLowerCase());
+  //     getGiftRecurrance();
+  //   } else if(document.querySelector('input[name="transaction.recurrpay"]')) {
+  //     console.log("transaction.recurrpay exists but has no value");
+  //     body.removeAttribute("data-engrid-transaction-recurring");
+  //   } else {
+  //     console.log("transaction.recurrpay does not exist");
+  //     body.removeAttribute("data-engrid-transaction-recurring");
+  //   }
+  // }
+
+
 };
 
 // @TODO Refactor (low priority)
@@ -1079,6 +1141,7 @@ export const contactDetailLabels = () => {
 
 // Adds a URL path that can be used to easily arrive at the editable version of the current page
 // By appending "/edit" to the end of a live URL you will see the editable version
+//@TODO This functions value should not be hard coded
 //@TODO Needs to be updated to adapt for "us.e-activist" and "e-activist" URLS, without needing it specified, as well as pass in page number and work for all page types without each needing to be specified
 export const easyEdit = () => {
   const liveURL = window.location.href as string;

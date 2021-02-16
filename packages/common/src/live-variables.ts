@@ -22,9 +22,7 @@ export class LiveVariables {
     this._fees.onFeeChange.subscribe(() => this.changeLiveUpsellAmount());
     this._fees.onFeeChange.subscribe(() => this.changeSubmitButton());
     this._frequency.onFrequencyChange.subscribe(() => this.changeLiveFrequency());
-    this._frequency.onFrequencyChange.subscribe(() =>
-      this.changeSubmitButton()
-    );
+    this._frequency.onFrequencyChange.subscribe(() => this.changeSubmitButton());
     this._form.onSubmit.subscribe(() => this.loadingSubmitButton());
     this._form.onError.subscribe(() => this.changeSubmitButton());
 
