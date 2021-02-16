@@ -66,60 +66,31 @@ export const enInput = (() => {
   };
 })();
 
-export const setBackgroundImages = (bg: string | Array<String>) => {
-  console.log("Backgroud", bg);
+export const setBackgroundImage = () => {
 
-  // @TODO This whole section might be overkill. This should 
-  // Find Inline Background Image, hide it, and set it as the background image.
-  const pageBackground = document.querySelector(
-    ".page-backgroundImage"
-  ) as HTMLElement;
-  const pageBackgroundImg = document.querySelector(
-    ".page-backgroundImage img"
-  ) as HTMLImageElement;
-  const pageBackgroundLegacyImg = document.querySelector(
-    ".background-image p"
-  ) as HTMLElement;
-  let pageBackgroundImgSrc = "" as string;
-
-  // @TODO Consider moving JS that sets background image into the page template as it's critical to initial page render
-  // If a an <img> is added to the Background Image section
-  if (pageBackgroundImg) {
-
-    // Get the source of the <img> added to the Background Image section.
-    pageBackgroundImgSrc = pageBackgroundImg.src;
-
-    // @TODO Review this as it may be obsolete
-    // Hide the background image
-    pageBackgroundImg.style.display = "none";
-
-  } else if (pageBackgroundLegacyImg) {
-    // This was added for RAN and helos support legacy pages and how they had their background image defined
-    // "pageBackgroundLegacyImg" can be changed for each client needing legacy image support
-    // @TODO "pageBackgroundLegacyImg" should be defined in the cline theme folder otherwise we lose it everytime a new client needs it changed
-    pageBackgroundImgSrc = pageBackgroundLegacyImg.innerHTML;
-
-    // Hide the background image
-    pageBackgroundLegacyImg.style.display = "none";
+  // Finds any <img> added to the "backgroundImage" ENGRid section and sets it as the "--theme-page-backgroundImage-url" CSS Custom Property
+  const root = document.documentElement;
+  const pageBackground = document.querySelector(".page-backgroundImage") as HTMLElement;
+  const pageBackgroundImg = document.querySelector(".page-backgroundImage img") as HTMLImageElement;
+  let pageBackgroundImgDataSrc = pageBackgroundImg.getAttribute("data-src") as string;
+  let pageBackgroundImgSrc = pageBackgroundImg.src as string;
+  
+  if(pageBackground && pageBackgroundImgDataSrc){
+    console.log("A background image set in the page was found with a data-src value, setting it as --theme-page-backgroundImage-url", pageBackgroundImgDataSrc);
+    pageBackgroundImgDataSrc = "url('" + pageBackgroundImgDataSrc + "')";
+    pageBackground.style.setProperty('--theme-page-backgroundImage-url', pageBackgroundImgDataSrc);
+    document.getElementsByTagName("BODY")[0].setAttribute("data-engrid-backgroundImage", "set");
+  } else if (pageBackground && pageBackgroundImgSrc) {
+    console.log("A background image set in the page was found with a src value, setting it as --theme-page-backgroundImage-url", pageBackgroundImgSrc);
+    pageBackgroundImgSrc = "url('" + pageBackgroundImgSrc + "')";
+    pageBackground.style.setProperty('--theme-page-backgroundImage-url', pageBackgroundImgSrc);
+    document.getElementsByTagName("BODY")[0].setAttribute("data-engrid-backgroundImage", "set");
+  } else if (pageBackgroundImg){
+    console.log("A background image set in the page was found but without a data-src or src value, no action taken", pageBackgroundImg);
   } else {
-    // @TODO Having multiple fallback/default images is a cool idea but a non-use case anyone has asked for.
-    // @BODY Replace this section with something that grabs the single hard coded fallback image from the theme
-    // If no in-page image is defined, set a fallback/default image by randomly selecting from any defined option
-    if (Array.isArray(bg)) {
-      pageBackgroundImgSrc = bg[Math.floor(Math.random() * bg.length)] as string;
-    }
+    console.log("A background image set in the page was not found, any default image set in the theme on --theme-page-backgroundImage-url will be used");
   }
 
-  // Set the background image
-  if (pageBackground && pageBackgroundImgSrc) {
-    // Set background image on the appropriate Background Image grid component
-
-    var pageBackgroundImgSrcUrl = "url(" + pageBackgroundImgSrc + ")";
-    pageBackground.classList.add('page-backgroundImageSet');
-
-    // Support for the background image to be defined using CSS Custom Properties
-    pageBackground.style.setProperty('--theme-page-backgroundImage-url', pageBackgroundImgSrcUrl);
-  }
 };
 
 export const bindEvents = (e: Element) => {

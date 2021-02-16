@@ -40,12 +40,9 @@ export class App {
     private run() {
         // IE Warning
         new IE();
-        // Set Background Image
-        if (this.options.backgroundImage) {
-            engrid.setBackgroundImages(this.options.backgroundImage);
-        }
 
         // TODO: Abstract everything to the App class so we can remove custom-methods
+        engrid.setBackgroundImage();
         engrid.inputPlaceholder();
         engrid.watchInmemField();
         engrid.watchGiveBySelectField();
