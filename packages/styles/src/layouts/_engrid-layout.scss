@@ -203,7 +203,12 @@ body:not([data-engrid-embedded]) .en__component--advrow {
 .page-backgroundImage{
   grid-column: pc;
   grid-row: page-backgroundImage;
-  background-color: var(--theme-page-backgroundImage-background-color)
+}
+
+// Background color is set on the :before so it doesn't paint over the background image which will be set there
+// REF: _engrid-background-image.scss
+.page-backgroundImage:before{
+  background-color: var(--theme-page-backgroundImage-background-color);
 }
 
 .page-backgroundImageOverlay{

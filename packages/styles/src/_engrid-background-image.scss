@@ -14,19 +14,19 @@ body:not(#en__pagebuilder)
   .page-backgroundImage:not(.page-backgroundImageSet):before {
   background-position: top left;
   background-repeat: repeat;
-  background-image: var(--theme-page-backgroundImage-url); //@TODO Get SCSS variable working
+  background-image: url( '"' + var(--theme-page-backgroundImage-url) + '"'); //@TODO Get SCSS variable working
   will-change: transform; // creates a new paint layer
 }
 
 // This code seems clinet specific and should not be in ENGrid
-body:not(#en__pagebuilder)[data-engrid-footer-below-fold]
-  .en__component--advrow
-  .page-backgroundImage:before {
-  -webkit-clip-path: polygon(100% 0, 100% 90vh, 50% 110vh, 0 90vh, 0 0);
-  clip-path: polygon(100% 0, 100% 90vh, 50% 110vh, 0 90vh, 0 0);
-  height: 120vh;
-  background-color: var(--theme-page-backgroundImage-background-color);
-}
+// body:not(#en__pagebuilder)[data-engrid-footer-below-fold]
+//   .en__component--advrow
+//   .page-backgroundImage:before {
+//   -webkit-clip-path: polygon(100% 0, 100% 90vh, 50% 110vh, 0 90vh, 0 0);
+//   clip-path: polygon(100% 0, 100% 90vh, 50% 110vh, 0 90vh, 0 0);
+//   height: 120vh;
+//   background-color: var(--theme-page-backgroundImage-background-color);
+// }
 
 body:not(#en__pagebuilder).legacy
   .en__component--advrow
