@@ -118,7 +118,7 @@ export const setBackgroundImages = (bg: string | Array<String>) => {
     pageBackground.classList.add('page-backgroundImageSet');
 
     // Support for the background image to be defined using CSS Custom Properties
-    pageBackground.style.setProperty('--background-image', pageBackgroundImgSrcUrl);
+    pageBackground.style.setProperty('--theme-page-backgroundImage-url', pageBackgroundImgSrcUrl);
   }
 };
 
