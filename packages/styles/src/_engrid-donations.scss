@@ -112,12 +112,12 @@ body{
 	&[data-engrid-transaction-recurring="y"] .recurring-frequency-y-hide,
 	&[data-engrid-transaction-recurring="y"][data-engrid-transaction-recurring-frequency="monthly"] .recurring-frequency-monthly-hide,
 	&[data-engrid-transaction-recurring="y"][data-engrid-transaction-recurring-frequency="quarterly"] .recurring-frequency-quarterly-hide,
-	&[data-engrid-transaction-recurring="y"][data-engrid-transaction-recurring-frequency="semi-annual"] .recurring-frequency-semi-annual-hide,
+	&[data-engrid-transaction-recurring="y"][data-engrid-transaction-recurring-frequency="semi_annual"] .recurring-frequency-semi-annual-hide,
 	&[data-engrid-transaction-recurring="y"][data-engrid-transaction-recurring-frequency="annual"] .recurring-frequency-annual-hide,
 	&:not([data-engrid-transaction-recurring="y"]) .recurring-frequency-y-show,
 	&:not([data-engrid-transaction-recurring="y"][data-engrid-transaction-recurring-frequency="monthly"]) .recurring-frequency-monthly-show,
 	&:not([data-engrid-transaction-recurring="y"][data-engrid-transaction-recurring-frequency="quarterly"]) .recurring-frequency-quarterly-show,
-	&:not([data-engrid-transaction-recurring="y"][data-engrid-transaction-recurring-frequency="semi-annual"]) .recurring-frequency-semi-annual-show,
+	&:not([data-engrid-transaction-recurring="y"][data-engrid-transaction-recurring-frequency="semi_annual"]) .recurring-frequency-semi-annual-show,
 	&:not([data-engrid-transaction-recurring="y"][data-engrid-transaction-recurring-frequency="annual"]) .recurring-frequency-annual-show{
 		display: none;
 	}
