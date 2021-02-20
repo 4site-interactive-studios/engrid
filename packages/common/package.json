@@ -20,7 +20,7 @@
     "url": "https://github.com/4site-interactive-studios/engrid-scripts/issues"
   },
   "dependencies": {
-    "@4site/engrid-events": "^0.1.8"
+    "strongly-typed-events": "^2.0.9"
   },
   "peerDependencies": {
     "@4site/engrid-events": "*"

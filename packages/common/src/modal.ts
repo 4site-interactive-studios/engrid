@@ -1,5 +1,5 @@
 import * as cookie from "./cookie";
-import { DonationAmount, DonationFrequency, EnForm } from "@4site/engrid-events";
+import { DonationAmount, DonationFrequency, EnForm } from "./events";
 
 export class Modal {
   public debug: boolean | undefined = false;
@@ -57,8 +57,8 @@ export class Modal {
   private openUpsell() {
     if (this.debug) console.log("Upsell Triggered");
     const freq = this._frequency.frequency;
-    // Only open Upsell Modal if Frequency == Single & if the Modal is closed
-    if (freq == "single" && this.overlay.classList.contains("is-hidden")) {
+    // Only open Upsell Modal if Frequency == once & if the Modal is closed
+    if (freq == "once" && this.overlay.classList.contains("is-hidden")) {
       this.open(this.upsellModal);
       window.scrollTo(0, 0);
       // Avoid form submission so you can see the modal

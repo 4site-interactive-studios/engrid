@@ -1,4 +1,4 @@
-import { EnForm } from "@4site/engrid-events";
+import { EnForm } from "./events";
 
 export class CapitalizeFields {
 

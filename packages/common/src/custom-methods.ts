@@ -72,10 +72,10 @@ export const setBackgroundImage = () => {
   const root = document.documentElement;
   const pageBackground = document.querySelector(".page-backgroundImage") as HTMLElement;
   const pageBackgroundImg = document.querySelector(".page-backgroundImage img") as HTMLImageElement;
-  let pageBackgroundImgDataSrc = pageBackgroundImg.getAttribute("data-src") as string;
-  let pageBackgroundImgSrc = pageBackgroundImg.src as string;
-  
-  if(pageBackground && pageBackgroundImgDataSrc){
+  let pageBackgroundImgDataSrc = pageBackgroundImg?.getAttribute("data-src") as string;
+  let pageBackgroundImgSrc = pageBackgroundImg?.src as string;
+
+  if (pageBackground && pageBackgroundImgDataSrc) {
     console.log("A background image set in the page was found with a data-src value, setting it as --theme-page-backgroundImage-url", pageBackgroundImgDataSrc);
     pageBackgroundImgDataSrc = "url('" + pageBackgroundImgDataSrc + "')";
     pageBackground.style.setProperty('--theme-page-backgroundImage-url', pageBackgroundImgDataSrc);
@@ -85,7 +85,7 @@ export const setBackgroundImage = () => {
     pageBackgroundImgSrc = "url('" + pageBackgroundImgSrc + "')";
     pageBackground.style.setProperty('--theme-page-backgroundImage-url', pageBackgroundImgSrc);
     document.getElementsByTagName("BODY")[0].setAttribute("data-engrid-backgroundImage", "set");
-  } else if (pageBackgroundImg){
+  } else if (pageBackgroundImg) {
     console.log("A background image set in the page was found but without a data-src or src value, no action taken", pageBackgroundImg);
   } else {
     console.log("A background image set in the page was not found, any default image set in the theme on --theme-page-backgroundImage-url will be used");
@@ -631,134 +631,6 @@ export const watchGiveBySelectField = () => {
       enFieldPaymentType.value = "applepay";
     }
 
-  }
-
-  // Watch each Giving Frequency radio input for a change
-  if (transactionGiveBySelect) {
-    Array.from(transactionGiveBySelect).forEach(e => {
-      let element = e as HTMLInputElement;
-      element.addEventListener("change", handleEnFieldGiveBySelect);
-    });
-  }
-};
-
-// LEGACY: Support the Legacy Give By Select field
-export const watchLegacyGiveBySelectField = () => {
-  const enFieldGiveBySelect = document.querySelector(
-    ".give-by-select"
-  ) as HTMLElement;
-  const transactionGiveBySelect = document.getElementsByName(
-    "supporter.questions.180165"
-  ) as NodeList;
-  const enFieldPaymentType = document.querySelector(
-    "#en__field_transaction_paymenttype"
-  ) as HTMLSelectElement;
-  let enFieldGiveBySelectCurrentValue = document.querySelector(
-    'input[name="supporter.questions.180165"]:checked'
-  ) as HTMLInputElement;
-  let paypalOption = new Option("paypal");
-  let applepayOption = new Option("applepay");
-  const prefix = "has-give-by-";
-
-  const handleEnFieldGiveBySelect = (e: Event) => {
-    enFieldGiveBySelectCurrentValue = document.querySelector(
-      'input[name="supporter.questions.180165"]:checked'
-    ) as HTMLInputElement;
-    console.log(
-      "enFieldGiveBySelectCurrentValue:",
-      enFieldGiveBySelectCurrentValue
-    );
-    if (
-      enFieldGiveBySelectCurrentValue &&
-      enFieldGiveBySelectCurrentValue.value.toLowerCase() == "card"
-    ) {
-      if (enGrid) {
-        removeClassesByPrefix(enGrid, prefix);
-        enGrid.classList.add("has-give-by-card");
-      }
-      // enFieldPaymentType.value = "card";
-      handleCCUpdate();
-    } else if (
-      enFieldGiveBySelectCurrentValue &&
-      enFieldGiveBySelectCurrentValue.value.toLowerCase() == "check"
-    ) {
-      if (enGrid) {
-        removeClassesByPrefix(enGrid, prefix);
-        enGrid.classList.add("has-give-by-check");
-      }
-      enFieldPaymentType.value = "Check";
-      enFieldPaymentType.value = "check";
-    } else if (
-      enFieldGiveBySelectCurrentValue &&
-      enFieldGiveBySelectCurrentValue.value.toLowerCase() == "paypal"
-    ) {
-      if (enGrid) {
-        removeClassesByPrefix(enGrid, prefix);
-        enGrid.classList.add("has-give-by-paypal");
-      }
-      enFieldPaymentType.add(paypalOption);
-      enFieldPaymentType.value = "Paypal";
-      enFieldPaymentType.value = "paypal";
-    } else if (
-      enFieldGiveBySelectCurrentValue &&
-      enFieldGiveBySelectCurrentValue.value.toLowerCase() == "applepay"
-    ) {
-      if (enGrid) {
-        removeClassesByPrefix(enGrid, prefix);
-        enGrid.classList.add("has-give-by-applepay");
-      }
-      enFieldPaymentType.add(applepayOption);
-      enFieldPaymentType.value = "applepay";
-    }
-  };
-
-  // Check Giving Frequency on page load
-  if (enFieldGiveBySelect) {
-    enFieldGiveBySelectCurrentValue = document.querySelector(
-      'input[name="supporter.questions.180165"]:checked'
-    ) as HTMLInputElement;
-    if (
-      enFieldGiveBySelectCurrentValue &&
-      enFieldGiveBySelectCurrentValue.value.toLowerCase() == "card"
-    ) {
-      if (enGrid) {
-        removeClassesByPrefix(enGrid, prefix);
-        enGrid.classList.add("has-give-by-card");
-      }
-      // enFieldPaymentType.value = "card";
-      handleCCUpdate();
-    } else if (
-      enFieldGiveBySelectCurrentValue &&
-      enFieldGiveBySelectCurrentValue.value.toLowerCase() == "check"
-    ) {
-      if (enGrid) {
-        removeClassesByPrefix(enGrid, prefix);
-        enGrid.classList.add("has-give-by-check");
-      }
-      enFieldPaymentType.value = "Check";
-      enFieldPaymentType.value = "check";
-    } else if (
-      enFieldGiveBySelectCurrentValue &&
-      enFieldGiveBySelectCurrentValue.value.toLowerCase() == "paypal"
-    ) {
-      if (enGrid) {
-        removeClassesByPrefix(enGrid, prefix);
-        enGrid.classList.add("has-give-by-paypal");
-      }
-      enFieldPaymentType.add(paypalOption);
-      enFieldPaymentType.value = "Paypal";
-      enFieldPaymentType.value = "paypal";
-    } else if (
-      enFieldGiveBySelectCurrentValue &&
-      enFieldGiveBySelectCurrentValue.value.toLowerCase() == "applepay"
-    ) {
-      if (enGrid) {
-        removeClassesByPrefix(enGrid, prefix);
-        enGrid.classList.add("has-give-by-applepay");
-      }
-      enFieldPaymentType.add(applepayOption);
-      enFieldPaymentType.value = "applepay";
-    }
   }
 
   // Watch each Giving Frequency radio input for a change

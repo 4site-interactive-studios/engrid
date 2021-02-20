@@ -1,4 +1,4 @@
-import { DonationAmount, EnForm, DonationFrequency, ProcessingFees } from "@4site/engrid-events";
+import { DonationAmount, EnForm, DonationFrequency, ProcessingFees } from "./events";
 import { Options, OptionsDefaults } from './';
 export class LiveVariables {
   public _amount: DonationAmount = DonationAmount.getInstance();
@@ -22,6 +22,7 @@ export class LiveVariables {
     this._fees.onFeeChange.subscribe(() => this.changeLiveUpsellAmount());
     this._fees.onFeeChange.subscribe(() => this.changeSubmitButton());
     this._frequency.onFrequencyChange.subscribe(() => this.changeLiveFrequency());
+    this._frequency.onFrequencyChange.subscribe(() => this.changeRecurrency());
     this._frequency.onFrequencyChange.subscribe(() => this.changeSubmitButton());
     this._form.onSubmit.subscribe(() => this.loadingSubmitButton());
     this._form.onError.subscribe(() => this.changeSubmitButton());
@@ -64,7 +65,7 @@ export class LiveVariables {
       ".en__submit button"
     ) as HTMLButtonElement;
     const amount = this.getAmountTxt(this._amount.amount + this._fees.fee);
-    const frequency = this._frequency.frequency == "single" ? "" : this._frequency.frequency;
+    const frequency = this._frequency.frequency == "once" ? "" : this._frequency.frequency;
     let label = this.submitLabel;
 
     if (amount) label = label.replace("$AMOUNT", amount);
@@ -114,8 +115,17 @@ export class LiveVariables {
     live_frequency.forEach(
       elem =>
       (elem.innerHTML =
-        this._frequency.frequency == "single" ? "" : this._frequency.frequency)
+        this._frequency.frequency == "once" ? "" : this._frequency.frequency)
     );
+  }
+
+  public changeRecurrency() {
+    const recurrpay = document.querySelector("[name='transaction.recurrpay']") as HTMLInputElement;
+    if (recurrpay && recurrpay.type != 'radio') {
+      recurrpay.value = this._frequency.frequency == 'once' ? 'N' : 'Y';
+      this._frequency.recurring = recurrpay.value;
+      console.log('Recurpay Changed!');
+    }
   }
 
   // Watch for a clicks on monthly-upsell link

@@ -1,4 +1,4 @@
-import { DonationAmount, EnForm } from "@4site/engrid-events";
+import { DonationAmount, EnForm } from "./events";
 
 /*global window */
 const ApplePaySession = (window as any).ApplePaySession;

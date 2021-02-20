@@ -1,5 +1,5 @@
-import { DonationAmount, DonationFrequency, EnForm, ProcessingFees } from '@4site/engrid-events';
-import { Options, OptionsDefaults, ImageAttribution, ApplePay, CapitalizeFields, ClickToExpand, engrid, getUrlParameter, IE, LiveVariables, Modal, sendIframeHeight, ShowHideRadioCheckboxes, SimpleCountrySelect } from './';
+import { DonationAmount, DonationFrequency, EnForm, ProcessingFees } from './events';
+import { Options, OptionsDefaults, ImageAttribution, ApplePay, CapitalizeFields, ClickToExpand, legacy, IE, LiveVariables, Modal, sendIframeHeight, ShowHideRadioCheckboxes, SimpleCountrySelect } from './';
 
 export class App {
 
@@ -10,11 +10,9 @@ export class App {
         "transaction.donationAmt",
         "transaction.donationAmt.other"
     );
-    private _frequency: DonationFrequency = DonationFrequency.getInstance("transaction.recurrpay");
+    private _frequency: DonationFrequency = DonationFrequency.getInstance();
 
     private options: Options;
-
-    public enID = getUrlParameter('en_id');
 
 
     constructor(options: Options) {
@@ -42,25 +40,23 @@ export class App {
         new IE();
 
         // TODO: Abstract everything to the App class so we can remove custom-methods
-        engrid.setBackgroundImage();
-        engrid.inputPlaceholder();
-        engrid.watchInmemField();
-        engrid.watchGiveBySelectField();
-        engrid.watchLegacyGiveBySelectField();
-        engrid.SetEnFieldOtherAmountRadioStepValue();
-        engrid.simpleUnsubscribe();
+        legacy.setBackgroundImage();
+        legacy.inputPlaceholder();
+        legacy.watchInmemField();
+        legacy.watchGiveBySelectField();
+        legacy.SetEnFieldOtherAmountRadioStepValue();
+        legacy.simpleUnsubscribe();
 
-        engrid.contactDetailLabels();
-        engrid.easyEdit();
-        engrid.enInput.init();
+        legacy.contactDetailLabels();
+        legacy.easyEdit();
+        legacy.enInput.init();
 
         new ShowHideRadioCheckboxes("transaction.giveBySelect", "giveBySelect-");
-        new ShowHideRadioCheckboxes("supporter.questions.180165", "giveBySelect-"); // @TODO this value "180165" shouldn't be hard coced
         new ShowHideRadioCheckboxes("transaction.inmem", "inmem-");
         new ShowHideRadioCheckboxes("transaction.recurrpay", "recurrpay-");
 
         // Controls if the Theme has a the "Debug Bar"
-        // engrid.debugBar();
+        // legacy.debugBar();
 
         // Event Listener Examples
         this._amount.onAmountChange.subscribe((s) => console.log(`Live Amount: ${s}`));
@@ -111,11 +107,10 @@ export class App {
         if (this.inIframe()) {
             // Scroll to top of iFrame
             console.log("iFrame Event - window.onload");
-            sendIframeHeight(this.enID);
+            sendIframeHeight();
             window.parent.postMessage(
                 {
-                    scroll: this.shouldScroll(),
-                    enID: this.enID
+                    scroll: this.shouldScroll()
                 },
                 "*"
             );
@@ -124,7 +119,7 @@ export class App {
             document.addEventListener("click", (e: Event) => {
                 console.log("iFrame Event - click");
                 setTimeout(() => {
-                    sendIframeHeight(this.enID);
+                    sendIframeHeight();
                 }, 100);
             });
         }
@@ -136,7 +131,7 @@ export class App {
         }
         if (this.inIframe()) {
             console.log("iFrame Event - window.onload");
-            sendIframeHeight(this.enID);
+            sendIframeHeight();
         }
     }
     private inIframe() {
@@ -164,7 +159,7 @@ export class App {
             document.body.setAttribute("data-engrid-embedded", "");
             // Fire the resize event
             console.log("iFrame Event - First Resize");
-            sendIframeHeight(this.enID);
+            sendIframeHeight();
         }
     }
 }
