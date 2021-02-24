@@ -13,3 +13,4 @@ export * from './live-variables';
 export * from './modal';
 export * from './show-hide-radio-checkboxes';
 export * from './simple-country-select';
+export * from './skip-link';

@@ -1,5 +1,5 @@
 import { DonationAmount, DonationFrequency, EnForm, ProcessingFees } from './events';
-import { Options, OptionsDefaults, ImageAttribution, ApplePay, CapitalizeFields, ClickToExpand, legacy, IE, LiveVariables, Modal, sendIframeHeight, ShowHideRadioCheckboxes, SimpleCountrySelect } from './';
+import { Options, OptionsDefaults, ImageAttribution, ApplePay, CapitalizeFields, ClickToExpand, legacy, IE, LiveVariables, Modal, sendIframeHeight, ShowHideRadioCheckboxes, SimpleCountrySelect, SkipToMainContentLink } from './';
 
 export class App {
 
@@ -96,6 +96,7 @@ export class App {
         if (this.options.CapitalizeFields) new CapitalizeFields();
         // Click To Expand
         if (this.options.ClickToExpand) new ClickToExpand();
+        if (this.options.SkipToMainContentLink) new SkipToMainContentLink();
 
 
     }

@@ -12,23 +12,27 @@ figure.image-with-attribution {
     }
 
     figattribution {
-        font-family: var(--theme-image-attribution-overlay-margin-font-family);
+        font-family: var(--theme-image-attribution-overlay-font-family);
         position: absolute;
         background-color: var(--theme-image-attribution-overlay-background-color);
         margin: var(--theme-image-attribution-overlay-margin);
         text-shadow: var(--theme-image-attribution-overlay-text-shadow);
         font-size: var(--theme-image-attribution-overlay-font-size);
-        font-family: sans-serif;
         color: var(--theme-image-attribution-overlay-color);
+        font-style: var(--theme-image-attribution-overlay-font-style);
         display: inline-block;
         padding: var(--theme-image-attribution-overlay-padding);
+        z-index: 1;
     }
 
     figattribution a,
     figattribution a:hover,
     figattribution a:focus {
-        font-family: var(--theme-image-attribution-overlay-margin-font-family);
+        font-size: var(--theme-image-attribution-overlay-font-size);
         color: var(--theme-image-attribution-overlay-color);
+        font-family: var(--theme-image-attribution-overlay-font-family);
+        color: var(--theme-image-attribution-overlay-color);
+        font-style: var(--theme-image-attribution-overlay-font-style);
         text-decoration: none;
     }
 

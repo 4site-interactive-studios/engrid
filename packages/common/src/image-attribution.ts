@@ -14,10 +14,11 @@
 export class ImageAttribution{
 
     // Find all images with attribution but not with the "data-attribution-hide-overlay" attribute
-    imagesWithAttribution = document.querySelectorAll("[data-attribution-source]:not([data-attribution-hide-overlay])");
+    imagesWithAttribution = document.querySelectorAll("div:not(.page-backgroundImage) [data-attribution-source]:not([data-attribution-hide-overlay])");
     constructor() {
         this.imagesWithAttribution.forEach((element) => {
-
+            console.log("The following image was found with data attribution fields on it. It's markup will be changed to add caption support.", element);
+            
             // Creates the wapping <figure> element
             let figure = document.createElement('figure');
             figure.classList.add("image-with-attribution");

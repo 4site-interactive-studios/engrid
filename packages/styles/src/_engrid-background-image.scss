@@ -19,6 +19,23 @@ body[data-engrid-backgroundImage="set"]{
       background-image: var(--theme-page-backgroundImage-url);
       will-change: transform; // creates a new paint 
     }
+
+    // If the background image has an attribution it will be converted to a <figure> and the caption added, it can be displayed over top of the normal background image
+    figure.image-with-attribution{
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-image: var(--theme-page-backgroundImage-url);
+      height: 100vh;
+      width: 100vw;
+      background-size: cover;
+      background-position: top right;
+    }
+
+    figure.image-with-attribution img{
+      display: none;
+    }
+
   }
 
   &[data-engrid-layout="leftleft1col"],

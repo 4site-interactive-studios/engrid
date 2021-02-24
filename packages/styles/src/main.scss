@@ -52,6 +52,7 @@
 @import "engrid-neverbounce";
 @import "engrid-premiums";
 @import "engrid-root";
+@import "engrid-skip-link";
 @import "engrid-thermometer";
 @import "engrid-tweet-to-target";
 @import "engrid-typography";
@@ -63,7 +64,8 @@
 
 /* ENGRID PAGE TEMPLATES MAKES THE BODY INVISIBLE SO THE USER NEVER SEE'S AN UNSTYLED PAGE*/
 /* THIS MAKES THE BODY VISIBLE AFTER IT'S DOWNLOADED AND PARSED BY THE BROWSER */
-body {
-  opacity: 1;
-  transition: opacity 0.1s;
-}
+/* THIS IS REQUIRED ON THE CLIENT THEME'S MAIN.CSS IN AN IDENTICAL PLACEMENT */
+// body {
+//   opacity: 1;
+//   transition: opacity 0.2s;
+// }

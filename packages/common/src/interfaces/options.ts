@@ -7,6 +7,7 @@ export interface Options {
     ClickToExpand?: boolean,
     CurrencySymbol?: string,
     CurrencySeparator?: string,
+    SkipToMainContentLink?: boolean,
     onLoad?: () => void,
     onResize?: () => void,
 }
@@ -20,4 +21,5 @@ export const OptionsDefaults: Options = {
     ClickToExpand: true,
     CurrencySymbol: '$',
     CurrencySeparator: '.',
+    SkipToMainContentLink: true,
 }

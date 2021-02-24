@@ -1,0 +1,24 @@
+// Depends on skip-link.ts
+
+.skip-link {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    padding: 2ch 1ch !important;
+    z-index: 2147483647 !important;
+    display: block !important;
+    font-family: sans-serif !important;
+  }
+
+.skip-link:not(:focus):not(:active) {
+    border: 0 !important;
+    clip: rect(1px, 1px, 1px, 1px) !important;
+    -webkit-clip-path: inset(50%) !important;
+    clip-path: inset(50%) !important;
+    height: 1px !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important;
+    word-wrap: normal !important;
+}
