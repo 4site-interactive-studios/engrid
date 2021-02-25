@@ -12,7 +12,7 @@
 .give-by-select .en__field--radio .en__field__input--radio+.en__field__label,
 .en__field--donationAmt.en__field--radio .en__field__input--radio+.en__field__label,
 .en__field--recurrfreq.en__field--radio .en__field__input--radio+.en__field__label {
-	margin-left: 0rem !important;
+	margin-left: 0rem;
 }
 
 /* prettier-ignore */
@@ -20,7 +20,7 @@
 .give-by-select .en__field--radio .en__field__input--radio+.en__field__label:before,
 .en__field--donationAmt.en__field--radio .en__field__input--radio+.en__field__label:before,
 .en__field--recurrfreq.en__field--radio .en__field__input--radio+.en__field__label:before {
-	display: none !important;
+	display: none;
 }
 
 /* prettier-ignore */
@@ -39,14 +39,8 @@
 
 /* prettier-ignore */
 .radio-to-buttons .en__field--radio input[type="radio"]:checked+label,
-.radio-to-buttons .en__field--radio .en__field__item--other.has-value input,
-.radio-to-buttons .en__field--radio .en__field__item--other:not(.en__field__item--hidden) input,
 .give-by-select .en__field--radio input[type="radio"]:checked+label,
-.give-by-select .en__field--radio .en__field__item--other.has-value input,
-.give-by-select .en__field--radio .en__field__item--other:not(.en__field__item--hidden) input,
 .en__field--donationAmt.en__field--radio input[type="radio"]:checked+label,
-.en__field--donationAmt.en__field--radio .en__field__item--other.has-value input,
-.en__field--donationAmt.en__field--radio .en__field__item--other:not(.en__field__item--hidden) input,
 .en__field--recurrfreq.en__field--radio input[type="radio"]:checked+label {
 	text-transform: none;
 	background-color: var(--theme-typography-button-focus-hover-background-color);
@@ -66,15 +60,15 @@
 .radio-to-buttons .en__field__input--other,
 .give-by-select .en__field__input--other,
 .en__field--donationAmt.en__field__input--other{
-	height: auto !important;
+	height: auto;
 }
 
 /* prettier-ignore */
 .radio-to-buttons .en__field--radio input[type="radio"]:focus+label,
 .give-by-select .en__field--radio input[type="radio"]:focus+label,
 .en__field--donationAmt.en__field--radio input[type="radio"]:focus+label{
-	outline: none !important;
-	border: var(--theme-typography-button-border-width) solid var(--theme-typography-button-focus-hover-border-color) !important;
+	outline: none;
+	border: var(--theme-typography-button-border-width) solid var(--theme-typography-button-focus-hover-border-color);
 }
 
 // Remove Number Input Spinners on Other Input Gift Amount field https://stackoverflow.com/a/4298216

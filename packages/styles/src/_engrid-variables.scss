@@ -160,6 +160,7 @@ $slicer-breakpoints: 0 400px 600px 1024px 1200px;
     --theme-typography-select-focus-hover-color: var(--theme-typography-select-color);
     --theme-typography-select-focus-hover-background-color: var(--theme-typography-select-background-color);
     --theme-typography-select-focus-hover-border-color: var(--theme-cta-hover);
+    --theme-typography-select-focus-hover-border-bottom-color: var(--theme-typography-select-focus-hover-border-color);
     --theme-typography-select-focus-hover-box-shadow: var(--theme-typography-input-focus-hover-box-shadow);
 
     // TYPOGRAPHY TEXTAREA
