@@ -93,7 +93,7 @@
 
 .en__component div[class*="withOther"].en__field .en__field__item {
   margin-bottom: 0.5rem;
-  margin-right: 1rem;
+  // margin-right: 1rem;
 }
 
 /* If the form field has a hidden "other" field we need to remove the end of row spacing */
@@ -369,3 +369,12 @@
     z-index: 1;
   }
 }
+
+// Remove Number Input Spinners https://stackoverflow.com/a/4298216
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	// margin: 0;
+	// -moz-appearance: textfield;
+}
+

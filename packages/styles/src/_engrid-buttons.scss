@@ -47,10 +47,10 @@ button,
 .en__submit button:focus,
 .en__submit .button:hover,
 .en__submit .button:focus,
-button.cta.primary:hover,
-button.cta.primary:focus,
-.button.cta.primary:hover,
-.button.cta.primary:focus  {
+button.primary:hover,
+button.primary:focus,
+.button.primary:hover,
+.button.primary:focus  {
   color: var(--theme-typography-primary-button-focus-hover-color);
   background-color: var(--theme-typography-primary-button-focus-hover-background-color);
   border-color: var(--theme-typography-primary-button-focus-hover-border-color);

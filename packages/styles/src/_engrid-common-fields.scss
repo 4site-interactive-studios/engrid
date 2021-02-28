@@ -59,12 +59,20 @@ div:not(.manual-form-layout) {
     .en__field--ccvv {
       padding-right: 0;
     }
-  
+
+    .en__field--recurrfreq,
     .en__field--recurrpay,
     .en__field--donationAmt {
-      align-items: center;
+      // align-items: center;
       padding-left: 0;
       padding-right: 0;
+    }
+
+    .en__field--recurrfreq .en__field__element,
+    .en__field--recurrpay .en__field__element,
+    .en__field--donationAmt .en__field__element{
+      // align-items: center;
+      justify-content: center;
     }
   
     .en__field--donationAmt.en__field--withOther
@@ -80,7 +88,7 @@ div:not(.manual-form-layout) {
     }
   
     .en__field--donationAmt.en__field--withOther {
-      align-items: center;
+      // align-items: center;
     }
 
       // @TODO Style mandatory checboxes https://d.pr/i/KAZKV6

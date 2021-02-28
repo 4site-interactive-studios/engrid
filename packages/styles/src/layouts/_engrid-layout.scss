@@ -311,6 +311,33 @@ body:not(#en__pagebuilder) .page-customCode {
 }
 
 // ####################################################################
+//  Explicitly set every sections z-index
+// ####################################################################
+
+.page-alert,
+.content-header,
+.body-headerOutside,
+.body-header,
+.body-title,
+.body-banner,
+.body-bannerOverlay,
+.body-top,
+.body-side,
+.body-main,
+.body-bottom,
+.body-footer,
+.body-footerOutside,
+.content-footerSpacer,
+.content-preFooter,
+.content-footer,
+.page-backgroundImage,
+.page-backgroundImageOverlay,
+.page-customCode{
+  z-index: 1;
+}
+
+
+// ####################################################################
 //  QUICK REFERENCE / COPY AND PASTE LIST OF ALL ENGRID SECTIONS
 // ####################################################################
 

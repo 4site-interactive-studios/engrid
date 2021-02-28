@@ -350,142 +350,66 @@ export const debugBar = () => {
 };
 
 export const inputPlaceholder = () => {
-  const enFieldDonationAmt = document.querySelector(
-    ".en__field--donationAmt.en__field--withOther .en__field__input--other"
-  ) as HTMLInputElement;
-  // const enFieldFirstName = document.querySelector("#en__field_supporter_firstName") as HTMLInputElement;
-  // const enFieldLastName = document.querySelector("#en__field_supporter_lastName") as HTMLInputElement;
-  // const enFieldEmailAddress = document.querySelector("#en__field_supporter_emailAddress") as HTMLInputElement;
-  // const enFieldPhoneNumber = document.querySelector("#en__field_supporter_phoneNumber") as HTMLInputElement;
-  const enFieldPhoneNumber2 = document.querySelector(
-    "#en__field_supporter_phoneNumber2"
-  ) as HTMLInputElement;
-  // const enFieldCountry = document.querySelector("#en__field_supporter_country") as HTMLSelectElement;
-  // const enFieldAddress1 = document.querySelector("#en__field_supporter_address1") as HTMLInputElement;
-  // const enFieldAddress2 = document.querySelector("#en__field_supporter_address2") as HTMLInputElement;
-  // const enFieldCity = document.querySelector("#en__field_supporter_city") as HTMLInputElement;
-  // const enFieldRegion = document.querySelector("#en__field_supporter_region") as HTMLSelectElement;
-  // const enFieldPostcode = document.querySelector("#en__field_supporter_postcode") as HTMLInputElement;
-  const enFieldHonname = document.querySelector(
-    "#en__field_transaction_honname"
-  ) as HTMLInputElement;
-  const enFieldInfname = document.querySelector(
-    "#en__field_transaction_infname"
-  ) as HTMLInputElement;
-  const enFieldInfemail = document.querySelector(
-    "#en__field_transaction_infemail"
-  ) as HTMLInputElement;
-  // const enFieldInfcountry = document.querySelector("#en__field_transaction_infcountry") as HTMLSelectElement;
-  const enFieldInfadd1 = document.querySelector(
-    "#en__field_transaction_infadd1"
-  ) as HTMLInputElement;
-  const enFieldInfadd2 = document.querySelector(
-    "#en__field_transaction_infadd2"
-  ) as HTMLInputElement;
-  const enFieldInfcity = document.querySelector(
-    "#en__field_transaction_infcity"
-  ) as HTMLInputElement;
-  // const enFieldInfreg = document.querySelector("#en__field_transaction_infreg") as HTMLSelectElement;
-  const enFieldInfpostcd = document.querySelector(
-    "#en__field_transaction_infpostcd"
-  ) as HTMLInputElement;
-  const enFieldGftrsn = document.querySelector(
-    "#en__field_transaction_gftrsn"
-  ) as HTMLInputElement;
-  // const enPaymentType = document.querySelector("#en__field_transaction_paymenttype") as HTMLInputElement;
-  const enFieldCcnumber = document.querySelector(
-    "#en__field_transaction_ccnumber"
-  ) as HTMLInputElement;
-  // const enFieldCcexpire = document.querySelector("#en__field_transaction_ccexpire") as HTMLInputElement;
-  // const enFieldCcvv = document.querySelector("#en__field_transaction_ccvv") as HTMLInputElement;
-  // const enFieldBankAccountNumber = document.querySelector("#en__field_supporter_bankAccountNumber") as HTMLInputElement;
-  // const enFieldBankRoutingNumber = document.querySelector("#en__field_supporter_bankRoutingNumber") as HTMLInputElement;
+  // FIND ALL COMMON INPUT FIELDS
+  let enFieldDonationAmt = document.querySelector(".en__field--donationAmt.en__field--withOther .en__field__input--other") as HTMLInputElement;
+  let enFieldFirstName = document.querySelector("input#en__field_supporter_firstName") as HTMLInputElement;
+  let enFieldLastName = document.querySelector("input#en__field_supporter_lastName") as HTMLInputElement;
+  let enFieldEmailAddress = document.querySelector("input#en__field_supporter_emailAddress") as HTMLInputElement;
+  let enFieldPhoneNumber = document.querySelector("#inputen__field_supporter_phoneNumber") as HTMLInputElement;
+  let enFieldPhoneNumber2 = document.querySelector("input#en__field_supporter_phoneNumber2") as HTMLInputElement;
+  let enFieldCountry = document.querySelector("input#en__field_supporter_country") as HTMLInputElement;
+  let enFieldAddress1 = document.querySelector("input#en__field_supporter_address1") as HTMLInputElement;
+  let enFieldAddress2 = document.querySelector("input#en__field_supporter_address2") as HTMLInputElement;
+  let enFieldCity = document.querySelector("input#en__field_supporter_city") as HTMLInputElement;
+  // let enFieldRegion = document.querySelector("input#en__field_supporter_region") as HTMLInputElement
+  let enFieldPostcode = document.querySelector("input#en__field_supporter_postcode") as HTMLInputElement;
+  let enFieldHonname = document.querySelector("input#en__field_transaction_honname") as HTMLInputElement;
+  let enFieldInfname = document.querySelector("input#en__field_transaction_infname") as HTMLInputElement;
+  let enFieldInfemail = document.querySelector("input#en__field_transaction_infemail") as HTMLInputElement;
+  let enFieldInfcountry = document.querySelector("input#en__field_transaction_infcountry") as HTMLInputElement;
+  let enFieldInfadd1 = document.querySelector("input#en__field_transaction_infadd1") as HTMLInputElement;
+  let enFieldInfadd2 = document.querySelector("input#en__field_transaction_infadd2") as HTMLInputElement;
+  let enFieldInfcity = document.querySelector("input#en__field_transaction_infcity") as HTMLInputElement;
+  let enFieldInfpostcd = document.querySelector("input#en__field_transaction_infpostcd") as HTMLInputElement;
+  let enFieldGftrsn = document.querySelector("input#en__field_transaction_gftrsn") as HTMLInputElement;
+  let enFieldCcnumber = document.querySelector("input#en__field_transaction_ccnumber") as HTMLInputElement;
+  let enFieldCcexpire = document.querySelector("input#en__field_transaction_ccexpire") as HTMLInputElement;
+  let enFieldCcvv = document.querySelector("input#en__field_transaction_ccvv") as HTMLInputElement;
+  let enFieldBankAccountNumber = document.querySelector("input#en__field_supporter_bankAccountNumber") as HTMLInputElement;
+  let enFieldBankRoutingNumber = document.querySelector("input#en__field_supporter_bankRoutingNumber") as HTMLInputElement;
 
-  if (enFieldDonationAmt) {
-    enFieldDonationAmt.placeholder = "Other";
-    enFieldDonationAmt.setAttribute("inputmode", "numeric");
-  }
-  // if (enFieldFirstName) {
-  //   enFieldFirstName.placeholder = "First name";
-  // }
-  // if (enFieldLastName) {
-  //   enFieldLastName.placeholder = "Last name";
-  // }
-  // if (enFieldEmailAddress) {
-  //   enFieldEmailAddress.placeholder = "Email address";
-  // }
-  // if (enFieldPhoneNumber) {
-  //   enFieldPhoneNumber.placeholder = "Phone number";
-  // }
-  if (enFieldPhoneNumber2) {
-    enFieldPhoneNumber2.placeholder = "000-000-0000 (optional)";
-  }
-  // if (enFieldCountry){
-  //   enFieldCountry.placeholder = "Country";
-  // // }
-  // if (enFieldAddress1) {
-  //   enFieldAddress1.placeholder = "Street address";
-  // }
-  // if (enFieldAddress2) {
-  //   enFieldAddress2.placeholder = "Apt., ste., bldg.";
-  // }
-  // if (enFieldCity) {
-  //   enFieldCity.placeholder = "City";
-  // }
-  // if (enFieldRegion){
-  //   enFieldRegion.placeholder = "TBD";
-  // }
-  // if (enFieldPostcode) {
-  //   enFieldPostcode.placeholder = "Post code";
-  // }
-  if (enFieldHonname) {
-    enFieldHonname.placeholder = "Honoree name";
-  }
-  if (enFieldInfname) {
-    enFieldInfname.placeholder = "Recipient name";
-  }
-  if (enFieldInfemail) {
-    enFieldInfemail.placeholder = "Recipient email address";
-  }
-  // if (enFieldInfcountry){
-  //   enFieldInfcountry.placeholder = "TBD";
-  // }
-  if (enFieldInfadd1) {
-    enFieldInfadd1.placeholder = "Recipient street address";
-  }
-  if (enFieldInfadd2) {
-    enFieldInfadd2.placeholder = "Recipient Apt., ste., bldg.";
-  }
-  if (enFieldInfcity) {
-    enFieldInfcity.placeholder = "Recipient city";
-  }
-  // if (enFieldInfreg){
-  //   enFieldInfreg.placeholder = "TBD";
-  // }
-  if (enFieldInfpostcd) {
-    enFieldInfpostcd.placeholder = "Recipient postal code";
-  }
-  if (enFieldGftrsn) {
-    enFieldGftrsn.placeholder = "Reason for your gift";
-  }
-  // if (enPaymentType) {
-  //   enPaymentType.placeholder = "TBD";
-  // }
-  if (enFieldCcnumber) {
-    enFieldCcnumber.placeholder = "•••• •••• •••• ••••";
-  }
-  // if (enFieldCcexpire) {
-  //   enFieldCcexpire.placeholder = "MM / YY";
-  // }
-  // if (enFieldCcvv) {
-  //   enFieldCcvv.placeholder = "CVV";
-  // }
-  // if (enFieldBankAccountNumber) {
-  //   enFieldBankAccountNumber.placeholder = "Bank account number";
-  // }
-  // if (enFieldBankRoutingNumber) {
-  //   enFieldBankRoutingNumber.placeholder = "Bank routing number";
-  // }
+  // CHANGE FIELD INPUT TYPES
+  if (enFieldDonationAmt) {enFieldDonationAmt.setAttribute("inputmode", "numeric");}
+
+  // ADD FIELD PLACEHOLDERS
+  const enAddInputPlaceholder = document.querySelector("[data-engrid-add-input-placeholders]") as HTMLDataElement;
+
+  if (enAddInputPlaceholder && enFieldDonationAmt) {enFieldDonationAmt.placeholder = "Other";}
+  if (enAddInputPlaceholder && enFieldFirstName) {enFieldFirstName.placeholder = "First name";}
+  if (enAddInputPlaceholder && enFieldLastName) {enFieldLastName.placeholder = "Last name";}
+  if (enAddInputPlaceholder && enFieldEmailAddress) {enFieldEmailAddress.placeholder = "Email address";}
+  if (enAddInputPlaceholder && enFieldPhoneNumber) {enFieldPhoneNumber.placeholder = "Phone number";}
+  if (enAddInputPlaceholder && enFieldPhoneNumber2) {enFieldPhoneNumber2.placeholder = "000-000-0000 (optional)";}
+  if (enAddInputPlaceholder && enFieldCountry){enFieldCountry.placeholder = "Country";}
+  if (enAddInputPlaceholder && enFieldAddress1) {enFieldAddress1.placeholder = "Street address";}
+  if (enAddInputPlaceholder && enFieldAddress2) {enFieldAddress2.placeholder = "Apt., ste., bldg.";}
+  if (enAddInputPlaceholder && enFieldCity) {enFieldCity.placeholder = "City";}
+  // if (enAddInputPlaceholder && enFieldRegion){enFieldRegion.placeholder = "TBD";}
+  if (enAddInputPlaceholder && enFieldPostcode) {enFieldPostcode.placeholder = "Post code";}
+  if (enAddInputPlaceholder && enFieldHonname) {enFieldHonname.placeholder = "Honoree name";}
+  if (enAddInputPlaceholder && enFieldInfname) {enFieldInfname.placeholder = "Recipient name";}
+  if (enAddInputPlaceholder && enFieldInfemail) {enFieldInfemail.placeholder = "Recipient email address";}
+  if (enAddInputPlaceholder && enFieldInfcountry){enFieldInfcountry.placeholder = "TBD";}
+  if (enAddInputPlaceholder && enFieldInfadd1) {enFieldInfadd1.placeholder = "Recipient street address";}
+  if (enAddInputPlaceholder && enFieldInfadd2) {enFieldInfadd2.placeholder = "Recipient Apt., ste., bldg.";}
+  if (enAddInputPlaceholder && enFieldInfcity) {enFieldInfcity.placeholder = "Recipient city";}
+  if (enAddInputPlaceholder && enFieldInfpostcd) {enFieldInfpostcd.placeholder = "Recipient postal code";}
+  if (enAddInputPlaceholder && enFieldGftrsn) {enFieldGftrsn.placeholder = "Reason for your gift";}
+  if (enAddInputPlaceholder && enFieldCcnumber) {enFieldCcnumber.placeholder = "•••• •••• •••• ••••";}
+  if (enAddInputPlaceholder && enFieldCcexpire) {enFieldCcexpire.placeholder = "MM / YY";}
+  if (enAddInputPlaceholder && enFieldCcvv) {enFieldCcvv.placeholder = "CVV";}
+  if (enAddInputPlaceholder && enFieldBankAccountNumber) {enFieldBankAccountNumber.placeholder = "Bank account number";}
+  if (enAddInputPlaceholder && enFieldBankRoutingNumber) {enFieldBankRoutingNumber.placeholder = "Bank routing number";}
 };
 
 export const watchInmemField = () => {
@@ -870,10 +794,8 @@ export const contactDetailLabels = () => {
   }
 };
 
-// Adds a URL path that can be used to easily arrive at the editable version of the current page
-// By appending "/edit" to the end of a live URL you will see the editable version
-//@TODO This functions value should not be hard coded
-//@TODO Needs to be updated to adapt for "us.e-activist" and "e-activist" URLS, without needing it specified, as well as pass in page number and work for all page types without each needing to be specified
+// @TODO Adds a URL path "/edit" that can be used to easily arrive at the editable version of the current page. Should automatically detect if the client is using us.e-activist or e-activist and adjust accoridngly. Should also pass in page number and work for all page types without each needing to be specified.
+// @TODO Remove hard coded client values
 export const easyEdit = () => {
   const liveURL = window.location.href as string;
   let editURL = "" as string;
@@ -933,6 +855,7 @@ export const simpleUnsubscribe = () => {
 };
 
 // Watch the Region Field for changes. If there is only one option, hide it.
+// @TODO Should this be expanded where if a select only has one option it's always hidden?
 const country_select = document.getElementById(
   "en__field_supporter_country"
 ) as HTMLSelectElement;
@@ -955,7 +878,6 @@ if (country_select) {
 }
 
 // @TODO "Footer in Viewport Check" should be made its own TS file
-// @TODO "Footer in Viewport Check" should be inlined in <head> because it is render critical
 const contentFooter = document.querySelector(".content-footer");
 
 /*!
@@ -983,78 +905,3 @@ if (contentFooter && isInViewport(contentFooter)) {
 } else {
   document.getElementsByTagName("BODY")[0].setAttribute("data-engrid-footer-below-fold", "");
 }
-
-// @TODO Needs to be converted to Typescript
-// (function() {  
-//   window.addEventListener('load', function() {
-
-//     // This function works when the user has added ".simple_country_select" as a class in page builder for the Country select
-
-//     // Helper function to insert HTML after a node
-//     function insertAfter(el, referenceNode) {
-//         referenceNode.parentNode.insertBefore(el, referenceNode.nextSibling);
-//     }
-
-//     // Helper function to wrap a target in a new element
-//     function wrap(el, wrapper) {
-//         el.parentNode.insertBefore(wrapper, el);
-//         wrapper.appendChild(el);
-//     }
-
-//     // Show the Country select dropdown and hide international label. Called when inserted label is clicked.
-//     window.showCountrySelect = function() {
-//         countryWrapper.classList.add("country-select-visible");
-//         addressWrapper.classList.add("country-select-visible");
-//         countrySelect.focus(); 
-
-//         var countrySelectLabel = document.querySelector('#en_custom_simple_country_select');
-
-//       // Reinstate Country Select tab index
-//       countrySelect.removeAttribute("tabIndex"); 
-
-//     }
-
-//     var countrySelect = document.querySelector('#en__field_supporter_country');
-
-//     if (countrySelect) {
-//       var countrySelecLabel = countrySelect.options[countrySelect.selectedIndex].innerHTML;
-//       var countrySelecValue = countrySelect.options[countrySelect.selectedIndex].value;
-//     }
-
-//     if (countrySelecValue == "US"){
-//        countrySelecValue = " US";
-//     }
-
-//     if (countrySelecLabel == "United States"){
-//        countrySelecLabel = "the United States";
-//     }	
-
-//     var countryWrapper = document.querySelector('.simple_country_select');
-
-//     if(countryWrapper){
-
-//       // Remove Country Select tab index
-//       countrySelect.tabIndex = "-1";
-
-//       // Find the address label
-//       var addressWrapper = document.querySelector('.en__field--address1 label').parentElement.parentElement;
-//       var addressLabel = document.querySelector('.en__field--address1 label');
-
-//       // EN does not enforce a labels on fields so we have to check for it
-//       if(addressLabel){
-
-//         // Wrap the address label in a div to break out of the flexbox
-//         wrap(addressLabel, document.createElement('div'));
-
-//         // Add our link after the address label
-//         // Includes both long form and short form variants
-//         var newEl = document.createElement('span');
-//         newEl.innerHTML = ' <label id="en_custom_field_simple_country_select_long" class="en__field__label"><a onclick="window.showCountrySelect()">(Outside ' + countrySelecLabel + '?)</a></label><label id="en_custom_field_simple_country_select_short" class="en__field__label"><a onclick="window.showCountrySelect()">(Outside ' + countrySelecValue + '?)</a></label>';
-//         insertAfter(newEl, addressLabel);
-
-
-//       }
-//     }
-
-//   });
-//   })();

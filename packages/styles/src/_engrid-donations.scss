@@ -1,20 +1,6 @@
-/* prettier-ignore */
-.radio-to-buttons .en__field--radio input[type="radio"]+label,
-.give-by-select .en__field--radio input[type="radio"]+label,
-.en__field--donationAmt.en__field--radio input[type="radio"]+label,
-.en__field--donationAmt .en__field__item--other input,
-.en__field--recurrfreq.en__field--radio input[type="radio"]+label {
-	border-radius: var(--theme-typography-button-border-radius);
-}
+// Style the Donation Amount, Recurring Frequency, Radio to Buttons, and Give By Select Pseduo Fields as if they were buttons
 
-/* prettier-ignore */
-.radio-to-buttons .en__field--radio .en__field__input--radio+.en__field__label,
-.give-by-select .en__field--radio .en__field__input--radio+.en__field__label,
-.en__field--donationAmt.en__field--radio .en__field__input--radio+.en__field__label,
-.en__field--recurrfreq.en__field--radio .en__field__input--radio+.en__field__label {
-	margin-left: 0rem;
-}
-
+// Hide the radio select fields when we style them like buttons
 /* prettier-ignore */
 .radio-to-buttons .en__field--radio .en__field__input--radio+.en__field__label:before,
 .give-by-select .en__field--radio .en__field__input--radio+.en__field__label:before,
@@ -23,62 +9,159 @@
 	display: none;
 }
 
-/* prettier-ignore */
-.radio-to-buttons .en__field--radio input[type="radio"]+label,
-.radio-to-buttons .en__field--radio .en__field__item--other input[type="text"],
-.give-by-select .en__field--radio input[type="radio"]+label,
-.give-by-select .en__field--radio .en__field__item--other input[type="text"],
-.en__field--donationAmt.en__field--radio input[type="radio"]+label,
-.en__field--donationAmt.en__field--radio .en__field__item--other input[type="text"],
-.en__field--donationAmt.en__field--radio .en__field__item--other input[type="tel"],
-.en__field--donationAmt.en__field--radio .en__field__item--other input[type="number"],
-.en__field--recurrfreq.en__field--radio input[type="radio"]+label {
-	background-color: var(--theme-typography-button-background-color);
-	color: var(--theme-typography-button-color);
+.radio-to-buttons,
+.give-by-select,
+.en__field--donationAmt,
+.en__field--recurrfreq {
+min-width: calc(100% + 1rem);
+position: relative;
+left: -0.5rem;
 }
 
+/*
+########################################################################
+# DEFAULT STATE
+########################################################################
+*/
+
+// Regular Button Style
+/* prettier-ignore */
+.radio-to-buttons .en__field--radio input[type="radio"]+label,
+.give-by-select .en__field--radio input[type="radio"]+label,
+.en__field--donationAmt.en__field--radio input[type="radio"]+label,
+.en__field--recurrfreq.en__field--radio input[type="radio"]+label {
+	font-family: var(--theme-typography-button-font-family);
+    color: var(--theme-typography-button-color);
+    font-size: var(--theme-typography-button-font-size);
+    font-weight: var(--theme-typography-button-font-weight);
+	line-height: var(--theme-typography-button-line-height);
+    background-color: var(--theme-typography-button-background-color);
+    border-width: var(--theme-typography-button-border-width);
+    border-color: var(--theme-typography-button-border-color);
+    border-radius: var(--theme-typography-button-border-radius);
+	border-style: solid;
+	margin-left: 0.5rem;
+	margin-right: 0.5rem;
+	background-position-x: 40px;
+}
+
+// Primary Button Style
+/* prettier-ignore */
+.primary .en__field--radio input[type="radio"]:checked+label{
+	font-family: var(--theme-typography-primary-button-font-family);
+    color: var(--theme-typography-primary-button-color);
+    font-size: var(--theme-typography-primary-button-font-size);
+    font-weight: var(--theme-typography-primary-button-font-weight);
+	line-height: var(--theme-typography-primary-button-line-height);
+    background-color: var(--theme-typography-primary-button-background-color);
+    border-width: var(--theme-typography-primary-button-border-width);
+    border-color: var(--theme-typography-primary-button-border-color);
+    border-radius: var(--theme-typography-primary-button-border-radius);
+	border-style: solid;
+	margin-left: 0.5rem;
+	margin-right: 0.5rem;
+	background-position-x: 40px;
+}
+
+/*
+########################################################################
+# HOVER STATE
+########################################################################
+*/
+
+// Regular Button Hover
+.radio-to-buttons .en__field--radio .en__field__item:hover input[type="radio"]+label,
+.give-by-select .en__field--radio .en__field__item:hover input[type="radio"]+label,
+.en__field--donationAmt.en__field--radio .en__field__item:hover input[type="radio"]+label,
+.en__field--recurrfreq.en__field--radio .en__field__item:hover input[type="radio"]+label{
+    color: var(--theme-typography-button-focus-hover-color);
+    background-color: var(--theme-typography-button-focus-hover-background-color);
+    border-color: var(--theme-typography-button-focus-hover-border-color);
+}
+
+// Primary Button Hover
+.radio-to-buttons.primary .en__field--radio .en__field__item:hover input[type="radio"]+label,
+.give-by-select.primary .en__field--radio .en__field__item:hover input[type="radio"]+label,
+.primary .en__field--donationAmt.en__field--radio .en__field__item:hover input[type="radio"]+label,
+.primary .en__field--recurrfreq.en__field--radio .en__field__item:hover input[type="radio"]+label{
+    color: var(--theme-typography-primary-button-focus-hover-color);
+    background-color: var(--theme-typography-primary-button-focus-hover-background-color);
+    border-color: var(--theme-typography-primary-button-focus-hover-border-color);
+}
+
+/*
+########################################################################
+# CHECKED / SELECTED STATE
+########################################################################
+*/
+
+// Regular Button Selected
 /* prettier-ignore */
 .radio-to-buttons .en__field--radio input[type="radio"]:checked+label,
 .give-by-select .en__field--radio input[type="radio"]:checked+label,
 .en__field--donationAmt.en__field--radio input[type="radio"]:checked+label,
 .en__field--recurrfreq.en__field--radio input[type="radio"]:checked+label {
-	text-transform: none;
-	background-color: var(--theme-typography-button-focus-hover-background-color);
-	color: var(--theme-typography-button-focus-hover-color);
+    color: var(--theme-typography-button-focus-hover-color);
+    background-color: var(--theme-typography-button-focus-hover-background-color);
+    border-color: var(--theme-typography-button-focus-hover-border-color);
 }
 
-/* prettier-ignore */
-.radio-to-buttons .en__field--radio label.en__field__label.en__field__label--item,
-.give-by-select .en__field--radio label.en__field__label.en__field__label--item,
-.en__field--donationAmt.en__field--radio label.en__field__label.en__field__label--item,
-.en__field--recurrfreq.en__field--radio label.en__field__label.en__field__label--item  {
-	border: var(--theme-typography-button-border-width) solid var(--theme-typography-button-border-color);
-	background-position-x: 40px;
+// Primary Button Selected
+.radio-to-buttons.primary .en__field--radio input[type="radio"]:checked+label,
+.give-by-select.primary .en__field--radio input[type="radio"]:checked+label,
+.primary .en__field--donationAmt.en__field--radio input[type="radio"]:checked+label,
+.primary .en__field--recurrfreq.en__field--radio input[type="radio"]:checked+label {
+    color: var(--theme-typography-primary-button-focus-hover-color);
+    background-color: var(--theme-typography-primary-button-focus-hover-background-color);
+    border-color: var(--theme-typography-primary-button-focus-hover-border-color);
 }
 
-/* prettier-ignore */
-.radio-to-buttons .en__field__input--other,
-.give-by-select .en__field__input--other,
-.en__field--donationAmt.en__field__input--other{
-	height: auto;
-}
+/*
+########################################################################
+# FOCUS STATE
+########################################################################
+*/
 
+// Remove the browsers focus effect
 /* prettier-ignore */
 .radio-to-buttons .en__field--radio input[type="radio"]:focus+label,
 .give-by-select .en__field--radio input[type="radio"]:focus+label,
 .en__field--donationAmt.en__field--radio input[type="radio"]:focus+label{
 	outline: none;
-	border: var(--theme-typography-button-border-width) solid var(--theme-typography-button-focus-hover-border-color);
+	// border: var(--theme-typography-button-border-width) solid var(--theme-typography-button-focus-hover-border-color);
 }
 
-// Remove Number Input Spinners on Other Input Gift Amount field https://stackoverflow.com/a/4298216
-.en__field--donationAmt input[type="number"]::-webkit-inner-spin-button,
-.en__field--donationAmt input[type="number"]::-webkit-outer-spin-button {
-	-webkit-appearance: none;
-	margin: 0;
-	-moz-appearance: textfield;
+/*
+########################################################################
+# HANDLING OF OTHER INPUTS
+########################################################################
+*/
+
+// Other inputs should have the same left margin as the other buttons
+// Other inputs field doesn't need any margin since it comes at the end
+.en__component.radio-to-buttons div.en__field__item.en__field__item--other,
+.en__component.give-by-select div.en__field__item.en__field__item--other,
+.en__component .en__field--donationAmt.en__field--radio div.en__field__item.en__field__item--other,
+.en__component .en__field--recurrfreq.en__field--radio div.en__field__item.en__field__item--other {
+	margin-left: 0.5rem;
+	margin-right: 0.5rem;
+	height: auto;
 }
 
+.en__component.radio-to-buttons .en__field.en__field--radio .en__field__item:not(.en__field__item--other),
+.en__component.give-by-select .en__field.en__field--radio .en__field__item:not(.en__field__item--other),
+.en__component .en__field--donationAmt.en__field.en__field--radio .en__field__item:not(.en__field__item--other),
+.en__component .en__field--recurrfreq.en__field.en__field--radio .en__field__item:not(.en__field__item--other){
+	margin-right: 0;
+}
+
+/*
+########################################################################
+# RECURRING GIFTS 
+########################################################################
+*/
+
+// If the gift has a recurring frequency, prepare to append a label on the giving amounts
 [data-engrid-transaction-recurring-frequency] .en__field--donationAmt div:not(.en__field__item--other) .en__field__label--item::after{
 	line-height: 2;
 	font-size: 75%;
@@ -97,6 +180,11 @@
 	content: var(--give-annual-donation-amount-appended-label);
 }
 
+/*
+########################################################################
+# HIDE / SHOW CLASSES BASED ON GIFT RECURRANCE AND FREQEUNCY 
+########################################################################
+*/
 // Helper classes to hide/show content based on if a the gift is one-time or recurring and the gift's frequency
 body{
 	&[data-engrid-transaction-recurring="n"] .recurring-frequency-n-hide,
