@@ -262,6 +262,18 @@ body:not(#en__pagebuilder) .page-customCode {
 }
 
 // Add drop shadows to the body sections
+.en__component--column.body-header,
+.en__component--column.body-title,
+.en__component--column.body-banner,
+.en__component--column.body-top,
+.en__component--column.body-side,
+.en__component--column.body-main,
+.en__component--column.body-bottom,
+.en__component--column.body-footer {
+  position: relative;
+}
+
+
 .body-header:before,
 .body-title:before,
 .body-banner:before,
@@ -276,7 +288,7 @@ body:not(#en__pagebuilder) .page-customCode {
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: -2;
+  // z-index: -1;
   -webkit-box-shadow: 0 36px 50px 0 rgba(0, 0, 0, 0.2),
     0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
   box-shadow: 0 36px 50px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
@@ -311,30 +323,62 @@ body:not(#en__pagebuilder) .page-customCode {
 }
 
 // ####################################################################
-//  Explicitly set every sections z-index
+//  Explicitly set every sections default z-index
 // ####################################################################
 
+
 .page-alert,
+.page-customCode{
+  z-index: 2; // Highest default z-index
+}
+
 .content-header,
+.content-footerSpacer,
+.content-preFooter,
+.content-footer{
+  z-index: 1;
+}
+
 .body-headerOutside,
 .body-header,
 .body-title,
-.body-banner,
-.body-bannerOverlay,
 .body-top,
 .body-side,
 .body-main,
 .body-bottom,
 .body-footer,
-.body-footerOutside,
-.content-footerSpacer,
-.content-preFooter,
-.content-footer,
-.page-backgroundImage,
-.page-backgroundImageOverlay,
-.page-customCode{
-  z-index: 1;
+.body-footerOutside{
+  // z-index: 0;
 }
+
+.body-header:before,
+.body-title:before,
+.body-banner:before,
+.body-top:before,
+.body-side:before,
+.body-main:before,
+.body-bottom:before,
+.body-footer:before {
+  z-index: -1;
+}
+
+.body-bannerOverlay{
+  z-index: -2;
+}
+
+.body-banner{
+  z-index: -3;
+}
+
+.page-backgroundImageOverlay{
+  z-index: -4;
+}
+
+.page-backgroundImage{
+  z-index: -5; // Lowest default z-index
+}
+
+
 
 
 // ####################################################################

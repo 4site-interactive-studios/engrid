@@ -1,14 +1,14 @@
+/* Reset minimum and default width */
+.en__component--column {
+  min-width: auto; // Removed !important because we have better main.css placement in the Page Temaplte
+  width: auto; // Removed !important because we have better main.css placement in the Page Temaplte
+}
+
 /* EN sets width to 100%, without setting a max-width it can overflow offscreen */
 .en__component--column.en__component--advcolumn,
 .en__component--row--1 .en__component--column,
 .en__component--row--2 .en__component--column {
   max-width: 100vw;
-}
-
-/* Reset minimum and default width */
-.en__component--column {
-  min-width: auto; // Removed !important because we have better main.css placement in the Page Temaplte
-  width: auto; // Removed !important because we have better main.css placement in the Page Temaplte
 }
 
 /* Fix for flexbox sub-pixel rounding causing a 1px jitter in Chrome. */

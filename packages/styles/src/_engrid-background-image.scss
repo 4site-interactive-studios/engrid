@@ -5,7 +5,6 @@ body[data-engrid-backgroundImage="set"]{
   .page-backgroundImage{
     overflow: hidden; // added for before pseudo-element to help improve page redraw and subsequent page scroll FPS
     position: relative; // added for before pseudo-element to help improve page redraw and subsequent page scroll FPS
-    z-index: -3;
 
     &:before {
       content: ' ';
@@ -58,16 +57,11 @@ body[data-engrid-backgroundImage="set"]{
       background-position: top left;
     }
   }     
-
-  .page-backgroundImageOverlay {
-    z-index: -1;
-  }
 }
 
 body{
 
   .page-backgroundImage{
-    z-index: -3;
 
      /* Style the video: 100% width and height to cover the entire window */
      video {

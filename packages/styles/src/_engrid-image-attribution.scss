@@ -22,7 +22,7 @@ figure.image-with-attribution {
         font-style: var(--theme-image-attribution-overlay-font-style);
         display: inline-block;
         padding: var(--theme-image-attribution-overlay-padding);
-        z-index: 1;
+        // z-index: 1;
     }
 
     figattribution a,

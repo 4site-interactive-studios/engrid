@@ -17,7 +17,7 @@ body:not(#en__pagebuilder) .click-to-expand:not(.expanded){
         background-position: center bottom;
         background-repeat: no-repeat;
         background-size: var(--theme-click-to-expand-cta-image-width) var(--theme-click-to-expand-cta-image-height);
-        z-index: 100;
+        // z-index: 100;
         width: var(--theme-click-to-expand-cta-image-width);
         height: var(--theme-click-to-expand-cta-image-height);
         bottom: 0em;
