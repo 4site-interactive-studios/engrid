@@ -23,7 +23,7 @@ figure.media-with-attribution {
         display: inline-block;
         padding: var(--theme-image-attribution-overlay-padding);
         font-weight: var(--theme-image-attribution-overlay-font-weight);
-        // z-index: 1;
+        text-transform: var(--theme-image-attribution-overlay-text-transform);
     }
 
     figattribution a,

@@ -8,8 +8,10 @@
 /* SANITIZE.CSS (INCLUDES NORMALIZE.CSS) */
 @import "~sanitize.css";
 
-/* ENGRID DEFAULT VAIRABLES */
+/* ENGRID OVERRIDES, DEFAULT VARIABLES, AND TYPOGRAPHY */
+@import "engrid-enpage-overrides";
 @import "engrid-variables";
+@import "engrid-typography";
 
 /* ENGRID LAYOUTS */
 @import "layouts/engrid-layout";
@@ -22,11 +24,7 @@
 @import "layouts/engrid-layout-rightright1col";
 @import "layouts/engrid-layout-embedded"; // COMES LAST SO IT SUPERSEDES ANY PREVIOUS LAYOUTS IN THE CSS CASCADE
 
-/* ENGRID TYPOGRAPHY */
-@import "engrid-typography";
-
 /* ENGRID STYLINGS */
-@import "engrid-enpage-overrides"; // COMES FIRST SO OUR ENDGRID STYLES SUPERSEDES IT IN THE CSS CASCADE
 @import "engrid-apple-pay";
 @import "engrid-autofill";
 @import "engrid-background-image";
@@ -63,11 +61,3 @@
 /* @TODO Move Debug and Page Builder styles into their own CSS file or Repo / NPM dependency */
 @import "engrid-debug";
 @import "engrid-page-builder";
-
-/* ENGRID PAGE TEMPLATES MAKES THE BODY INVISIBLE SO THE USER NEVER SEE'S AN UNSTYLED PAGE*/
-/* THIS MAKES THE BODY VISIBLE AFTER IT'S DOWNLOADED AND PARSED BY THE BROWSER */
-/* THIS IS REQUIRED ON THE CLIENT THEME'S MAIN.CSS IN AN IDENTICAL PLACEMENT */
-// body {
-//   opacity: 1;
-//   transition: opacity 0.2s;
-// }
