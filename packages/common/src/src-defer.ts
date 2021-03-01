@@ -7,7 +7,7 @@
 //   for (var i = 0; i < srcDefer.length; i++) {
 //     let dataSrc = srcDefer[i].getAttribute("data-src");
 //     if (dataSrc) {
-//       srcDefer[i].setAttribute("defer", "async"); // Gets image processing off the main working thread
+//       srcDefer[i].setAttribute("decoding", "async"); // Gets image processing off the main working thread
 //       srcDefer[i].setAttribute("loading", "lazy"); // Lets the browser determine when the asset should be downloaded
 //       srcDefer[i].setAttribute("src", dataSrc); // Sets the src which will cause the browser to retrieve the asset
 //       srcDefer[i].setAttribute("data-engrid-data-src-processed", "true"); // Sets an attribute to mark that it has been processed by ENGrid
@@ -28,7 +28,7 @@ export class SrcDefer{
     for (let i = 0; i < this.imgSrcDefer.length; i++) {
       let img = this.imgSrcDefer[i] as HTMLImageElement;
       if(img){
-        img.setAttribute("defer", "async"); // Gets image processing off the main working thread, does nothing for video tags but doesn't hurt
+        img.setAttribute("decoding", "async"); // Gets image processing off the main working thread, and decodes the image asynchronously to reduce delay in presenting other content
         img.setAttribute("loading", "lazy"); // Lets the browser determine when the asset should be downloaded using it's native lazy loading
         let imgDataSrc = img.getAttribute("data-src");
         if(imgDataSrc){
