@@ -22,6 +22,9 @@
 @import "layouts/engrid-layout-rightright1col";
 @import "layouts/engrid-layout-embedded"; // COMES LAST SO IT SUPERSEDES ANY PREVIOUS LAYOUTS IN THE CSS CASCADE
 
+/* ENGRID TYPOGRAPHY */
+@import "engrid-typography";
+
 /* ENGRID STYLINGS */
 @import "engrid-enpage-overrides"; // COMES FIRST SO OUR ENDGRID STYLES SUPERSEDES IT IN THE CSS CASCADE
 @import "engrid-apple-pay";
@@ -55,7 +58,6 @@
 @import "engrid-skip-link";
 @import "engrid-thermometer";
 @import "engrid-tweet-to-target";
-@import "engrid-typography";
 
 /* ENGRID ADMIN ONLY STYLINGS */
 /* @TODO Move Debug and Page Builder styles into their own CSS file or Repo / NPM dependency */
