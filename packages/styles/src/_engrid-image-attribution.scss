@@ -22,6 +22,7 @@ figure.media-with-attribution {
         font-style: var(--theme-image-attribution-overlay-font-style);
         display: inline-block;
         padding: var(--theme-image-attribution-overlay-padding);
+        font-weight: var(--theme-image-attribution-overlay-font-weight);
         // z-index: 1;
     }
 
@@ -33,6 +34,7 @@ figure.media-with-attribution {
         font-family: var(--theme-image-attribution-overlay-font-family);
         color: var(--theme-image-attribution-overlay-color);
         font-style: var(--theme-image-attribution-overlay-font-style);
+        font-weight: var(--theme-image-attribution-overlay-font-weight);
         text-decoration: none;
     }
 

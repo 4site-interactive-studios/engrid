@@ -63,14 +63,33 @@ body{
 
   .page-backgroundImage{
 
-     /* Style the video: 100% width and height to cover the entire window */
-     video {
+    video{
       position: fixed;
-      top: 0;
-      left: 0;
       min-width: 100vw;
       min-height: 100vh;
     }
+
+    // Crop video on center (default)
+     video:not(.crop-on-right):not(.crop-on-left) {
+      left: 50%; /* % of surrounding element */
+      top: 50%;
+      transform: translate(-50%, -50%); /* % of current element */
+
+    }
+
+    // Crop video to the left
+    video.crop-on-left{
+      right: 0;
+      top: 50%;
+      transform: translate(0%, -50%); /* % of current element */
+    }
+
+    // Crop video to the right
+    video.crop-on-right{
+      left: 0;
+      top: 50%;
+      transform: translate(0%, -50%); /* % of current element */
+    }    
 
   }
 
