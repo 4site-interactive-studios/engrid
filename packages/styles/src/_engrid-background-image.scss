@@ -20,7 +20,7 @@ body[data-engrid-backgroundImage="set"]{
     }
 
     // If the background image has an attribution it will be converted to a <figure> and the caption added, it can be displayed over top of the normal background image
-    figure.image-with-attribution{
+    figure.media-with-attribution{
       position: fixed;
       top: 0;
       left: 0;
@@ -31,7 +31,7 @@ body[data-engrid-backgroundImage="set"]{
       background-position: top right;
     }
 
-    figure.image-with-attribution img{
+    figure.media-with-attribution img{
       display: none;
     }
 

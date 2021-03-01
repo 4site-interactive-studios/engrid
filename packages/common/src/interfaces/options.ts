@@ -1,7 +1,7 @@
 export interface Options {
     backgroundImage?: string | string[],
     ModalDebug?: boolean,
-    ImageAttribution?: boolean,
+    MediaAttribution?: boolean,
     applePay?: boolean,
     CapitalizeFields?: boolean,
     ClickToExpand?: boolean,
@@ -16,7 +16,7 @@ export interface Options {
 export const OptionsDefaults: Options = {
     backgroundImage: '',
     ModalDebug: false,
-    ImageAttribution: true,
+    MediaAttribution: true,
     applePay: false,
     CapitalizeFields: false,
     ClickToExpand: true,

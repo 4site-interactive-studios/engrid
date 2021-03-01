@@ -8,7 +8,7 @@ export * from './click-to-expand';
 export * as legacy from './custom-methods';
 export * from './ie';
 export * from './iframe';
-export * from './image-attribution';
+export * from './media-attribution';
 export * from './live-variables';
 export * from './modal';
 export * from './show-hide-radio-checkboxes';
