@@ -97,24 +97,54 @@ left: -0.5rem;
 
 // Regular Button Selected
 /* prettier-ignore */
-.radio-to-buttons .en__field--radio input[type="radio"]:checked+label,
-.give-by-select .en__field--radio input[type="radio"]:checked+label,
-.en__field--donationAmt.en__field--radio input[type="radio"]:checked+label,
-.en__field--recurrfreq.en__field--radio input[type="radio"]:checked+label {
-    color: var(--theme-typography-button-focus-hover-color);
-    background-color: var(--theme-typography-button-focus-hover-background-color);
-    border-color: var(--theme-typography-button-focus-hover-border-color);
+.radio-to-buttons .en__field--radio .en__field__item input[type="radio"]:checked+label,
+.give-by-select .en__field--radio .en__field__item input[type="radio"]:checked+label,
+.en__field--donationAmt.en__field--radio .en__field__item input[type="radio"]:checked+label,
+.en__field--recurrfreq.en__field--radio .en__field__item input[type="radio"]:checked+label {
+    color: var(--theme-typography-button-focus-hover-background-color);
+    background-color: var(--theme-typography-button-focus-hover-color);
+    border-color: var(--theme-typography-button-focus-hover-color);
+	outline: none;
 }
 
 // Primary Button Selected
-.radio-to-buttons.primary .en__field--radio input[type="radio"]:checked+label,
-.give-by-select.primary .en__field--radio input[type="radio"]:checked+label,
-.primary .en__field--donationAmt.en__field--radio input[type="radio"]:checked+label,
-.primary .en__field--recurrfreq.en__field--radio input[type="radio"]:checked+label {
+.radio-to-buttons.primary .en__field--radio i.en__field__item nput[type="radio"]:checked+label,
+.give-by-select.primary .en__field--radio .en__field__item input[type="radio"]:checked+label,
+.primary .en__field--donationAmt.en__field--radio .en__field__item input[type="radio"]:checked+label,
+.primary .en__field--recurrfreq.en__field--radio .en__field__item input[type="radio"]:checked+label {
+    color: var(--theme-typography-primary-button-focus-hover-color);
+    background-color: var(--theme-typography-primary-button-focus-hover-background-color);
+    border-color: var(--theme-typography-primary-button-focus-hover-border-color);
+	outline: none;
+}
+
+/*
+########################################################################
+# HOVER AND CHECKED / SELECTED STATE
+########################################################################
+*/
+
+// Regular Button Hover
+.radio-to-buttons .en__field--radio .en__field__item:hover input[type="radio"]:checked+label,
+.give-by-select .en__field--radio .en__field__item:hover input[type="radio"]:checked+label,
+.en__field--donationAmt.en__field--radio .en__field__item:hover input[type="radio"]+:checked+label,
+.en__field--recurrfreq.en__field--radio .en__field__item:hover input[type="radio"]:checked+label{
+    color: var(--theme-typography-button-focus-hover-background-color);
+    background-color: var(--theme-typography-button-focus-hover-color);
+    border-color: var(--theme-typography-button-focus-hover-color);
+}
+
+// Primary Button Hover
+.radio-to-buttons.primary .en__field--radio .en__field__item:hover input[type="radio"]:checked+label,
+.give-by-select.primary .en__field--radio .en__field__item:hover input[type="radio"]:checked+label,
+.primary .en__field--donationAmt.en__field--radio .en__field__item:hover input[type="radio"]:checked+label,
+.primary .en__field--recurrfreq.en__field--radio .en__field__item:hover input[type="radio"]:checked+label{
     color: var(--theme-typography-primary-button-focus-hover-color);
     background-color: var(--theme-typography-primary-button-focus-hover-background-color);
     border-color: var(--theme-typography-primary-button-focus-hover-border-color);
 }
+
+
 
 /*
 ########################################################################

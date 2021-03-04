@@ -1,15 +1,14 @@
 // Depends on click-to-expand.ts
 body:not(#en__pagebuilder) .click-to-expand:not(.expanded){
     cursor: pointer;
-    height: var(--theme-click-to-expand-copy-total-height);
+    max-height: var(--theme-click-to-expand-copy-total-height);
     overflow: hidden;
 
     // Works with transparent backgrounds for when the ENGrid is in its embedded state
     // REF: https://stackoverflow.com/a/58740440/815683
     .click-to-expand-text-wrapper {
-        height: calc(var(--theme-click-to-expand-copy-total-height) - var(--theme-click-to-expand-cta-image-height));
-        -webkit-mask-image: linear-gradient(180deg,rgba(0,0,0,1) 0px, rgba(255,255,255,0) calc(var(--theme-click-to-expand-copy-total-height) - var(--theme-click-to-expand-cta-image-height) - var(--theme-click-to-expand-cta-image-height)));
-        mask-image: linear-gradient(180deg,rgba(0,0,0,1) 0px, rgba(255,255,255,0) calc(var(--theme-click-to-expand-copy-total-height) - var(--theme-click-to-expand-cta-image-height) - var(--theme-click-to-expand-cta-image-height)));        
+        max-height: calc(var(--theme-click-to-expand-copy-total-height) - var(--theme-click-to-expand-cta-image-height) - 35px);
+        mask-image: linear-gradient(to bottom, black 50%, rgba(255, 255, 255, 0) calc(100% - var(--theme-click-to-expand-cta-image-height)));    
     }
 
     .click-to-expand-cta {
