@@ -158,6 +158,58 @@ left: -0.5rem;
 
 /*
 ########################################################################
+# HELPER CLASSES FOR BUTTONS AND OTHER INPUT FIELDS IN FLEXBOX ROWS
+# DEPENDS ON JS
+# @TODO Create JS to identify count on radio selects
+########################################################################
+*/
+
+.two-buttons-per-row .en__field--radio div.en__field__item:not(.en__field__item--other){
+	flex-basis: calc((100% * ( 1 / 2)) - 1rem);
+    max-width: calc(100% * (1 / 2));
+}
+
+.two-buttons-per-row .en__field--radio[engrid-data-button-count="1"] div.en__field__item--other,
+.two-buttons-per-row .en__field--radio[engrid-data-button-count="3"] div.en__field__item--other,
+.two-buttons-per-row .en__field--radio[engrid-data-button-count="5"] div.en__field__item--other {
+    flex-basis: calc((100% * ( 1 / 2)) - 1rem);
+    max-width: calc(100% * (1 / 2));
+}
+
+.two-buttons-per-row .en__field--radio[engrid-data-button-count="2"] div.en__field__item--other,
+.two-buttons-per-row .en__field--radio[engrid-data-button-count="4"] div.en__field__item--other,
+.two-buttons-per-row .en__field--radio[engrid-data-button-count="6"] div.en__field__item--other {
+    flex-basis: calc(100% - 1rem);
+    max-width: 100%;
+}
+
+
+.three-buttons-per-row .en__field--radio div.en__field__item:not(.en__field__item--other){
+	flex-basis: calc((100% * ( 1 / 3)) - 1rem);
+    max-width: calc(100% * (1 / 3));
+}
+
+.three-buttons-per-row .en__field--radio[engrid-data-button-count="1"] div.en__field__item--other,
+.three-buttons-per-row .en__field--radio[engrid-data-button-count="4"] div.en__field__item--other{
+    flex-basis: calc((100% * ( 2 / 3)) - 1rem);
+    max-width: calc(100% * (2 / 3));
+}
+
+.three-buttons-per-row .en__field--radio div.en__field__item:not(.en__field__item--other),
+.three-buttons-per-row .en__field--radio[engrid-data-button-count="2"] div.en__field__item--other,
+.three-buttons-per-row .en__field--radio[engrid-data-button-count="5"] div.en__field__item--other{
+    flex-basis: calc((100% * ( 1 / 3)) - 1rem);
+    max-width: calc(100% * (1 / 3));
+}
+
+.three-buttons-per-row .en__field--radio[engrid-data-button-count="3"] div.en__field__item--other,
+.three-buttons-per-row .en__field--radio[engrid-data-button-count="6"] div.en__field__item--other{
+	flex-basis: calc(100% - 1rem);
+    max-width: 100%;
+}
+
+/*
+########################################################################
 # RECURRING GIFTS 
 ########################################################################
 */

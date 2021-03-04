@@ -263,13 +263,7 @@
       &:before {
         padding: 0.5rem 0;
       }
-    }
 
-    // @TODO This does not compile correctly in SASS (see below) https://d.pr/i/5IgMUK
-    // It outputs as    "#EN__RootElement .pboAdvancedRow__preview.page-alert:before {"
-    // But it should be "#EN__RootElement .pboAdvancedRow__preview .en__component--column.page-alert:before {"
-    // Once fixed can be mergd with above.
-    .en__component--column {
       &.page-alert:before {
         content: "Page Alert";
       }
@@ -354,5 +348,6 @@
         z-index: 1;
       }
     }
+
   }
 }

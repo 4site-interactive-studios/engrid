@@ -30,7 +30,8 @@
     "node-sass": "^4.14.1"
   },
   "dependencies": {
-    "sanitize.css": "^11.0.1"
+    "sanitize.css": "^11.0.1",
+    "tippy.js": "^6.3.1"
   },
   "repository": {
     "type": "git",

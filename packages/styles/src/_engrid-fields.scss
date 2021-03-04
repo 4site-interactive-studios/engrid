@@ -130,9 +130,9 @@
 }
 
 /* Custom Styling for Radio & Checkbox Inputs */
-.en__field__input--radio,
-.en__field__input--checkbox,
-.en__contactDetails__select {
+input.en__field__input--radio,
+input.en__field__input--checkbox,
+input.en__contactDetails__select {
   border: 0;
   clip: rect(0 0 0 0);
   -webkit-clip-path: inset(50%);
