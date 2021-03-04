@@ -234,13 +234,12 @@ $slicer-breakpoints: 0 400px 600px 1024px 1200px;
     --theme-cta: #0070BA;
     --theme-cta-hover: #22a3cb;
 
-    // PAGE, CONTENT, and BODY BACKGROUND COLOR
-    // Quick set the background color on all corresponding sections
+    // ENGRID SECTIONS BACKGROUND COLOR
+    // QUICK SETTINGS
     --theme-page-background-color: var(--color-transparent);
     --theme-content-background-color: var(--color-transparent);
     --theme-body-background-color: var(--color-white);
-
-    // ENGRID SECTIONS BACKGROUND COLOR
+    // DETAIL SETTINGS
     --theme-page-alert-background-color: var(--theme-page-background-color);
     --theme-content-header-background-color: var(--theme-content-background-color);
     --theme-body-headerOutside-background-color: var(--color-transparent);
@@ -260,6 +259,58 @@ $slicer-breakpoints: 0 400px 600px 1024px 1200px;
     --theme-page-backgroundImage-background-color: var(--theme-page-background-color);
     --theme-page-backgroundImageOverlay-background-color: var(--color-transparent);
     --theme-page-customCode-background-color: var(--theme-page-background-color);
+
+    // ENGRID SECTIONS PADDING
+    // QUICK SETTINGS
+    --theme-page-padding: 0px;
+    --theme-content-padding: 0px;
+    --theme-body-padding: 0px var(--theme-spacing-lg);
+    // DETAIL SETTINGS
+    --theme-page-alert-padding: var(--theme-page-padding);
+    --theme-content-header-padding: var(--theme-content-padding);
+    --theme-body-headerOutside-padding: var(--theme-body-padding);
+    --theme-body-header-padding: var(--theme-body-padding);
+    --theme-body-title-padding: var(--theme-body-padding);
+    --theme-body-banner-padding: 0px;
+    --theme-body-bannerOverlay-padding: var(--theme-body-padding);
+    --theme-body-top-padding: var(--theme-body-padding);
+    --theme-body-side-padding: var(--theme-body-padding);
+    --theme-body-main-padding: var(--theme-body-padding);
+    --theme-body-bottom-padding: var(--theme-body-padding);
+    --theme-body-footer-padding: var(--theme-body-padding);
+    --theme-body-footerOutside-padding: var(--theme-body-padding);
+    --theme-content-footerSpacer-padding: var(--theme-content-padding);
+    --theme-content-preFooter-padding: var(--theme-content-padding);
+    --theme-content-footer-padding: var(--theme-content-padding);
+    --theme-page-backgroundImage-padding: 0px;
+    --theme-page-backgroundImageOverlay-padding: var(--theme-page-padding);
+    --theme-page-customCode-padding: var(--theme-page-padding);    
+
+    // ENGRID SECTIONS MARGIN
+    // QUICK SETTINGS
+    --theme-page-margin: 0px;
+    --theme-content-margin: 0px;
+    --theme-body-margin: 0px;
+    // DETAIL SETTINGS
+    --theme-page-alert-margin: var(--theme-page-margin);
+    --theme-content-header-margin: var(--theme-content-margin);
+    --theme-body-headerOutside-margin: var(--theme-body-margin);
+    --theme-body-header-margin: var(--theme-body-margin);
+    --theme-body-title-margin: var(--theme-body-margin);
+    --theme-body-banner-margin: var(--theme-body-margin);
+    --theme-body-bannerOverlay-margin: var(--theme-body-margin);
+    --theme-body-top-margin: var(--theme-body-margin);
+    --theme-body-side-margin: var(--theme-body-margin);
+    --theme-body-main-margin: var(--theme-body-margin);
+    --theme-body-bottom-margin: var(--theme-body-margin);
+    --theme-body-footer-margin: var(--theme-body-margin);
+    --theme-body-footerOutside-margin: var(--theme-body-margin);
+    --theme-content-footerSpacer-margin: var(--theme-content-margin);
+    --theme-content-preFooter-margin: var(--theme-content-margin);
+    --theme-content-footer-margin: var(--theme-content-margin);
+    --theme-page-backgroundImage-margin: var(--theme-page-margin);
+    --theme-page-backgroundImageOverlay-margin: var(--theme-page-margin);
+    --theme-page-customCode-margin: var(--theme-page-margin);   
 
     // LAZY LOADED BANNER IMAGE PLACEHOLDER COLOR
     --theme-body-banner-image-background-color: var(--color-transparent);

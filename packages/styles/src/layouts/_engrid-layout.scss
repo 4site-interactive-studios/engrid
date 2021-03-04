@@ -93,13 +93,17 @@ body:not([data-engrid-embedded]) .en__component--advrow {
 .page-alert{
   grid-column: pc;
   grid-row: page-alert;
-  background-color: var(--theme-page-alert-background-color)
+  background-color: var(--theme-page-alert-background-color);
+  padding: var(--theme-page-alert-padding);
+  margin: var(--theme-page-alert-margin);
 }
 
 .content-header{
   grid-column: pc;
   grid-row: content-header;
-  background-color: var(--theme-content-header-background-color)
+  background-color: var(--theme-content-header-background-color);
+  padding: var(--theme-content-header-padding);
+  margin: var(--theme-content-header-margin);
 }
 
 .content-header.pseudo-subgrid > div{
@@ -109,7 +113,9 @@ body:not([data-engrid-embedded]) .en__component--advrow {
 .body-headerOutside{
   grid-column: bc;
   grid-row: body-headerOutside;
-  background-color: var(--theme-body-headerOutside-background-color)
+  background-color: var(--theme-body-headerOutside-background-color);
+  padding: var(--theme-body-headerOutside-padding);
+  margin: var(--theme-body-headerOutside-margin);
 }
 
 .body-header{
@@ -119,48 +125,64 @@ body:not([data-engrid-embedded]) .en__component--advrow {
   border-top-left-radius: var(--theme-body-header-border-radius);
   border-top-right-radius: var(--theme-body-header-border-radius);
   min-height: var(--theme-body-header-border-radius);
+  padding: var(--theme-body-header-padding);
+  margin: var(--theme-body-header-margin);
 }
 
 .body-title{
   grid-column: bc;
   grid-row: body-title;
-  background-color: var(--theme-body-title-background-color)
+  background-color: var(--theme-body-title-background-color);
+  padding: var(--theme-body-title-padding);
+  margin: var(--theme-body-title-margin);
 }
 
 .body-banner{
   grid-column: bc;
   grid-row: body-banner;
-  background-color: var(--theme-body-banner-background-color)
+  background-color: var(--theme-body-banner-background-color);
+  padding: var(--theme-body-banner-padding);
+  margin: var(--theme-body-banner-margin);
 }
 
 .body-bannerOverlay{
   grid-column: bc;
   grid-row: body-banner;
-  background-color: var(--theme-body-bannerOverlay-background-color)
+  background-color: var(--theme-body-bannerOverlay-background-color);
+  padding: var(--theme-body-bannerOverlay-padding);
+  margin: var(--theme-body-bannerOverlay-margin);
 }
 
 .body-top{
   grid-column: bc;
   grid-row: body-top;
-  background-color: var(--theme-body-top-background-color)
+  background-color: var(--theme-body-top-background-color);
+  padding: var(--theme-body-top-padding);
+  margin: var(--theme-body-top-margin);
 }
 
 .body-side{
   grid-column: bc;
   grid-row: body-side;
-  background-color: var(--theme-body-side-background-color)
+  background-color: var(--theme-body-side-background-color);
+  padding: var(--theme-body-side-padding);
+  margin: var(--theme-body-side-margin);
 }
 
 .body-main{
   grid-column: bc;
   grid-row: body-main;
-  background-color: var(--theme-body-main-background-color)
+  background-color: var(--theme-body-main-background-color);
+  padding: var(--theme-body-main-padding);
+  margin: var(--theme-body-main-margin);
 }
 
 .body-bottom{
   grid-column: bc;
   grid-row: body-bottom;
-  background-color: var(--theme-body-bottom-background-color)
+  background-color: var(--theme-body-bottom-background-color);
+  padding: var(--theme-body-bottom-padding);
+  margin: var(--theme-body-bottom-margin);
 }
 
 .body-footer{
@@ -170,30 +192,40 @@ body:not([data-engrid-embedded]) .en__component--advrow {
   border-bottom-left-radius: var(--theme-body-footer-border-radius);
   border-bottom-right-radius: var(--theme-body-footer-border-radius);
   min-height: var(--theme-body-footer-border-radius);
+  padding: var(--theme-body-footer-padding);
+  margin: var(--theme-body-footer-margin);
 }
 
 .body-footerOutside{
   grid-column: bc;
   grid-row: body-footerOutside;
-  background-color: var(--theme-body-footerOutside-background-color)
+  background-color: var(--theme-body-footerOutside-background-color);
+  padding: var(--theme-body-footerOutside-padding);
+  margin: var(--theme-body-footerOutside-margin);
 }
 
 .content-footerSpacer{
   grid-column: cc;
   grid-row: content-footerSpacer;
-  background-color: var(--theme-content-footerSpacer-background-color)
+  background-color: var(--theme-content-footerSpacer-background-color);
+  padding: var(--theme-content-footerSpacer-padding);
+  margin: var(--theme-content-footerSpacer-margin);
 }
 
 .content-preFooter{
   grid-column: cc;
   grid-row: content-preFooter;
-  background-color: var(--theme-content-preFooter-background-color)
+  background-color: var(--theme-content-preFooter-background-color);
+  padding: var(--theme-content-preFooter-padding);
+  margin: var(--theme-content-preFooter-margin);
 }
 
 .content-footer{
   grid-column: pc;
   grid-row: content-footer;
-  background-color: var(--theme-content-footer-background-color)
+  background-color: var(--theme-content-footer-background-color);
+  padding: var(--theme-content-footer-padding);
+  margin: var(--theme-content-footer-margin);
 }
 
 .content-footer.pseudo-subgrid > div{
@@ -203,6 +235,8 @@ body:not([data-engrid-embedded]) .en__component--advrow {
 .page-backgroundImage{
   grid-column: pc;
   grid-row: page-backgroundImage;
+  padding: var(--theme-page-backgroundImage-padding);
+  margin: var(--theme-page-backgroundImage-margin);
 }
 
 // Background color is set on the :before so it doesn't paint over the background image which will be set there
@@ -215,12 +249,16 @@ body:not([data-engrid-embedded]) .en__component--advrow {
   grid-column: pc;
   grid-row: page-backgroundImage;
   background-color: var(--theme-page-backgroundImageOverlay-background-color);
+  padding: var(--theme-page-backgroundImageOverlay-padding);
+  margin: var(--theme-page-backgroundImageOverlay-margin);
 }
 
 .page-customCode{
   grid-column: pc;
   grid-row: page-customCode;
   background-color: var(--theme-page-customCode-background-color);
+  padding: var(--theme-page-customCode-padding);
+  margin: var(--theme-page-customCode-margin);
 }
 
 // The ENGrid Custom Code section should never be visible outside of page builder
@@ -240,21 +278,21 @@ body:not(#en__pagebuilder) .page-customCode {
 * ##########################################################
 */
 
-.body-header,
-.body-title,
-.body-top,
-.body-side,
-.body-main,
-.body-bottom,
-.body-footer {
-  padding-left: var(--theme-spacing-lg);
-  padding-right: var(--theme-spacing-lg);
-}
+// .body-header,
+// .body-title,
+// .body-top,
+// .body-side,
+// .body-main,
+// .body-bottom,
+// .body-footer {
+//   padding-left: var(--theme-spacing-lg);
+//   padding-right: var(--theme-spacing-lg);
+// }
 
 .body-bannerOverlay{
   position: relative;
-  padding-left: var(--theme-spacing-lg);
-  padding-right: var(--theme-spacing-lg);
+  // padding-left: var(--theme-spacing-lg);
+  // padding-right: var(--theme-spacing-lg);
 }
 
 // The overlay should be hidden if it's empty so any figcaptions with links can be clicked
@@ -263,7 +301,7 @@ body:not(#en__pagebuilder) .body-bannerOverlay:empty{
 }
 
 .body-footer {
-  padding-bottom: var(--theme-spacing-lg);
+  // padding-bottom: var(--theme-spacing-lg);
 }
 
 // Add drop shadows to the body sections
