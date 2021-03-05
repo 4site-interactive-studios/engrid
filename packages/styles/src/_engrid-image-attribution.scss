@@ -1,6 +1,7 @@
 figure.media-with-attribution {
 	margin: 0 auto; // Mirrors settings added to all <img>'s
     max-width: 100%; // Mirrors settings added to all <img>'s
+    width: 100%; // Mirrors settings added to all <img>'s
 	position: relative;
     display: table; // The <figattribution> overlay only works when this is set to 'inline-block' or 'table' and 'table' was chosen because it will continue to respect the auto margin set above while setting it to an inline-block will cause it to ignore those auto margins. Recording: https://d.pr/v/QhPLOO
 
