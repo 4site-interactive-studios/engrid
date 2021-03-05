@@ -65,7 +65,7 @@ export class LiveVariables {
       ".en__submit button"
     ) as HTMLButtonElement;
     const amount = this.getAmountTxt(this._amount.amount + this._fees.fee);
-    const frequency = this._frequency.frequency == "once" ? "" : this._frequency.frequency;
+    const frequency = this._frequency.frequency == "once" ? "" : this._frequency.frequency == "annual" ? "annually" : this._frequency.frequency;
     let label = this.submitLabel;
 
     if (amount) label = label.replace("$AMOUNT", amount);
