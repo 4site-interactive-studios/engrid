@@ -1,0 +1,22 @@
+.highlight {
+    background-color: var(--theme-highlight-background-color);
+    color: var(--theme-highlight-font-color);
+    padding: 0.15em;
+    display: inline-block;
+}
+
+.highlight:before {
+    margin-bottom: -0.41rem;
+    content: "";
+    display: block;
+    height: 0;
+    width: 0;
+}
+
+.highlight::after {
+    margin-top: -0.37em;
+    content: "";
+    display: block;
+    height: 0;
+    width: 0;
+}

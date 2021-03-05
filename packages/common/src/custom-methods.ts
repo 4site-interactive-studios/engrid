@@ -384,7 +384,7 @@ export const inputPlaceholder = () => {
   // ADD FIELD PLACEHOLDERS
   const enAddInputPlaceholder = document.querySelector("[data-engrid-add-input-placeholders]") as HTMLDataElement;
 
-  if (enAddInputPlaceholder && enFieldDonationAmt) {enFieldDonationAmt.placeholder = "Other";}
+  if (enAddInputPlaceholder && enFieldDonationAmt) {enFieldDonationAmt.placeholder = "Other amount";}
   if (enAddInputPlaceholder && enFieldFirstName) {enFieldFirstName.placeholder = "First name";}
   if (enAddInputPlaceholder && enFieldLastName) {enFieldLastName.placeholder = "Last name";}
   if (enAddInputPlaceholder && enFieldEmailAddress) {enFieldEmailAddress.placeholder = "Email address";}
@@ -395,7 +395,7 @@ export const inputPlaceholder = () => {
   if (enAddInputPlaceholder && enFieldAddress2) {enFieldAddress2.placeholder = "Apt., ste., bldg.";}
   if (enAddInputPlaceholder && enFieldCity) {enFieldCity.placeholder = "City";}
   // if (enAddInputPlaceholder && enFieldRegion){enFieldRegion.placeholder = "TBD";}
-  if (enAddInputPlaceholder && enFieldPostcode) {enFieldPostcode.placeholder = "Post code";}
+  if (enAddInputPlaceholder && enFieldPostcode) {enFieldPostcode.placeholder = "Postal code";}
   if (enAddInputPlaceholder && enFieldHonname) {enFieldHonname.placeholder = "Honoree name";}
   if (enAddInputPlaceholder && enFieldInfname) {enFieldInfname.placeholder = "Recipient name";}
   if (enAddInputPlaceholder && enFieldInfemail) {enFieldInfemail.placeholder = "Recipient email address";}

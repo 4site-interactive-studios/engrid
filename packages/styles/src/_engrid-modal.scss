@@ -74,8 +74,8 @@
   .enModal-container,
   .ieModal-container {
     max-width: 820px;
-    border-radius: var(--default-input-border-radius);
-    background-color: var(--default-body-background-color);
+    border-radius: var(--theme-input-border-radius);
+    background-color: var(--theme-body-background-color);
     color: var(color-black);
     z-index: 100;
     position: relative;
@@ -90,34 +90,11 @@
       text-transform: uppercase;
     }
 
-    .highlight {
-      background-color: var(--default-highlight-background-color);
-      color: var(--default-highlight-font-color);
-      padding: 0.15em;
-      display: inline-block;
-    }
-
-    .highlight:before {
-      margin-bottom: -0.41rem;
-      content: "";
-      display: block;
-      height: 0;
-      width: 0;
-    }
-
-    .highlight::after {
-      margin-top: -0.37em;
-      content: "";
-      display: block;
-      height: 0;
-      width: 0;
-    }
-
     .title {
       color: var(--color-black);
     }
     .accent {
-      color: var(--default-cta);
+      color: var(--theme-cta);
     }
     .cta {
       cursor: pointer;
@@ -206,7 +183,7 @@
     .modal-right-column {
       background-color: #2e2e2c;
       flex-basis: 50%;
-      padding: var(--default-spacing-lg);
+      padding: var(--theme-spacing-lg);
       text-align: center;
       .cta-groups .group {
         flex-direction: column;

@@ -29,7 +29,7 @@ export class SkipToMainContentLink{
     }
 
     private insertSkipLinkSpan() {
-        document.body.insertAdjacentHTML('afterbegin', '<a class="skip-link" href="#skip-link">Skip to main content</a>');
+        document.body.insertAdjacentHTML('afterbegin', '<a class="skip-link" href="#skip-link" tabindex="32767">Skip to main content</a>');
     }
 
 }
