@@ -39,6 +39,16 @@ figure.media-with-attribution {
         text-decoration: none;
     }
 
+    // Set the global default position
+    figattribution{
+        top: auto;
+        right: 0;
+        bottom: 0;
+        left: auto;
+        text-align: left;
+    }
+
+    // Utility classes to manually control the position per image
     figattribution.attribution-topright {
         top: 0;
         right: 0;
@@ -71,13 +81,31 @@ figure.media-with-attribution {
         text-align: left;
     }
 
-    // If for some reason there is no set alignment for the attribution overlay, set it to bottom right
-    figattribution:not([class*="attribution-"]) {
-        top: auto;
-        right: 0;
-        bottom: 0;
-        left: auto;
-        text-align: left;
-    }
+}
 
+// Set the ENGrid layout default position for background images
+[data-engrid-layout="leftleft1col"],
+[data-engrid-layout="centerleftt1col"]{
+    .page-backgroundImage{
+        figattribution{
+            top: auto;
+            right: 0;
+            bottom: 0;
+            left: auto;
+            text-align: right;
+        }
+    }
+}
+
+[data-engrid-layout="rightright1col"],
+[data-engrid-layout="centerrigt1col"]{
+    .page-backgroundImage{
+        figattribution {
+            top: auto;
+            right: auto;
+            bottom: 0;
+            left: 0;
+            text-align: left;
+        }
+    }
 }

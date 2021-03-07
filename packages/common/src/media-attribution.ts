@@ -39,9 +39,9 @@ export class MediaAttribution{
                 if (attributionSource){
                 let attributionSourceLink = mediaWithAttributionElement.dataset.attributionSourceLink;
                     if (attributionSourceLink){
-                        mediaWithAttributionElement.insertAdjacentHTML('afterend', '<figattribution class="attribution-bottomright"><a href="' + decodeURIComponent(attributionSourceLink) + '" target="_blank">' + attributionSource + '</a></figure>');
+                        mediaWithAttributionElement.insertAdjacentHTML('afterend', '<figattribution><a href="' + decodeURIComponent(attributionSourceLink) + '" target="_blank">' + attributionSource + '</a></figure>');
                     }else{
-                        mediaWithAttributionElement.insertAdjacentHTML('afterend', '<figattribution class="attribution-bottomright">' + attributionSource + '</figure>');
+                        mediaWithAttributionElement.insertAdjacentHTML('afterend', '<figattribution>' + attributionSource + '</figure>');
                     }
                 }
             }
