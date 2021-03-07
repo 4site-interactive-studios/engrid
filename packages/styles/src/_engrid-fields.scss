@@ -62,26 +62,20 @@
 
 /* Make the spacing between wrapping elements tighter so the user knows they're related */
 
-.en__component
-  .en__field.en__field--select
+
+  .en__field--select
   .en__field__item:not(.en__field__item--other),
-.en__component
-  .en__field.en__field--radio
+  .en__field--radio
   .en__field__item:not(.en__field__item--other),
-.en__component
-  .en__field.en__field--checkbox
+  .en__field--checkbox
   .en__field__item:not(.en__field__item--other),
-.en__component
-  .en__field.en__field--splittext
+  .en__field--splittext
   .en__field__item:not(.en__field__item--other),
-.en__component
-  .en__field.en__field--tripletext
+  .en__field--tripletext
   .en__field__item:not(.en__field__item--other),
-.en__component
-  .en__field.en__field--splitselect
+  .en__field--splitselect
   .en__field__item:not(.en__field__item--other),
-.en__component
-  .en__field.en__field--tripleselect
+  .en__field--tripleselect
   .en__field__item:not(.en__field__item--other) {
   margin-bottom: 0.5rem;
   margin-right: 1rem;

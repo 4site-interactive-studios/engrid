@@ -16,6 +16,8 @@ h1{
     font-size: var(--theme-typography-h1-font-size);
     font-weight: var(--theme-typography-h1-font-weight);
     line-height: var(--theme-typography-h1-line-height);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
 }
 
 h2{
@@ -24,6 +26,8 @@ h2{
     font-size: var(--theme-typography-h2-font-size);
     font-weight: var(--theme-typography-h2-font-weight);
     line-height: var(--theme-typography-h2-line-height);
+    margin-top: calc(2rem * var(--scale-down-20pct));
+    margin-bottom: calc(1rem * var(--scale-down-20pct));
 }
 
 h3{
@@ -32,6 +36,8 @@ h3{
     font-size: var(--theme-typography-h3-font-size);
     font-weight: var(--theme-typography-h3-font-weight);
     line-height: var(--theme-typography-h3-line-height);
+    margin-top: calc(2rem * var(--scale-down-40pct));
+    margin-bottom: calc(1rem * var(--scale-down-40pct));
 }
 
 h4,
@@ -39,9 +45,11 @@ h5,
 h6{
     font-family: var(--theme-typography-h3-font-family);
     color: var(--theme-typography-h3-color);
-    font-size: var(--theme-typography-h3-font-size);
+    font-size: calc(var(--theme-typography-h3-font-size) * var(--scale-down-20pct));
     font-weight: var(--theme-typography-h3-font-weight);
     line-height: var(--theme-typography-h3-line-height);
+    margin-top: calc(2rem * var(--scale-down-80pct));
+    margin-bottom: calc(1rem * var(--scale-down-80pct));
 }
 
 p{

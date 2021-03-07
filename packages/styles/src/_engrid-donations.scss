@@ -169,20 +169,20 @@ left: -0.5rem;
 
 // Other inputs should have the same left margin as the other buttons
 // Other inputs field doesn't need any margin since it comes at the end
-.en__component.radio-to-buttons div.en__field__item.en__field__item--other,
-.en__component.give-by-select div.en__field__item.en__field__item--other,
-.en__component .en__field--donationAmt.en__field--radio div.en__field__item.en__field__item--other,
-.en__component .en__field--recurrfreq.en__field--radio div.en__field__item.en__field__item--other {
+.radio-to-buttons .en__field__item.en__field__item--other,
+.give-by-select .en__field__item.en__field__item--other,
+.en__field--donationAmt.en__field--radio .en__field__item.en__field__item--other,
+.en__field--recurrfreq.en__field--radio .en__field__item.en__field__item--other {
 	margin-left: 0.5rem;
 	margin-right: 0.5rem;
 	height: auto;
 	position: relative;
 }
 
-.en__component.radio-to-buttons .en__field.en__field--radio .en__field__item:not(.en__field__item--other),
-.en__component.give-by-select .en__field.en__field--radio .en__field__item:not(.en__field__item--other),
-.en__component .en__field--donationAmt.en__field.en__field--radio .en__field__item:not(.en__field__item--other),
-.en__component .en__field--recurrfreq.en__field.en__field--radio .en__field__item:not(.en__field__item--other){
+.radio-to-buttons .en__field__item:not(.en__field__item--other),
+.give-by-select .en__field__item:not(.en__field__item--other),
+.en__field--donationAmt .en__field__item:not(.en__field__item--other),
+.en__field--recurrfreq .en__field__item:not(.en__field__item--other){
 	margin-right: 0;
 }
 

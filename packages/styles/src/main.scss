@@ -8,10 +8,12 @@
 /* SANITIZE.CSS (INCLUDES NORMALIZE.CSS) */
 @import "node_modules/sanitize.css/sanitize";
 
-/* ENGRID OVERRIDES, DEFAULT VARIABLES, AND TYPOGRAPHY */
-@import "engrid-enpage-overrides";
+/* ENGRID OVERRIDES, DEFAULT VARIABLES, TYPOGRAPHY, AND MORE */
 @import "engrid-variables";
+@import "engrid-enpage-overrides";
+@import "engrid-root";
 @import "engrid-typography";
+@import "engrid-fields";
 
 /* ENGRID LAYOUTS */
 @import "layouts/engrid-layout";
@@ -41,7 +43,6 @@
 @import "engrid-errors";
 @import "engrid-events";
 @import "engrid-fancy-errors";
-@import "engrid-fields";
 @import "engrid-flip";
 @import "engrid-grayscale";
 @import "engrid-highlight";
@@ -53,7 +54,6 @@
 @import "engrid-modal";
 @import "engrid-neverbounce";
 @import "engrid-premiums";
-@import "engrid-root";
 @import "engrid-skip-link";
 @import "engrid-thermometer";
 @import "engrid-tweet-to-target";
