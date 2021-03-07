@@ -1,8 +1,13 @@
 // Makes all images responsive
 img {
-  height: auto;
   max-width: 100%;
   margin: 0 auto;
   display: inherit;
   aspect-ratio: attr(width) / attr(height); // https://developer.mozilla.org/en-US/docs/Web/Media/images/aspect_ratio_mapping
+}
+
+// If the image has no height or width defined, we can help it out to maintain its aspect ratio while responsively expanding to fill the constraints of the container it's placed within
+img:not([height]):not([width]){
+  width: 100%;
+  height: auto;
 }

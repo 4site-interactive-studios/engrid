@@ -58,13 +58,24 @@ body:not(#en__pagebuilder)[data-engrid-layout="centercenter2col"] {
       ]; 
     }
 
+    .body-title,
+    .body-banner,
+    .body-banner-overlay,
     .body-top{
-      grid-column: bc-start / lbc-end;
+      grid-column: lbc;
+    }
+
+    .body-side,
+    .body-main,
+    .body-bottom{
+      grid-column: rbc;
+    }
+
+    .body-top{
       grid-row: body-top-start / body-main-end; 
     }
 
     .body-main{
-      grid-column: rbc-start / bc-end;
       grid-row: body-top-start / body-main-end;
     }
   }
