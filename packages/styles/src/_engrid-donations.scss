@@ -3,7 +3,7 @@
 // Hide the radio select fields when we style them like buttons
 /* prettier-ignore */
 .radio-to-buttons .en__field--radio .en__field__input--radio+.en__field__label:before,
-.give-by-select .en__field--radio .en__field__input--radio+.en__field__label:before,
+.give-by-select.en__field--radio .en__field__input--radio+.en__field__label:before,
 .en__field--donationAmt.en__field--radio .en__field__input--radio+.en__field__label:before,
 .en__field--recurrfreq.en__field--radio .en__field__input--radio+.en__field__label:before {
 	display: none;
@@ -27,7 +27,7 @@ left: -0.5rem;
 // Regular Button Style
 /* prettier-ignore */
 .radio-to-buttons .en__field--radio input[type="radio"]+label,
-.give-by-select .en__field--radio input[type="radio"]+label,
+.give-by-select.en__field--radio input[type="radio"]+label,
 .en__field--donationAmt.en__field--radio input[type="radio"]+label,
 .en__field--recurrfreq.en__field--radio input[type="radio"]+label {
 	font-family: var(--theme-typography-button-font-family);
@@ -71,7 +71,7 @@ left: -0.5rem;
 
 // Regular Button Hover
 .radio-to-buttons .en__field--radio .en__field__item:hover input[type="radio"]+label,
-.give-by-select .en__field--radio .en__field__item:hover input[type="radio"]+label,
+.give-by-select.en__field--radio .en__field__item:hover input[type="radio"]+label,
 .en__field--donationAmt.en__field--radio .en__field__item:hover input[type="radio"]+label,
 .en__field--recurrfreq.en__field--radio .en__field__item:hover input[type="radio"]+label{
     color: var(--theme-typography-button-focus-hover-color);
@@ -98,7 +98,7 @@ left: -0.5rem;
 // Regular Button Selected
 /* prettier-ignore */
 .radio-to-buttons .en__field--radio .en__field__item input[type="radio"]:checked+label,
-.give-by-select .en__field--radio .en__field__item input[type="radio"]:checked+label,
+.give-by-select.en__field--radio .en__field__item input[type="radio"]:checked+label,
 .en__field--donationAmt.en__field--radio .en__field__item input[type="radio"]:checked+label,
 .en__field--recurrfreq.en__field--radio .en__field__item input[type="radio"]:checked+label {
     color: var(--theme-typography-button-focus-hover-background-color);
@@ -126,7 +126,7 @@ left: -0.5rem;
 
 // Regular Button Hover
 .radio-to-buttons .en__field--radio .en__field__item:hover input[type="radio"]:checked+label,
-.give-by-select .en__field--radio .en__field__item:hover input[type="radio"]:checked+label,
+.give-by-select.en__field--radio .en__field__item:hover input[type="radio"]:checked+label,
 .en__field--donationAmt.en__field--radio .en__field__item:hover input[type="radio"]+:checked+label,
 .en__field--recurrfreq.en__field--radio .en__field__item:hover input[type="radio"]:checked+label{
     color: var(--theme-typography-button-focus-hover-background-color);
@@ -155,7 +155,7 @@ left: -0.5rem;
 // Remove the browsers focus effect
 /* prettier-ignore */
 .radio-to-buttons .en__field--radio input[type="radio"]:focus+label,
-.give-by-select .en__field--radio input[type="radio"]:focus+label,
+.give-by-select.en__field--radio input[type="radio"]:focus+label,
 .en__field--donationAmt.en__field--radio input[type="radio"]:focus+label{
 	outline: none;
 	// border: var(--theme-typography-button-border-width) solid var(--theme-typography-button-focus-hover-border-color);
