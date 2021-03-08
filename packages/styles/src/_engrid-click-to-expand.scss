@@ -8,7 +8,7 @@ body:not(#en__pagebuilder) .click-to-expand:not(.expanded){
     // REF: https://stackoverflow.com/a/58740440/815683
     .click-to-expand-text-wrapper {
         max-height: calc(var(--theme-click-to-expand-copy-total-height) - var(--theme-click-to-expand-cta-image-height) - 35px);
-        mask-image: linear-gradient(to bottom, black 50%, rgba(255, 255, 255, 0) calc(100% - var(--theme-click-to-expand-cta-image-height)));    
+        mask-image: linear-gradient(to bottom, black 50%, rgba(255, 255, 255, 0) calc(100% - var(--theme-click-to-expand-cta-image-height)));  
     }
 
     .click-to-expand-cta {
@@ -26,4 +26,10 @@ body:not(#en__pagebuilder) .click-to-expand:not(.expanded){
         left: 0;
         right: 0;
     }
+}
+
+body:not(#en__pagebuilder) .click-to-expand.expanded{
+    .click-to-expand-text-wrapper {
+        outline: none;  
+    }  
 }

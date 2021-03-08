@@ -343,6 +343,11 @@ body:not(#en__pagebuilder) .page-backgroundImageOverlay:empty{
   display: none;
 }
 
+// The figcaption on the background image is not ready for primetime yet. It can get hidden on scroll, or the margin can become off when its placement gets adjusted (https://d.pr/v/xxv2C6)
+body:not(#en__pagebuilder) .page-backgroundImage figcaption{
+  display: none;
+}
+
 
 // ####################################################################
 //  FOR BROWSERS THAT DO NOT SUPPORT CSS GRID, FLEXBOX
