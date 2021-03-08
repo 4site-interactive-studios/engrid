@@ -48,7 +48,7 @@
     opacity: 0.6;
     -webkit-transition: 0.3s opacity ease-in-out;
     transition: 0.3s opacity ease-in-out;
-    @include to(2) {
+    @media (max-width: 600px) {
       opacity: 1;
     }
     &:hover {
@@ -123,7 +123,7 @@
       bottom: 0px;
       right: 0;
       z-index: 101;
-      @include to(2) {
+      @media (max-width: 600px) {
         bottom: -80px;
         max-height: 250px;
       }
@@ -196,7 +196,7 @@
       }
     }
 
-    @include to(2) {
+    @media (max-width: 600px) {
       flex-direction: column;
 
       .modal-left-column {

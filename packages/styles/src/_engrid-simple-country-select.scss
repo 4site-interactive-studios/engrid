@@ -10,7 +10,7 @@
 
 #en_custom_field_simple_country_select_short {
   display: none;
-  @include to(2) {
+  @media (max-width: 600px) {
     display: initial;
   }
 }
@@ -33,7 +33,7 @@ body:not(#en__pagebuilder) .simple_country_select {
 .country-select-visible #en_custom_field_simple_country_select_long {
   display: none;
 }
-@include to(2) {
+@media (max-width: 600px) {
   /* Hides long form country select */
   #en_custom_field_simple_country_select_long {
     display: none;
