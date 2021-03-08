@@ -5,10 +5,12 @@
     "target": "es6",
     // Search under node_modules for non-relative imports.
     "moduleResolution": "node",
+    // Process & infer types from .js files.
+    "allowJs": true,
     "outDir": "dist",
     "declaration": true,
     "strict": true
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules"]
 }

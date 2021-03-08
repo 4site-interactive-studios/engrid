@@ -108,7 +108,7 @@ input:hover{
     background-color: var(--theme-typography-input-focus-hover-background-color);
     border-color: var(--theme-typography-input-focus-hover-border-color);
     border-bottom-color: var(--theme-typography-input-focus-hover-border-bottom-color);
-    outline: none; // Shared between input:focus, textarea:focus, and select:focus
+    // outline: none; // Shared between input:focus, textarea:focus, and select:focus
     box-shadow: var(--theme-typography-input-focus-hover-box-shadow);
 }
 
@@ -184,7 +184,7 @@ select:hover{
     background-color: var(--theme-typography-select-focus-hover-background-color);
     border-color: var(--theme-typography-select-focus-hover-border-color);
     border-bottom-color: var(--theme-typography-select-focus-hover-border-bottom-color);
-    outline: none; // Shared between input:focus, textarea:focus, and select:focus
+    // outline: none; // Shared between input:focus, textarea:focus, and select:focus
     box-shadow: var(--theme-typography-select-focus-hover-box-shadow);
 }
 
@@ -219,7 +219,7 @@ textarea:hover{
     color: var(--theme-typography-textarea-focus-hover-color);
     background-color: var(--theme-typography-textarea-focus-hover-background-color);
     border-color: var(--theme-typography-textarea-focus-hover-border-color);
-    outline: none; // Shared between input:focus, textarea:focus, and select:focus
+    // outline: none; // Shared between input:focus, textarea:focus, and select:focus
     box-shadow: var(--theme-typography-textarea-focus-hover-box-shadow);
 }
 

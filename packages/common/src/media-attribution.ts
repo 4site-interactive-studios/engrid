@@ -39,7 +39,7 @@ export class MediaAttribution{
                 if (attributionSource){
                 let attributionSourceLink = mediaWithAttributionElement.dataset.attributionSourceLink;
                     if (attributionSourceLink){
-                        mediaWithAttributionElement.insertAdjacentHTML('afterend', '<figattribution><a href="' + decodeURIComponent(attributionSourceLink) + '" target="_blank">' + attributionSource + '</a></figure>');
+                        mediaWithAttributionElement.insertAdjacentHTML('afterend', '<figattribution><a href="' + decodeURIComponent(attributionSourceLink) + '" target="_blank" tabindex="-1">' + attributionSource + '</a></figure>');
                     }else{
                         mediaWithAttributionElement.insertAdjacentHTML('afterend', '<figattribution>' + attributionSource + '</figure>');
                     }

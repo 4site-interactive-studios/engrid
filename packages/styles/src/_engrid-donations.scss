@@ -104,7 +104,7 @@ left: -0.5rem;
     color: var(--theme-typography-button-focus-hover-background-color);
     background-color: var(--theme-typography-button-focus-hover-color);
     border-color: var(--theme-typography-button-focus-hover-color);
-	outline: none;
+	// outline: none;
 }
 
 // Primary Button Selected
@@ -115,7 +115,7 @@ left: -0.5rem;
     color: var(--theme-typography-primary-button-focus-hover-color);
     background-color: var(--theme-typography-primary-button-focus-hover-background-color);
     border-color: var(--theme-typography-primary-button-focus-hover-border-color);
-	outline: none;
+	// outline: none;
 }
 
 /*
@@ -157,7 +157,7 @@ left: -0.5rem;
 .radio-to-buttons .en__field--radio input[type="radio"]:focus+label,
 .give-by-select.en__field--radio input[type="radio"]:focus+label,
 .en__field--donationAmt.en__field--radio input[type="radio"]:focus+label{
-	outline: none;
+	// outline: none;
 	// border: var(--theme-typography-button-border-width) solid var(--theme-typography-button-focus-hover-border-color);
 }
 
