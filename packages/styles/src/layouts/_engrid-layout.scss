@@ -50,10 +50,10 @@ body:not([data-engrid-embedded]) .en__component--advrow {
     grid-template-columns:
     [
       pc-start lpc-start]  minmax(25px, 1fr)     [lpc-end
-      cc-start lcc-start]  minmax(0px, 50px)     [lcc-end
+      cc-start lcc-start]  minmax(0px, 0px)      [lcc-end
       bc-start lbc-start]  minmax(300px, 425px)  [lbc-end
       rbc-start]           minmax(300px, 425px)  [rbc-end bc-end
-      rcc-start]           minmax(0px, 50px)     [rcc-end cc-end
+      rcc-start]           minmax(0px, 0px)      [rcc-end cc-end
       rpc-start]           minmax(25px, 1fr)     [rpc-end pc-end
     ];
   }
