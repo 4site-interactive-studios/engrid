@@ -384,32 +384,32 @@ export const inputPlaceholder = () => {
   // ADD FIELD PLACEHOLDERS
   const enAddInputPlaceholder = document.querySelector("[data-engrid-add-input-placeholders]") as HTMLDataElement;
 
-  if (enAddInputPlaceholder && enFieldDonationAmt) {enFieldDonationAmt.placeholder = "Other amount";}
-  if (enAddInputPlaceholder && enFieldFirstName) {enFieldFirstName.placeholder = "First name";}
-  if (enAddInputPlaceholder && enFieldLastName) {enFieldLastName.placeholder = "Last name";}
-  if (enAddInputPlaceholder && enFieldEmailAddress) {enFieldEmailAddress.placeholder = "Email address";}
-  if (enAddInputPlaceholder && enFieldPhoneNumber) {enFieldPhoneNumber.placeholder = "Phone number";}
-  if (enAddInputPlaceholder && enFieldPhoneNumber2) {enFieldPhoneNumber2.placeholder = "000-000-0000 (optional)";}
+  if (enAddInputPlaceholder && enFieldDonationAmt) {enFieldDonationAmt.placeholder = "Other Amount";}
+  if (enAddInputPlaceholder && enFieldFirstName) {enFieldFirstName.placeholder = "First Name";}
+  if (enAddInputPlaceholder && enFieldLastName) {enFieldLastName.placeholder = "Last Name";}
+  if (enAddInputPlaceholder && enFieldEmailAddress) {enFieldEmailAddress.placeholder = "Email Address";}
+  if (enAddInputPlaceholder && enFieldPhoneNumber) {enFieldPhoneNumber.placeholder = "Phone Number";}
+  if (enAddInputPlaceholder && enFieldPhoneNumber2) {enFieldPhoneNumber2.placeholder = "000-000-0000 (Optional)";}
   if (enAddInputPlaceholder && enFieldCountry){enFieldCountry.placeholder = "Country";}
-  if (enAddInputPlaceholder && enFieldAddress1) {enFieldAddress1.placeholder = "Street address";}
+  if (enAddInputPlaceholder && enFieldAddress1) {enFieldAddress1.placeholder = "Street Address";}
   if (enAddInputPlaceholder && enFieldAddress2) {enFieldAddress2.placeholder = "Apt., ste., bldg.";}
   if (enAddInputPlaceholder && enFieldCity) {enFieldCity.placeholder = "City";}
   // if (enAddInputPlaceholder && enFieldRegion){enFieldRegion.placeholder = "TBD";}
-  if (enAddInputPlaceholder && enFieldPostcode) {enFieldPostcode.placeholder = "Postal code";}
-  if (enAddInputPlaceholder && enFieldHonname) {enFieldHonname.placeholder = "Honoree name";}
-  if (enAddInputPlaceholder && enFieldInfname) {enFieldInfname.placeholder = "Recipient name";}
-  if (enAddInputPlaceholder && enFieldInfemail) {enFieldInfemail.placeholder = "Recipient email address";}
+  if (enAddInputPlaceholder && enFieldPostcode) {enFieldPostcode.placeholder = "Postal Code";}
+  if (enAddInputPlaceholder && enFieldHonname) {enFieldHonname.placeholder = "Honoree Name";}
+  if (enAddInputPlaceholder && enFieldInfname) {enFieldInfname.placeholder = "Recipient Name";}
+  if (enAddInputPlaceholder && enFieldInfemail) {enFieldInfemail.placeholder = "Recipient Email Address";}
   if (enAddInputPlaceholder && enFieldInfcountry){enFieldInfcountry.placeholder = "TBD";}
-  if (enAddInputPlaceholder && enFieldInfadd1) {enFieldInfadd1.placeholder = "Recipient street address";}
+  if (enAddInputPlaceholder && enFieldInfadd1) {enFieldInfadd1.placeholder = "Recipient Street Address";}
   if (enAddInputPlaceholder && enFieldInfadd2) {enFieldInfadd2.placeholder = "Recipient Apt., ste., bldg.";}
-  if (enAddInputPlaceholder && enFieldInfcity) {enFieldInfcity.placeholder = "Recipient city";}
-  if (enAddInputPlaceholder && enFieldInfpostcd) {enFieldInfpostcd.placeholder = "Recipient postal code";}
+  if (enAddInputPlaceholder && enFieldInfcity) {enFieldInfcity.placeholder = "Recipient City";}
+  if (enAddInputPlaceholder && enFieldInfpostcd) {enFieldInfpostcd.placeholder = "Recipient Postal Code";}
   if (enAddInputPlaceholder && enFieldGftrsn) {enFieldGftrsn.placeholder = "Reason for your gift";}
   if (enAddInputPlaceholder && enFieldCcnumber) {enFieldCcnumber.placeholder = "•••• •••• •••• ••••";}
   if (enAddInputPlaceholder && enFieldCcexpire) {enFieldCcexpire.placeholder = "MM / YY";}
   if (enAddInputPlaceholder && enFieldCcvv) {enFieldCcvv.placeholder = "CVV";}
-  if (enAddInputPlaceholder && enFieldBankAccountNumber) {enFieldBankAccountNumber.placeholder = "Bank account number";}
-  if (enAddInputPlaceholder && enFieldBankRoutingNumber) {enFieldBankRoutingNumber.placeholder = "Bank routing number";}
+  if (enAddInputPlaceholder && enFieldBankAccountNumber) {enFieldBankAccountNumber.placeholder = "Bank Account Number";}
+  if (enAddInputPlaceholder && enFieldBankRoutingNumber) {enFieldBankRoutingNumber.placeholder = "Bank Routing Number";}
 };
 
 export const watchInmemField = () => {
@@ -480,13 +480,14 @@ export const watchGiveBySelectField = () => {
       handleCCUpdate();
     } else if (
       enFieldGiveBySelectCurrentValue &&
-      enFieldGiveBySelectCurrentValue.value.toLowerCase() == "check"
+      enFieldGiveBySelectCurrentValue.value.toLowerCase() == "ach"
     ) {
       if (enGrid) {
         removeClassesByPrefix(enGrid, prefix);
-        enGrid.classList.add("has-give-by-check");
+        enGrid.classList.add("has-give-by-ach");
       }
-      enFieldPaymentType.value = "check";
+      enFieldPaymentType.value = "ach";
+      enFieldPaymentType.value = "ACH";
     } else if (
       enFieldGiveBySelectCurrentValue &&
       enFieldGiveBySelectCurrentValue.value.toLowerCase() == "paypal"
@@ -526,14 +527,14 @@ export const watchGiveBySelectField = () => {
       handleCCUpdate();
     } else if (
       enFieldGiveBySelectCurrentValue &&
-      enFieldGiveBySelectCurrentValue.value.toLowerCase() == "check"
+      enFieldGiveBySelectCurrentValue.value.toLowerCase() == "ach"
     ) {
       if (enGrid) {
         removeClassesByPrefix(enGrid, prefix);
         enGrid.classList.add("has-give-by-check");
       }
-      enFieldPaymentType.value = "check";
-      enFieldPaymentType.value = "Check";
+      enFieldPaymentType.value = "ach";
+      enFieldPaymentType.value = "ACH";
     } else if (
       enFieldGiveBySelectCurrentValue &&
       enFieldGiveBySelectCurrentValue.value.toLowerCase() == "paypal"
@@ -584,13 +585,18 @@ const field_country = document.getElementById(
 let field_expiration_month = field_expiration_parts[0] as HTMLSelectElement;
 let field_expiration_year = field_expiration_parts[1] as HTMLSelectElement;
 
-/* The Donation Other Giving Amount is a "Number" type input field. This restricts valid inputs to integers unless a step value is defined. Be defining a step value of .01 any valid 2 digit decimal can be entered */
+/* The Donation Other Giving Amount is a "Number" type input field.
+   It also has its step value set to 1 so it increments up/down by whole dollars
+   And it has a min set to 5 so nothing less can be submitted
+*/
 export const SetEnFieldOtherAmountRadioStepValue = () => {
   const enFieldOtherAmountRadio = document.querySelector(
     ".en__field--donationAmt .en__field__input--other"
   ) as HTMLInputElement;
   if (enFieldOtherAmountRadio) {
-    enFieldOtherAmountRadio.setAttribute("step", ".01");
+    enFieldOtherAmountRadio.setAttribute("step", "1");
+    enFieldOtherAmountRadio.setAttribute("type", "number");
+    enFieldOtherAmountRadio.setAttribute("min", "5");
   }
 };
 

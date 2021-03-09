@@ -8,6 +8,11 @@
   display: grid;
 }
 
+// @TODO This prevents a layout problem in pagebuilder (https://d.pr/i/cEcwSo)
+body#en__pagebuilder .page-backgroundImage.pseudo-subgrid{
+  display: block;
+}
+
 // Ensure the ENGrid advanced row (there should only be one) occupies the full viewport at a minimum
 .en__component--advrow {
   width: 100%;
@@ -379,53 +384,59 @@ body:not(#en__pagebuilder) .page-backgroundImage figcaption{
 //  Explicitly set every sections default z-index
 // ####################################################################
 
+body:not(#en__pagebuilder){
+  .page-alert,
+  .page-customCode{
+    z-index: 7; // Highest default z-index
+  }
 
-.page-alert,
-.page-customCode{
-  z-index: 4; // Highest default z-index
-}
+  .content-header,
+  .content-footerSpacer,
+  .content-preFooter,
+  .content-footer{
+    z-index: 6;
+  }
 
-.content-header,
-.content-footerSpacer,
-.content-preFooter,
-.content-footer{
-  z-index: 3;
-}
+  .body-bannerOverlay{
+    z-index: 5;
+  }
 
-.body-bannerOverlay{
-  z-index: 2;
-}
+  .body-headerOutside,
+  .body-header,
+  .body-title,
+  .body-banner,
+  .body-top,
+  .body-side,
+  .body-main,
+  .body-bottom,
+  .body-footer,
+  .body-footerOutside{
+    z-index: 4;
+  }
 
-.body-headerOutside,
-.body-header,
-.body-title,
-.body-banner,
-.body-top,
-.body-side,
-.body-main,
-.body-bottom,
-.body-footer,
-.body-footerOutside{
-  z-index: 1;
-}
+  // z-index has to be negative or it will overlap content areas and make them non-clickable
+  .body-header:before,
+  .body-title:before,
+  .body-banner:before,
+  .body-top:before,
+  .body-side:before,
+  .body-main:before,
+  .body-bottom:before,
+  .body-footer:before {
+    z-index: -1;
+  }
 
-.body-header:before,
-.body-title:before,
-.body-banner:before,
-.body-top:before,
-.body-side:before,
-.body-main:before,
-.body-bottom:before,
-.body-footer:before {
-  z-index: -1;
-}
+  .page-backgroundImageOverlay{
+    z-index: -2;
+  }
 
-.page-backgroundImageOverlay{
-  z-index: -2
-}
+  // z-index has to be negative or it will overlap content areas like the skip-link
+  .page-backgroundImage{
+    z-index: -3; // Lowest default z-index
+  }
 
-.page-backgroundImage{
-  z-index: -3; // Lowest default z-index
+
+
 }
 
 // ####################################################################

@@ -116,13 +116,10 @@
   .content-footerSpacer,
   .content-preFooter,
   .content-footer,
+  .page-backgroundImage,
   .page-backgroundImageOverlay,
   .page-customCode{
     min-height: 5rem;
-  }
-
-  .page-backgroundImage{
-    min-height: 15rem;
   }
 
   .messageOverlay.hidden {
@@ -159,9 +156,9 @@
   /* prettier-ignore */
   .body-headerOutside .messageOverlay.hidden:only-child:before { content: "Body Header Outside"; }
   /* prettier-ignore */
-  .body-header .messageOverlay.hidden:only-child:before { content: "Body Header Spacer"; }
+  .body-header .messageOverlay.hidden:only-child:before { content: "Body Header (Spacer)"; }
   /* prettier-ignore */
-  .body-title .messageOverlay.hidden:only-child:before { content: "Body Title"; }  
+  .body-title .messageOverlay.hidden:only-child:before { content: "Body Title (Copy)"; }  
   /* prettier-ignore */
   .body-banner .messageOverlay.hidden:only-child:before { content: "Body Banner"; }
   /* prettier-ignore */
@@ -175,11 +172,11 @@
   /* prettier-ignore */
   .body-bottom .messageOverlay.hidden:only-child:before { content: "Body Bottom (Copy)"; }
   /* prettier-ignore */
-  .body-footer .messageOverlay.hidden:only-child:before { content: "Body Footer Spacer"; }
+  .body-footer .messageOverlay.hidden:only-child:before { content: "Body Footer (Spacer)"; }
   /* prettier-ignore */
   .body-footerOutside .messageOverlay.hidden:only-child:before { content: "Body Footer Outside"; }
   /* prettier-ignore */
-  .content-footerSpacer .messageOverlay.hidden:only-child:before { content: "Content Footer Spacer"; }
+  .content-footerSpacer .messageOverlay.hidden:only-child:before { content: "Content Footer (Spacer)"; }
   /* prettier-ignore */
   .content-preFooter .messageOverlay.hidden:only-child:before { content: "Content Pre Footer"; }
   /* prettier-ignore */
@@ -297,7 +294,7 @@
       }
     
       &.body-side:before {
-        content: "Body Side (Copy)";
+        content: "Body Side (Legacy)";
       }
     
       &.body-main:before {
