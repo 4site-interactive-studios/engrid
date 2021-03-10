@@ -14,41 +14,42 @@
 
   /* When in page builder we want to center the content area on the page and must reduce it by 50px to make it visible because of the sidebar */
   width: calc(100% - 51px);
-  
+
   /* If the user accidentally deletes all content from the form, prevent it from completely collapsing in on itself and making it impossible for the user to add new content */
   form {
     min-height: 25px !important;
   }
 
   .page-backgroundImage,
-  .page-customCode{
+  .page-customCode {
     background-color: var(--color-transparent) !important;
   }
 
   /* Sometimes our styles might cause a code blocks title and label to display inline, rather than in rows. This should help prevent that https://d.pr/v/vXlAUM */
-  .en__placeholder__text{
+  .en__placeholder__text {
     flex-direction: column !important;
   }
 
   // To help page editors identify images missing alt attributes which improve accesability
-  img:not([alt]){
+  img:not([alt]) {
     outline: 1px dashed red;
   }
 
   // When in page builder display Overlay sections after their counterparts and not overtop of their target grid row. This way content editors can more easily interact with them
-  .body-bannerOverlay{
+  .body-bannerOverlay {
     grid-row: body-bannerOverlay !important;
     background-color: var(--theme-body-banner-background-color) !important;
   }
 
   // When in page builder display Overlay sections after their counterparts and not overtop of their target grid row. This way content editors can more easily interact with them
-  .page-backgroundImageOverlay{
+  .page-backgroundImageOverlay {
     grid-row: page-backgroundImageOverlay !important;
     background-color: var(--theme-body-banner-background-color) !important;
   }
 
   // Helps position the Engaging Networks pagebuilder tabs that are shown on hover of the Advanced Row
-  .en__component--advrow.en__component--active .en__component__actions.en__component__actions--advrow {
+  .en__component--advrow.en__component--active
+    .en__component__actions.en__component__actions--advrow {
     grid-row: page;
   }
 
@@ -69,12 +70,12 @@
   .inmem-y,
   .inmem-n,
   .giveBySelect-card,
-  .giveBySelect-check,
+  .giveBySelect-ach,
   .giveBySelect-paypal,
   .inmem-Y,
   .inmem-N,
   .giveBySelect-Card,
-  .giveBySelect-Check,
+  .giveBySelect-ACH,
   .giveBySelect-Paypal {
     background-color: #0000ff1a !important;
     &.pboAdvancedRow__preview .en__component--column {
@@ -118,7 +119,7 @@
   .content-footer,
   .page-backgroundImage,
   .page-backgroundImageOverlay,
-  .page-customCode{
+  .page-customCode {
     min-height: 5rem;
   }
 
@@ -136,17 +137,16 @@
       align-items: center;
       height: 100%;
     }
-  
+
     &:only-child {
       visibility: visible;
       color: transparent;
       background-color: transparent;
     }
-    
+
     &:only-child .messageOverlay__message {
       display: none;
     }
-
   }
 
   /* prettier-ignore */
@@ -158,7 +158,7 @@
   /* prettier-ignore */
   .body-header .messageOverlay.hidden:only-child:before { content: "Body Header (Spacer)"; }
   /* prettier-ignore */
-  .body-title .messageOverlay.hidden:only-child:before { content: "Body Title (Copy)"; }  
+  .body-title .messageOverlay.hidden:only-child:before { content: "Body Title (Copy)"; }
   /* prettier-ignore */
   .body-banner .messageOverlay.hidden:only-child:before { content: "Body Banner"; }
   /* prettier-ignore */
@@ -187,7 +187,6 @@
   .page-backgroundImageOverlay .messageOverlay.hidden:only-child:before { content: "Page Background Image Overlay"; }
   /* prettier-ignore */
   .page-customCode .messageOverlay.hidden:only-child:before { content: "Custom Code"; }
-
 }
 
 /*
@@ -195,46 +194,49 @@
 * # Page Builders Custom Layout Editor
 * ##########################################################
 */
-#EN__RootElement{
-
-  .pboAdvancedRow__preview{
-
-    .en__component--advrow{
+#EN__RootElement {
+  .pboAdvancedRow__preview {
+    .en__component--advrow {
       display: grid !important;
-      grid-template-rows: [
-        page-start page-alert-start]        minmax(0,auto) [page-alert-end 
-        content-header-start]               minmax(0,auto) [content-header-end 
-        body-headerOutside-start]           minmax(0,auto) [body-headerOutside-end 
-        body-header-start]                  minmax(0,auto) [body-header-end 
-        body-title-start]                   minmax(0,auto) [body-title-end 
-        body-banner-start]                  minmax(0,auto) [body-banner-end 
-        body-bannerOverlay-start]           minmax(0,auto) [body-bannerOverlay-end 
-        body-top-start]                     minmax(0,auto) [body-top-end 
-        body-side-start]                    minmax(0,auto) [body-side-end 
-        body-main-start]                    minmax(0,auto) [body-main-end 
-        body-bottom-start]                  minmax(0,auto) [body-bottom-end 
-        body-footer-start]                  minmax(0,auto) [body-footer-end 
-        body-footerOutside-start]           minmax(0,auto) [body-footerOutside-end 
-        content-footerSpacer-start]         minmax(0,auto) [content-footerSpacer-end c
-        ontent-preFooter-start]             minmax(0,auto) [content-preFooter-end 
-        content-footer-start]               minmax(0,auto) [content-footer-end 
-        page-backgroundImage-start]         minmax(0,auto) [page-backgroundImage-end 
-        page-backgroundImageOverlay-start]  minmax(0,auto) [page-backgroundImageOverlay-end page-end 
-        page-customCode-start]              minmax(0,auto) [page-customCode-end
-      ] !important;
+      grid-template-rows:
+        [
+        page-start page-alert-start] minmax(0, auto) [page-alert-end
+        content-header-start] minmax(0, auto) [content-header-end
+        body-headerOutside-start] minmax(0, auto) [body-headerOutside-end
+        body-header-start] minmax(0, auto) [body-header-end
+        body-title-start] minmax(0, auto) [body-title-end
+        body-banner-start] minmax(0, auto) [body-banner-end
+        body-bannerOverlay-start] minmax(0, auto) [body-bannerOverlay-end
+        body-top-start] minmax(0, auto) [body-top-end
+        body-side-start] minmax(0, auto) [body-side-end
+        body-main-start] minmax(0, auto) [body-main-end
+        body-bottom-start] minmax(0, auto) [body-bottom-end
+        body-footer-start] minmax(0, auto) [body-footer-end
+        body-footerOutside-start] minmax(0, auto) [body-footerOutside-end
+        content-footerSpacer-start] minmax(0, auto) [content-footerSpacer-end c
+        ontent-preFooter-start] minmax(0, auto) [content-preFooter-end
+        content-footer-start] minmax(0, auto) [content-footer-end
+        page-backgroundImage-start] minmax(0, auto) [page-backgroundImage-end
+        page-backgroundImageOverlay-start] minmax(
+          0,
+          auto
+        ) [page-backgroundImageOverlay-end page-end
+        page-customCode-start] minmax(0, auto) [page-customCode-end
+        ] !important;
     }
 
     .en__component--advrow,
-    .en__component--advrow .pseudo-subgrid{
+    .en__component--advrow .pseudo-subgrid {
       /* autoprefixer grid: off */
-      grid-template-columns: [
-        pc-start lpc-start]  minmax(25px, 1fr)    [lpc-end
-        cc-start lcc-start]  minmax(25px, 1fr)    [lcc-end
-        bc-start lbc-start]  minmax(25px, 2fr)    [lbc-end
-        rbc-start]           minmax(25px, 2fr)    [rbc-end bc-end
-        rcc-start]           minmax(25px, 1fr)    [rcc-end cc-end
-        rpc-start]           minmax(25px, 1fr)    [rpc-end pc-end
-      ] !important;
+      grid-template-columns:
+        [
+        pc-start lpc-start] minmax(25px, 1fr) [lpc-end
+        cc-start lcc-start] minmax(25px, 1fr) [lcc-end
+        bc-start lbc-start] minmax(25px, 2fr) [lbc-end
+        rbc-start] minmax(25px, 2fr) [rbc-end bc-end
+        rcc-start] minmax(25px, 1fr) [rcc-end cc-end
+        rpc-start] minmax(25px, 1fr) [rpc-end pc-end
+        ] !important;
 
       // grid-template-columns: [
       //   pc-start lpc-start lpc-end cc-start lcc-start lcc-end bc-start lbc-start lbc-end] auto [rbc-start rbc-end bc-end rcc-start rcc-end cc-end rpc-start rpc-end pc-end
@@ -264,75 +266,75 @@
       &.page-alert:before {
         content: "Page Alert";
       }
-    
+
       &.content-header:before {
         content: "Content Header";
       }
-    
+
       &.body-headerOutside:before {
         content: "Body Header Outside";
       }
-    
+
       &.body-header:before {
         content: "Body Header Spacer";
       }
 
       &.body-title:before {
         content: "Body Title";
-      }      
+      }
 
       &.body-banner:before {
         content: "Body Banner";
       }
-    
+
       &.body-bannerOverlay:before {
         content: "Body Banner Overlay";
       }
-    
+
       &.body-top:before {
         content: "Body Top (Copy)";
       }
-    
+
       &.body-side:before {
         content: "Body Side (Legacy)";
       }
-    
+
       &.body-main:before {
         content: "Body Main (Form)";
       }
-    
+
       &.body-bottom:before {
         content: "Body Bottom (Copy)";
       }
-    
+
       &.body-footer:before {
         content: "Body Footer Spacer";
       }
-    
+
       &.body-footerOutside:before {
         content: "Body Footer Outside";
       }
-    
+
       &.content-footerSpacer:before {
         content: "Content Footer Spacer";
       }
-    
+
       &.content-preFooter:before {
         content: "Content Pre Footer";
       }
-    
+
       &.content-footer:before {
         content: "Content Footer";
       }
-    
+
       &.page-backgroundImage:before {
         content: "Page Background Image";
       }
-    
+
       &.page-backgroundImageOverlay:before {
         content: "Page Background Image Overlay";
       }
-    
+
       &.page-customCode:before {
         content: "Page Custom Code";
       }
@@ -345,6 +347,5 @@
         z-index: 1;
       }
     }
-
   }
 }
