@@ -1,7 +1,8 @@
 import { DonationAmount, DonationFrequency, EnForm, ProcessingFees } from './events';
 import { Options, OptionsDefaults, MediaAttribution, ApplePay, CapitalizeFields, ClickToExpand, legacy, IE, LiveVariables, Modal, sendIframeHeight, ShowHideRadioCheckboxes, SimpleCountrySelect, SkipToMainContentLink, SrcDefer } from './';
+import { ENGrid } from './engrid';
 
-export class App {
+export class App extends ENGrid {
 
     // Events
     private _form: EnForm = EnForm.getInstance();
@@ -16,6 +17,7 @@ export class App {
 
 
     constructor(options: Options) {
+        super();
         this.options = { ...OptionsDefaults, ...options };
         // Document Load
         if (document.readyState !== "loading") {
@@ -57,6 +59,10 @@ export class App {
 
         // Controls if the Theme has a the "Debug Bar"
         // legacy.debugBar();
+
+        // Client onSubmit and onError functions
+        this._form.onSubmit.subscribe(() => this.onSubmit());
+        this._form.onError.subscribe(() => this.onError());
 
         // Event Listener Examples
         this._amount.onAmountChange.subscribe((s) => console.log(`Live Amount: ${s}`));
@@ -136,6 +142,21 @@ export class App {
             sendIframeHeight();
         }
     }
+
+    private onSubmit() {
+        if (this.options.onSubmit) {
+            console.log("Client onSubmit Triggered");
+            this.options.onSubmit();
+        }
+    }
+
+    private onError() {
+        if (this.options.onError) {
+            console.log("Client onError Triggered");
+            this.options.onError();
+        }
+    }
+
     private inIframe() {
         try {
             return window.self !== window.top;
