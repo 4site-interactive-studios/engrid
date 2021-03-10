@@ -11,6 +11,8 @@ export interface Options {
     SrcDefer?: boolean,
     onLoad?: () => void,
     onResize?: () => void,
+    onSubmit?: () => void,
+    onError?: () => void,
 }
 
 export const OptionsDefaults: Options = {
