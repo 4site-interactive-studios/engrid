@@ -13,6 +13,7 @@ Designed and Developed by [4Site Studios](http://4sitestudios.com/en?ms=github) 
 - Amnesty International USA
 - Earth Island Institute
 - Human Rights Campaign via Lautman Maska Neill & Company
+- Humane Society
 - International Fund for Animal Welfare
 - Mercy for Animals
 - National Trust for Historic Preservation
@@ -24,6 +25,7 @@ Designed and Developed by [4Site Studios](http://4sitestudios.com/en?ms=github) 
 - People for the Ethical Treatment of Animals
 - Polaris Project
 - Rainforest Action Network
+- Saint Anthony's Guild (Friar Works)
 - Save Tibet via Schultz and Williams
 
 ## ENGrid Features
