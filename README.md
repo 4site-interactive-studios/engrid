@@ -41,7 +41,7 @@ Designed and Developed by [4Site Studios](http://4sitestudios.com/en?ms=github) 
 - Tweaked UI / UX for an improved e-card "add recipient" experience
 - Per Page Background Images and Videos!
 - Per Page Layouts (Six Built In)
-- Click-to-expand content sections
+- Click-to-expand content sections activate with a click, touch. Or opened with enter or spacebar when focused with a keyboard.
 - Optional placeholder values in input fields
 - Add an attribution overlay to images and videos to include the photographers name, no more editing in Photoshop and hard coding it in. You can also optionally add a link
 - Skip content link accessability enhancement
