@@ -39,17 +39,25 @@ Designed and Developed by [4Site Studios](http://4sitestudios.com/en?ms=github) 
 - Live giving variables to insert actively selected gift frequency or gift amount in page copy or in buttons
 - Advocacy "Opt-in Upsell" Lightbox
 - Tweaked UI / UX for an improved e-card "add recipient" experience
-- Per Page Background Image
-- Per Page Layouts (Five Built In)
-- Possibility for Sub-Brands
+- Per Page Background Images and Videos!
+- Per Page Layouts (Six Built In)
+- Click-to-expand content sections
+- Optional placeholder values in input fields
+- Add an attribution overlay to images and videos to include the photographers name, no more editing in Photoshop and hard coding it in. You can also optionally add a link
+- Skip content link accessability enhancement
+- Optional accessible outlines around fields when you navigate to them with your keyboard
+- Optional accessible drop-down menu
+- Easy to add tooltips, for CVV "What's this" links and other enhancements
+- Supports themes "Sub-Brand" theming and altneritive brand theming for the ultimate set up and A/B testing scenario
 - Address Form Field Internationalization - If the user is on a US / English page and selects "France" as their country the Address Form fields will update their labels, change their ordering, and hide/show relevant fields for French Address formatting. Current address formatting support for (United States, Canada, United Kingdom, France, Germany, Netherlands, Australia).
 - Update inputs with improved form field meta info for better auto-fill completion
 - "Remember Me" (Coming Soon)
 - Capitalize first letter of First Name, Last Name, Address 1, City, Region fields on form submit (Coming Soon)
-- Lazy Load all image assets
-- Fastest page load times possible on Engaging Networks
+- Lazy Load all image assets and moves them to their own CPU thread to prevent slow downs in rendering the page when loading high resoltion imagery
+- Fastest page load times possible on Engaging Networks. All render critical assets are prefetched and there is only a single CSS and JS file
 - IE11 pop-up encouraging users to upgrade their browsers
-- All pages using our page template can be seamlessly embedded in your website with Shortcodes using our WordPress iFrame embed plugin
+- All pages using our page template can be seamlessly embedded in your website with Shortcodes using our WordPress iFrame embed plugin\
+- Developer and Editor documentation
 
 ## ENGrid Resources
 
