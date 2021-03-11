@@ -14,11 +14,20 @@ export class DonationAmount {
     // Watch Radios Inputs for Changes
     document.addEventListener("change", (e: Event) => {
       const element = e.target as HTMLInputElement;
-      if (element && (element.name == radios || element.name == other)) {
+      if (element && element.name == radios) {
         element.value = this.removeCommas(element.value);
         this.amount = parseFloat(element.value);
       }
     });
+    // Watch Other Amount Field
+    const otherField = document.querySelector(`[name='${this._other}']`) as HTMLInputElement;
+    if (otherField) {
+      otherField.addEventListener("keyup", (e: Event) => {
+        otherField.value = this.removeCommas(otherField.value);
+        this.amount = parseFloat(otherField.value);
+      });
+    }
+
   }
 
 

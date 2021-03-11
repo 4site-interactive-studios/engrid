@@ -68,15 +68,18 @@ export class LiveVariables {
     const frequency = this._frequency.frequency == "once" ? "" : this._frequency.frequency == "annual" ? "annually" : this._frequency.frequency;
     let label = this.submitLabel;
 
-    if (amount){
+    if (amount) {
       label = label.replace("$AMOUNT", amount);
       label = label.replace("$FREQUENCY", frequency);
+    } else {
+      label = label.replace("$AMOUNT", '');
+      label = label.replace("$FREQUENCY", '');
     }
-    
-    if (submit && label){
+
+    if (submit && label) {
       submit.innerHTML = label;
     }
-    
+
   }
   public loadingSubmitButton() {
     const submit = document.querySelector(
