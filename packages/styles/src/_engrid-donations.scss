@@ -26,15 +26,15 @@ left: -0.5rem;
 
 // Radio to Buttons
 .radio-to-buttons .en__field--radio input[type="radio"]+label{
-	font-family: var(--theme-typography-button-font-family);
-    color: var(--theme-typography-button-color);
-    font-size: var(--theme-typography-button-font-size);
-    font-weight: var(--theme-typography-button-font-weight);
-	line-height: var(--theme-typography-button-line-height);
-    background-color: var(--theme-typography-button-background-color);
-    border-width: var(--theme-typography-button-border-width);
-    border-color: var(--theme-typography-button-border-color);
-    border-radius: var(--theme-typography-button-border-radius);
+	font-family: var(--theme-typography-radio-to-buttons-font-family);
+    color: var(--theme-typography-radio-to-buttons-color);
+    font-size: var(--theme-typography-radio-to-buttons-font-size);
+    font-weight: var(--theme-typography-radio-to-buttons-font-weight);
+	line-height: var(--theme-typography-radio-to-buttons-line-height);
+    background-color: var(--theme-typography-radio-to-buttons-background-color);
+    border-width: var(--theme-typography-radio-to-buttons-border-width);
+    border-color: var(--theme-typography-radio-to-buttons-border-color);
+    border-radius: var(--theme-typography-radio-to-buttons-border-radius);
 	border-style: solid;
 	margin-left: 0.5rem;
 	margin-right: 0.5rem;
@@ -100,9 +100,9 @@ left: -0.5rem;
 
 // Radio to Buttons
 .radio-to-buttons .en__field--radio .en__field__item:hover input[type="radio"]+label{
-    color: var(--theme-typography-button-focus-hover-color);
-    background-color: var(--theme-typography-button-focus-hover-background-color);
-    border-color: var(--theme-typography-button-focus-hover-border-color);
+    color: var(--theme-typography-radio-to-buttons-focus-hover-color);
+    background-color: var(--theme-typography-radio-to-buttons-focus-hover-background-color);
+    border-color: var(--theme-typography-radio-to-buttons-focus-hover-border-color);
 }
 
 // Give By Select
@@ -128,15 +128,15 @@ left: -0.5rem;
 
 /*
 ########################################################################
-# CHECKED / SELECTED STATE
+# CHECKED STATE
 ########################################################################
 */
 
 // Radio to Buttons
 .radio-to-buttons .en__field--radio .en__field__item input[type="radio"]:checked+label{
-    color: var(--theme-typography-button-focus-hover-background-color);
-    background-color: var(--theme-typography-button-focus-hover-color);
-    border-color: var(--theme-typography-button-focus-hover-color);
+    color: var(--theme-typography-radio-to-buttons-focus-hover-background-color);
+    background-color: var(--theme-typography-radio-to-buttons-focus-hover-color);
+    border-color: var(--theme-typography-radio-to-buttons-focus-hover-color);
 	// outline: none;
 }
 
@@ -166,15 +166,15 @@ left: -0.5rem;
 
 /*
 ########################################################################
-# HOVER AND CHECKED / SELECTED STATE
+# HOVER AND CHECKED STATE
 ########################################################################
 */
 
 // Radio to Buttons
 .radio-to-buttons .en__field--radio .en__field__item:hover input[type="radio"]:checked+label{
-    color: var(--theme-typography-button-focus-hover-background-color);
-    background-color: var(--theme-typography-button-focus-hover-color);
-    border-color: var(--theme-typography-button-focus-hover-color);
+    color: var(--theme-typography-radio-to-buttons-focus-hover-background-color);
+    background-color: var(--theme-typography-radio-to-buttons-focus-hover-color);
+    border-color: var(--theme-typography-radio-to-buttons-focus-hover-color);
 }
 
 // Give By Select
