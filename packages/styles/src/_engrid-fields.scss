@@ -233,13 +233,13 @@ input.en__contactDetails__select {
 .en__field__input--checkbox:focus + .en__field__label:before,
 .en__contactDetails__select:focus + .en__contactDetails__rows:before {
   // outline: var(--theme-gray) auto 0.3125rem;
-  // border-color: var(--theme-typography-input-focus-hover-border-color);
+  // border-color: var(--theme-typography-input-checked-border-color);
 }
 
 .en__field__input--radio:focus + .en__field__label,
 .en__field__input--checkbox:focus + .en__field__label,
 .en__contactDetails__select:focus + .en__contactDetails__rows {
-  // outline: 2px solid var(--theme-typography-input-focus-hover-border-color);
+  // outline: 2px solid var(--theme-typography-input-checked-border-color);
   // outline-offset: 3px;
   outline: -webkit-focus-ring-color auto 1px;
   outline-offset: 3px;

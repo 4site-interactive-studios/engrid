@@ -61,7 +61,7 @@
 
 .en__tweetButton a:focus,
 .en__tweetButton a:hover{
-    color: var(--theme-typography-primary-button-focus-hover-color);
-    background-color: var(--theme-typography-primary-button-focus-hover-background-color);
-    border-color: var(--theme-typography-primary-button-focus-hover-border-color);
+    color: var(--theme-typography-primary-button-checked-color);
+    background-color: var(--theme-typography-primary-button-checked-background-color);
+    border-color: var(--theme-typography-primary-button-checked-border-color);
 }

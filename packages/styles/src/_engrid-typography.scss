@@ -103,12 +103,12 @@ input.en__field__input{
 
     &:focus,
     &:hover{
-        color: var(--theme-typography-input-focus-hover-color);
-        background-color: var(--theme-typography-input-focus-hover-background-color);
-        border-color: var(--theme-typography-input-focus-hover-border-color);
-        border-bottom-color: var(--theme-typography-input-focus-hover-border-bottom-color);
+        color: var(--theme-typography-input-checked-color);
+        background-color: var(--theme-typography-input-checked-background-color);
+        border-color: var(--theme-typography-input-checked-border-color);
+        border-bottom-color: var(--theme-typography-input-checked-border-bottom-color);
         // outline: none; // Shared between input:focus, textarea:focus, and select:focus
-        box-shadow: var(--theme-typography-input-focus-hover-box-shadow);
+        box-shadow: var(--theme-typography-input-checked-box-shadow);
     }
 }
 
@@ -122,9 +122,9 @@ input[type="radio"]{
 
     &:focus,
     &:hover{
-        color: var(--theme-typography-radio-focus-hover-color);
-        background-color: var(--theme-typography-radio-focus-hover-background-color);
-        border-color: var(--theme-typography-radio-focus-hover-border-color);
+        color: var(--theme-typography-radio-checked-color);
+        background-color: var(--theme-typography-radio-checked-background-color);
+        border-color: var(--theme-typography-radio-checked-border-color);
     }
 }
 
@@ -139,9 +139,9 @@ input[type="checkbox"]{
 
     &:focus,
     &:hover{
-        color: var(--theme-typography-checkbox-focus-hover-color);
-        background-color: var(--theme-typography-checkbox-focus-hover-background-color);
-        border-color: var(--theme-typography-checkbox-focus-hover-border-color);
+        color: var(--theme-typography-checkbox-checked-color);
+        background-color: var(--theme-typography-checkbox-checked-background-color);
+        border-color: var(--theme-typography-checkbox-checked-border-color);
     }
 }
 
@@ -178,12 +178,12 @@ select.en__field__input--select{
 
     &:focus,
     &:hover{
-        color: var(--theme-typography-select-focus-hover-color);
-        background-color: var(--theme-typography-select-focus-hover-background-color);
-        border-color: var(--theme-typography-select-focus-hover-border-color);
-        border-bottom-color: var(--theme-typography-select-focus-hover-border-bottom-color);
+        color: var(--theme-typography-select-checked-color);
+        background-color: var(--theme-typography-select-checked-background-color);
+        border-color: var(--theme-typography-select-checked-border-color);
+        border-bottom-color: var(--theme-typography-select-checked-border-bottom-color);
         // outline: none; // Shared between input:focus, textarea:focus, and select:focus
-        box-shadow: var(--theme-typography-select-focus-hover-box-shadow);
+        box-shadow: var(--theme-typography-select-checked-box-shadow);
     }
 
 }
@@ -215,11 +215,11 @@ textarea{
 
     &:focus,
     &:hover{
-        color: var(--theme-typography-textarea-focus-hover-color);
-        background-color: var(--theme-typography-textarea-focus-hover-background-color);
-        border-color: var(--theme-typography-textarea-focus-hover-border-color);
+        color: var(--theme-typography-textarea-checked-color);
+        background-color: var(--theme-typography-textarea-checked-background-color);
+        border-color: var(--theme-typography-textarea-checked-border-color);
         // outline: none; // Shared between input:focus, textarea:focus, and select:focus
-        box-shadow: var(--theme-typography-textarea-focus-hover-box-shadow);
+        box-shadow: var(--theme-typography-textarea-checked-box-shadow);
     }
 }
 
@@ -263,8 +263,8 @@ a{
 
     &:focus,
     &:hover{
-        color: var(--theme-typography-a-focus-hover-color);
-        text-decoration: var(--theme-typography-a-focus-hover-text-decoration);
+        color: var(--theme-typography-a-checked-color);
+        text-decoration: var(--theme-typography-a-checked-text-decoration);
     }
 }
 

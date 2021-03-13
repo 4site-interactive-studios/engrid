@@ -51,9 +51,9 @@ button.primary:hover,
 button.primary:focus,
 .button.primary:hover,
 .button.primary:focus  {
-  color: var(--theme-typography-primary-button-focus-hover-color);
-  background-color: var(--theme-typography-primary-button-focus-hover-background-color);
-  border-color: var(--theme-typography-primary-button-focus-hover-border-color);
+  color: var(--theme-typography-primary-button-checked-color);
+  background-color: var(--theme-typography-primary-button-checked-background-color);
+  border-color: var(--theme-typography-primary-button-checked-border-color);
 }
 
 .arrow .en__submit button::after,
@@ -79,7 +79,7 @@ button:hover,
 button:focus,
 .button:hover,
 .button:focus {
-  background-color: var(--theme-typography-button-focus-hover-background-color);
+  background-color: var(--theme-typography-button-checked-background-color);
 }
 
 button[disabled],

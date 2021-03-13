@@ -1,8 +1,5 @@
 // NOTE: Any CSS Custom Properties changes should also be made in themes/starter-theme/sass/variables.scss
 
-// @TODO There has to be a better way of defining breakpoints as a default and then adjust them up stream in the themes
-$slicer-breakpoints: 0 400px 600px 1024px 1200px;
-
 // @TODO Look into replicating "Teach a System of Space Visually" as a Development page that shows all styling decisions for the brand https://medium.com/eightshapes-llc/space-in-design-systems-188bcbae0d62#.fwng4aef7
 :root{
     // FIXED COLOR PALETTE
@@ -183,7 +180,7 @@ $slicer-breakpoints: 0 400px 600px 1024px 1200px;
     --theme-typography-textarea-hover-border-color: var(--theme-cta);
     --theme-typography-textarea-hover-box-shadow: var(--theme-typography-input-hover-box-shadow);
 
-    // TYPOGRAPHY RADIO TO BUTTONS
+    // TYPOGRAPHY BUTTON
     --theme-typography-button-font-family: var(--theme-typography-default-font-family);
     --theme-typography-button-color: var(--color-white);
     --theme-typography-button-font-size: var(--theme-root-font-size);
@@ -194,12 +191,12 @@ $slicer-breakpoints: 0 400px 600px 1024px 1200px;
     --theme-typography-button-border-color: var(--color-black);
     --theme-typography-button-border-radius: initial;
     
-    // TYPOGRAPHY RADIO TO BUTTONS:HOVER
+     // TYPOGRAPHY BUTTON:HOVER
     --theme-typography-button-hover-color: var(--theme-typography-button-color);
     --theme-typography-button-hover-background-color: var(--theme-cta-hover);
     --theme-typography-button-hover-border-color: var(--theme-cta-hover);
 
-    // TYPOGRAPHY RADIO TO BUTTONS:CHECKED
+    // TYPOGRAPHY BUTTON:CHECKED
     --theme-typography-button-checked-color: var(--theme-typography-button-color);
     --theme-typography-button-checked-background-color: var(--theme-cta-hover);
     --theme-typography-button-checked-border-color: var(--theme-cta-hover);
