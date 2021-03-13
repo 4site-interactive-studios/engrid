@@ -26,9 +26,9 @@ button,
 .en__submit button,
 .en__submit .button {
   margin-top: 2rem;
-  background-color: var(--theme-typography-primary-button-background-color);
-  border-color: var(--theme-typography-primary-button-background-color);
-  color: var(--theme-typography-primary-button-color);
+  background-color: var(--theme-typography-button-background-color);
+  border-color: var(--theme-typography-button-border-color);
+  color: var(--theme-typography-button-color);
   border-radius: var(--theme-typography-button-border-radius);
   display: block;
   font-size: calc(0.05552rem * 24);
@@ -51,9 +51,9 @@ button.primary:hover,
 button.primary:focus,
 .button.primary:hover,
 .button.primary:focus  {
-  color: var(--theme-typography-primary-button-checked-color);
-  background-color: var(--theme-typography-primary-button-checked-background-color);
-  border-color: var(--theme-typography-primary-button-checked-border-color);
+  color: var(--theme-typography-button-checked-color);
+  background-color: var(--theme-typography-button-checked-background-color);
+  border-color: var(--theme-typography-button-checked-border-color);
 }
 
 .arrow .en__submit button::after,

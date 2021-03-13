@@ -47,21 +47,21 @@
 }
 
 .en__tweetButton a{
-    font-family: var(--theme-typography-primary-button-font-family);
-    color: var(--theme-typography-primary-button-color);
-    font-size: var(--theme-typography-primary-button-font-size);
-    font-weight: var(--theme-typography-primary-button-font-weight);
-    line-height: var(--theme-typography-primary-button-line-height);
-    background-color: var(--theme-typography-primary-button-background-color);
-    border-width: var(--theme-typography-primary-button-border-width);
-    border-color: var(--theme-typography-primary-button-border-color);
-    border-radius: var(--theme-typography-primary-button-border-radius);    
+    font-family: var(--theme-typography-button-font-family);
+    color: var(--theme-typography-button-color);
+    font-size: var(--theme-typography-button-font-size);
+    font-weight: var(--theme-typography-button-font-weight);
+    line-height: var(--theme-typography-button-line-height);
+    background-color: var(--theme-typography-button-background-color);
+    border-width: var(--theme-typography-button-border-width);
+    border-color: var(--theme-typography-button-border-color);
+    border-radius: var(--theme-typography-button-border-radius);    
     cursor: pointer;
 }
 
 .en__tweetButton a:focus,
 .en__tweetButton a:hover{
-    color: var(--theme-typography-primary-button-checked-color);
-    background-color: var(--theme-typography-primary-button-checked-background-color);
-    border-color: var(--theme-typography-primary-button-checked-border-color);
+    color: var(--theme-typography-button-checked-color);
+    background-color: var(--theme-typography-button-checked-background-color);
+    border-color: var(--theme-typography-button-checked-border-color);
 }
