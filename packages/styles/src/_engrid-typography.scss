@@ -100,16 +100,16 @@ input.en__field__input{
     box-shadow: var(--theme-typography-input-box-shadow);
     transition: box-shadow 0.25s, border-color 0.25s ease-in-out; // Shared between input, textarea, and select
     border-style: solid; // Shared between input, textarea, and select
-}
 
-input:focus,
-input:hover{
-    color: var(--theme-typography-input-focus-hover-color);
-    background-color: var(--theme-typography-input-focus-hover-background-color);
-    border-color: var(--theme-typography-input-focus-hover-border-color);
-    border-bottom-color: var(--theme-typography-input-focus-hover-border-bottom-color);
-    // outline: none; // Shared between input:focus, textarea:focus, and select:focus
-    box-shadow: var(--theme-typography-input-focus-hover-box-shadow);
+    &:focus,
+    &:hover{
+        color: var(--theme-typography-input-focus-hover-color);
+        background-color: var(--theme-typography-input-focus-hover-background-color);
+        border-color: var(--theme-typography-input-focus-hover-border-color);
+        border-bottom-color: var(--theme-typography-input-focus-hover-border-bottom-color);
+        // outline: none; // Shared between input:focus, textarea:focus, and select:focus
+        box-shadow: var(--theme-typography-input-focus-hover-box-shadow);
+    }
 }
 
 input[type="radio"]{
@@ -119,13 +119,13 @@ input[type="radio"]{
     border-width: var(--theme-typography-radio-border-width);
     border-color: var(--theme-typography-radio-border-color);
     border-radius: var(--theme-typography-radio-border-radius);
-}
 
-input[type="radio"]:focus,
-input[type="radio"]:hover{
-    color: var(--theme-typography-radio-focus-hover-color);
-    background-color: var(--theme-typography-radio-focus-hover-background-color);
-    border-color: var(--theme-typography-radio-focus-hover-border-color);
+    &:focus,
+    &:hover{
+        color: var(--theme-typography-radio-focus-hover-color);
+        background-color: var(--theme-typography-radio-focus-hover-background-color);
+        border-color: var(--theme-typography-radio-focus-hover-border-color);
+    }
 }
 
 // ✓
@@ -136,13 +136,13 @@ input[type="checkbox"]{
     border-width: var(--theme-typography-checkbox-border-width);
     border-color: var(--theme-typography-checkbox-border-color);
     border-radius: var(--theme-typography-checkbox-border-radius);
-}
 
-input[type="checkbox"]:focus,
-input[type="checkbox"]:hover{
-    color: var(--theme-typography-checkbox-focus-hover-color);
-    background-color: var(--theme-typography-checkbox-focus-hover-background-color);
-    border-color: var(--theme-typography-checkbox-focus-hover-border-color);
+    &:focus,
+    &:hover{
+        color: var(--theme-typography-checkbox-focus-hover-color);
+        background-color: var(--theme-typography-checkbox-focus-hover-background-color);
+        border-color: var(--theme-typography-checkbox-focus-hover-border-color);
+    }
 }
 
 select,
@@ -176,16 +176,16 @@ select.en__field__input--select{
     background-repeat: no-repeat;
     background-size: 0.5625rem 0.375rem;
 
-}
+    &:focus,
+    &:hover{
+        color: var(--theme-typography-select-focus-hover-color);
+        background-color: var(--theme-typography-select-focus-hover-background-color);
+        border-color: var(--theme-typography-select-focus-hover-border-color);
+        border-bottom-color: var(--theme-typography-select-focus-hover-border-bottom-color);
+        // outline: none; // Shared between input:focus, textarea:focus, and select:focus
+        box-shadow: var(--theme-typography-select-focus-hover-box-shadow);
+    }
 
-select:focus,
-select:hover{
-    color: var(--theme-typography-select-focus-hover-color);
-    background-color: var(--theme-typography-select-focus-hover-background-color);
-    border-color: var(--theme-typography-select-focus-hover-border-color);
-    border-bottom-color: var(--theme-typography-select-focus-hover-border-bottom-color);
-    // outline: none; // Shared between input:focus, textarea:focus, and select:focus
-    box-shadow: var(--theme-typography-select-focus-hover-box-shadow);
 }
 
 textarea{
@@ -212,16 +212,18 @@ textarea{
     transition: box-shadow 0.25s, border-color 0.25s ease-in-out; // Shared between input, textarea, and select
     height: 7rem;
     resize: vertical;
+
+    &:focus,
+    &:hover{
+        color: var(--theme-typography-textarea-focus-hover-color);
+        background-color: var(--theme-typography-textarea-focus-hover-background-color);
+        border-color: var(--theme-typography-textarea-focus-hover-border-color);
+        // outline: none; // Shared between input:focus, textarea:focus, and select:focus
+        box-shadow: var(--theme-typography-textarea-focus-hover-box-shadow);
+    }
 }
 
-textarea:focus,
-textarea:hover{
-    color: var(--theme-typography-textarea-focus-hover-color);
-    background-color: var(--theme-typography-textarea-focus-hover-background-color);
-    border-color: var(--theme-typography-textarea-focus-hover-border-color);
-    // outline: none; // Shared between input:focus, textarea:focus, and select:focus
-    box-shadow: var(--theme-typography-textarea-focus-hover-box-shadow);
-}
+
 
 button,
 .button{
@@ -235,7 +237,37 @@ button,
     border-color: var(--theme-typography-button-border-color);
     border-radius: var(--theme-typography-button-border-radius);    
     cursor: pointer;
+
+    &:focus,
+    &:hover{
+        color: var(--theme-typography-button-hover-color);
+        background-color: var(--theme-typography-button-hover-background-color);
+        border-color: var(--theme-typography-button-hover-border-color);
+    }
+
+    &:active{
+        color: var(--theme-typography-button-checked-color);
+        background-color: var(--theme-typography-button-checked-background-color);
+        border-color: var(--theme-typography-button-checked-border-color);
+    }
 }
+
+
+a{
+    font-family: var(--theme-typography-a-font-family);
+    color: var(--theme-typography-a-color);
+    font-size: var(--theme-typography-a-font-size);
+    font-weight: var(--theme-typography-a-font-weight);
+    line-height: var(--theme-typography-a-line-height);
+    text-decoration: var(--theme-typography-a-text-decoration);
+
+    &:focus,
+    &:hover{
+        color: var(--theme-typography-a-focus-hover-color);
+        text-decoration: var(--theme-typography-a-focus-hover-text-decoration);
+    }
+}
+
 
 /* Placeholder styling */
 /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -272,34 +304,3 @@ button,
   ::-ms-input-placeholder {
     color: var(--theme-light-gray);
   }
-
-button:active,
-.button:active{
-    color: var(--theme-typography-button-checked-color);
-    background-color: var(--theme-typography-button-checked-background-color);
-    border-color: var(--theme-typography-button-checked-border-color);
-}
-
-button:focus,
-.button:focus,
-button:hover,
-.button:hover{
-    color: var(--theme-typography-button-hover-color);
-    background-color: var(--theme-typography-button-hover-background-color);
-    border-color: var(--theme-typography-button-hover-border-color);
-}
-
-a{
-    font-family: var(--theme-typography-a-font-family);
-    color: var(--theme-typography-a-color);
-    font-size: var(--theme-typography-a-font-size);
-    font-weight: var(--theme-typography-a-font-weight);
-    line-height: var(--theme-typography-a-line-height);
-    text-decoration: var(--theme-typography-a-text-decoration);
-}
-
-a:focus,
-a:hover{
-    color: var(--theme-typography-a-focus-hover-color);
-    text-decoration: var(--theme-typography-a-focus-hover-text-decoration);
-}
