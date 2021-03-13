@@ -9,6 +9,7 @@
 	display: none;
 }
 
+// Accounts for the left/right padding padding around all fields
 .radio-to-buttons,
 .give-by-select,
 .en__field--donationAmt,
@@ -271,9 +272,9 @@ left: -0.5rem;
 // Helper classes to hide/show content based on if a the gift is one-time or recurring and the gift's frequency
 body{
 	&[data-engrid-transaction-recurring="n"] .recurring-frequency-n-hide,
-	&[data-engrid-transaction-recurring="n"] .recurring-frequency-once-hide, // Doesn't need data-engrid-transaction-recurring-frequency="once" defined to know the gift will be processed as one-time
+	&[data-engrid-transaction-recurring="n"] .recurring-frequency-once-hide, // Doesn't need data-engrid-transaction-recurring-frequency="onetime" defined to know the gift will be processed as one-time
 	&:not([data-engrid-transaction-recurring="n"]) .recurring-frequency-n-show,
-	&:not([data-engrid-transaction-recurring="n"]) .recurring-frequency-once-show, // Doesn't need data-engrid-transaction-recurring-frequency="once" defined to know the gift will be processed as one-time
+	&:not([data-engrid-transaction-recurring="n"]) .recurring-frequency-once-show, // Doesn't need data-engrid-transaction-recurring-frequency="onetime" defined to know the gift will be processed as one-time
 	&[data-engrid-transaction-recurring="y"] .recurring-frequency-y-hide,
 	&[data-engrid-transaction-recurring="y"][data-engrid-transaction-recurring-frequency="monthly"] .recurring-frequency-monthly-hide,
 	&[data-engrid-transaction-recurring="y"][data-engrid-transaction-recurring-frequency="quarterly"] .recurring-frequency-quarterly-hide,
