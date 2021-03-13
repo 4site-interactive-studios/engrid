@@ -199,23 +199,6 @@ $slicer-breakpoints: 0 400px 600px 1024px 1200px;
     --theme-typography-button-focus-hover-color: var(--theme-typography-button-color);
     --theme-typography-button-focus-hover-background-color: var(--theme-cta-hover);
     --theme-typography-button-focus-hover-border-color: var(--theme-cta-hover);
-
-    // TYPOGRAPHY PRIMARY BUTTON
-    --theme-typography-primary-button-font-family: var(--theme-typography-button-font-family);
-    --theme-typography-primary-button-color: var(--color-white);
-    --theme-typography-primary-button-font-size: var(--theme-typography-button-font-size);
-    --theme-typography-primary-button-font-weight: var(--theme-typography-button-font-weight);
-    --theme-typography-primary-button-line-height: var(--theme-typography-button-line-height);
-    --theme-typography-primary-button-background-color: var(--theme-cta);
-    --theme-typography-primary-button-border-width: var(--theme-typography-button-border-width);
-    --theme-typography-primary-button-border-color: var(--theme-cta);
-    --theme-typography-primary-button-border-radius: var(--theme-typography-button-border-radius);
-
-    // TYPOGRAPHY PRIMARY BUTTON:FOCUS
-    // TYPOGRAPHY PRIMARY BUTTON:HOVER  
-    --theme-typography-primary-button-focus-hover-color: var(--theme-typography-button-focus-hover-color);
-    --theme-typography-primary-button-focus-hover-background-color: var(--theme-cta-hover);
-    --theme-typography-primary-button-focus-hover-border-color: var(--theme-typography-button-focus-hover-border-color);
    
     // TYPOGRAPHY GIVING FREQUENCY BUTTON
     --theme-typography-giving-frequency-button-font-family: var(--theme-typography-button-font-family);
