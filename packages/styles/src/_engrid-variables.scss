@@ -184,72 +184,72 @@ $slicer-breakpoints: 0 400px 600px 1024px 1200px;
     --theme-typography-textarea-focus-hover-box-shadow: var(--theme-typography-input-focus-hover-box-shadow);
 
     // TYPOGRAPHY BUTTON
-    --theme-typography-button-font-family: var(--theme-typography-default-font-family);
-    --theme-typography-button-color: var(--color-white);
-    --theme-typography-button-font-size: var(--theme-root-font-size);
-    --theme-typography-button-font-weight: initial;
-    --theme-typography-button-line-height: initial;
-    --theme-typography-button-background-color: var(--color-black);
-    --theme-typography-button-border-width: initial;
-    --theme-typography-button-border-color: var(--color-black);
-    --theme-typography-button-border-radius: initial;
+    --theme-typography-radio-to-buttons-font-family: var(--theme-typography-default-font-family);
+    --theme-typography-radio-to-buttons-color: var(--color-white);
+    --theme-typography-radio-to-buttons-font-size: var(--theme-root-font-size);
+    --theme-typography-radio-to-buttons-font-weight: initial;
+    --theme-typography-radio-to-buttons-line-height: initial;
+    --theme-typography-radio-to-buttons-background-color: var(--color-black);
+    --theme-typography-radio-to-buttons-border-width: initial;
+    --theme-typography-radio-to-buttons-border-color: var(--color-black);
+    --theme-typography-radio-to-buttons-border-radius: initial;
     
     // TYPOGRAPHY BUTTON:FOCUS
     // TYPOGRAPHY BUTTON:HOVER
-    --theme-typography-button-focus-hover-color: var(--theme-typography-button-color);
-    --theme-typography-button-focus-hover-background-color: var(--theme-cta-hover);
-    --theme-typography-button-focus-hover-border-color: var(--theme-cta-hover);
+    --theme-typography-radio-to-buttons-focus-hover-color: var(--theme-typography-radio-to-buttons-color);
+    --theme-typography-radio-to-buttons-focus-hover-background-color: var(--theme-cta-hover);
+    --theme-typography-radio-to-buttons-focus-hover-border-color: var(--theme-cta-hover);
    
     // TYPOGRAPHY GIVING FREQUENCY BUTTON
-    --theme-typography-recurring-frequency-button-font-family: var(--theme-typography-button-font-family);
-    --theme-typography-recurring-frequency-button-color: var(--theme-typography-button-color);
-    --theme-typography-recurring-frequency-button-font-size: var(--theme-typography-button-font-size);
-    --theme-typography-recurring-frequency-button-font-weight: var(--theme-typography-button-font-weight);
-    --theme-typography-recurring-frequency-button-line-height: var(--theme-typography-button-line-height);
-    --theme-typography-recurring-frequency-button-background-color: var(--theme-typography-button-background-color);
-    --theme-typography-recurring-frequency-button-border-width: var(--theme-typography-button-border-width);
-    --theme-typography-recurring-frequency-button-border-color: var(--theme-typography-button-border-color);
-    --theme-typography-recurring-frequency-button-border-radius: var(--theme-typography-button-border-radius);
+    --theme-typography-recurring-frequency-button-font-family: var(--theme-typography-radio-to-buttons-font-family);
+    --theme-typography-recurring-frequency-button-color: var(--theme-typography-radio-to-buttons-color);
+    --theme-typography-recurring-frequency-button-font-size: var(--theme-typography-radio-to-buttons-font-size);
+    --theme-typography-recurring-frequency-button-font-weight: var(--theme-typography-radio-to-buttons-font-weight);
+    --theme-typography-recurring-frequency-button-line-height: var(--theme-typography-radio-to-buttons-line-height);
+    --theme-typography-recurring-frequency-button-background-color: var(--theme-typography-radio-to-buttons-background-color);
+    --theme-typography-recurring-frequency-button-border-width: var(--theme-typography-radio-to-buttons-border-width);
+    --theme-typography-recurring-frequency-button-border-color: var(--theme-typography-radio-to-buttons-border-color);
+    --theme-typography-recurring-frequency-button-border-radius: var(--theme-typography-radio-to-buttons-border-radius);
 
     // TYPOGRAPHY GIVING FREQUENCY BUTTON:FOCUS
     // TYPOGRAPHY GIVING FREQUENCY BUTTON:HOVER  
-    --theme-typography-recurring-frequency-button-focus-hover-color: var(--theme-typography-button-focus-hover-color);
-    --theme-typography-recurring-frequency-button-focus-hover-background-color: var(--theme-typography-button-focus-hover-background-color);
-    --theme-typography-recurring-frequency-button-focus-hover-border-color: var(--theme-typography-button-focus-hover-border-color);    
+    --theme-typography-recurring-frequency-button-focus-hover-color: var(--theme-typography-radio-to-buttons-focus-hover-color);
+    --theme-typography-recurring-frequency-button-focus-hover-background-color: var(--theme-typography-radio-to-buttons-focus-hover-background-color);
+    --theme-typography-recurring-frequency-button-focus-hover-border-color: var(--theme-typography-radio-to-buttons-focus-hover-border-color);    
 
     // TYPOGRAPHY GIVING AMOUNT BUTTON
-    --theme-typography-donation-amount-button-font-family: var(--theme-typography-button-font-family);
-    --theme-typography-donation-amount-button-color: var(--theme-typography-button-color);
-    --theme-typography-donation-amount-button-font-size: var(--theme-typography-button-font-size);
-    --theme-typography-donation-amount-button-font-weight: var(--theme-typography-button-font-weight);
-    --theme-typography-donation-amount-button-line-height: var(--theme-typography-button-line-height);
-    --theme-typography-donation-amount-button-background-color: var(--theme-typography-button-background-color);
-    --theme-typography-donation-amount-button-border-width: var(--theme-typography-button-border-width);
-    --theme-typography-donation-amount-button-border-color: var(--theme-typography-button-border-color);
-    --theme-typography-donation-amount-button-border-radius: var(--theme-typography-button-border-radius);
+    --theme-typography-donation-amount-button-font-family: var(--theme-typography-radio-to-buttons-font-family);
+    --theme-typography-donation-amount-button-color: var(--theme-typography-radio-to-buttons-color);
+    --theme-typography-donation-amount-button-font-size: var(--theme-typography-radio-to-buttons-font-size);
+    --theme-typography-donation-amount-button-font-weight: var(--theme-typography-radio-to-buttons-font-weight);
+    --theme-typography-donation-amount-button-line-height: var(--theme-typography-radio-to-buttons-line-height);
+    --theme-typography-donation-amount-button-background-color: var(--theme-typography-radio-to-buttons-background-color);
+    --theme-typography-donation-amount-button-border-width: var(--theme-typography-radio-to-buttons-border-width);
+    --theme-typography-donation-amount-button-border-color: var(--theme-typography-radio-to-buttons-border-color);
+    --theme-typography-donation-amount-button-border-radius: var(--theme-typography-radio-to-buttons-border-radius);
 
     // TYPOGRAPHY GIVING AMOUNT BUTTON:FOCUS
     // TYPOGRAPHY GIVING AMOUNT BUTTON:HOVER  
-    --theme-typography-donation-amount-button-focus-hover-color: var(--theme-typography-button-focus-hover-color);
-    --theme-typography-donation-amount-button-focus-hover-background-color: var(--theme-typography-button-focus-hover-background-color);
-    --theme-typography-donation-amount-button-focus-hover-border-color: var(--theme-typography-button-focus-hover-border-color);  
+    --theme-typography-donation-amount-button-focus-hover-color: var(--theme-typography-radio-to-buttons-focus-hover-color);
+    --theme-typography-donation-amount-button-focus-hover-background-color: var(--theme-typography-radio-to-buttons-focus-hover-background-color);
+    --theme-typography-donation-amount-button-focus-hover-border-color: var(--theme-typography-radio-to-buttons-focus-hover-border-color);  
 
     // TYPOGRAPHY GIVE BY SELECT BUTTON
-    --theme-typography-give-by-select-button-font-family: var(--theme-typography-button-font-family);
-    --theme-typography-give-by-select-button-color: var(--theme-typography-button-color);
-    --theme-typography-give-by-select-button-font-size: var(--theme-typography-button-font-size);
-    --theme-typography-give-by-select-button-font-weight: var(--theme-typography-button-font-weight);
-    --theme-typography-give-by-select-button-line-height: var(--theme-typography-button-line-height);
-    --theme-typography-give-by-select-button-background-color: var(--theme-typography-button-background-color);
-    --theme-typography-give-by-select-button-border-width: var(--theme-typography-button-border-width);
-    --theme-typography-give-by-select-button-border-color: var(--theme-typography-button-border-color);
-    --theme-typography-give-by-select-button-border-radius: var(--theme-typography-button-border-radius);
+    --theme-typography-give-by-select-button-font-family: var(--theme-typography-radio-to-buttons-font-family);
+    --theme-typography-give-by-select-button-color: var(--theme-typography-radio-to-buttons-color);
+    --theme-typography-give-by-select-button-font-size: var(--theme-typography-radio-to-buttons-font-size);
+    --theme-typography-give-by-select-button-font-weight: var(--theme-typography-radio-to-buttons-font-weight);
+    --theme-typography-give-by-select-button-line-height: var(--theme-typography-radio-to-buttons-line-height);
+    --theme-typography-give-by-select-button-background-color: var(--theme-typography-radio-to-buttons-background-color);
+    --theme-typography-give-by-select-button-border-width: var(--theme-typography-radio-to-buttons-border-width);
+    --theme-typography-give-by-select-button-border-color: var(--theme-typography-radio-to-buttons-border-color);
+    --theme-typography-give-by-select-button-border-radius: var(--theme-typography-radio-to-buttons-border-radius);
 
     // TYPOGRAPHY GIVE BY SELECT BUTTON:FOCUS
     // TYPOGRAPHY GIVE BY SELECT BUTTON:HOVER  
-    --theme-typography-give-by-select-button-focus-hover-color: var(--theme-typography-button-focus-hover-color);
-    --theme-typography-give-by-select-button-focus-hover-background-color: var(--theme-typography-button-focus-hover-background-color);
-    --theme-typography-give-by-select-button-focus-hover-border-color: var(--theme-typography-button-focus-hover-border-color);
+    --theme-typography-give-by-select-button-focus-hover-color: var(--theme-typography-radio-to-buttons-focus-hover-color);
+    --theme-typography-give-by-select-button-focus-hover-background-color: var(--theme-typography-radio-to-buttons-focus-hover-background-color);
+    --theme-typography-give-by-select-button-focus-hover-border-color: var(--theme-typography-radio-to-buttons-focus-hover-border-color);
     
     // TYPOGRAPHY A
     --theme-typography-a-font-family: var(--theme-typography-default-font-family);
