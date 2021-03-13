@@ -274,12 +274,17 @@ button,
   }
 
 button:focus,
+.button:focus{
+    color: var(--theme-typography-button-checked-color);
+    background-color: var(--theme-typography-button-checked-background-color);
+    border-color: var(--theme-typography-button-checked-border-color);
+}
+
 button:hover,
-.button:focus
 .button:hover{
-    color: var(--theme-typography-button-focus-hover-color);
-    background-color: var(--theme-typography-button-focus-hover-background-color);
-    border-color: var(--theme-typography-button-focus-hover-border-color);
+    color: var(--theme-typography-button-hover-color);
+    background-color: var(--theme-typography-button-hover-background-color);
+    border-color: var(--theme-typography-button-hover-border-color);
 }
 
 a{
