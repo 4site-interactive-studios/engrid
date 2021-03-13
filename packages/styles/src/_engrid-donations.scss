@@ -100,30 +100,30 @@ left: -0.5rem;
 
 // Radio to Buttons
 .radio-to-buttons .en__field--radio .en__field__item:hover input[type="radio"]+label{
-    color: var(--theme-typography-radio-to-buttons-focus-hover-color);
-    background-color: var(--theme-typography-radio-to-buttons-focus-hover-background-color);
-    border-color: var(--theme-typography-radio-to-buttons-focus-hover-border-color);
+    color: var(--theme-typography-radio-to-buttons-hover-color);
+    background-color: var(--theme-typography-radio-to-buttons-hover-background-color);
+    border-color: var(--theme-typography-radio-to-buttons-hover-border-color);
 }
 
 // Give By Select
 .give-by-select.en__field--radio .en__field__item:hover input[type="radio"]+label{
-    color: var(--theme-typography-give-by-select-button-focus-hover-color);
-    background-color: var(--theme-typography-give-by-select-button-focus-hover-background-color);
-    border-color: var(--theme-typography-give-by-select-button-focus-hover-border-color);
+    color: var(--theme-typography-give-by-select-button-hover-color);
+    background-color: var(--theme-typography-give-by-select-button-hover-background-color);
+    border-color: var(--theme-typography-give-by-select-button-hover-border-color);
 }
 
 // Donation Amount
 .en__field--donationAmt.en__field--radio .en__field__item:hover input[type="radio"]+label{
-    color: var(--theme-typography-donation-amount-button-focus-hover-color);
-    background-color: var(--theme-typography-donation-amount-button-focus-hover-background-color);
-    border-color: var(--theme-typography-donation-amount-button-focus-hover-border-color);
+    color: var(--theme-typography-donation-amount-button-hover-color);
+    background-color: var(--theme-typography-donation-amount-button-hover-background-color);
+    border-color: var(--theme-typography-donation-amount-button-hover-border-color);
 }
 
 // Recurring Frequency
 .en__field--recurrfreq.en__field--radio .en__field__item:hover input[type="radio"]+label{
-    color: var(--theme-typography-recurring-frequency-button-focus-hover-color);
-    background-color: var(--theme-typography-recurring-frequency-button-focus-hover-background-color);
-    border-color: var(--theme-typography-recurring-frequency-button-focus-hover-border-color);
+    color: var(--theme-typography-recurring-frequency-button-hover-color);
+    background-color: var(--theme-typography-recurring-frequency-button-hover-background-color);
+    border-color: var(--theme-typography-recurring-frequency-button-hover-border-color);
 }
 
 /*
@@ -172,30 +172,30 @@ left: -0.5rem;
 
 // Radio to Buttons
 .radio-to-buttons .en__field--radio .en__field__item:hover input[type="radio"]:checked+label{
-    color: var(--theme-typography-radio-to-buttons-focus-hover-background-color);
-    background-color: var(--theme-typography-radio-to-buttons-focus-hover-color);
-    border-color: var(--theme-typography-radio-to-buttons-focus-hover-color);
+    color: var(--theme-typography-radio-to-buttons-checked-background-color);
+    background-color: var(--theme-typography-radio-to-buttons-checked-color);
+    border-color: var(--theme-typography-radio-to-buttons-checked-color);
 }
 
 // Give By Select
 .give-by-select.en__field--radio .en__field__item:hover input[type="radio"]:checked+label{
-    color: var(--theme-typography-give-by-select-button-focus-hover-background-color);
-    background-color: var(--theme-typography-give-by-select-button-focus-hover-color);
-    border-color: var(--theme-typography-give-by-select-button-focus-hover-color);
+    color: var(--theme-typography-give-by-select-button-checked-background-color);
+    background-color: var(--theme-typography-give-by-select-button-checked-color);
+    border-color: var(--theme-typography-give-by-select-button-checked-color);
 }
 
 // Donation Amount
 .en__field--donationAmt.en__field--radio .en__field__item:hover input[type="radio"]+:checked+label{
-    color: var(--theme-typography-donation-amount-button-focus-hover-background-color);
-    background-color: var(--theme-typography-donation-amount-button-focus-hover-color);
-    border-color: var(--theme-typography-donation-amount-button-focus-hover-color);
+    color: var(--theme-typography-donation-amount-button-checked-background-color);
+    background-color: var(--theme-typography-donation-amount-button-checked-color);
+    border-color: var(--theme-typography-donation-amount-button-checked-color);
 }
 
 // Recurring Frequency
 .en__field--recurrfreq.en__field--radio .en__field__item:hover input[type="radio"]:checked+label{
-    color: var(--theme-typography-recurring-frequency-button-focus-hover-background-color);
-    background-color: var(--theme-typography-recurring-frequency-button-focus-hover-color);
-    border-color: var(--theme-typography-recurring-frequency-button-focus-hover-color);
+    color: var(--theme-typography-recurring-frequency-button-checked-background-color);
+    background-color: var(--theme-typography-recurring-frequency-button-checked-color);
+    border-color: var(--theme-typography-recurring-frequency-button-checked-color);
 }
 
 /*

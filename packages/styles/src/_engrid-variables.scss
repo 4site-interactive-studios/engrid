@@ -99,11 +99,11 @@ $slicer-breakpoints: 0 400px 600px 1024px 1200px;
         
     // TYPOGRAPHY INPUT:FOCUS
     // TYPOGRAPHY INPUT:HOVER
-    --theme-typography-input-focus-hover-color: var(--theme-typography-input-color);
-    --theme-typography-input-focus-hover-background-color: var(--theme-typography-input-background-color);
-    --theme-typography-input-focus-hover-border-color: var(--theme-cta);
-    --theme-typography-input-focus-hover-border-bottom-color: var(--theme-typography-input-focus-hover-border-color);
-    --theme-typography-input-focus-hover-box-shadow: 0 0 0.3125rem var(--theme-light-gray);
+    --theme-typography-input-hover-color: var(--theme-typography-input-color);
+    --theme-typography-input-hover-background-color: var(--theme-typography-input-background-color);
+    --theme-typography-input-hover-border-color: var(--theme-cta);
+    --theme-typography-input-hover-border-bottom-color: var(--theme-typography-input-hover-border-color);
+    --theme-typography-input-hover-box-shadow: 0 0 0.3125rem var(--theme-light-gray);
         
     // TYPOGRAPHY RADIO
     --theme-typography-radio-content: initial;
@@ -115,9 +115,9 @@ $slicer-breakpoints: 0 400px 600px 1024px 1200px;
 
     // TYPOGRAPHY RADIO INPUT:FOCUS
     // TYPOGRAPHY RADIO INPUT:HOVER
-    --theme-typography-radio-focus-hover-color: var(--theme-typography-radio-color);
-    --theme-typography-radio-focus-hover-background-color: var(--theme-typography-radio-background-color);
-    --theme-typography-radio-focus-hover-border-color: var(--theme-typography-radio-border-color);
+    --theme-typography-radio-hover-color: var(--theme-typography-radio-color);
+    --theme-typography-radio-hover-background-color: var(--theme-typography-radio-background-color);
+    --theme-typography-radio-hover-border-color: var(--theme-typography-radio-border-color);
 
     // TYPOGRAPHY RADIO INPUT:CHECKED
     --theme-typography-radio-selected-color: var(--theme-typography-radio-background-color);
@@ -133,9 +133,9 @@ $slicer-breakpoints: 0 400px 600px 1024px 1200px;
 
     // TYPOGRAPHY CHECKBOX INPUT:FOCUS
     // TYPOGRAPHY CHECKBOX INPUT:HOVER
-    --theme-typography-checkbox-focus-hover-color: var(--theme-typography-checkbox-color);
-    --theme-typography-checkbox-focus-hover-background-color: var(--theme-typography-checkbox-background-color);
-    --theme-typography-checkbox-focus-hover-border-color: var(--theme-typography-checkbox-border-color);
+    --theme-typography-checkbox-hover-color: var(--theme-typography-checkbox-color);
+    --theme-typography-checkbox-hover-background-color: var(--theme-typography-checkbox-background-color);
+    --theme-typography-checkbox-hover-border-color: var(--theme-typography-checkbox-border-color);
 
     // TYPOGRAPHY CHECKBOX INPUT:CHECKED
     --theme-typography-checkbox-checked-content:"✓";
@@ -157,11 +157,11 @@ $slicer-breakpoints: 0 400px 600px 1024px 1200px;
 
     // TYPOGRAPHY SELECT:FOCUS
     // TYPOGRAPHY SELECT:HOVER
-    --theme-typography-select-focus-hover-color: var(--theme-typography-select-color);
-    --theme-typography-select-focus-hover-background-color: var(--theme-typography-select-background-color);
-    --theme-typography-select-focus-hover-border-color: var(--theme-cta-hover);
-    --theme-typography-select-focus-hover-border-bottom-color: var(--theme-typography-select-focus-hover-border-color);
-    --theme-typography-select-focus-hover-box-shadow: var(--theme-typography-input-focus-hover-box-shadow);
+    --theme-typography-select-hover-color: var(--theme-typography-select-color);
+    --theme-typography-select-hover-background-color: var(--theme-typography-select-background-color);
+    --theme-typography-select-hover-border-color: var(--theme-cta-hover);
+    --theme-typography-select-hover-border-bottom-color: var(--theme-typography-select-hover-border-color);
+    --theme-typography-select-hover-box-shadow: var(--theme-typography-input-hover-box-shadow);
 
     // TYPOGRAPHY TEXTAREA
     --theme-typography-textarea-font-family: var(--theme-typography-default-font-family);
@@ -178,10 +178,10 @@ $slicer-breakpoints: 0 400px 600px 1024px 1200px;
         
     // TYPOGRAPHY TEXTAREA:FOCUS
     // TYPOGRAPHY TEXTAREA:HOVER
-    --theme-typography-textarea-focus-hover-color: var(--theme-typography-textarea-color);
-    --theme-typography-textarea-focus-hover-background-color: var(--theme-typography-textarea-background-color);
-    --theme-typography-textarea-focus-hover-border-color: var(--theme-cta);
-    --theme-typography-textarea-focus-hover-box-shadow: var(--theme-typography-input-focus-hover-box-shadow);
+    --theme-typography-textarea-hover-color: var(--theme-typography-textarea-color);
+    --theme-typography-textarea-hover-background-color: var(--theme-typography-textarea-background-color);
+    --theme-typography-textarea-hover-border-color: var(--theme-cta);
+    --theme-typography-textarea-hover-box-shadow: var(--theme-typography-input-hover-box-shadow);
 
     // TYPOGRAPHY BUTTON
     --theme-typography-radio-to-buttons-font-family: var(--theme-typography-default-font-family);
@@ -194,11 +194,15 @@ $slicer-breakpoints: 0 400px 600px 1024px 1200px;
     --theme-typography-radio-to-buttons-border-color: var(--color-black);
     --theme-typography-radio-to-buttons-border-radius: initial;
     
-    // TYPOGRAPHY BUTTON:FOCUS
     // TYPOGRAPHY BUTTON:HOVER
-    --theme-typography-radio-to-buttons-focus-hover-color: var(--theme-typography-radio-to-buttons-color);
-    --theme-typography-radio-to-buttons-focus-hover-background-color: var(--theme-cta-hover);
-    --theme-typography-radio-to-buttons-focus-hover-border-color: var(--theme-cta-hover);
+    --theme-typography-radio-to-buttons-hover-color: var(--theme-typography-radio-to-buttons-color);
+    --theme-typography-radio-to-buttons-hover-background-color: var(--theme-cta-hover);
+    --theme-typography-radio-to-buttons-hover-border-color: var(--theme-cta-hover);
+
+    // TYPOGRAPHY BUTTON:CHECKED
+    --theme-typography-radio-to-buttons-checked-color: var(--theme-typography-radio-to-buttons-color);
+    --theme-typography-radio-to-buttons-checked-background-color: var(--theme-cta-hover);
+    --theme-typography-radio-to-buttons-checked-border-color: var(--theme-cta-hover);
    
     // TYPOGRAPHY GIVING FREQUENCY BUTTON
     --theme-typography-recurring-frequency-button-font-family: var(--theme-typography-radio-to-buttons-font-family);
@@ -211,11 +215,15 @@ $slicer-breakpoints: 0 400px 600px 1024px 1200px;
     --theme-typography-recurring-frequency-button-border-color: var(--theme-typography-radio-to-buttons-border-color);
     --theme-typography-recurring-frequency-button-border-radius: var(--theme-typography-radio-to-buttons-border-radius);
 
-    // TYPOGRAPHY GIVING FREQUENCY BUTTON:FOCUS
     // TYPOGRAPHY GIVING FREQUENCY BUTTON:HOVER  
-    --theme-typography-recurring-frequency-button-focus-hover-color: var(--theme-typography-radio-to-buttons-focus-hover-color);
-    --theme-typography-recurring-frequency-button-focus-hover-background-color: var(--theme-typography-radio-to-buttons-focus-hover-background-color);
-    --theme-typography-recurring-frequency-button-focus-hover-border-color: var(--theme-typography-radio-to-buttons-focus-hover-border-color);    
+    --theme-typography-recurring-frequency-button-hover-color: var(--theme-typography-radio-to-buttons-hover-color);
+    --theme-typography-recurring-frequency-button-hover-background-color: var(--theme-typography-radio-to-buttons-hover-background-color);
+    --theme-typography-recurring-frequency-button-hover-border-color: var(--theme-typography-radio-to-buttons-hover-border-color);    
+
+    // TYPOGRAPHY GIVING FREQUENCY BUTTON:CHECKED
+    --theme-typography-recurring-frequency-button-checked-color: var(--theme-typography-radio-to-buttons-hover-color);
+    --theme-typography-recurring-frequency-button-checked-background-color: var(--theme-typography-radio-to-buttons-hover-background-color);
+    --theme-typography-recurring-frequency-button-checked-border-color: var(--theme-typography-radio-to-buttons-hover-border-color);   
 
     // TYPOGRAPHY GIVING AMOUNT BUTTON
     --theme-typography-donation-amount-button-font-family: var(--theme-typography-radio-to-buttons-font-family);
@@ -228,11 +236,15 @@ $slicer-breakpoints: 0 400px 600px 1024px 1200px;
     --theme-typography-donation-amount-button-border-color: var(--theme-typography-radio-to-buttons-border-color);
     --theme-typography-donation-amount-button-border-radius: var(--theme-typography-radio-to-buttons-border-radius);
 
-    // TYPOGRAPHY GIVING AMOUNT BUTTON:FOCUS
     // TYPOGRAPHY GIVING AMOUNT BUTTON:HOVER  
-    --theme-typography-donation-amount-button-focus-hover-color: var(--theme-typography-radio-to-buttons-focus-hover-color);
-    --theme-typography-donation-amount-button-focus-hover-background-color: var(--theme-typography-radio-to-buttons-focus-hover-background-color);
-    --theme-typography-donation-amount-button-focus-hover-border-color: var(--theme-typography-radio-to-buttons-focus-hover-border-color);  
+    --theme-typography-donation-amount-button-hover-color: var(--theme-typography-radio-to-buttons-hover-color);
+    --theme-typography-donation-amount-button-hover-background-color: var(--theme-typography-radio-to-buttons-hover-background-color);
+    --theme-typography-donation-amount-button-hover-border-color: var(--theme-typography-radio-to-buttons-hover-border-color);  
+
+    // TYPOGRAPHY GIVING AMOUNT BUTTON:CHECKED
+    --theme-typography-donation-amount-button-checked-color: var(--theme-typography-radio-to-buttons-hover-color);
+    --theme-typography-donation-amount-button-checked-background-color: var(--theme-typography-radio-to-buttons-hover-background-color);
+    --theme-typography-donation-amount-button-checked-border-color: var(--theme-typography-radio-to-buttons-hover-border-color);  
 
     // TYPOGRAPHY GIVE BY SELECT BUTTON
     --theme-typography-give-by-select-button-font-family: var(--theme-typography-radio-to-buttons-font-family);
@@ -245,12 +257,16 @@ $slicer-breakpoints: 0 400px 600px 1024px 1200px;
     --theme-typography-give-by-select-button-border-color: var(--theme-typography-radio-to-buttons-border-color);
     --theme-typography-give-by-select-button-border-radius: var(--theme-typography-radio-to-buttons-border-radius);
 
-    // TYPOGRAPHY GIVE BY SELECT BUTTON:FOCUS
     // TYPOGRAPHY GIVE BY SELECT BUTTON:HOVER  
-    --theme-typography-give-by-select-button-focus-hover-color: var(--theme-typography-radio-to-buttons-focus-hover-color);
-    --theme-typography-give-by-select-button-focus-hover-background-color: var(--theme-typography-radio-to-buttons-focus-hover-background-color);
-    --theme-typography-give-by-select-button-focus-hover-border-color: var(--theme-typography-radio-to-buttons-focus-hover-border-color);
-    
+    --theme-typography-give-by-select-button-hover-color: var(--theme-typography-radio-to-buttons-hover-color);
+    --theme-typography-give-by-select-button-hover-background-color: var(--theme-typography-radio-to-buttons-hover-background-color);
+    --theme-typography-give-by-select-button-hover-border-color: var(--theme-typography-radio-to-buttons-hover-border-color);
+ 
+    // TYPOGRAPHY GIVE BY SELECT BUTTON:CHECKED
+    --theme-typography-give-by-select-button-checked-color: var(--theme-typography-radio-to-buttons-hover-color);
+    --theme-typography-give-by-select-button-checked-background-color: var(--theme-typography-radio-to-buttons-hover-background-color);
+    --theme-typography-give-by-select-button-checked-border-color: var(--theme-typography-radio-to-buttons-hover-border-color);   
+
     // TYPOGRAPHY A
     --theme-typography-a-font-family: var(--theme-typography-default-font-family);
     --theme-typography-a-color: initial;
@@ -261,8 +277,8 @@ $slicer-breakpoints: 0 400px 600px 1024px 1200px;
 
     // TYPOGRAPHY A:FOCUS
     // TYPOGRAPHY A:HOVER
-    --theme-typography-a-focus-hover-color: var(--theme-typography-a-color);
-    --theme-typography-a-focus-hover-text-decoration: initial;
+    --theme-typography-a-hover-color: var(--theme-typography-a-color);
+    --theme-typography-a-hover-text-decoration: initial;
 
     // CTA COLORS
     --theme-cta: #0070BA;
