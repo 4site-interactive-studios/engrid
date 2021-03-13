@@ -15,9 +15,9 @@
 .give-by-select,
 .en__field--donationAmt,
 .en__field--recurrfreq {
-min-width: calc(100% + 1rem);
-position: relative;
-left: -0.5rem;
+	min-width: calc(100% + 1rem);
+	position: relative;
+	left: -0.5rem;
 }
 
 /*
@@ -276,7 +276,6 @@ left: -0.5rem;
 /*
 ########################################################################
 # HELPER CLASSES FOR BUTTONS AND OTHER INPUT FIELDS IN FLEXBOX ROWS
-# DEPENDS ON JS
 # @TODO Create JS to identify count on radio selects
 ########################################################################
 */
