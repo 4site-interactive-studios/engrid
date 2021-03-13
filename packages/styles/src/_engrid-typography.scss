@@ -273,13 +273,15 @@ button,
     color: var(--theme-light-gray);
   }
 
-button:focus,
-.button:focus{
+button:active,
+.button:active{
     color: var(--theme-typography-button-checked-color);
     background-color: var(--theme-typography-button-checked-background-color);
     border-color: var(--theme-typography-button-checked-border-color);
 }
 
+button:focus,
+.button:focus{
 button:hover,
 .button:hover{
     color: var(--theme-typography-button-hover-color);
