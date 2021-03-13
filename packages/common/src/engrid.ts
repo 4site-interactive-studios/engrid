@@ -48,9 +48,9 @@ export abstract class ENGrid {
                     default:
                         field.value = value;
                 }
-                this.enParseDependencies();
             }
-        })
+        });
+        this.enParseDependencies();
         return;
     }
 
@@ -58,6 +58,7 @@ export abstract class ENGrid {
     static enParseDependencies() {
         if (window.EngagingNetworks && typeof window.EngagingNetworks?.require?._defined?.enDependencies?.dependencies?.parseDependencies === "function") {
             window.EngagingNetworks.require._defined.enDependencies.dependencies.parseDependencies(window.EngagingNetworks.dependencies);
+            console.trace('EN Dependencies Triggered');
         }
     }
 

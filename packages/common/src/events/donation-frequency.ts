@@ -3,7 +3,7 @@ import { ENGrid } from "../engrid";
 
 export class DonationFrequency extends ENGrid {
   private _onFrequencyChange = new SimpleEventDispatcher<string>();
-  private _frequency: string = "once";
+  private _frequency: string = "onetime";
   private _recurring: string = "n";
   private static instance: DonationFrequency;
 
@@ -14,9 +14,9 @@ export class DonationFrequency extends ENGrid {
       const element = e.target as HTMLInputElement;
       if (element && element.name == "transaction.recurrpay") {
         this.recurring = element.value;
-        // When this element is a radio, that means you're between once and monthly only
+        // When this element is a radio, that means you're between onetime and monthly only
         if (element.type == 'radio') {
-          this.frequency = element.value.toLowerCase() == 'n' ? 'once' : 'monthly';
+          this.frequency = element.value.toLowerCase() == 'n' ? 'onetime' : 'monthly';
           // This field is hidden when transaction.recurrpay is radio
           DonationFrequency.setFieldValue('transaction.recurrfreq', this.frequency.toUpperCase());
         }
@@ -41,7 +41,7 @@ export class DonationFrequency extends ENGrid {
 
   // Every time we set a frequency, trigger the onFrequencyChange event
   set frequency(value: string) {
-    this._frequency = value.toLowerCase() || 'once';
+    this._frequency = value.toLowerCase() || 'onetime';
     this._onFrequencyChange.dispatch(this._frequency);
     DonationFrequency.setBodyData('transaction-recurring-frequency', this._frequency);
   }
@@ -63,5 +63,6 @@ export class DonationFrequency extends ENGrid {
   public load() {
     this.frequency = DonationFrequency.getFieldValue('transaction.recurrfreq');
     this.recurring = DonationFrequency.getFieldValue('transaction.recurrpay');
+    // ENGrid.enParseDependencies();
   }
 }

@@ -1,6 +1,7 @@
 import { DonationAmount, DonationFrequency, EnForm, ProcessingFees } from './events';
 import { Options, OptionsDefaults, MediaAttribution, ApplePay, CapitalizeFields, ClickToExpand, legacy, IE, LiveVariables, Modal, sendIframeHeight, ShowHideRadioCheckboxes, SimpleCountrySelect, SkipToMainContentLink, SrcDefer } from './';
 import { ENGrid } from './engrid';
+import { setRecurrFreq } from './set-recurr-freq';
 
 export class App extends ENGrid {
 
@@ -83,6 +84,9 @@ export class App extends ENGrid {
 
         // Live Variables
         new LiveVariables(this.options);
+
+        // Dynamically set Recurrency Frequency
+        new setRecurrFreq();
 
         // Modal
         const modal = new Modal();

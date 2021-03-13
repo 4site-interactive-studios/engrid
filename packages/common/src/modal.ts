@@ -57,8 +57,8 @@ export class Modal {
   private openUpsell() {
     if (this.debug) console.log("Upsell Triggered");
     const freq = this._frequency.frequency;
-    // Only open Upsell Modal if Frequency == once & if the Modal is closed
-    if (freq == "once" && this.overlay.classList.contains("is-hidden")) {
+    // Only open Upsell Modal if Frequency == onetime & if the Modal is closed
+    if (freq == "onetime" && this.overlay.classList.contains("is-hidden")) {
       this.open(this.upsellModal);
       window.scrollTo(0, 0);
       // Avoid form submission so you can see the modal

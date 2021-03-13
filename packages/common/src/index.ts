@@ -15,3 +15,4 @@ export * from './show-hide-radio-checkboxes';
 export * from './simple-country-select';
 export * from './skip-link';
 export * from './src-defer';
+export * from './set-recurr-freq';

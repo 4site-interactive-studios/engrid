@@ -65,7 +65,7 @@ export class LiveVariables {
       ".en__submit button"
     ) as HTMLButtonElement;
     const amount = this.getAmountTxt(this._amount.amount + this._fees.fee);
-    const frequency = this._frequency.frequency == "once" ? "" : this._frequency.frequency == "annual" ? "annually" : this._frequency.frequency;
+    const frequency = this._frequency.frequency == "onetime" ? "" : this._frequency.frequency == "annual" ? "annually" : this._frequency.frequency;
     let label = this.submitLabel;
 
     if (amount) {
@@ -124,14 +124,14 @@ export class LiveVariables {
     live_frequency.forEach(
       elem =>
       (elem.innerHTML =
-        this._frequency.frequency == "once" ? "" : this._frequency.frequency)
+        this._frequency.frequency == "onetime" ? "" : this._frequency.frequency)
     );
   }
 
   public changeRecurrency() {
     const recurrpay = document.querySelector("[name='transaction.recurrpay']") as HTMLInputElement;
     if (recurrpay && recurrpay.type != 'radio') {
-      recurrpay.value = this._frequency.frequency == 'once' ? 'N' : 'Y';
+      recurrpay.value = this._frequency.frequency == 'onetime' ? 'N' : 'Y';
       this._frequency.recurring = recurrpay.value;
       console.log('Recurpay Changed!');
     }
