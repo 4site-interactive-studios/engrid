@@ -104,6 +104,10 @@ button.en__ecarditems__prevclose {
 .en__ecarditems__showprev {
   background-color: #323232;
   margin-bottom: 40px;
+  color: #ffffff;
+  :hover{
+    color: #ffffff;
+  }
 }
 
 @media screen and (max-width: 700px) {

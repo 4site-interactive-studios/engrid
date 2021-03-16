@@ -141,13 +141,17 @@ input.en__contactDetails__select {
 }
 
 .en__field__input--radio + .en__field__label,
-.en__field__input--checkbox + .en__field__label,
-.en__contactDetails__rows {
+.en__field__input--checkbox + .en__field__label{
   position: relative;
   margin-left: 2rem;
   cursor: pointer;
   display: flex;
   align-items: center;
+}
+
+.en__contactDetails__rows {
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .en__field__input--radio + .en__field__label:before,

@@ -41,7 +41,7 @@ body:not(#en__pagebuilder)[data-engrid-layout="centercenter2col"] {
 * ##########################################################
 */
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1000px) {
   [data-engrid-layout="centercenter2col"] {
     /* prettier-ignore */
     .en__component--advrow,

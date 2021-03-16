@@ -7,35 +7,33 @@ figure.media-with-attribution {
 
     img {
         position: relative;
-        display: block;
         width: 100%;
-        height: auto;
     }
 
     figattribution {
-        font-family: var(--theme-image-attribution-overlay-font-family);
+        font-family: var(--theme-media-attribution-overlay-font-family);
         position: absolute;
-        background-color: var(--theme-image-attribution-overlay-background-color);
-        margin: var(--theme-image-attribution-overlay-margin);
-        text-shadow: var(--theme-image-attribution-overlay-text-shadow);
-        font-size: var(--theme-image-attribution-overlay-font-size);
-        color: var(--theme-image-attribution-overlay-color);
-        font-style: var(--theme-image-attribution-overlay-font-style);
+        background-color: var(--theme-media-attribution-overlay-background-color);
+        margin: var(--theme-media-attribution-overlay-margin);
+        text-shadow: var(--theme-media-attribution-overlay-text-shadow);
+        font-size: var(--theme-media-attribution-overlay-font-size);
+        color: var(--theme-media-attribution-overlay-color);
+        font-style: var(--theme-media-attribution-overlay-font-style);
         display: inline-block;
-        padding: var(--theme-image-attribution-overlay-padding);
-        font-weight: var(--theme-image-attribution-overlay-font-weight);
-        text-transform: var(--theme-image-attribution-overlay-text-transform);
+        padding: var(--theme-media-attribution-overlay-padding);
+        font-weight: var(--theme-media-attribution-overlay-font-weight);
+        text-transform: var(--theme-media-attribution-overlay-text-transform);
     }
 
     figattribution a,
     figattribution a:hover,
     figattribution a:focus {
-        font-size: var(--theme-image-attribution-overlay-font-size);
-        color: var(--theme-image-attribution-overlay-color);
-        font-family: var(--theme-image-attribution-overlay-font-family);
-        color: var(--theme-image-attribution-overlay-color);
-        font-style: var(--theme-image-attribution-overlay-font-style);
-        font-weight: var(--theme-image-attribution-overlay-font-weight);
+        font-size: var(--theme-media-attribution-overlay-font-size);
+        color: var(--theme-media-attribution-overlay-color);
+        font-family: var(--theme-media-attribution-overlay-font-family);
+        color: var(--theme-media-attribution-overlay-color);
+        font-style: var(--theme-media-attribution-overlay-font-style);
+        font-weight: var(--theme-media-attribution-overlay-font-weight);
         text-decoration: none;
     }
 

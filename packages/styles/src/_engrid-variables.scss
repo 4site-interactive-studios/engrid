@@ -70,9 +70,6 @@
     // TYPOGRAPHY STRONG
     --theme-typography-strong-font-family: var(--theme-typography-default-font-family);
     --theme-typography-strong-color: initial;
-    --theme-typography-strong-font-size: var(--theme-root-font-size);
-    --theme-typography-strong-font-weight: bold;
-    --theme-typography-strong-line-height: initial;
         
     // TYPOGRAPHY LABEL
     --theme-typography-label-font-family: var(--theme-typography-default-font-family);
@@ -267,9 +264,6 @@
     // TYPOGRAPHY A
     --theme-typography-a-font-family: var(--theme-typography-default-font-family);
     --theme-typography-a-color: initial;
-    --theme-typography-a-font-size: var(--theme-root-font-size);
-    --theme-typography-a-font-weight: initial;
-    --theme-typography-a-line-height: initial;
     --theme-typography-a-text-decoration: initial;
 
     // TYPOGRAPHY A:FOCUS
@@ -405,16 +399,16 @@
     --give-annual-donation-amount-appended-label: "/yr";
 
     // IMAGE ATTRIBUTION OVERLAY
-    --theme-image-attribution-overlay-font-family: var(--theme-typography-default-font-family);
-    --theme-image-attribution-overlay-color: rgba(255, 255, 255, 0.9);
-    --theme-image-attribution-overlay-text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
-    --theme-image-attribution-overlay-font-size: 75%; 
-    --theme-image-attribution-overlay-font-style: normal; 
-    --theme-image-attribution-overlay-font-weight: bold;
-    --theme-image-attribution-overlay-text-transform: none;
-    --theme-image-attribution-overlay-margin: 1.25ch 1.5ch;
-    --theme-image-attribution-overlay-padding: 1.25ch 1.5ch;
-    --theme-image-attribution-overlay-background-color: rgba(0, 0, 0, 0.3);    
+    --theme-media-attribution-overlay-font-family: var(--theme-typography-default-font-family);
+    --theme-media-attribution-overlay-color: rgba(255, 255, 255, 0.9);
+    --theme-media-attribution-overlay-text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
+    --theme-media-attribution-overlay-font-size: 75%; 
+    --theme-media-attribution-overlay-font-style: normal; 
+    --theme-media-attribution-overlay-font-weight: bold;
+    --theme-media-attribution-overlay-text-transform: none;
+    --theme-media-attribution-overlay-margin: 1.25ch 1.5ch;
+    --theme-media-attribution-overlay-padding: 1.25ch 1.5ch;
+    --theme-media-attribution-overlay-background-color: rgba(0, 0, 0, 0.3);    
 
     // ADD THEME CUSTOM CSS PROPERTIES HERE
 }

@@ -63,9 +63,6 @@ p{
 strong{
     font-family: var(--theme-typography-strong-font-family);
     color: var(--theme-typography-strong-color);
-    font-size: var(--theme-typography-strong-font-size);
-    font-weight: var(--theme-typography-strong-font-weight);
-    line-height: var(--theme-typography-strong-line-height);
 }
 
 label{
@@ -256,9 +253,6 @@ button,
 a{
     font-family: var(--theme-typography-a-font-family);
     color: var(--theme-typography-a-color);
-    font-size: var(--theme-typography-a-font-size);
-    font-weight: var(--theme-typography-a-font-weight);
-    line-height: var(--theme-typography-a-line-height);
     text-decoration: var(--theme-typography-a-text-decoration);
 
     &:focus,
