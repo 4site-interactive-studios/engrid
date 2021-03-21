@@ -109,7 +109,17 @@ input.en__field__input{
     }
 }
 
-input[type="radio"]{
+
+// Removes the input shadow added by iOS 5 and later
+// https://stackoverflow.com/questions/23211656/remove-ios-input-shadow
+// https://app.productive.io/2650-4site-interactive-studios-inc/tasks/1498132
+input[type=text]{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+input[type=radio]{
     content: var(--theme-typography-radio-content);
     color: var(--theme-typography-radio-color);
     background-color: var(--theme-typography-radio-background-color);
@@ -126,7 +136,7 @@ input[type="radio"]{
 }
 
 // ✓
-input[type="checkbox"]{
+input[type=checkbox]{
     content: var(--theme-typography-checkbox-checked-content);
     color: var(--theme-typography-checkbox-color);
     background-color: var(--theme-typography-checkbox-background-color);
