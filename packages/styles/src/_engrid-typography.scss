@@ -195,7 +195,8 @@ select.en__field__input--select{
 
 }
 
-textarea{
+textarea,
+.en__contactMessage__plainText{
     font-family: var(--theme-typography-textarea-font-family);
     color: var(--theme-typography-textarea-color);
     font-size: var(--theme-typography-textarea-font-size);
