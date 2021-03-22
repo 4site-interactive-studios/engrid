@@ -113,7 +113,7 @@ input.en__field__input{
 // Removes the input shadow added by iOS 5 and later
 // https://stackoverflow.com/questions/23211656/remove-ios-input-shadow
 // https://app.productive.io/2650-4site-interactive-studios-inc/tasks/1498132
-input[type=text]{
+input{
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
