@@ -8,6 +8,7 @@ body{
     font-size: var(--theme-typography-default-font-size);
     font-weight: var(--theme-typography-default-font-weight);
     line-height: var(--theme-typography-default-line-height);
+    display: flex; // Prevents this small overflow after the content-footer https://d.pr/v/DYQuA4
 }
 
 h1{
