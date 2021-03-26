@@ -1,7 +1,16 @@
-// High resolution imagery can cause FPS drops when scrolling due to page redraws
-// REF: Fix scrolling performance with CSS will-change property (https://www.fourkitchens.com/blog/article/fix-scrolling-performance-css-will-change-property/)
+// There is no reason to ever show the background image outside of pagebuilder
+// Resolves: https://d.pr/i/DnfPQF
+// REF: https://app.productive.io/2650-4site-interactive-studios-inc/tasks/1513773
+body:not(#en__pagebuilder){
+  img{
+    display: none;
+  }
+}
+
 body[data-engrid-backgroundImage="set"]{
 
+  // High resolution imagery can cause FPS drops when scrolling due to page redraws
+  // REF: Fix scrolling performance with CSS will-change property (https://www.fourkitchens.com/blog/article/fix-scrolling-performance-css-will-change-property/)
   .page-backgroundImage{
     overflow: hidden; // added for before pseudo-element to help improve page redraw and subsequent page scroll FPS
     position: relative; // added for before pseudo-element to help improve page redraw and subsequent page scroll FPS
@@ -29,10 +38,6 @@ body[data-engrid-backgroundImage="set"]{
       width: 100vw;
       background-size: cover;
       background-position: top right;
-    }
-
-    figure.media-with-attribution img{
-      display: none;
     }
 
   }
