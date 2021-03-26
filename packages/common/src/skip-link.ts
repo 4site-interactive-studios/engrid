@@ -11,17 +11,17 @@ export class SkipToMainContentLink{
         const firstTitle = document.querySelector("title");
         const firstH1 = document.querySelector("h1");
 
-        if (firstTitleInEngridBody){
-            firstTitleInEngridBody.insertAdjacentHTML('beforebegin', '<span id="skip-link"></span>');
+        if (firstTitleInEngridBody && firstTitleInEngridBody.parentElement){
+            firstTitleInEngridBody.parentElement.insertAdjacentHTML('beforebegin', '<span id="skip-link"></span>');
             this.insertSkipLinkSpan();
-        } else if (firstH1InEngridBody) {
-            firstH1InEngridBody.insertAdjacentHTML('beforebegin', '<span id="skip-link"></span>');
+        } else if (firstH1InEngridBody && firstH1InEngridBody.parentElement) {
+            firstH1InEngridBody.parentElement.insertAdjacentHTML('beforebegin', '<span id="skip-link"></span>');
             this.insertSkipLinkSpan();
-        } else if (firstTitle) {
-            firstTitle.insertAdjacentHTML('beforebegin', '<span id="skip-link"></span>');
+        } else if (firstTitle && firstTitle.parentElement) {
+            firstTitle.parentElement.insertAdjacentHTML('beforebegin', '<span id="skip-link"></span>');
             this.insertSkipLinkSpan();
-        } else if (firstH1) {
-            firstH1.insertAdjacentHTML('beforebegin', '<span id="skip-link"></span>');
+        } else if (firstH1 && firstH1.parentElement) {
+            firstH1.parentElement.insertAdjacentHTML('beforebegin', '<span id="skip-link"></span>');
             this.insertSkipLinkSpan();
         } else {
             console.log("This page contains no <title> or <h1> and a 'Skip to main content' link was not added");
