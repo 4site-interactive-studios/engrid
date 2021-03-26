@@ -2,4 +2,11 @@ body{
   background-color: var(--theme-page-background-color);
   min-width: 100vw;
   min-height: 100vh;
+
+  // Fixes issue with the grid not going right up to the last pixel of the browser
+  // Recording: https://d.pr/v/g4ZCDA
+  #engrid{
+    height: 100vh;
+  }
 }
+
