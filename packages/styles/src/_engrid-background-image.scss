@@ -2,8 +2,10 @@
 // Resolves: https://d.pr/i/DnfPQF
 // REF: https://app.productive.io/2650-4site-interactive-studios-inc/tasks/1513773
 body:not(#en__pagebuilder){
-  img{
-    display: none;
+  .page-backgroundImage{
+    img{
+      display: none;
+    }
   }
 }
 
