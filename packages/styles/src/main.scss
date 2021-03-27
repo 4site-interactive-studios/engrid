@@ -2,7 +2,7 @@
 @import "engrid-scss-functions";
 
 /* SANITIZE.CSS (INCLUDES NORMALIZE.CSS) */
-@import "node_modules/sanitize.css/sanitize";
+@import "node_modules/reseter.css/src/sass/reseter";
 
 /* ENGRID OVERRIDES, DEFAULT VARIABLES, TYPOGRAPHY, AND MORE */
 @import "engrid-variables";

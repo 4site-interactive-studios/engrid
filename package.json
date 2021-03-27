@@ -13,7 +13,6 @@
     "make-feature": "lerna run build && lerna publish --yes --cd-version minor & git add . & git commit -m Version-bump & git push "
   },
   "dependencies": {
-    "sanitize.css": "^12.0.1",
     "tippy.js": "^6.3.1"
   }
 }
