@@ -379,37 +379,37 @@ export const inputPlaceholder = () => {
   let enFieldBankRoutingNumber = document.querySelector("input#en__field_supporter_bankRoutingNumber") as HTMLInputElement;
 
   // CHANGE FIELD INPUT TYPES
-  if (enFieldDonationAmt) {enFieldDonationAmt.setAttribute("inputmode", "numeric");}
+  if (enFieldDonationAmt) { enFieldDonationAmt.setAttribute("inputmode", "numeric"); }
 
   // ADD FIELD PLACEHOLDERS
   const enAddInputPlaceholder = document.querySelector("[data-engrid-add-input-placeholders]") as HTMLDataElement;
 
-  if (enAddInputPlaceholder && enFieldDonationAmt) {enFieldDonationAmt.placeholder = "Other Amount";}
-  if (enAddInputPlaceholder && enFieldFirstName) {enFieldFirstName.placeholder = "First Name";}
-  if (enAddInputPlaceholder && enFieldLastName) {enFieldLastName.placeholder = "Last Name";}
-  if (enAddInputPlaceholder && enFieldEmailAddress) {enFieldEmailAddress.placeholder = "Email Address";}
-  if (enAddInputPlaceholder && enFieldPhoneNumber) {enFieldPhoneNumber.placeholder = "Phone Number";}
-  if (enAddInputPlaceholder && enFieldPhoneNumber2) {enFieldPhoneNumber2.placeholder = "000-000-0000 (Optional)";}
-  if (enAddInputPlaceholder && enFieldCountry){enFieldCountry.placeholder = "Country";}
-  if (enAddInputPlaceholder && enFieldAddress1) {enFieldAddress1.placeholder = "Street Address";}
-  if (enAddInputPlaceholder && enFieldAddress2) {enFieldAddress2.placeholder = "Apt., ste., bldg.";}
-  if (enAddInputPlaceholder && enFieldCity) {enFieldCity.placeholder = "City";}
+  if (enAddInputPlaceholder && enFieldDonationAmt) { enFieldDonationAmt.placeholder = "Other Amount"; }
+  if (enAddInputPlaceholder && enFieldFirstName) { enFieldFirstName.placeholder = "First Name"; }
+  if (enAddInputPlaceholder && enFieldLastName) { enFieldLastName.placeholder = "Last Name"; }
+  if (enAddInputPlaceholder && enFieldEmailAddress) { enFieldEmailAddress.placeholder = "Email Address"; }
+  if (enAddInputPlaceholder && enFieldPhoneNumber) { enFieldPhoneNumber.placeholder = "Phone Number"; }
+  if (enAddInputPlaceholder && enFieldPhoneNumber2) { enFieldPhoneNumber2.placeholder = "000-000-0000 (Optional)"; }
+  if (enAddInputPlaceholder && enFieldCountry) { enFieldCountry.placeholder = "Country"; }
+  if (enAddInputPlaceholder && enFieldAddress1) { enFieldAddress1.placeholder = "Street Address"; }
+  if (enAddInputPlaceholder && enFieldAddress2) { enFieldAddress2.placeholder = "Apt., ste., bldg."; }
+  if (enAddInputPlaceholder && enFieldCity) { enFieldCity.placeholder = "City"; }
   // if (enAddInputPlaceholder && enFieldRegion){enFieldRegion.placeholder = "TBD";}
-  if (enAddInputPlaceholder && enFieldPostcode) {enFieldPostcode.placeholder = "Postal Code";}
-  if (enAddInputPlaceholder && enFieldHonname) {enFieldHonname.placeholder = "Honoree Name";}
-  if (enAddInputPlaceholder && enFieldInfname) {enFieldInfname.placeholder = "Recipient Name";}
-  if (enAddInputPlaceholder && enFieldInfemail) {enFieldInfemail.placeholder = "Recipient Email Address";}
-  if (enAddInputPlaceholder && enFieldInfcountry){enFieldInfcountry.placeholder = "TBD";}
-  if (enAddInputPlaceholder && enFieldInfadd1) {enFieldInfadd1.placeholder = "Recipient Street Address";}
-  if (enAddInputPlaceholder && enFieldInfadd2) {enFieldInfadd2.placeholder = "Recipient Apt., ste., bldg.";}
-  if (enAddInputPlaceholder && enFieldInfcity) {enFieldInfcity.placeholder = "Recipient City";}
-  if (enAddInputPlaceholder && enFieldInfpostcd) {enFieldInfpostcd.placeholder = "Recipient Postal Code";}
-  if (enAddInputPlaceholder && enFieldGftrsn) {enFieldGftrsn.placeholder = "Reason for your gift";}
-  if (enAddInputPlaceholder && enFieldCcnumber) {enFieldCcnumber.placeholder = "•••• •••• •••• ••••";}
-  if (enAddInputPlaceholder && enFieldCcexpire) {enFieldCcexpire.placeholder = "MM / YY";}
-  if (enAddInputPlaceholder && enFieldCcvv) {enFieldCcvv.placeholder = "CVV";}
-  if (enAddInputPlaceholder && enFieldBankAccountNumber) {enFieldBankAccountNumber.placeholder = "Bank Account Number";}
-  if (enAddInputPlaceholder && enFieldBankRoutingNumber) {enFieldBankRoutingNumber.placeholder = "Bank Routing Number";}
+  if (enAddInputPlaceholder && enFieldPostcode) { enFieldPostcode.placeholder = "Postal Code"; }
+  if (enAddInputPlaceholder && enFieldHonname) { enFieldHonname.placeholder = "Honoree Name"; }
+  if (enAddInputPlaceholder && enFieldInfname) { enFieldInfname.placeholder = "Recipient Name"; }
+  if (enAddInputPlaceholder && enFieldInfemail) { enFieldInfemail.placeholder = "Recipient Email Address"; }
+  if (enAddInputPlaceholder && enFieldInfcountry) { enFieldInfcountry.placeholder = "TBD"; }
+  if (enAddInputPlaceholder && enFieldInfadd1) { enFieldInfadd1.placeholder = "Recipient Street Address"; }
+  if (enAddInputPlaceholder && enFieldInfadd2) { enFieldInfadd2.placeholder = "Recipient Apt., ste., bldg."; }
+  if (enAddInputPlaceholder && enFieldInfcity) { enFieldInfcity.placeholder = "Recipient City"; }
+  if (enAddInputPlaceholder && enFieldInfpostcd) { enFieldInfpostcd.placeholder = "Recipient Postal Code"; }
+  if (enAddInputPlaceholder && enFieldGftrsn) { enFieldGftrsn.placeholder = "Reason for your gift"; }
+  if (enAddInputPlaceholder && enFieldCcnumber) { enFieldCcnumber.placeholder = "•••• •••• •••• ••••"; }
+  if (enAddInputPlaceholder && enFieldCcexpire) { enFieldCcexpire.placeholder = "MM / YY"; }
+  if (enAddInputPlaceholder && enFieldCcvv) { enFieldCcvv.placeholder = "CVV"; }
+  if (enAddInputPlaceholder && enFieldBankAccountNumber) { enFieldBankAccountNumber.placeholder = "Bank Account Number"; }
+  if (enAddInputPlaceholder && enFieldBankRoutingNumber) { enFieldBankRoutingNumber.placeholder = "Bank Routing Number"; }
 };
 
 export const watchInmemField = () => {
@@ -683,9 +683,6 @@ const handleCCUpdate = () => {
     field_payment_type.value = Array.from(field_payment_type.options).filter(
       d => card_values[card_type].includes(d.value.toLowerCase())
     )[0].value;
-    if (window.EngagingNetworks && typeof window.EngagingNetworks?.require?._defined?.enDependencies?.dependencies?.parseDependencies === "function") {
-      window.EngagingNetworks.require._defined.enDependencies.dependencies.parseDependencies(window.EngagingNetworks.dependencies);
-    }
   }
 };
 
