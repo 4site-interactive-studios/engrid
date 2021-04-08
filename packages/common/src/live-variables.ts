@@ -147,6 +147,7 @@ export class LiveVariables {
         return ret;
       };
       window.EngagingNetworks.require._defined.enjs.swapList("donationAmt", loadEnAmounts(window.EngridAmounts[this._frequency.frequency]), { ignoreCurrentValue: true });
+      this._amount.load();
       console.log("Amounts Swapped To", window.EngridAmounts[this._frequency.frequency]);
     }
   }
