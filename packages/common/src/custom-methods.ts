@@ -4,6 +4,7 @@ declare global {
     enOnSubmit: any;
     enOnError: any;
     EngagingNetworks: any;
+    EngridAmounts: any;
   }
 }
 export const body = document.body;
