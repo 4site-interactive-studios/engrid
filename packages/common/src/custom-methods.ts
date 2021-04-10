@@ -67,33 +67,6 @@ export const enInput = (() => {
   };
 })();
 
-export const setBackgroundImage = () => {
-
-  // Finds any <img> added to the "backgroundImage" ENGRid section and sets it as the "--theme-page-backgroundImage-url" CSS Custom Property
-  const root = document.documentElement;
-  const pageBackground = document.querySelector(".page-backgroundImage") as HTMLElement;
-  const pageBackgroundImg = document.querySelector(".page-backgroundImage img") as HTMLImageElement;
-  let pageBackgroundImgDataSrc = pageBackgroundImg?.getAttribute("data-src") as string;
-  let pageBackgroundImgSrc = pageBackgroundImg?.src as string;
-
-  if (pageBackground && pageBackgroundImgDataSrc) {
-    console.log("A background image set in the page was found with a data-src value, setting it as --theme-page-backgroundImage-url", pageBackgroundImgDataSrc);
-    pageBackgroundImgDataSrc = "url('" + pageBackgroundImgDataSrc + "')";
-    pageBackground.style.setProperty('--theme-page-backgroundImage-url', pageBackgroundImgDataSrc);
-    document.getElementsByTagName("BODY")[0].setAttribute("data-engrid-backgroundImage", "set");
-  } else if (pageBackground && pageBackgroundImgSrc) {
-    console.log("A background image set in the page was found with a src value, setting it as --theme-page-backgroundImage-url", pageBackgroundImgSrc);
-    pageBackgroundImgSrc = "url('" + pageBackgroundImgSrc + "')";
-    pageBackground.style.setProperty('--theme-page-backgroundImage-url', pageBackgroundImgSrc);
-    document.getElementsByTagName("BODY")[0].setAttribute("data-engrid-backgroundImage", "set");
-  } else if (pageBackgroundImg) {
-    console.log("A background image set in the page was found but without a data-src or src value, no action taken", pageBackgroundImg);
-  } else {
-    console.log("A background image set in the page was not found, any default image set in the theme on --theme-page-backgroundImage-url will be used");
-  }
-
-};
-
 export const bindEvents = (e: Element) => {
   /* @TODO */
   /************************************

@@ -9,6 +9,7 @@ export interface Options {
     CurrencySeparator?: string,
     SkipToMainContentLink?: boolean,
     SrcDefer?: boolean,
+    Debug?: boolean,
     onLoad?: () => void,
     onResize?: () => void,
     onSubmit?: () => void,
@@ -26,4 +27,5 @@ export const OptionsDefaults: Options = {
     CurrencySeparator: '.',
     SkipToMainContentLink: true,
     SrcDefer: true,
+    Debug: false,
 }
