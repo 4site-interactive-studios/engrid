@@ -4,7 +4,7 @@
   "description": "Main SASS Styles for the ENGRID Project",
   "main": "./src/main.scss",
   "scripts": {
-    "build": "node-sass src -o dist",
+    "build": "node-sass src -o dist  --importer node_modules/node-sass-import",
     "postpublish": "git push origin --tags"
   },
   "keywords": [
@@ -28,7 +28,9 @@
     "node-sass": "^4.14.1"
   },
   "dependencies": {
+    "node-sass-import": "^2.0.1",
     "sanitize.css": "^11.0.1",
+    "sass-mq": "^5.0.1",
     "tippy.js": "^6.3.1"
   },
   "repository": {

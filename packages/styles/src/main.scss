@@ -2,7 +2,10 @@
 @import "engrid-scss-functions";
 
 /* SANITIZE.CSS (INCLUDES NORMALIZE.CSS) */
-@import "node_modules/sanitize.css/sanitize";
+@import "sanitize.css";
+
+/* ENGRID BREAKPOINTS*/
+@import "engrid-breakpoints";
 
 /* ENGRID OVERRIDES, DEFAULT VARIABLES, TYPOGRAPHY, AND MORE */
 @import "engrid-variables";
@@ -56,7 +59,7 @@
 @import "engrid-simple-country-select";
 
 /* TIPPY.JS CSS */
-@import "node_modules/tippy.js/dist/tippy";
+@import "tippy.js/dist/tippy";
 
 /* ENGRID ADMIN ONLY STYLINGS */
 /* @TODO Move Debug and Page Builder styles into their own CSS file or Repo / NPM dependency */
