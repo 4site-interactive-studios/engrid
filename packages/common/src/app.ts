@@ -39,7 +39,7 @@ export class App extends ENGrid {
 
     private run() {
         // Enable debug if available is the first thing
-        if (this.options.Debug) App.setBodyData('debug', '');
+        if (this.options.Debug || App.getUrlParameter('mode') == 'DEMO') App.setBodyData('debug', '');
 
         // IE Warning
         new IE();
