@@ -28,9 +28,4 @@ $mq-static-breakpoint: desktop;
 // to this list, ordered by width. For example: (mobile, tablet, desktop).
 $mq-show-breakpoints: (mobile, tablet, desktop, wide, fullHD, UHD);
 
-@import "sass-mq";
-
-// Only enable the active breakpoint if Debug option is true
-body:not([data-engrid-debug])::before {
-  content: none !important;
-}
+@import "mq";

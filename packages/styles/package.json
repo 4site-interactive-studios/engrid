@@ -30,7 +30,6 @@
   "dependencies": {
     "node-sass-import": "^2.0.1",
     "sanitize.css": "^11.0.1",
-    "sass-mq": "^5.0.1",
     "tippy.js": "^6.3.1"
   },
   "repository": {
