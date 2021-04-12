@@ -1,24 +1,23 @@
 // There is no reason to ever show the background image outside of pagebuilder
 // Resolves: https://d.pr/i/DnfPQF
 // REF: https://app.productive.io/2650-4site-interactive-studios-inc/tasks/1513773
-body:not(#en__pagebuilder){
-  .page-backgroundImage{
-    img{
+body:not(#en__pagebuilder) {
+  .page-backgroundImage {
+    img {
       display: none;
     }
   }
 }
 
-body[data-engrid-backgroundImage="set"]{
-
+body[data-engrid-page-background="image"] {
   // High resolution imagery can cause FPS drops when scrolling due to page redraws
   // REF: Fix scrolling performance with CSS will-change property (https://www.fourkitchens.com/blog/article/fix-scrolling-performance-css-will-change-property/)
-  .page-backgroundImage{
+  .page-backgroundImage {
     overflow: hidden; // added for before pseudo-element to help improve page redraw and subsequent page scroll FPS
     position: relative; // added for before pseudo-element to help improve page redraw and subsequent page scroll FPS
 
     &:before {
-      content: ' ';
+      content: " ";
       position: fixed; // instead of background-attachment
       width: 100%;
       height: 100%;
@@ -27,11 +26,11 @@ body[data-engrid-backgroundImage="set"]{
       background-repeat: no-repeat;
       background-size: cover;
       background-image: var(--theme-page-backgroundImage-url);
-      will-change: transform; // creates a new paint 
+      will-change: transform; // creates a new paint
     }
 
     // If the background image has an attribution it will be converted to a <figure> and the caption added, it can be displayed over top of the normal background image
-    figure.media-with-attribution{
+    figure.media-with-attribution {
       position: fixed;
       top: 0;
       left: 0;
@@ -41,63 +40,88 @@ body[data-engrid-backgroundImage="set"]{
       background-size: cover;
       background-position: top right;
     }
-
   }
 
   &[data-engrid-layout="leftleft1col"],
-  &[data-engrid-layout="centerleft1col"]{
-    .page-backgroundImage:before{
+  &[data-engrid-layout="centerleft1col"] {
+    .page-backgroundImage:before {
       background-position: top right;
     }
   }
-  
+
   &[data-engrid-layout="centercenter1col"],
-  &[data-engrid-layout="centercenter2col"]{
-    .page-backgroundImage:before{
+  &[data-engrid-layout="centercenter2col"] {
+    .page-backgroundImage:before {
       background-position: top center;
     }
   }
-  
+
   &[data-engrid-layout="centerright1col"],
-  &[data-engrid-layout="rightright1col"]{
-    .page-backgroundImage:before{
+  &[data-engrid-layout="rightright1col"] {
+    .page-backgroundImage:before {
       background-position: top left;
     }
-  }     
+  }
 }
 
-body{
-
-  .page-backgroundImage{
-
-    video{
+body {
+  .page-backgroundImage {
+    video {
       position: fixed;
       min-width: 100vw;
       min-height: 100vh;
     }
 
     // Crop video on center (default)
-     video:not(.crop-on-right):not(.crop-on-left) {
+    video:not(.crop-on-right):not(.crop-on-left) {
       left: 50%; /* % of surrounding element */
       top: 50%;
       transform: translate(-50%, -50%); /* % of current element */
-
     }
 
     // Crop video to the left
-    video.crop-on-left{
+    video.crop-on-left {
       right: 0;
       top: 50%;
       transform: translate(0%, -50%); /* % of current element */
     }
 
     // Crop video to the right
-    video.crop-on-right{
+    video.crop-on-right {
       left: 0;
       top: 50%;
       transform: translate(0%, -50%); /* % of current element */
-    }    
-
+    }
   }
+}
+@include mq($until: tablet) {
+  [data-engrid-body-banner="empty"][data-engrid-page-background="image"],
+  [data-engrid-page-background="video"] {
+    .body-banner,
+    .body-bannerOverlay {
+      display: none;
+    }
 
+    .page-backgroundImage,
+    .page-backgroundImageOverlay {
+      grid-column: pc !important;
+      grid-row: body-banner !important;
+      min-height: 200px;
+      aspect-ratio: 16/9;
+      video,
+      figure {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        transform: none !important;
+        width: 100vw !important;
+        height: 100% !important;
+        min-height: 200px;
+        aspect-ratio: 16/9;
+      }
+      &::before {
+        content: none !important;
+      }
+    }
+  }
 }

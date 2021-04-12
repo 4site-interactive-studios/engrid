@@ -1,6 +1,6 @@
 {
   "name": "@4site/engrid-common",
-  "version": "0.2.15",
+  "version": "0.2.21",
   "description": "Common scripts for the ENGRID Project",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -21,9 +21,6 @@
   },
   "dependencies": {
     "strongly-typed-events": "^2.0.9"
-  },
-  "peerDependencies": {
-    "@4site/engrid-events": "*"
   },
   "homepage": "https://github.com/4site-interactive-studios/engrid-scripts#readme",
   "gitHead": "e982be0d9357b5d7cc58db104ba3b43f956aa124"

@@ -21,9 +21,12 @@ export class LiveVariables {
     this._fees.onFeeChange.subscribe(() => this.changeLiveAmount());
     this._fees.onFeeChange.subscribe(() => this.changeLiveUpsellAmount());
     this._fees.onFeeChange.subscribe(() => this.changeSubmitButton());
+
+    this._frequency.onFrequencyChange.subscribe(() => this.swapAmounts());
     this._frequency.onFrequencyChange.subscribe(() => this.changeLiveFrequency());
     this._frequency.onFrequencyChange.subscribe(() => this.changeRecurrency());
     this._frequency.onFrequencyChange.subscribe(() => this.changeSubmitButton());
+
     this._form.onSubmit.subscribe(() => this.loadingSubmitButton());
     this._form.onError.subscribe(() => this.changeSubmitButton());
 
@@ -134,6 +137,20 @@ export class LiveVariables {
       recurrpay.value = this._frequency.frequency == 'onetime' ? 'N' : 'Y';
       this._frequency.recurring = recurrpay.value;
       console.log('Recurpay Changed!');
+    }
+  }
+  public swapAmounts() {
+    if ("EngridAmounts" in window && this._frequency.frequency in window.EngridAmounts) {
+      const loadEnAmounts = (amountArray: { amounts: [string, number], default: number }) => {
+        let ret = [];
+        for (let amount in amountArray.amounts) {
+          ret.push({ selected: amountArray.amounts[amount] === amountArray.default, label: amount, value: amountArray.amounts[amount].toString() });
+        }
+        return ret;
+      };
+      window.EngagingNetworks.require._defined.enjs.swapList("donationAmt", loadEnAmounts(window.EngridAmounts[this._frequency.frequency]), { ignoreCurrentValue: true });
+      this._amount.load();
+      console.log("Amounts Swapped To", window.EngridAmounts[this._frequency.frequency]);
     }
   }
 

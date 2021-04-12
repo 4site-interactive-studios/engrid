@@ -1,7 +1,6 @@
 import { DonationAmount, DonationFrequency, EnForm, ProcessingFees } from './events';
-import { Options, OptionsDefaults, MediaAttribution, ApplePay, CapitalizeFields, ClickToExpand, legacy, IE, LiveVariables, Modal, sendIframeHeight, ShowHideRadioCheckboxes, SimpleCountrySelect, SkipToMainContentLink, SrcDefer } from './';
+import { Options, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, CapitalizeFields, ClickToExpand, legacy, IE, LiveVariables, Modal, sendIframeHeight, ShowHideRadioCheckboxes, SimpleCountrySelect, SkipToMainContentLink, SrcDefer } from './';
 import { ENGrid } from './engrid';
-import { setRecurrFreq } from './set-recurr-freq';
 
 export class App extends ENGrid {
 
@@ -39,11 +38,16 @@ export class App extends ENGrid {
     }
 
     private run() {
+        // Enable debug if available is the first thing
+        if (this.options.Debug || App.getUrlParameter('debug') == 'true') App.setBodyData('debug', '');
+
         // IE Warning
         new IE();
 
+        // Page Background
+        new PageBackground();
+
         // TODO: Abstract everything to the App class so we can remove custom-methods
-        legacy.setBackgroundImage();
         legacy.inputPlaceholder();
         legacy.watchInmemField();
         legacy.watchGiveBySelectField();
@@ -108,6 +112,8 @@ export class App extends ENGrid {
         if (this.options.ClickToExpand) new ClickToExpand();
         if (this.options.SkipToMainContentLink) new SkipToMainContentLink();
         if (this.options.SrcDefer) new SrcDefer();
+
+        this.setDataAttributes();
 
 
     }
@@ -183,10 +189,17 @@ export class App extends ENGrid {
     private loadIFrame() {
         if (this.inIframe()) {
             // Add the data-engrid-embedded attribute when inside an iFrame if it wasn't already added by a script in the Page Template
-            document.body.setAttribute("data-engrid-embedded", "");
+            App.setBodyData("embedded", "");
             // Fire the resize event
             console.log("iFrame Event - First Resize");
             sendIframeHeight();
+        }
+    }
+    // Use this function to add any Data Attributes to the Body tag
+    private setDataAttributes() {
+        // Add a body banner data attribute if it's empty
+        if (!document.querySelector('.body-banner img')) {
+            App.setBodyData('body-banner', 'empty');
         }
     }
 }
