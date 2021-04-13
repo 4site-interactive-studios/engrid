@@ -6,29 +6,42 @@
 */
 
 [data-engrid-embedded] {
-
   // Remove each sections background colors
   --theme-page-background-color: var(--color-transparent) !important;
   --theme-content-background-color: var(--color-transparent) !important;
   --theme-body-background-color: var(--color-transparent) !important;
   --theme-page-alert-background-color: var(--color-transparent) !important;
   --theme-content-header-background-color: var(--color-transparent) !important;
-  --theme-body-headerOutside-background-color: var(--color-transparent) !important;
+  --theme-body-headerOutside-background-color: var(
+    --color-transparent
+  ) !important;
   --theme-body-header-background-color: var(--color-transparent) !important;
   --theme-body-title-background-color: var(--color-transparent) !important;
   --theme-body-banner-background-color: var(--color-transparent) !important;
-  --theme-body-bannerOverlay-background-color: var(--color-transparent) !important;
+  --theme-body-bannerOverlay-background-color: var(
+    --color-transparent
+  ) !important;
   --theme-body-top-background-color: var(--color-transparent) !important;
   --theme-body-side-background-color: var(--color-transparent) !important;
   --theme-body-main-background-color: var(--color-transparent) !important;
   --theme-body-bottom-background-color: var(--color-transparent) !important;
   --theme-body-footer-background-color: var(--color-transparent) !important;
-  --theme-body-footerOutside-background-color: var(--color-transparent) !important;
-  --theme-content-footerSpacer-background-color: var(--color-transparent) !important;
-  --theme-content-preFooter-background-color: var(--color-transparent) !important;
+  --theme-body-footerOutside-background-color: var(
+    --color-transparent
+  ) !important;
+  --theme-content-footerSpacer-background-color: var(
+    --color-transparent
+  ) !important;
+  --theme-content-preFooter-background-color: var(
+    --color-transparent
+  ) !important;
   --theme-content-footer-background-color: var(--color-transparent) !important;
-  --theme-page-backgroundImage-background-color: var(--color-transparent) !important;
-  --theme-page-backgroundImageOverlay-background-color: var(--color-transparent) !important;
+  --theme-page-backgroundImage-background-color: var(
+    --color-transparent
+  ) !important;
+  --theme-page-backgroundImageOverlay-background-color: var(
+    --color-transparent
+  ) !important;
   --theme-page-customCode-background-color: var(--color-transparent) !important;
 
   /* prettier-ignore */
@@ -87,5 +100,8 @@
       box-shadow: none !important;
     }
   }
-
+  .page-backgroundImage,
+  .page-backgroundImageOverlay {
+    display: none;
+  }
 }
