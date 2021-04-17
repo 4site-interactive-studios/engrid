@@ -1,3 +1,5 @@
+import { Options } from "./";
+
 export abstract class ENGrid {
     constructor() {
         if (!ENGrid.enForm) {
@@ -58,7 +60,7 @@ export abstract class ENGrid {
     static enParseDependencies() {
         if (window.EngagingNetworks && typeof window.EngagingNetworks?.require?._defined?.enDependencies?.dependencies?.parseDependencies === "function") {
             window.EngagingNetworks.require._defined.enDependencies.dependencies.parseDependencies(window.EngagingNetworks.dependencies);
-            console.trace('EN Dependencies Triggered');
+            if (ENGrid.getOption('Debug')) console.trace('EN Dependencies Triggered');
         }
     }
 
@@ -105,5 +107,9 @@ export abstract class ENGrid {
     static getBodyData(dataName: string) {
         const body = <HTMLBodyElement>document.querySelector('body');
         return body.getAttribute(`data-engrid-${dataName}`);
+    }
+    // Return the option value
+    static getOption<K extends keyof Options>(key: K): Options[K] | null {
+        return window.EngridOptions[key] || null;
     }
 }

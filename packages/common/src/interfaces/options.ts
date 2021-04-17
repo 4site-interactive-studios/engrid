@@ -1,6 +1,5 @@
 export interface Options {
     backgroundImage?: string | string[],
-    ModalDebug?: boolean,
     MediaAttribution?: boolean,
     applePay?: boolean,
     CapitalizeFields?: boolean,
@@ -18,7 +17,6 @@ export interface Options {
 
 export const OptionsDefaults: Options = {
     backgroundImage: '',
-    ModalDebug: false,
     MediaAttribution: true,
     applePay: false,
     CapitalizeFields: false,

@@ -1,12 +1,3 @@
-declare global {
-  interface Window {
-    pageJson: any;
-    enOnSubmit: any;
-    enOnError: any;
-    EngagingNetworks: any;
-    EngridAmounts: any;
-  }
-}
 export const body = document.body;
 export const enGrid = document.getElementById("engrid") as HTMLElement;
 export const enInput = (() => {

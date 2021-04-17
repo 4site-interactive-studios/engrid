@@ -1,6 +1,5 @@
 import { DonationAmount, DonationFrequency, EnForm, ProcessingFees } from './events';
-import { Options, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, CapitalizeFields, ClickToExpand, legacy, IE, LiveVariables, Modal, sendIframeHeight, ShowHideRadioCheckboxes, SimpleCountrySelect, SkipToMainContentLink, SrcDefer } from './';
-import { ENGrid } from './engrid';
+import { UpsellLightbox, ENGrid, Options, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, CapitalizeFields, ClickToExpand, legacy, IE, LiveVariables, sendIframeHeight, ShowHideRadioCheckboxes, SimpleCountrySelect, SkipToMainContentLink, SrcDefer } from './';
 
 export class App extends ENGrid {
 
@@ -19,6 +18,8 @@ export class App extends ENGrid {
     constructor(options: Options) {
         super();
         this.options = { ...OptionsDefaults, ...options };
+        // Add Options to window
+        window.EngridOptions = this.options;
         // Document Load
         if (document.readyState !== "loading") {
             this.run();
@@ -92,9 +93,8 @@ export class App extends ENGrid {
         // Dynamically set Recurrency Frequency
         new setRecurrFreq();
 
-        // Modal
-        const modal = new Modal();
-        modal.debug = this.options.ModalDebug; // Comment it out to disable debug
+        // Upsell Lightbox
+        new UpsellLightbox();
 
         // On the end of the script, after all subscribers defined, let's load the current value
         this._amount.load();

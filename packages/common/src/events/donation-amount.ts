@@ -75,7 +75,7 @@ export class DonationAmount {
   // Force a new amount
   public setAmount(amount: number, dispatch: boolean = true) {
     // Run only if it is a Donation Page with a Donation Amount field
-    if (document.getElementsByName(this._radios).length) {
+    if (!document.getElementsByName(this._radios).length) {
       return;
     }
     // Set dispatch to be checked by the SET method

@@ -1,5 +1,4 @@
-#enModal,
-#ieModal {
+#enModal {
   position: fixed;
   top: 0;
   left: 0;
@@ -15,219 +14,207 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  &.exitModal {
-    background-color: rgba(0, 0, 0, 0.85);
-    color: var(--color-white);
-  }
-
-  &.upsellModal .button-close {
-    &:before,
-    &::after {
-      background-color: rgba(255, 255, 255, 1);
-    }
-  }
-
-  &.exitModal .button-close {
-    &:before,
-    &::after {
-      background-color: rgba(0, 0, 0, 1);
-    }
-  }
-
   &.is-hidden {
     top: -500vh;
     transition: none; /* When the modal gains the "is-hidden" class it will dissapear instantly */
   }
-
-  .button-close {
-    position: absolute;
-    right: 32px;
-    top: 32px;
-    width: 24px;
-    height: 24px;
-    opacity: 0.6;
-    -webkit-transition: 0.3s opacity ease-in-out;
-    transition: 0.3s opacity ease-in-out;
-    @media (max-width: 600px) {
-      opacity: 1;
+  &.image-right {
+    #goMonthly {
+      grid-template-columns: 1fr minmax(0, 480px) !important;
     }
+    .background {
+      grid-column: 2;
+      grid-row: 1;
+    }
+    .upsellLightboxContent {
+      grid-column: 1;
+      grid-row: 1;
+    }
+  }
+  &.is-submitting {
+    .loader-wrapper {
+      visibility: visible !important;
+    }
+    span.label {
+      visibility: hidden;
+    }
+    #upsellYesButton a,
+    #upsellNoButton button {
+      background-color: #ccc;
+      border-color: #ccc;
+    }
+  }
+}
+
+#goMonthly {
+  position: relative;
+  background-color: #fff;
+  display: grid;
+  grid-template-columns: minmax(0, 480px) 1fr;
+  grid-gap: 0;
+  max-width: 960px;
+  margin: auto;
+  border-radius: var(--theme-typography-button-border-radius);
+  overflow: hidden;
+  border: 1px solid #333;
+  @media only screen and (max-width: 675px) {
+    display: block;
+  }
+  .upsellLightboxContent {
+    padding: 30px;
+    min-width: 375px;
+    @media only screen and (max-width: 675px) {
+      min-width: auto;
+      width: auto;
+    }
+  }
+  .background {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    @media only screen and (max-width: 675px) {
+      display: none;
+    }
+  }
+  h1 {
+    font-family: var(--theme-typography-h1-font-family);
+    color: var(--theme-typography-h1-color);
+    font-size: var(--theme-typography-h1-font-size);
+    font-weight: var(--theme-typography-h1-font-weight);
+    line-height: var(--theme-typography-h1-line-height);
+    font-style: normal;
+    font-weight: 300;
+    .upsell_suggestion {
+      font-weight: 700;
+    }
+  }
+  p {
+    font-family: var(--theme-typography-p-font-family);
+    color: var(--theme-typography-p-color);
+    font-size: var(--theme-typography-p-font-size);
+    font-weight: var(--theme-typography-p-font-weight);
+    line-height: var(--theme-typography-p-line-height);
+  }
+  #secondOtherField {
+    width: 80px;
+    height: 40px;
+    border: 1px solid #cacaca;
+    background-color: #fefefe;
+    border-radius: var(--theme-typography-input-border-radius);
+    color: #555555;
+    font-size: 18px;
+    padding-left: 20px !important;
+    box-sizing: border-box;
+    background-image: url('data:image/svg+xml,<svg id="SvgjsSvg1011" width="288" height="288" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs"><defs id="SvgjsDefs1012"></defs><g id="SvgjsG1013" transform="matrix(0.9167,0,0,0.9167,11.988296888732918,11.995200000000011)"><svg xmlns="http://www.w3.org/2000/svg" width="288" height="288" viewBox="0 0 1792 1792"><path d="M1362 1185q0 153-99.5 263.5t-258.5 136.5v175q0 14-9 23t-23 9h-135q-13 0-22.5-9.5t-9.5-22.5v-175q-66-9-127.5-31t-101.5-44.5-74-48-46.5-37.5-17.5-18q-17-21-2-41l103-135q7-10 23-12 15-2 24 9l2 2q113 99 243 125 37 8 74 8 81 0 142.5-43t61.5-122q0-28-15-53t-33.5-42-58.5-37.5-66-32-80-32.5q-39-16-61.5-25t-61.5-26.5-62.5-31-56.5-35.5-53.5-42.5-43.5-49-35.5-58-21-66.5-8.5-78q0-138 98-242t255-134v-180q0-13 9.5-22.5t22.5-9.5h135q14 0 23 9t9 23v176q57 6 110.5 23t87 33.5 63.5 37.5 39 29 15 14q17 18 5 38l-81 146q-8 15-23 16-14 3-27-7-3-3-14.5-12t-39-26.5-58.5-32-74.5-26-85.5-11.5q-95 0-155 43t-60 111q0 26 8.5 48t29.5 41.5 39.5 33 56 31 60.5 27 70 27.5q53 20 81 31.5t76 35 75.5 42.5 62 50 53 63.5 31.5 76.5 13 94z" fill="currentColor" class="color000 svgShape"></path></svg></g></svg>');
+    background-size: 18px;
+    background-position: left center;
+    background-repeat: no-repeat;
+    display: inline-block;
+    margin-left: 5px;
+    margin-bottom: 0;
+    transition: box-shadow 0.5s, border-color 0.25s ease-in-out;
+    box-shadow: none;
+    appearance: textfield;
+    &:focus {
+      outline: none;
+      border: 1px solid #8a8a8a;
+      background-color: #fefefe;
+      box-shadow: 0 0 0.3125rem #cacaca;
+      transition: box-shadow 0.5s, border-color 0.25s ease-in-out;
+    }
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      appearance: none;
+      margin: 0;
+    }
+  }
+  #upsellYesButton a,
+  #upsellNoButton button {
+    margin: 0 0 1rem 0;
+    font-family: inherit;
+    padding: 0.85rem 1rem;
+    -webkit-appearance: none;
+    border: 1px solid transparent;
+    border-radius: var(--theme-typography-button-border-radius);
+    -webkit-transition: background-color 0.2s ease-out, color 0.2s ease-out,
+      border-color 0.2s ease-out;
+    transition: background-color 0.2s ease-out, color 0.2s ease-out,
+      border-color 0.2s ease-out;
+    font-size: 1rem;
+    text-align: center;
+    cursor: pointer;
+    background-color: var(--theme-typography-button-background-color);
+    color: var(--theme-typography-button-color);
+    box-sizing: border-box;
+    height: 80px;
+    width: 100%;
+    text-decoration: none;
+    position: relative;
+    line-height: 1;
+    font-weight: 400;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span {
+      font-weight: 700;
+    }
+    &:hover {
+      opacity: 0.8;
+    }
+    div {
+      line-height: 1.2;
+    }
+    .loader-wrapper {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      visibility: hidden;
+      .loader {
+        margin: auto;
+      }
+    }
+  }
+  #upsellYesButton a {
+    margin-bottom: 20px;
+    background-color: var(--theme-cta);
+    border-color: var(--theme-cta);
+    color: var(--theme-typography-p-color);
+    font-family: var(--theme-typography-h1-font-family);
+    font-size: 1.3rem;
+  }
+  #goMonthlyClose {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    width: 25px;
+    height: 25px;
+    opacity: 0.3;
+    transition: 0.3s opacity ease;
+    display: block;
+    cursor: pointer;
     &:hover {
       opacity: 1;
     }
-    &:before,
+    &::before,
     &::after {
       position: absolute;
-      left: 15px;
+      left: 10px;
       content: " ";
-      height: 24px;
+      height: 26px;
       width: 3px;
+      background-color: #333;
     }
-    &:before {
-      -webkit-transform: rotate(45deg);
+    &::before {
       transform: rotate(45deg);
     }
     &::after {
-      -webkit-transform: rotate(-45deg);
       transform: rotate(-45deg);
     }
-  }
-  .enModal-container,
-  .ieModal-container {
-    max-width: 820px;
-    border-radius: var(--theme-input-border-radius);
-    background-color: var(--theme-body-background-color);
-    color: var(color-black);
-    z-index: 100;
-    position: relative;
-
-    h1 {
-      font-size: 4.5rem;
-      font-weight: 900 !important;
-      font-stretch: normal;
-      font-style: normal;
-      line-height: normal;
-      letter-spacing: -1px;
-      text-transform: uppercase;
-    }
-
-    .title {
-      color: var(--color-black);
-    }
-    .accent {
-      color: var(--theme-cta);
-    }
-    .cta {
-      cursor: pointer;
-      -webkit-transition: 0.3s background-color ease-in-out,
-        0.3s color ease-in-out;
-      -webkit-transition: 0.3s background-color ease-in-out,
-        0.3s color ease-in-out;
-      -webkit-transition: 0.3s background-color ease-in-out,
-        0.3s color ease-in-out;
-      -webkit-transition: 0.3s background-color ease-in-out,
-        0.3s color ease-in-out;
-      -webkit-transition: 0.3s background-color ease-in-out,
-        0.3s color ease-in-out;
-      -webkit-transition: 0.3s background-color ease-in-out,
-        0.3s color ease-in-out;
-      -webkit-transition: 0.3s background-color ease-in-out,
-        0.3s color ease-in-out;
-      -webkit-transition: 0.3s background-color ease-in-out,
-        0.3s color ease-in-out;
-      -webkit-transition: 0.3s background-color ease-in-out,
-        0.3s color ease-in-out;
-      transition: 0.3s background-color ease-in-out, 0.3s color ease-in-out;
-    }
-    .img {
-      position: absolute;
-      bottom: 0px;
-      right: 0;
-      z-index: 101;
-      @media (max-width: 600px) {
-        bottom: -80px;
-        max-height: 250px;
-      }
-    }
-    .cta-groups {
-      display: flex;
-    }
-    .cta-groups.column {
-      flex-direction: column;
-    }
-    .cta-groups.row {
-      margin-top: 2rem;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-    }
-    .cta-groups.center {
-      align-items: center;
-      justify-content: center;
-    }
-    .cta-groups .group {
-      flex-grow: 1;
-      display: flex;
-    }
-  }
-  &.exitModal #enModalContent {
-    padding: 4rem;
-    .cta-groups .group {
-      flex-direction: row;
-      margin-left: 1rem;
-      margin-right: 1rem;
-
-      &.primary {
-        justify-content: flex-end;
-        button {
-          margin: 0;
-          padding: 18px;
-        }
-      }
-      &.secondary {
-        justify-content: flex-start;
-        text-align: center;
-      }
-    }
-  }
-
-  &.upsellModal #enModalContent {
-    display: flex;
-    flex-direction: row;
-
-    .modal-left-column {
-      flex-basis: 50%;
-      background-size: cover;
-      background-position: left center;
-    }
-
-    .modal-right-column {
-      background-color: #2e2e2c;
-      flex-basis: 50%;
-      padding: var(--theme-spacing-lg);
-      text-align: center;
-      .cta-groups .group {
-        flex-direction: column;
-        &.primary {
-          margin-bottom: 50px;
-          button {
-            padding: 18px;
-          }
-        }
-      }
-    }
-
-    @media (max-width: 600px) {
-      flex-direction: column;
-
-      .modal-left-column {
-        display: none;
-      }
-    }
-  }
-
-  .cta.primary {
-    width: 100%;
-    max-width: 230px;
-  }
-
-  .dark-background {
-    h1,
-    p,
-    a {
-      color: #ffffff;
-    }
-  }
-  .ieModal-container {
-    .button-close {
-      right: 15px;
-      top: 5px;
-      &:before,
-      &::after {
-        background-color: #000000;
-      }
-    }
-  }
-  #ieModalContent {
-    padding: 20px 30px;
   }
 }

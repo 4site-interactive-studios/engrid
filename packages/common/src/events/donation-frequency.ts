@@ -5,6 +5,7 @@ export class DonationFrequency extends ENGrid {
   private _onFrequencyChange = new SimpleEventDispatcher<string>();
   private _frequency: string = "onetime";
   private _recurring: string = "n";
+  private _dispatch: boolean = true;
   private static instance: DonationFrequency;
 
   private constructor() {
@@ -42,7 +43,7 @@ export class DonationFrequency extends ENGrid {
   // Every time we set a frequency, trigger the onFrequencyChange event
   set frequency(value: string) {
     this._frequency = value.toLowerCase() || 'onetime';
-    this._onFrequencyChange.dispatch(this._frequency);
+    if (this._dispatch) this._onFrequencyChange.dispatch(this._frequency);
     DonationFrequency.setBodyData('transaction-recurring-frequency', this._frequency);
   }
 
@@ -64,5 +65,45 @@ export class DonationFrequency extends ENGrid {
     this.frequency = DonationFrequency.getFieldValue('transaction.recurrfreq');
     this.recurring = DonationFrequency.getFieldValue('transaction.recurrpay');
     // ENGrid.enParseDependencies();
+  }
+  // Force a new recurrency
+  public setRecurrency(recurr: string, dispatch: boolean = true) {
+    // Run only if it is a Donation Page with a Recurrency
+    if (!document.getElementsByName("transaction.recurrpay").length) {
+      return;
+    }
+    // Set dispatch to be checked by the SET method
+    this._dispatch = dispatch;
+    DonationFrequency.setFieldValue("transaction.recurrpay", recurr.toUpperCase());
+    // Revert dispatch to default value (true)
+    this._dispatch = true;
+  }
+  // Force a new frequency
+  public setFrequency(freq: string, dispatch: boolean = true) {
+    // Run only if it is a Donation Page with a Frequency
+    if (!document.getElementsByName("transaction.recurrfreq").length) {
+      return;
+    }
+    // Set dispatch to be checked by the SET method
+    this._dispatch = dispatch;
+    // Search for the current amount on radio boxes
+    let found = Array.from(
+      document.querySelectorAll('input[name="transaction.recurrfreq"]')
+    ).filter(
+      el => el instanceof HTMLInputElement && el.value == freq.toUpperCase()
+    );
+    // We found the amount on the radio boxes, so check it
+    if (found.length) {
+      const freqField = found[0] as HTMLInputElement;
+      freqField.checked = true;
+      this.frequency = freq.toLowerCase();
+      if (this.frequency === 'onetime') {
+        this.setRecurrency("N", dispatch);
+      } else {
+        this.setRecurrency("Y", dispatch);
+      }
+    }
+    // Revert dispatch to default value (true)
+    this._dispatch = true;
   }
 }
