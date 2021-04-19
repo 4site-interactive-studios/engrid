@@ -2,7 +2,7 @@ import * as cookie from "./cookie";
 import { ENGrid, UpsellOptions, UpsellOptionsDefaults } from "./";
 import { DonationAmount, DonationFrequency, EnForm } from "./events";
 
-export class UpsellLightbox extends ENGrid {
+export class UpsellLightbox {
   private options: UpsellOptions;
   private debug: boolean;
   private overlay: HTMLDivElement = document.createElement("div");
@@ -10,10 +10,9 @@ export class UpsellLightbox extends ENGrid {
   public _amount: DonationAmount = DonationAmount.getInstance();
   private _frequency: DonationFrequency = DonationFrequency.getInstance();
   constructor() {
-    super();
     let options = "EngridUpsell" in window ? window.EngridUpsell : {};
     this.options = { ...UpsellOptionsDefaults, ...options };
-    this.debug = UpsellLightbox.getOption('Debug') || false;
+    this.debug = ENGrid.getOption('Debug') || false;
     if (!this.shouldRun()) {
       if (this.debug) console.log("Upsell script should NOT run");
       // If we're not on a Donation Page, get out
