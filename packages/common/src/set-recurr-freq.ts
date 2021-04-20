@@ -1,3 +1,4 @@
+import { ENGrid } from "./";
 import { DonationFrequency } from "./events";
 
 
@@ -12,10 +13,10 @@ export class setRecurrFreq {
             element.addEventListener("click", (e: Event) => {
                 // Get the right class
                 const setRecurrFreqClass = element.className.split(' ').filter(linkClass => linkClass.startsWith(this.linkClass));
-                console.log(setRecurrFreqClass);
+                if (ENGrid.debug) console.log(setRecurrFreqClass);
                 if (setRecurrFreqClass.length) {
                     e.preventDefault();
-                    DonationFrequency.setFieldValue('transaction.recurrfreq', setRecurrFreqClass[0].substring(this.linkClass.length).toUpperCase());
+                    ENGrid.setFieldValue('transaction.recurrfreq', setRecurrFreqClass[0].substring(this.linkClass.length).toUpperCase());
                     this._frequency.load();
                 }
             });
@@ -24,7 +25,7 @@ export class setRecurrFreq {
         (document.getElementsByName(this.checkboxName) as NodeListOf<HTMLInputElement>).forEach((element) => {
             element.addEventListener("change", () => {
                 if (element.checked) {
-                    DonationFrequency.setFieldValue('transaction.recurrfreq', element.value.toUpperCase());
+                    ENGrid.setFieldValue('transaction.recurrfreq', element.value.toUpperCase());
                     this._frequency.load();
                 }
             });

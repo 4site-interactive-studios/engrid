@@ -1,4 +1,5 @@
 import { SignalDispatcher } from "strongly-typed-events";
+import { ENGrid } from "../";
 
 export class EnForm {
   private _onSubmit = new SignalDispatcher();
@@ -19,12 +20,12 @@ export class EnForm {
 
   public dispatchSubmit() {
     this._onSubmit.dispatch();
-    console.log("dispatchSubmit");
+    if (ENGrid.debug) console.log("dispatchSubmit");
   }
 
   public dispatchError() {
     this._onError.dispatch();
-    console.log("dispatchError");
+    if (ENGrid.debug) console.log("dispatchError");
   }
 
   public submitForm() {
@@ -36,17 +37,17 @@ export class EnForm {
       const enModal = document.getElementById("enModal");
       if (enModal) enModal.classList.add("is-submitting");
       enForm.click();
-      console.log("submitForm");
+      if (ENGrid.debug) console.log("submitForm");
     }
   }
 
   public get onSubmit() {
-    // console.log("onSubmit");
+    // if(ENGrid.debug) console.log("onSubmit");
     return this._onSubmit.asEvent();
   }
 
   public get onError() {
-    // console.log("onError");
+    // if(ENGrid.debug) console.log("onError");
     return this._onError.asEvent();
   }
 }

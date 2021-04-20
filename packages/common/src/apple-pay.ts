@@ -1,3 +1,4 @@
+import { ENGrid } from "./";
 import { DonationAmount, EnForm } from "./events";
 
 /*global window */
@@ -41,7 +42,7 @@ export class ApplePay {
                 this._form.onSubmit.subscribe(() => this.onPayClicked());
             }
         });
-        console.log('applePayEnabled', applePayEnabled);
+        if (ENGrid.debug) console.log('applePayEnabled', applePayEnabled);
         let applePayWrapper = this.applePay.closest('.en__field__item') as HTMLDivElement;
         if (applePayEnabled) {
             // Set Apple Pay Class
@@ -117,7 +118,7 @@ export class ApplePay {
                     });
                 }
                 session.oncancel = function (event: any) {
-                    console.log('Cancelled', event);
+                    if (ENGrid.debug) console.log('Cancelled', event);
                     alert("You cancelled. Sorry it didn't work out.");
                 }
                 session.begin();

@@ -11,6 +11,10 @@ export abstract class ENGrid {
         return document.querySelector("form.en__component") as HTMLFormElement;
     }
 
+    static get debug(): boolean {
+        return !!this.getOption('Debug');
+    }
+
     // Return any parameter from the URL
     static getUrlParameter(name: string) {
         name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');

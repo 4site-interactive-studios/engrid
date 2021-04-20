@@ -3,7 +3,9 @@
 // in those sections
 // Depends on _engrid-skip-link.scss
 
-export class SkipToMainContentLink{
+import { ENGrid } from "./";
+
+export class SkipToMainContentLink {
 
     constructor() {
         const firstTitleInEngridBody = document.querySelector("div[class*='body-'] title");
@@ -11,7 +13,7 @@ export class SkipToMainContentLink{
         const firstTitle = document.querySelector("title");
         const firstH1 = document.querySelector("h1");
 
-        if (firstTitleInEngridBody && firstTitleInEngridBody.parentElement){
+        if (firstTitleInEngridBody && firstTitleInEngridBody.parentElement) {
             firstTitleInEngridBody.parentElement.insertAdjacentHTML('beforebegin', '<span id="skip-link"></span>');
             this.insertSkipLinkSpan();
         } else if (firstH1InEngridBody && firstH1InEngridBody.parentElement) {
@@ -24,7 +26,7 @@ export class SkipToMainContentLink{
             firstH1.parentElement.insertAdjacentHTML('beforebegin', '<span id="skip-link"></span>');
             this.insertSkipLinkSpan();
         } else {
-            console.log("This page contains no <title> or <h1> and a 'Skip to main content' link was not added");
+            if (ENGrid.debug) console.log("This page contains no <title> or <h1> and a 'Skip to main content' link was not added");
         }
     }
 

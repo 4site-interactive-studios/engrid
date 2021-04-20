@@ -1,3 +1,4 @@
+import { ENGrid } from "./";
 import { EnForm } from "./events";
 
 export class CapitalizeFields {
@@ -16,7 +17,7 @@ export class CapitalizeFields {
         let field: HTMLInputElement = document.getElementById(f) as HTMLInputElement;
         if (field) {
             field.value = field.value.replace(/\w\S*/g, (w) => (w.replace(/^\w/, (c) => c.toUpperCase())));
-            console.log('Capitalized', field.value);
+            if (ENGrid.debug) console.log('Capitalized', field.value);
         }
         return true;
     }

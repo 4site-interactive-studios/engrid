@@ -1,7 +1,7 @@
 import { DonationAmount, DonationFrequency, EnForm, ProcessingFees } from './events';
 import { UpsellLightbox, ENGrid, Options, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, CapitalizeFields, ClickToExpand, legacy, IE, LiveVariables, sendIframeHeight, ShowHideRadioCheckboxes, SimpleCountrySelect, SkipToMainContentLink, SrcDefer } from './';
 
-export class App extends ENGrid {
+export class App {
 
     // Events
     private _form: EnForm = EnForm.getInstance();
@@ -16,7 +16,6 @@ export class App extends ENGrid {
 
 
     constructor(options: Options) {
-        super();
         this.options = { ...OptionsDefaults, ...options };
         // Add Options to window
         window.EngridOptions = this.options;
@@ -40,7 +39,7 @@ export class App extends ENGrid {
 
     private run() {
         // Enable debug if available is the first thing
-        if (this.options.Debug || App.getUrlParameter('debug') == 'true') App.setBodyData('debug', '');
+        if (this.options.Debug || ENGrid.getUrlParameter('debug') == 'true') ENGrid.setBodyData('debug', '');
 
         // IE Warning
         new IE();
@@ -124,7 +123,7 @@ export class App extends ENGrid {
         }
         if (this.inIframe()) {
             // Scroll to top of iFrame
-            console.log("iFrame Event - window.onload");
+            if (ENGrid.debug) console.log("iFrame Event - window.onload");
             sendIframeHeight();
             window.parent.postMessage(
                 {
@@ -135,7 +134,7 @@ export class App extends ENGrid {
 
             // On click fire the resize event
             document.addEventListener("click", (e: Event) => {
-                console.log("iFrame Event - click");
+                if (ENGrid.debug) console.log("iFrame Event - click");
                 setTimeout(() => {
                     sendIframeHeight();
                 }, 100);
@@ -148,21 +147,21 @@ export class App extends ENGrid {
             this.options.onResize();
         }
         if (this.inIframe()) {
-            console.log("iFrame Event - window.onload");
+            if (ENGrid.debug) console.log("iFrame Event - window.onload");
             sendIframeHeight();
         }
     }
 
     private onSubmit() {
         if (this.options.onSubmit) {
-            console.log("Client onSubmit Triggered");
+            if (ENGrid.debug) console.log("Client onSubmit Triggered");
             this.options.onSubmit();
         }
     }
 
     private onError() {
         if (this.options.onError) {
-            console.log("Client onError Triggered");
+            if (ENGrid.debug) console.log("Client onError Triggered");
             this.options.onError();
         }
     }
@@ -189,9 +188,9 @@ export class App extends ENGrid {
     private loadIFrame() {
         if (this.inIframe()) {
             // Add the data-engrid-embedded attribute when inside an iFrame if it wasn't already added by a script in the Page Template
-            App.setBodyData("embedded", "");
+            ENGrid.setBodyData("embedded", "");
             // Fire the resize event
-            console.log("iFrame Event - First Resize");
+            if (ENGrid.debug) console.log("iFrame Event - First Resize");
             sendIframeHeight();
         }
     }
@@ -199,7 +198,7 @@ export class App extends ENGrid {
     private setDataAttributes() {
         // Add a body banner data attribute if it's empty
         if (!document.querySelector('.body-banner img')) {
-            App.setBodyData('body-banner', 'empty');
+            ENGrid.setBodyData('body-banner', 'empty');
         }
     }
 }

@@ -1,7 +1,7 @@
 import { SimpleEventDispatcher } from "strongly-typed-events";
 import { ENGrid } from "../engrid";
 
-export class DonationFrequency extends ENGrid {
+export class DonationFrequency {
   private _onFrequencyChange = new SimpleEventDispatcher<string>();
   private _frequency: string = "onetime";
   private _recurring: string = "n";
@@ -9,7 +9,6 @@ export class DonationFrequency extends ENGrid {
   private static instance: DonationFrequency;
 
   private constructor() {
-    super();
     // Watch the Radios for Changes
     document.addEventListener("change", (e: Event) => {
       const element = e.target as HTMLInputElement;
@@ -19,7 +18,7 @@ export class DonationFrequency extends ENGrid {
         if (element.type == 'radio') {
           this.frequency = element.value.toLowerCase() == 'n' ? 'onetime' : 'monthly';
           // This field is hidden when transaction.recurrpay is radio
-          DonationFrequency.setFieldValue('transaction.recurrfreq', this.frequency.toUpperCase());
+          ENGrid.setFieldValue('transaction.recurrfreq', this.frequency.toUpperCase());
         }
       }
       if (element && element.name == "transaction.recurrfreq") {
@@ -44,7 +43,7 @@ export class DonationFrequency extends ENGrid {
   set frequency(value: string) {
     this._frequency = value.toLowerCase() || 'onetime';
     if (this._dispatch) this._onFrequencyChange.dispatch(this._frequency);
-    DonationFrequency.setBodyData('transaction-recurring-frequency', this._frequency);
+    ENGrid.setBodyData('transaction-recurring-frequency', this._frequency);
   }
 
   get recurring(): string {
@@ -53,7 +52,7 @@ export class DonationFrequency extends ENGrid {
 
   set recurring(value: string) {
     this._recurring = value.toLowerCase() || 'n';
-    DonationFrequency.setBodyData('transaction-recurring', this._recurring);
+    ENGrid.setBodyData('transaction-recurring', this._recurring);
   }
 
   public get onFrequencyChange() {
@@ -62,8 +61,8 @@ export class DonationFrequency extends ENGrid {
 
   // Set amount var with currently selected amount
   public load() {
-    this.frequency = DonationFrequency.getFieldValue('transaction.recurrfreq');
-    this.recurring = DonationFrequency.getFieldValue('transaction.recurrpay');
+    this.frequency = ENGrid.getFieldValue('transaction.recurrfreq');
+    this.recurring = ENGrid.getFieldValue('transaction.recurrpay');
     // ENGrid.enParseDependencies();
   }
   // Force a new recurrency
@@ -74,7 +73,7 @@ export class DonationFrequency extends ENGrid {
     }
     // Set dispatch to be checked by the SET method
     this._dispatch = dispatch;
-    DonationFrequency.setFieldValue("transaction.recurrpay", recurr.toUpperCase());
+    ENGrid.setFieldValue("transaction.recurrpay", recurr.toUpperCase());
     // Revert dispatch to default value (true)
     this._dispatch = true;
   }

@@ -1,5 +1,5 @@
 import { DonationAmount, EnForm, DonationFrequency, ProcessingFees } from "./events";
-import { Options, OptionsDefaults } from './';
+import { ENGrid, Options, OptionsDefaults } from './';
 export class LiveVariables {
   public _amount: DonationAmount = DonationAmount.getInstance();
   public _fees: ProcessingFees = ProcessingFees.getInstance();
@@ -136,7 +136,7 @@ export class LiveVariables {
     if (recurrpay && recurrpay.type != 'radio') {
       recurrpay.value = this._frequency.frequency == 'onetime' ? 'N' : 'Y';
       this._frequency.recurring = recurrpay.value;
-      console.log('Recurpay Changed!');
+      if (ENGrid.getOption('Debug')) console.log('Recurpay Changed!');
     }
   }
   public swapAmounts() {
@@ -150,7 +150,7 @@ export class LiveVariables {
       };
       window.EngagingNetworks.require._defined.enjs.swapList("donationAmt", loadEnAmounts(window.EngridAmounts[this._frequency.frequency]), { ignoreCurrentValue: !window.EngagingNetworks.require._defined.enjs.checkSubmissionFailed() });
       this._amount.load();
-      console.log("Amounts Swapped To", window.EngridAmounts[this._frequency.frequency]);
+      if (ENGrid.getOption('Debug')) console.log("Amounts Swapped To", window.EngridAmounts[this._frequency.frequency]);
     }
   }
 
