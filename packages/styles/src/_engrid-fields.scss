@@ -207,7 +207,7 @@ input.en__contactDetails__select {
 }
 
 .en__field__input--checkbox:checked + .en__field__label:before,
-.en__contactDetails__select:checked + .en__contactDetails__rows:before {
+.en__contacts:not(.en__contacts--hideCheck) .en__contactDetails__select:checked + .en__contactDetails__rows:before {
   color: var(--theme-typography-checkbox-checked-color);
   background-color: var(--theme-typography-checkbox-checked-background-color);
   -webkit-box-shadow: inset 0 0 0 4px #ffffff;
@@ -217,7 +217,7 @@ input.en__contactDetails__select {
 }
 
 .en__field__input--checkbox:checked + .en__field__label::after,
-.en__contactDetails__select:checked + .en__contactDetails__rows::after {
+.en__contacts:not(.en__contacts--hideCheck) .en__contactDetails__select:checked + .en__contactDetails__rows::after {
   // Needs and SVG safe color passed in https://stackoverflow.com/questions/25477819/scss-variable-in-background-image-with-svg-image-data-uri
   // content: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='21' height='16' viewBox='0 0 21 16'><path fill="#color-white" fill-rule='nonzero' d='M18.76.16L6.68 12.113l-4.44-4.392a.555.555 0 0 0-.779 0L.161 9.006a.541.541 0 0 0 0 .771L6.29 15.84a.555.555 0 0 0 .78 0l13.77-13.624a.541.541 0 0 0 0-.771L19.539.16a.555.555 0 0 0-.779 0z'/></svg>");
   // fill: var(--theme-cta);
