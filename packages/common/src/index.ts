@@ -18,3 +18,4 @@ export * from './skip-link';
 export * from './src-defer';
 export * from './set-recurr-freq';
 export * from './page-background';
+export * from './neverbounce';

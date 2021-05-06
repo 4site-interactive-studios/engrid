@@ -7,9 +7,12 @@ declare global {
         pageJson: any;
         enOnSubmit: any;
         enOnError: any;
+        enOnValidate: any;
         EngagingNetworks: any;
         EngridAmounts: any;
         EngridOptions: Options,
-        EngridUpsell: UpsellOptions
+        EngridUpsell: UpsellOptions,
+        _NBSettings: object,
+        _nb: any
     }
 }

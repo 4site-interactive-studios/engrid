@@ -116,4 +116,16 @@ export abstract class ENGrid {
     static getOption<K extends keyof Options>(key: K): Options[K] | null {
         return window.EngridOptions[key] || null;
     }
+    // Load an external script
+    static loadJS(url: string, onload: (() => void) | null = null, head: boolean = true) {
+        const scriptTag = document.createElement('script');
+        scriptTag.src = url;
+        scriptTag.onload = onload;
+        if (head) {
+            document.getElementsByTagName("head")[0].appendChild(scriptTag);
+            return;
+        }
+        document.getElementsByTagName("body")[0].appendChild(scriptTag);
+        return;
+    }
 }

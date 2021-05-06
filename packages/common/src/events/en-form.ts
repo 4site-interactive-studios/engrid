@@ -3,8 +3,10 @@ import { ENGrid } from "../";
 
 export class EnForm {
   private _onSubmit = new SignalDispatcher();
+  private _onValidate = new SignalDispatcher();
   private _onError = new SignalDispatcher();
   public submit: boolean = true;
+  public validate: boolean = true;
 
   private static instance: EnForm;
 
@@ -21,6 +23,11 @@ export class EnForm {
   public dispatchSubmit() {
     this._onSubmit.dispatch();
     if (ENGrid.debug) console.log("dispatchSubmit");
+  }
+
+  public dispatchValidate() {
+    this._onValidate.dispatch();
+    if (ENGrid.debug) console.log("dispatchValidate");
   }
 
   public dispatchError() {
@@ -49,5 +56,10 @@ export class EnForm {
   public get onError() {
     // if(ENGrid.debug) console.log("onError");
     return this._onError.asEvent();
+  }
+
+  public get onValidate() {
+    // if(ENGrid.debug) console.log("onError");
+    return this._onValidate.asEvent();
   }
 }

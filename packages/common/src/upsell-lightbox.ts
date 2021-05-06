@@ -4,7 +4,6 @@ import { DonationAmount, DonationFrequency, EnForm } from "./events";
 
 export class UpsellLightbox {
   private options: UpsellOptions;
-  private debug: boolean;
   private overlay: HTMLDivElement = document.createElement("div");
   private _form: EnForm = EnForm.getInstance();
   public _amount: DonationAmount = DonationAmount.getInstance();
@@ -12,9 +11,8 @@ export class UpsellLightbox {
   constructor() {
     let options = "EngridUpsell" in window ? window.EngridUpsell : {};
     this.options = { ...UpsellOptionsDefaults, ...options };
-    this.debug = ENGrid.getOption('Debug') || false;
     if (!this.shouldRun()) {
-      if (this.debug) console.log("Upsell script should NOT run");
+      if (ENGrid.debug) console.log("Upsell script should NOT run");
       // If we're not on a Donation Page, get out
       return;
     }
@@ -106,7 +104,7 @@ export class UpsellLightbox {
     if (otherField) {
       otherField.addEventListener("keyup", this.popupOtherField.bind(this));
     }
-    if (this.debug) console.log("Upsell script rendered");
+    if (ENGrid.debug) console.log("Upsell script rendered");
   }
   // Should we run the script?
   private shouldRun() {
@@ -182,7 +180,7 @@ export class UpsellLightbox {
       !this.overlay.classList.contains("is-submitting") &&
       upsellAmount > 0
     ) {
-      if (this.debug) {
+      if (ENGrid.debug) {
         console.log("Upsell Frequency", this._frequency.frequency);
         console.log("Upsell Amount", this._amount.amount);
         console.log("Upsell Suggested Amount", upsellAmount);
@@ -193,7 +191,7 @@ export class UpsellLightbox {
   }
 
   private open() {
-    if (this.debug) console.log("Upsell Script Triggered");
+    if (ENGrid.debug) console.log("Upsell Script Triggered");
     if (!this.shouldOpen()) {
       // Returning true will give the "go ahead" to submit the form
       this._form.submit = true;
@@ -208,7 +206,7 @@ export class UpsellLightbox {
   private continue(e: Event) {
     e.preventDefault();
     if (e.target instanceof Element && document.querySelector("#upsellYesButton")?.contains(e.target)) {
-      if (this.debug) console.log("Upsold");
+      if (ENGrid.debug) console.log("Upsold");
       this._frequency.setFrequency("monthly");
       this._amount.setAmount(this.getUpsellAmount());
     }

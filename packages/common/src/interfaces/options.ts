@@ -8,11 +8,14 @@ export interface Options {
     CurrencySeparator?: string,
     SkipToMainContentLink?: boolean,
     SrcDefer?: boolean,
+    NeverBounceAPI?: string | null,
+    NeverBounceDateField?: string | null,
     Debug?: boolean,
     onLoad?: () => void,
     onResize?: () => void,
     onSubmit?: () => void,
     onError?: () => void,
+    onValidate?: () => void,
 }
 
 export const OptionsDefaults: Options = {
@@ -25,5 +28,7 @@ export const OptionsDefaults: Options = {
     CurrencySeparator: '.',
     SkipToMainContentLink: true,
     SrcDefer: true,
+    NeverBounceAPI: null,
+    NeverBounceDateField: null,
     Debug: false,
 }

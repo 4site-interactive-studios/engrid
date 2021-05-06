@@ -1,5 +1,5 @@
 import { DonationAmount, DonationFrequency, EnForm, ProcessingFees } from './events';
-import { UpsellLightbox, ENGrid, Options, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, CapitalizeFields, ClickToExpand, legacy, IE, LiveVariables, sendIframeHeight, ShowHideRadioCheckboxes, SimpleCountrySelect, SkipToMainContentLink, SrcDefer } from './';
+import { UpsellLightbox, ENGrid, Options, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, CapitalizeFields, ClickToExpand, legacy, IE, LiveVariables, sendIframeHeight, ShowHideRadioCheckboxes, SimpleCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce } from './';
 
 export class App extends ENGrid {
 
@@ -69,6 +69,7 @@ export class App extends ENGrid {
         // Client onSubmit and onError functions
         this._form.onSubmit.subscribe(() => this.onSubmit());
         this._form.onError.subscribe(() => this.onError());
+        this._form.onValidate.subscribe(() => this.onValidate());
 
         // Event Listener Examples
         this._amount.onAmountChange.subscribe((s) => console.log(`Live Amount: ${s}`));
@@ -82,6 +83,10 @@ export class App extends ENGrid {
         };
         window.enOnError = () => {
             this._form.dispatchError();
+        };
+        window.enOnValidate = () => {
+            this._form.dispatchValidate();
+            return this._form.validate;
         };
 
         // iFrame Logic
@@ -112,6 +117,8 @@ export class App extends ENGrid {
         if (this.options.ClickToExpand) new ClickToExpand();
         if (this.options.SkipToMainContentLink) new SkipToMainContentLink();
         if (this.options.SrcDefer) new SrcDefer();
+
+        if (this.options.NeverBounceAPI) new NeverBounce(this.options.NeverBounceAPI, this.options.NeverBounceDateField);
 
         this.setDataAttributes();
 
@@ -150,6 +157,13 @@ export class App extends ENGrid {
         if (this.inIframe()) {
             if (App.debug) console.log("iFrame Event - window.onload");
             sendIframeHeight();
+        }
+    }
+
+    private onValidate() {
+        if (this.options.onValidate) {
+            if (App.debug) console.log("Client onValidate Triggered");
+            this.options.onValidate();
         }
     }
 
