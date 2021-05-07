@@ -551,7 +551,8 @@ let field_expiration_month = field_expiration_parts[0] as HTMLSelectElement;
 let field_expiration_year = field_expiration_parts[1] as HTMLSelectElement;
 
 /* The Donation Other Giving Amount is a "Number" type input field.
-   It also has its step value set to 1 so it increments up/down by whole dollars
+   It also has its step value set to .01 so it increments up/down by once whole cent.
+   This step also client-side prevents users from entering a fraction of a penny.
    And it has a min set to 5 so nothing less can be submitted
 */
 export const SetEnFieldOtherAmountRadioStepValue = () => {
@@ -559,7 +560,7 @@ export const SetEnFieldOtherAmountRadioStepValue = () => {
     ".en__field--donationAmt .en__field__input--other"
   ) as HTMLInputElement;
   if (enFieldOtherAmountRadio) {
-    enFieldOtherAmountRadio.setAttribute("step", "1");
+    enFieldOtherAmountRadio.setAttribute("step", ".01");
     enFieldOtherAmountRadio.setAttribute("type", "number");
     enFieldOtherAmountRadio.setAttribute("min", "5");
   }
