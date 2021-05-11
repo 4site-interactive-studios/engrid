@@ -62,21 +62,13 @@
 
 /* Make the spacing between wrapping elements tighter so the user knows they're related */
 
-
-  .en__field--select
-  .en__field__item:not(.en__field__item--other),
-  .en__field--radio
-  .en__field__item:not(.en__field__item--other),
-  .en__field--checkbox
-  .en__field__item:not(.en__field__item--other),
-  .en__field--splittext
-  .en__field__item:not(.en__field__item--other),
-  .en__field--tripletext
-  .en__field__item:not(.en__field__item--other),
-  .en__field--splitselect
-  .en__field__item:not(.en__field__item--other),
-  .en__field--tripleselect
-  .en__field__item:not(.en__field__item--other) {
+.en__field--select .en__field__item:not(.en__field__item--other),
+.en__field--radio .en__field__item:not(.en__field__item--other),
+.en__field--checkbox .en__field__item:not(.en__field__item--other),
+.en__field--splittext .en__field__item:not(.en__field__item--other),
+.en__field--tripletext .en__field__item:not(.en__field__item--other),
+.en__field--splitselect .en__field__item:not(.en__field__item--other),
+.en__field--tripleselect .en__field__item:not(.en__field__item--other) {
   margin-bottom: 0.5rem;
   margin-right: 1rem;
   display: flex;
@@ -141,7 +133,7 @@ input.en__contactDetails__select {
 }
 
 .en__field__input--radio + .en__field__label,
-.en__field__input--checkbox + .en__field__label{
+.en__field__input--checkbox + .en__field__label {
   position: relative;
   margin-left: 2rem;
   cursor: pointer;
@@ -156,7 +148,7 @@ input.en__contactDetails__select {
 
 .en__field__input--radio + .en__field__label:before,
 .en__field__input--checkbox + .en__field__label:before,
-.en__contactDetails__rows:before {
+.en__contacts:not(.en__contacts--hideCheck) .en__contactDetails__rows:before {
   content: "";
   position: absolute;
   height: 1.4rem;
@@ -198,7 +190,7 @@ input.en__contactDetails__select {
 // @BODY Currently, the checkbox checkmark uses the checkmark character, but if the font doesn't have this character or the designer wants to use something else, it falls apart. We should switch to an "image" based solution. Ideally, it would be a data-uri and not require a separate image asset. This should be added as default and client SCSS variable where the necessary CSS are mapped to custom properties.
 // REF: Cross browser tested radio / checkbox stylings https://codepen.io/aaroniker/pen/ZEYoxEY
 
-.en__field__input--radio:checked + .en__field__label:before{
+.en__field__input--radio:checked + .en__field__label:before {
   color: var(--theme-typography-radio-selected-color);
   background-color: var(--theme-typography-radio-radio-background-color);
   -webkit-box-shadow: inset 0 0 0 4px #ffffff;
@@ -207,21 +199,25 @@ input.en__contactDetails__select {
 }
 
 .en__field__input--checkbox:checked + .en__field__label:before,
-.en__contacts:not(.en__contacts--hideCheck) .en__contactDetails__select:checked + .en__contactDetails__rows:before {
+.en__contacts:not(.en__contacts--hideCheck)
+  .en__contactDetails__select:checked
+  + .en__contactDetails__rows:before {
   color: var(--theme-typography-checkbox-checked-color);
   background-color: var(--theme-typography-checkbox-checked-background-color);
   -webkit-box-shadow: inset 0 0 0 4px #ffffff;
   box-shadow: inset 0 0 0 4px #ffffff;
   border-width: var(--theme-typography-checkbox-border-width);
-  border-color: var(--theme-typography-checkbox-border-color); 
+  border-color: var(--theme-typography-checkbox-border-color);
 }
 
 .en__field__input--checkbox:checked + .en__field__label::after,
-.en__contacts:not(.en__contacts--hideCheck) .en__contactDetails__select:checked + .en__contactDetails__rows::after {
+.en__contacts:not(.en__contacts--hideCheck)
+  .en__contactDetails__select:checked
+  + .en__contactDetails__rows::after {
   // Needs and SVG safe color passed in https://stackoverflow.com/questions/25477819/scss-variable-in-background-image-with-svg-image-data-uri
   // content: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='21' height='16' viewBox='0 0 21 16'><path fill="#color-white" fill-rule='nonzero' d='M18.76.16L6.68 12.113l-4.44-4.392a.555.555 0 0 0-.779 0L.161 9.006a.541.541 0 0 0 0 .771L6.29 15.84a.555.555 0 0 0 .78 0l13.77-13.624a.541.541 0 0 0 0-.771L19.539.16a.555.555 0 0 0-.779 0z'/></svg>");
   // fill: var(--theme-cta);
-  content: "✓"; // REF: https://www.toptal.com/designers/htmlarrows/symbols/check-mark/ 
+  content: "✓"; // REF: https://www.toptal.com/designers/htmlarrows/symbols/check-mark/
   position: absolute;
   left: -28px;
   top: 5px;
@@ -346,7 +342,6 @@ input.en__contactDetails__select {
 
 /* Custom Styles */
 
-
 // Inline Country Helper
 .inline-country .en__field--country {
   position: absolute;
@@ -369,9 +364,9 @@ input.en__contactDetails__select {
 }
 
 // Remove Number Input Spinners https://stackoverflow.com/a/4298216
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-	-webkit-appearance: none;
-	// margin: 0;
-	// -moz-appearance: textfield;
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  // margin: 0;
+  // -moz-appearance: textfield;
 }
