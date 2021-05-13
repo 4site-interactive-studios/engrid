@@ -118,7 +118,7 @@ export class App extends ENGrid {
         if (this.options.SkipToMainContentLink) new SkipToMainContentLink();
         if (this.options.SrcDefer) new SrcDefer();
 
-        if (this.options.NeverBounceAPI) new NeverBounce(this.options.NeverBounceAPI, this.options.NeverBounceDateField);
+        if (this.options.NeverBounceAPI) new NeverBounce(this.options.NeverBounceAPI, this.options.NeverBounceDateField, this.options.NeverBounceStatusField);
 
         this.setDataAttributes();
 

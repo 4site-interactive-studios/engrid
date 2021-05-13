@@ -7,7 +7,8 @@ export class NeverBounce {
     public emailField: HTMLInputElement | null = null;
     public emailWrapper = document.querySelector(".en__field--emailAddress") as HTMLDivElement;
     public nbDate: HTMLInputElement | null = null;
-    constructor(private apiKey: string, public dateField: string | null = null) {
+    public nbStatus: HTMLInputElement | null = null;
+    constructor(private apiKey: string, public dateField: string | null = null, public statusField: string | null = null) {
         window._NBSettings = {
             apiKey: this.apiKey,
             autoFieldHookup: false,
@@ -25,12 +26,13 @@ export class NeverBounce {
     private init() {
         this.emailField = document.getElementById("en__field_supporter_emailAddress") as HTMLInputElement;
         if (this.dateField && document.getElementsByName(this.dateField).length) this.nbDate = document.querySelector("[name='" + this.dateField + "']") as HTMLInputElement;
+        if (this.statusField && document.getElementsByName(this.statusField).length) this.nbStatus = document.querySelector("[name='" + this.statusField + "']") as HTMLInputElement;
         if (!this.emailField) {
             if (ENGrid.debug) console.log('Engrid Neverbounce: E-mail Field Not Found');
             return;
         }
         if (!this.emailField) {
-            console.log('Engrid Neverbounce: E-mail Field Not Found', this.emailField);
+            if (ENGrid.debug) console.log('Engrid Neverbounce: E-mail Field Not Found', this.emailField);
             return;
         }
         if (ENGrid.debug) console.log('Engrid Neverbounce External Script Loaded');
@@ -41,7 +43,7 @@ export class NeverBounce {
         // Define HTML structure for a Custom NB Message and insert it after Email field
         const nbCustomMessageHTML = document.createElement("div");
         nbCustomMessageHTML.innerHTML =
-            '<div id="nb-feedback" class="nb-feedback nb-hidden">Enter a valid email.</div>';
+            '<div id="nb-feedback" class="en__field__error nb-hidden">Enter a valid email.</div>';
         this.insertAfter(nbCustomMessageHTML, this.emailField);
 
         const NBClass = this;
@@ -59,20 +61,17 @@ export class NeverBounce {
                     field.addEventListener("nb:clear", function (e) {
                         NBClass.setEmailStatus("clear");
                         if (NBClass.nbDate) NBClass.nbDate.value = "";
-                    });
-
-                    // Never Bounce: Do work when waiting for results
-                    field.addEventListener("nb:loading", function (e) {
-                        NBClass.setEmailStatus("loading");
+                        if (NBClass.nbStatus) NBClass.nbStatus.value = "";
                     });
 
                     // Never Bounce: Do work when results have an input that does not look like an email (i.e. missing @ or no .com/.net/etc...)
                     field.addEventListener("nb:soft-result", function (e) {
                         NBClass.setEmailStatus("soft-result");
                         if (NBClass.nbDate) NBClass.nbDate.value = "";
+                        if (NBClass.nbStatus) NBClass.nbStatus.value = "";
                     });
 
-                    // Never Bounce: When results have been recieved
+                    // Never Bounce: When results have been received
                     field.addEventListener("nb:result", function (e) {
                         if ((<CustomEvent>e).detail.result.is(window._nb.settings.getAcceptedStatusCodes())) {
                             NBClass.setEmailStatus("valid");
@@ -91,7 +90,32 @@ export class NeverBounce {
 
     }
 
+    private clearStatus() {
+        if (!this.emailField) {
+            if (ENGrid.debug) console.log('Engrid Neverbounce: E-mail Field Not Found');
+            return;
+        }
+        this.emailField.classList.remove("rm-error");
+        // Search page for the NB Wrapper div and set as variable
+        const nb_email_field_wrapper = <HTMLElement>document.getElementById("nb-wrapper");
+
+        // Search page for the NB Feedback div and set as variable
+        const nb_email_feedback_field = <HTMLElement>document.getElementById("nb-feedback");
+        nb_email_field_wrapper.className = "";
+
+        nb_email_feedback_field.className = "en__field__error nb-hidden";
+        nb_email_feedback_field.innerHTML = "";
+        this.emailWrapper.classList.remove("en__field--validationFailed");
+
+    }
+
+    private deleteENFieldError() {
+        const errorField = <HTMLElement>document.querySelector(".en__field--emailAddress>div.en__field__error");
+        if (errorField) errorField.remove();
+    }
+
     private setEmailStatus(status: string) {
+        if (ENGrid.debug) console.log("Neverbounce Status:", status);
         if (!this.emailField) {
             if (ENGrid.debug) console.log('Engrid Neverbounce: E-mail Field Not Found');
             return;
@@ -108,32 +132,21 @@ export class NeverBounce {
         const nb_email_feedback_hidden = "nb-hidden";
         const nb_email_feedback_loading = "nb-loading";
         const nb_email_field_error = "rm-error";
-        const existing_errors = this.emailWrapper.querySelector(
-            ".en__field__error"
-        );
-        if (existing_errors) {
-            // remove the existing default error and replace with one that fits in this custom framework
-            this.emailWrapper.removeChild(
-                existing_errors
-            );
-            status = "required"; // special case status that we created, not NB
+
+        if (!nb_email_feedback_field) {
+            const nbWrapperDiv = nb_email_field_wrapper.querySelector('div');
+            if (nbWrapperDiv) nbWrapperDiv.innerHTML = '<div id="nb-feedback" class="en__field__error nb-hidden">Enter a valid email.</div>';
         }
 
         if (status == "valid") {
-            this.emailField.classList.remove(nb_email_field_error);
-
-            nb_email_feedback_field.innerHTML = "Email Validated!";
-            nb_email_feedback_field.classList.remove(nb_email_feedback_hidden);
-            nb_email_feedback_field.classList.remove(nb_email_feedback_loading);
-            nb_email_field_wrapper.classList.remove(nb_email_field_wrapper_error);
-            nb_email_field_wrapper.classList.add(nb_email_field_wrapper_success);
-
+            this.clearStatus();
         } else {
             nb_email_field_wrapper.classList.remove(nb_email_field_wrapper_success);
             nb_email_field_wrapper.classList.add(nb_email_field_wrapper_error);
 
             switch (status) {
                 case "required": // special case status that we added ourselves -- doesn't come from NB
+                    this.deleteENFieldError();
                     nb_email_feedback_field.innerHTML = "A valid email is required";
                     nb_email_feedback_field.classList.remove(nb_email_feedback_loading);
                     nb_email_feedback_field.classList.remove(nb_email_feedback_hidden);
@@ -141,30 +154,25 @@ export class NeverBounce {
                     break;
                 case "soft-result":
                     if (this.emailField.value) {
+                        this.deleteENFieldError();
                         nb_email_feedback_field.innerHTML = "Invalid email";
                         nb_email_feedback_field.classList.remove(nb_email_feedback_hidden);
+                        this.emailField.classList.add(nb_email_field_error);
                     } else {
-                        nb_email_feedback_field.innerHTML = "";
-                        nb_email_feedback_field.classList.add(nb_email_feedback_hidden);
+                        this.clearStatus();
                     }
-                    nb_email_feedback_field.classList.remove(nb_email_feedback_loading);
-                    this.emailField.classList.add(nb_email_field_error);
                     break;
                 case "invalid":
+                    this.deleteENFieldError();
                     nb_email_feedback_field.innerHTML = "Invalid email";
                     nb_email_feedback_field.classList.remove(nb_email_feedback_loading);
                     nb_email_feedback_field.classList.remove(nb_email_feedback_hidden);
                     this.emailField.classList.add(nb_email_field_error);
                     break;
                 case "loading":
-                    nb_email_feedback_field.innerHTML = "Email being verified";
-                    nb_email_feedback_field.classList.add(nb_email_feedback_loading);
-                    nb_email_feedback_field.classList.remove(nb_email_feedback_hidden);
-                    this.emailField.classList.remove(nb_email_field_error);
-                    break;
                 case "clear":
-                    break;
                 default:
+                    this.clearStatus();
                     break;
             }
         }
@@ -186,6 +194,9 @@ export class NeverBounce {
         wrapper.appendChild(el);
     }
     private validate() {
+        if (this.nbStatus) {
+            this.nbStatus.value = ENGrid.getFieldValue("nb-result");
+        }
         if (!['catchall', 'valid'].includes(ENGrid.getFieldValue('nb-result'))) {
             this.setEmailStatus("required");
             this.emailField?.focus();

@@ -10,6 +10,7 @@ export interface Options {
     SrcDefer?: boolean,
     NeverBounceAPI?: string | null,
     NeverBounceDateField?: string | null,
+    NeverBounceStatusField?: string | null,
     Debug?: boolean,
     onLoad?: () => void,
     onResize?: () => void,
@@ -30,5 +31,6 @@ export const OptionsDefaults: Options = {
     SrcDefer: true,
     NeverBounceAPI: null,
     NeverBounceDateField: null,
+    NeverBounceStatusField: null,
     Debug: false,
 }
