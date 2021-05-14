@@ -1,96 +1,103 @@
 /* Default Stylings for Common Form Fields */
 /* Can be disabled by added manual-form-layout at the template or component level */
 div:not(.manual-form-layout) {
-    .en__component--formblock {
-      display: flex;
-      flex-wrap: wrap;
-    }
-  
-    .en__field--firstName,
-    .en__field--lastName,
-    .en__field--bankAccountNumber,
-    .en__field--bankRoutingNumber {
-      flex-basis: 50%;
-    }
-  
-    .en__field--ccexpire {
-      flex-basis: calc((100% / 3) * 2);
-    }
-  
-    .en__field--checkbox,
-    .en__field--emailAddress,
-    .en__field--phoneNumber,
-    .en__field--phoneNumber2,
-    .en__field--country,
-    .en__field--address1,
-    .en__field--honname,
-    .en__field--infname,
-    .en__field--infemail,
-    .en__field--infcountry,
-    .en__field--infadd1,
-    .en__field--gftrsn,
-    .en__field--paymenttype,
-    .en__field--ccnumber,
-    .en__field--bankAccountType {
-      flex-basis: 100%;
-      padding-left: 0;
-      padding-right: 0;
-    }
-  
-    .en__field--city,
-    .en__field--region,
-    .en__field--postcode,
-    .en__field--infcity,
-    .en__field--infreg,
-    .en__field--infpostcd,
-    .en__field--ccvv {
-      flex-basis: calc(100% / 3);
-    }
-  
-    .en__field--city,
-    .en__field--infcity,
-    .en__field--ccexpire {
-      padding-left: 0;
-    }
-  
-    .en__field--lastName,
-    .en__field--postcode,
-    .en__field--infpostcd,
-    .en__field--ccvv {
-      padding-right: 0;
-    }
-
-    .en__field--recurrfreq,
-    .en__field--recurrpay,
-    .en__field--donationAmt {
-      // align-items: center;
-      padding-left: 0;
-      padding-right: 0;
-    }
-
-    .en__field--recurrfreq .en__field__element,
-    .en__field--recurrpay .en__field__element,
-    .en__field--donationAmt .en__field__element{
-      // align-items: center;
-      justify-content: center;
-    }
-  
-    .en__field--donationAmt.en__field--withOther
-      .en__field__element--radio
-      .en__field__item:nth-last-child(1) {
-      display: flex !important;
-    }
-  
-    .en__field--donationAmt.en__field--withOther
-      .en__field__element--radio
-      .en__field__item:nth-last-child(2) {
-      display: none !important;
-    }
-  
-    .en__field--donationAmt.en__field--withOther {
-      // align-items: center;
-    }
-
-      // @TODO Style mandatory checkboxes https://d.pr/i/KAZKV6
+  .en__component--formblock {
+    display: flex;
+    flex-wrap: wrap;
   }
-  
+
+  .en__field--firstName,
+  .en__field--lastName,
+  .en__field--bankAccountNumber,
+  .en__field--bankRoutingNumber {
+    flex-basis: 50%;
+  }
+
+  .en__field--ccexpire {
+    flex-basis: calc((100% / 3) * 2);
+  }
+
+  .en__field--survey,
+  .en__field--number,
+  .en__field--calendar,
+  .en__field--tripletext,
+  .en__field--splitselect,
+  .en__field--splittext,
+  .en__field--checkbox,
+  .en__field--radio,
+  .en__field--select,
+  .en__field--emailAddress,
+  .en__field--phoneNumber,
+  .en__field--phoneNumber2,
+  .en__field--country,
+  .en__field--address1,
+  .en__field--honname,
+  .en__field--infname,
+  .en__field--infemail,
+  .en__field--infcountry,
+  .en__field--infadd1,
+  .en__field--gftrsn,
+  .en__field--paymenttype,
+  .en__field--ccnumber,
+  .en__field--bankAccountType {
+    flex-basis: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .en__field--city,
+  .en__field--region,
+  .en__field--postcode,
+  .en__field--infcity,
+  .en__field--infreg,
+  .en__field--infpostcd,
+  .en__field--ccvv {
+    flex-basis: calc(100% / 3);
+  }
+
+  .en__field--city,
+  .en__field--infcity,
+  .en__field--ccexpire {
+    padding-left: 0;
+  }
+
+  .en__field--lastName,
+  .en__field--postcode,
+  .en__field--infpostcd,
+  .en__field--ccvv {
+    padding-right: 0;
+  }
+
+  .en__field--recurrfreq,
+  .en__field--recurrpay,
+  .en__field--donationAmt {
+    // align-items: center;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .en__field--recurrfreq .en__field__element,
+  .en__field--recurrpay .en__field__element,
+  .en__field--donationAmt .en__field__element {
+    // align-items: center;
+    justify-content: center;
+  }
+
+  .en__field--donationAmt.en__field--withOther
+    .en__field__element--radio
+    .en__field__item:nth-last-child(1) {
+    display: flex !important;
+  }
+
+  .en__field--donationAmt.en__field--withOther
+    .en__field__element--radio
+    .en__field__item:nth-last-child(2) {
+    display: none !important;
+  }
+
+  .en__field--donationAmt.en__field--withOther {
+    // align-items: center;
+  }
+
+  // @TODO Style mandatory checkboxes https://d.pr/i/KAZKV6
+}
