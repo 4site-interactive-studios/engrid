@@ -150,22 +150,25 @@ export class UpsellLightbox {
   }
 
   // Return the Suggested Upsell Amount
-  private getUpsellAmount() {
+  private getUpsellAmount(): number {
     const amount = this._amount.amount;
     const otherAmount = parseFloat(this.overlay.querySelector<HTMLInputElement>("#secondOtherField")?.value ?? "");
     if (otherAmount > 0) {
       return otherAmount;
     }
     let upsellAmount: string | number = 0;
-    this.options.amountRange.forEach((val) => {
+
+    for (let i = 0; i < this.options.amountRange.length; i++) {
+      let val = this.options.amountRange[i];
       if (upsellAmount == 0 && amount <= val.max) {
         upsellAmount = val.suggestion;
-        if (typeof val.suggestion != 'number') {
-          const suggestionMath = val.suggestion.replace("amount", amount.toFixed(2));
-          upsellAmount = Function('"use strict";return (' + suggestionMath + ')')();
+        if (typeof upsellAmount !== 'number') {
+          const suggestionMath = upsellAmount.replace("amount", amount.toFixed(2));
+          upsellAmount = parseFloat(Function('"use strict";return (' + suggestionMath + ')')());
         }
+        break;
       }
-    });
+    }
     return upsellAmount;
   }
   private shouldOpen() {
