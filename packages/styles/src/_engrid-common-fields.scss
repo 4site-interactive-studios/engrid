@@ -54,6 +54,14 @@ div:not(.manual-form-layout) {
   .en__field--ccvv {
     flex-basis: calc(100% / 3);
   }
+  .has-title {
+    justify-content: space-between;
+    .en__field {
+      flex-basis: 32%;
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
 
   .en__field--city,
   .en__field--infcity,
