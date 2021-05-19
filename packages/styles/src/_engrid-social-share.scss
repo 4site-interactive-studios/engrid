@@ -1,0 +1,34 @@
+.en__component--socialshareblock {
+  display: flex;
+  align-items: center;
+  min-width: 160px;
+  &::before {
+    content: "SHARE";
+    box-sizing: border-box;
+    font-family: var(--theme-typography-p-font-family);
+    color: var(--theme-typography-p-color);
+    line-height: var(--theme-typography-p-line-height);
+    text-align: right;
+    font-size: 12px;
+    letter-spacing: 0.7px;
+    font-weight: 700;
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    white-space: nowrap;
+    @include mq($until: tablet) {
+      content: none;
+    }
+  }
+  .en__socialShares {
+    a {
+      box-sizing: content-box;
+      align-items: center;
+      cursor: pointer;
+      display: block;
+      img {
+        border-radius: var(--theme-body-border-radius);
+      }
+    }
+  }
+}
