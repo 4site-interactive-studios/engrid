@@ -27,7 +27,10 @@ export class ApplePay {
 
     private async checkApplePay() {
         const pageform = document.querySelector("form.en__component--page") as HTMLFormElement;
-        if (!this.applePay || !window.hasOwnProperty('ApplePaySession')) return false;
+        if (!this.applePay || !window.hasOwnProperty('ApplePaySession')) {
+            if (ENGrid.debug) console.log('Apple Pay DISABLED');
+            return false;
+        }
 
         const promise = ApplePaySession.canMakePaymentsWithActiveCard(merchantIdentifier);
         let applePayEnabled: Boolean = false;
@@ -68,6 +71,7 @@ export class ApplePay {
             var xhr = new XMLHttpRequest();
             xhr.onload = function () {
                 var data = JSON.parse(this.responseText);
+                if (ENGrid.debug) console.log('Apple Pay Validation', data);
                 resolve(data);
             };
             xhr.onerror = reject;
@@ -92,8 +96,10 @@ export class ApplePay {
         const enFieldPaymentType = document.querySelector(
             "#en__field_transaction_paymenttype"
         ) as HTMLSelectElement;
+        const applePayToken = document.getElementById("applePayToken") as HTMLInputElement;
+        const formClass = this._form;
         // Only work if Payment Type is Apple Pay
-        if (enFieldPaymentType.value == 'applepay') {
+        if (enFieldPaymentType.value == 'applepay' && applePayToken.value == '') {
             try {
                 let donationAmount = this._amount.amount;
                 var request = {
@@ -107,25 +113,35 @@ export class ApplePay {
                     }
                 }
                 var session = new ApplePaySession(1, request);
+                var thisClass = this;
                 session.onvalidatemerchant = function (event: any) {
-                    this.performValidation(event.validationURL).then(function (merchantSession: any) {
+                    thisClass.performValidation(event.validationURL).then(function (merchantSession: any) {
+                        if (ENGrid.debug) console.log('Apple Pay merchantSession', merchantSession);
                         session.completeMerchantValidation(merchantSession);
                     });
                 }
                 session.onpaymentauthorized = function (event: any) {
-                    this.sendPaymentToken(event.payment.token).then(function (success: any) {
+
+                    thisClass.sendPaymentToken(event.payment.token).then(function (success: any) {
+                        if (ENGrid.debug) console.log('Apple Pay Token', event.payment.token);
                         (document.getElementById("applePayToken") as HTMLInputElement).value = JSON.stringify(event.payment.token);
+                        formClass.submitForm();
                     });
                 }
                 session.oncancel = function (event: any) {
                     if (ENGrid.debug) console.log('Cancelled', event);
                     alert("You cancelled. Sorry it didn't work out.");
+                    formClass.dispatchError();
                 }
                 session.begin();
+                this._form.submit = false;
+                return false;
             } catch (e) {
                 alert("Developer mistake: '" + e.message + "'");
+                formClass.dispatchError();
             }
         }
-
+        this._form.submit = true;
+        return true;
     }
 }

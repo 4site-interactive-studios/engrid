@@ -270,17 +270,18 @@ input.en__contactDetails__select {
 
 /* Includes overrides of existing CSS, need for resolve this duplicate styling */
 .en__field__element--splittext .en__field__item:nth-of-type(1),
-.en__field__element--splitselect .en__field__item:nth-of-type(1) {
+.en__field__element--splitselect:not(.en__field--ccexpire)
+  .en__field__item:nth-of-type(1) {
   flex-basis: 50% !important;
   padding-left: 0rem !important;
-  padding-right: 0.5rem !important;
   padding-bottom: 0.5rem !important;
   margin: 0 !important;
 }
 
 /* Includes overrides of existing CSS, need for resolve this duplicate styling */
 .en__field__element--splittext .en__field__item:nth-of-type(2),
-.en__field__element--splitselect .en__field__item:nth-of-type(2) {
+.en__field__element--splitselect:not(.en__field--ccexpire)
+  .en__field__item:nth-of-type(2) {
   flex-basis: 50% !important;
   padding-left: 0.5rem !important;
   padding-right: 0rem !important;

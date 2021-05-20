@@ -13,7 +13,7 @@ div:not(.manual-form-layout) {
     flex-basis: 50%;
   }
 
-  .en__field--ccexpire {
+  .en__field--splitselect.en__field--ccexpire {
     flex-basis: calc((100% / 3) * 2);
   }
 
