@@ -26,6 +26,7 @@ div:not(.manual-form-layout) {
   .en__field--checkbox,
   .en__field--radio,
   .en__field--select,
+  .en__field--title,
   .en__field--emailAddress,
   .en__field--phoneNumber,
   .en__field--phoneNumber2,
@@ -53,14 +54,6 @@ div:not(.manual-form-layout) {
   .en__field--infpostcd,
   .en__field--ccvv {
     flex-basis: calc(100% / 3);
-  }
-  .has-title {
-    justify-content: space-between;
-    .en__field {
-      flex-basis: 32%;
-      padding-left: 0;
-      padding-right: 0;
-    }
   }
 
   .en__field--city,
