@@ -132,6 +132,11 @@ input.en__contactDetails__select {
   white-space: nowrap;
 }
 
+/* Helps when the field label gets additional content added to it. https://d.pr/v/9rFaiW */
+.en__field__label{
+  position: relative;
+}
+
 .en__field__input--radio + .en__field__label,
 .en__field__input--checkbox + .en__field__label {
   position: relative;
