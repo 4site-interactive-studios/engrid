@@ -194,6 +194,10 @@ export class NeverBounce {
         wrapper.appendChild(el);
     }
     private validate() {
+        if (!this.emailField) {
+            if (ENGrid.debug) console.log('Engrid Neverbounce validate(): E-mail Field Not Found. Returning true.');
+            return true;
+        }
         if (this.nbStatus) {
             this.nbStatus.value = ENGrid.getFieldValue("nb-result");
         }
