@@ -210,6 +210,26 @@ export class UpsellLightbox {
     e.preventDefault();
     if (e.target instanceof Element && document.querySelector("#upsellYesButton")?.contains(e.target)) {
       if (ENGrid.debug) console.log("Upsold");
+      
+      // set original amount to optional hidden field if provided in the options
+      if (this.options.upsellOriginalGiftAmountFieldName) {
+        let enFieldUpsellOriginalAmount = document.querySelector(".en__field__input.en__field__input--hidden[name='" + this.options.upsellOriginalGiftAmountFieldName + "']") as HTMLInputElement;
+        if (!enFieldUpsellOriginalAmount) {
+          let pageform = document.querySelector("form.en__component--page") as HTMLFormElement;
+
+          let input = document.createElement("input");
+          input.setAttribute("type", "hidden");
+          input.setAttribute("name", this.options.upsellOriginalGiftAmountFieldName);
+          pageform.appendChild(input);
+
+          enFieldUpsellOriginalAmount = document.querySelector('.en__field__input.en__field__input--hidden[name="' + this.options.upsellOriginalGiftAmountFieldName + '"]') as HTMLInputElement;
+        }
+
+        if (enFieldUpsellOriginalAmount) {
+          enFieldUpsellOriginalAmount.setAttribute("value", this._amount.amount);
+        }
+      }
+
       this._frequency.setFrequency("monthly");
       this._amount.setAmount(this.getUpsellAmount());
     }

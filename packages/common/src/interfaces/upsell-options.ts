@@ -23,6 +23,7 @@ export const UpsellOptionsDefaults: UpsellOptions = {
     noLabel: "No, thanks. Continue with my <br> {old-amount} one-time gift",
     otherAmount: true, // Use false to hide the "other amount" field
     otherLabel: "Or enter a different monthly amount:",
+    upsellOriginalGiftAmountFieldName: false,
     amountRange: [
         { max: 10, suggestion: 5 },
         { max: 15, suggestion: 7 },
