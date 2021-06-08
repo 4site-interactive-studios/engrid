@@ -220,13 +220,14 @@ export class UpsellLightbox {
           let input = document.createElement("input");
           input.setAttribute("type", "hidden");
           input.setAttribute("name", this.options.upsellOriginalGiftAmountFieldName);
+          input.classList.add('en__field__input', 'en__field__input--hidden');
           pageform.appendChild(input);
 
           enFieldUpsellOriginalAmount = document.querySelector('.en__field__input.en__field__input--hidden[name="' + this.options.upsellOriginalGiftAmountFieldName + '"]') as HTMLInputElement;
         }
 
         if (enFieldUpsellOriginalAmount) {
-          enFieldUpsellOriginalAmount.setAttribute("value", this._amount.amount);
+          enFieldUpsellOriginalAmount.setAttribute("value", this._amount.amount.toString());
         }
       }
 
