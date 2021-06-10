@@ -1,3 +1,97 @@
+:root{
+  // GROUPED SECTION SETTINGS (BACKGROUND COLOR, PADDING, MARGIN)
+  // CHANGE THESE PROPERTIES TO CHANGE ALL PROPERTIES VALUES IN THOSE SECTIONS
+  --theme-page-background-color: var(--color-transparent);
+  --theme-page-padding: 0px;
+  --theme-page-margin: 0px;
+
+  --theme-content-background-color: var(--color-transparent);
+  --theme-content-padding: 0px;
+  --theme-content-margin: 0px;
+
+  --theme-body-background-color: var(--color-white);
+  --theme-body-padding: 0px var(--theme-spacing-lg);
+  --theme-body-margin: 0px;
+  --theme-body-border-radius: 0px; // UNIQUE TO THE BODY
+
+  // INDIVIDUAL SECTION SETTINGS (BACKGROUND COLOR, PADDING, MARGIN)
+  --theme-page-alert-background-color: var(--theme-page-background-color);
+  --theme-page-alert-padding: var(--theme-page-padding);
+  --theme-page-alert-margin: var(--theme-page-margin);
+
+  --theme-content-header-background-color: var(--theme-content-background-color);
+  --theme-content-header-padding: var(--theme-content-padding);
+  --theme-content-header-margin: var(--theme-content-margin);
+
+  --theme-body-headerOutside-background-color: var(--color-transparent);
+  --theme-body-headerOutside-padding: var(--theme-body-padding);
+  --theme-body-headerOutside-margin: var(--theme-body-margin);
+
+  --theme-body-header-background-color: var(--theme-body-background-color);
+  --theme-body-header-padding: var(--theme-body-padding);
+  --theme-body-header-margin: var(--theme-body-margin);
+
+  --theme-body-title-background-color: var(--theme-body-background-color);
+  --theme-body-title-padding: var(--theme-body-padding);
+  --theme-body-title-margin: var(--theme-body-margin);
+
+  --theme-body-banner-background-color: var(--theme-body-background-color);
+  --theme-body-banner-padding: 0px;
+  --theme-body-banner-margin: var(--theme-body-margin);
+
+  --theme-body-bannerOverlay-background-color: var(--color-transparent);
+  --theme-body-bannerOverlay-padding: var(--theme-body-padding);
+  --theme-body-bannerOverlay-margin: var(--theme-body-margin);
+
+  --theme-body-top-background-color: var(--theme-body-background-color);
+  --theme-body-top-padding: var(--theme-body-padding);
+  --theme-body-top-margin: var(--theme-body-margin);
+
+  --theme-body-side-background-color: var(--theme-body-background-color);
+  --theme-body-side-padding: var(--theme-body-padding);
+  --theme-body-side-margin: var(--theme-body-margin);
+
+  --theme-body-main-background-color: var(--theme-body-background-color);
+  --theme-body-main-padding: var(--theme-body-padding);
+  --theme-body-main-margin: var(--theme-body-margin);
+
+  --theme-body-bottom-background-color: var(--theme-body-background-color);
+  --theme-body-bottom-padding: var(--theme-body-padding);
+  --theme-body-bottom-margin: var(--theme-body-margin);
+
+  --theme-body-footer-background-color: var(--theme-body-background-color);
+  --theme-body-footer-padding: var(--theme-body-padding);
+  --theme-body-footer-margin: var(--theme-body-margin);
+
+  --theme-body-footerOutside-background-color: var(--color-transparent);
+  --theme-body-footerOutside-padding: var(--theme-body-padding);
+  --theme-body-footerOutside-margin: var(--theme-body-margin);
+
+  --theme-content-footerSpacer-background-color: var(--theme-content-background-color);
+  --theme-content-footerSpacer-padding: var(--theme-content-padding);
+  --theme-content-footerSpacer-margin: var(--theme-content-margin);
+
+  --theme-content-preFooter-background-color: var(--theme-content-background-color);
+  --theme-content-preFooter-padding: var(--theme-content-padding);
+  --theme-content-preFooter-margin: var(--theme-content-margin);
+
+  --theme-content-footer-background-color: var(--theme-content-background-color);
+  --theme-content-footer-padding: var(--theme-content-padding);
+  --theme-content-footer-margin: var(--theme-content-margin);
+
+  --theme-page-backgroundImage-background-color: var(--theme-page-background-color);
+  --theme-page-backgroundImage-padding: 0px;
+  --theme-page-backgroundImage-margin: var(--theme-page-margin);
+
+  --theme-page-backgroundImageOverlay-background-color: var(--color-transparent);
+  --theme-page-backgroundImageOverlay-padding: var(--theme-page-padding);
+  --theme-page-backgroundImageOverlay-margin: var(--theme-page-margin);
+
+  --theme-page-customCode-background-color: var(--theme-page-background-color);
+  --theme-page-customCode-padding: var(--theme-page-padding);    
+  --theme-page-customCode-margin: var(--theme-page-margin);   
+}
+
 // ####################################################################
 //  Style Sections Both Inside AND Outside of Page Builder
 // ####################################################################

@@ -1,3 +1,9 @@
+:root{
+    // HIGHLIGHTS
+    --theme-highlight-background-color: #227F9E;
+    --theme-highlight-font-color: #FFFFFF;
+}
+
 .highlight {
     background-color: var(--theme-highlight-background-color);
     color: var(--theme-highlight-font-color);

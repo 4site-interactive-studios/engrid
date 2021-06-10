@@ -1,3 +1,12 @@
+:root{
+  // ENGRID BACKGROUND IMAGE SECTION'S BACKGROUND PATTERN
+  // This is a background pattern that is shown before the hi-resolution background image is lazy loaded in, if at all
+  // It's background color "--theme-page-backgroundImage-background-color" should be the average color of the image 
+  // REF: (https://doodad.dev/pattern-generator/)
+  --theme-page-backgroundImage-background-pattern: "url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)"; // Invisible GIF
+  --theme-page-backgroundImage-url: "url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)"; // Invisible GIF
+}
+
 // There is no reason to ever show the background image outside of pagebuilder
 // Resolves: https://d.pr/i/DnfPQF
 // REF: https://app.productive.io/2650-4site-interactive-studios-inc/tasks/1513773

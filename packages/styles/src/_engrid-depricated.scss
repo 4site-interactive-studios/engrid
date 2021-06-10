@@ -1,0 +1,18 @@
+// The Custom Properties defined here should no longer be used.
+// This is maintained to provide as much backwards compatability as possible by mapping them to a replacement
+
+:root{
+    // Lazy Loaded Banner Image
+     // As far as we can tell, this was never used
+    --theme-body-banner-image-background-color: var(--color-transparent);
+
+     // Simplified the color defintions. Rarely used: https://github.com/search?q=org%3A4site-interactive-studios+var%28--theme-error%29&type=code
+    --theme-error: var(--theme-error-red);
+
+     // As far as we can tell, this was never used
+    --theme-success: #33CC33;
+    
+     // As far as we can tell, this was never used
+    --theme-warning: #FCAC00;
+}
+  

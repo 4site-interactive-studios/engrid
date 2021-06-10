@@ -1,3 +1,11 @@
+:root{
+    // CLICK TO EXPAND
+    --theme-click-to-expand-copy-total-height: 450px;
+    --theme-click-to-expand-cta-image-url: url("https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_open.png");
+    --theme-click-to-expand-cta-image-width: 16px;
+    --theme-click-to-expand-cta-image-height: 16px;
+}
+
 // Depends on click-to-expand.ts
 body:not(#en__pagebuilder) .click-to-expand:not(.expanded){
     cursor: pointer;

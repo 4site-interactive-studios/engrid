@@ -1,3 +1,18 @@
+:root{
+    // IMAGE ATTRIBUTION OVERLAY
+    --theme-media-attribution-overlay-font-family: var(--theme-typography-default-font-family);
+    --theme-media-attribution-overlay-color: rgba(255, 255, 255, 0.9);
+    --theme-media-attribution-overlay-text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
+    --theme-media-attribution-overlay-font-size: 75%; 
+    --theme-media-attribution-overlay-font-style: normal; 
+    --theme-media-attribution-overlay-font-weight: bold;
+    --theme-media-attribution-overlay-text-transform: none;
+    --theme-media-attribution-overlay-margin: 1.25ch 1.5ch;
+    --theme-media-attribution-overlay-padding: 1.25ch 1.5ch;
+    --theme-media-attribution-overlay-background-color: rgba(0, 0, 0, 0.3);  
+}
+  
+
 figure.media-with-attribution {
 	margin: 0 auto; // Mirrors settings added to all <img>'s
     max-width: 100%; // Mirrors settings added to all <img>'s

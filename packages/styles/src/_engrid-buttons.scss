@@ -1,4 +1,53 @@
-// @TODO reconcile with engrid-typography.scss
+:root{  
+  // TYPOGRAPHY BUTTON
+  --theme-typography-button-font-family: var(--theme-typography-default-font-family);
+  --theme-typography-button-color: var(--color-white);
+  --theme-typography-button-font-size: var(--theme-root-font-size);
+  --theme-typography-button-font-weight: initial;
+  --theme-typography-button-line-height: initial;
+  --theme-typography-button-background-color: var(--color-black);
+  --theme-typography-button-border-width: initial;
+  --theme-typography-button-border-color: var(--color-black);
+  --theme-typography-button-border-radius: initial;
+
+  // TYPOGRAPHY BUTTON:HOVER
+  --theme-typography-button-hover-color: var(--theme-typography-button-color);
+  --theme-typography-button-hover-background-color: var(--theme-cta-hover);
+  --theme-typography-button-hover-border-color: var(--theme-cta-hover);
+
+  // TYPOGRAPHY BUTTON:CHECKED
+  --theme-typography-button-checked-color: var(--theme-typography-button-color);
+  --theme-typography-button-checked-background-color: var(--theme-cta-hover);
+  --theme-typography-button-checked-border-color: var(--theme-cta-hover);
+}
+
+// @TODO reconcile with definition below
+button,
+.button{
+    font-family: var(--theme-typography-button-font-family);
+    color: var(--theme-typography-button-color);
+    font-size: var(--theme-typography-button-font-size);
+    font-weight: var(--theme-typography-button-font-weight);
+    line-height: var(--theme-typography-button-line-height);
+    background-color: var(--theme-typography-button-background-color);
+    border-width: var(--theme-typography-button-border-width);
+    border-color: var(--theme-typography-button-border-color);
+    border-radius: var(--theme-typography-button-border-radius);    
+    cursor: pointer;
+
+    &:focus,
+    &:hover{
+        color: var(--theme-typography-button-hover-color);
+        background-color: var(--theme-typography-button-hover-background-color);
+        border-color: var(--theme-typography-button-hover-border-color);
+    }
+
+    &:active{
+        color: var(--theme-typography-button-checked-color);
+        background-color: var(--theme-typography-button-checked-background-color);
+        border-color: var(--theme-typography-button-checked-border-color);
+    }
+}
 
 /* @TODO Design buttons with style (Primary, Secondary, Text Only, Outine)
  * See #3 https://medium.com/eightshapes-llc/component-examples-9c4b3bb3b308

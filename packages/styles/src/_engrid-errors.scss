@@ -1,3 +1,11 @@
+:root{
+  --theme-error-red: #F12222;
+  --theme-error-red-grayscale: #949494;
+  --theme-error-red-faded: #FFEAE9;
+  --theme-error-page-group-background: #FFEAE9;
+  --theme-error-input-border-width: var(--theme-typography-input-border-width);
+}
+
 /************************************
 * Error Messages
 ***********************************/
