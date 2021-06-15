@@ -28,42 +28,42 @@
   --theme-typography-input-hover-box-shadow: 0 0 0.3125rem var(--theme-light-gray);
       
   // TYPOGRAPHY RADIO
-  --theme-typography-radio-content: initial;
+  --theme-typography-radio-content: "";
   --theme-typography-radio-color: var(--theme-cta);
   --theme-typography-radio-background-color: var(--color-white);
-  --theme-typography-radio-border-width: 1px;
-  --theme-typography-radio-border-color: var(--color-black);
+  --theme-typography-radio-border-width: 4px;
+  --theme-typography-radio-border-color: var(--theme-black);
   --theme-typography-radio-border-radius: 50%;
 
   // TYPOGRAPHY RADIO INPUT:FOCUS
   // TYPOGRAPHY RADIO INPUT:HOVER
   --theme-typography-radio-hover-color: var(--theme-typography-radio-color);
-  --theme-typography-radio-hover-background-color: var(--theme-typography-radio-background-color);
-  --theme-typography-radio-hover-border-color: var(--theme-typography-radio-border-color);
+  --theme-typography-radio-hover-background-color: var(--color-white);
+  --theme-typography-radio-hover-border-color: var(--theme-black);
 
   // TYPOGRAPHY RADIO INPUT:CHECKED
-  --theme-typography-radio-selected-color: var(--theme-typography-radio-background-color);
+  --theme-typography-radio-selected-color: var(--theme-black);
   --theme-typography-radio-selected-background-color: var(--theme-cta);
-  --theme-typography-radio-selected-border-color: var(--theme-typography-radio-border-color);
+  --theme-typography-radio-selected-border-color: var(--theme-black);
 
   // TYPOGRAPHY CHECKBOX
   --theme-typography-checkbox-color: var(--color-white);
   --theme-typography-checkbox-background-color: var(--color-white);
   --theme-typography-checkbox-border-width: 1px;
   --theme-typography-checkbox-border-color: var(--theme-black);
-  --theme-typography-checkbox-border-radius: 50%;
+  --theme-typography-checkbox-border-radius: 0px;
 
   // TYPOGRAPHY CHECKBOX INPUT:FOCUS
   // TYPOGRAPHY CHECKBOX INPUT:HOVER
   --theme-typography-checkbox-hover-color: var(--theme-typography-checkbox-color);
-  --theme-typography-checkbox-hover-background-color: var(--theme-typography-checkbox-background-color);
-  --theme-typography-checkbox-hover-border-color: var(--theme-typography-checkbox-border-color);
+  --theme-typography-checkbox-hover-background-color: #f5f5f5;
+  --theme-typography-checkbox-hover-border-color: var(--theme-black);
 
   // TYPOGRAPHY CHECKBOX INPUT:CHECKED
   --theme-typography-checkbox-checked-content:"✓";
   --theme-typography-checkbox-checked-color: var(--theme-typography-checkbox-background-color);
   --theme-typography-checkbox-checked-background-color: var(--theme-cta);
-  --theme-typography-checkbox-checked-border-color: var(--theme-typography-checkbox-border-color);
+  --theme-typography-checkbox-checked-border-color: var(--theme-black);
 
   // TYPOGRAPHY SELECT
   --theme-typography-select-font-family: var(--theme-typography-default-font-family);
@@ -112,6 +112,7 @@ label{
   font-size: var(--theme-typography-label-font-size);
   font-weight: var(--theme-typography-label-font-weight);
   line-height: var(--theme-typography-label-line-height);
+  display: flex;
 }
 
 // The use of "input.en__field__input" is needed to provide enough specificity to suprass class selectors like ".en__field__input--calendar" in enPage.css
@@ -131,11 +132,10 @@ input.en__field__input{
   width: 100%; // Shared between input, textarea, and select
   min-width: initial; // Shared between input, textarea, and select
   display: block; // Shared between input, textarea, and select
-  -webkit-box-sizing: border-box; // Shared between input, textarea, and select
+  // -webkit-box-sizing: border-box; // Shared between input, textarea, and select
   box-sizing: border-box; // Shared between input, textarea, and select
   margin: 0rem; // Shared between input, textarea, and select
   padding: 1ch; // Shared between input, textarea, and select
-  box-shadow: var(--theme-typography-input-box-shadow);
   transition: box-shadow 0.25s, border-color 0.25s ease-in-out; // Shared between input, textarea, and select
   border-style: solid; // Shared between input, textarea, and select
 
@@ -146,10 +146,19 @@ input.en__field__input{
       border-color: var(--theme-typography-input-checked-border-color);
       border-bottom-color: var(--theme-typography-input-checked-border-bottom-color);
       // outline: none; // Shared between input:focus, textarea:focus, and select:focus
-      box-shadow: var(--theme-typography-input-checked-box-shadow);
   }
 }
 
+input[type="text"],
+input[type="number"],
+input[type="textarea"]{
+  box-shadow: var(--theme-typography-input-box-shadow);
+
+  &:focus,
+  &:hover{
+      box-shadow: var(--theme-typography-input-checked-box-shadow);
+  }
+}
 
 // Removes the input shadow added by iOS 5 and later
 // https://stackoverflow.com/questions/23211656/remove-ios-input-shadow
@@ -159,42 +168,89 @@ input.en__field__input{
 :not(#EN__RootElement) input[type=email],
 :not(#EN__RootElement) input[type=number],
 :not(#EN__RootElement) input[type=tel]{
-  -webkit-appearance: none;
-  -moz-appearance: none;
+  // -webkit-appearance: none;
+  // -moz-appearance: none;
   appearance: none;
 }
 
 input[type=radio]{
-  content: var(--theme-typography-radio-content);
-  color: var(--theme-typography-radio-color);
-  background-color: var(--theme-typography-radio-background-color);
-  border-width: var(--theme-typography-radio-border-width);
-  border-color: var(--theme-typography-radio-border-color);
-  border-radius: var(--theme-typography-radio-border-radius);
+  + label{
+    cursor: pointer;
 
-  &:focus,
-  &:hover{
-      color: var(--theme-typography-radio-checked-color);
-      background-color: var(--theme-typography-radio-checked-background-color);
-      border-color: var(--theme-typography-radio-checked-border-color);
+    &:before{
+      content: var(--theme-typography-radio-content);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 0.5rem;
+      color: var(--theme-typography-radio-color);
+      background-color: var(--theme-typography-radio-background-color);
+      border-width: var(--theme-typography-radio-border-width);
+      border-color: var(--theme-typography-radio-border-color);
+      border-radius: var(--theme-typography-radio-border-radius);
+      height: 1.4rem;
+      width: 1.4rem;
+      box-shadow: inset 0 0 0 var(--theme-typography-radio-border-width) var(--theme-typography-radio-border-color);
+    }
+  }
+
+  &:focus + label:before,
+  &:hover + label:before{
+    // color: var(--theme-typography-radio-selected-color);
+    // background-color: var(--theme-typography-radio-selected-background-color);
+    // border-color: var(--theme-typography-radio-selected-border-color);
+  }
+
+  &:not(:checked) + label:before{
+    color: transparent;
+  }
+  
+  &:checked + label:before{
+    color: var(--theme-typography-radio-selected-color);
+    background-color: var(--theme-typography-radio-selected-background-color);
+    border-color: var(--theme-typography-radio-selected-border-color);
+    box-shadow: inset 0 0 0 var(--theme-typography-radio-border-width) var(--theme-typography-radio-border-color);
   }
 }
 
 // ✓
 input[type=checkbox]{
-  content: var(--theme-typography-checkbox-checked-content);
-  color: var(--theme-typography-checkbox-color);
-  background-color: var(--theme-typography-checkbox-background-color);
-  border-width: var(--theme-typography-checkbox-border-width);
-  border-color: var(--theme-typography-checkbox-border-color);
-  border-radius: var(--theme-typography-checkbox-border-radius);
+  + label{
+    cursor: pointer;
 
-  &:focus,
-  &:hover{
-      color: var(--theme-typography-checkbox-checked-color);
-      background-color: var(--theme-typography-checkbox-checked-background-color);
-      border-color: var(--theme-typography-checkbox-checked-border-color);
+    &:before{
+      content: var(--theme-typography-checkbox-checked-content);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 0.5rem;
+      color: var(--theme-typography-checkbox-color);
+      background-color: var(--theme-typography-checkbox-background-color);
+      border-width: var(--theme-typography-checkbox-border-width);
+      border-color: var(--theme-typography-checkbox-border-color);
+      border-radius: var(--theme-typography-checkbox-border-radius);
+      height: 1.4rem;
+      width: 1.4rem;
+    }
   }
+
+  &:focus + label:before,
+  &:hover + label:before{
+    // color: var(--theme-typography-checkbox-checked-color);
+    // background-color: var(--theme-typography-checkbox-checked-background-color);
+    // border-color: var(--theme-typography-checkbox-checked-border-color);
+  }
+
+  &:not(:checked) + label:before{
+    color: transparent;
+  }  
+
+  &:checked + label:before{
+    color: var(--theme-typography-checkbox-checked-color);
+    background-color: var(--theme-typography-checkbox-checked-background-color);
+    border-color: var(--theme-typography-checkbox-checked-border-color);
+    box-shadow: inset 0 0 0 var(--theme-typography-checkbox-border-width) var(--theme-typography-checkbox-border-color);
+  }  
 }
 
 select,
@@ -214,7 +270,7 @@ select.en__field__input--select{
   width: 100%; // Shared between input, textarea, and select
   min-width: initial; // Shared between input, textarea, and select
   display: block; // Shared between input, textarea, and select
-  -webkit-box-sizing: border-box; // Shared between input, textarea, and select
+  // -webkit-box-sizing: border-box; // Shared between input, textarea, and select
   box-sizing: border-box; // Shared between input, textarea, and select
   margin: 0rem; // Shared between input, textarea, and select
   padding: 1ch; // Shared between input, textarea, and select
@@ -256,7 +312,7 @@ textarea,
   width: 100%; // Shared between input, textarea, and select
   min-width: initial; // Shared between input, textarea, and select
   display: block; // Shared between input, textarea, and select
-  -webkit-box-sizing: border-box; // Shared between input, textarea, and select
+  // -webkit-box-sizing: border-box; // Shared between input, textarea, and select
   box-sizing: border-box; // Shared between input, textarea, and select
   margin: 0rem; // Shared between input, textarea, and select
   padding: 1ch; // Shared between input, textarea, and select
@@ -416,22 +472,22 @@ input.en__contactDetails__select {
   position: relative;
 }
 
-.en__field__input--radio + .en__field__label,
-.en__field__input--checkbox + .en__field__label {
-  position: relative;
-  margin-left: 2rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-}
+// .en__field__input--radio + .en__field__label,
+// .en__field__input--checkbox + .en__field__label {
+//   position: relative;
+//   margin-left: 2rem;
+//   cursor: pointer;
+//   display: flex;
+//   align-items: center;
+// }
 
 .en__contactDetails__rows {
   flex-direction: column;
   align-items: flex-start;
 }
 
-.en__field__input--radio + .en__field__label:before,
-.en__field__input--checkbox + .en__field__label:before,
+// .en__field__input--radio + .en__field__label:before,
+// .en__field__input--checkbox + .en__field__label:before,
 .en__contacts:not(.en__contacts--hideCheck) .en__contactDetails__rows:before {
   content: "";
   position: absolute;
@@ -441,28 +497,28 @@ input.en__contactDetails__select {
   display: inline-block;
   vertical-align: middle;
   border: 1px solid var(--color-black);
-  -webkit-box-shadow: inset 0 0 0 5px var(--color-white);
+  // -webkit-box-shadow: inset 0 0 0 5px var(--color-white);
   box-shadow: inset 0 0 0 5px var(--color-white);
   background-color: var(--color-white);
   cursor: pointer;
-  -webkit-transition-duration: 0.25s;
+  // -webkit-transition-duration: 0.25s;
   transition-duration: 0.25s;
-  -webkit-transition-property: border-color, background-color;
+  // -webkit-transition-property: border-color, background-color;
   transition-property: border-color, background-color;
   top: 5px;
 }
 
-.en__field__input--radio + .en__field__label:before {
-  border-radius: var(--theme-typography-radio-border-radius);
-}
+// .en__field__input--radio + .en__field__label:before {
+//   border-radius: var(--theme-typography-radio-border-radius);
+// }
 
-.en__field__input--checkbox + .en__field__label:before,
+// .en__field__input--checkbox + .en__field__label:before,
 .en__contactDetails__rows:before {
   color: var(--theme-typography-checkbox-color);
   border-radius: var(--theme-typography-checkbox-border-radius);
   border-width: var(--theme-typography-checkbox-border-width);
   background-color: var(--theme-typography-checkbox-background-color);
-  -webkit-box-shadow: none;
+  // -webkit-box-shadow: none;
   box-shadow: none;
 }
 
@@ -474,27 +530,27 @@ input.en__contactDetails__select {
 // @BODY Currently, the checkbox checkmark uses the checkmark character, but if the font doesn't have this character or the designer wants to use something else, it falls apart. We should switch to an "image" based solution. Ideally, it would be a data-uri and not require a separate image asset. This should be added as default and client SCSS variable where the necessary CSS are mapped to custom properties.
 // REF: Cross browser tested radio / checkbox stylings https://codepen.io/aaroniker/pen/ZEYoxEY
 
-.en__field__input--radio:checked + .en__field__label:before {
-  color: var(--theme-typography-radio-selected-color);
-  background-color: var(--theme-typography-radio-radio-background-color);
-  -webkit-box-shadow: inset 0 0 0 4px #ffffff;
-  box-shadow: inset 0 0 0 4px #ffffff;
-  border-width: var(--theme-typography-radio-border-width);
-}
+// .en__field__input--radio:checked + .en__field__label:before {
+//   color: var(--theme-typography-radio-selected-color);
+//   background-color: var(--theme-typography-radio-radio-background-color);
+//   // -webkit-box-shadow: inset 0 0 0 4px var(--theme-typography-radio-background-color);
+//   box-shadow: inset 0 0 0 4px var(--theme-typography-radio-background-color);
+//   border-width: var(--theme-typography-radio-border-width);
+// }
 
-.en__field__input--checkbox:checked + .en__field__label:before,
+// .en__field__input--checkbox:checked + .en__field__label:before,
 .en__contacts:not(.en__contacts--hideCheck)
   .en__contactDetails__select:checked
   + .en__contactDetails__rows:before {
   color: var(--theme-typography-checkbox-checked-color);
   background-color: var(--theme-typography-checkbox-checked-background-color);
-  -webkit-box-shadow: inset 0 0 0 4px #ffffff;
-  box-shadow: inset 0 0 0 4px #ffffff;
+  // -webkit-box-shadow: inset 0 0 0 0 var(--theme-typography-checkbox-background-color);
+  box-shadow: inset 0 0 0 0 var(--theme-typography-checkbox-background-color);
   border-width: var(--theme-typography-checkbox-border-width);
   border-color: var(--theme-typography-checkbox-border-color);
 }
 
-.en__field__input--checkbox:checked + .en__field__label::after,
+// .en__field__input--checkbox:checked + .en__field__label::after,
 .en__contacts:not(.en__contacts--hideCheck)
   .en__contactDetails__select:checked
   + .en__contactDetails__rows::after {
@@ -639,7 +695,7 @@ input.en__contactDetails__select {
     width: 80px;
     // z-index: 1;
     background-color: transparent;
-    -webkit-box-shadow: none;
+    // -webkit-box-shadow: none;
     box-shadow: none;
     text-align-last: right;
   }

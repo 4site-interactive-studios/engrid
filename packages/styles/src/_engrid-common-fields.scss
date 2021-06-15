@@ -17,15 +17,31 @@ div:not(.manual-form-layout) {
     flex-basis: calc((100% / 3) * 2);
   }
 
+  /* All basic field types */
   .en__field--survey,
   .en__field--number,
   .en__field--calendar,
   .en__field--tripletext,
+  .en__field--tripleselect,
   .en__field--splitselect,
   .en__field--splittext,
   .en__field--checkbox,
   .en__field--radio,
   .en__field--select,
+  .en__field--textarea, 
+  .en__field--text, 
+  .en__field--telephone, 
+  .en__field--rating, 
+  .en__field--range, 
+  .en__field--password, 
+  .en__field--textarea, 
+  .en__field--calendar, 
+  .en__field--imgselect{
+    flex-basis: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
   .en__field--title,
   .en__field--emailAddress,
   .en__field--phoneNumber,

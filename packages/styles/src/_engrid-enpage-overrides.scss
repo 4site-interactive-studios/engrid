@@ -109,19 +109,7 @@ only screen and (max-device-width:600px) {
 	padding: 0.75rem; // 12px
 }
 
-.en__component--hubgadget--inactive {
-	// display: none
-}
-
-.en__component--hubgadget img {
-	// display: block;
-	// margin: auto
-}
-
 .en__component--hubgadget span {
-	// font-weight: 700;
-	// display: block;
-	// text-align: center;
 	margin-top: 0.75rem; // 12px
 }
 
@@ -135,23 +123,16 @@ only screen and (max-device-width:600px) {
 }
 
 .en__field__label {
-	// display: inline-block;
 	width: auto; // 180px;
 }
 
 .en__field__helpText {
-	// display: none;
-	font-size: 85% // .85em
+	font-size: 85%; // .85em
+	padding: 0.375rem 0;
 }
 
-.en__field__helpText,
 .en__field__label {
-	padding: 0.375rem 0; // 6px 0
-	// vertical-align: middle
-}
-
-.en__field__label--positionabove+.en__field__helpText {
-	// display: block
+	padding: 0.375rem 0;
 }
 
 .en__field__element--calendar,
