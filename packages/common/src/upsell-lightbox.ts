@@ -21,11 +21,6 @@ export class UpsellLightbox {
     this.overlay.classList.add("image-" + this.options.imagePosition);
     this.renderLightbox();
     this._form.onSubmit.subscribe(() => this.open());
-
-    let original = window.sessionStorage.getItem('original');
-    if(original && document.querySelectorAll('.en__errorList .en__error').length > 0) {
-        this.setOriginalAmount(original);
-    }    
   }
   private renderLightbox() {
     const title = this.options.title
@@ -201,6 +196,13 @@ export class UpsellLightbox {
   private open() {
     if (ENGrid.debug) console.log("Upsell Script Triggered");
     if (!this.shouldOpen()) {
+      // In the circumstance when the form fails to validate via server-side validation, the page will reload
+      // When that happens, we should place the original amount saved in sessionStorage into the upsell original amount field
+      let original = window.sessionStorage.getItem('original');
+      if(original && document.querySelectorAll('.en__errorList .en__error').length > 0) {
+          this.setOriginalAmount(original);
+      }
+
       // Returning true will give the "go ahead" to submit the form
       this._form.submit = true;
       return true;
