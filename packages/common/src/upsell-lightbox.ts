@@ -21,6 +21,11 @@ export class UpsellLightbox {
     this.overlay.classList.add("image-" + this.options.imagePosition);
     this.renderLightbox();
     this._form.onSubmit.subscribe(() => this.open());
+
+    let original = window.sessionStorage.getItem('original');
+    if(original && document.querySelectorAll('.en__errorList .en__error').length > 0) {
+        this.setOriginalAmount(original);
+    }    
   }
   private renderLightbox() {
     const title = this.options.title
@@ -205,34 +210,41 @@ export class UpsellLightbox {
     this._form.submit = false;
     return false;
   }
+
+  // Set the original amount into a hidden field using the upsellOriginalGiftAmountFieldName, if provided
+  private setOriginalAmount(original: string) {
+      if (this.options.upsellOriginalGiftAmountFieldName) {
+          let enFieldUpsellOriginalAmount = document.querySelector(".en__field__input.en__field__input--hidden[name='" + this.options.upsellOriginalGiftAmountFieldName + "']");
+          if (!enFieldUpsellOriginalAmount) {
+              let pageform = document.querySelector("form.en__component--page");
+              if (pageform) {
+                let input = document.createElement("input");
+                input.setAttribute("type", "hidden");
+                input.setAttribute("name", this.options.upsellOriginalGiftAmountFieldName);
+                input.classList.add('en__field__input', 'en__field__input--hidden');
+                pageform.appendChild(input);
+                enFieldUpsellOriginalAmount = document.querySelector('.en__field__input.en__field__input--hidden[name="' + this.options.upsellOriginalGiftAmountFieldName + '"]');
+              }
+          }
+          if (enFieldUpsellOriginalAmount) {
+              // save it to a session variable just in case this page reloaded due to server-side validation error
+              window.sessionStorage.setItem('original', original);
+              enFieldUpsellOriginalAmount.setAttribute("value", original);
+          }
+      }
+  }
+
   // Proceed to the next page (upsold or not)
   private continue(e: Event) {
     e.preventDefault();
     if (e.target instanceof Element && document.querySelector("#upsellYesButton")?.contains(e.target)) {
       if (ENGrid.debug) console.log("Upsold");
-      
-      // set original amount to optional hidden field if provided in the options
-      if (this.options.upsellOriginalGiftAmountFieldName) {
-        let enFieldUpsellOriginalAmount = document.querySelector(".en__field__input.en__field__input--hidden[name='" + this.options.upsellOriginalGiftAmountFieldName + "']") as HTMLInputElement;
-        if (!enFieldUpsellOriginalAmount) {
-          let pageform = document.querySelector("form.en__component--page") as HTMLFormElement;
-
-          let input = document.createElement("input");
-          input.setAttribute("type", "hidden");
-          input.setAttribute("name", this.options.upsellOriginalGiftAmountFieldName);
-          input.classList.add('en__field__input', 'en__field__input--hidden');
-          pageform.appendChild(input);
-
-          enFieldUpsellOriginalAmount = document.querySelector('.en__field__input.en__field__input--hidden[name="' + this.options.upsellOriginalGiftAmountFieldName + '"]') as HTMLInputElement;
-        }
-
-        if (enFieldUpsellOriginalAmount) {
-          enFieldUpsellOriginalAmount.setAttribute("value", this._amount.amount.toString());
-        }
-      }
-
+      this.setOriginalAmount(this._amount.amount.toString());
       this._frequency.setFrequency("monthly");
       this._amount.setAmount(this.getUpsellAmount());
+    } else {
+      this.setOriginalAmount('');
+      window.sessionStorage.removeItem('original');
     }
     this._form.submitForm();
   }
