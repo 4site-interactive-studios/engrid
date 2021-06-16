@@ -647,7 +647,7 @@ input.en__contactDetails__select {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   padding-bottom: 0.5rem;
-  margin: 0 !important;
+  margin: 0;
 }
 
 /* Includes overrides of existing CSS, need for resolve this duplicate styling */
@@ -660,21 +660,23 @@ input.en__contactDetails__select {
   margin: 0;
 }
 
+/* @TODO Revisit if this negative margin offset is neccisary anymore */
 .en__component--formblock.manual-form-layout {
   margin-left: -0.5rem;
   margin-right: -0.5rem;
 }
 
 .en__field {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  // padding-left: 0.5rem;
+  // padding-right: 0.5rem;
 }
 
-.en__component--formblock:not(.manual-form-layout) .en__field:first-child {
+/* The first form field in a form block component does not need any left padding */
+.en__component--formblock .en__field:first-child {
   padding-left: 0;
 }
-
-.en__component--formblock:not(.manual-form-layout) .en__field:last-child {
+/* The last form field in a form block component does not need any right padding */
+.en__component--formblock .en__field:last-child {
   padding-right: 0;
 }
 
