@@ -7,6 +7,7 @@ export interface UpsellOptions {
     noLabel: string,
     otherAmount: boolean, // Use false to hide the "other amount" field
     otherLabel: string,
+    upsellOriginalGiftAmountFieldName: string,
     amountRange: Array<{ max: number, suggestion: number | string }>,
     canClose: boolean,
     submitOnClose: boolean,
@@ -23,6 +24,7 @@ export const UpsellOptionsDefaults: UpsellOptions = {
     noLabel: "No, thanks. Continue with my <br> {old-amount} one-time gift",
     otherAmount: true, // Use false to hide the "other amount" field
     otherLabel: "Or enter a different monthly amount:",
+    upsellOriginalGiftAmountFieldName: '',
     amountRange: [
         { max: 10, suggestion: 5 },
         { max: 15, suggestion: 7 },
