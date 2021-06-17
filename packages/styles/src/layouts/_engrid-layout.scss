@@ -5,9 +5,9 @@
   --engrid-page_padding: 0px;
   --engrid-page_margin: 0px;
 
-  --content-background-color: var(--color-transparent);
-  --content-padding: 0px;
-  --content-margin: 0px;
+  --engrid-contentbackground-color: var(--color-transparent);
+  --engrid-contentpadding: 0px;
+  --engrid-contentmargin: 0px;
 
   --body-background-color: var(--color-white);
   --body-padding: 0px var(--spacing-lg);
@@ -19,9 +19,9 @@
   --engrid-page_alert-padding: var(--engrid-page_padding);
   --engrid-page_alert-margin: var(--engrid-page_margin);
 
-  --content-header-background-color: var(--content-background-color);
-  --content-header-padding: var(--content-padding);
-  --content-header-margin: var(--content-margin);
+  --engrid-contentheader-background-color: var(--engrid-contentbackground-color);
+  --engrid-contentheader-padding: var(--engrid-contentpadding);
+  --engrid-contentheader-margin: var(--engrid-contentmargin);
 
   --body-headerOutside-background-color: var(--color-transparent);
   --body-headerOutside-padding: var(--body-padding);
@@ -67,17 +67,17 @@
   --body-footerOutside-padding: var(--body-padding);
   --body-footerOutside-margin: var(--body-margin);
 
-  --content-footerSpacer-background-color: var(--content-background-color);
-  --content-footerSpacer-padding: var(--content-padding);
-  --content-footerSpacer-margin: var(--content-margin);
+  --engrid-contentfooterSpacer-background-color: var(--engrid-contentbackground-color);
+  --engrid-contentfooterSpacer-padding: var(--engrid-contentpadding);
+  --engrid-contentfooterSpacer-margin: var(--engrid-contentmargin);
 
-  --content-preFooter-background-color: var(--content-background-color);
-  --content-preFooter-padding: var(--content-padding);
-  --content-preFooter-margin: var(--content-margin);
+  --engrid-contentpreFooter-background-color: var(--engrid-contentbackground-color);
+  --engrid-contentpreFooter-padding: var(--engrid-contentpadding);
+  --engrid-contentpreFooter-margin: var(--engrid-contentmargin);
 
-  --content-footer-background-color: var(--content-background-color);
-  --content-footer-padding: var(--content-padding);
-  --content-footer-margin: var(--content-margin);
+  --engrid-contentfooter-background-color: var(--engrid-contentbackground-color);
+  --engrid-contentfooter-padding: var(--engrid-contentpadding);
+  --engrid-contentfooter-margin: var(--engrid-contentmargin);
 
   --engrid-page_backgroundImage-background-color: var(--engrid-page_background-color);
   --engrid-page_backgroundImage-padding: 0px;
@@ -200,9 +200,9 @@ body:not([data-engrid-embedded]) .en__component--advrow {
 .content-header{
   grid-column: pc;
   grid-row: content-header;
-  background-color: var(--content-header-background-color);
-  padding: var(--content-header-padding);
-  margin: var(--content-header-margin);
+  background-color: var(--engrid-contentheader-background-color);
+  padding: var(--engrid-contentheader-padding);
+  margin: var(--engrid-contentheader-margin);
 }
 
 .content-header.pseudo-subgrid > div{
@@ -306,25 +306,25 @@ body:not([data-engrid-embedded]) .en__component--advrow {
 .content-footerSpacer{
   grid-column: cc;
   grid-row: content-footerSpacer;
-  background-color: var(--content-footerSpacer-background-color);
-  padding: var(--content-footerSpacer-padding);
-  margin: var(--content-footerSpacer-margin);
+  background-color: var(--engrid-contentfooterSpacer-background-color);
+  padding: var(--engrid-contentfooterSpacer-padding);
+  margin: var(--engrid-contentfooterSpacer-margin);
 }
 
 .content-preFooter{
   grid-column: cc;
   grid-row: content-preFooter;
-  background-color: var(--content-preFooter-background-color);
-  padding: var(--content-preFooter-padding);
-  margin: var(--content-preFooter-margin);
+  background-color: var(--engrid-contentpreFooter-background-color);
+  padding: var(--engrid-contentpreFooter-padding);
+  margin: var(--engrid-contentpreFooter-margin);
 }
 
 .content-footer{
   grid-column: pc;
   grid-row: content-footer;
-  background-color: var(--content-footer-background-color);
-  padding: var(--content-footer-padding);
-  margin: var(--content-footer-margin);
+  background-color: var(--engrid-contentfooter-background-color);
+  padding: var(--engrid-contentfooter-padding);
+  margin: var(--engrid-contentfooter-margin);
 }
 
 .content-footer.pseudo-subgrid > div{
