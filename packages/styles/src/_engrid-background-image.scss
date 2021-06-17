@@ -1,10 +1,10 @@
 :root{
   // ENGRID BACKGROUND IMAGE SECTION'S BACKGROUND PATTERN
   // This is a background pattern that is shown before the hi-resolution background image is lazy loaded in, if at all
-  // It's background color "--engrid-page_backgroundImage-background-color" should be the average color of the image 
+  // It's background color "--engrid-page-backgroundImage_background-color" should be the average color of the image 
   // REF: (https://doodad.dev/pattern-generator/)
-  --engrid-page_backgroundImage-background-pattern: "url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)"; // Invisible GIF
-  --engrid-page_backgroundImage-url: "url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)"; // Invisible GIF
+  --engrid-page-backgroundImage_background-pattern: "url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)"; // Invisible GIF
+  --engrid-page-backgroundImage_url: "url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)"; // Invisible GIF
 }
 
 // There is no reason to ever show the background image outside of pagebuilder
@@ -34,7 +34,7 @@ body[data-engrid-page-background="image"] {
       left: 0;
       background-repeat: no-repeat;
       background-size: cover;
-      background-image: var(--engrid-page_backgroundImage-url);
+      background-image: var(--engrid-page-backgroundImage_url);
       will-change: transform; // creates a new paint
     }
 
@@ -43,7 +43,7 @@ body[data-engrid-page-background="image"] {
       position: fixed;
       top: 0;
       left: 0;
-      background-image: var(--engrid-page_backgroundImage-url);
+      background-image: var(--engrid-page-backgroundImage_url);
       height: 100vh;
       width: 100vw;
       background-size: cover;

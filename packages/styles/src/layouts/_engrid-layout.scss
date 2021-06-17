@@ -75,9 +75,9 @@
   --engrid-content-footer_padding: var(--engrid-content_padding);
   --engrid-content-footer_margin: var(--engrid-content_margin);
 
-  --engrid-page_backgroundImage-background-color: var(--engrid-page_background-color);
-  --engrid-page_backgroundImage-padding: 0px;
-  --engrid-page_backgroundImage-margin: var(--engrid-page_margin);
+  --engrid-page-backgroundImage_background-color: var(--engrid-page_background-color);
+  --engrid-page-backgroundImage_padding: 0px;
+  --engrid-page-backgroundImage_margin: var(--engrid-page_margin);
 
   --engrid-page_backgroundImageOverlay-background-color: var(--color-transparent);
   --engrid-page_backgroundImageOverlay-padding: var(--engrid-page_padding);
@@ -330,14 +330,14 @@ body:not([data-engrid-embedded]) .en__component--advrow {
 .page-backgroundImage{
   grid-column: pc;
   grid-row: page-backgroundImage;
-  padding: var(--engrid-page_backgroundImage-padding);
-  margin: var(--engrid-page_backgroundImage-margin);
+  padding: var(--engrid-page-backgroundImage_padding);
+  margin: var(--engrid-page-backgroundImage_margin);
 }
 
 // Background color is set on the :before so it doesn't paint over the background image which will be set there
 // REF: _engrid-background-image.scss
 .page-backgroundImage:before{
-  background-color: var(--engrid-page_backgroundImage-background-color);
+  background-color: var(--engrid-page-backgroundImage_background-color);
 }
 
 .page-backgroundImageOverlay{
