@@ -5,9 +5,9 @@
   --engrid-page_padding: 0px;
   --engrid-page_margin: 0px;
 
-  --content-background-color: var(--color-transparent);
-  --content-padding: 0px;
-  --content-margin: 0px;
+  --engrid-content_background-color: var(--color-transparent);
+  --engrid-content_padding: 0px;
+  --engrid-content_margin: 0px;
 
   --body-background-color: var(--color-white);
   --body-padding: 0px var(--spacing-lg);
@@ -19,9 +19,9 @@
   --engrid-page_alert-padding: var(--engrid-page_padding);
   --engrid-page_alert-margin: var(--engrid-page_margin);
 
-  --content-header-background-color: var(--content-background-color);
-  --content-header-padding: var(--content-padding);
-  --content-header-margin: var(--content-margin);
+  --engrid-content_header-background-color: var(--engrid-content_background-color);
+  --engrid-content_header-padding: var(--engrid-content_padding);
+  --engrid-content_header-margin: var(--engrid-content_margin);
 
   --body-headerOutside-background-color: var(--color-transparent);
   --body-headerOutside-padding: var(--body-padding);
@@ -67,17 +67,17 @@
   --body-footerOutside-padding: var(--body-padding);
   --body-footerOutside-margin: var(--body-margin);
 
-  --content-footerSpacer-background-color: var(--content-background-color);
-  --content-footerSpacer-padding: var(--content-padding);
-  --content-footerSpacer-margin: var(--content-margin);
+  --engrid-content_footerSpacer-background-color: var(--engrid-content_background-color);
+  --engrid-content_footerSpacer-padding: var(--engrid-content_padding);
+  --engrid-content_footerSpacer-margin: var(--engrid-content_margin);
 
-  --content-preFooter-background-color: var(--content-background-color);
-  --content-preFooter-padding: var(--content-padding);
-  --content-preFooter-margin: var(--content-margin);
+  --engrid-content_preFooter-background-color: var(--engrid-content_background-color);
+  --engrid-content_preFooter-padding: var(--engrid-content_padding);
+  --engrid-content_preFooter-margin: var(--engrid-content_margin);
 
-  --content-footer-background-color: var(--content-background-color);
-  --content-footer-padding: var(--content-padding);
-  --content-footer-margin: var(--content-margin);
+  --engrid-content_footer-background-color: var(--engrid-content_background-color);
+  --engrid-content_footer-padding: var(--engrid-content_padding);
+  --engrid-content_footer-margin: var(--engrid-content_margin);
 
   --engrid-page_backgroundImage-background-color: var(--engrid-page_background-color);
   --engrid-page_backgroundImage-padding: 0px;
@@ -200,9 +200,9 @@ body:not([data-engrid-embedded]) .en__component--advrow {
 .content-header{
   grid-column: pc;
   grid-row: content-header;
-  background-color: var(--content-header-background-color);
-  padding: var(--content-header-padding);
-  margin: var(--content-header-margin);
+  background-color: var(--engrid-content_header-background-color);
+  padding: var(--engrid-content_header-padding);
+  margin: var(--engrid-content_header-margin);
 }
 
 .content-header.pseudo-subgrid > div{
@@ -306,25 +306,25 @@ body:not([data-engrid-embedded]) .en__component--advrow {
 .content-footerSpacer{
   grid-column: cc;
   grid-row: content-footerSpacer;
-  background-color: var(--content-footerSpacer-background-color);
-  padding: var(--content-footerSpacer-padding);
-  margin: var(--content-footerSpacer-margin);
+  background-color: var(--engrid-content_footerSpacer-background-color);
+  padding: var(--engrid-content_footerSpacer-padding);
+  margin: var(--engrid-content_footerSpacer-margin);
 }
 
 .content-preFooter{
   grid-column: cc;
   grid-row: content-preFooter;
-  background-color: var(--content-preFooter-background-color);
-  padding: var(--content-preFooter-padding);
-  margin: var(--content-preFooter-margin);
+  background-color: var(--engrid-content_preFooter-background-color);
+  padding: var(--engrid-content_preFooter-padding);
+  margin: var(--engrid-content_preFooter-margin);
 }
 
 .content-footer{
   grid-column: pc;
   grid-row: content-footer;
-  background-color: var(--content-footer-background-color);
-  padding: var(--content-footer-padding);
-  margin: var(--content-footer-margin);
+  background-color: var(--engrid-content_footer-background-color);
+  padding: var(--engrid-content_footer-padding);
+  margin: var(--engrid-content_footer-margin);
 }
 
 .content-footer.pseudo-subgrid > div{
