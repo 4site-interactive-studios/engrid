@@ -55,9 +55,9 @@
   --engrid-body-bottom_padding: var(--engrid-body_padding);
   --engrid-body-bottom_margin: var(--engrid-body_margin);
 
-  --engrid-body_footer-background-color: var(--engrid-body_background-color);
-  --engrid-body_footer-padding: var(--engrid-body_padding);
-  --engrid-body_footer-margin: var(--engrid-body_margin);
+  --engrid-body-footer_background-color: var(--engrid-body_background-color);
+  --engrid-body-footer_padding: var(--engrid-body_padding);
+  --engrid-body-footer_margin: var(--engrid-body_margin);
 
   --engrid-body_footerOutside-background-color: var(--color-transparent);
   --engrid-body_footerOutside-padding: var(--engrid-body_padding);
@@ -283,12 +283,12 @@ body:not([data-engrid-embedded]) .en__component--advrow {
 .body-footer{
   grid-column: bc;
   grid-row: body-footer;
-  background-color: var(--engrid-body_footer-background-color);
-  border-bottom-left-radius: var(--engrid-body_footer-border-radius);
-  border-bottom-right-radius: var(--engrid-body_footer-border-radius);
-  min-height: var(--engrid-body_footer-border-radius);
-  padding: var(--engrid-body_footer-padding);
-  margin: var(--engrid-body_footer-margin);
+  background-color: var(--engrid-body-footer_background-color);
+  border-bottom-left-radius: var(--engrid-body-footer_border-radius);
+  border-bottom-right-radius: var(--engrid-body-footer_border-radius);
+  min-height: var(--engrid-body-footer_border-radius);
+  padding: var(--engrid-body-footer_padding);
+  margin: var(--engrid-body-footer_margin);
 }
 
 .body-footerOutside{
