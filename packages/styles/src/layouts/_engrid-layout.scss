@@ -27,9 +27,9 @@
   --engrid-body_headerOutside-padding: var(--engrid-body_padding);
   --engrid-body_headerOutside-margin: var(--engrid-body_margin);
 
-  --engrid-body_header-background-color: var(--engrid-body_background-color);
-  --engrid-body_header-padding: var(--engrid-body_padding);
-  --engrid-body_header-margin: var(--engrid-body_margin);
+  --engrid-body-header_background-color: var(--engrid-body_background-color);
+  --engrid-body-header_padding: var(--engrid-body_padding);
+  --engrid-body-header_margin: var(--engrid-body_margin);
 
   --engrid-body_title-background-color: var(--engrid-body_background-color);
   --engrid-body_title-padding: var(--engrid-body_padding);
@@ -220,12 +220,12 @@ body:not([data-engrid-embedded]) .en__component--advrow {
 .body-header{
   grid-column: bc;
   grid-row: body-header;
-  background-color: var(--engrid-body_header-background-color);
-  border-top-left-radius: var(--engrid-body_header-border-radius);
-  border-top-right-radius: var(--engrid-body_header-border-radius);
-  min-height: var(--engrid-body_header-border-radius);
-  padding: var(--engrid-body_header-padding);
-  margin: var(--engrid-body_header-margin);
+  background-color: var(--engrid-body-header_background-color);
+  border-top-left-radius: var(--engrid-body-header_border-radius);
+  border-top-right-radius: var(--engrid-body-header_border-radius);
+  min-height: var(--engrid-body-header_border-radius);
+  padding: var(--engrid-body-header_padding);
+  margin: var(--engrid-body-header_margin);
 }
 
 .body-title{
