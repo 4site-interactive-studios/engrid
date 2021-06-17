@@ -1,3 +1,4 @@
+BREAKING: Replaced all instances of "--engrid-body_headerOutside-" with "--engrid-body-headerOutside_"
 BREAKING: Replaced all instances of "--engrid-page_customCode-" with "--engrid-page-customCode_"
 BREAKING: Replaced all instances of "--engrid-page_backgroundImageOverlay-" with "--engrid-page-backgroundImageOverlay_"
 BREAKING: Replaced all instances of "--engrid-page_backgroundImage-" with "--engrid-page-backgroundImage_"
@@ -14,7 +15,7 @@ BREAKING: Replaced all instances of "--engrid-body_bannerOverlay-" with "--engri
 BREAKING: Replaced all instances of "--engrid-body_banner-" with "--engrid-body-banner_"
 BREAKING: Replaced all instances of "--engrid-body_title-" with "--engrid-body-title_"
 BREAKING: Replaced all instances of "--engrid-body_header-" with "--engrid-body-header_"
-BREAKING: Replaced all instances of "--engrid-body_headerOutside-" with "--engrid-body-headerOutside_"
+BREAKING: Replaced all instances of "--engrid-body-headerOutside_" with "--engrid-body-headerOutside_"
 BREAKING: Replaced all instances of "--engrid-content_header-" with "--engrid-content-header_"
 BREAKING: Replaced all instances of "--engrid-page_alert-" with "--engrid-page-alert_"
 BREAKING: Replaced all instances of "--body-" with "--engrid-body_"
