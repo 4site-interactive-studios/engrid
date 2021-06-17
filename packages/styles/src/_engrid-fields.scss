@@ -191,6 +191,7 @@ input[type=radio]{
       height: 1.4rem;
       width: 1.4rem;
       box-shadow: inset 0 0 0 var(--theme-typography-radio-border-width) var(--theme-typography-radio-border-color);
+      display: inline-flex;
     }
   }
 
@@ -231,6 +232,7 @@ input[type=checkbox]{
       border-radius: var(--theme-typography-checkbox-border-radius);
       height: 1.4rem;
       width: 1.4rem;
+      display: inline-flex;
     }
   }
 

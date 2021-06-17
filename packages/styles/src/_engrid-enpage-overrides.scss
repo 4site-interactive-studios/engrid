@@ -896,11 +896,11 @@ only screen and (max-device-width:600px) {
 }
 
 .en__contact__toggle {
-	// cursor: pointer;
+	cursor: pointer;
 	width: 3.75rem; // 60px;
 	height: 0.9375rem; // 15px
 	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_open.png) center center no-repeat #FFFFFF;
-	// margin: 0 auto;
+	margin: 0 auto;
 	border-bottom-left-radius: var(--theme-typography-input-border-radius); // 5px
 	border-bottom-right-radius: var(--theme-typography-input-border-radius); // 5px
 }
