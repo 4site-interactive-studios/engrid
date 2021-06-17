@@ -42,13 +42,13 @@
   // When in page builder display Overlay sections after their counterparts and not overtop of their target grid row. This way content editors can more easily interact with them
   .body-bannerOverlay {
     grid-row: body-bannerOverlay !important;
-    background-color: var(--engrid-body_banner-background-color) !important;
+    background-color: var(--engrid-body-banner_background-color) !important;
   }
 
   // When in page builder display Overlay sections after their counterparts and not overtop of their target grid row. This way content editors can more easily interact with them
   .page-backgroundImageOverlay {
     grid-row: page-backgroundImageOverlay !important;
-    background-color: var(--engrid-body_banner-background-color) !important;
+    background-color: var(--engrid-body-banner_background-color) !important;
   }
 
   // Helps position the Engaging Networks pagebuilder tabs that are shown on hover of the Advanced Row
