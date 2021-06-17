@@ -83,9 +83,9 @@
   --engrid-page-backgroundImageOverlay_padding: var(--engrid-page_padding);
   --engrid-page-backgroundImageOverlay_margin: var(--engrid-page_margin);
 
-  --engrid-page_customCode-background-color: var(--engrid-page_background-color);
-  --engrid-page_customCode-padding: var(--engrid-page_padding);    
-  --engrid-page_customCode-margin: var(--engrid-page_margin);   
+  --engrid-page-customCode_background-color: var(--engrid-page_background-color);
+  --engrid-page-customCode_padding: var(--engrid-page_padding);    
+  --engrid-page-customCode_margin: var(--engrid-page_margin);   
 }
 
 // ####################################################################
@@ -351,9 +351,9 @@ body:not([data-engrid-embedded]) .en__component--advrow {
 .page-customCode{
   grid-column: pc;
   grid-row: page-customCode;
-  background-color: var(--engrid-page_customCode-background-color);
-  padding: var(--engrid-page_customCode-padding);
-  margin: var(--engrid-page_customCode-margin);
+  background-color: var(--engrid-page-customCode_background-color);
+  padding: var(--engrid-page-customCode_padding);
+  margin: var(--engrid-page-customCode_margin);
 }
 
 // The ENGrid Custom Code section should never be visible outside of page builder
