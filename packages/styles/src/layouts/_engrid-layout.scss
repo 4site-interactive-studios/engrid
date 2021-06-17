@@ -67,9 +67,9 @@
   --engrid-content-footerSpacer_padding: var(--engrid-content_padding);
   --engrid-content-footerSpacer_margin: var(--engrid-content_margin);
 
-  --engrid-content_preFooter-background-color: var(--engrid-content_background-color);
-  --engrid-content_preFooter-padding: var(--engrid-content_padding);
-  --engrid-content_preFooter-margin: var(--engrid-content_margin);
+  --engrid-content-preFooter_background-color: var(--engrid-content_background-color);
+  --engrid-content-preFooter_padding: var(--engrid-content_padding);
+  --engrid-content-preFooter_margin: var(--engrid-content_margin);
 
   --engrid-content_footer-background-color: var(--engrid-content_background-color);
   --engrid-content_footer-padding: var(--engrid-content_padding);
@@ -310,9 +310,9 @@ body:not([data-engrid-embedded]) .en__component--advrow {
 .content-preFooter{
   grid-column: cc;
   grid-row: content-preFooter;
-  background-color: var(--engrid-content_preFooter-background-color);
-  padding: var(--engrid-content_preFooter-padding);
-  margin: var(--engrid-content_preFooter-margin);
+  background-color: var(--engrid-content-preFooter_background-color);
+  padding: var(--engrid-content-preFooter_padding);
+  margin: var(--engrid-content-preFooter_margin);
 }
 
 .content-footer{
