@@ -8,10 +8,10 @@
 [data-engrid-embedded] {
   // Remove each sections background colors
   --engrid-page_background-color: var(--color-transparent) !important;
-  --engrid-contentbackground-color: var(--color-transparent) !important;
+  --content-background-color: var(--color-transparent) !important;
   --body-background-color: var(--color-transparent) !important;
   --engrid-page_alert-background-color: var(--color-transparent) !important;
-  --engrid-contentheader-background-color: var(--color-transparent) !important;
+  --content-header-background-color: var(--color-transparent) !important;
   --body-headerOutside-background-color: var(
     --color-transparent
   ) !important;
@@ -29,13 +29,13 @@
   --body-footerOutside-background-color: var(
     --color-transparent
   ) !important;
-  --engrid-contentfooterSpacer-background-color: var(
+  --content-footerSpacer-background-color: var(
     --color-transparent
   ) !important;
-  --engrid-contentpreFooter-background-color: var(
+  --content-preFooter-background-color: var(
     --color-transparent
   ) !important;
-  --engrid-contentfooter-background-color: var(--color-transparent) !important;
+  --content-footer-background-color: var(--color-transparent) !important;
   --engrid-page_backgroundImage-background-color: var(
     --color-transparent
   ) !important;
