@@ -1,9 +1,9 @@
 :root{
   // GROUPED SECTION SETTINGS (BACKGROUND COLOR, PADDING, MARGIN)
   // CHANGE THESE PROPERTIES TO CHANGE ALL PROPERTIES VALUES IN THOSE SECTIONS
-  --page-background-color: var(--color-transparent);
-  --page-padding: 0px;
-  --page-margin: 0px;
+  --engrid-page_background-color: var(--color-transparent);
+  --engrid-page_padding: 0px;
+  --engrid-page_margin: 0px;
 
   --content-background-color: var(--color-transparent);
   --content-padding: 0px;
@@ -15,9 +15,9 @@
   --body-border-radius: 0px; // UNIQUE TO THE BODY
 
   // INDIVIDUAL SECTION SETTINGS (BACKGROUND COLOR, PADDING, MARGIN)
-  --page-alert-background-color: var(--page-background-color);
-  --page-alert-padding: var(--page-padding);
-  --page-alert-margin: var(--page-margin);
+  --engrid-page_alert-background-color: var(--engrid-page_background-color);
+  --engrid-page_alert-padding: var(--engrid-page_padding);
+  --engrid-page_alert-margin: var(--engrid-page_margin);
 
   --content-header-background-color: var(--content-background-color);
   --content-header-padding: var(--content-padding);
@@ -79,17 +79,17 @@
   --content-footer-padding: var(--content-padding);
   --content-footer-margin: var(--content-margin);
 
-  --page-backgroundImage-background-color: var(--page-background-color);
-  --page-backgroundImage-padding: 0px;
-  --page-backgroundImage-margin: var(--page-margin);
+  --engrid-page_backgroundImage-background-color: var(--engrid-page_background-color);
+  --engrid-page_backgroundImage-padding: 0px;
+  --engrid-page_backgroundImage-margin: var(--engrid-page_margin);
 
-  --page-backgroundImageOverlay-background-color: var(--color-transparent);
-  --page-backgroundImageOverlay-padding: var(--page-padding);
-  --page-backgroundImageOverlay-margin: var(--page-margin);
+  --engrid-page_backgroundImageOverlay-background-color: var(--color-transparent);
+  --engrid-page_backgroundImageOverlay-padding: var(--engrid-page_padding);
+  --engrid-page_backgroundImageOverlay-margin: var(--engrid-page_margin);
 
-  --page-customCode-background-color: var(--page-background-color);
-  --page-customCode-padding: var(--page-padding);    
-  --page-customCode-margin: var(--page-margin);   
+  --engrid-page_customCode-background-color: var(--engrid-page_background-color);
+  --engrid-page_customCode-padding: var(--engrid-page_padding);    
+  --engrid-page_customCode-margin: var(--engrid-page_margin);   
 }
 
 // ####################################################################
@@ -192,9 +192,9 @@ body:not([data-engrid-embedded]) .en__component--advrow {
 .page-alert{
   grid-column: pc;
   grid-row: page-alert;
-  background-color: var(--page-alert-background-color);
-  padding: var(--page-alert-padding);
-  margin: var(--page-alert-margin);
+  background-color: var(--engrid-page_alert-background-color);
+  padding: var(--engrid-page_alert-padding);
+  margin: var(--engrid-page_alert-margin);
 }
 
 .content-header{
@@ -334,30 +334,30 @@ body:not([data-engrid-embedded]) .en__component--advrow {
 .page-backgroundImage{
   grid-column: pc;
   grid-row: page-backgroundImage;
-  padding: var(--page-backgroundImage-padding);
-  margin: var(--page-backgroundImage-margin);
+  padding: var(--engrid-page_backgroundImage-padding);
+  margin: var(--engrid-page_backgroundImage-margin);
 }
 
 // Background color is set on the :before so it doesn't paint over the background image which will be set there
 // REF: _engrid-background-image.scss
 .page-backgroundImage:before{
-  background-color: var(--page-backgroundImage-background-color);
+  background-color: var(--engrid-page_backgroundImage-background-color);
 }
 
 .page-backgroundImageOverlay{
   grid-column: pc;
   grid-row: page-backgroundImage;
-  background-color: var(--page-backgroundImageOverlay-background-color);
-  padding: var(--page-backgroundImageOverlay-padding);
-  margin: var(--page-backgroundImageOverlay-margin);
+  background-color: var(--engrid-page_backgroundImageOverlay-background-color);
+  padding: var(--engrid-page_backgroundImageOverlay-padding);
+  margin: var(--engrid-page_backgroundImageOverlay-margin);
 }
 
 .page-customCode{
   grid-column: pc;
   grid-row: page-customCode;
-  background-color: var(--page-customCode-background-color);
-  padding: var(--page-customCode-padding);
-  margin: var(--page-customCode-margin);
+  background-color: var(--engrid-page_customCode-background-color);
+  padding: var(--engrid-page_customCode-padding);
+  margin: var(--engrid-page_customCode-margin);
 }
 
 // The ENGrid Custom Code section should never be visible outside of page builder

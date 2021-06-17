@@ -7,10 +7,10 @@
 
 [data-engrid-embedded] {
   // Remove each sections background colors
-  --page-background-color: var(--color-transparent) !important;
+  --engrid-page_background-color: var(--color-transparent) !important;
   --content-background-color: var(--color-transparent) !important;
   --body-background-color: var(--color-transparent) !important;
-  --page-alert-background-color: var(--color-transparent) !important;
+  --engrid-page_alert-background-color: var(--color-transparent) !important;
   --content-header-background-color: var(--color-transparent) !important;
   --body-headerOutside-background-color: var(
     --color-transparent
@@ -36,13 +36,13 @@
     --color-transparent
   ) !important;
   --content-footer-background-color: var(--color-transparent) !important;
-  --page-backgroundImage-background-color: var(
+  --engrid-page_backgroundImage-background-color: var(
     --color-transparent
   ) !important;
-  --page-backgroundImageOverlay-background-color: var(
+  --engrid-page_backgroundImageOverlay-background-color: var(
     --color-transparent
   ) !important;
-  --page-customCode-background-color: var(--color-transparent) !important;
+  --engrid-page_customCode-background-color: var(--color-transparent) !important;
 
   /* prettier-ignore */
   .en__component--advrow,
