@@ -71,9 +71,9 @@
   --engrid-content-preFooter_padding: var(--engrid-content_padding);
   --engrid-content-preFooter_margin: var(--engrid-content_margin);
 
-  --engrid-content_footer-background-color: var(--engrid-content_background-color);
-  --engrid-content_footer-padding: var(--engrid-content_padding);
-  --engrid-content_footer-margin: var(--engrid-content_margin);
+  --engrid-content-footer_background-color: var(--engrid-content_background-color);
+  --engrid-content-footer_padding: var(--engrid-content_padding);
+  --engrid-content-footer_margin: var(--engrid-content_margin);
 
   --engrid-page_backgroundImage-background-color: var(--engrid-page_background-color);
   --engrid-page_backgroundImage-padding: 0px;
@@ -318,9 +318,9 @@ body:not([data-engrid-embedded]) .en__component--advrow {
 .content-footer{
   grid-column: pc;
   grid-row: content-footer;
-  background-color: var(--engrid-content_footer-background-color);
-  padding: var(--engrid-content_footer-padding);
-  margin: var(--engrid-content_footer-margin);
+  background-color: var(--engrid-content-footer_background-color);
+  padding: var(--engrid-content-footer_padding);
+  margin: var(--engrid-content-footer_margin);
 }
 
 .content-footer.pseudo-subgrid > div{
