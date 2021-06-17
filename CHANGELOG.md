@@ -1,3 +1,4 @@
+BREAKING: Replaced all instances of "--engrid-content_footerSpacer-" with "--engrid-content-footerSpacer_"
 BREAKING: Replaced all instances of "--engrid-body_footerOutside-" with "--engrid-body-footerOutside_"
 BREAKING: Replaced all instances of "--engrid-body_footer-" with "--engrid-body-footer_"
 BREAKING: Replaced all instances of "--engrid-body_bottom-" with "--engrid-body-bottom_"
