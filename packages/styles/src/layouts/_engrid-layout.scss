@@ -9,10 +9,10 @@
   --engrid-content_padding: 0px;
   --engrid-content_margin: 0px;
 
-  --body-background-color: var(--color-white);
-  --body-padding: 0px var(--spacing-lg);
-  --body-margin: 0px;
-  --body-border-radius: 0px; // UNIQUE TO THE BODY
+  --engrid-body_background-color: var(--color-white);
+  --engrid-body_padding: 0px var(--spacing-lg);
+  --engrid-body_margin: 0px;
+  --engrid-body_border-radius: 0px; // UNIQUE TO THE BODY
 
   // INDIVIDUAL SECTION SETTINGS (BACKGROUND COLOR, PADDING, MARGIN)
   --engrid-page_alert-background-color: var(--engrid-page_background-color);
@@ -23,49 +23,49 @@
   --engrid-content_header-padding: var(--engrid-content_padding);
   --engrid-content_header-margin: var(--engrid-content_margin);
 
-  --body-headerOutside-background-color: var(--color-transparent);
-  --body-headerOutside-padding: var(--body-padding);
-  --body-headerOutside-margin: var(--body-margin);
+  --engrid-body_headerOutside-background-color: var(--color-transparent);
+  --engrid-body_headerOutside-padding: var(--engrid-body_padding);
+  --engrid-body_headerOutside-margin: var(--engrid-body_margin);
 
-  --body-header-background-color: var(--body-background-color);
-  --body-header-padding: var(--body-padding);
-  --body-header-margin: var(--body-margin);
+  --engrid-body_header-background-color: var(--engrid-body_background-color);
+  --engrid-body_header-padding: var(--engrid-body_padding);
+  --engrid-body_header-margin: var(--engrid-body_margin);
 
-  --body-title-background-color: var(--body-background-color);
-  --body-title-padding: var(--body-padding);
-  --body-title-margin: var(--body-margin);
+  --engrid-body_title-background-color: var(--engrid-body_background-color);
+  --engrid-body_title-padding: var(--engrid-body_padding);
+  --engrid-body_title-margin: var(--engrid-body_margin);
 
-  --body-banner-background-color: var(--body-background-color);
-  --body-banner-padding: 0px;
-  --body-banner-margin: var(--body-margin);
+  --engrid-body_banner-background-color: var(--engrid-body_background-color);
+  --engrid-body_banner-padding: 0px;
+  --engrid-body_banner-margin: var(--engrid-body_margin);
 
-  --body-bannerOverlay-background-color: var(--color-transparent);
-  --body-bannerOverlay-padding: var(--body-padding);
-  --body-bannerOverlay-margin: var(--body-margin);
+  --engrid-body_bannerOverlay-background-color: var(--color-transparent);
+  --engrid-body_bannerOverlay-padding: var(--engrid-body_padding);
+  --engrid-body_bannerOverlay-margin: var(--engrid-body_margin);
 
-  --body-top-background-color: var(--body-background-color);
-  --body-top-padding: var(--body-padding);
-  --body-top-margin: var(--body-margin);
+  --engrid-body_top-background-color: var(--engrid-body_background-color);
+  --engrid-body_top-padding: var(--engrid-body_padding);
+  --engrid-body_top-margin: var(--engrid-body_margin);
 
-  --body-side-background-color: var(--body-background-color);
-  --body-side-padding: var(--body-padding);
-  --body-side-margin: var(--body-margin);
+  --engrid-body_side-background-color: var(--engrid-body_background-color);
+  --engrid-body_side-padding: var(--engrid-body_padding);
+  --engrid-body_side-margin: var(--engrid-body_margin);
 
-  --body-main-background-color: var(--body-background-color);
-  --body-main-padding: var(--body-padding);
-  --body-main-margin: var(--body-margin);
+  --engrid-body_main-background-color: var(--engrid-body_background-color);
+  --engrid-body_main-padding: var(--engrid-body_padding);
+  --engrid-body_main-margin: var(--engrid-body_margin);
 
-  --body-bottom-background-color: var(--body-background-color);
-  --body-bottom-padding: var(--body-padding);
-  --body-bottom-margin: var(--body-margin);
+  --engrid-body_bottom-background-color: var(--engrid-body_background-color);
+  --engrid-body_bottom-padding: var(--engrid-body_padding);
+  --engrid-body_bottom-margin: var(--engrid-body_margin);
 
-  --body-footer-background-color: var(--body-background-color);
-  --body-footer-padding: var(--body-padding);
-  --body-footer-margin: var(--body-margin);
+  --engrid-body_footer-background-color: var(--engrid-body_background-color);
+  --engrid-body_footer-padding: var(--engrid-body_padding);
+  --engrid-body_footer-margin: var(--engrid-body_margin);
 
-  --body-footerOutside-background-color: var(--color-transparent);
-  --body-footerOutside-padding: var(--body-padding);
-  --body-footerOutside-margin: var(--body-margin);
+  --engrid-body_footerOutside-background-color: var(--color-transparent);
+  --engrid-body_footerOutside-padding: var(--engrid-body_padding);
+  --engrid-body_footerOutside-margin: var(--engrid-body_margin);
 
   --engrid-content_footerSpacer-background-color: var(--engrid-content_background-color);
   --engrid-content_footerSpacer-padding: var(--engrid-content_padding);
@@ -212,95 +212,95 @@ body:not([data-engrid-embedded]) .en__component--advrow {
 .body-headerOutside{
   grid-column: bc;
   grid-row: body-headerOutside;
-  background-color: var(--body-headerOutside-background-color);
-  padding: var(--body-headerOutside-padding);
-  margin: var(--body-headerOutside-margin);
+  background-color: var(--engrid-body_headerOutside-background-color);
+  padding: var(--engrid-body_headerOutside-padding);
+  margin: var(--engrid-body_headerOutside-margin);
 }
 
 .body-header{
   grid-column: bc;
   grid-row: body-header;
-  background-color: var(--body-header-background-color);
-  border-top-left-radius: var(--body-header-border-radius);
-  border-top-right-radius: var(--body-header-border-radius);
-  min-height: var(--body-header-border-radius);
-  padding: var(--body-header-padding);
-  margin: var(--body-header-margin);
+  background-color: var(--engrid-body_header-background-color);
+  border-top-left-radius: var(--engrid-body_header-border-radius);
+  border-top-right-radius: var(--engrid-body_header-border-radius);
+  min-height: var(--engrid-body_header-border-radius);
+  padding: var(--engrid-body_header-padding);
+  margin: var(--engrid-body_header-margin);
 }
 
 .body-title{
   grid-column: bc;
   grid-row: body-title;
-  background-color: var(--body-title-background-color);
-  padding: var(--body-title-padding);
-  margin: var(--body-title-margin);
+  background-color: var(--engrid-body_title-background-color);
+  padding: var(--engrid-body_title-padding);
+  margin: var(--engrid-body_title-margin);
 }
 
 .body-banner{
   grid-column: bc;
   grid-row: body-banner;
-  background-color: var(--body-banner-background-color);
-  padding: var(--body-banner-padding);
-  margin: var(--body-banner-margin);
+  background-color: var(--engrid-body_banner-background-color);
+  padding: var(--engrid-body_banner-padding);
+  margin: var(--engrid-body_banner-margin);
 }
 
 .body-bannerOverlay{
   grid-column: bc;
   grid-row: body-banner;
-  background-color: var(--body-bannerOverlay-background-color);
-  padding: var(--body-bannerOverlay-padding);
-  margin: var(--body-bannerOverlay-margin);
+  background-color: var(--engrid-body_bannerOverlay-background-color);
+  padding: var(--engrid-body_bannerOverlay-padding);
+  margin: var(--engrid-body_bannerOverlay-margin);
 }
 
 .body-top{
   grid-column: bc;
   grid-row: body-top;
-  background-color: var(--body-top-background-color);
-  padding: var(--body-top-padding);
-  margin: var(--body-top-margin);
+  background-color: var(--engrid-body_top-background-color);
+  padding: var(--engrid-body_top-padding);
+  margin: var(--engrid-body_top-margin);
 }
 
 .body-side{
   grid-column: bc;
   grid-row: body-side;
-  background-color: var(--body-side-background-color);
-  padding: var(--body-side-padding);
-  margin: var(--body-side-margin);
+  background-color: var(--engrid-body_side-background-color);
+  padding: var(--engrid-body_side-padding);
+  margin: var(--engrid-body_side-margin);
 }
 
 .body-main{
   grid-column: bc;
   grid-row: body-main;
-  background-color: var(--body-main-background-color);
-  padding: var(--body-main-padding);
-  margin: var(--body-main-margin);
+  background-color: var(--engrid-body_main-background-color);
+  padding: var(--engrid-body_main-padding);
+  margin: var(--engrid-body_main-margin);
 }
 
 .body-bottom{
   grid-column: bc;
   grid-row: body-bottom;
-  background-color: var(--body-bottom-background-color);
-  padding: var(--body-bottom-padding);
-  margin: var(--body-bottom-margin);
+  background-color: var(--engrid-body_bottom-background-color);
+  padding: var(--engrid-body_bottom-padding);
+  margin: var(--engrid-body_bottom-margin);
 }
 
 .body-footer{
   grid-column: bc;
   grid-row: body-footer;
-  background-color: var(--body-footer-background-color);
-  border-bottom-left-radius: var(--body-footer-border-radius);
-  border-bottom-right-radius: var(--body-footer-border-radius);
-  min-height: var(--body-footer-border-radius);
-  padding: var(--body-footer-padding);
-  margin: var(--body-footer-margin);
+  background-color: var(--engrid-body_footer-background-color);
+  border-bottom-left-radius: var(--engrid-body_footer-border-radius);
+  border-bottom-right-radius: var(--engrid-body_footer-border-radius);
+  min-height: var(--engrid-body_footer-border-radius);
+  padding: var(--engrid-body_footer-padding);
+  margin: var(--engrid-body_footer-margin);
 }
 
 .body-footerOutside{
   grid-column: bc;
   grid-row: body-footerOutside;
-  background-color: var(--body-footerOutside-background-color);
-  padding: var(--body-footerOutside-padding);
-  margin: var(--body-footerOutside-margin);
+  background-color: var(--engrid-body_footerOutside-background-color);
+  padding: var(--engrid-body_footerOutside-padding);
+  margin: var(--engrid-body_footerOutside-margin);
 }
 
 .content-footerSpacer{
