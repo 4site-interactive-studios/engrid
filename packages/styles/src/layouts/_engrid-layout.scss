@@ -19,9 +19,9 @@
   --engrid-page-alert_padding: var(--engrid-page_padding);
   --engrid-page-alert_margin: var(--engrid-page_margin);
 
-  --engrid-content_header-background-color: var(--engrid-content_background-color);
-  --engrid-content_header-padding: var(--engrid-content_padding);
-  --engrid-content_header-margin: var(--engrid-content_margin);
+  --engrid-content-header_background-color: var(--engrid-content_background-color);
+  --engrid-content-header_padding: var(--engrid-content_padding);
+  --engrid-content-header_margin: var(--engrid-content_margin);
 
   --engrid-body_headerOutside-background-color: var(--color-transparent);
   --engrid-body_headerOutside-padding: var(--engrid-body_padding);
@@ -200,9 +200,9 @@ body:not([data-engrid-embedded]) .en__component--advrow {
 .content-header{
   grid-column: pc;
   grid-row: content-header;
-  background-color: var(--engrid-content_header-background-color);
-  padding: var(--engrid-content_header-padding);
-  margin: var(--engrid-content_header-margin);
+  background-color: var(--engrid-content-header_background-color);
+  padding: var(--engrid-content-header_padding);
+  margin: var(--engrid-content-header_margin);
 }
 
 .content-header.pseudo-subgrid > div{
