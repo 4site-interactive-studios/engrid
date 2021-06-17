@@ -15,9 +15,9 @@
   --engrid-body_border-radius: 0px; // UNIQUE TO THE BODY
 
   // INDIVIDUAL SECTION SETTINGS (BACKGROUND COLOR, PADDING, MARGIN)
-  --engrid-page_alert-background-color: var(--engrid-page_background-color);
-  --engrid-page_alert-padding: var(--engrid-page_padding);
-  --engrid-page_alert-margin: var(--engrid-page_margin);
+  --engrid-page-alert_background-color: var(--engrid-page_background-color);
+  --engrid-page-alert_padding: var(--engrid-page_padding);
+  --engrid-page-alert_margin: var(--engrid-page_margin);
 
   --engrid-content_header-background-color: var(--engrid-content_background-color);
   --engrid-content_header-padding: var(--engrid-content_padding);
@@ -192,9 +192,9 @@ body:not([data-engrid-embedded]) .en__component--advrow {
 .page-alert{
   grid-column: pc;
   grid-row: page-alert;
-  background-color: var(--engrid-page_alert-background-color);
-  padding: var(--engrid-page_alert-padding);
-  margin: var(--engrid-page_alert-margin);
+  background-color: var(--engrid-page-alert_background-color);
+  padding: var(--engrid-page-alert_padding);
+  margin: var(--engrid-page-alert_margin);
 }
 
 .content-header{
