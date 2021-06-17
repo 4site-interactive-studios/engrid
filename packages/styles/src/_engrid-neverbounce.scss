@@ -42,13 +42,13 @@ div[id^=nb-field-]{
 
 div[id^=nb-field-].nb-error{
     input{
-        border-color: var(--theme-error-red) !important;
-        background-color: var(--theme-error-red-faded) !important;
+        border-color: var(--error-red) !important;
+        background-color: var(--error-red-faded) !important;
 
         .nb-feedback{
             position: initial !important;
             border: none !important;
-            background-color: var(--theme-error-red) !important;
+            background-color: var(--error-red) !important;
             color: #ffffff !important;
 
             .nb-icon-cancel{

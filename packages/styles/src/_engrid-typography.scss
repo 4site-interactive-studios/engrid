@@ -1,39 +1,39 @@
 :root{
     // FONT STACKS (REF: https://markdotto.com/2018/02/07/github-system-fonts/)
-    --theme-font-stack-browser-fonts: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+    --font-stack-browser-fonts: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
 
     // TYPOGRAPHY DEFAULT
-    --default-font-family: var(--theme-font-stack-browser-fonts);
+    --default-font-family: var(--font-stack-browser-fonts);
     --default-color: initial;
-    --default-font-size: var(--theme-root-font-size);
+    --default-font-size: var(--root-font-size);
     --default-font-weight: initial;
     --default-line-height: initial;
 
     // TYPOGRAPHY H1
-    --h1-font-family: var(--theme-font-stack-browser-fonts);
+    --h1-font-family: var(--font-stack-browser-fonts);
     --h1-color: initial;
-    --h1-font-size: calc(var(--theme-root-font-size) * var(--scale-up-160pct));
+    --h1-font-size: calc(var(--root-font-size) * var(--scale-up-160pct));
     --h1-font-weight: initial;
     --h1-line-height: initial;
         
     // TYPOGRAPHY H2
     --h2-font-family: var(--h1-font-family);
     --h2-color: initial;
-    --h2-font-size: calc(var(--theme-root-font-size) * var(--scale-up-80pct));
+    --h2-font-size: calc(var(--root-font-size) * var(--scale-up-80pct));
     --h2-font-weight: initial;
     --h2-line-height: initial;
         
     // TYPOGRAPHY H3
     --h3-font-family: var(--h1-font-family);
     --h3-color: initial;
-    --h3-font-size: calc(var(--theme-root-font-size) * var(--scale-up-40pct));
+    --h3-font-size: calc(var(--root-font-size) * var(--scale-up-40pct));
     --h3-font-weight: initial;
     --h3-line-height: initial;    
         
     // TYPOGRAPHY P
     --p-font-family: var(--default-font-family);
     --p-color: initial;
-    --p-font-size: var(--theme-root-font-size);
+    --p-font-size: var(--root-font-size);
     --p-font-weight: initial;
     --p-line-height: initial;
 

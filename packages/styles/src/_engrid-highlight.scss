@@ -1,12 +1,12 @@
 :root{
     // HIGHLIGHTS
-    --theme-highlight-background-color: #227F9E;
-    --theme-highlight-font-color: #FFFFFF;
+    --highlight-background-color: #227F9E;
+    --highlight-font-color: #FFFFFF;
 }
 
 .highlight {
-    background-color: var(--theme-highlight-background-color);
-    color: var(--theme-highlight-font-color);
+    background-color: var(--highlight-background-color);
+    color: var(--highlight-font-color);
     padding: 0.15em;
     display: inline-block;
 }

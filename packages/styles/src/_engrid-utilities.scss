@@ -5,11 +5,11 @@
     --color-black: rgba(0, 0, 0, 1);
 
     // GRAYSCALE COLOR PALETTE
-    --theme-off-white: #DFDFDF;
-    --theme-light-gray: #BFBFBF;
-    --theme-gray: #9F9F9F;
-    --theme-dark-gray: #808080;
-    --theme-off-black: #404040;
+    --off-white: #DFDFDF;
+    --light-gray: #BFBFBF;
+    --gray: #9F9F9F;
+    --dark-gray: #808080;
+    --off-black: #404040;
 
      // SEMANTIC GEOMETRIC SCALING
      --scale-up-20pct: 1.2;
@@ -22,8 +22,8 @@
 
     // @TODO Revisit these spacing values and calculations
     // @BODY Look into replicating "Teach a System of Space Visually" as a Development page that shows all styling decisions for the brand https://medium.com/eightshapes-llc/space-in-design-systems-188bcbae0d62#.fwng4aef7
-    --theme-spacing-sm: 0.8652rem;
-    --theme-spacing: calc(0.8652rem * 0.75);
-    --theme-spacing-lg: calc(0.8652rem * 2.5);
-    --theme-spacing-xlg: calc(0.8652rem * 5);
+    --spacing-sm: 0.8652rem;
+    --spacing: calc(0.8652rem * 0.75);
+    --spacing-lg: calc(0.8652rem * 2.5);
+    --spacing-xlg: calc(0.8652rem * 5);
 }

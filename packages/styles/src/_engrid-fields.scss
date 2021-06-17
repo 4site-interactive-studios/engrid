@@ -2,73 +2,73 @@
   // TYPOGRAPHY LABEL
   --label-font-family: var(--default-font-family);
   --label-color: initial;
-  --label-font-size: var(--theme-root-font-size);
+  --label-font-size: var(--root-font-size);
   --label-font-weight: initial;
   --label-line-height: initial;
       
   // TYPOGRAPHY INPUT
   --input-font-family: var(--default-font-family);
   --input-color: initial;
-  --input-font-size: var(--theme-root-font-size);
+  --input-font-size: var(--root-font-size);
   --input-font-weight: initial;
   --input-line-height: initial;
   --input-background-color: var(--color-white);
   --input-border-width: 1px;
   --input-border-color: var(--color-black);
   --input-border-radius: initial;
-  --input-placeholder-color: var(--theme-light-gray);
-  --input-box-shadow: inset 0 1px 2px var(--theme-light-gray);
+  --input-placeholder-color: var(--light-gray);
+  --input-box-shadow: inset 0 1px 2px var(--light-gray);
       
   // TYPOGRAPHY INPUT:FOCUS
   // TYPOGRAPHY INPUT:HOVER
   --input-hover-color: var(--input-color);
   --input-hover-background-color: var(--input-background-color);
-  --input-hover-border-color: var(--theme-cta);
+  --input-hover-border-color: var(--cta);
   --input-hover-border-bottom-color: var(--input-hover-border-color);
-  --input-hover-box-shadow: 0 0 0.3125rem var(--theme-light-gray);
+  --input-hover-box-shadow: 0 0 0.3125rem var(--light-gray);
       
   // TYPOGRAPHY RADIO
   --radio-content: "";
-  --radio-color: var(--theme-cta);
+  --radio-color: var(--cta);
   --radio-background-color: var(--color-white);
   --radio-border-width: 4px;
-  --radio-border-color: var(--theme-black);
+  --radio-border-color: var(--black);
   --radio-border-radius: 50%;
 
   // TYPOGRAPHY RADIO INPUT:FOCUS
   // TYPOGRAPHY RADIO INPUT:HOVER
   --radio-hover-color: var(--radio-color);
   --radio-hover-background-color: var(--color-white);
-  --radio-hover-border-color: var(--theme-black);
+  --radio-hover-border-color: var(--black);
 
   // TYPOGRAPHY RADIO INPUT:CHECKED
-  --radio-selected-color: var(--theme-black);
-  --radio-selected-background-color: var(--theme-cta);
-  --radio-selected-border-color: var(--theme-black);
+  --radio-selected-color: var(--black);
+  --radio-selected-background-color: var(--cta);
+  --radio-selected-border-color: var(--black);
 
   // TYPOGRAPHY CHECKBOX
   --checkbox-color: var(--color-white);
   --checkbox-background-color: var(--color-white);
   --checkbox-border-width: 1px;
-  --checkbox-border-color: var(--theme-black);
+  --checkbox-border-color: var(--black);
   --checkbox-border-radius: 0px;
 
   // TYPOGRAPHY CHECKBOX INPUT:FOCUS
   // TYPOGRAPHY CHECKBOX INPUT:HOVER
   --checkbox-hover-color: var(--checkbox-color);
   --checkbox-hover-background-color: #f5f5f5;
-  --checkbox-hover-border-color: var(--theme-black);
+  --checkbox-hover-border-color: var(--black);
 
   // TYPOGRAPHY CHECKBOX INPUT:CHECKED
   --checkbox-checked-content:"✓";
   --checkbox-checked-color: var(--checkbox-background-color);
-  --checkbox-checked-background-color: var(--theme-cta);
-  --checkbox-checked-border-color: var(--theme-black);
+  --checkbox-checked-background-color: var(--cta);
+  --checkbox-checked-border-color: var(--black);
 
   // TYPOGRAPHY SELECT
   --select-font-family: var(--default-font-family);
   --select-color: var(--color-black);
-  --select-font-size: var(--theme-root-font-size);
+  --select-font-size: var(--root-font-size);
   --select-font-weight: initial;
   --select-line-height: initial;
   --select-background-color: var(--color-white);
@@ -81,28 +81,28 @@
   // TYPOGRAPHY SELECT:HOVER
   --select-hover-color: var(--select-color);
   --select-hover-background-color: var(--select-background-color);
-  --select-hover-border-color: var(--theme-cta-hover);
+  --select-hover-border-color: var(--cta-hover);
   --select-hover-border-bottom-color: var(--select-hover-border-color);
   --select-hover-box-shadow: var(--input-hover-box-shadow);
 
   // TYPOGRAPHY TEXTAREA
   --textarea-font-family: var(--default-font-family);
   --textarea-color: initial;
-  --textarea-font-size: var(--theme-root-font-size);
+  --textarea-font-size: var(--root-font-size);
   --textarea-font-weight: initial;
   --textarea-line-height: initial;
   --textarea-background-color: var(--color-white);
   --textarea-border-width: 1px;
   --textarea-border-color: var(--color-black);
   --textarea-border-radius: initial;
-  --textarea-placeholder-color: var(--theme-light-gray);
+  --textarea-placeholder-color: var(--light-gray);
   --textarea-box-shadow: var(--input-box-shadow);
       
   // TYPOGRAPHY TEXTAREA:FOCUS
   // TYPOGRAPHY TEXTAREA:HOVER
   --textarea-hover-color: var(--textarea-color);
   --textarea-hover-background-color: var(--textarea-background-color);
-  --textarea-hover-border-color: var(--theme-cta);
+  --textarea-hover-border-color: var(--cta);
   --textarea-hover-box-shadow: var(--input-hover-box-shadow);
 }
 
@@ -558,7 +558,7 @@ input.en__contactDetails__select {
   + .en__contactDetails__rows::after {
   // Needs and SVG safe color passed in https://stackoverflow.com/questions/25477819/scss-variable-in-background-image-with-svg-image-data-uri
   // content: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='21' height='16' viewBox='0 0 21 16'><path fill="#color-white" fill-rule='nonzero' d='M18.76.16L6.68 12.113l-4.44-4.392a.555.555 0 0 0-.779 0L.161 9.006a.541.541 0 0 0 0 .771L6.29 15.84a.555.555 0 0 0 .78 0l13.77-13.624a.541.541 0 0 0 0-.771L19.539.16a.555.555 0 0 0-.779 0z'/></svg>");
-  // fill: var(--theme-cta);
+  // fill: var(--cta);
   content: "✓"; // REF: https://www.toptal.com/designers/htmlarrows/symbols/check-mark/
   position: absolute;
   left: -28px;
@@ -574,7 +574,7 @@ input.en__contactDetails__select {
 .en__field__input--radio:focus + .en__field__label:before,
 .en__field__input--checkbox:focus + .en__field__label:before,
 .en__contactDetails__select:focus + .en__contactDetails__rows:before {
-  // outline: var(--theme-gray) auto 0.3125rem;
+  // outline: var(--gray) auto 0.3125rem;
   // border-color: var(--input-checked-border-color);
 }
 
@@ -720,35 +720,35 @@ input[type="number"]::-webkit-outer-spin-button {
 /* Placeholder styling */
 /* Chrome, Firefox, Opera, Safari 10.1+ */
 ::-webkit-input-placeholder {
-  color: var(--theme-light-gray);
+  color: var(--light-gray);
   opacity: 1;
 }
 
 /* Firefox */
 :-ms-input-placeholder {
-  color: var(--theme-light-gray);
+  color: var(--light-gray);
   opacity: 1;
   
 }
 
 /* Firefox */
 ::-ms-input-placeholder {
-  color: var(--theme-light-gray);
+  color: var(--light-gray);
   opacity: 1;
 }
 
 /* Firefox */
 ::placeholder {
-  color: var(--theme-light-gray);
+  color: var(--light-gray);
   opacity: 1;
 }
 
 /* Internet Explorer 10-11 */
 :-ms-input-placeholder {
-  color: var(--theme-light-gray);
+  color: var(--light-gray);
 }
 
 /* Microsoft Edge */
 ::-ms-input-placeholder {
-  color: var(--theme-light-gray);
+  color: var(--light-gray);
 }

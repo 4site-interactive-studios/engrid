@@ -1,9 +1,9 @@
 :root{
-  --theme-error-red: #F12222;
-  --theme-error-red-grayscale: #949494;
-  --theme-error-red-faded: #FFEAE9;
-  --theme-error-page-group-background: #FFEAE9;
-  --theme-error-input-border-width: var(--input-border-width);
+  --error-red: #F12222;
+  --error-red-grayscale: #949494;
+  --error-red-faded: #FFEAE9;
+  --error-page-group-background: #FFEAE9;
+  --error-input-border-width: var(--input-border-width);
 }
 
 /************************************
@@ -13,22 +13,22 @@
 /* Page Level Errors */
 .en__errorHeader {
   padding: 0.5rem 2rem;
-  color: var(--theme-error-red);
+  color: var(--error-red);
   font-weight: 700;
   text-align: center;
-  background-color: var(--theme-error-page-group-background);
+  background-color: var(--error-page-group-background);
 }
 
 .en__errorList > .en__error {
   padding: 0.5rem 2rem;
   list-style: none;
-  color: var(--theme-error-red);
+  color: var(--error-red);
   text-align: center;
-  background-color: var(--theme-error-page-group-background);
+  background-color: var(--error-page-group-background);
 }
 
 .en__errorList > .en__error:last-child {
-  border-bottom: 5px solid var(--theme-error-red);
+  border-bottom: 5px solid var(--error-red);
 }
 
 /* Field Level Inline Errors */
@@ -46,7 +46,7 @@
 
 .en__component .en__field__error {
   padding: 0.25rem 0.5rem 0 0;
-  color: var(--theme-error-red);
+  color: var(--error-red);
   font-size: 0.75rem;
   order: 3;
 }
@@ -59,7 +59,7 @@ body.error-jump-assist .en__component .en__field__error {
 }
 
 .en__field--validationFailed label{
-  color: var(--theme-error-red);
+  color: var(--error-red);
 }
 
 .en__field--text.en__field--validationFailed input,
@@ -69,8 +69,8 @@ body.error-jump-assist .en__component .en__field__error {
 .en__field--textarea.en__field--validationFailed textarea,
 .en__field--select.en__field--validationFailed select,
 .en__field--withOther.en__field--validationFailed input{
-  border-color: var(--theme-error-red);
-  background-color: var(--theme-error-red-faded);
+  border-color: var(--error-red);
+  background-color: var(--error-red-faded);
 }
 
 .en__component
@@ -94,8 +94,8 @@ body.error-jump-assist .en__component .en__field__error {
 .en__component
   .en__field.en__field--tripleselect.en__field--validationFailed
   .en__field__element {
-  border: var(--theme-error-input-border-width) solid var(--theme-error-red);
-  background-color: var(--theme-error-red-faded);
+  border: var(--error-input-border-width) solid var(--error-red);
+  background-color: var(--error-red-faded);
   padding: 0.5rem 0.5rem 0rem 0.5rem;
   border-radius: var(--input-border-radius);
 }
@@ -133,13 +133,13 @@ body.error-jump-assist .en__component .en__field__error {
 
 .en__field--radio.en__field--validationFailed
   .en__field--checkbox.en__field--validationFailed {
-  border-color: var(--theme-error-red);
+  border-color: var(--error-red);
 }
 
 .en__field--validationFailed.has-value input,
 .en__field--validationFailed.has-value textarea,
 .en__field--select.en__field--validationFailed.has-value select {
-  border-color: var(--theme-error-red-grayscale);
+  border-color: var(--error-red-grayscale);
   background-color: initial;
 }
 

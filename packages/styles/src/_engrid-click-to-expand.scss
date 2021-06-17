@@ -1,32 +1,32 @@
 :root{
     // CLICK TO EXPAND
-    --theme-click-to-expand-copy-total-height: 450px;
-    --theme-click-to-expand-cta-image-url: url("https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_open.png");
-    --theme-click-to-expand-cta-image-width: 16px;
-    --theme-click-to-expand-cta-image-height: 16px;
+    --click-to-expand-copy-total-height: 450px;
+    --click-to-expand-cta-image-url: url("https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_open.png");
+    --click-to-expand-cta-image-width: 16px;
+    --click-to-expand-cta-image-height: 16px;
 }
 
 // Depends on click-to-expand.ts
 body:not(#en__pagebuilder) .click-to-expand:not(.expanded){
     cursor: pointer;
-    max-height: var(--theme-click-to-expand-copy-total-height);
+    max-height: var(--click-to-expand-copy-total-height);
     overflow: hidden;
 
     // Works with transparent backgrounds for when the ENGrid is in its embedded state
     // REF: https://stackoverflow.com/a/58740440/815683
     .click-to-expand-text-wrapper {
-        max-height: calc(var(--theme-click-to-expand-copy-total-height) - var(--theme-click-to-expand-cta-image-height) - 35px);
-        mask-image: linear-gradient(to bottom, black 50%, rgba(255, 255, 255, 0) calc(100% - var(--theme-click-to-expand-cta-image-height)));  
+        max-height: calc(var(--click-to-expand-copy-total-height) - var(--click-to-expand-cta-image-height) - 35px);
+        mask-image: linear-gradient(to bottom, black 50%, rgba(255, 255, 255, 0) calc(100% - var(--click-to-expand-cta-image-height)));  
     }
 
     .click-to-expand-cta {
-        background: var(--theme-click-to-expand-cta-image-url);
+        background: var(--click-to-expand-cta-image-url);
         background-position: center bottom;
         background-repeat: no-repeat;
-        background-size: var(--theme-click-to-expand-cta-image-width) var(--theme-click-to-expand-cta-image-height);
+        background-size: var(--click-to-expand-cta-image-width) var(--click-to-expand-cta-image-height);
         // z-index: 100;
-        width: var(--theme-click-to-expand-cta-image-width);
-        height: var(--theme-click-to-expand-cta-image-height);
+        width: var(--click-to-expand-cta-image-width);
+        height: var(--click-to-expand-cta-image-height);
         bottom: 0em;
         position: absolute;
         margin-left: auto;

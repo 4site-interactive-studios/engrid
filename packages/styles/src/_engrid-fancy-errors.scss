@@ -10,7 +10,7 @@
   font-size: 0.75rem;
   border-bottom-left-radius: var(--input-border-radius);
   border-bottom-right-radius: var(--input-border-radius);
-  background-color: var(--theme-error-red);
+  background-color: var(--error-red);
   order: 3;
 }
 
@@ -87,7 +87,7 @@
   .en__field.en__field--tripleselect.en__field--validationFailed.has-value
   .en__field__element,
 [data-engrid-errors="fancy"] .en__field--validationFailed.has-value .en__field__error {
-  border-color: var(--theme-error-red-grayscale);
-  background-color: var(--theme-error-red-grayscale);
+  border-color: var(--error-red-grayscale);
+  background-color: var(--error-red-grayscale);
   color: var(--color-white);
 }

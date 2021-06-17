@@ -4,15 +4,15 @@
 :root{
     // Lazy Loaded Banner Image
      // As far as we can tell, this was never used
-    --theme-body-banner-image-background-color: var(--color-transparent);
+    --body-banner-image-background-color: var(--color-transparent);
 
-     // Simplified the color defintions. Rarely used: https://github.com/search?q=org%3A4site-interactive-studios+var%28--theme-error%29&type=code
-    --theme-error: var(--theme-error-red);
+     // Simplified the color defintions. Rarely used: https://github.com/search?q=org%3A4site-interactive-studios+var%28--error%29&type=code
+    --error: var(--error-red);
 
      // As far as we can tell, this was never used
-    --theme-success: #33CC33;
+    --success: #33CC33;
     
      // As far as we can tell, this was never used
-    --theme-warning: #FCAC00;
+    --warning: #FCAC00;
 }
   
