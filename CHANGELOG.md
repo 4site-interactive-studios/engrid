@@ -1,3 +1,4 @@
+BREAKING: Replaced all instances of "--engrid-page_backgroundImageOverlay-" with "--engrid-page-backgroundImageOverlay_"
 BREAKING: Replaced all instances of "--engrid-page_backgroundImage-" with "--engrid-page-backgroundImage_"
 BREAKING: Replaced all instances of "--engrid-content_footer-" with "--engrid-content-footer_"
 BREAKING: Replaced all instances of "--engrid-content_preFooter-" with "--engrid-content-preFooter_"

@@ -79,9 +79,9 @@
   --engrid-page-backgroundImage_padding: 0px;
   --engrid-page-backgroundImage_margin: var(--engrid-page_margin);
 
-  --engrid-page_backgroundImageOverlay-background-color: var(--color-transparent);
-  --engrid-page_backgroundImageOverlay-padding: var(--engrid-page_padding);
-  --engrid-page_backgroundImageOverlay-margin: var(--engrid-page_margin);
+  --engrid-page-backgroundImageOverlay_background-color: var(--color-transparent);
+  --engrid-page-backgroundImageOverlay_padding: var(--engrid-page_padding);
+  --engrid-page-backgroundImageOverlay_margin: var(--engrid-page_margin);
 
   --engrid-page_customCode-background-color: var(--engrid-page_background-color);
   --engrid-page_customCode-padding: var(--engrid-page_padding);    
@@ -343,9 +343,9 @@ body:not([data-engrid-embedded]) .en__component--advrow {
 .page-backgroundImageOverlay{
   grid-column: pc;
   grid-row: page-backgroundImage;
-  background-color: var(--engrid-page_backgroundImageOverlay-background-color);
-  padding: var(--engrid-page_backgroundImageOverlay-padding);
-  margin: var(--engrid-page_backgroundImageOverlay-margin);
+  background-color: var(--engrid-page-backgroundImageOverlay_background-color);
+  padding: var(--engrid-page-backgroundImageOverlay_padding);
+  margin: var(--engrid-page-backgroundImageOverlay_margin);
 }
 
 .page-customCode{
