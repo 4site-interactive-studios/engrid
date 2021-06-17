@@ -47,9 +47,9 @@
   --engrid-body-top_padding: var(--engrid-body_padding);
   --engrid-body-top_margin: var(--engrid-body_margin);
 
-  --engrid-body_main-background-color: var(--engrid-body_background-color);
-  --engrid-body_main-padding: var(--engrid-body_padding);
-  --engrid-body_main-margin: var(--engrid-body_margin);
+  --engrid-body-main_background-color: var(--engrid-body_background-color);
+  --engrid-body-main_padding: var(--engrid-body_padding);
+  --engrid-body-main_margin: var(--engrid-body_margin);
 
   --engrid-body_bottom-background-color: var(--engrid-body_background-color);
   --engrid-body_bottom-padding: var(--engrid-body_padding);
@@ -267,9 +267,9 @@ body:not([data-engrid-embedded]) .en__component--advrow {
 .body-main{
   grid-column: bc;
   grid-row: body-main;
-  background-color: var(--engrid-body_main-background-color);
-  padding: var(--engrid-body_main-padding);
-  margin: var(--engrid-body_main-margin);
+  background-color: var(--engrid-body-main_background-color);
+  padding: var(--engrid-body-main_padding);
+  margin: var(--engrid-body-main_margin);
 }
 
 .body-bottom{
