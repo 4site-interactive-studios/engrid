@@ -39,9 +39,9 @@
   --engrid-body-banner_padding: 0px;
   --engrid-body-banner_margin: var(--engrid-body_margin);
 
-  --engrid-body_bannerOverlay-background-color: var(--color-transparent);
-  --engrid-body_bannerOverlay-padding: var(--engrid-body_padding);
-  --engrid-body_bannerOverlay-margin: var(--engrid-body_margin);
+  --engrid-body-bannerOverlay_background-color: var(--color-transparent);
+  --engrid-body-bannerOverlay_padding: var(--engrid-body_padding);
+  --engrid-body-bannerOverlay_margin: var(--engrid-body_margin);
 
   --engrid-body_top-background-color: var(--engrid-body_background-color);
   --engrid-body_top-padding: var(--engrid-body_padding);
@@ -247,9 +247,9 @@ body:not([data-engrid-embedded]) .en__component--advrow {
 .body-bannerOverlay{
   grid-column: bc;
   grid-row: body-banner;
-  background-color: var(--engrid-body_bannerOverlay-background-color);
-  padding: var(--engrid-body_bannerOverlay-padding);
-  margin: var(--engrid-body_bannerOverlay-margin);
+  background-color: var(--engrid-body-bannerOverlay_background-color);
+  padding: var(--engrid-body-bannerOverlay_padding);
+  margin: var(--engrid-body-bannerOverlay_margin);
 }
 
 .body-top{
