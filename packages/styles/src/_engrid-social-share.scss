@@ -5,9 +5,9 @@
   &::before {
     content: "SHARE";
     box-sizing: border-box;
-    font-family: var(--theme-typography-p-font-family);
-    color: var(--theme-typography-p-color);
-    line-height: var(--theme-typography-p-line-height);
+    font-family: var(--p-font-family);
+    color: var(--p-color);
+    line-height: var(--p-line-height);
     text-align: right;
     font-size: 12px;
     letter-spacing: 0.7px;

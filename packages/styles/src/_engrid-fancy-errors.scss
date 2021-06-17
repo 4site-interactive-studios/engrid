@@ -8,8 +8,8 @@
   padding: 0.25rem 0.5rem;
   color: var(--color-white);
   font-size: 0.75rem;
-  border-bottom-left-radius: var(--theme-typography-input-border-radius);
-  border-bottom-right-radius: var(--theme-typography-input-border-radius);
+  border-bottom-left-radius: var(--input-border-radius);
+  border-bottom-right-radius: var(--input-border-radius);
   background-color: var(--theme-error-red);
   order: 3;
 }

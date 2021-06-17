@@ -3,7 +3,7 @@
   --theme-error-red-grayscale: #949494;
   --theme-error-red-faded: #FFEAE9;
   --theme-error-page-group-background: #FFEAE9;
-  --theme-error-input-border-width: var(--theme-typography-input-border-width);
+  --theme-error-input-border-width: var(--input-border-width);
 }
 
 /************************************
@@ -97,7 +97,7 @@ body.error-jump-assist .en__component .en__field__error {
   border: var(--theme-error-input-border-width) solid var(--theme-error-red);
   background-color: var(--theme-error-red-faded);
   padding: 0.5rem 0.5rem 0rem 0.5rem;
-  border-radius: var(--theme-typography-input-border-radius);
+  border-radius: var(--input-border-radius);
 }
 
 .en__field--text.en__field--validationFailed .en__field__error,
@@ -146,12 +146,12 @@ body.error-jump-assist .en__component .en__field__error {
 div:not(.manual-form-layout) {
   .en__field--donationAmt.en__field--withOther.en__field--validationFailed
     .en__field__element--radio {
-    border-radius: var(--theme-typography-donation-amount-button-border-radius);
+    border-radius: var(--donation-amount-button-border-radius);
     margin-bottom: 0.5rem;
   }
 
   .en__field--donationAmt.en__field--withOther.en__field--validationFailed
     .en__field__error {
-    border-radius: var(--theme-typography-donation-amount-button-border-radius);
+    border-radius: var(--donation-amount-button-border-radius);
   }
 }

@@ -1,51 +1,51 @@
 :root{  
   // TYPOGRAPHY BUTTON
-  --theme-typography-button-font-family: var(--theme-typography-default-font-family);
-  --theme-typography-button-color: var(--color-white);
-  --theme-typography-button-font-size: var(--theme-root-font-size);
-  --theme-typography-button-font-weight: initial;
-  --theme-typography-button-line-height: initial;
-  --theme-typography-button-background-color: var(--color-black);
-  --theme-typography-button-border-width: initial;
-  --theme-typography-button-border-color: var(--color-black);
-  --theme-typography-button-border-radius: initial;
+  --button-font-family: var(--default-font-family);
+  --button-color: var(--color-white);
+  --button-font-size: var(--theme-root-font-size);
+  --button-font-weight: initial;
+  --button-line-height: initial;
+  --button-background-color: var(--color-black);
+  --button-border-width: initial;
+  --button-border-color: var(--color-black);
+  --button-border-radius: initial;
 
   // TYPOGRAPHY BUTTON:HOVER
-  --theme-typography-button-hover-color: var(--theme-typography-button-color);
-  --theme-typography-button-hover-background-color: var(--theme-cta-hover);
-  --theme-typography-button-hover-border-color: var(--theme-cta-hover);
+  --button-hover-color: var(--button-color);
+  --button-hover-background-color: var(--theme-cta-hover);
+  --button-hover-border-color: var(--theme-cta-hover);
 
   // TYPOGRAPHY BUTTON:CHECKED
-  --theme-typography-button-checked-color: var(--theme-typography-button-color);
-  --theme-typography-button-checked-background-color: var(--theme-cta-hover);
-  --theme-typography-button-checked-border-color: var(--theme-cta-hover);
+  --button-checked-color: var(--button-color);
+  --button-checked-background-color: var(--theme-cta-hover);
+  --button-checked-border-color: var(--theme-cta-hover);
 }
 
 // @TODO reconcile with definition below
 button,
 .button{
-    font-family: var(--theme-typography-button-font-family);
-    color: var(--theme-typography-button-color);
-    font-size: var(--theme-typography-button-font-size);
-    font-weight: var(--theme-typography-button-font-weight);
-    line-height: var(--theme-typography-button-line-height);
-    background-color: var(--theme-typography-button-background-color);
-    border-width: var(--theme-typography-button-border-width);
-    border-color: var(--theme-typography-button-border-color);
-    border-radius: var(--theme-typography-button-border-radius);    
+    font-family: var(--button-font-family);
+    color: var(--button-color);
+    font-size: var(--button-font-size);
+    font-weight: var(--button-font-weight);
+    line-height: var(--button-line-height);
+    background-color: var(--button-background-color);
+    border-width: var(--button-border-width);
+    border-color: var(--button-border-color);
+    border-radius: var(--button-border-radius);    
     cursor: pointer;
 
     &:focus,
     &:hover{
-        color: var(--theme-typography-button-hover-color);
-        background-color: var(--theme-typography-button-hover-background-color);
-        border-color: var(--theme-typography-button-hover-border-color);
+        color: var(--button-hover-color);
+        background-color: var(--button-hover-background-color);
+        border-color: var(--button-hover-border-color);
     }
 
     &:active{
-        color: var(--theme-typography-button-checked-color);
-        background-color: var(--theme-typography-button-checked-background-color);
-        border-color: var(--theme-typography-button-checked-border-color);
+        color: var(--button-checked-color);
+        background-color: var(--button-checked-background-color);
+        border-color: var(--button-checked-border-color);
     }
 }
 
@@ -62,23 +62,23 @@ button,
   padding: 0.85rem 1rem;
   -webkit-appearance: none;
   border: 1px solid transparent;
-  border-radius: var(--theme-typography-input-border-radius);
+  border-radius: var(--input-border-radius);
   -webkit-transition: background-color 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out;
   transition: background-color 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out;
   font-size: 1rem;
   text-align: center;
   cursor: pointer;
-  background-color: var(--theme-typography-button-background-color);
-  color: var(--theme-typography-button-color);
+  background-color: var(--button-background-color);
+  color: var(--button-color);
 }
 
 .en__submit button,
 .en__submit .button {
   margin-top: 2rem;
-  background-color: var(--theme-typography-button-background-color);
-  border-color: var(--theme-typography-button-border-color);
-  color: var(--theme-typography-button-color);
-  border-radius: var(--theme-typography-button-border-radius);
+  background-color: var(--button-background-color);
+  border-color: var(--button-border-color);
+  color: var(--button-color);
+  border-radius: var(--button-border-radius);
   display: block;
   font-size: calc(0.05552rem * 24);
   font-weight: 900;
@@ -100,9 +100,9 @@ button.primary:hover,
 button.primary:focus,
 .button.primary:hover,
 .button.primary:focus  {
-  color: var(--theme-typography-button-checked-color);
-  background-color: var(--theme-typography-button-checked-background-color);
-  border-color: var(--theme-typography-button-checked-border-color);
+  color: var(--button-checked-color);
+  background-color: var(--button-checked-background-color);
+  border-color: var(--button-checked-border-color);
 }
 
 .arrow .en__submit button::after,
@@ -128,7 +128,7 @@ button:hover,
 button:focus,
 .button:hover,
 .button:focus {
-  background-color: var(--theme-typography-button-checked-background-color);
+  background-color: var(--button-checked-background-color);
 }
 
 button[disabled],
