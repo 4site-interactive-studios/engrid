@@ -36,5 +36,14 @@ Pattern: **block-name__elem-name_mod-name_mod-val**
 **--scale-down_20pct**
 - block-name: Not applicable
 - elem-name: Not applicable
-- mod-name: Not applicable
-- mod-val: scale-down-20pct
+- mod-name: scale-down
+- mod-val: 20pct
+
+# HTML Data Attributes
+- Names are written in lowercase Latin letters.
+- Words are separated by a hyphen (-)
+- Do not use underscores or other special characters
+
+## Examples
+- [data-engrid-errors="fancy"]
+- [data-engrid-layout="centercenter1col-wide"]
