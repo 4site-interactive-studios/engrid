@@ -1,29 +1,27 @@
 :root{
-    // FIXED COLOR PALETTE
-    --color-transparent: transparent;
-    --color-white: rgba(255, 255, 255, 1);
-    --color-black: rgba(0, 0, 0, 1);
-
-    // GRAYSCALE COLOR PALETTE
-    --off-white: #DFDFDF;
-    --light-gray: #BFBFBF;
-    --gray: #9F9F9F;
-    --dark-gray: #808080;
-    --off-black: #404040;
+    // COLOR PALETTE
+    --color_transparent: transparent;
+    --color_white: hsl(0, 0%, 100%);
+    --color_off-white: hsl(0, 0%, 88%);
+    --color_light-gray: hsl(0, 0%, 75%);
+    --color_gray: hsl(0, 0%, 62%);
+    --color_dark-gray: hsl(0, 0%, 50%);
+    --color_off-black: hsl(0, 0%, 25%);
+    --color_black: hsl(0, 0%, 0%);
 
      // SEMANTIC GEOMETRIC SCALING
-     --scale-up-20pct: 1.2;
-     --scale-up-40pct: 1.4;
-     --scale-up-80pct: 1.8;
-     --scale-up-160pct: 2.6;
-     --scale-down-20pct: 0.8;
-     --scale-down-40pct: 0.6;
-     --scale-down-80pct: 0.2;
+     --scale-up_20pct: 1.2;
+     --scale-up_40pct: 1.4;
+     --scale-up_80pct: 1.8;
+     --scale-up_160pct: 2.6;
+     --scale-down_20pct: 0.8;
+     --scale-down_40pct: 0.6;
+     --scale-down_80pct: 0.2;
 
     // @TODO Revisit these spacing values and calculations
     // @BODY Look into replicating "Teach a System of Space Visually" as a Development page that shows all styling decisions for the brand https://medium.com/eightshapes-llc/space-in-design-systems-188bcbae0d62#.fwng4aef7
-    --spacing-sm: 0.8652rem;
+    --spacing_sm: 0.8652rem;
     --spacing: calc(0.8652rem * 0.75);
-    --spacing-lg: calc(0.8652rem * 2.5);
-    --spacing-xlg: calc(0.8652rem * 5);
+    --spacing_lg: calc(0.8652rem * 2.5);
+    --spacing_xlg: calc(0.8652rem * 5);
 }

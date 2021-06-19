@@ -54,7 +54,7 @@
   grid-gap: 0;
   max-width: 960px;
   margin: auto;
-  border-radius: var(--button-border-radius);
+  border-radius: var(--button_border-radius);
   overflow: hidden;
   border: 1px solid #333;
   @media only screen and (max-width: 675px) {
@@ -77,11 +77,11 @@
     }
   }
   h1 {
-    font-family: var(--h1-font-family);
-    color: var(--h1-color);
-    font-size: var(--h1-font-size);
-    font-weight: var(--h1-font-weight);
-    line-height: var(--h1-line-height);
+    font-family: var(--h1_font-family);
+    color: var(--h1_color);
+    font-size: var(--h1_font-size);
+    font-weight: var(--h1_font-weight);
+    line-height: var(--h1_line-height);
     font-style: normal;
     font-weight: 300;
     .upsell_suggestion {
@@ -89,18 +89,18 @@
     }
   }
   p {
-    font-family: var(--p-font-family);
-    color: var(--p-color);
-    font-size: var(--p-font-size);
-    font-weight: var(--p-font-weight);
-    line-height: var(--p-line-height);
+    font-family: var(--p_font-family);
+    color: var(--p_color);
+    font-size: var(--p_font-size);
+    font-weight: var(--p_font-weight);
+    line-height: var(--p_line-height);
   }
   #secondOtherField {
     width: 80px;
     height: 40px;
     border: 1px solid #cacaca;
     background-color: #fefefe;
-    border-radius: var(--input-border-radius);
+    border-radius: var(--input_border-radius);
     color: #555555;
     font-size: 18px;
     padding-left: 20px !important;
@@ -135,7 +135,7 @@
     padding: 0.85rem 1rem;
     -webkit-appearance: none;
     border: 1px solid transparent;
-    border-radius: var(--button-border-radius);
+    border-radius: var(--button_border-radius);
     -webkit-transition: background-color 0.2s ease-out, color 0.2s ease-out,
       border-color 0.2s ease-out;
     transition: background-color 0.2s ease-out, color 0.2s ease-out,
@@ -143,8 +143,8 @@
     font-size: 1rem;
     text-align: center;
     cursor: pointer;
-    background-color: var(--button-background-color);
-    color: var(--button-color);
+    background-color: var(--button_background-color);
+    color: var(--button_color);
     box-sizing: border-box;
     height: 80px;
     width: 100%;
@@ -184,8 +184,8 @@
     margin-bottom: 20px;
     background-color: var(--cta);
     border-color: var(--cta);
-    color: var(--p-color);
-    font-family: var(--h1-font-family);
+    color: var(--p_color);
+    font-family: var(--h1_font-family);
     font-size: 1.3rem;
   }
   #goMonthlyClose {

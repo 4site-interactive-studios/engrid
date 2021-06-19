@@ -1,51 +1,51 @@
 :root{
     // FONT STACKS (REF: https://markdotto.com/2018/02/07/github-system-fonts/)
-    --font-stack-browser-fonts: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+    --native-fonts__sans-serif: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
 
     // TYPOGRAPHY DEFAULT
-    --default-font-family: var(--font-stack-browser-fonts);
-    --default-color: initial;
-    --default-font-size: var(--root-font-size);
-    --default-font-weight: initial;
-    --default-line-height: initial;
+    --default_font-family: var(--native-fonts__sans-serif);
+    --default_color: initial;
+    --default_font-size: var(--root_font-size);
+    --default_font-weight: initial;
+    --default_line-height: initial;
 
     // TYPOGRAPHY H1
-    --h1-font-family: var(--font-stack-browser-fonts);
-    --h1-color: initial;
-    --h1-font-size: calc(var(--root-font-size) * var(--scale-up-160pct));
-    --h1-font-weight: initial;
-    --h1-line-height: initial;
+    --h1_font-family: var(--native-fonts__sans-serif);
+    --h1_color: initial;
+    --h1_font-size: calc(var(--root_font-size) * var(--scale-up_160pct));
+    --h1_font-weight: initial;
+    --h1_line-height: initial;
         
     // TYPOGRAPHY H2
-    --h2-font-family: var(--h1-font-family);
-    --h2-color: initial;
-    --h2-font-size: calc(var(--root-font-size) * var(--scale-up-80pct));
-    --h2-font-weight: initial;
-    --h2-line-height: initial;
+    --h2_font-family: var(--h1_font-family);
+    --h2_color: initial;
+    --h2_font-size: calc(var(--root_font-size) * var(--scale-up_80pct));
+    --h2_font-weight: initial;
+    --h2_line-height: initial;
         
     // TYPOGRAPHY H3
-    --h3-font-family: var(--h1-font-family);
-    --h3-color: initial;
-    --h3-font-size: calc(var(--root-font-size) * var(--scale-up-40pct));
-    --h3-font-weight: initial;
-    --h3-line-height: initial;    
+    --h3_font-family: var(--h1_font-family);
+    --h3_color: initial;
+    --h3_font-size: calc(var(--root_font-size) * var(--scale-up_40pct));
+    --h3_font-weight: initial;
+    --h3_line-height: initial;    
         
     // TYPOGRAPHY P
-    --p-font-family: var(--default-font-family);
-    --p-color: initial;
-    --p-font-size: var(--root-font-size);
-    --p-font-weight: initial;
-    --p-line-height: initial;
+    --p_font-family: var(--default_font-family);
+    --p_color: initial;
+    --p_font-size: var(--root_font-size);
+    --p_font-weight: initial;
+    --p_line-height: initial;
 
     // TYPOGRAPHY A
-    --a-font-family: var(--default-font-family);
-    --a-color: initial;
-    --a-text-decoration: underline;
+    --a_font-family: var(--default_font-family);
+    --a_color: initial;
+    --a_text-decoration: underline;
 
     // TYPOGRAPHY A:FOCUS
     // TYPOGRAPHY A:HOVER
-    --a-hover-color: var(--a-color);
-    --a-hover-text-decoration: initial;
+    --a_hover-color: var(--a_color);
+    --a_hover-text-decoration: initial;
 }
   
 // The most common typographic elements for pages
@@ -53,71 +53,71 @@
 // @BODY https://css-tricks.com/snippets/css/fluid-typography/
 
 body{
-    font-family: var(--default-font-family);
-    color: var(--default-color);
-    font-size: var(--default-font-size);
-    font-weight: var(--default-font-weight);
-    line-height: var(--default-line-height);
+    font-family: var(--default_font-family);
+    color: var(--default_color);
+    font-size: var(--default_font-size);
+    font-weight: var(--default_font-weight);
+    line-height: var(--default_line-height);
 }
 
 h1{
-    font-family: var(--h1-font-family);
-    color: var(--h1-color);
-    font-size: var(--h1-font-size);
-    font-weight: var(--h1-font-weight);
-    line-height: var(--h1-line-height);
+    font-family: var(--h1_font-family);
+    color: var(--h1_color);
+    font-size: var(--h1_font-size);
+    font-weight: var(--h1_font-weight);
+    line-height: var(--h1_line-height);
     margin-top: 2rem;
     margin-bottom: 1rem;
 }
 
 h2{
-    font-family: var(--h2-font-family);
-    color: var(--h2-color);
-    font-size: var(--h2-font-size);
-    font-weight: var(--h2-font-weight);
-    line-height: var(--h2-line-height);
-    margin-top: calc(2rem * var(--scale-down-20pct));
-    margin-bottom: calc(1rem * var(--scale-down-20pct));
+    font-family: var(--h2_font-family);
+    color: var(--h2_color);
+    font-size: var(--h2_font-size);
+    font-weight: var(--h2_font-weight);
+    line-height: var(--h2_line-height);
+    margin-top: calc(2rem * var(--scale-down_20pct));
+    margin-bottom: calc(1rem * var(--scale-down_20pct));
 }
 
 h3{
-    font-family: var(--h3-font-family);
-    color: var(--h3-color);
-    font-size: var(--h3-font-size);
-    font-weight: var(--h3-font-weight);
-    line-height: var(--h3-line-height);
-    margin-top: calc(2rem * var(--scale-down-40pct));
-    margin-bottom: calc(1rem * var(--scale-down-40pct));
+    font-family: var(--h3_font-family);
+    color: var(--h3_color);
+    font-size: var(--h3_font-size);
+    font-weight: var(--h3_font-weight);
+    line-height: var(--h3_line-height);
+    margin-top: calc(2rem * var(--scale-down_40pct));
+    margin-bottom: calc(1rem * var(--scale-down_40pct));
 }
 
 h4,
 h5,
 h6{
-    font-family: var(--h3-font-family);
-    color: var(--h3-color);
-    font-size: calc(var(--h3-font-size) * var(--scale-down-20pct));
-    font-weight: var(--h3-font-weight);
-    line-height: var(--h3-line-height);
-    margin-top: calc(2rem * var(--scale-down-80pct));
-    margin-bottom: calc(1rem * var(--scale-down-80pct));
+    font-family: var(--h3_font-family);
+    color: var(--h3_color);
+    font-size: calc(var(--h3_font-size) * var(--scale-down_20pct));
+    font-weight: var(--h3_font-weight);
+    line-height: var(--h3_line-height);
+    margin-top: calc(2rem * var(--scale-down_80pct));
+    margin-bottom: calc(1rem * var(--scale-down_80pct));
 }
 
 p{
-    font-family: var(--p-font-family);
-    color: var(--p-color);
-    font-size: var(--p-font-size);
-    font-weight: var(--p-font-weight);
-    line-height: var(--p-line-height);
+    font-family: var(--p_font-family);
+    color: var(--p_color);
+    font-size: var(--p_font-size);
+    font-weight: var(--p_font-weight);
+    line-height: var(--p_line-height);
 }
 
 a{
-    font-family: var(--a-font-family);
-    color: var(--a-color);
-    text-decoration: var(--a-text-decoration);
+    font-family: var(--a_font-family);
+    color: var(--a_color);
+    text-decoration: var(--a_text-decoration);
 
     &:focus,
     &:hover{
-        color: var(--a-checked-color);
-        text-decoration: var(--a-checked-text-decoration);
+        color: var(--a_color_checked);
+        text-decoration: var(--a_checked-text-decoration);
     }
 }

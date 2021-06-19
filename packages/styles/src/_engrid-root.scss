@@ -1,6 +1,6 @@
 :root{
 	// REF: http://www.standardista.com/px-to-rem-conversion-if-root-font-size-is-16px/
-	--root-font-size: 16px; // Sets a baseline font size for all other REM based font-sizes to relatively build off of
+	--root_font-size: 16px; // Sets a baseline font size for all other REM based font-sizes to relatively build off of
 
-	font-size: var(--root-font-size);  // Sets a baseline font size for all other REM based font-sizes to relatively build off of
+	font-size: var(--root_font-size);  // Sets a baseline font size for all other REM based font-sizes to relatively build off of
 }

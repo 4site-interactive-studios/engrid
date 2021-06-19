@@ -70,14 +70,14 @@ input:not(:-webkit-autofill) {
 /* A fix for tiny font sizes on autofill: https://stackoverflow.com/a/60379185/815683 */
 /* @TODO Might be able to remove the above work arounds. Ensure to test that removal does not break the ability for JS to add "is-autofilled" */
 input:-webkit-autofill::first-line{
-  font-size: var(--input-font-size);
+  font-size: var(--input_font-size);
 }
 
 
 textarea:-webkit-autofill::first-line{
-  font-size: var(--textarea-font-size);
+  font-size: var(--textarea_font-size);
 }
 
 select:-webkit-autofill::first-line{
-  font-size: var(--select-font-size);
+  font-size: var(--select_font-size);
 }

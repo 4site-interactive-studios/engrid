@@ -7,42 +7,42 @@
 
 [data-engrid-embedded] {
   // Remove each sections background colors
-  --engrid__page_background-color: var(--color-transparent) !important;
-  --engrid__content_background-color: var(--color-transparent) !important;
-  --engrid__body_background-color: var(--color-transparent) !important;
-  --engrid__page-alert_background-color: var(--color-transparent) !important;
-  --engrid__content-header_background-color: var(--color-transparent) !important;
+  --engrid__page_background-color: var(--color_transparent) !important;
+  --engrid__content_background-color: var(--color_transparent) !important;
+  --engrid__body_background-color: var(--color_transparent) !important;
+  --engrid__page-alert_background-color: var(--color_transparent) !important;
+  --engrid__content-header_background-color: var(--color_transparent) !important;
   --engrid__body-headerOutside_background-color: var(
-    --color-transparent
+    --color_transparent
   ) !important;
-  --engrid__body-header_background-color: var(--color-transparent) !important;
-  --engrid__body-title_background-color: var(--color-transparent) !important;
-  --engrid__body-banner_background-color: var(--color-transparent) !important;
+  --engrid__body-header_background-color: var(--color_transparent) !important;
+  --engrid__body-title_background-color: var(--color_transparent) !important;
+  --engrid__body-banner_background-color: var(--color_transparent) !important;
   --engrid__body-bannerOverlay_background-color: var(
-    --color-transparent
+    --color_transparent
   ) !important;
-  --engrid__body-top_background-color: var(--color-transparent) !important;
-  --engrid__body-side_background-color: var(--color-transparent) !important;
-  --engrid__body-main_background-color: var(--color-transparent) !important;
-  --engrid__body-bottom_background-color: var(--color-transparent) !important;
-  --engrid__body-footer_background-color: var(--color-transparent) !important;
+  --engrid__body-top_background-color: var(--color_transparent) !important;
+  --engrid__body-side_background-color: var(--color_transparent) !important;
+  --engrid__body-main_background-color: var(--color_transparent) !important;
+  --engrid__body-bottom_background-color: var(--color_transparent) !important;
+  --engrid__body-footer_background-color: var(--color_transparent) !important;
   --engrid__body-footerOutside_background-color: var(
-    --color-transparent
+    --color_transparent
   ) !important;
   --engrid__content-footerSpacer_background-color: var(
-    --color-transparent
+    --color_transparent
   ) !important;
   --engrid__content-preFooter_background-color: var(
-    --color-transparent
+    --color_transparent
   ) !important;
-  --engrid__content-footer_background-color: var(--color-transparent) !important;
+  --engrid__content-footer_background-color: var(--color_transparent) !important;
   --engrid__page-backgroundImage_background-color: var(
-    --color-transparent
+    --color_transparent
   ) !important;
   --engrid__page-backgroundImageOverlay_background-color: var(
-    --color-transparent
+    --color_transparent
   ) !important;
-  --engrid__page-customCode_background-color: var(--color-transparent) !important;
+  --engrid__page-customCode_background-color: var(--color_transparent) !important;
 
   /* prettier-ignore */
   .en__component--advrow,

@@ -1,6 +1,6 @@
 // Styles Related to the Engaging Networks Page Builder
 :root{
-  --en-pagebuilder-background-color: #C1C0C0;
+  --pagebuilder__background-color: #C1C0C0;
 }
 
 
@@ -13,7 +13,7 @@
 // Styles Related to the Page-Builder
 #en__pagebuilder {
   // If in page builder, give the background a better color so that input fields stand out
-  background-color: var(--en-pagebuilder-background-color) !important;
+  background-color: var(--pagebuilder__background-color) !important;
   opacity: 1;
 
   /* When in page builder we want to center the content area on the page and must reduce it by 50px to make it visible because of the sidebar */
@@ -26,7 +26,7 @@
 
   .page-backgroundImage,
   .page-customCode {
-    background-color: var(--color-transparent) !important;
+    background-color: var(--color_transparent) !important;
   }
 
   /* Sometimes our styles might cause a code blocks title and label to display inline, rather than in rows. This should help prevent that https://d.pr/v/vXlAUM */

@@ -1,12 +1,12 @@
 :root{
     // HIGHLIGHTS
-    --highlight-background-color: #227F9E;
-    --highlight-font-color: #FFFFFF;
+    --highlight__background-color: #227F9E;
+    --highlight__color: #FFFFFF;
 }
 
 .highlight {
-    background-color: var(--highlight-background-color);
-    color: var(--highlight-font-color);
+    background-color: var(--highlight__background-color);
+    color: var(--highlight__color);
     padding: 0.15em;
     display: inline-block;
 }

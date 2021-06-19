@@ -47,21 +47,21 @@
 }
 
 .en__tweetButton a{
-    font-family: var(--button-font-family);
-    color: var(--button-color);
-    font-size: var(--button-font-size);
-    font-weight: var(--button-font-weight);
-    line-height: var(--button-line-height);
-    background-color: var(--button-background-color);
-    border-width: var(--button-border-width);
-    border-color: var(--button-border-color);
-    border-radius: var(--button-border-radius);    
+    font-family: var(--button_font-family);
+    color: var(--button_color);
+    font-size: var(--button_font-size);
+    font-weight: var(--button_font-weight);
+    line-height: var(--button_line-height);
+    background-color: var(--button_background-color);
+    border-width: var(--button_border-width);
+    border-color: var(--button_border-color);
+    border-radius: var(--button_border-radius);    
     cursor: pointer;
 }
 
 .en__tweetButton a:focus,
 .en__tweetButton a:hover{
-    color: var(--button-checked-color);
-    background-color: var(--button-checked-background-color);
-    border-color: var(--button-checked-border-color);
+    color: var(--button_color_checked);
+    background-color: var(--button_background-color_checked);
+    border-color: var(--button_border-color_checked);
 }

@@ -1,16 +1,16 @@
 :root{
   // GROUPED SECTION SETTINGS (BACKGROUND COLOR, PADDING, MARGIN)
   // CHANGE THESE PROPERTIES TO CHANGE ALL PROPERTIES VALUES IN THOSE SECTIONS
-  --engrid__page_background-color: var(--color-transparent);
+  --engrid__page_background-color: var(--color_transparent);
   --engrid__page_padding: 0px;
   --engrid__page_margin: 0px;
 
-  --engrid__content_background-color: var(--color-transparent);
+  --engrid__content_background-color: var(--color_transparent);
   --engrid__content_padding: 0px;
   --engrid__content_margin: 0px;
 
-  --engrid__body_background-color: var(--color-white);
-  --engrid__body_padding: 0px var(--spacing-lg);
+  --engrid__body_background-color: var(--color_white);
+  --engrid__body_padding: 0px var(--spacing_lg);
   --engrid__body_margin: 0px;
   --engrid__body_border-radius: 0px; // UNIQUE TO THE BODY
 
@@ -23,7 +23,7 @@
   --engrid__content-header_padding: var(--engrid__content_padding);
   --engrid__content-header_margin: var(--engrid__content_margin);
 
-  --engrid__body-headerOutside_background-color: var(--color-transparent);
+  --engrid__body-headerOutside_background-color: var(--color_transparent);
   --engrid__body-headerOutside_padding: var(--engrid__body_padding);
   --engrid__body-headerOutside_margin: var(--engrid__body_margin);
 
@@ -39,7 +39,7 @@
   --engrid__body-banner_padding: 0px;
   --engrid__body-banner_margin: var(--engrid__body_margin);
 
-  --engrid__body-bannerOverlay_background-color: var(--color-transparent);
+  --engrid__body-bannerOverlay_background-color: var(--color_transparent);
   --engrid__body-bannerOverlay_padding: var(--engrid__body_padding);
   --engrid__body-bannerOverlay_margin: var(--engrid__body_margin);
 
@@ -59,7 +59,7 @@
   --engrid__body-footer_padding: var(--engrid__body_padding);
   --engrid__body-footer_margin: var(--engrid__body_margin);
 
-  --engrid__body-footerOutside_background-color: var(--color-transparent);
+  --engrid__body-footerOutside_background-color: var(--color_transparent);
   --engrid__body-footerOutside_padding: var(--engrid__body_padding);
   --engrid__body-footerOutside_margin: var(--engrid__body_margin);
 
@@ -79,7 +79,7 @@
   --engrid__page-backgroundImage_padding: 0px;
   --engrid__page-backgroundImage_margin: var(--engrid__page_margin);
 
-  --engrid__page-backgroundImageOverlay_background-color: var(--color-transparent);
+  --engrid__page-backgroundImageOverlay_background-color: var(--color_transparent);
   --engrid__page-backgroundImageOverlay_padding: var(--engrid__page_padding);
   --engrid__page-backgroundImageOverlay_margin: var(--engrid__page_margin);
 
@@ -380,14 +380,14 @@ body:not(#en__pagebuilder) .page-customCode {
 // .body-main,
 // .body-bottom,
 // .body-footer {
-//   padding-left: var(--spacing-lg);
-//   padding-right: var(--spacing-lg);
+//   padding-left: var(--spacing_lg);
+//   padding-right: var(--spacing_lg);
 // }
 
 .body-bannerOverlay{
   position: relative;
-  // padding-left: var(--spacing-lg);
-  // padding-right: var(--spacing-lg);
+  // padding-left: var(--spacing_lg);
+  // padding-right: var(--spacing_lg);
 }
 
 // The overlay should be hidden if it's empty so any figcaptions with links can be clicked
@@ -396,7 +396,7 @@ body:not(#en__pagebuilder) .body-bannerOverlay:empty{
 }
 
 .body-footer {
-  // padding-bottom: var(--spacing-lg);
+  // padding-bottom: var(--spacing_lg);
 }
 
 // Add drop shadows to the body sections

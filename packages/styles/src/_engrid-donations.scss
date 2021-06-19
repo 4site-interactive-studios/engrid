@@ -1,70 +1,70 @@
 :root{
     // TYPOGRAPHY GIVING FREQUENCY BUTTON
-    --recurring-frequency-button-font-family: var(--button-font-family);
-    --recurring-frequency-button-color: var(--button-color);
-    --recurring-frequency-button-font-size: var(--button-font-size);
-    --recurring-frequency-button-font-weight: var(--button-font-weight);
-    --recurring-frequency-button-line-height: var(--button-line-height);
-    --recurring-frequency-button-background-color: var(--button-background-color);
-    --recurring-frequency-button-border-width: var(--button-border-width);
-    --recurring-frequency-button-border-color: var(--button-border-color);
-    --recurring-frequency-button-border-radius: var(--button-border-radius);
+    --recurring-frequency__button_font-family: var(--button_font-family);
+    --recurring-frequency__button_color: var(--button_color);
+    --recurring-frequency__button_font-size: var(--button_font-size);
+    --recurring-frequency__button_font-weight: var(--button_font-weight);
+    --recurring-frequency__button_line-height: var(--button_line-height);
+    --recurring-frequency__button_background-color: var(--button_background-color);
+    --recurring-frequency__button_border-width: var(--button_border-width);
+    --recurring-frequency__button_border-color: var(--button_border-color);
+    --recurring-frequency__button_border-radius: var(--button_border-radius);
 
     // TYPOGRAPHY GIVING FREQUENCY BUTTON:HOVER  
-    --recurring-frequency-button-hover-color: var(--button-hover-color);
-    --recurring-frequency-button-hover-background-color: var(--button-hover-background-color);
-    --recurring-frequency-button-hover-border-color: var(--button-hover-border-color);    
+    --recurring-frequency__button_color_hover: var(--button_color_hover);
+    --recurring-frequency__button_background-color_hover: var(--button_background-color_hover);
+    --recurring-frequency__button_border-color_hover: var(--button_border-color_hover);    
 
     // TYPOGRAPHY GIVING FREQUENCY BUTTON:CHECKED
-    --recurring-frequency-button-checked-color: var(--button-hover-color);
-    --recurring-frequency-button-checked-background-color: var(--button-hover-background-color);
-    --recurring-frequency-button-checked-border-color: var(--button-hover-border-color);   
+    --recurring-frequency__button_color_checked: var(--button_color_hover);
+    --recurring-frequency__button_background-color_checked: var(--button_background-color_hover);
+    --recurring-frequency__button_border-color_checked: var(--button_border-color_hover);   
 
     // TYPOGRAPHY GIVING AMOUNT BUTTON
-    --donation-amount-button-font-family: var(--button-font-family);
-    --donation-amount-button-color: var(--button-color);
-    --donation-amount-button-font-size: var(--button-font-size);
-    --donation-amount-button-font-weight: var(--button-font-weight);
-    --donation-amount-button-line-height: var(--button-line-height);
-    --donation-amount-button-background-color: var(--button-background-color);
-    --donation-amount-button-border-width: var(--button-border-width);
-    --donation-amount-button-border-color: var(--button-border-color);
-    --donation-amount-button-border-radius: var(--button-border-radius);
+    --donation-amount__button_font-family: var(--button_font-family);
+    --donation-amount__button_color: var(--button_color);
+    --donation-amount__button_font-size: var(--button_font-size);
+    --donation-amount__button_font-weight: var(--button_font-weight);
+    --donation-amount__button_line-height: var(--button_line-height);
+    --donation-amount__button_background-color: var(--button_background-color);
+    --donation-amount__button_border-width: var(--button_border-width);
+    --donation-amount__button_border-color: var(--button_border-color);
+    --donation-amount__button_border-radius: var(--button_border-radius);
 
     // TYPOGRAPHY GIVING AMOUNT BUTTON:HOVER  
-    --donation-amount-button-hover-color: var(--button-hover-color);
-    --donation-amount-button-hover-background-color: var(--button-hover-background-color);
-    --donation-amount-button-hover-border-color: var(--button-hover-border-color);  
+    --donation-amount__button-color_hover: var(--button_color_hover);
+    --donation-amount__button_background-color_hover: var(--button_background-color_hover);
+    --donation-amount__button_border-color_hover: var(--button_border-color_hover);  
 
     // TYPOGRAPHY GIVING AMOUNT BUTTON:CHECKED
-    --donation-amount-button-checked-color: var(--button-hover-color);
-    --donation-amount-button-checked-background-color: var(--button-hover-background-color);
-    --donation-amount-button-checked-border-color: var(--button-hover-border-color);  
+    --donation-amount__button_color_checked: var(--button_color_hover);
+    --donation-amount__button_background-color_checked: var(--button_background-color_hover);
+    --donation-amount__button_border-color_checked: var(--button_border-color_hover);  
 
     // LABEL APPENDED TO DONTIONAL GIVING AMOUNTS BASED ON GIVING FREQUENCY
     --give-monthly-donation-amount-appended-label: "/mo";
     --give-annual-donation-amount-appended-label: "/yr";  
 
     // TYPOGRAPHY GIVE BY SELECT BUTTON
-    --give-by-select-button-font-family: var(--button-font-family);
-    --give-by-select-button-color: var(--button-color);
-    --give-by-select-button-font-size: var(--button-font-size);
-    --give-by-select-button-font-weight: var(--button-font-weight);
-    --give-by-select-button-line-height: var(--button-line-height);
-    --give-by-select-button-background-color: var(--button-background-color);
-    --give-by-select-button-border-width: var(--button-border-width);
-    --give-by-select-button-border-color: var(--button-border-color);
-    --give-by-select-button-border-radius: var(--button-border-radius);
+    --give-by-select__button_font-family: var(--button_font-family);
+    --give-by-select__button_color: var(--button_color);
+    --give-by-select__button_font-size: var(--button_font-size);
+    --give-by-select__button_font-weight: var(--button_font-weight);
+    --give-by-select__button_line-height: var(--button_line-height);
+    --give-by-select__button_background-color: var(--button_background-color);
+    --give-by-select__button_border-width: var(--button_border-width);
+    --give-by-select__button_border-color: var(--button_border-color);
+    --give-by-select__button_border-radius: var(--button_border-radius);
 
     // TYPOGRAPHY GIVE BY SELECT BUTTON:HOVER  
-    --give-by-select-button-hover-color: var(--button-hover-color);
-    --give-by-select-button-hover-background-color: var(--button-hover-background-color);
-    --give-by-select-button-hover-border-color: var(--button-hover-border-color);
+    --give-by-select__button-color_hover: var(--button_color_hover);
+    --give-by-select__button_background-color_hover: var(--button_background-color_hover);
+    --give-by-select__button_border-color_hover: var(--button_border-color_hover);
     
     // TYPOGRAPHY GIVE BY SELECT BUTTON:CHECKED
-    --give-by-select-button-checked-color: var(--button-hover-color);
-    --give-by-select-button-checked-background-color: var(--button-hover-background-color);
-    --give-by-select-button-checked-border-color: var(--button-hover-border-color);   
+    --give-by-select__button_color_checked: var(--button_color_hover);
+    --give-by-select__button_background-color_checked: var(--button_background-color_hover);
+    --give-by-select__button_border-color_checked: var(--button_border-color_hover);   
 
 }
 
@@ -99,15 +99,15 @@
 // Radio to Buttons
 /* prettier-ignore */
 .radio-to-buttons .en__field--radio input[type=radio]+label{
-	font-family: var(--button-font-family);
-    color: var(--button-color);
-    font-size: var(--button-font-size);
-    font-weight: var(--button-font-weight);
-	line-height: var(--button-line-height);
-    background-color: var(--button-background-color);
-    border-width: var(--button-border-width);
-    border-color: var(--button-border-color);
-    border-radius: var(--button-border-radius);
+	font-family: var(--button_font-family);
+    color: var(--button_color);
+    font-size: var(--button_font-size);
+    font-weight: var(--button_font-weight);
+	line-height: var(--button_line-height);
+    background-color: var(--button_background-color);
+    border-width: var(--button_border-width);
+    border-color: var(--button_border-color);
+    border-radius: var(--button_border-radius);
 	border-style: solid;
 	margin-left: 0.5rem;
 	margin-right: 0.5rem;
@@ -117,15 +117,15 @@
 // Give By Select
 /* prettier-ignore */
 .give-by-select.en__field--radio input[type=radio]+label{
-	font-family: var(--give-by-select-button-font-family);
-    color: var(--give-by-select-button-color);
-    font-size: var(--give-by-select-button-font-size);
-    font-weight: var(--give-by-select-button-font-weight);
-	line-height: var(--give-by-select-button-line-height);
-    background-color: var(--give-by-select-button-background-color);
-    border-width: var(--give-by-select-button-border-width);
-    border-color: var(--give-by-select-button-border-color);
-    border-radius: var(--give-by-select-button-border-radius);
+	font-family: var(--give-by-select__button_font-family);
+    color: var(--give-by-select__button_color);
+    font-size: var(--give-by-select__button_font-size);
+    font-weight: var(--give-by-select__button_font-weight);
+	line-height: var(--give-by-select__button_line-height);
+    background-color: var(--give-by-select__button_background-color);
+    border-width: var(--give-by-select__button_border-width);
+    border-color: var(--give-by-select__button_border-color);
+    border-radius: var(--give-by-select__button_border-radius);
 	border-style: solid;
 	margin-left: 0.5rem;
 	margin-right: 0.5rem;
@@ -135,15 +135,15 @@
 // Donation Amount
 /* prettier-ignore */
 .en__field--donationAmt.en__field--radio input[type=radio]+label{
-	font-family: var(--donation-amount-button-font-family);
-    color: var(--donation-amount-button-color);
-    font-size: var(--donation-amount-button-font-size);
-    font-weight: var(--donation-amount-button-font-weight);
-	line-height: var(--donation-amount-button-line-height);
-    background-color: var(--donation-amount-button-background-color);
-    border-width: var(--donation-amount-button-border-width);
-    border-color: var(--donation-amount-button-border-color);
-    border-radius: var(--donation-amount-button-border-radius);
+	font-family: var(--donation-amount__button_font-family);
+    color: var(--donation-amount__button_color);
+    font-size: var(--donation-amount__button_font-size);
+    font-weight: var(--donation-amount__button_font-weight);
+	line-height: var(--donation-amount__button_line-height);
+    background-color: var(--donation-amount__button_background-color);
+    border-width: var(--donation-amount__button_border-width);
+    border-color: var(--donation-amount__button_border-color);
+    border-radius: var(--donation-amount__button_border-radius);
 	border-style: solid;
 	margin-left: 0.5rem;
 	margin-right: 0.5rem;
@@ -153,15 +153,15 @@
 // Recurring Frequency
 /* prettier-ignore */
 .en__field--recurrfreq.en__field--radio input[type=radio]+label {
-	font-family: var(--recurring-frequency-button-font-family);
-    color: var(--recurring-frequency-button-color);
-    font-size: var(--recurring-frequency-button-font-size);
-    font-weight: var(--recurring-frequency-button-font-weight);
-	line-height: var(--recurring-frequency-button-line-height);
-    background-color: var(--recurring-frequency-button-background-color);
-    border-width: var(--recurring-frequency-button-border-width);
-    border-color: var(--recurring-frequency-button-border-color);
-    border-radius: var(--recurring-frequency-button-border-radius);
+	font-family: var(--recurring-frequency__button_font-family);
+    color: var(--recurring-frequency__button_color);
+    font-size: var(--recurring-frequency__button_font-size);
+    font-weight: var(--recurring-frequency__button_font-weight);
+	line-height: var(--recurring-frequency__button_line-height);
+    background-color: var(--recurring-frequency__button_background-color);
+    border-width: var(--recurring-frequency__button_border-width);
+    border-color: var(--recurring-frequency__button_border-color);
+    border-radius: var(--recurring-frequency__button_border-radius);
 	border-style: solid;
 	margin-left: 0.5rem;
 	margin-right: 0.5rem;
@@ -177,33 +177,34 @@
 // Radio to Buttons
 /* prettier-ignore */
 .radio-to-buttons .en__field--radio .en__field__item:hover input[type=radio]+label{
-    color: var(--button-hover-color);
-    background-color: var(--button-hover-background-color);
-    border-color: var(--button-hover-border-color);
+    color: var(--button_color_hover);
+    background-color: var(--button_background-color_hover);
+    border-color: var(--button_border-color_hover);
 }
 
 // Give By Select
 /* prettier-ignore */
 .give-by-select.en__field--radio .en__field__item:hover input[type=radio]+label{
-    color: var(--give-by-select-button-hover-color);
-    background-color: var(--give-by-select-button-hover-background-color);
-    border-color: var(--give-by-select-button-hover-border-color);
+    color: var(--give-by-select__button-color_hover);
+    background-color: var(--give-by-select__button_background-color_hover);
+    border-color: var(--give-by-select__button_border-color_hover);
 }
 
 // Donation Amount
 /* prettier-ignore */
 .en__field--donationAmt.en__field--radio .en__field__item:hover input[type=radio]+label{
-    color: var(--donation-amount-button-hover-color);
-    background-color: var(--donation-amount-button-hover-background-color);
-    border-color: var(--donation-amount-button-hover-border-color);
+    color: var(--donation-amount__button-color_hover);
+    background-color: var(--donation-amount__button_background-color_hover);
+    border-color: var(--donation-amount__button_border-color_hover);
 }
 
 // Recurring Frequency
 /* prettier-ignore */
 .en__field--recurrfreq.en__field--radio .en__field__item:hover input[type=radio]+label{
-    color: var(--recurring-frequency-button-hover-color);
-    background-color: var(--recurring-frequency-button-hover-background-color);
-    border-color: var(--recurring-frequency-button-hover-border-color);
+    color: var(--recurring-frequency__button_color_hover);
+    background-color: var(--recurring-frequency__button_background-color_hover
+);
+    border-color: var(--recurring-frequency__button_border-color_hover);
 }
 
 /*
@@ -215,35 +216,35 @@
 // Radio to Buttons
 /* prettier-ignore */
 .radio-to-buttons .en__field--radio .en__field__item input[type=radio]:checked+label{
-    color: var(--button-checked-color);
-    background-color: var(--button-checked-background-color);
-    border-color: var(--button-checked-border-color);
+    color: var(--button_color_checked);
+    background-color: var(--button_background-color_checked);
+    border-color: var(--button_border-color_checked);
 	// outline: none;
 }
 
 // Give By Select
 /* prettier-ignore */
 .give-by-select.en__field--radio .en__field__item input[type=radio]:checked+label{
-    color: var(--give-by-select-button-checked-color);
-    background-color: var(--give-by-select-button-checked-background-color);
-    border-color: var(--give-by-select-button-checked-border-color);
+    color: var(--give-by-select__button_color_checked);
+    background-color: var(--give-by-select__button_background-color_checked);
+    border-color: var(--give-by-select__button_border-color_checked);
 	// outline: none;
 }
 
 // Donation Amount
 .en__field--donationAmt.en__field--radio .en__field__item input[type=radio]:checked+label {
-    color: var(--donation-amount-button-checked-color);
-    background-color: var(--donation-amount-button-checked-background-color);
-    border-color: var(--donation-amount-button-checked-border-color);
+    color: var(--donation-amount__button_color_checked);
+    background-color: var(--donation-amount__button_background-color_checked);
+    border-color: var(--donation-amount__button_border-color_checked);
 	// outline: none;
 }
 
 // Recurring Frequency
 /* prettier-ignore */
 .en__field--recurrfreq.en__field--radio .en__field__item input[type=radio]:checked+label {
-    color: var(--recurring-frequency-button-checked-color);
-    background-color: var(--recurring-frequency-button-checked-background-color);
-    border-color: var(--recurring-frequency-button-checked-border-color);
+    color: var(--recurring-frequency__button_color_checked);
+    background-color: var(--recurring-frequency__button_background-color_checked);
+    border-color: var(--recurring-frequency__button_border-color_checked);
 	// outline: none;
 }
 
@@ -256,33 +257,33 @@
 // Radio to Buttons
 /* prettier-ignore */
 .radio-to-buttons .en__field--radio .en__field__item:hover input[type=radio]:checked+label{
-    color: var(--button-checked-color);
-    background-color: var(--button-checked-background-color);
-    border-color: var(--button-checked-border-color);
+    color: var(--button_color_checked);
+    background-color: var(--button_background-color_checked);
+    border-color: var(--button_border-color_checked);
 }
 
 // Give By Select
 /* prettier-ignore */
 .give-by-select.en__field--radio .en__field__item:hover input[type=radio]:checked+label{
-    color: var(--give-by-select-button-checked-color);
-    background-color: var(--give-by-select-button-checked-background-color);
-    border-color: var(--give-by-select-button-checked-border-color);
+    color: var(--give-by-select__button_color_checked);
+    background-color: var(--give-by-select__button_background-color_checked);
+    border-color: var(--give-by-select__button_border-color_checked);
 }
 
 // Donation Amount
 /* prettier-ignore */
 .en__field--donationAmt.en__field--radio .en__field__item:hover input[type=radio]:checked+label{
-    color: var(--donation-amount-button-checked-color);
-    background-color: var(--donation-amount-button-checked-background-color);
-    border-color: var(--donation-amount-button-checked-border-color);
+    color: var(--donation-amount__button_color_checked);
+    background-color: var(--donation-amount__button_background-color_checked);
+    border-color: var(--donation-amount__button_border-color_checked);
 }
 
 // Recurring Frequency
 /* prettier-ignore */
 .en__field--recurrfreq.en__field--radio .en__field__item:hover input[type=radio]:checked+label{
-    color: var(--recurring-frequency-button-checked-color);
-    background-color: var(--recurring-frequency-button-checked-background-color);
-    border-color: var(--recurring-frequency-button-checked-border-color);
+    color: var(--recurring-frequency__button_color_checked);
+    background-color: var(--recurring-frequency__button_background-color_checked);
+    border-color: var(--recurring-frequency__button_border-color_checked);
 }
 
 /*

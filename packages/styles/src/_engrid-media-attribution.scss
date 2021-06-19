@@ -1,15 +1,15 @@
 :root{
     // IMAGE ATTRIBUTION OVERLAY
-    --media-attribution-overlay-font-family: var(--default-font-family);
-    --media-attribution-overlay-color: rgba(255, 255, 255, 0.9);
-    --media-attribution-overlay-text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
-    --media-attribution-overlay-font-size: 75%; 
-    --media-attribution-overlay-font-style: normal; 
-    --media-attribution-overlay-font-weight: bold;
-    --media-attribution-overlay-text-transform: none;
-    --media-attribution-overlay-margin: 1.25ch 1.5ch;
-    --media-attribution-overlay-padding: 1.25ch 1.5ch;
-    --media-attribution-overlay-background-color: rgba(0, 0, 0, 0.3);  
+    --media-attribution__font-family: var(--default_font-family);
+    --media-attribution__color: rgba(255, 255, 255, 0.9);
+    --media-attribution__text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
+    --media-attribution__font-size: 75%; 
+    --media-attribution__font-style: normal; 
+    --media-attribution__font-weight: bold;
+    --media-attribution__text-transform: none;
+    --media-attribution__margin: 1.25ch 1.5ch;
+    --media-attribution__padding: 1.25ch 1.5ch;
+    --media-attribution__background-color: rgba(0, 0, 0, 0.3);  
 }
   
 
@@ -26,29 +26,29 @@ figure.media-with-attribution {
     }
 
     figattribution {
-        font-family: var(--media-attribution-overlay-font-family);
+        font-family: var(--media-attribution__font-family);
         position: absolute;
-        background-color: var(--media-attribution-overlay-background-color);
-        margin: var(--media-attribution-overlay-margin);
-        text-shadow: var(--media-attribution-overlay-text-shadow);
-        font-size: var(--media-attribution-overlay-font-size);
-        color: var(--media-attribution-overlay-color);
-        font-style: var(--media-attribution-overlay-font-style);
+        background-color: var(--media-attribution__background-color);
+        margin: var(--media-attribution__margin);
+        text-shadow: var(--media-attribution__text-shadow);
+        font-size: var(--media-attribution__font-size);
+        color: var(--media-attribution__color);
+        font-style: var(--media-attribution__font-style);
         display: inline-block;
-        padding: var(--media-attribution-overlay-padding);
-        font-weight: var(--media-attribution-overlay-font-weight);
-        text-transform: var(--media-attribution-overlay-text-transform);
+        padding: var(--media-attribution__padding);
+        font-weight: var(--media-attribution__font-weight);
+        text-transform: var(--media-attribution__text-transform);
     }
 
     figattribution a,
     figattribution a:hover,
     figattribution a:focus {
-        font-size: var(--media-attribution-overlay-font-size);
-        color: var(--media-attribution-overlay-color);
-        font-family: var(--media-attribution-overlay-font-family);
-        color: var(--media-attribution-overlay-color);
-        font-style: var(--media-attribution-overlay-font-style);
-        font-weight: var(--media-attribution-overlay-font-weight);
+        font-size: var(--media-attribution__font-size);
+        color: var(--media-attribution__color);
+        font-family: var(--media-attribution__font-family);
+        color: var(--media-attribution__color);
+        font-style: var(--media-attribution__font-style);
+        font-weight: var(--media-attribution__font-weight);
         text-decoration: none;
     }
 

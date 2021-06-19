@@ -6,11 +6,11 @@
 
 [data-engrid-errors="fancy"] .en__component .en__field__error {
   padding: 0.25rem 0.5rem;
-  color: var(--color-white);
+  color: var(--color_white);
   font-size: 0.75rem;
-  border-bottom-left-radius: var(--input-border-radius);
-  border-bottom-right-radius: var(--input-border-radius);
-  background-color: var(--error-red);
+  border-bottom-left-radius: var(--input_border-radius);
+  border-bottom-right-radius: var(--input_border-radius);
+  background-color: var(--error__color);
   order: 3;
 }
 
@@ -87,7 +87,7 @@
   .en__field.en__field--tripleselect.en__field--validationFailed.has-value
   .en__field__element,
 [data-engrid-errors="fancy"] .en__field--validationFailed.has-value .en__field__error {
-  border-color: var(--error-red-grayscale);
-  background-color: var(--error-red-grayscale);
-  color: var(--color-white);
+  border-color: var(--error__color_grayscale);
+  background-color: var(--error__color_grayscale);
+  color: var(--color_white);
 }

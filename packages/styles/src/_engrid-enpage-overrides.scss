@@ -102,7 +102,7 @@ only screen and (max-device-width:600px) {
 
 .en__component--hubgadget {
 	box-shadow: 0 0 3px 1px rgba(0, 0, 0, .33);
-	border-radius: var(--input-border-radius); // 6px
+	border-radius: var(--input_border-radius); // 6px
 	background: transparent; // #FFFFFF
 	margin: 0.75rem; // 12px
 	border: 1px solid #BFBFBF;
@@ -440,7 +440,7 @@ only screen and (max-device-width:600px) {
 	font-size: 1.5rem; // 1.5em
 	// vertical-align: middle;
 	border: 1px solid #BFBFBF;
-	border-radius: var(--input-border-radius); // 3px
+	border-radius: var(--input_border-radius); // 3px
 	// padding: 0
 }
 
@@ -455,7 +455,7 @@ only screen and (max-device-width:600px) {
 	// vertical-align: middle;
 	border: 1px solid #BFBFBF;
 	// cursor: pointer;
-	border-radius: var(--input-border-radius); // 3px
+	border-radius: var(--input_border-radius); // 3px
 	// -webkit-touch-callout: none;
 	// -webkit-user-select: none;
 	// -khtml-user-select: none;
@@ -477,7 +477,7 @@ only screen and (max-device-width:600px) {
 .en__ticket__soldout,
 .en__ticket__waitList {
 	padding: .5rem 2rem; // .5em 2em
-	border-radius: var(--input-border-radius); // 3px
+	border-radius: var(--input_border-radius); // 3px
 	color: #FFFFFF;
 	font-size: 1rem; // 1em
 	// display: inline-block
@@ -504,14 +504,14 @@ only screen and (max-device-width:600px) {
 	margin-right: 0.75rem; // 12px
 	// text-align: center;
 	border: 1px solid #BFBFBF;
-	border-radius: var(--input-border-radius); // 3px
+	border-radius: var(--input_border-radius); // 3px
 }
 
 .en__additional__code {
 	width: 8rem; // 8em;
 	padding: .6rem 0; // .6em 0;
 	border: 1px solid #BFBFBF;
-	border-radius: var(--input-border-radius); // 3px
+	border-radius: var(--input_border-radius); // 3px
 }
 
 .en__ticketSummary {
@@ -559,8 +559,8 @@ only screen and (max-device-width:600px) {
 	// background-color: #0070BA;
 	padding: 1rem; // 1em
 	// color: #FFFFFF;
-	border-top-left-radius: var(--input-border-radius); // 3px
-	border-top-right-radius: var(--input-border-radius); // 3px
+	border-top-left-radius: var(--input_border-radius); // 3px
+	border-top-right-radius: var(--input_border-radius); // 3px
 	// position: relative
 }
 
@@ -581,8 +581,8 @@ only screen and (max-device-width:600px) {
 
 .en__lightbox__body {
 	background-color: #FFFFFF;
-	border-bottom-left-radius: var(--input-border-radius); // 3px
-	border-bottom-right-radius: var(--input-border-radius); // 3px
+	border-bottom-left-radius: var(--input_border-radius); // 3px
+	border-bottom-right-radius: var(--input_border-radius); // 3px
 	padding: 1.5rem; // 1.5em
 	// text-align: center
 }
@@ -615,7 +615,7 @@ only screen and (max-device-width:600px) {
 .en__waitlist__input {
 	padding: .6rem; // .6em
 	border: 1px solid #BFBFBF;
-	border-radius: var(--input-border-radius); // 3px
+	border-radius: var(--input_border-radius); // 3px
 	width: 18rem; // 18em - @HOLD-TODO Investigate to see if there is a better way to do this
 	font-size: 1rem // 1em
 }
@@ -641,7 +641,7 @@ only screen and (max-device-width:600px) {
 	// color: #FFFFFF;
 	// display: inline-block;
 	padding: .2rem 1rem; // .2em 1em;
-	border-radius: var(--input-border-radius); // 3px
+	border-radius: var(--input_border-radius); // 3px
 	// cursor: pointer;
 	font-size: 1.5rem // 1.5em
 }
@@ -717,7 +717,7 @@ only screen and (max-device-width:600px) {
 .en__registrants__registrantInput {
 	padding: .6rem; // .6em
 	border: 1px solid #BFBFBF;
-	border-radius: var(--input-border-radius); // 3px
+	border-radius: var(--input_border-radius); // 3px
 }
 
 .en__shares {
@@ -901,8 +901,8 @@ only screen and (max-device-width:600px) {
 	height: 0.9375rem; // 15px
 	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_open.png) center center no-repeat #FFFFFF;
 	margin: 0 auto;
-	border-bottom-left-radius: var(--input-border-radius); // 5px
-	border-bottom-right-radius: var(--input-border-radius); // 5px
+	border-bottom-left-radius: var(--input_border-radius); // 5px
+	border-bottom-right-radius: var(--input_border-radius); // 5px
 }
 
 .en__contact--open .en__contact__toggle {
@@ -1118,7 +1118,7 @@ only screen and (max-device-width:600px) {
 .en__tweetButton__sent {
 	background-color: #CC0001;
 	// border: 0;
-	border-radius: var(--button-border-radius); // 5px
+	border-radius: var(--button_border-radius); // 5px
 	// padding: 0;
 	// text-align: center;
 	// display: inline-block
@@ -1226,7 +1226,7 @@ only screen and (max-device-width:600px) {
 	padding: 0.3125rem 0.625rem; // 5px 10px;
 	// margin: 0;
 	// border: 0;
-	border-radius: var(--button-border-radius); // 4px
+	border-radius: var(--button_border-radius); // 4px
 }
 
 .en__ecarditems__addrecipient {
@@ -1428,7 +1428,7 @@ only screen and (max-device-width:600px) {
 .en__hubOverlay__popup {
 	// position: relative;
 	// margin: auto;
-	border-radius: var(--input-border-radius); // 6px
+	border-radius: var(--input_border-radius); // 6px
 	box-shadow: 0 0 6px 3px rgba(0, 0, 0, .2)
 }
 
@@ -1476,7 +1476,7 @@ only screen and (max-device-width:600px) {
 .en__hubOverlay__header {
 	background: #DFDFDF;
 	border-bottom: solid 1px #BFBFBF;
-	border-radius: var(--input-border-radius) var(--input-border-radius) 0 0; // 6px 6px 0 0;
+	border-radius: var(--input_border-radius) var(--input_border-radius) 0 0; // 6px 6px 0 0;
 	// position: relative;
 	min-height: 2rem // 32px - @HOLD-TODO Investigate, there has to be a better way to do this
 }
@@ -1502,7 +1502,7 @@ only screen and (max-device-width:600px) {
 
 .en__hubOverlay__content {
 	background: #FFFFFF;
-	border-radius: 0 0 var(--input-border-radius) var(--input-border-radius); // 0 0 6px 6px;
+	border-radius: 0 0 var(--input_border-radius) var(--input_border-radius); // 0 0 6px 6px;
 	padding: 1.5rem; // 24px
 }
 
@@ -1510,7 +1510,7 @@ only screen and (max-device-width:600px) {
 	width: 26.25rem; // 420px - @HOLD-TODO There has to be a better way to do this than a fixed width
 	// margin: auto;
 	border: 1px solid #BFBFBF;
-	border-radius: var(--input-border-radius); // 6px
+	border-radius: var(--input_border-radius); // 6px
 	// overflow: hidden
 }
 
@@ -1585,14 +1585,14 @@ only screen and (max-device-width:600px) {
 	background: #DFDFDF;
 	margin-top: 0.375rem; // 6px
 	// display: block;
-	border-radius: var(--input-border-radius); // 3px
+	border-radius: var(--input_border-radius); // 3px
 	padding: 0.75rem; // 12px
 }
 
 .en__myImpact__hubCopy span {
 	// display: block;
 	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_search.png) right center no-repeat;
-	border-radius: var(--input-border-radius); // 3px
+	border-radius: var(--input_border-radius); // 3px
 	padding: 0.75rem 0; // 12px 0
 }
 
@@ -1602,7 +1602,7 @@ only screen and (max-device-width:600px) {
 	// display: inline-block;
 	float: right; // @HOLD-TODO Help EN get away from using floats
 	padding: 0.5rem 0.75rem; // 8px 12px;
-	border-radius: var(--input-border-radius); // 5px
+	border-radius: var(--input_border-radius); // 5px
 	font-size: 1.25rem; // 20px
 	margin: 0 0 1.5rem // 0 0 24px
 }
@@ -1645,7 +1645,7 @@ only screen and (max-device-width:600px) {
 	color: #000000!important; // @HOLD-TODO Investigate, there has to be a better way to do this
 	// text-decoration: none!important;
 	// display: block;
-	border-radius: var(--input-border-radius); // 3px
+	border-radius: var(--input_border-radius); // 3px
 	padding: 0.75rem 0 // 12px 0
 }
 
@@ -1948,13 +1948,13 @@ only screen and (max-device-width:600px) {
 .en__component--premiumgiftblock {
 	// display: none;
 	border: 1px solid #BFBFBF;
-	border-radius: var(--input-border-radius); // 6px
+	border-radius: var(--input_border-radius); // 6px
 	margin-bottom: 0.75rem; // 12px
 }
 
 .en__pgHeader {
-	border-top-left-radius: var(--input-border-radius); // 6px
-	border-top-right-radius: var(--input-border-radius); // 6px
+	border-top-left-radius: var(--input_border-radius); // 6px
+	border-top-right-radius: var(--input_border-radius); // 6px
 	background-color: #DFDFDF;
 	// overflow: hidden;
 	padding: 0.75rem 1.125rem // 12px 18px
@@ -2209,7 +2209,7 @@ only screen and (max-device-width:600px) {
 	// right: 0;
 	background-color: #FFFFFF;
 	border: 1px solid #BFBFBF;
-	border-radius: var(--button-border-radius); // 5px
+	border-radius: var(--button_border-radius); // 5px
 	height: 3rem; // 3em
 	padding: 0 0.625rem; // 0 10px;
 	// cursor: pointer;
@@ -2264,7 +2264,7 @@ only screen and (max-device-width:600px) {
 .en__overlay__popup {
 	// position: relative;
 	// margin: auto;
-	border-radius: var(--button-border-radius); // 6px
+	border-radius: var(--button_border-radius); // 6px
 	box-shadow: 0 0 6px 3px rgba(0, 0, 0, .2);
 	max-width: 50rem // 800px- @HOLD-TODO Investigate, there has to be a better way to do this
 }
@@ -2300,7 +2300,7 @@ only screen and (max-device-width:600px) {
 .en__overlay__header {
 	background: #DFDFDF;
 	border-bottom: solid 1px #BFBFBF;
-	border-radius: var(--input-border-radius) var(--input-border-radius) 0 0; // 6px 6px 0 0;
+	border-radius: var(--input_border-radius) var(--input_border-radius) 0 0; // 6px 6px 0 0;
 	// position: relative;
 	min-height: 2rem // 32px
 }
@@ -2326,7 +2326,7 @@ only screen and (max-device-width:600px) {
 
 .en__overlay__content {
 	background: #FFFFFF;
-	border-radius: 0 0 var(--input-border-radius) var(--input-border-radius); // 0 0 6px 6px;
+	border-radius: 0 0 var(--input_border-radius) var(--input_border-radius); // 0 0 6px 6px;
 	// overflow: hidden
 }
 
@@ -2416,7 +2416,7 @@ only screen and (max-device-width:600px) {
 	max-width: 46.875rem; // 750px - @HOLD-TODO Investigate, there has to be a better way to do this
 	// display: block;
 	// background: #32325D;
-	border-radius: var(--button-border-radius); // 5px
+	border-radius: var(--button_border-radius); // 5px
 	// text-align: center;
 	// position: relative
 }
@@ -2465,7 +2465,7 @@ only screen and (max-device-width:600px) {
 	max-width: 46.875rem; // 750px - @HOLD-TODO Investigate, there has to be a better way to do this
 	// display: block;
 	background: #FCAC00;
-	border-radius: var(--button-border-radius); // 5px
+	border-radius: var(--button_border-radius); // 5px
 	// text-align: center;
 	// position: relative
 }
