@@ -1,3 +1,5 @@
+Changelog (Newest to Oldest)
+BREAKING: Removed "--engrid__page-backgroundImage_background-pattern"
 BREAKING: Replaced all instances of "--color-" with "--color_"
 BREAKING: Replaced all instances of "--off-white" with "--off-white"
 BREAKING: Replaced all instances of "--light-gray" with "--light-gray"
