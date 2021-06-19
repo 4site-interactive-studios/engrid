@@ -1,3 +1,5 @@
+export * from './deprecated'; // Runs first so it can change the DOM markup before any markup dependent code fires
+
 export { Options, OptionsDefaults } from './interfaces/options';
 export { UpsellOptions, UpsellOptionsDefaults } from './interfaces/upsell-options';
 

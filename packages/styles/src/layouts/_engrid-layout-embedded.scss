@@ -7,42 +7,42 @@
 
 [data-engrid-embedded] {
   // Remove each sections background colors
-  --engrid-page_background-color: var(--color-transparent) !important;
-  --engrid-content_background-color: var(--color-transparent) !important;
-  --engrid-body_background-color: var(--color-transparent) !important;
-  --engrid-page-alert_background-color: var(--color-transparent) !important;
-  --engrid-content-header_background-color: var(--color-transparent) !important;
-  --engrid-body-headerOutside_background-color: var(
+  --engrid__page_background-color: var(--color-transparent) !important;
+  --engrid__content_background-color: var(--color-transparent) !important;
+  --engrid__body_background-color: var(--color-transparent) !important;
+  --engrid__page-alert_background-color: var(--color-transparent) !important;
+  --engrid__content-header_background-color: var(--color-transparent) !important;
+  --engrid__body-headerOutside_background-color: var(
     --color-transparent
   ) !important;
-  --engrid-body-header_background-color: var(--color-transparent) !important;
-  --engrid-body-title_background-color: var(--color-transparent) !important;
-  --engrid-body-banner_background-color: var(--color-transparent) !important;
-  --engrid-body-bannerOverlay_background-color: var(
+  --engrid__body-header_background-color: var(--color-transparent) !important;
+  --engrid__body-title_background-color: var(--color-transparent) !important;
+  --engrid__body-banner_background-color: var(--color-transparent) !important;
+  --engrid__body-bannerOverlay_background-color: var(
     --color-transparent
   ) !important;
-  --engrid-body-top_background-color: var(--color-transparent) !important;
-  --engrid-body-side_background-color: var(--color-transparent) !important;
-  --engrid-body-main_background-color: var(--color-transparent) !important;
-  --engrid-body-bottom_background-color: var(--color-transparent) !important;
-  --engrid-body-footer_background-color: var(--color-transparent) !important;
-  --engrid-body-footerOutside_background-color: var(
+  --engrid__body-top_background-color: var(--color-transparent) !important;
+  --engrid__body-side_background-color: var(--color-transparent) !important;
+  --engrid__body-main_background-color: var(--color-transparent) !important;
+  --engrid__body-bottom_background-color: var(--color-transparent) !important;
+  --engrid__body-footer_background-color: var(--color-transparent) !important;
+  --engrid__body-footerOutside_background-color: var(
     --color-transparent
   ) !important;
-  --engrid-content-footerSpacer_background-color: var(
+  --engrid__content-footerSpacer_background-color: var(
     --color-transparent
   ) !important;
-  --engrid-content-preFooter_background-color: var(
+  --engrid__content-preFooter_background-color: var(
     --color-transparent
   ) !important;
-  --engrid-content-footer_background-color: var(--color-transparent) !important;
-  --engrid-page-backgroundImage_background-color: var(
+  --engrid__content-footer_background-color: var(--color-transparent) !important;
+  --engrid__page-backgroundImage_background-color: var(
     --color-transparent
   ) !important;
-  --engrid-page-backgroundImageOverlay_background-color: var(
+  --engrid__page-backgroundImageOverlay_background-color: var(
     --color-transparent
   ) !important;
-  --engrid-page-customCode_background-color: var(--color-transparent) !important;
+  --engrid__page-customCode_background-color: var(--color-transparent) !important;
 
   /* prettier-ignore */
   .en__component--advrow,
