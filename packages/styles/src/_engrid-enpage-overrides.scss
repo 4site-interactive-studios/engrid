@@ -1,3 +1,34 @@
+/*
+	############################################################
+	# ENPAGE OVERRIDE
+	# @TODO Move into its own repository and publish the NPM. Then add as a dependency on ENGrid
+	# @TODO Once in its own repository replace "HOLD-TODO" with "TODO" to trigger the todo'ist bot
+	############################################################
+
+	A mirror of "enPage.css" that was then edited to provide more responsive sizing (e.g removal of fixed widths) and to use ENGrid's theme colors (e.g. Error Red) and preferences (e.g. Border Radius)
+	As a changes in this document are made, changes elsewhere (e.g. engrid-fields.scss) will become redundant and can be removed from their respective files.
+
+	REF: https://e-activist.com/ea-demo/frontend/pbAssets/build/css/enPage.css
+	The CSS file is then cleaned up on https://www.10bestdesign.com/dirtymarkup/css/ for comparison
+
+	Modified CSS can be found be searching with regex for the following, just remove the quotes "^	(?!(\/))"
+
+	Unified Color Palette
+	#0000FF - Blue
+	#0070BA - Lake Blue
+	#32325D - Ocean Blue
+	#33CC33 - Green
+	#FCAC00 - Orange
+	#CC0001 - Red
+	#FFFFFF - White
+	#DFDFDF - Off White
+	#BFBFBF - Light Gray
+	#9F9F9F - Gray
+	#808080 - Dark Gray
+	#404040 - Off Black
+	#000000 - Black
+*/
+
 .en__field__element--range,
 .en__field__element--rating,
 .en__field__helpText,
