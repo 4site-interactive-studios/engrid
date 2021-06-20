@@ -16,6 +16,15 @@
   width: initial;
 }
 
+.en__additional__amount .en__additional__input{
+  display: inline;
+}
+.en__additional__promo{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
 .en__ticket__field--quantity {
   width: initial;
 }
