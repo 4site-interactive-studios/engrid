@@ -255,6 +255,48 @@ input[type=checkbox]{
   }  
 }
 
+// For checkboxes with only an input and no label
+// @TODO Review this CSS because pseudo selectors can not work (e.g :focus:before)
+.en__twitterTarget__select{
+  cursor: pointer;
+  visibility: hidden; // Used to hide parent while keeping its pseduo element visible
+
+  &:before{
+    visibility: visible;  // Used to keep psuedo element visible while hiding the parent
+    content: var(--checkbox_checked-content);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 0.5rem;
+    color: var(--checkbox_color);
+    background-color: var(--checkbox_background-color);
+    border-width: var(--checkbox_border-width);
+    border-color: var(--checkbox_border-color);
+    border-radius: var(--checkbox_border-radius);
+    height: 1.4rem;
+    width: 1.4rem;
+    display: inline-flex;
+  }
+
+  &:focus:before,
+  &:hover:before{
+    // color: var(--checkbox_color_checked);
+    // background-color: var(--checkbox_background-color_checked);
+    // border-color: var(--checkbox_border-color_checked);
+  }
+
+  &:not(:checked):before{
+    color: transparent;
+  }  
+
+  &:checked:before{
+    color: var(--checkbox_color_checked);
+    background-color: var(--checkbox_background-color_checked);
+    border-color: var(--checkbox_border-color_checked);
+    box-shadow: inset 0 0 0 var(--checkbox_border-width) var(--checkbox_border-color);
+  }  
+}
+
 select,
 select.en__field__input--select{
   font-family: var(--select_font-family);
