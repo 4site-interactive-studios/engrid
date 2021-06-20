@@ -126,7 +126,14 @@ input[type=text].en__ticket__quantity{
 
 .en__orderSummary {
   padding: 0;
-  margin-left: -7px;
+
+  > * > :first-child{
+    padding-left: 0;
+  }
+
+  > * > :last-child{
+    padding-right: 0;
+  }
 }
 
 @media screen and (max-width: 599px){
