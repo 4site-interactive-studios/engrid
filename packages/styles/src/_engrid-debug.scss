@@ -4,14 +4,28 @@
 * ##########################################################
 */
 
-.debug {
-  margin-top: 47px;
-
-  // To help page editors identify images missing alt attributes which improve accesability
-  img:not([alt]){
-    outline: 1px dashed red;
-  }
+.debug-accessability{
+    // To help page editors identify images missing alt attributes which improve accesability
+    img:not([alt]){
+      outline: 1px dashed red;
+    }
 }
+
+.debug-image-sizes{
+    // To help page editors identify images missing height or width attributes which improve page shift during loading
+    img:not([height]){
+      outline: 1px dashed green;
+    }
+
+    img:not([width]){
+      outline: 1px dashed blue;
+    }
+
+    img:not([height]):not([width]){
+      outline: 1px dashed purple;
+    }
+}
+
 
 // REF: https://github.com/tachyons-css/tachyons/blob/master/src/_debug.css
 .debug-layout{
