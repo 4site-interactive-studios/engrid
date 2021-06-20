@@ -1,51 +1,24 @@
-/*
-	############################################################
-	# ENPAGE OVERRIDE
-	# @TODO Move into its own repository and publish the NPM. Then add as a dependency on ENGrid
-	# @TODO Once in its own repository replace "HOLD-TODO" with "TODO" to trigger the todo'ist bot
-	############################################################
-
-	A mirror of "enPage.css?v=3.60.1" that was then edited to provide more responsive sizing (e.g removal of fixed widths) and to use ENGrid's theme colors (e.g. Error Red) and preferences (e.g. Border Radius)
-	As a changes in this document are made, changes elsewhere (e.g. engrid-fields.scss) will become redundant and can be removed from their respective files.
-
-	REF: https://e-activist.com/ea-demo/frontend/pbAssets/build/css/enPage.css?v=3.60.1
-	The CSS file is then cleaned up on https://www.10bestdesign.com/dirtymarkup/css/ for comparison
-
-	Modified CSS can be found be searching with regex for the following, just remove the quotes "^	(?!(\/))"
-
-	Unified Color Palette
-	#0000FF - Blue
-	#0070BA - Lake Blue
-	#32325D - Ocean Blue
-	#33CC33 - Green
-	#FCAC00 - Orange
-	#CC0001 - Red
-	#FFFFFF - White
-	#DFDFDF - Off White
-	#BFBFBF - Light Gray
-	#9F9F9F - Gray
-	#808080 - Dark Gray
-	#404040 - Off Black
-	#000000 - Black
-*/
-
 .en__field__element--range,
 .en__field__element--rating,
+.en__field__helpText,
 .en__field__input--checkbox,
-.en__field__input--radio {
+.en__field__input--radio,
+.en__field__label {
 	// vertical-align: middle
 }
 
+.en__component--hubgadget span,
 .en__imageSelectField__control,
 .en__rangeFieldLabels__label--current {
 	// text-align: center
 }
 
-.en__button,
-.en__imageSelectField,
-.en__ratingField__image,
-.en__submit button {
-	// cursor: pointer
+.en-noselect,
+.en__ticket__minus,
+.en__ticket__plus {
+	-webkit-touch-callout: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none
 }
 
 .en__errorList {
@@ -109,12 +82,29 @@ only screen and (max-device-width:600px) {
 	padding: 0.75rem; // 12px
 }
 
+.en__component--hubgadget--inactive {
+	display: none
+}
+
+.en__component--hubgadget img {
+	display: block;
+	margin: auto
+}
+
 .en__component--hubgadget span {
+	font-weight: 700;
+	display: block;
 	margin-top: 0.75rem; // 12px
 }
 
 .en__component--hubgadget>img {
 	height: 3.5rem // 56px
+}
+
+.en-noselect {
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none
 }
 
 .en__captcha,
@@ -123,16 +113,22 @@ only screen and (max-device-width:600px) {
 }
 
 .en__field__label {
+	// display: inline-block;
 	width: auto; // 180px;
 }
 
 .en__field__helpText {
+	display: none;
 	font-size: 85%; // .85em
+}
+
+.en__field__helpText,
+.en__field__label {
 	padding: 0.375rem 0;
 }
 
-.en__field__label {
-	padding: 0.375rem 0;
+.en__field__label--positionabove+.en__field__helpText {
+	display: block
 }
 
 .en__field__element--calendar,
@@ -245,9 +241,8 @@ only screen and (max-device-width:600px) {
 	padding-right: 0.75rem; // 12px
 }
 
-.en__field__element--rating .en__field__item,
-.en__pagination {
-	padding: 0.375rem // 6px
+.en__imageSelectField {
+	cursor: pointer
 }
 
 .en__rangeFieldLabels {
@@ -264,17 +259,6 @@ only screen and (max-device-width:600px) {
 	// text-align: right
 }
 
-.en__additional__amount,
-.en__additional__code,
-.en__additional__promo,
-.en__pagination,
-.en__ticket__field--cost,
-.en__ticket__field--quantity,
-.en__ticket__quantity,
-.en__ticket__remaining {
-	// text-align: center
-}
-
 .en__field__element--range input[type=range]::-moz-range-thumb {
 	// cursor: pointer
 }
@@ -287,8 +271,21 @@ only screen and (max-device-width:600px) {
 	// cursor: pointer
 }
 
+.en__pagination {
+	padding: 0.375rem; // 6px
+	text-align: center;
+}
+
+.en__field__element--rating .en__field__item {
+	padding: 0.375rem // 6px
+}
+
 .en__ratingField input {
 	// display: none
+}
+
+.en__ratingField__image {
+	cursor: pointer
 }
 
 .en__ratingField--on .en__ratingField__image--on,
@@ -301,6 +298,10 @@ only screen and (max-device-width:600px) {
 	// display: none
 }
 
+.en__submit button {
+	cursor: pointer
+}
+
 .en__button {
 	// display: inline-block;
 	background: #DFDFDF;
@@ -308,6 +309,7 @@ only screen and (max-device-width:600px) {
 	border: 1px solid #BFBFBF;
 	// color: initial;
 	// text-decoration: none
+	cursor: pointer;
 }
 
 .en__button--disabled,
@@ -407,22 +409,21 @@ only screen and (max-device-width:600px) {
 	// display: table-cell
 }
 
-.en__ticket__currency,
-.en__ticket__minus,
-.en__ticket__plus,
-.en__ticket__price,
-.en__ticket__quantity,
-.en__ticket__selector {
-	// display: inline-block
-}
-
 .en__additional__amount,
 .en__additional__label,
 .en__ticket__currency,
 .en__ticket__name,
 .en__ticket__price {
-	font-size: 1.5rem; // 1.5em
-	// font-weight: 700
+	font-size: 1.5em;
+	font-weight: 700
+}
+
+.en__ticket__currency,
+.en__ticket__minus,
+.en__ticket__plus,
+.en__ticket__price,
+.en__ticket__quantity{
+	// display: inline-block
 }
 
 .en__ticket__field--quantity {
@@ -432,6 +433,18 @@ only screen and (max-device-width:600px) {
 .en__additional__amount,
 .en__ticket__field--cost {
 	width: 10rem // - 10em @HOLD-TODO Investigate to see if there is a better way to do this
+}
+
+.en__additional__amount,
+.en__ticket__field--cost,
+.en__ticket__field--quantity,
+.en__ticket__quantity,
+.en__ticket__remaining {
+	text-align: center
+}
+
+.en__ticket__selector {
+	display: inline-block
 }
 
 .en__ticket__quantity {
@@ -456,9 +469,6 @@ only screen and (max-device-width:600px) {
 	border: 1px solid #BFBFBF;
 	// cursor: pointer;
 	border-radius: var(--input_border-radius); // 3px
-	// -webkit-touch-callout: none;
-	// -webkit-user-select: none;
-	// -khtml-user-select: none;
 	// -moz-user-select: none;
 	// -ms-user-select: none;
 	// user-select: none
@@ -507,18 +517,26 @@ only screen and (max-device-width:600px) {
 	border-radius: var(--input_border-radius); // 3px
 }
 
+.en__additional__promo {
+	text-align: center
+}
+
 .en__additional__code {
+	text-align: center;
 	width: 8rem; // 8em;
 	padding: .6rem 0; // .6em 0;
 	border: 1px solid #BFBFBF;
 	border-radius: var(--input_border-radius); // 3px
 }
 
+.en__ticketRecurring,
 .en__ticketSummary {
 	border-top: 1px solid #BFBFBF;
-	// text-align: right
+	display: flex;
+	justify-content: flex-end
 }
 
+.en__ticketRecurring__select,
 .en__ticketSummary__checkout {
 	// text-transform: uppercase;
 	font-size: 1.5rem; // 1.5em;
@@ -532,6 +550,170 @@ only screen and (max-device-width:600px) {
 	width: 11rem; // 11em;
 	// border: 0;
 	// font-family: inherit
+}
+
+.en__eventOccurrencesDateSelector__clear,
+.en__occurrenceSummary__change {
+	text-decoration: underline;
+	color: #0070BA;
+	cursor: pointer
+}
+
+.en__ticketBlock--recurring .en__ticketSummary {
+	display: none
+}
+
+.en__ticketBlock--recurring .en__ticketRecurring,
+.en__ticketBlock--recurring.en__ticketBlock--recurring--selected .en__occurrenceSummary,
+.en__ticketBlock--recurring.en__ticketBlock--recurring--selected .en__ticketSummary {
+	display: flex
+}
+
+.en__ticketBlock--recurring.en__ticketBlock--recurring--selected .en__ticketRecurring,
+.en__ticketRecurring {
+	display: none
+}
+
+.en__occurrenceSummary {
+	display: none;
+	flex-direction: column;
+	justify-content: center;
+	align-items: end;
+	padding: 0 0.875rem; // 0 17px;
+}
+
+.en__occurrenceSummary__description {
+	font-size: 1rem; // 1em
+	font-weight: 700
+}
+
+.en__eventOccurrences {
+	padding: 0.875rem 0 ; // 14px 0;
+	display: none
+}
+
+.en__eventOccurrences.en__eventOccurrences--selecting {
+	display: block
+}
+
+.en__eventOccurrences__title {
+	padding-bottom: 0.875rem; // 14px;
+}
+
+.en__eventOccurrences__header {
+	display: flex;
+	justify-content: space-between;
+	padding-bottom: 0.875rem; // 14px;
+}
+
+.en__eventOccurrencesDateSelector {
+	display: flex;
+	align-items: center
+}
+
+.en__eventOccurrencesDateSelector:not(.en__eventOccurrencesDateSelector--selected) .en__eventOccurrencesDateSelector__clear {
+	display: none
+}
+
+.en__eventOccurrencesDateSelector__label {
+	padding-left: 1.875rem; // 30px
+	margin-right: 0.375rem; // 6px
+	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/calendar.svg) center left no-repeat;
+	display: block;
+	line-height: 1.5rem; // 24px
+	height: 1.5rem; // 24px
+}
+
+.en__eventOccurrencesDateSelector__clear {
+	margin-left: 0.0625rem; // 6px
+}
+
+.en__eventOccurrence {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0.875rem; // 14px;
+	background-color: #F6F6F6;
+	border-radius: 0.375rem; // 6px
+	margin-bottom: 0.875rem; // 14px;
+}
+
+.en__eventOccurrence--filtered,
+.en__eventOccurrence--paginated--after,
+.en__eventOccurrence--paginated--before,
+.en__eventOccurrence__radio {
+	display: none
+}
+
+.en__eventOccurrence__description {
+	font-size: 1.5em;
+	font-weight: 700
+}
+
+.en__eventOccurrence__select {
+	text-transform: uppercase;
+	font-size: 1.3rem; // 1.3em
+	background-color: #EE3324;
+	padding: 0;
+	color: #fff;
+	cursor: pointer;
+	border: 0;
+	font-family: inherit
+}
+
+.en__eventOccurrence__select>label {
+	display: block;
+	padding: 0.375rem 0.875rem; // 7px 14px; 
+	cursor: pointer
+}
+
+.en__eventOccurrencesPagination {
+	display: flex;
+	justify-content: center;
+	align-items: center
+}
+
+.en__eventOccurrencesPagination--disabled {
+	display: none
+}
+
+.en__eventOccurrencesPagination__display {
+	margin: 0 1rem; // 0 16px
+}
+
+.en__eventOccurrencesPagination__control {
+	height: 1rem; // 16px
+	width: 1rem; // 16px
+	background-repeat: no-repeat;
+	background-position: center center;
+	cursor: pointer
+}
+
+.en__eventOccurrencesPagination__control--back {
+	background-image: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_prev.png)
+}
+
+.en__eventOccurrencesPagination__control--forward {
+	background-image: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_next.png)
+}
+
+.en__eventOccurrencesPagination--end .en__eventOccurrencesPagination__control--forward,
+.en__eventOccurrencesPagination--start .en__eventOccurrencesPagination__control--back {
+	opacity: .3;
+	cursor: default
+}
+
+.en__eventOccurrences__empty {
+	display: none;
+	text-align: center
+}
+
+.en__eventOccurrences--empty .en__eventOccurrences__empty {
+	display: block
+}
+
+.en__eventOccurrences--empty .en__eventOccurrencesPagination {
+	display: none
 }
 
 .en__lightbox {
@@ -587,12 +769,6 @@ only screen and (max-device-width:600px) {
 	// text-align: center
 }
 
-.en__lightbox__action,
-.en__lightbox__action--close,
-.en__lightbox__action--submit {
-	background-color: #CC0001
-}
-
 .en__waitlist {
 	// text-align: left;
 	// display: inline-block
@@ -638,12 +814,18 @@ only screen and (max-device-width:600px) {
 }
 
 .en__lightbox__action {
+	background-color: #CC0001;
 	// color: #FFFFFF;
 	// display: inline-block;
 	padding: .2rem 1rem; // .2em 1em;
 	border-radius: var(--input_border-radius); // 3px
 	// cursor: pointer;
 	font-size: 1.5rem // 1.5em
+}
+
+.en__lightbox__action--close,
+.en__lightbox__action--submit {
+	background-color: #CC0001
 }
 
 .en__lightbox__action--cancel {
@@ -669,11 +851,6 @@ only screen and (max-device-width:600px) {
 .en__component--eventtickets .en__orderSummary__data--type,
 .en__component--eventtickets .en__orderSummary__header--type {
 	// text-align: left
-}
-
-.en__contact__actions,
-.en__tweetButton {
-	// text-align: right
 }
 
 .en__registrants {
@@ -961,6 +1138,10 @@ only screen and (max-device-width:600px) {
 	min-height: 2.1875rem // 35px
 }
 
+.en__contact__actions {
+	text-align: right
+}
+
 .en__contact__actions .en__button:not(:last-child) {
 	margin-right: 0.625rem; // 10px
 }
@@ -1105,6 +1286,10 @@ only screen and (max-device-width:600px) {
 	// resize: none
 }
 
+.en__tweetButton {
+	text-align: right
+}
+
 .en__tweetButton a {
 	// text-decoration: none;
 	// font-weight: 700;
@@ -1170,7 +1355,7 @@ only screen and (max-device-width:600px) {
 }
 
 .en__component.en__component--ecardblock {
-	max-width: 880px
+	max-width: 55rem; // 880px
 }
 
 .en__component.en__component--ecardblock.ui-draggable {
@@ -1264,6 +1449,11 @@ only screen and (max-device-width:600px) {
 	// justify-content: space-between
 }
 
+.en__ecarditems__preview.preview--show,
+.en__ecardrecipients__futureDelivery label {
+	display: block
+}
+
 .en__ecardrecipients__email,
 .en__ecardrecipients__name {
 	// flex: initial;
@@ -1300,15 +1490,11 @@ only screen and (max-device-width:600px) {
 	margin: 1.25rem 0 0; // 20px 0 0
 }
 
-.en__ecardrecipients__futureDelivery label {
-	// display: block
-}
-
 .en__ecardrecipients__recipient {
 	// display: flex;
 	// flex-wrap: wrap;
 	// box-sizing: border-box;
-	padding: 5px 0
+	padding: 0.3125rem 0; // 5px 0
 }
 
 .en__ecardrecipients__recipient .ecardrecipient__email,
@@ -1363,10 +1549,6 @@ only screen and (max-device-width:600px) {
 	z-index: 9
 }
 
-.en__ecarditems__preview.preview--show {
-	// display: block
-}
-
 .en__ecarditems__preview.overflow--height .en__ecarditems__prevwrap {
 	// height: 100%!important;
 	// top: 0!important;
@@ -1403,6 +1585,7 @@ only screen and (max-device-width:600px) {
 
 .en__hubOverlay,
 .en__overlay {
+	position: fixed;
 	z-index: 2147483647;
 	// left: 0;
 	// bottom: 0
@@ -1413,7 +1596,6 @@ only screen and (max-device-width:600px) {
 }
 
 .en__hubOverlay {
-	// position: fixed;
 	// top: 0;
 	// right: 0;
 	background: rgba(0, 0, 0, .25);
@@ -1454,6 +1636,10 @@ only screen and (max-device-width:600px) {
 
 .en__hubOverlay--pledge .en__hubOverlay__popup {
 	max-width: 68.75rem // 1100px - @HOLD-TODO Investigate, there has to be a better way to do this
+}
+
+.en__hubOverlay--pledgeRoi .en__hubOverlay__popup {
+	max-width: 37.5rem // 600px @HOLD-TODO Investigate, there has to be a better way to do this
 }
 
 .en__hubOverlay--membership>.en__hubOverlay__popup {
@@ -1577,7 +1763,7 @@ only screen and (max-device-width:600px) {
 .en__myImpact__hubCopy {
 	background: #DFDFDF;
 	padding: 0 0.75rem; // 0 12px;
-	margin-top: 6px;
+	margin-top: 0.375rem; // 6px
 	// cursor: pointer
 }
 
@@ -1653,6 +1839,18 @@ only screen and (max-device-width:600px) {
 	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_lockopen-24.png) right center no-repeat
 }
 
+@media (max-width:768px) {
+	.en__hubOverlay__impact .en__hubOverlay__content>div {
+		background: 0 0;
+		padding: 0
+	}
+}
+
+.en__hubMembership__card__update,
+.en__hubUpdateCC__toggle {
+	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/en_edit.png) center center no-repeat
+}
+
 .en__hubPledge__state {
 	// display: flex
 }
@@ -1662,10 +1860,6 @@ only screen and (max-device-width:600px) {
 }
 
 @media (max-width:768px) {
-	.en__hubOverlay__impact .en__hubOverlay__content>div {
-		// background: 0 0;
-		// padding: 0
-	}
 	.en__hubPledge__icon {
 		// display: none
 	}
@@ -1716,7 +1910,6 @@ only screen and (max-device-width:600px) {
 	// cursor: pointer;
 	width: 1.5rem; // 25px - @HOLD-TODO There has to be a better way to do this than a fixed width
 	margin-bottom: 1.125rem; // 18px
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_edit.png) center center no-repeat;
 	margin-left: 1.5rem; // 25px
 }
 
@@ -1738,6 +1931,57 @@ only screen and (max-device-width:600px) {
 	// transition: max-height 1s;
 	// max-height: 0;
 	// overflow: hidden
+}
+
+.en__hubPledge__roi__list ol {
+	list-style: none;
+	padding: 0;
+	margin: 0
+}
+
+.en__hubPledge__roi__list li {
+	border: 1px solid #BFBFBF;
+	font-size: .85rem; // .85em
+	margin: 6px 0;
+	padding: 6px
+}
+
+.en__hubPledge__roi__list li:hover {
+	background: #DFDFDF;
+	cursor: pointer
+}
+
+.en__hubPledge__roi__actions {
+	display: flex;
+	justify-content: space-between
+}
+
+.en__hubPledge__roi--list .en__hubPledge__roi__actions {
+	padding-top: 0.75rem; // 12px
+	display: block;
+	text-align: right
+}
+
+.en__hubPledge__roi--update .en__hubPledge__roi__amount {
+	padding-bottom: 0.75rem; // 12px
+}
+
+.en__hubPledge__roi--update .en__hubPledge__roi__add {
+	padding: 0.75rem; // 12px
+	text-align: center
+}
+
+.en__hubPledge__roi--update .en__hubPledge__roi__list label {
+	display: flex;
+	align-items: center
+}
+
+.en__hubPledge__roi--update .en__hubPledge__roi__list input {
+	margin: 0 0.75rem; // 0 12px
+}
+
+.en__hubPledge__roi--confirmation .en__hubPledge__roi__next {
+	margin: 1rem 0
 }
 
 .en__hubMembership__viewMemberships {
@@ -1892,7 +2136,6 @@ only screen and (max-device-width:600px) {
 .en__hubMembership__card__update {
 	width: 1.5rem; // 24px
 	height: 1.5rem; // 24px
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_edit.png) center center no-repeat;
 	// cursor: pointer;
 	text-indent: -500vw; // -9F9F9Fpx; - @HOLD-TODO Investigate, there has to be a better way to do this
 	// position: absolute;
@@ -1960,6 +2203,7 @@ only screen and (max-device-width:600px) {
 	padding: 0.75rem 1.125rem // 12px 18px
 }
 
+.en__pg__body,
 .en__pg__detail,
 .en__pg__display,
 .en__pg__select {
@@ -2021,7 +2265,6 @@ only screen and (max-device-width:600px) {
 .en__pg__body {
 	// display: flex;
 	// flex-wrap: wrap;
-	padding: 0.75rem; // 12px
 }
 
 .en__memselector,
@@ -2253,7 +2496,6 @@ only screen and (max-device-width:600px) {
 }
 
 .en__overlay {
-	// position: fixed;
 	// top: 0;
 	// right: 0;
 	background: rgba(0, 0, 0, .25);
@@ -2532,6 +2774,7 @@ only screen and (max-device-width:600px) {
 #en__digitalWallet .en__digitalWallet__button {
 	// display: inline-block;
 	// vertical-align: top
+	position: relative
 }
 
 #en__digitalWallet .en__digitalWallet__container {
