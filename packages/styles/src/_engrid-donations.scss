@@ -81,13 +81,11 @@
 
 // Accounts for the left/right padding padding around all fields
 /* prettier-ignore */
-.radio-to-buttons,
-.give-by-select,
-.en__field--donationAmt,
-.en__field--recurrfreq {
-	min-width: calc(100% + 0.5rem); // Accounts for negative margin
+.radio-to-buttons{
+	min-width: calc(100% + 1rem); // Accounts for negative margin
 	position: relative;
-	left: -0.25rem; // Negative margins are allowed so that the buttons can reflow onto new lines without unexpected issues with padding on wrap
+    left: -0.5rem; // Negative margins are allowed so that the buttons can reflow onto new lines without unexpected issues with padding on wrap
+	right: -0.5rem; // Negative margins are allowed so that the buttons can reflow onto new lines without unexpected issues with padding on wrap
 }
 
 /*
