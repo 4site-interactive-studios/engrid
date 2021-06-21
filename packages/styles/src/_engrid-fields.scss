@@ -32,38 +32,38 @@
   --radio_color: var(--cta);
   --radio_background-color: var(--color_white);
   --radio_border-width: 4px;
-  --radio_border-color: var(--black);
+  --radio_border-color: var(--color_black);
   --radio_border-radius: 50%;
 
   // TYPOGRAPHY RADIO INPUT:FOCUS
   // TYPOGRAPHY RADIO INPUT:HOVER
   --radio_color_hover: var(--radio_color);
   --radio_background-color_hover: var(--color_white);
-  --radio_border-color_hover: var(--black);
+  --radio_border-color_hover: var(--color_black);
 
   // TYPOGRAPHY RADIO INPUT:CHECKED
-  --radio_selected-color: var(--black);
+  --radio_selected-color: var(--color_black);
   --radio_selected-background-color: var(--cta);
-  --radio_selected-border-color: var(--black);
+  --radio_selected-border-color: var(--color_black);
 
   // TYPOGRAPHY CHECKBOX
   --checkbox_color: var(--color_white);
   --checkbox_background-color: var(--color_white);
   --checkbox_border-width: 1px;
-  --checkbox_border-color: var(--black);
+  --checkbox_border-color: var(--color_black);
   --checkbox_border-radius: 0px;
 
   // TYPOGRAPHY CHECKBOX INPUT:FOCUS
   // TYPOGRAPHY CHECKBOX INPUT:HOVER
   --checkbox_color_hover: var(--checkbox_color);
   --checkbox_background-color_hover: #f5f5f5;
-  --checkbox_border-color_hover: var(--black);
+  --checkbox_border-color_hover: var(--color_black);
 
   // TYPOGRAPHY CHECKBOX INPUT:CHECKED
   --checkbox_checked-content:"✓";
   --checkbox_color_checked: var(--checkbox_background-color);
   --checkbox_background-color_checked: var(--cta);
-  --checkbox_border-color_checked: var(--black);
+  --checkbox_border-color_checked: var(--color_black);
 
   // TYPOGRAPHY SELECT
   --select_font-family: var(--default_font-family);
