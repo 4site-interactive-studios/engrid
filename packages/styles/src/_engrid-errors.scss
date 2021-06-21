@@ -143,15 +143,13 @@ body.error-jump-assist .en__component .en__field__error {
   background-color: initial;
 }
 
-div:not(.manual-form-layout) {
-  .en__field--donationAmt.en__field--withOther.en__field--validationFailed
-    .en__field__element--radio {
-    border-radius: var(--donation-amount__button_border-radius);
-    margin-bottom: 0.5rem;
-  }
+.en__field--donationAmt.en__field--withOther.en__field--validationFailed
+  .en__field__element--radio {
+  border-radius: var(--donation-amount__button_border-radius);
+  margin-bottom: 0.5rem;
+}
 
-  .en__field--donationAmt.en__field--withOther.en__field--validationFailed
-    .en__field__error {
-    border-radius: var(--donation-amount__button_border-radius);
-  }
+.en__field--donationAmt.en__field--withOther.en__field--validationFailed
+  .en__field__error {
+  border-radius: var(--donation-amount__button_border-radius);
 }

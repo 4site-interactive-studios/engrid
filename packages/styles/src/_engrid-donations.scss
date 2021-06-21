@@ -81,7 +81,8 @@
 
 // Accounts for the left/right padding padding around all fields
 /* prettier-ignore */
-.radio-to-buttons{
+.radio-to-buttons,
+.en__field--donationAmt{
 	min-width: calc(100% + 1rem); // Accounts for negative margin
 	position: relative;
     left: -0.5rem; // Negative margins are allowed so that the buttons can reflow onto new lines without unexpected issues with padding on wrap
