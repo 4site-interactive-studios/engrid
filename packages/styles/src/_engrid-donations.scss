@@ -85,9 +85,9 @@
 .give-by-select,
 .en__field--donationAmt,
 .en__field--recurrfreq {
-	min-width: calc(100% + 0.5rem);
+	min-width: calc(100% + 0.5rem); // Accounts for negative margin
 	position: relative;
-	left: -0.25rem;
+	left: -0.25rem; // Negative margins are allowed so that the buttons can reflow onto new lines without unexpected issues with padding on wrap
 }
 
 /*

@@ -738,6 +738,16 @@ input.en__contactDetails__select {
   margin: 0;
 }
 
+.en__imageSelectField__control{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .en__field__input--imageSelectField{
+    width: auto;
+  }
+}
+
 .en__field--engrid-image-select .en__imageSelectField{
   display: flex;
   flex-direction: column;
@@ -745,17 +755,6 @@ input.en__contactDetails__select {
 
 .en__imageSelectField__image{
   padding-bottom: 0.5rem;
-}
-
-/* @TODO Revisit if this negative margin offset is neccisary anymore */
-.en__component--formblock.manual-form-layout {
-  margin-left: -0.5rem;
-  margin-right: -0.5rem;
-}
-
-.en__field {
-  // padding-left: 0.5rem;
-  // padding-right: 0.5rem;
 }
 
 /* The first form field in a form block component does not need any left padding */
