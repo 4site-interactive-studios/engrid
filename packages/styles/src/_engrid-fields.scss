@@ -162,6 +162,12 @@ input[type="textarea"]{
   }
 }
 
+// Remove the padding set on all other input fields
+input[type="range"]{
+  padding-left: 0;
+  padding-right: 0;
+}
+
 // Removes the input shadow added by iOS 5 and later
 // https://stackoverflow.com/questions/23211656/remove-ios-input-shadow
 // https://app.productive.io/2650-4site-interactive-studios-inc/tasks/1498132
