@@ -1,6 +1,7 @@
 Changelog (Newest to Oldest)
+BREAKING: Removed "manual-form-layout" CSS class
 BREAKING: Replaced all instances of "--cta" with "--color_cta"
-BREAKING: Removed "--engrid__page-backgroundImage_background-pattern"
+BREAKING: Removed "--engrid__page-backgroundImage_background-pattern" CSS Custom Property
 BREAKING: Replaced all instances of "--black" with "--color_black"
 BREAKING: Replaced all instances of "--color-" with "--color_"
 BREAKING: Replaced all instances of "--off-white" with "--off-white"
