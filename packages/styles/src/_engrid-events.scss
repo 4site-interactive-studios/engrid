@@ -150,6 +150,11 @@ input[type=text].en__ticket__quantity{
 .en__ticketRecurring__select,
 .en__ticketSummary__checkout{
   width: auto;
+  background-color: var(--button_background-color);
+
+  &:hover{
+    background-color: var(--button_background-color_hover);
+  }
 }
 
 .en__eventOccurrencesDateSelector__label{
@@ -158,6 +163,11 @@ input[type=text].en__ticket__quantity{
 
 button.en__eventOccurrence__select{
   margin-bottom: 0;
+  background-color: var(--button_background-color);
+
+  &:hover{
+    background-color: var(--button_background-color_hover);
+  }
 }
 
 @media screen and (max-width: 599px){

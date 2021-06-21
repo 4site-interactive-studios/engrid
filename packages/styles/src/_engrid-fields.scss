@@ -41,14 +41,14 @@
   --radio_background-color_hover: var(--color_white);
   --radio_border-color_hover: var(--color_black);
 
-  // TYPOGRAPHY RADIO INPUT:CHECKED
+  // TYPOGRAPHY RADIO INPUT:SELECTED
   --radio_selected-color: var(--color_black);
-  --radio_selected-background-color: var(--color_cta);
+  --radio_selected-background-color: var(--color_cta_hover);
   --radio_selected-border-color: var(--color_black);
 
   // TYPOGRAPHY CHECKBOX
   --checkbox_color: var(--color_white);
-  --checkbox_background-color: var(--color_white);
+  --checkbox_background-color: var(--color_black);
   --checkbox_border-width: 1px;
   --checkbox_border-color: var(--color_black);
   --checkbox_border-radius: 0px;
@@ -56,12 +56,12 @@
   // TYPOGRAPHY CHECKBOX INPUT:FOCUS
   // TYPOGRAPHY CHECKBOX INPUT:HOVER
   --checkbox_color_hover: var(--checkbox_color);
-  --checkbox_background-color_hover: #f5f5f5;
+  --checkbox_background-color_hover: var(--checkbox_background-color);
   --checkbox_border-color_hover: var(--color_black);
 
   // TYPOGRAPHY CHECKBOX INPUT:CHECKED
   --checkbox_checked-content:"✓";
-  --checkbox_color_checked: var(--checkbox_background-color);
+  --checkbox_color_checked: var(--checkbox_color);
   --checkbox_background-color_checked: var(--color_cta);
   --checkbox_border-color_checked: var(--color_black);
 
@@ -185,6 +185,7 @@ input[type=radio]{
       margin-right: 0.5rem;
       color: var(--radio_color);
       background-color: var(--radio_background-color);
+      border-style: solid;
       border-width: var(--radio_border-width);
       border-color: var(--radio_border-color);
       border-radius: var(--radio_border-radius);
@@ -227,6 +228,7 @@ input[type=checkbox]{
       margin-right: 0.5rem;
       color: var(--checkbox_color);
       background-color: var(--checkbox_background-color);
+      border-style: solid;
       border-width: var(--checkbox_border-width);
       border-color: var(--checkbox_border-color);
       border-radius: var(--checkbox_border-radius);
@@ -270,6 +272,7 @@ input[type=checkbox]{
     margin-right: 0.5rem;
     color: var(--checkbox_color);
     background-color: var(--checkbox_background-color);
+    border-style: solid;
     border-width: var(--checkbox_border-width);
     border-color: var(--checkbox_border-color);
     border-radius: var(--checkbox_border-radius);
