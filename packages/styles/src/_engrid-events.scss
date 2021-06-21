@@ -109,15 +109,17 @@ input[type=text].en__ticket__quantity{
   width: 100%;
 }
 
-.en__registrants__registrantDetails .en__field.en__field--text.en__field {
+.en__registrants__registrantDetails .en__field.en__field--text {
   flex-basis: calc(100% / 3);
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
-.en__registrants__registrantDetails .en__field.en__field--text.en__field:first-of-type {
+.en__registrants__registrantDetails .en__field.en__field--text:first-of-type {
   padding-left: 0;
 }
 
-.en__registrants__registrantDetails .en__field.en__field--text.en__field:last-of-type {
+.en__registrants__registrantDetails .en__field.en__field--text:last-of-type {
   padding-right: 0;
 }
 
@@ -143,6 +145,15 @@ input[type=text].en__ticket__quantity{
   > * > :last-child{
     padding-right: 0;
   }
+}
+
+.en__ticketRecurring__select,
+.en__ticketSummary__checkout{
+  width: auto;
+}
+
+.en__eventOccurrencesDateSelector__label{
+  width: 100%;
 }
 
 @media screen and (max-width: 599px){
