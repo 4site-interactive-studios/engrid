@@ -23,13 +23,13 @@
   // TYPOGRAPHY INPUT:HOVER
   --input_color_hover: var(--input_color);
   --input_background-color_hover: var(--input_background-color);
-  --input_border-color_hover: var(--cta);
+  --input_border-color_hover: var(--color_cta);
   --input_border-bottom-color_hover: var(--input_border-color_hover);
   --input_box-shadow_hover: 0 0 0.3125rem var(--color_light-gray);
       
   // TYPOGRAPHY RADIO
   --radio_content: "";
-  --radio_color: var(--cta);
+  --radio_color: var(--color_cta);
   --radio_background-color: var(--color_white);
   --radio_border-width: 4px;
   --radio_border-color: var(--color_black);
@@ -43,7 +43,7 @@
 
   // TYPOGRAPHY RADIO INPUT:CHECKED
   --radio_selected-color: var(--color_black);
-  --radio_selected-background-color: var(--cta);
+  --radio_selected-background-color: var(--color_cta);
   --radio_selected-border-color: var(--color_black);
 
   // TYPOGRAPHY CHECKBOX
@@ -62,7 +62,7 @@
   // TYPOGRAPHY CHECKBOX INPUT:CHECKED
   --checkbox_checked-content:"✓";
   --checkbox_color_checked: var(--checkbox_background-color);
-  --checkbox_background-color_checked: var(--cta);
+  --checkbox_background-color_checked: var(--color_cta);
   --checkbox_border-color_checked: var(--color_black);
 
   // TYPOGRAPHY SELECT
@@ -81,7 +81,7 @@
   // TYPOGRAPHY SELECT:HOVER
   --select_color_hover: var(--select_color);
   --select_background-color_hover: var(--select_background-color);
-  --select_border-color_hover: var(--cta_hover);
+  --select_border-color_hover: var(--color_cta_hover);
   --select_border-bottom-color_hover: var(--select_border-color_hover);
   --select_box-shadow_hover: var(--input_box-shadow_hover);
 
@@ -102,7 +102,7 @@
   // TYPOGRAPHY TEXTAREA:HOVER
   --textarea_color_hover: var(--textarea_color);
   --textarea_background-color_hover: var(--textarea_background-color);
-  --textarea_border-color_hover: var(--cta);
+  --textarea_border-color_hover: var(--color_cta);
   --textarea_box-shadow_hover: var(--input_box-shadow_hover);
 }
 
@@ -605,7 +605,7 @@ input.en__contactDetails__select {
   + .en__contactDetails__rows::after {
   // Needs and SVG safe color passed in https://stackoverflow.com/questions/25477819/scss-variable-in-background-image-with-svg-image-data-uri
   // content: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='21' height='16' viewBox='0 0 21 16'><path fill="#color-white" fill-rule='nonzero' d='M18.76.16L6.68 12.113l-4.44-4.392a.555.555 0 0 0-.779 0L.161 9.006a.541.541 0 0 0 0 .771L6.29 15.84a.555.555 0 0 0 .78 0l13.77-13.624a.541.541 0 0 0 0-.771L19.539.16a.555.555 0 0 0-.779 0z'/></svg>");
-  // fill: var(--cta);
+  // fill: var(--color_cta);
   content: "✓"; // REF: https://www.toptal.com/designers/htmlarrows/symbols/check-mark/
   position: absolute;
   left: 4px;

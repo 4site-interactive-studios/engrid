@@ -12,13 +12,13 @@
 
   // TYPOGRAPHY BUTTON:HOVER
   --button_color_hover: var(--button_color);
-  --button_background-color_hover: var(--cta_hover);
-  --button_border-color_hover: var(--cta_hover);
+  --button_background-color_hover: var(--color_cta_hover);
+  --button_border-color_hover: var(--color_cta_hover);
 
   // TYPOGRAPHY BUTTON:CHECKED
   --button_color_checked: var(--button_color);
-  --button_background-color_checked: var(--cta_hover);
-  --button_border-color_checked: var(--cta_hover);
+  --button_background-color_checked: var(--color_cta_hover);
+  --button_border-color_checked: var(--color_cta_hover);
 }
 
 // @TODO reconcile with definition below

@@ -1,4 +1,5 @@
 Changelog (Newest to Oldest)
+BREAKING: Replaced all instances of "--cta" with "--color_cta"
 BREAKING: Removed "--engrid__page-backgroundImage_background-pattern"
 BREAKING: Replaced all instances of "--black" with "--color_black"
 BREAKING: Replaced all instances of "--color-" with "--color_"
