@@ -156,6 +156,10 @@ input[type=text].en__ticket__quantity{
   width: 100%;
 }
 
+button.en__eventOccurrence__select{
+  margin-bottom: 0;
+}
+
 @media screen and (max-width: 599px){
   .en__registrants__registrantDetails .en__field.en__field--text.en__field{
       flex-basis: 100%;
