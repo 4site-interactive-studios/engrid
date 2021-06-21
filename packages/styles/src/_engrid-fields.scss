@@ -27,7 +27,7 @@
   --input_background-color_hover: var(--input_background-color);
   --input_border-color_hover: var(--color_cta);
   --input_border-bottom-color_hover: var(--input_border-color_hover);
-  --input_box-shadow_hover: 0 0 0.3125rem var(--color_light-gray);
+  --input_box-shadow_hover: 0 0 0.3125rem var(--input_box-shadow_hover);
       
   // TYPOGRAPHY RADIO
   --radio_content: "";
@@ -152,8 +152,12 @@ input.en__field__input{
 }
 
 input[type="text"],
+input[type="email"],
 input[type="number"],
-input[type="textarea"]{
+input[type="textarea"],
+input[type="date"],
+input[type="tel"],
+input[type="password"]{
   box-shadow: var(--input_box-shadow);
 
   &:focus,
