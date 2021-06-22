@@ -7,22 +7,22 @@
 .debug-accessability{
     // To help page editors identify images missing alt attributes which improve accesability
     img:not([alt]){
-      outline: 1px dashed red;
+      outline: 1px dashed #FF0000;
     }
 }
 
 .debug-image-sizes{
     // To help page editors identify images missing height or width attributes which improve page shift during loading
     img:not([height]){
-      outline: 1px dashed green;
+      outline: 1px dashed #00ff00;
     }
 
     img:not([width]){
-      outline: 1px dashed blue;
+      outline: 1px dashed #0000FF;
     }
 
     img:not([height]):not([width]){
-      outline: 1px dashed purple;
+      outline: 1px dashed #6a0dad;
     }
 }
 

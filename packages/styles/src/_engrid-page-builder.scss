@@ -36,7 +36,7 @@
 
   // To help page editors identify images missing alt attributes which improve accesability
   img:not([alt]) {
-    outline: 1px dashed red;
+    outline: 1px dashed var(--error__color);
   }
 
   // When in page builder display Overlay sections after their counterparts and not overtop of their target grid row. This way content editors can more easily interact with them
@@ -59,7 +59,7 @@
 
   /* Highlight images not using our method for lazy loading them */
   .page-backgroundImage img:not([data-src]) {
-    border: 5px solid red;
+    border: 5px solid var(--error__color);
   }
 
   /* Adjust the editable space in the Page Editor so that the content can occupy as much space as possible */
