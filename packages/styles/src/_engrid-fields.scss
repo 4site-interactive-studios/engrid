@@ -118,6 +118,15 @@ label{
   display: flex;
 }
 
+label a.label-tooltip {
+  text-transform: none;
+  position: absolute;
+  right: 0;
+  text-decoration: underline;
+  color: var(--label-color);
+  font-weight: 400;
+}
+
 // The use of "input.en__field__input" is needed to provide enough specificity to suprass class selectors like ".en__field__input--calendar" in enPage.css
 input,
 input.en__field__input{
@@ -934,12 +943,14 @@ input[type="number"]::-webkit-outer-spin-button {
 // .en__field--infcity,
 .en__field--ccexpire {
   padding-left: 0;
+  padding-right: 0.5rem;
 }
 
 // .en__field--lastName,
 // .en__field--postcode,
 // .en__field--infpostcd,
 .en__field--ccvv {
+  padding-left: 0.5rem;
   padding-right: 0;
 }
 
