@@ -44,8 +44,8 @@
 
     // TYPOGRAPHY A:FOCUS
     // TYPOGRAPHY A:HOVER
-    --a_hover-color: var(--a_color);
-    --a_hover-text-decoration: initial;
+    --a_color_hover: var(--a_color);
+    --a_text-decoration_hover: initial;
 }
   
 // The most common typographic elements for pages
@@ -117,7 +117,7 @@ a{
 
     &:focus,
     &:hover{
-        color: var(--a_color_checked);
-        text-decoration: var(--a_checked-text-decoration);
+        color: var(--a_color_hover);
+        text-decoration: var(--a_text-decoration_hover);
     }
 }

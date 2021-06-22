@@ -1,4 +1,6 @@
 Changelog (Newest to Oldest)
+BREAKING: Replaced all instances of "--a_hover-text-decoration" with "--a_text-decoration_hover"
+BREAKING: Replaced all instances of "--a_hover-color" with "--a_color_hover"
 BREAKING: Replaced all instances of "--checkbox_checked-content" with "--checkbox_content_checked"
 BREAKING: Removed "manual-form-layout" CSS class
 BREAKING: Replaced all instances of "--cta" with "--color_cta"
