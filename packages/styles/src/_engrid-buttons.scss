@@ -6,7 +6,7 @@
   --button_font-weight: initial;
   --button_line-height: initial;
   --button_background-color: var(--color_black);
-  --button_border-width: initial;
+  --button_border-width: 1px;
   --button_border-color: var(--color_black);
   --button_border-radius: initial;
 
@@ -24,29 +24,7 @@
 // @TODO reconcile with definition below
 button,
 .button{
-    font-family: var(--button_font-family);
-    color: var(--button_color);
-    font-size: var(--button_font-size);
-    font-weight: var(--button_font-weight);
-    line-height: var(--button_line-height);
-    background-color: var(--button_background-color);
-    border-width: var(--button_border-width);
-    border-color: var(--button_border-color);
-    border-radius: var(--button_border-radius);    
-    cursor: pointer;
 
-    &:focus,
-    &:hover{
-        color: var(--button_color_hover);
-        background-color: var(--button_background-color_hover);
-        border-color: var(--button_border-color_hover);
-    }
-
-    &:active{
-        color: var(--button_color_checked);
-        background-color: var(--button_background-color_checked);
-        border-color: var(--button_border-color_checked);
-    }
 }
 
 /* @TODO Design buttons with style (Primary, Secondary, Text Only, Outine)
@@ -56,34 +34,53 @@ button,
 /* Buttons */
 button,
 .button {
+  font-family: var(--button_font-family);
+  color: var(--button_color);
+  font-size: var(--button_font-size);
+  font-weight: var(--button_font-weight);
+  line-height: var(--button_line-height);
+  background-color: var(--button_background-color);
+  border-width: var(--button_border-width);
+  border-color: var(--button_border-color);
+  border-radius: var(--button_border-radius);    
+  cursor: pointer;
+  border-style: solid;
   display: block;
   margin: 0 0 1rem 0;
-  font-family: inherit;
-  padding: 0.85rem 1rem;
+  padding: 1ch 1.2ch; // Matches input fields
   -webkit-appearance: none;
   border: 1px solid transparent;
-  border-radius: var(--input_border-radius);
   -webkit-transition: background-color 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out;
   transition: background-color 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out;
-  font-size: 1rem;
   text-align: center;
   cursor: pointer;
-  background-color: var(--button_background-color);
-  color: var(--button_color);
+
+  &:focus,
+  &:hover{
+      color: var(--button_color_hover);
+      background-color: var(--button_background-color_hover);
+      border-color: var(--button_border-color_hover);
+  }
+
+  &:active{
+      color: var(--button_color_checked);
+      background-color: var(--button_background-color_checked);
+      border-color: var(--button_border-color_checked);
+  }  
 }
 
 .en__submit button,
 .en__submit .button {
   margin-top: 2rem;
-  background-color: var(--button_background-color);
-  border-color: var(--button_border-color);
-  color: var(--button_color);
-  border-radius: var(--button_border-radius);
-  display: block;
-  font-size: calc(0.05552rem * 24);
-  font-weight: 900;
-  line-height: 1;
-  padding: 18px 0;
+  // background-color: var(--button_background-color);
+  // border-color: var(--button_border-color);
+  // color: var(--button_color);
+  // border-radius: var(--button_border-radius);
+  // display: block;
+  // font-size: calc(0.05552rem * 24);
+  // font-weight: 900;
+  // line-height: 1;
+  // padding: 18px 0;
 }
 
 .en__submit,

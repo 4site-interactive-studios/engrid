@@ -324,7 +324,9 @@ input[type=checkbox]{
 }
 
 select,
-select.en__field__input--select{
+select.en__field__input--select,
+select.en__field__input--splitselect,
+select.en__field__input--tripleselect{
   font-family: var(--select_font-family);
   color: var(--select_color);
   font-size: var(--select_font-size);
@@ -348,9 +350,10 @@ select.en__field__input--select{
   transition: box-shadow 0.25s, border-color 0.25s ease-in-out; // Shared between input, textarea, and select
   border-style: solid; // Shared between input, textarea, and select
   appearance: none; // This hides the native down arrow and replaces it with our custom down arrow set as the background-image
+  padding-right: 2.4ch;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'><polygon points='0,0 32,0 16,24' style='fill: rgb%28138, 138, 138%29'></polygon></svg>");
   background-origin: content-box;
-  background-position: right center;
+  background-position: calc(100% + 1.2ch + (.375rem / 2)) center;
   background-repeat: no-repeat;
   background-size: 0.5625rem 0.375rem;
 
@@ -478,7 +481,7 @@ textarea,
   margin-bottom: 0.5rem;
   // margin-right: 1rem;
   display: flex;
-  flex-grow: 1; /* Fields should expand to fill their flexbox container */
+  // flex-grow: 1; /* Fields should expand to fill their flexbox container */
   align-items: center;
   // width: 100%;
 }
