@@ -1,4 +1,5 @@
 Changelog (Newest to Oldest)
+BREAKING: Replaced all instances of "--checkbox_checked-content" with "--checkbox_content_checked"
 BREAKING: Removed "manual-form-layout" CSS class
 BREAKING: Replaced all instances of "--cta" with "--color_cta"
 BREAKING: Removed "--engrid__page-backgroundImage_background-pattern" CSS Custom Property

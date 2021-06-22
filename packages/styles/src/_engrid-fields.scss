@@ -62,7 +62,7 @@
   --checkbox_border-color_hover: var(--color_black);
 
   // TYPOGRAPHY CHECKBOX INPUT:CHECKED
-  --checkbox_checked-content:"✓";
+  --checkbox_content_checked:"✓";
   --checkbox_color_checked: var(--checkbox_color);
   --checkbox_background-color_checked: var(--color_cta);
   --checkbox_border-color_checked: var(--color_black);
@@ -149,6 +149,7 @@ input.en__field__input{
       border-color: var(--input_border-color_hover);
       border-bottom-color: var(--input_border-bottom-color_hover);
       // outline: none; // Shared between input:focus, textarea:focus, and select:focus
+      box-shadow: var(--input_box-shadow_hover);
   }
 }
 
@@ -234,7 +235,7 @@ input[type=checkbox]{
     cursor: pointer;
 
     &:before{
-      content: var(--checkbox_checked-content);
+      content: var(--checkbox_content_checked);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -278,7 +279,7 @@ input[type=checkbox]{
 
   &:before{
     visibility: visible;  // Used to keep psuedo element visible while hiding the parent
-    content: var(--checkbox_checked-content);
+    content: var(--checkbox_content_checked);
     display: flex;
     justify-content: center;
     align-items: center;
