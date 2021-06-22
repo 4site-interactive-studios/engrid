@@ -105,6 +105,7 @@
   --textarea_color_hover: var(--textarea_color);
   --textarea_background-color_hover: var(--textarea_background-color);
   --textarea_border-color_hover: var(--color_cta);
+  --textarea_border-bottom-color_hover: var(--textarea_border-color_hover);
   --textarea_box-shadow_hover: var(--input_box-shadow_hover);
 }
 
@@ -143,10 +144,10 @@ input.en__field__input{
 
   &:focus,
   &:hover{
-      color: var(--input_color_checked);
-      background-color: var(--input_background-color_checked);
-      border-color: var(--input_border-color_checked);
-      border-bottom-color: var(--input_checked-border-bottom-color);
+      color: var(--input_color_hover);
+      background-color: var(--input_background-color_hover);
+      border-color: var(--input_border-color_hover);
+      border-bottom-color: var(--input_border-bottom-color_hover);
       // outline: none; // Shared between input:focus, textarea:focus, and select:focus
   }
 }
@@ -162,7 +163,7 @@ input[type="password"]{
 
   &:focus,
   &:hover{
-      box-shadow: var(--input_checked-box-shadow);
+      box-shadow: var(--input_box-shadow_hover);
   }
 }
 
@@ -345,12 +346,12 @@ select.en__field__input--select{
 
   &:focus,
   &:hover{
-      color: var(--select_color_checked);
-      background-color: var(--select_background-color_checked);
-      border-color: var(--select_border-color_checked);
-      border-bottom-color: var(--select_checked-border-bottom-color);
+      color: var(--select_color_hover);
+      background-color: var(--select_background-color_hover);
+      border-color: var(--select_border-color_hover);
+      border-bottom-color: var(--select_border-bottom-color_hover);
       // outline: none; // Shared between input:focus, textarea:focus, and select:focus
-      box-shadow: var(--select_checked-box-shadow);
+      box-shadow: var(--select_box-shadow_hover);
   }
 
 }
@@ -383,11 +384,12 @@ textarea,
 
   &:focus,
   &:hover{
-      color: var(--textarea_color_checked);
-      background-color: var(--textarea_background-color_checked);
-      border-color: var(--textarea_border-color_checked);
+      color: var(--textarea_color_hover);
+      background-color: var(--textarea_background-color_hover);
+      border-color: var(--textarea_border-color_hover);
+      border-bottom-color: var(--textarea_border-bottom-color_hover);
       // outline: none; // Shared between input:focus, textarea:focus, and select:focus
-      box-shadow: var(--textarea_checked-box-shadow);
+      box-shadow: var(--textarea_box-shadow_hover);
   }
 }
 
@@ -464,7 +466,7 @@ textarea,
 .en__field--splitselect .en__field__item:not(.en__field__item--other),
 .en__field--tripleselect .en__field__item:not(.en__field__item--other) {
   margin-bottom: 0.5rem;
-  margin-right: 1rem;
+  // margin-right: 1rem;
   display: flex;
   flex-grow: 1; /* Fields should expand to fill their flexbox container */
   align-items: center;
@@ -666,6 +668,34 @@ input.en__contactDetails__select {
   margin-bottom: 0rem;
 }
 
+.en__field__item{
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+/* The first form field in a form block component does not need any left padding */
+.en__field:first-of-type,
+.en__field__item:first-of-type {
+  padding-left: 0;
+}
+/* The last form field in a form block component does not need any right padding */
+.en__field:last-of-type,
+.en__field__item:last-of-type {
+  padding-right: 0;
+}
+
+// Remove the right padding from the element responsible for showing the Other Input
+.en__field--withOther .en__field__item:nth-last-child(2) {
+  padding-right: 0;
+}
+
+// Place all the padding for the Other Input on the Other Input so that it's only used when it's visible
+.en__field--withOther .en__field__item:last-child{
+  padding-left: 1rem;
+}
+
+// @TODO Style "Radios with Input" to be a in a column instead of a row. Will need to use CSS Grid and not Flexbox. This is so that the last Radio when selected has the input field displayed to its immediate right on desktop and below on mobile https://d.pr/v/Ed9lyE
+
 .en__field__element--splittext,
 .en__field__element--splitselect,
 .en__field__element--tripleselect {
@@ -677,8 +707,6 @@ input.en__contactDetails__select {
 .en__field__element--splitselect:not(.en__field--ccexpire)
   .en__field__item:nth-of-type(1) {
   flex-basis: 50%;
-  padding-left: 0rem;
-  padding-right: 0.5rem;
   padding-bottom: 0.5rem;
   margin: 0;
 }
@@ -688,8 +716,6 @@ input.en__contactDetails__select {
 .en__field__element--splitselect:not(.en__field--ccexpire)
   .en__field__item:nth-of-type(2) {
   flex-basis: 50%;
-  padding-left: 0.5rem;
-  padding-right: 0rem;
   padding-bottom: 0.5rem;
   margin: 0;
 }
@@ -698,8 +724,6 @@ input.en__contactDetails__select {
 .en__field__element--tripletext .en__field__item:nth-of-type(1),
 .en__field__element--tripleselect .en__field__item:nth-of-type(1) {
   flex-basis: calc(100% / 3);
-  padding-left: 0rem;
-  padding-right: 0.5rem;
   padding-bottom: 0.5rem;
   margin: 0;
 }
@@ -708,8 +732,8 @@ input.en__contactDetails__select {
 .en__field__element--tripletext .en__field__item:nth-of-type(2),
 .en__field__element--tripleselect .en__field__item:nth-of-type(2) {
   flex-basis: calc(100% / 3);
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  // padding-left: 0.5rem;
+  // padding-right: 0.5rem;
   padding-bottom: 0.5rem;
   margin: 0;
 }
@@ -718,8 +742,6 @@ input.en__contactDetails__select {
 .en__field__element--tripletext .en__field__item:nth-of-type(3),
 .en__field__element--tripleselect .en__field__item:nth-of-type(3) {
   flex-basis: calc(100% / 3);
-  padding-left: 0.5rem;
-  padding-right: 0rem;
   padding-bottom: 0.5rem;
   margin: 0;
 }
@@ -770,15 +792,6 @@ input.en__contactDetails__select {
 
 .en__imageSelectField__image{
   padding-bottom: 0.5rem;
-}
-
-/* The first form field in a form block component does not need any left padding */
-.en__component--formblock .en__field:first-child {
-  padding-left: 0;
-}
-/* The last form field in a form block component does not need any right padding */
-.en__component--formblock .en__field:last-child {
-  padding-right: 0;
 }
 
 .en__field--withOther .en__field__element--select .en__field__item:first-child {
