@@ -97,12 +97,23 @@
 //     justify-content: center;
 // }
 
-.radio-to-buttons > .en__field > .en__field__element > .en__field__item,
-.en__field--give-by-select > .en__field__element .en__field__item,
-.radio-to-buttons_donationAmt > .en__field > .en__field__element .en__field__item,
-.radio-to-buttons_recurrpay > .en__field > .en__field__element .en__field__item{
+.radio-to-buttons > .en__field > .en__field__element > .en__field__item:not(.en__field__item--other),
+.en__field--give-by-select > .en__field__element .en__field__item:not(.en__field__item--other),
+.radio-to-buttons_donationAmt > .en__field > .en__field__element .en__field__item:not(.en__field__item--other),
+.radio-to-buttons_recurrpay > .en__field > .en__field__element .en__field__item:not(.en__field__item--other){
     padding-left: 0;
     padding-right: 0;
+    justify-content: center;
+    flex-grow: 0;
+    flex-shrink: 1;
+}
+
+.radio-to-buttons > .en__field > .en__field__element > .en__field__item--other,
+.en__field--give-by-select > .en__field__element .en__field__item--other,
+.radio-to-buttons_donationAmt > .en__field > .en__field__element .en__field__item--other,
+.radio-to-buttons_recurrpay > .en__field > .en__field__element .en__field__item--other{
+    padding-left: .5rem;
+    padding-right: .5rem;
     justify-content: center;
     flex-grow: 0;
     flex-shrink: 1;
@@ -139,9 +150,9 @@
     flex-basis: calc(100% / var(--radio-to-buttons__button_count));
 }
 
-.radio-to-buttons > .en__field > .en__field__element > .en__field__item.en__field__item--other{
-    flex-basis: calc((100% / var(--radio-to-buttons__button_count)) - 1rem);
-}
+// .radio-to-buttons > .en__field > .en__field__element > .en__field__item.en__field__item--other{
+//     flex-basis: calc((100% / var(--radio-to-buttons__button_count)) - 1rem);
+// }
 
 .radio-to-buttons_count_1{--radio-to-buttons__button_count: 1;}
 .radio-to-buttons_count_2{--radio-to-buttons__button_count: 2;}
@@ -174,9 +185,9 @@
     flex-basis: calc(100% / var(--give-by-select__button_count));
 }
 
-.en__field--give-by-select > .en__field__element .en__field__item.en__field__item--other{
-    flex-basis: calc((100% / var(--give-by-select__button_count)) - 1rem);
-}
+// .en__field--give-by-select > .en__field__element .en__field__item.en__field__item--other{
+//     flex-basis: calc((100% / var(--give-by-select__button_count)) - 1rem);
+// }
 
 .give-by-select_count_1{--give-by-select__button_count: 1;}
 .give-by-select_count_2{--give-by-select__button_count: 2;}
@@ -209,9 +220,9 @@
     flex-basis: calc(100% / var(--donation-amount__button_count));
 }
 
-.radio-to-buttons_donationAmt > .en__field > .en__field__element .en__field__item.en__field__item--other{
-    flex-basis: calc((100% / var(--donation-amount__button_count)) - 1rem);  
-}
+// .radio-to-buttons_donationAmt > .en__field > .en__field__element .en__field__item.en__field__item--other{
+//     flex-basis: calc((100% / var(--donation-amount__button_count)) - 1rem);  
+// }
 
 .donation-amount_count_1{--donation-amount__button_count: 1;}
 .donation-amount_count_2{--donation-amount__button_count: 2;}
@@ -244,9 +255,9 @@
     flex-basis: calc(100% / var(--recurring-frequency__button_count));
 }
 
-.radio-to-buttons_recurrpay > .en__field > .en__field__element .en__field__item.en__field__item--other{
-    flex-basis: calc((100% / var(--recurring-frequency__button_count)) - 1rem);
-}
+// .radio-to-buttons_recurrpay > .en__field > .en__field__element .en__field__item.en__field__item--other{
+//     flex-basis: calc((100% / var(--recurring-frequency__button_count)) - 1rem);
+// }
 
 .recurring-frequency_count_1{--recurring-frequency__button_count: 1;}
 .recurring-frequency_count_2{--recurring-frequency__button_count: 2;}
@@ -411,15 +422,7 @@
 // Other inputs should have the same left margin as the other buttons
 // Other inputs field doesn't need any margin since it comes at the end
 /* prettier-ignore */
-.radio-to-buttons .en__field__item.en__field__item--other,
-.en__field--give-by-select .en__field__item.en__field__item--other,
-.radio-to-buttons_donationAmt .en__field__item.en__field__item--other,
-.radio-to-buttons_recurrpay .en__field__item.en__field__item--other{
-	margin-left: 0.5rem;
-	margin-right: 0.5rem;
-	height: auto;
-	position: relative;
-}
+
 
 /* prettier-ignore */
 // .radio-to-buttons .en__field__item:not(.en__field__item--other){
