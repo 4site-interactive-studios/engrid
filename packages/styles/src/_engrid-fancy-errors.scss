@@ -14,6 +14,20 @@
   order: 3;
 }
 
+// Compound Fields
+[data-engrid-errors="fancy"] .en__field--splittext .en__field__error,
+[data-engrid-errors="fancy"] .en__field--tripletext .en__field__error,
+[data-engrid-errors="fancy"] .en__field--splitselect .en__field__error,
+[data-engrid-errors="fancy"] .en__field--tripleselect .en__field__error,
+[data-engrid-errors="fancy"] .en__field--radio .en__field__error,
+[data-engrid-errors="fancy"] .en__field--checkbox .en__field__error,
+[data-engrid-errors="fancy"] .en__field--rating .en__field__error,
+[data-engrid-errors="fancy"] .en__field--imgselect .en__field__error,
+[data-engrid-errors="fancy"] .en__field--withOther .en__field__error{
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
 [data-engrid-errors="fancy"] {
   .en__field--text.en__field--validationFailed input,
   .en__field--email.en__field--validationFailed input,
