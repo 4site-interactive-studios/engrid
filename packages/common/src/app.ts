@@ -1,5 +1,5 @@
 import { DonationAmount, DonationFrequency, EnForm, ProcessingFees } from './events';
-import { UpsellLightbox, ENGrid, Options, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, CapitalizeFields, ClickToExpand, legacy, IE, LiveVariables, sendIframeHeight, ShowHideRadioCheckboxes, SimpleCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce } from './';
+import { UpsellLightbox, ENGrid, Options, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, CapitalizeFields, ClickToExpand, legacy, IE, LiveVariables, sendIframeHeight, sendIframeFormStatus, ShowHideRadioCheckboxes, SimpleCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce } from './';
 
 export class App extends ENGrid {
 
@@ -171,6 +171,9 @@ export class App extends ENGrid {
         if (this.options.onSubmit) {
             if (App.debug) console.log("Client onSubmit Triggered");
             this.options.onSubmit();
+        }
+        if (this.inIframe()) {
+            sendIframeFormStatus('submit');
         }
     }
 
