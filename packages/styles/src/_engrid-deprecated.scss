@@ -1,6 +1,7 @@
 // The Custom Properties defined here should no longer be used.
 // This is maintained to provide as much backwards compatability as possible by mapping them to a replacement
 :root{
-
+    --engrid__body-side_background-color: var(--engrid__body-main_background-color);
+    --engrid__body-side_margin: var(--engrid__body-main_margin);
+    --engrid__body-side_padding: var(--engrid__body-main_padding);
 }
-  

@@ -27,7 +27,7 @@
   --input_background-color_hover: var(--input_background-color);
   --input_border-color_hover: var(--color_cta);
   --input_border-bottom-color_hover: var(--input_border-color_hover);
-  --input_box-shadow_hover: 0 0 0.3125rem var(--input_box-shadow_hover);
+  --input_box-shadow_hover: --input_box-shadow;
       
   // TYPOGRAPHY RADIO
   --radio_content: "";

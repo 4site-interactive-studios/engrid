@@ -136,11 +136,11 @@
 }
 
 .radio-to-buttons > .en__field > .en__field__element > .en__field__item{
-    flex-basis: calc(100% / var(--radio-to-buttons__button_count)); // Allows for three buttons per row
+    flex-basis: calc(100% / var(--radio-to-buttons__button_count));
 }
 
 .radio-to-buttons > .en__field > .en__field__element > .en__field__item.en__field__item--other{
-    flex-basis: calc((100% / var(--radio-to-buttons__button_count)) - 1rem); // Allows for three buttons per row
+    flex-basis: calc((100% / var(--radio-to-buttons__button_count)) - 1rem);
 }
 
 .radio-to-buttons_count_1{--radio-to-buttons__button_count: 1;}
@@ -171,11 +171,11 @@
 }
 
 .en__field--give-by-select > .en__field__element .en__field__item{
-    flex-basis: calc(100% / var(--give-by-select__button_count)); // Allows for four buttons per row
+    flex-basis: calc(100% / var(--give-by-select__button_count));
 }
 
 .en__field--give-by-select > .en__field__element .en__field__item.en__field__item--other{
-    flex-basis: calc((100% / var(--give-by-select__button_count)) - 1rem); // Allows for four buttons per row
+    flex-basis: calc((100% / var(--give-by-select__button_count)) - 1rem);
 }
 
 .give-by-select_count_1{--give-by-select__button_count: 1;}
@@ -206,11 +206,11 @@
 }
 
 .radio-to-buttons_donationAmt > .en__field > .en__field__element .en__field__item{
-    flex-basis: calc(100% / var(--donation-amount__button_count)); // Allows for four buttons per row
+    flex-basis: calc(100% / var(--donation-amount__button_count));
 }
 
 .radio-to-buttons_donationAmt > .en__field > .en__field__element .en__field__item.en__field__item--other{
-    flex-basis: calc((100% / var(--donation-amount__button_count)) - 1rem); // Allows for four buttons per row  
+    flex-basis: calc((100% / var(--donation-amount__button_count)) - 1rem);  
 }
 
 .donation-amount_count_1{--donation-amount__button_count: 1;}
@@ -241,11 +241,11 @@
 }
 
 .radio-to-buttons_recurrpay > .en__field > .en__field__element .en__field__item{
-    flex-basis: calc(100% / var(--recurring-frequency__button_count)); // Allows for four buttons per row
+    flex-basis: calc(100% / var(--recurring-frequency__button_count));
 }
 
 .radio-to-buttons_recurrpay > .en__field > .en__field__element .en__field__item.en__field__item--other{
-    flex-basis: calc((100% / var(--recurring-frequency__button_count)) - 1rem); // Allows for four buttons per row
+    flex-basis: calc((100% / var(--recurring-frequency__button_count)) - 1rem);
 }
 
 .recurring-frequency_count_1{--recurring-frequency__button_count: 1;}
@@ -411,7 +411,10 @@
 // Other inputs should have the same left margin as the other buttons
 // Other inputs field doesn't need any margin since it comes at the end
 /* prettier-ignore */
-.radio-to-buttons .en__field__item.en__field__item--other{
+.radio-to-buttons .en__field__item.en__field__item--other,
+.en__field--give-by-select .en__field__item.en__field__item--other,
+.radio-to-buttons_donationAmt .en__field__item.en__field__item--other,
+.radio-to-buttons_recurrpay .en__field__item.en__field__item--other{
 	margin-left: 0.5rem;
 	margin-right: 0.5rem;
 	height: auto;
@@ -419,9 +422,9 @@
 }
 
 /* prettier-ignore */
-.radio-to-buttons .en__field__item:not(.en__field__item--other){
-	margin-right: 0;
-}
+// .radio-to-buttons .en__field__item:not(.en__field__item--other){
+// 	margin-right: 0;
+// }
 
 /*
 ########################################################################
