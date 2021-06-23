@@ -1,4 +1,6 @@
 Changelog (Newest to Oldest)
+BREAKING: Replaced all instances of "--engrid__body-footer_border-radius" with "--engrid__body_border-radius"
+BREAKING: Replaced all instances of "--engrid__body-header_border-radius" with "--engrid__body_border-radius"
 NEW: Added "radio-to-buttons_recurrpay" and "radio-to-buttons_donationAmt" helper classes to selectively change radio inputs into buttons. And created new CSS Properties and Helper Classes that allow for the number of buttons shown on those elements and other Radio to Button elements to be quickly defined or changed
 BREAKING: Replaced all instances of "--a_hover-text-decoration" with "--a_text-decoration_hover"
 BREAKING: Replaced all instances of "--a_hover-color" with "--a_color_hover"
