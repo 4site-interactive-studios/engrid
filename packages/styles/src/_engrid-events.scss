@@ -84,6 +84,11 @@
   text-align: right;
 }
 
+.en__eventOccurrences__columnHead{
+  display: flex;
+  align-items: center;
+}
+
 input[type=text].en__ticket__quantity{
   height: fit-content !important;
   border: none !important;
