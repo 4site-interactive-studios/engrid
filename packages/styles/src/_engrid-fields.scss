@@ -48,7 +48,7 @@
   // TYPOGRAPHY RADIO INPUT:SELECTED
   --radio_color_selected: var(--radio_color_hover);
   --radio_background-color_selected: var(--radio_background-color_hover);
-  --radio_selected-border-color: var(--color_black);
+  --radio_border-color_selected: var(--color_black);
   --radio_selected-box-shadow: inset 0 0 0 6px #000000;
 
   // TYPOGRAPHY CHECKBOX
@@ -227,7 +227,7 @@ input[type=radio]{
   &:hover + label:before{
     color: var(--radio_color_selected);
     background-color: var(--radio_background-color_selected);
-    border-color: var(--radio_selected-border-color);
+    border-color: var(--radio_border-color_selected);
     box-shadow: var(--radio_box-shadow_hover);
   }
 
@@ -238,7 +238,7 @@ input[type=radio]{
   &:checked + label:before{
     color: var(--radio_color_selected);
     background-color: var(--radio_background-color_selected);
-    border-color: var(--radio_selected-border-color);
+    border-color: var(--radio_border-color_selected);
     box-shadow: var(--radio_selected-box-shadow);
   }
 }
