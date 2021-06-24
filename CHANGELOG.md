@@ -1,4 +1,5 @@
 Changelog (Newest to Oldest)
+BREAKING: Replaced all instances of "--give-by-select__button-color_hover" with "--give-by-select__button_color_hover"
 BREAKING: Replaced all instances of "--donation-amount__button-color_hover" with "--donation-amount__button_color_hover"
 BREAKING: Replaced all instances of "--radio_selected-box-shadow" with "--radio_box-shadow_selected"
 BREAKING: Replaced all instances of "--radio_selected-border-color" with "--radio_border-color_selected"
@@ -77,7 +78,7 @@ BREAKING: Replaced all instances of "--recurring-frequency__button_hover-border-
 BREAKING: Replaced all instances of "--donation-amount__button_hover-color" with "--donation-amount__button-color_hover"
 BREAKING: Replaced all instances of "--donation-amount__button_hover-background-color" with "--donation-amount__button_background-color_hover"
 BREAKING: Replaced all instances of "--donation-amount__button_hover-border-color" with "--donation-amount__button_border-color_hover"
-BREAKING: Replaced all instances of "--give-by-select__button_hover-color" with "--give-by-select__button-color_hover"
+BREAKING: Replaced all instances of "--give-by-select__button_hover-color" with "--give-by-select__button_color_hover"
 BREAKING: Replaced all instances of "--give-by-select__button_hover-background-color" with "--give-by-select__button_background-color_hover"
 BREAKING: Replaced all instances of "--give-by-select__button_hover-border-color" with "--give-by-select__button_border-color_hover"
 BREAKING: Replaced all instances of "--cta-hover" with "--cta_hover"

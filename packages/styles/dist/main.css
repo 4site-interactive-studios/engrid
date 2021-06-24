@@ -3510,7 +3510,7 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   --donation-amount__button_border-color: var(--button_border-color);
   --donation-amount__button_border-radius: var(--button_border-radius);
   --donation-amount__button_count: 4;
-  --donation-amount__button-color_hover: var(--button_color_hover);
+  --donation-amount__button_color_hover: var(--button_color_hover);
   --donation-amount__button_background-color_hover: var(--button_background-color_hover);
   --donation-amount__button_border-color_hover: var(--button_border-color_hover);
   --donation-amount__button_color_checked: var(--button_color_hover);
@@ -3528,7 +3528,7 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   --give-by-select__button_border-color: var(--button_border-color);
   --give-by-select__button_border-radius: var(--button_border-radius);
   --give-by-select__button_count: 4;
-  --give-by-select__button-color_hover: var(--button_color_hover);
+  --give-by-select__button_color_hover: var(--button_color_hover);
   --give-by-select__button_background-color_hover: var(--button_background-color_hover);
   --give-by-select__button_border-color_hover: var(--button_border-color_hover);
   --give-by-select__button_color_checked: var(--button_color_hover);

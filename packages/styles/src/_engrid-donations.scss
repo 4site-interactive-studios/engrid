@@ -34,7 +34,7 @@
     --donation-amount__button_count: 4;
 
     // TYPOGRAPHY GIVING AMOUNT BUTTON:HOVER  
-    --donation-amount__button-color_hover: var(--button_color_hover);
+    --donation-amount__button_color_hover: var(--button_color_hover);
     --donation-amount__button_background-color_hover: var(--button_background-color_hover);
     --donation-amount__button_border-color_hover: var(--button_border-color_hover);  
 
@@ -60,7 +60,7 @@
     --give-by-select__button_count: 4;
 
     // TYPOGRAPHY GIVE BY SELECT BUTTON:HOVER  
-    --give-by-select__button-color_hover: var(--button_color_hover);
+    --give-by-select__button_color_hover: var(--button_color_hover);
     --give-by-select__button_background-color_hover: var(--button_background-color_hover);
     --give-by-select__button_border-color_hover: var(--button_border-color_hover);
     
@@ -298,7 +298,7 @@
 // Give By Select
 /* prettier-ignore */
 .en__field--give-by-select.en__field--radio .en__field__item:hover input[type=radio]+label{
-    color: var(--give-by-select__button-color_hover);
+    color: var(--give-by-select__button_color_hover);
     background-color: var(--give-by-select__button_background-color_hover);
     border-color: var(--give-by-select__button_border-color_hover);
 }
@@ -306,7 +306,7 @@
 // Donation Amount
 /* prettier-ignore */
 .radio-to-buttons_donationAmt .en__field--donationAmt.en__field--radio .en__field__item:hover input[type=radio]+label{
-    color: var(--donation-amount__button-color_hover);
+    color: var(--donation-amount__button_color_hover);
     background-color: var(--donation-amount__button_background-color_hover);
     border-color: var(--donation-amount__button_border-color_hover);
 }
