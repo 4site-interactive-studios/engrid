@@ -1,4 +1,5 @@
 Changelog (Newest to Oldest)
+BREAKING: Replaced all instances of "--radio_selected-box-shadow" with "--radio_box-shadow_selected"
 BREAKING: Replaced all instances of "--radio_selected-border-color" with "--radio_border-color_selected"
 BREAKING: Replaced all instances of "--radio_selected-background-color" with "--radio_background-color_selected"
 BREAKING: Replaced all instances of "--radio_selected-color" with "--radio_color_selected"
