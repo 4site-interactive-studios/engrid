@@ -47,7 +47,7 @@
 
   // TYPOGRAPHY RADIO INPUT:SELECTED
   --radio_color_selected: var(--radio_color_hover);
-  --radio_selected-background-color: var(--radio_background-color_hover);
+  --radio_background-color_selected: var(--radio_background-color_hover);
   --radio_selected-border-color: var(--color_black);
   --radio_selected-box-shadow: inset 0 0 0 6px #000000;
 
@@ -226,7 +226,7 @@ input[type=radio]{
   &:focus + label:before,
   &:hover + label:before{
     color: var(--radio_color_selected);
-    background-color: var(--radio_selected-background-color);
+    background-color: var(--radio_background-color_selected);
     border-color: var(--radio_selected-border-color);
     box-shadow: var(--radio_box-shadow_hover);
   }
@@ -237,7 +237,7 @@ input[type=radio]{
   
   &:checked + label:before{
     color: var(--radio_color_selected);
-    background-color: var(--radio_selected-background-color);
+    background-color: var(--radio_background-color_selected);
     border-color: var(--radio_selected-border-color);
     box-shadow: var(--radio_selected-box-shadow);
   }
