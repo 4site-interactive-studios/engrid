@@ -5,26 +5,20 @@
   --button_font-size: var(--root_font-size);
   --button_font-weight: initial;
   --button_line-height: initial;
-  --button_background-color: var(--color_black);
+  --button_background-color: #535b61;
   --button_border-width: 1px;
   --button_border-color: var(--color_black);
-  --button_border-radius: initial;
+  --button_border-radius: 6px;
 
   // TYPOGRAPHY BUTTON:HOVER
   --button_color_hover: var(--button_color);
-  --button_background-color_hover: var(--color_cta_hover);
-  --button_border-color_hover: var(--color_cta_hover);
+  --button_background-color_hover: var(--color_black);
+  --button_border-color_hover: var(--button_background-color_hover);
 
   // TYPOGRAPHY BUTTON:CHECKED
-  --button_color_checked: var(--button_color);
-  --button_background-color_checked: var(--color_cta_hover);
-  --button_border-color_checked: var(--color_cta_hover);
-}
-
-// @TODO reconcile with definition below
-button,
-.button{
-
+  --button_color_checked: var(--button_color_hover);
+  --button_background-color_checked: var(--button_background-color_hover);
+  --button_border-color_checked: var(--button_border-color_hover);
 }
 
 /* @TODO Design buttons with style (Primary, Secondary, Text Only, Outine)

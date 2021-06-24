@@ -156,6 +156,7 @@ input[type=text].en__ticket__quantity{
 .en__ticketSummary__checkout{
   width: auto;
   background-color: var(--button_background-color);
+  margin-bottom: 0;
 
   &:hover{
     background-color: var(--button_background-color_hover);
