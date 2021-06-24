@@ -1,0 +1,15 @@
+export const OptionsDefaults = {
+    backgroundImage: '',
+    MediaAttribution: true,
+    applePay: false,
+    CapitalizeFields: false,
+    ClickToExpand: true,
+    CurrencySymbol: '$',
+    CurrencySeparator: '.',
+    SkipToMainContentLink: true,
+    SrcDefer: true,
+    NeverBounceAPI: null,
+    NeverBounceDateField: null,
+    NeverBounceStatusField: null,
+    Debug: false,
+};
