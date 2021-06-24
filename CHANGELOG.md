@@ -1,4 +1,5 @@
 Changelog (Newest to Oldest)
+BREAKING: Replaced all instances of "--donation-amount__button-color_hover" with "--donation-amount__button_color_hover"
 BREAKING: Replaced all instances of "--radio_selected-box-shadow" with "--radio_box-shadow_selected"
 BREAKING: Replaced all instances of "--radio_selected-border-color" with "--radio_border-color_selected"
 BREAKING: Replaced all instances of "--radio_selected-background-color" with "--radio_background-color_selected"
