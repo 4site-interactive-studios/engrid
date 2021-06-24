@@ -7,6 +7,9 @@ export declare abstract class ENGrid {
     static getFieldValue(name: string): string;
     static setFieldValue(name: string, value: unknown): void;
     static enParseDependencies(): void;
+    static getGiftProcess(): any;
+    static getPageCount(): any;
+    static getPageNumber(): any;
     static getPageID(): any;
     static getPageType(): "ECARD" | "SURVEY" | "ADVOCACY" | "SUBSCRIBEFORM" | "DONATION";
     static setBodyData(dataName: string, value: string): void;

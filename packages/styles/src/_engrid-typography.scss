@@ -10,7 +10,7 @@
     --default_line-height: initial;
 
     // TYPOGRAPHY H1
-    --h1_font-family: var(--native-fonts__sans-serif);
+    --h1_font-family: var(--default_font-family);
     --h1_color: initial;
     --h1_font-size: calc(var(--root_font-size) * var(--scale-up_160pct));
     --h1_font-weight: initial;

@@ -7,7 +7,7 @@
   --label-font-size: var(--root_font-size);
   --label-font-weight: initial;
   --label-line-height: initial;
-      
+
   // TYPOGRAPHY INPUT
   --input_font-family: var(--default_font-family);
   --input_color: #000000;
@@ -33,7 +33,7 @@
   --radio_content: "";
   --radio_color: var(--input_color);
   --radio_background-color: var(--input_background-color);
-  --radio_border-width: 1px;
+  --radio_border-width: var(--input_border-width);
   --radio_border-color: var(--input_border-color);
   --radio_border-radius: 50%;
   --radio_box-shadow: none;
@@ -48,7 +48,7 @@
   // TYPOGRAPHY RADIO INPUT:SELECTED
   --radio_color_selected: var(--radio_color_hover);
   --radio_background-color_selected: var(--radio_background-color_hover);
-  --radio_border-color_selected: var(--color_black);
+  --radio_border-color_selected: var(--input_border-color_hover);
   --radio_box-shadow_selected: inset 0 0 0 6px #000000;
 
   // TYPOGRAPHY CHECKBOX

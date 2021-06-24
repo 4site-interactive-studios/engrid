@@ -119,6 +119,22 @@
     flex-shrink: 1;
 }
 
+.radio-to-buttons > .en__field > .en__field__element > .en__field__input--other{
+    border-radius: var(--button_border-radius);
+}
+
+.en__field--give-by-select > .en__field__element .en__field__input--other{
+    border-radius: var(--give-by-select__button_border-radius);
+}
+
+.radio-to-buttons_donationAmt > .en__field > .en__field__element .en__field__input--other{
+    border-radius: var(--donation-amount__button_border-radius);
+}
+
+.radio-to-buttons_recurrpay > .en__field > .en__field__element .en__field__input--other{
+    border-radius: Tvar(--recurring-frequency__button_border-radius);
+}
+
 /*
 ########################################################################
 # DEFAULT STATE

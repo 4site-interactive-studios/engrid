@@ -62,6 +62,24 @@ export class ENGrid {
                 console.trace('EN Dependencies Triggered');
         }
     }
+    // Return the status of the gift process (true if a donation has been made, otherwise false)
+    static getGiftProcess() {
+        if ('pageJson' in window)
+            return window.pageJson.giftProcess;
+        return null;
+    }
+    // Return the page count
+    static getPageCount() {
+        if ('pageJson' in window)
+            return window.pageJson.pageCount;
+        return null;
+    }
+    // Return the current page number
+    static getPageNumber() {
+        if ('pageJson' in window)
+            return window.pageJson.pageNumber;
+        return null;
+    }
     // Return the current page ID
     static getPageID() {
         if ('pageJson' in window)

@@ -664,7 +664,7 @@ body[data-engrid-debug]:before {
   margin-right: 0.25rem; }
 
 .en__field__element--imgselect .en__field__item {
-  padding-right: 0.75rem; }
+  padding-right: 0.5rem; }
 
 .en__imageSelectField {
   cursor: pointer; }
@@ -2029,74 +2029,78 @@ a {
   --label-font-weight: initial;
   --label-line-height: initial;
   --input_font-family: var(--default_font-family);
-  --input_color: initial;
+  --input_color: #000000;
   --input_font-size: var(--root_font-size);
   --input_font-weight: initial;
   --input_line-height: initial;
-  --input_background-color: var(--color_white);
+  --input_background-color: #fafafa;
   --input_border-width: 1px;
-  --input_border-color: var(--color_black);
-  --input_border-radius: initial;
+  --input_border-color: #dfdfe1;
+  --input_border-radius: 6px;
   --input_placeholder-color: var(--color_light-gray);
-  --input_box-shadow: inset 0 1px 2px var(--color_light-gray);
+  --input_box-shadow: inset 0 2px 2px -1px rgba(74, 74, 104, 0.1);
   --input_color_hover: var(--input_color);
   --input_background-color_hover: var(--input_background-color);
-  --input_border-color_hover: var(--color_cta);
+  --input_border-color_hover: #767677;
   --input_border-bottom-color_hover: var(--input_border-color_hover);
-  --input_box-shadow_hover: 0 0 0.3125rem var(--input_box-shadow_hover);
+  --input_box-shadow_hover: --input_box-shadow;
   --radio_content: "";
-  --radio_color: var(--color_cta);
-  --radio_background-color: var(--color_white);
-  --radio_border-width: 4px;
-  --radio_border-color: var(--color_black);
+  --radio_color: var(--input_color);
+  --radio_background-color: var(--input_background-color);
+  --radio_border-width: var(--input_border-width);
+  --radio_border-color: var(--input_border-color);
   --radio_border-radius: 50%;
+  --radio_box-shadow: none;
   --radio_color_hover: var(--radio_color);
-  --radio_background-color_hover: var(--color_white);
-  --radio_border-color_hover: var(--color_black);
-  --radio_selected-color: var(--color_black);
-  --radio_selected-background-color: var(--color_cta_hover);
-  --radio_selected-border-color: var(--color_black);
-  --checkbox_color: var(--color_white);
-  --checkbox_background-color: var(--color_black);
+  --radio_background-color_hover: var(--radio_background-color);
+  --radio_border-color_hover: var(--input_border-color_hover);
+  --radio_box-shadow_hover: inset 0 0 0 6px #f5f5f5;
+  --radio_color_selected: var(--radio_color_hover);
+  --radio_background-color_selected: var(--radio_background-color_hover);
+  --radio_border-color_selected: var(--input_border-color_hover);
+  --radio_box-shadow_selected: inset 0 0 0 6px #000000;
+  --checkbox_color: var(--color_black);
+  --checkbox_background-color: var(--radio_background-color);
   --checkbox_border-width: 1px;
-  --checkbox_border-color: var(--color_black);
-  --checkbox_border-radius: 0px;
+  --checkbox_border-color: var(--radio_border-color);
+  --checkbox_border-radius: var(--input_border-radius);
+  --checkbox_font-weight: 700;
   --checkbox_color_hover: var(--checkbox_color);
-  --checkbox_background-color_hover: var(--checkbox_background-color);
-  --checkbox_border-color_hover: var(--color_black);
+  --checkbox_background-color_hover: var(--radio_background-color_hover);
+  --checkbox_border-color_hover: var(--radio_border-color_hover);
   --checkbox_content_checked:"✓";
-  --checkbox_color_checked: var(--checkbox_color);
-  --checkbox_background-color_checked: var(--color_cta);
+  --checkbox_color_checked: var(--checkbox_color_hover);
+  --checkbox_background-color_checked: var(--radio_background-color_hover);
   --checkbox_border-color_checked: var(--color_black);
   --select_font-family: var(--default_font-family);
-  --select_color: var(--color_black);
+  --select_color: var(--input_color);
   --select_font-size: var(--root_font-size);
   --select_font-weight: initial;
   --select_line-height: initial;
-  --select_background-color: var(--color_white);
+  --select_background-color: var(--input_background-color);
   --select_border-width: 1px;
-  --select_border-color: var(--color_black);
-  --select_border-radius: initial;
+  --select_border-color: var(--input_border-color);
+  --select_border-radius: var(--input_border-radius);
   --select_box-shadow: var(--input_box-shadow);
   --select_color_hover: var(--select_color);
   --select_background-color_hover: var(--select_background-color);
-  --select_border-color_hover: var(--color_cta_hover);
+  --select_border-color_hover: var(--input_border-color_hover);
   --select_border-bottom-color_hover: var(--select_border-color_hover);
   --select_box-shadow_hover: var(--input_box-shadow_hover);
   --textarea_font-family: var(--default_font-family);
-  --textarea_color: initial;
+  --textarea_color: var(--input_color);
   --textarea_font-size: var(--root_font-size);
   --textarea_font-weight: initial;
   --textarea_line-height: initial;
-  --textarea_background-color: var(--color_white);
+  --textarea_background-color: var(--input_background-color);
   --textarea_border-width: 1px;
-  --textarea_border-color: var(--color_black);
-  --textarea_border-radius: initial;
+  --textarea_border-color: var(--input_border-color);
+  --textarea_border-radius: var(--input_border-radius);
   --textarea_placeholder-color: var(--color_light-gray);
   --textarea_box-shadow: var(--input_box-shadow);
   --textarea_color_hover: var(--textarea_color);
   --textarea_background-color_hover: var(--textarea_background-color);
-  --textarea_border-color_hover: var(--color_cta);
+  --textarea_border-color_hover: var(--input_border-color_hover);
   --textarea_border-bottom-color_hover: var(--textarea_border-color_hover);
   --textarea_box-shadow_hover: var(--input_box-shadow_hover); }
 
@@ -2195,17 +2199,24 @@ input[type=radio] + label {
     border-radius: var(--radio_border-radius);
     height: 1.4rem;
     width: 1.4rem;
-    box-shadow: inset 0 0 0 var(--radio_border-width) var(--radio_border-color);
+    box-shadow: var(--radio_box-shadow);
     display: inline-flex; }
+
+input[type=radio]:focus + label:before,
+input[type=radio]:hover + label:before {
+  color: var(--radio_color_selected);
+  background-color: var(--radio_background-color_selected);
+  border-color: var(--radio_border-color_selected);
+  box-shadow: var(--radio_box-shadow_hover); }
 
 input[type=radio]:not(:checked) + label:before {
   color: transparent; }
 
 input[type=radio]:checked + label:before {
-  color: var(--radio_selected-color);
-  background-color: var(--radio_selected-background-color);
-  border-color: var(--radio_selected-border-color);
-  box-shadow: inset 0 0 0 var(--radio_border-width) var(--radio_border-color); }
+  color: var(--radio_color_selected);
+  background-color: var(--radio_background-color_selected);
+  border-color: var(--radio_border-color_selected);
+  box-shadow: var(--radio_box-shadow_selected); }
 
 input[type=checkbox] + label {
   cursor: pointer; }
@@ -2223,7 +2234,14 @@ input[type=checkbox] + label {
     border-radius: var(--checkbox_border-radius);
     height: 1.4rem;
     width: 1.4rem;
-    display: inline-flex; }
+    display: inline-flex;
+    font-weight: var(--checkbox_font-weight); }
+
+input[type=checkbox]:focus + label:before,
+input[type=checkbox]:hover + label:before {
+  color: var(--checkbox_color_checked);
+  background-color: var(--checkbox_background-color_checked);
+  border-color: var(--checkbox_border-color_checked); }
 
 input[type=checkbox]:not(:checked) + label:before {
   color: transparent; }
@@ -2252,7 +2270,12 @@ input[type=checkbox]:checked + label:before {
     border-radius: var(--checkbox_border-radius);
     height: 1.4rem;
     width: 1.4rem;
-    display: inline-flex; }
+    display: inline-flex;
+    font-weight: var(--checkbox_font-weight); }
+  .en__twitterTarget__select:focus:before, .en__twitterTarget__select:hover:before {
+    color: var(--checkbox_color_checked);
+    background-color: var(--checkbox_background-color_checked);
+    border-color: var(--checkbox_border-color_checked); }
   .en__twitterTarget__select:not(:checked):before {
     color: transparent; }
   .en__twitterTarget__select:checked:before {
@@ -2288,7 +2311,7 @@ select.en__field__input--tripleselect {
   border-style: solid;
   appearance: none;
   padding-right: 2.4ch;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'><polygon points='0,0 32,0 16,24' style='fill: rgb%28138, 138, 138%29'></polygon></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'><polygon points='0,0 32,0 16,24' style='fill: rgb(0, 0, 0)'></polygon></svg>");
   background-origin: content-box;
   background-position: calc(100% + 1.2ch + (.375rem / 2)) center;
   background-repeat: no-repeat;
@@ -2302,6 +2325,7 @@ select.en__field__input--tripleselect {
   select.en__field__input--tripleselect:hover {
     color: var(--select_color_hover);
     background-color: var(--select_background-color_hover);
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'><polygon points='0,0 32,0 16,24' style='fill: rgb(0, 0, 0)'></polygon></svg>");
     border-color: var(--select_border-color_hover);
     border-bottom-color: var(--select_border-bottom-color_hover);
     box-shadow: var(--select_box-shadow_hover); }
@@ -2503,7 +2527,8 @@ input.en__contactDetails__select {
   top: 5px;
   color: var(--checkbox_color);
   background-color: transparent;
-  font-size: calc(0.05552rem * 18); }
+  font-size: calc(0.05552rem * 18);
+  font-weight: var(--checkbox_font-weight); }
 
 /* QA Needed: Would like to find a way so that radio input focus is round rather than square. May require re-writing how radio inputs are styled */
 .en__field__input--radio:focus + .en__field__label,
@@ -2527,26 +2552,37 @@ input.en__contactDetails__select {
   padding-bottom: 1rem;
   margin-bottom: 0rem; }
 
+.en__field--splittext,
+.en__field--tripletext,
+.en__field--splitselect,
+.en__field--tripleselect,
+.en__field--radio,
+.en__field--checkbox,
+.en__field--rating,
+.en__field--imgselect,
+.en__field--withOther {
+  min-width: calc(100% + 1rem);
+  position: relative;
+  left: -0.5rem;
+  right: -0.5rem; }
+  .en__field--splittext > .en__field__label,
+  .en__field--tripletext > .en__field__label,
+  .en__field--splitselect > .en__field__label,
+  .en__field--tripleselect > .en__field__label,
+  .en__field--radio > .en__field__label,
+  .en__field--checkbox > .en__field__label,
+  .en__field--rating > .en__field__label,
+  .en__field--imgselect > .en__field__label,
+  .en__field--withOther > .en__field__label {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem; }
+
 .en__field__item {
   padding-left: 0.5rem;
   padding-right: 0.5rem; }
 
 /* The first form field in a form block component does not need any left padding */
-.en__field:first-of-type,
-.en__field__item:first-of-type {
-  padding-left: 0; }
-
 /* The last form field in a form block component does not need any right padding */
-.en__field:last-of-type,
-.en__field__item:last-of-type {
-  padding-right: 0; }
-
-.en__field--withOther .en__field__item:nth-last-child(2) {
-  padding-right: 0; }
-
-.en__field--withOther .en__field__item:last-child {
-  padding-left: 1rem; }
-
 .en__field__element--splittext,
 .en__field__element--splitselect,
 .en__field__element--tripleselect {
@@ -2593,26 +2629,8 @@ input.en__contactDetails__select {
   display: flex;
   flex-wrap: wrap; }
 
-.en__field--engrid-image-select .en__field__item:nth-of-type(3n+1) {
-  flex-basis: calc(100% / 3);
-  padding-left: 0rem;
-  padding-right: 0.5rem;
-  padding-bottom: 0.5rem;
-  margin: 0; }
-
-.en__field--engrid-image-select .en__field__item:nth-of-type(3n+2) {
-  flex-basis: calc(100% / 3);
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  padding-bottom: 0.5rem;
-  margin: 0; }
-
-.en__field--engrid-image-select .en__field__item:nth-of-type(3n+3) {
-  flex-basis: calc(100% / 3);
-  padding-left: 0.5rem;
-  padding-right: 0rem;
-  padding-bottom: 0.5rem;
-  margin: 0; }
+.en__field--engrid-image-select .en__field__item {
+  flex-basis: calc(100% / 3); }
 
 .en__imageSelectField__control {
   display: flex;
@@ -2722,22 +2740,17 @@ input[type="number"]::-webkit-outer-spin-button {
   padding-right: 0; }
 
 .en__field--splitselect.en__field--ccexpire {
-  flex-basis: calc((100% / 3) * 2); }
+  flex-basis: calc((100% / 3) * 2);
+  min-width: auto; }
 
 .en__field--ccvv {
-  flex-basis: calc(100% / 3); }
-
-.en__field--ccexpire {
-  padding-left: 0;
-  padding-right: 0.5rem; }
-
-.en__field--ccvv {
-  padding-left: 0.5rem;
-  padding-right: 0; }
+  flex-basis: calc(100% / 3);
+  min-width: auto; }
 
 .en__field--recurrfreq .en__field__element,
 .en__field--recurrpay .en__field__element,
-.en__field--donationAmt .en__field__element {
+.en__field--donationAmt .en__field__element,
+.en__field--give-by-select .en__field__element {
   justify-content: center; }
 
 .en__field--donationAmt.en__field--withOther
@@ -2953,16 +2966,16 @@ body {
   --button_font-size: var(--root_font-size);
   --button_font-weight: initial;
   --button_line-height: initial;
-  --button_background-color: var(--color_black);
+  --button_background-color: #535b61;
   --button_border-width: 1px;
   --button_border-color: var(--color_black);
-  --button_border-radius: initial;
+  --button_border-radius: 6px;
   --button_color_hover: var(--button_color);
-  --button_background-color_hover: var(--color_cta_hover);
-  --button_border-color_hover: var(--color_cta_hover);
-  --button_color_checked: var(--button_color);
-  --button_background-color_checked: var(--color_cta_hover);
-  --button_border-color_checked: var(--color_cta_hover); }
+  --button_background-color_hover: var(--color_black);
+  --button_border-color_hover: var(--button_background-color_hover);
+  --button_color_checked: var(--button_color_hover);
+  --button_background-color_checked: var(--button_background-color_hover);
+  --button_border-color_checked: var(--button_border-color_hover); }
 
 /* @TODO Design buttons with style (Primary, Secondary, Text Only, Outine)
  * See #3 https://medium.com/eightshapes-llc/component-examples-9c4b3bb3b308
@@ -3466,6 +3479,11 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
     padding-right: 0rem; } }
 
 :root {
+  --engrid__body-side_background-color: var(--engrid__body-main_background-color);
+  --engrid__body-side_margin: var(--engrid__body-main_margin);
+  --engrid__body-side_padding: var(--engrid__body-main_padding); }
+
+:root {
   --recurring-frequency__button_font-family: var(--button_font-family);
   --recurring-frequency__button_color: var(--button_color);
   --recurring-frequency__button_font-size: var(--button_font-size);
@@ -3526,25 +3544,37 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   display: none; }
 
 /* prettier-ignore */
-.radio-to-buttons > .en__field > .en__field__element,
-.en__field--give-by-select > .en__field__element,
-.radio-to-buttons_donationAmt > .en__field > .en__field__element,
-.radio-to-buttons_recurrpay > .en__field > .en__field__element {
-  min-width: calc(100% + 1rem);
-  position: relative;
-  left: -0.5rem;
-  right: -0.5rem;
-  justify-content: center; }
-
-.radio-to-buttons > .en__field > .en__field__element > .en__field__item,
-.en__field--give-by-select > .en__field__element .en__field__item,
-.radio-to-buttons_donationAmt > .en__field > .en__field__element .en__field__item,
-.radio-to-buttons_recurrpay > .en__field > .en__field__element .en__field__item {
+.radio-to-buttons > .en__field > .en__field__element > .en__field__item:not(.en__field__item--other),
+.en__field--give-by-select > .en__field__element .en__field__item:not(.en__field__item--other),
+.radio-to-buttons_donationAmt > .en__field > .en__field__element .en__field__item:not(.en__field__item--other),
+.radio-to-buttons_recurrpay > .en__field > .en__field__element .en__field__item:not(.en__field__item--other) {
   padding-left: 0;
   padding-right: 0;
   justify-content: center;
   flex-grow: 0;
   flex-shrink: 1; }
+
+.radio-to-buttons > .en__field > .en__field__element > .en__field__item--other,
+.en__field--give-by-select > .en__field__element .en__field__item--other,
+.radio-to-buttons_donationAmt > .en__field > .en__field__element .en__field__item--other,
+.radio-to-buttons_recurrpay > .en__field > .en__field__element .en__field__item--other {
+  padding-left: .5rem;
+  padding-right: .5rem;
+  justify-content: center;
+  flex-grow: 0;
+  flex-shrink: 1; }
+
+.radio-to-buttons > .en__field > .en__field__element > .en__field__item--other {
+  border-radius: var(--button_border-radius); }
+
+.en__field--give-by-select > .en__field__element .en__field__item--other {
+  border-radius: var(--give-by-select__button_border-radius); }
+
+.radio-to-buttons_donationAmt > .en__field > .en__field__element .en__field__item--other {
+  border-radius: var(--donation-amount__button_border-radius); }
+
+.radio-to-buttons_recurrpay > .en__field > .en__field__element .en__field__item--other {
+  border-radius: Tvar(--recurring-frequency__button_border-radius); }
 
 /*
 ########################################################################
@@ -3572,9 +3602,6 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
 
 .radio-to-buttons > .en__field > .en__field__element > .en__field__item {
   flex-basis: calc(100% / var(--radio-to-buttons__button_count)); }
-
-.radio-to-buttons > .en__field > .en__field__element > .en__field__item.en__field__item--other {
-  flex-basis: calc((100% / var(--radio-to-buttons__button_count)) - 1rem); }
 
 .radio-to-buttons_count_1 {
   --radio-to-buttons__button_count: 1; }
@@ -3613,9 +3640,6 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
 .en__field--give-by-select > .en__field__element .en__field__item {
   flex-basis: calc(100% / var(--give-by-select__button_count)); }
 
-.en__field--give-by-select > .en__field__element .en__field__item.en__field__item--other {
-  flex-basis: calc((100% / var(--give-by-select__button_count)) - 1rem); }
-
 .give-by-select_count_1 {
   --give-by-select__button_count: 1; }
 
@@ -3653,9 +3677,6 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
 .radio-to-buttons_donationAmt > .en__field > .en__field__element .en__field__item {
   flex-basis: calc(100% / var(--donation-amount__button_count)); }
 
-.radio-to-buttons_donationAmt > .en__field > .en__field__element .en__field__item.en__field__item--other {
-  flex-basis: calc((100% / var(--donation-amount__button_count)) - 1rem); }
-
 .donation-amount_count_1 {
   --donation-amount__button_count: 1; }
 
@@ -3692,9 +3713,6 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
 
 .radio-to-buttons_recurrpay > .en__field > .en__field__element .en__field__item {
   flex-basis: calc(100% / var(--recurring-frequency__button_count)); }
-
-.radio-to-buttons_recurrpay > .en__field > .en__field__element .en__field__item.en__field__item--other {
-  flex-basis: calc((100% / var(--recurring-frequency__button_count)) - 1rem); }
 
 .recurring-frequency_count_1 {
   --recurring-frequency__button_count: 1; }
@@ -3806,71 +3824,6 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
 /* prettier-ignore */
 /* prettier-ignore */
 /* prettier-ignore */
-/*
-########################################################################
-# HANDLING OF OTHER INPUTS
-########################################################################
-*/
-/* prettier-ignore */
-.radio-to-buttons .en__field__item.en__field__item--other,
-.en__field--give-by-select .en__field__item.en__field__item--other,
-.radio-to-buttons_donationAmt .en__field__item.en__field__item--other,
-.radio-to-buttons_recurrpay .en__field__item.en__field__item--other {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-  height: auto;
-  position: relative; }
-
-/* prettier-ignore */
-/*
-########################################################################
-# HELPER CLASSES FOR BUTTONS AND OTHER INPUT FIELDS IN FLEXBOX ROWS
-# @TODO Create JS to identify count on radio selects
-########################################################################
-*/
-/* prettier-ignore */
-.two-buttons-per-row .en__field--radio div.en__field__item:not(.en__field__item--other) {
-  flex-basis: calc((100% * ( 1 / 2)) - 1rem);
-  max-width: calc(100% * (1 / 2)); }
-
-/* prettier-ignore */
-.two-buttons-per-row .en__field--radio[engrid-data-button-count="1"] div.en__field__item--other,
-.two-buttons-per-row .en__field--radio[engrid-data-button-count="3"] div.en__field__item--other,
-.two-buttons-per-row .en__field--radio[engrid-data-button-count="5"] div.en__field__item--other {
-  flex-basis: calc((100% * ( 1 / 2)) - 1rem);
-  max-width: calc(100% * (1 / 2)); }
-
-/* prettier-ignore */
-.two-buttons-per-row .en__field--radio[engrid-data-button-count="2"] div.en__field__item--other,
-.two-buttons-per-row .en__field--radio[engrid-data-button-count="4"] div.en__field__item--other,
-.two-buttons-per-row .en__field--radio[engrid-data-button-count="6"] div.en__field__item--other {
-  flex-basis: calc(100% - 1rem);
-  max-width: 100%; }
-
-/* prettier-ignore */
-.three-buttons-per-row .en__field--radio div.en__field__item:not(.en__field__item--other) {
-  flex-basis: calc((100% * ( 1 / 3)) - 1rem);
-  max-width: calc(100% * (1 / 3)); }
-
-/* prettier-ignore */
-.three-buttons-per-row .en__field--radio[engrid-data-button-count="1"] div.en__field__item--other,
-.three-buttons-per-row .en__field--radio[engrid-data-button-count="4"] div.en__field__item--other {
-  flex-basis: calc((100% * ( 2 / 3)) - 1rem);
-  max-width: calc(100% * (2 / 3)); }
-
-/* prettier-ignore */
-.three-buttons-per-row .en__field--radio div.en__field__item:not(.en__field__item--other),
-.three-buttons-per-row .en__field--radio[engrid-data-button-count="2"] div.en__field__item--other,
-.three-buttons-per-row .en__field--radio[engrid-data-button-count="5"] div.en__field__item--other {
-  flex-basis: calc((100% * ( 1 / 3)) - 1rem);
-  max-width: calc(100% * (1 / 3)); }
-
-/* prettier-ignore */
-.three-buttons-per-row .en__field--radio[engrid-data-button-count="3"] div.en__field__item--other,
-.three-buttons-per-row .en__field--radio[engrid-data-button-count="6"] div.en__field__item--other {
-  flex-basis: calc(100% - 1rem);
-  max-width: 100%; }
-
 /*
 ########################################################################
 # RECURRING GIFTS 
@@ -4034,10 +3987,10 @@ button.en__ecarditems__prevclose {
     width: 1.25em; } }
 
 :root {
-  --error__color: #F12222;
+  --error__color: #ff530a;
   --error__color_grayscale: #949494;
-  --error__color_faded: #FFEAE9;
-  --error__background-color: #FFEAE9;
+  --error__color_faded: #fff8f4;
+  --error__background-color: #fff8f4;
   --error__border-width: var(--input_border-width); }
 
 /************************************
@@ -4078,6 +4031,18 @@ button.en__ecarditems__prevclose {
   font-size: 0.75rem;
   order: 3; }
 
+.en__field--splittext .en__field__error,
+.en__field--tripletext .en__field__error,
+.en__field--splitselect .en__field__error,
+.en__field--tripleselect .en__field__error,
+.en__field--radio .en__field__error,
+.en__field--checkbox .en__field__error,
+.en__field--rating .en__field__error,
+.en__field--imgselect .en__field__error,
+.en__field--withOther .en__field__error {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem; }
+
 /* @TODO Not working anymore since we removed our corresponding JS */
 /* When EN's field validator flags an error it jumps the user to the first error on thepage. Our custom error JS executes after EN's and sets a body level class that we can reorder the field presentation on. If we don't wait to re-order the fields, the page will jump to the error which appears below the input resulting in the user having to scroll up to make the change. This is something that should be fixed on EN's end and how they handle errors, but until then we need this work around */
 /* Code dependent on "oc-en-error-helpers.js" which must execute after EN's "pagedata.js" */
@@ -4087,13 +4052,9 @@ body.error-jump-assist .en__component .en__field__error {
 .en__field--validationFailed label {
   color: var(--error__color); }
 
-.en__field--text.en__field--validationFailed input,
-.en__field--email.en__field--validationFailed input,
-.en__field--telephone.en__field--validationFailed input,
-.en__field--number.en__field--validationFailed input,
-.en__field--textarea.en__field--validationFailed textarea,
-.en__field--select.en__field--validationFailed select,
-.en__field--withOther.en__field--validationFailed input {
+.en__field--validationFailed [type],
+.en__field--validationFailed textarea,
+.en__field--validationFailed select {
   border-color: var(--error__color);
   background-color: var(--error__color_faded); }
 
@@ -4120,7 +4081,9 @@ body.error-jump-assist .en__component .en__field__error {
 .en__field__element {
   border: var(--error__border-width) solid var(--error__color);
   background-color: var(--error__color_faded);
-  padding: 0.5rem 0.5rem 0rem 0.5rem;
+  padding-top: 0.5rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
   border-radius: var(--input_border-radius); }
 
 .en__field--text.en__field--validationFailed .en__field__error,
@@ -4163,12 +4126,12 @@ body.error-jump-assist .en__component .en__field__error {
   border-color: var(--error__color_grayscale);
   background-color: initial; }
 
-.en__field--donationAmt.en__field--withOther.en__field--validationFailed
+.radio-to-buttons_donationAmt .en__field--donationAmt.en__field--withOther.en__field--validationFailed
 .en__field__element--radio {
   border-radius: var(--donation-amount__button_border-radius);
   margin-bottom: 0.5rem; }
 
-.en__field--donationAmt.en__field--withOther.en__field--validationFailed
+.radio-to-buttons_donationAmt .en__field--donationAmt.en__field--withOther.en__field--validationFailed
 .en__field__error {
   border-radius: var(--donation-amount__button_border-radius); }
 
@@ -4242,6 +4205,10 @@ body.error-jump-assist .en__component .en__field__error {
 .en__ticket__remaining {
   text-align: right; }
 
+.en__eventOccurrences__columnHead {
+  display: flex;
+  align-items: center; }
+
 input[type=text].en__ticket__quantity {
   height: fit-content !important;
   border: none !important;
@@ -4293,7 +4260,8 @@ input[type=text].en__ticket__quantity {
 .en__ticketRecurring__select,
 .en__ticketSummary__checkout {
   width: auto;
-  background-color: var(--button_background-color); }
+  background-color: var(--button_background-color);
+  margin-bottom: 0; }
   .en__ticketRecurring__select:hover,
   .en__ticketSummary__checkout:hover {
     background-color: var(--button_background-color_hover); }
@@ -4326,6 +4294,18 @@ button.en__eventOccurrence__select {
   border-bottom-right-radius: var(--input_border-radius);
   background-color: var(--error__color);
   order: 3; }
+
+[data-engrid-errors="fancy"] .en__field--splittext .en__field__error,
+[data-engrid-errors="fancy"] .en__field--tripletext .en__field__error,
+[data-engrid-errors="fancy"] .en__field--splitselect .en__field__error,
+[data-engrid-errors="fancy"] .en__field--tripleselect .en__field__error,
+[data-engrid-errors="fancy"] .en__field--radio .en__field__error,
+[data-engrid-errors="fancy"] .en__field--checkbox .en__field__error,
+[data-engrid-errors="fancy"] .en__field--rating .en__field__error,
+[data-engrid-errors="fancy"] .en__field--imgselect .en__field__error,
+[data-engrid-errors="fancy"] .en__field--withOther .en__field__error {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem; }
 
 [data-engrid-errors="fancy"] .en__field--text.en__field--validationFailed input,
 [data-engrid-errors="fancy"] .en__field--email.en__field--validationFailed input,
@@ -5068,12 +5048,6 @@ body:not(#en__pagebuilder) .simple_country_select.country-select-visible .en__fi
   --spacing_lg: calc(0.8652rem * 2.5);
   --spacing_xlg: calc(0.8652rem * 5); }
 
-.radio-to-buttons_count_1 {
-  --recurring-frequency__button_count: 1;
-  --donation-amount__button_count: 1;
-  --give-by-select__button_count: 1;
-  --radio-to-buttons__button_count: 1; }
-
 /* ENGRID LAYOUTS */
 :root {
   --engrid__page_background-color: var(--color_transparent);
@@ -5208,9 +5182,9 @@ body:not([data-engrid-embedded]) .en__component--advrow {
   grid-column: bc;
   grid-row: body-header;
   background-color: var(--engrid__body-header_background-color);
-  border-top-left-radius: var(--engrid__body-header_border-radius);
-  border-top-right-radius: var(--engrid__body-header_border-radius);
-  min-height: var(--engrid__body-header_border-radius);
+  border-top-left-radius: var(--engrid__body_border-radius);
+  border-top-right-radius: var(--engrid__body_border-radius);
+  min-height: var(--engrid__body_border-radius);
   padding: var(--engrid__body-header_padding);
   margin: var(--engrid__body-header_margin); }
 
@@ -5267,9 +5241,9 @@ body:not([data-engrid-embedded]) .en__component--advrow {
   grid-column: bc;
   grid-row: body-footer;
   background-color: var(--engrid__body-footer_background-color);
-  border-bottom-left-radius: var(--engrid__body-footer_border-radius);
-  border-bottom-right-radius: var(--engrid__body-footer_border-radius);
-  min-height: var(--engrid__body-footer_border-radius);
+  border-bottom-left-radius: var(--engrid__body_border-radius);
+  border-bottom-right-radius: var(--engrid__body_border-radius);
+  min-height: var(--engrid__body_border-radius);
   padding: var(--engrid__body-footer_padding);
   margin: var(--engrid__body-footer_margin); }
 
