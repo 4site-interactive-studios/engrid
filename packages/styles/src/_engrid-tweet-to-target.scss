@@ -33,7 +33,9 @@
 
 // When the "Default" twitter image is used an empty source is added to an image which causes a grey border to be placed there by the browser. This can not be removed with CSS. The only option is to visually hide the parent image and allow the pseudo element remain with the fallback image
 // REF: https://stackoverflow.com/questions/1073015/how-do-i-remove-the-gray-border-that-surrounds-background-images
-.en__twitterTarget__image[src=""] {
+// An empty src value might prevent the build process from being able to complete. For this reason we can substitute it with a # symbol which must then have the same styling applied to it as well
+.en__twitterTarget__image[src=""],
+.en__twitterTarget__image[src="#"] {
   visibility: hidden;
   display: block; // Needed to give it some structure because the lack of a resolving image creates issues in how the displayed layout is calculated
   width: 3.75rem; // Needed to give it some structure because the lack of a resolving image creates issues in how the displayed layout is calculated

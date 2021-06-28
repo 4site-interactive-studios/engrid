@@ -1203,8 +1203,8 @@ body[data-engrid-debug]:before {
   margin: 0 0.5rem 0 0; }
 
 .en__contacts--singleTweetMode .en__twitterTarget__select {
-  flex-basis: 0;
-  height: 1.4rem; }
+  flex: 1 0 auto;
+  height: var(--checkbox_height); }
 
 .en__twitterTarget p {
   line-height: 1.3rem; }
@@ -1936,7 +1936,7 @@ body[data-engrid-debug]:before {
   --default_font-size: var(--root_font-size);
   --default_font-weight: initial;
   --default_line-height: initial;
-  --h1_font-family: var(--native-fonts__sans-serif);
+  --h1_font-family: var(--default_font-family);
   --h1_color: initial;
   --h1_font-size: calc(var(--root_font-size) * var(--scale-up_160pct));
   --h1_font-weight: initial;
@@ -2039,11 +2039,12 @@ a {
   --input_border-radius: 6px;
   --input_placeholder-color: var(--color_light-gray);
   --input_box-shadow: inset 0 2px 2px -1px rgba(74, 74, 104, 0.1);
+  --input_padding: 1ch 1.2ch;
   --input_color_hover: var(--input_color);
   --input_background-color_hover: var(--input_background-color);
   --input_border-color_hover: #767677;
   --input_border-bottom-color_hover: var(--input_border-color_hover);
-  --input_box-shadow_hover: --input_box-shadow;
+  --input_box-shadow_hover: var(--input_box-shadow);
   --radio_content: "";
   --radio_color: var(--input_color);
   --radio_background-color: var(--input_background-color);
@@ -2051,6 +2052,8 @@ a {
   --radio_border-color: var(--input_border-color);
   --radio_border-radius: 50%;
   --radio_box-shadow: none;
+  --radio_width: 1.4rem;
+  --radio_height: 1.4rem;
   --radio_color_hover: var(--radio_color);
   --radio_background-color_hover: var(--radio_background-color);
   --radio_border-color_hover: var(--input_border-color_hover);
@@ -2065,6 +2068,8 @@ a {
   --checkbox_border-color: var(--radio_border-color);
   --checkbox_border-radius: var(--input_border-radius);
   --checkbox_font-weight: 700;
+  --checkbox_width: 1.4rem;
+  --checkbox_height: 1.4rem;
   --checkbox_color_hover: var(--checkbox_color);
   --checkbox_background-color_hover: var(--radio_background-color_hover);
   --checkbox_border-color_hover: var(--radio_border-color_hover);
@@ -2082,6 +2087,7 @@ a {
   --select_border-color: var(--input_border-color);
   --select_border-radius: var(--input_border-radius);
   --select_box-shadow: var(--input_box-shadow);
+  --select_padding: 1ch 1.2ch;
   --select_color_hover: var(--select_color);
   --select_background-color_hover: var(--select_background-color);
   --select_border-color_hover: var(--input_border-color_hover);
@@ -2098,6 +2104,7 @@ a {
   --textarea_border-radius: var(--input_border-radius);
   --textarea_placeholder-color: var(--color_light-gray);
   --textarea_box-shadow: var(--input_box-shadow);
+  --textarea_padding: 1ch 1.2ch;
   --textarea_color_hover: var(--textarea_color);
   --textarea_background-color_hover: var(--textarea_background-color);
   --textarea_border-color_hover: var(--input_border-color_hover);
@@ -2138,7 +2145,7 @@ input.en__field__input {
   display: block;
   box-sizing: border-box;
   margin: 0rem;
-  padding: 1ch 1.2ch;
+  padding: var(--input_padding);
   transition: box-shadow 0.25s, border-color 0.25s ease-in-out;
   border-style: solid; }
   input:focus, input:hover,
@@ -2197,16 +2204,16 @@ input[type=radio] + label {
     border-width: var(--radio_border-width);
     border-color: var(--radio_border-color);
     border-radius: var(--radio_border-radius);
-    height: 1.4rem;
-    width: 1.4rem;
+    height: var(--radio_height);
+    width: var(--radio_width);
     box-shadow: var(--radio_box-shadow);
     display: inline-flex; }
 
 input[type=radio]:focus + label:before,
 input[type=radio]:hover + label:before {
-  color: var(--radio_color_selected);
-  background-color: var(--radio_background-color_selected);
-  border-color: var(--radio_border-color_selected);
+  color: var(--radio_color_hover);
+  background-color: var(--radio_background-color_hover);
+  border-color: var(--radio_border-color_hover);
   box-shadow: var(--radio_box-shadow_hover); }
 
 input[type=radio]:not(:checked) + label:before {
@@ -2219,7 +2226,8 @@ input[type=radio]:checked + label:before {
   box-shadow: var(--radio_box-shadow_selected); }
 
 input[type=checkbox] + label {
-  cursor: pointer; }
+  cursor: pointer;
+  content: ""; }
   input[type=checkbox] + label:before {
     content: var(--checkbox_content_checked);
     display: flex;
@@ -2232,16 +2240,17 @@ input[type=checkbox] + label {
     border-width: var(--checkbox_border-width);
     border-color: var(--checkbox_border-color);
     border-radius: var(--checkbox_border-radius);
-    height: 1.4rem;
-    width: 1.4rem;
+    height: var(--checkbox_height);
+    width: var(--checkbox_width);
     display: inline-flex;
-    font-weight: var(--checkbox_font-weight); }
+    font-weight: var(--checkbox_font-weight);
+    flex: 1 0 auto; }
 
 input[type=checkbox]:focus + label:before,
 input[type=checkbox]:hover + label:before {
-  color: var(--checkbox_color_checked);
-  background-color: var(--checkbox_background-color_checked);
-  border-color: var(--checkbox_border-color_checked); }
+  color: var(--checkbox_color_hover);
+  background-color: var(--checkbox_background-color_hover);
+  border-color: var(--checkbox_border-color_hover); }
 
 input[type=checkbox]:not(:checked) + label:before {
   color: transparent; }
@@ -2249,40 +2258,40 @@ input[type=checkbox]:not(:checked) + label:before {
 input[type=checkbox]:checked + label:before {
   color: var(--checkbox_color_checked);
   background-color: var(--checkbox_background-color_checked);
-  border-color: var(--checkbox_border-color_checked);
-  box-shadow: inset 0 0 0 var(--checkbox_border-width) var(--checkbox_border-color); }
+  border-color: var(--checkbox_border-color_checked); }
 
 .en__twitterTarget__select {
   cursor: pointer;
-  visibility: hidden; }
+  visibility: hidden;
+  max-width: min-content;
+  content: ""; }
   .en__twitterTarget__select:before {
     visibility: visible;
     content: var(--checkbox_content_checked);
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 0.5rem;
     color: var(--checkbox_color);
     background-color: var(--checkbox_background-color);
     border-style: solid;
     border-width: var(--checkbox_border-width);
     border-color: var(--checkbox_border-color);
     border-radius: var(--checkbox_border-radius);
-    height: 1.4rem;
-    width: 1.4rem;
+    height: var(--checkbox_height);
+    width: var(--checkbox_width);
     display: inline-flex;
-    font-weight: var(--checkbox_font-weight); }
+    font-weight: var(--checkbox_font-weight);
+    font-size: calc(0.05552rem * 18); }
   .en__twitterTarget__select:focus:before, .en__twitterTarget__select:hover:before {
-    color: var(--checkbox_color_checked);
-    background-color: var(--checkbox_background-color_checked);
-    border-color: var(--checkbox_border-color_checked); }
+    color: var(--checkbox_color_hover);
+    background-color: var(--checkbox_background-color_hover);
+    border-color: var(--checkbox_border-color_hover); }
   .en__twitterTarget__select:not(:checked):before {
     color: transparent; }
   .en__twitterTarget__select:checked:before {
     color: var(--checkbox_color_checked);
     background-color: var(--checkbox_background-color_checked);
-    border-color: var(--checkbox_border-color_checked);
-    box-shadow: inset 0 0 0 var(--checkbox_border-width) var(--checkbox_border-color); }
+    border-color: var(--checkbox_border-color_checked); }
 
 select,
 select.en__field__input--select,
@@ -2305,7 +2314,7 @@ select.en__field__input--tripleselect {
   display: block;
   box-sizing: border-box;
   margin: 0rem;
-  padding: 1ch 1.2ch;
+  padding: var(--select_padding);
   box-shadow: var(--select_box-shadow);
   transition: box-shadow 0.25s, border-color 0.25s ease-in-out;
   border-style: solid;
@@ -2348,7 +2357,7 @@ textarea,
   display: block;
   box-sizing: border-box;
   margin: 0rem;
-  padding: 1ch 1.2ch;
+  padding: var(--textarea_padding);
   border-style: solid;
   box-shadow: var(--textarea_box-shadow);
   transition: box-shadow 0.25s, border-color 0.25s ease-in-out;
@@ -2481,17 +2490,16 @@ input.en__contactDetails__select {
 
 .en__contactDetails__rows {
   flex-direction: column;
-  align-items: flex-start; }
-
-.en__contactDetails__row--1,
-.en__contactDetails__row--2 {
-  margin-left: 2rem; }
+  align-items: flex-start;
+  width: 100%;
+  flex-basis: 100%;
+  margin-left: calc(var(--checkbox_width) + 0.5rem); }
 
 .en__contacts:not(.en__contacts--hideCheck) .en__contactDetails__rows:before {
   content: "";
   position: absolute;
-  height: 1.4rem;
-  width: 1.4rem;
+  height: var(--checkbox_height);
+  width: var(--checkbox_width);
   display: inline-block;
   vertical-align: middle;
   border: 1px solid var(--color_black);
@@ -2528,7 +2536,8 @@ input.en__contactDetails__select {
   color: var(--checkbox_color);
   background-color: transparent;
   font-size: calc(0.05552rem * 18);
-  font-weight: var(--checkbox_font-weight); }
+  font-weight: var(--checkbox_font-weight);
+  cursor: pointer; }
 
 /* QA Needed: Would like to find a way so that radio input focus is round rather than square. May require re-writing how radio inputs are styled */
 .en__field__input--radio:focus + .en__field__label,
@@ -2566,14 +2575,23 @@ input.en__contactDetails__select {
   left: -0.5rem;
   right: -0.5rem; }
   .en__field--splittext > .en__field__label,
+  .en__field--splittext > .en__field__helpText,
   .en__field--tripletext > .en__field__label,
+  .en__field--tripletext > .en__field__helpText,
   .en__field--splitselect > .en__field__label,
+  .en__field--splitselect > .en__field__helpText,
   .en__field--tripleselect > .en__field__label,
+  .en__field--tripleselect > .en__field__helpText,
   .en__field--radio > .en__field__label,
+  .en__field--radio > .en__field__helpText,
   .en__field--checkbox > .en__field__label,
+  .en__field--checkbox > .en__field__helpText,
   .en__field--rating > .en__field__label,
+  .en__field--rating > .en__field__helpText,
   .en__field--imgselect > .en__field__label,
-  .en__field--withOther > .en__field__label {
+  .en__field--imgselect > .en__field__helpText,
+  .en__field--withOther > .en__field__label,
+  .en__field--withOther > .en__field__helpText {
     padding-left: 0.5rem;
     padding-right: 0.5rem; }
 
@@ -2750,7 +2768,7 @@ input[type="number"]::-webkit-outer-spin-button {
 .en__field--recurrfreq .en__field__element,
 .en__field--recurrpay .en__field__element,
 .en__field--donationAmt .en__field__element,
-.en__field--give-by-select .en__field__element {
+.en__field--giveBySelect .en__field__element {
   justify-content: center; }
 
 .en__field--donationAmt.en__field--withOther
@@ -2965,17 +2983,21 @@ body {
   --button_color: var(--color_white);
   --button_font-size: var(--root_font-size);
   --button_font-weight: initial;
-  --button_line-height: initial;
+  --button_line-height: normal;
   --button_background-color: #535b61;
   --button_border-width: 1px;
   --button_border-color: var(--color_black);
   --button_border-radius: 6px;
+  --button_padding: 1ch 1.2ch;
   --button_color_hover: var(--button_color);
   --button_background-color_hover: var(--color_black);
   --button_border-color_hover: var(--button_background-color_hover);
   --button_color_checked: var(--button_color_hover);
   --button_background-color_checked: var(--button_background-color_hover);
-  --button_border-color_checked: var(--button_border-color_hover); }
+  --button_border-color_checked: var(--button_border-color_hover);
+  --submit__button_padding-top: 1ch;
+  --submit__button_padding-bottom: 1ch;
+  --submit__button_font-size: var(--root_font-size); }
 
 /* @TODO Design buttons with style (Primary, Secondary, Text Only, Outine)
  * See #3 https://medium.com/eightshapes-llc/component-examples-9c4b3bb3b308
@@ -2996,7 +3018,7 @@ button,
   border-style: solid;
   display: block;
   margin: 0 0 1rem 0;
-  padding: 1ch 1.2ch;
+  padding: var(--button_padding);
   -webkit-appearance: none;
   border: 1px solid transparent;
   -webkit-transition: background-color 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out;
@@ -3023,6 +3045,12 @@ button,
 .en__submit button,
 .en__submit .button {
   width: 100%; }
+
+.en__submit button,
+.en__submit .button {
+  padding-top: var(--submit__button_padding-top);
+  padding-bottom: var(--submit__button_padding-bottom);
+  font-size: var(--submit__button_font-size); }
 
 .en__submit button:hover,
 .en__submit button:focus,
@@ -3493,6 +3521,7 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   --recurring-frequency__button_border-width: var(--button_border-width);
   --recurring-frequency__button_border-color: var(--button_border-color);
   --recurring-frequency__button_border-radius: var(--button_border-radius);
+  --recurring-frequency__button_padding: var(--button_padding);
   --recurring-frequency__button_count: 4;
   --recurring-frequency__button_color_hover: var(--button_color_hover);
   --recurring-frequency__button_background-color_hover: var(--button_background-color_hover);
@@ -3509,6 +3538,7 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   --donation-amount__button_border-width: var(--button_border-width);
   --donation-amount__button_border-color: var(--button_border-color);
   --donation-amount__button_border-radius: var(--button_border-radius);
+  --donation-amount__button_padding: var(--button_padding);
   --donation-amount__button_count: 4;
   --donation-amount__button_color_hover: var(--button_color_hover);
   --donation-amount__button_background-color_hover: var(--button_background-color_hover);
@@ -3527,6 +3557,7 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   --give-by-select__button_border-width: var(--button_border-width);
   --give-by-select__button_border-color: var(--button_border-color);
   --give-by-select__button_border-radius: var(--button_border-radius);
+  --give-by-select__button_padding: var(--button_padding);
   --give-by-select__button_count: 4;
   --give-by-select__button_color_hover: var(--button_color_hover);
   --give-by-select__button_background-color_hover: var(--button_background-color_hover);
@@ -3538,42 +3569,40 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
 
 /* prettier-ignore */
 .radio-to-buttons .en__field--radio .en__field__input--radio + .en__field__label:before,
-.en__field--give-by-select.en__field--radio .en__field__input--radio + .en__field__label:before,
+.en__field--giveBySelect.en__field--radio .en__field__input--radio + .en__field__label:before,
 .radio-to-buttons_donationAmt .en__field--donationAmt.en__field--radio .en__field__input--radio + .en__field__label:before,
-.radio-to-buttons_recurrpay .en__field--recurrpay.en__field--radio .en__field__input--radio + .en__field__label:before {
+.radio-to-buttons_recurrfreq .en__field--recurrfreq.en__field--radio .en__field__input--radio + .en__field__label:before {
   display: none; }
 
 /* prettier-ignore */
 .radio-to-buttons > .en__field > .en__field__element > .en__field__item:not(.en__field__item--other),
-.en__field--give-by-select > .en__field__element .en__field__item:not(.en__field__item--other),
+.en__field--giveBySelect > .en__field__element .en__field__item:not(.en__field__item--other),
 .radio-to-buttons_donationAmt > .en__field > .en__field__element .en__field__item:not(.en__field__item--other),
-.radio-to-buttons_recurrpay > .en__field > .en__field__element .en__field__item:not(.en__field__item--other) {
+.radio-to-buttons_recurrfreq > .en__field > .en__field__element .en__field__item:not(.en__field__item--other) {
   padding-left: 0;
   padding-right: 0;
   justify-content: center;
-  flex-grow: 0;
   flex-shrink: 1; }
 
 .radio-to-buttons > .en__field > .en__field__element > .en__field__item--other,
-.en__field--give-by-select > .en__field__element .en__field__item--other,
+.en__field--giveBySelect > .en__field__element .en__field__item--other,
 .radio-to-buttons_donationAmt > .en__field > .en__field__element .en__field__item--other,
-.radio-to-buttons_recurrpay > .en__field > .en__field__element .en__field__item--other {
+.radio-to-buttons_recurrfreq > .en__field > .en__field__element .en__field__item--other {
   padding-left: .5rem;
   padding-right: .5rem;
   justify-content: center;
-  flex-grow: 0;
   flex-shrink: 1; }
 
-.radio-to-buttons > .en__field > .en__field__element > .en__field__item--other {
+.radio-to-buttons > .en__field > .en__field__element > .en__field__input--other {
   border-radius: var(--button_border-radius); }
 
-.en__field--give-by-select > .en__field__element .en__field__item--other {
+.en__field--giveBySelect > .en__field__element .en__field__input--other {
   border-radius: var(--give-by-select__button_border-radius); }
 
-.radio-to-buttons_donationAmt > .en__field > .en__field__element .en__field__item--other {
+.radio-to-buttons_donationAmt > .en__field > .en__field__element .en__field__input--other {
   border-radius: var(--donation-amount__button_border-radius); }
 
-.radio-to-buttons_recurrpay > .en__field > .en__field__element .en__field__item--other {
+.radio-to-buttons_recurrfreq > .en__field > .en__field__element .en__field__input--other {
   border-radius: Tvar(--recurring-frequency__button_border-radius); }
 
 /*
@@ -3595,7 +3624,7 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   border-style: solid;
   margin-left: 0.5rem;
   margin-right: 0.5rem;
-  padding: 1ch 1.2ch;
+  padding: var(--button_padding);
   background-position-x: 40px;
   width: 100%;
   text-align: center; }
@@ -3619,7 +3648,7 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   --radio-to-buttons__button_count: 5; }
 
 /* prettier-ignore */
-.en__field--give-by-select.en__field--radio input[type=radio] + label {
+.en__field--giveBySelect.en__field--radio input[type=radio] + label {
   font-family: var(--give-by-select__button_font-family);
   color: var(--give-by-select__button_color);
   font-size: var(--give-by-select__button_font-size);
@@ -3632,12 +3661,12 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   border-style: solid;
   margin-left: 0.5rem;
   margin-right: 0.5rem;
-  padding: 1ch 1.2ch;
+  padding: var(--give-by-select__button_padding);
   background-position-x: 40px;
   width: 100%;
   text-align: center; }
 
-.en__field--give-by-select > .en__field__element .en__field__item {
+.en__field--giveBySelect > .en__field__element .en__field__item {
   flex-basis: calc(100% / var(--give-by-select__button_count)); }
 
 .give-by-select_count_1 {
@@ -3669,12 +3698,12 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   border-style: solid;
   margin-left: 0.5rem;
   margin-right: 0.5rem;
-  padding: 1ch 1.2ch;
+  padding: var(--donation-amount__button_padding);
   background-position-x: 40px;
   width: 100%;
   text-align: center; }
 
-.radio-to-buttons_donationAmt > .en__field > .en__field__element .en__field__item {
+.radio-to-buttons_donationAmt > .en__field--donationAmt > .en__field__element .en__field__item {
   flex-basis: calc(100% / var(--donation-amount__button_count)); }
 
 .donation-amount_count_1 {
@@ -3693,7 +3722,7 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   --donation-amount__button_count: 5; }
 
 /* prettier-ignore */
-.radio-to-buttons_recurrpay .en__field--recurrpay.en__field--radio input[type=radio] + label {
+.radio-to-buttons_recurrfreq .en__field--recurrfreq.en__field--radio input[type=radio] + label {
   font-family: var(--recurring-frequency__button_font-family);
   color: var(--recurring-frequency__button_color);
   font-size: var(--recurring-frequency__button_font-size);
@@ -3706,12 +3735,12 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   border-style: solid;
   margin-left: 0.5rem;
   margin-right: 0.5rem;
-  padding: 1ch 1.2ch;
+  padding: var(--recurring-frequency__button_padding);
   background-position-x: 40px;
   width: 100%;
   text-align: center; }
 
-.radio-to-buttons_recurrpay > .en__field > .en__field__element .en__field__item {
+.radio-to-buttons_recurrfreq > .en__field--recurrfreq > .en__field__element .en__field__item {
   flex-basis: calc(100% / var(--recurring-frequency__button_count)); }
 
 .recurring-frequency_count_1 {
@@ -3741,19 +3770,19 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   border-color: var(--button_border-color_hover); }
 
 /* prettier-ignore */
-.en__field--give-by-select.en__field--radio .en__field__item:hover input[type=radio] + label {
-  color: var(--give-by-select__button-color_hover);
+.en__field--giveBySelect.en__field--radio .en__field__item:hover input[type=radio] + label {
+  color: var(--give-by-select__button_color_hover);
   background-color: var(--give-by-select__button_background-color_hover);
   border-color: var(--give-by-select__button_border-color_hover); }
 
 /* prettier-ignore */
 .radio-to-buttons_donationAmt .en__field--donationAmt.en__field--radio .en__field__item:hover input[type=radio] + label {
-  color: var(--donation-amount__button-color_hover);
+  color: var(--donation-amount__button_color_hover);
   background-color: var(--donation-amount__button_background-color_hover);
   border-color: var(--donation-amount__button_border-color_hover); }
 
 /* prettier-ignore */
-.radio-to-buttons_recurrpay .en__field--recurrpay.en__field--radio .en__field__item:hover input[type=radio] + label {
+.radio-to-buttons_recurrfreq .en__field--recurrfreq.en__field--radio .en__field__item:hover input[type=radio] + label {
   color: var(--recurring-frequency__button_color_hover);
   background-color: var(--recurring-frequency__button_background-color_hover);
   border-color: var(--recurring-frequency__button_border-color_hover); }
@@ -3770,7 +3799,7 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   border-color: var(--button_border-color_checked); }
 
 /* prettier-ignore */
-.en__field--give-by-select.en__field--radio .en__field__item input[type=radio]:checked + label {
+.en__field--giveBySelect.en__field--radio .en__field__item input[type=radio]:checked + label {
   color: var(--give-by-select__button_color_checked);
   background-color: var(--give-by-select__button_background-color_checked);
   border-color: var(--give-by-select__button_border-color_checked); }
@@ -3781,7 +3810,7 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   border-color: var(--donation-amount__button_border-color_checked); }
 
 /* prettier-ignore */
-.radio-to-buttons_recurrpay .en__field--recurrpay.en__field--radio .en__field__item input[type=radio]:checked + label {
+.radio-to-buttons_recurrfreq .en__field--recurrfreq.en__field--radio .en__field__item input[type=radio]:checked + label {
   color: var(--recurring-frequency__button_color_checked);
   background-color: var(--recurring-frequency__button_background-color_checked);
   border-color: var(--recurring-frequency__button_border-color_checked); }
@@ -3798,7 +3827,7 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   border-color: var(--button_border-color_checked); }
 
 /* prettier-ignore */
-.en__field--give-by-select.en__field--radio .en__field__item:hover input[type=radio]:checked + label {
+.en__field--giveBySelect.en__field--radio .en__field__item:hover input[type=radio]:checked + label {
   color: var(--give-by-select__button_color_checked);
   background-color: var(--give-by-select__button_background-color_checked);
   border-color: var(--give-by-select__button_border-color_checked); }
@@ -3810,7 +3839,7 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   border-color: var(--donation-amount__button_border-color_checked); }
 
 /* prettier-ignore */
-.radio-to-buttons_recurrpay .en__field--recurrpay.en__field--radio .en__field__item:hover input[type=radio]:checked + label {
+.radio-to-buttons_recurrfreq .en__field--recurrfreq.en__field--radio .en__field__item:hover input[type=radio]:checked + label {
   color: var(--recurring-frequency__button_color_checked);
   background-color: var(--recurring-frequency__button_background-color_checked);
   border-color: var(--recurring-frequency__button_border-color_checked); }
@@ -3830,13 +3859,6 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
 ########################################################################
 */
 /* prettier-ignore */
-[data-engrid-transaction-recurring-frequency] .radio-to-buttons_donationAmt .en__field--donationAmt div:not(.en__field__item--other) .en__field__label--item::after {
-  line-height: 2;
-  font-size: 75%;
-  margin-left: 0.1875rem;
-  opacity: 0.5;
-  text-transform: lowercase; }
-
 /* prettier-ignore */
 [data-engrid-transaction-recurring-frequency="monthly"] .radio-to-buttons_donationAmt .en__field--donationAmt div:not(.en__field__item--other) .en__field__label--item::after {
   content: var(--give-monthly-donation-amount-appended-label); }
@@ -4998,11 +5020,13 @@ body:not(#en__pagebuilder) .simple_country_select.country-select-visible .en__fi
   margin-right: 1rem;
   width: initial; }
 
-.en__twitterTarget__image[src=""] {
+.en__twitterTarget__image[src=""],
+.en__twitterTarget__image[src="#"] {
   visibility: hidden;
   display: block;
   width: 3.75rem; }
-  .en__twitterTarget__image[src=""]:before {
+  .en__twitterTarget__image[src=""]:before,
+  .en__twitterTarget__image[src="#"]:before {
     visibility: visible; }
 
 .en__twitterTarget__details span {
@@ -5748,41 +5772,28 @@ body:not(#en__pagebuilder)[data-engrid-layout="centerright1col"] .page-backgroun
 * ####################################################################################################################
 */
 [data-engrid-embedded] {
+  background-image: none;
   --engrid__page_background-color: var(--color_transparent) !important;
   --engrid__content_background-color: var(--color_transparent) !important;
   --engrid__body_background-color: var(--color_transparent) !important;
   --engrid__page-alert_background-color: var(--color_transparent) !important;
   --engrid__content-header_background-color: var(--color_transparent) !important;
-  --engrid__body-headerOutside_background-color: var(
-    --color_transparent
-  ) !important;
+  --engrid__body-headerOutside_background-color: var(--color_transparent) !important;
   --engrid__body-header_background-color: var(--color_transparent) !important;
   --engrid__body-title_background-color: var(--color_transparent) !important;
   --engrid__body-banner_background-color: var(--color_transparent) !important;
-  --engrid__body-bannerOverlay_background-color: var(
-    --color_transparent
-  ) !important;
+  --engrid__body-bannerOverlay_background-color: var(--color_transparent) !important;
   --engrid__body-top_background-color: var(--color_transparent) !important;
   --engrid__body-side_background-color: var(--color_transparent) !important;
   --engrid__body-main_background-color: var(--color_transparent) !important;
   --engrid__body-bottom_background-color: var(--color_transparent) !important;
   --engrid__body-footer_background-color: var(--color_transparent) !important;
-  --engrid__body-footerOutside_background-color: var(
-    --color_transparent
-  ) !important;
-  --engrid__content-footerSpacer_background-color: var(
-    --color_transparent
-  ) !important;
-  --engrid__content-preFooter_background-color: var(
-    --color_transparent
-  ) !important;
+  --engrid__body-footerOutside_background-color: var(--color_transparent) !important;
+  --engrid__content-footerSpacer_background-color: var(--color_transparent) !important;
+  --engrid__content-preFooter_background-color: var(--color_transparent) !important;
   --engrid__content-footer_background-color: var(--color_transparent) !important;
-  --engrid__page-backgroundImage_background-color: var(
-    --color_transparent
-  ) !important;
-  --engrid__page-backgroundImageOverlay_background-color: var(
-    --color_transparent
-  ) !important;
+  --engrid__page-backgroundImage_background-color: var(--color_transparent) !important;
+  --engrid__page-backgroundImageOverlay_background-color: var(--color_transparent) !important;
   --engrid__page-customCode_background-color: var(--color_transparent) !important;
   /* prettier-ignore */
   /* prettier-ignore */ }

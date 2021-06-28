@@ -1282,8 +1282,8 @@ only screen and (max-device-width:600px) {
 
 .en__contacts--singleTweetMode .en__twitterTarget__select {
 	// display: block
-	flex-basis: 0; // Needed to collapse the checkbox area
-	height: 1.4rem; // Matches the pseudo element that adds the checkbox
+	flex: 1 0 auto; // Needed to collapse the checkbox area
+	height: var(--checkbox_height); // Matches the pseudo element that adds the checkbox
 }
 
 .en__twitterTarget {

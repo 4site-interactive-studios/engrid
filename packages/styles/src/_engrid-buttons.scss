@@ -4,11 +4,13 @@
   --button_color: var(--color_white);
   --button_font-size: var(--root_font-size);
   --button_font-weight: initial;
-  --button_line-height: initial;
+  --button_line-height: normal;
   --button_background-color: #535b61;
   --button_border-width: 1px;
   --button_border-color: var(--color_black);
   --button_border-radius: 6px;
+  --button_padding: 1ch 1.2ch;
+
 
   // TYPOGRAPHY BUTTON:HOVER
   --button_color_hover: var(--button_color);
@@ -19,6 +21,12 @@
   --button_color_checked: var(--button_color_hover);
   --button_background-color_checked: var(--button_background-color_hover);
   --button_border-color_checked: var(--button_border-color_hover);
+
+  // TYPOGRAPHY SUBMIT BUTTON
+  --submit__button_padding-top: 1ch;
+  --submit__button_padding-bottom: 1ch;
+  --submit__button_font-size: var(--root_font-size);
+  
 }
 
 /* @TODO Design buttons with style (Primary, Secondary, Text Only, Outine)
@@ -41,7 +49,7 @@ button,
   border-style: solid;
   display: block;
   margin: 0 0 1rem 0;
-  padding: 1ch 1.2ch; // Matches input fields
+  padding: var(--button_padding);
   -webkit-appearance: none;
   border: 1px solid transparent;
   -webkit-transition: background-color 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out;
@@ -81,6 +89,13 @@ button,
 .en__submit button,
 .en__submit .button {
   width: 100%;
+}
+
+.en__submit button,
+.en__submit .button{
+  padding-top: var(--submit__button_padding-top);
+  padding-bottom: var(--submit__button_padding-bottom);;
+  font-size: var(--submit__button_font-size);
 }
 
 .en__submit button:hover,
