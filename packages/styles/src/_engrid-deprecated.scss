@@ -1,6 +1,6 @@
 // The Custom Properties defined here should no longer be used.
 // This is maintained to provide as much backwards compatability as possible by mapping them to a replacement
-:root{
+[data-engrid-theme]{
     --color_cta: var(--color_primary);
     --color_cta_hover: var(--color_primary_overlay);
     --page-backgroundImage-url: var(--engrid__page-backgroundImage_url);
