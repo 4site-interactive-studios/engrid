@@ -482,17 +482,6 @@ textarea,
   position: relative;
 }
 
-/* For inputs with multiple components, apply the bottom margin to the field items so that if they wrap they maintain vertical spacing between them */
-/*
-  .en__component .en__field.en__field--radio,
-  .en__component .en__field.en__field--checkbox,
-  .en__component .en__field.en__field--splittext,
-  .en__component .en__field.en__field--tripletext,
-  .en__component .en__field.en__field--splitselect,
-  .en__component .en__field.en__field--tripleselect{
-  margin-bottom: 0;
-  }*/
-
 /* Make the spacing between wrapping elements tighter so the user knows they're related */
 
 .en__field--select .en__field__item:not(.en__field__item--other),
@@ -570,15 +559,6 @@ input.en__contactDetails__select {
   position: relative;
 }
 
-// .en__field__input--radio + .en__field__label,
-// .en__field__input--checkbox + .en__field__label {
-//   position: relative;
-//   margin-left: 2rem;
-//   cursor: pointer;
-//   display: flex;
-//   align-items: center;
-// }
-
 .en__contactDetails__rows {
   flex-direction: column;
   align-items: flex-start;
@@ -587,8 +567,6 @@ input.en__contactDetails__select {
   margin-left: calc(var(--checkbox_width) + 0.5rem);
 }
 
-// .en__field__input--radio + .en__field__label:before,
-// .en__field__input--checkbox + .en__field__label:before,
 .en__contacts:not(.en__contacts--hideCheck) .en__contactDetails__rows:before {
   content: "";
   position: absolute;
@@ -609,10 +587,6 @@ input.en__contactDetails__select {
   top: 5px;
   left: 0;
 }
-
-// .en__field__input--radio + .en__field__label:before {
-//   border-radius: var(--radio_border-radius);
-// }
 
 // .en__field__input--checkbox + .en__field__label:before,
 .en__contactDetails__rows:before {
@@ -640,7 +614,6 @@ input.en__contactDetails__select {
 //   border-width: var(--radio_border-width);
 // }
 
-// .en__field__input--checkbox:checked + .en__field__label:before,
 .en__contacts:not(.en__contacts--hideCheck)
   .en__contactDetails__select:checked
   + .en__contactDetails__rows:before {
@@ -652,7 +625,6 @@ input.en__contactDetails__select {
   border-color: var(--checkbox_border-color);
 }
 
-// .en__field__input--checkbox:checked + .en__field__label::after,
 .en__contacts:not(.en__contacts--hideCheck)
   .en__contactDetails__select:checked
   + .en__contactDetails__rows::after {
@@ -683,8 +655,6 @@ input.en__contactDetails__select {
 .en__field__input--radio:focus + .en__field__label,
 .en__field__input--checkbox:focus + .en__field__label,
 .en__contactDetails__select:focus + .en__contactDetails__rows {
-  // outline: 2px solid var(--input_border-color_checked);
-  // outline-offset: 3px;
   outline: -webkit-focus-ring-color auto 1px;
   outline-offset: 3px;
 }
@@ -729,34 +699,9 @@ input.en__contactDetails__select {
 
 }
 
-// .en__field:not([class*="withOther"]):not([class*="split"]):not([class*="triple"]):not([class*="range"]):not([class*="password"]):not([class*="number"]):not([class*="uneditable"]):not([class*="telephone"]):not([class*="rating"]):not([class*="calendar"]):not([class*="image-select"]) > {
-
-// }
-
 .en__field__item{
   padding-left: 0.5rem;
   padding-right: 0.5rem;
-}
-
-/* The first form field in a form block component does not need any left padding */
-.en__field:first-of-type,
-.en__field__item:first-of-type {
-  // padding-left: 0;
-}
-/* The last form field in a form block component does not need any right padding */
-.en__field:last-of-type,
-.en__field__item:last-of-type {
-  // padding-right: 0;
-}
-
-// Remove the right padding from the element responsible for showing the Other Input
-.en__field--withOther .en__field__item:nth-last-child(2) {
-  // padding-right: 0;
-}
-
-// Place all the padding for the Other Input on the Other Input so that it's only used when it's visible
-.en__field--withOther .en__field__item:last-child{
-  // padding-left: 1rem;
 }
 
 // @TODO Style "Radios with Input" to be a in a column instead of a row. Will need to use CSS Grid and not Flexbox. This is so that the last Radio when selected has the input field displayed to its immediate right on desktop and below on mobile https://d.pr/v/Ed9lyE
@@ -820,30 +765,6 @@ input.en__contactDetails__select {
   flex-basis: calc(100% / 3);
 }
 
-// .en__field--engrid-image-select .en__field__item:nth-of-type(3n+1){
-//   flex-basis: calc(100% / 3);
-//   padding-left: 0rem;
-//   padding-right: 0.5rem;
-//   padding-bottom: 0.5rem;
-//   margin: 0;
-// }
-
-// .en__field--engrid-image-select .en__field__item:nth-of-type(3n+2){
-//   flex-basis: calc(100% / 3);
-//   padding-left: 0.5rem;
-//   padding-right: 0.5rem;
-//   padding-bottom: 0.5rem;
-//   margin: 0;
-// }
-
-// .en__field--engrid-image-select .en__field__item:nth-of-type(3n+3){
-//   flex-basis: calc(100% / 3);
-//   padding-left: 0.5rem;
-//   padding-right: 0rem;
-//   padding-bottom: 0.5rem;
-//   margin: 0;
-// }
-
 .en__imageSelectField__control{
   display: flex;
   flex-direction: column;
@@ -874,9 +795,7 @@ input.en__contactDetails__select {
   position: absolute;
   right: 0;
   align-items: flex-end;
-  // label{
-  //   visibility: hidden;
-  // }
+
   select {
     width: 80px;
     // z-index: 1;
@@ -885,17 +804,12 @@ input.en__contactDetails__select {
     box-shadow: none;
     text-align-last: right;
   }
-  .en__field__error {
-    // z-index: 1;
-  }
 }
 
 // Remove Number Input Spinners https://stackoverflow.com/a/4298216
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
-  // margin: 0;
-  // -moz-appearance: textfield;
 }
 
 /* Placeholder styling */
@@ -955,99 +869,4 @@ input[type="number"]::-webkit-outer-spin-button {
   flex-basis: 100%;
   padding-left: 0;
   padding-right: 0;
-}
-
-.en__field--title,
-.en__field--emailAddress,
-.en__field--phoneNumber,
-.en__field--phoneNumber2,
-.en__field--country,
-.en__field--address1,
-.en__field--honname,
-.en__field--infname,
-.en__field--infemail,
-.en__field--infcountry,
-.en__field--infadd1,
-.en__field--gftrsn,
-.en__field--paymenttype,
-.en__field--ccnumber,
-.en__field--bankAccountType {
-  flex-basis: 100%;
-  padding-left: 0;
-  padding-right: 0;
-}
-
-.en__field--splitselect.en__field--ccexpire {
-  flex-basis: calc((100% / 3) * 2);
-  min-width: auto;
-  // left: 0;
-  // right: 0;
-
-  // & > .en__field__element > .en__field__item:first-of-type{
-  //   padding-left:0;
-  // }
-
-  // & > .en__field__element > .en__field__item:last-of-type{
-  //   padding-right:0;
-  // }
-  
-}
-
-// .en__field--firstName,
-// .en__field--lastName,
-// .en__field--bankAccountNumber,
-// .en__field--bankRoutingNumber {
-//   flex-basis: 50%;
-// }
-
-// .en__field--city,
-// .en__field--region,
-// .en__field--postcode,
-// .en__field--infcity,
-// .en__field--infreg,
-// .en__field--infpostcd,
-.en__field--ccvv {
-  flex-basis: calc(100% / 3);
-  min-width: auto;
-}
-
-// .en__field--city,
-// .en__field--infcity,
-// .en__field--ccexpire {
-//   padding-left: 0;
-//   padding-right: 0.5rem;
-// }
-
-// .en__field--lastName,
-// .en__field--postcode,
-// .en__field--infpostcd,
-// .en__field--ccvv {
-//   padding-left: 0.5rem;
-//   padding-right: 0;
-// }
-
-// .en__field--recurrfreq,
-// .en__field--recurrpay,
-// .en__field--donationAmt {
-//   padding-left: 0;
-//   padding-right: 0;
-// }
-
-.en__field--recurrfreq .en__field__element,
-.en__field--recurrpay .en__field__element,
-.en__field--donationAmt .en__field__element,
-.en__field--giveBySelect .en__field__element {
-  justify-content: center;
-}
-
-.en__field--donationAmt.en__field--withOther
-  .en__field__element--radio
-  .en__field__item:nth-last-child(1) {
-  display: flex !important;
-}
-
-.en__field--donationAmt.en__field--withOther
-  .en__field__element--radio
-  .en__field__item:nth-last-child(2) {
-  display: none !important;
 }

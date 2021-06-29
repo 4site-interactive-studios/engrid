@@ -78,6 +78,36 @@
 
 // Style the Donation Amount, Recurring Frequency, Radio to Buttons, and Give By Select Pseduo Fields as if they were buttons
 
+.en__field--splitselect.en__field--ccexpire {
+    flex-basis: calc((100% / 3) * 2);
+    min-width: auto;  
+}
+
+.en__field--ccvv {
+    flex-basis: calc(100% / 3);
+    min-width: auto;
+}
+
+.en__field--recurrfreq .en__field__element,
+.en__field--recurrpay .en__field__element,
+.en__field--donationAmt .en__field__element,
+.en__field--giveBySelect .en__field__element {
+    justify-content: center;
+}
+
+.en__field--donationAmt.en__field--withOther
+.en__field__element--radio
+.en__field__item:nth-last-child(1) {
+    display: flex !important;
+}
+
+.en__field--donationAmt.en__field--withOther
+.en__field__element--radio
+.en__field__item:nth-last-child(2) {
+    display: none !important;
+}
+
+
 // Hide the radio select fields when we style them like buttons
 /* prettier-ignore */
 .radio-to-buttons .en__field--radio .en__field__input--radio+.en__field__label:before,
@@ -86,19 +116,6 @@
 .radio-to-buttons_recurrfreq .en__field--recurrfreq.en__field--radio .en__field__input--radio+.en__field__label:before{
 	display: none;
 }
-
-// Accounts for the left/right padding padding around all fields
-/* prettier-ignore */
-// .radio-to-buttons > .en__field > .en__field__element,
-// .en__field--giveBySelect > .en__field__element,
-// .radio-to-buttons_donationAmt > .en__field > .en__field__element,
-// .radio-to-buttons_recurrfreq > .en__field > .en__field__element{
-// 	min-width: calc(100% + 1rem); // Accounts for negative margin
-// 	position: relative;
-//     left: -0.5rem; // Negative margins are allowed so that the buttons can reflow onto new lines without unexpected issues with padding on wrap
-// 	right: -0.5rem; // Negative margins are allowed so that the buttons can reflow onto new lines without unexpected issues with padding on wrap
-//     justify-content: center;
-// }
 
 .radio-to-buttons > .en__field > .en__field__element > .en__field__item:not(.en__field__item--other),
 .en__field--giveBySelect > .en__field__element .en__field__item:not(.en__field__item--other),
@@ -168,10 +185,6 @@
     flex-basis: calc(100% / var(--radio-to-buttons__button_count));
 }
 
-// .radio-to-buttons > .en__field > .en__field__element > .en__field__item.en__field__item--other{
-//     flex-basis: calc((100% / var(--radio-to-buttons__button_count)) - 1rem);
-// }
-
 .radio-to-buttons_count_1{--radio-to-buttons__button_count: 1;}
 .radio-to-buttons_count_2{--radio-to-buttons__button_count: 2;}
 .radio-to-buttons_count_3{--radio-to-buttons__button_count: 3;}
@@ -203,10 +216,6 @@
 .en__field--giveBySelect > .en__field__element .en__field__item{
     flex-basis: calc(100% / var(--give-by-select__button_count));
 }
-
-// .en__field--giveBySelect > .en__field__element .en__field__item.en__field__item--other{
-//     flex-basis: calc((100% / var(--give-by-select__button_count)) - 1rem);
-// }
 
 .give-by-select_count_1{--give-by-select__button_count: 1;}
 .give-by-select_count_2{--give-by-select__button_count: 2;}
@@ -240,10 +249,6 @@
     flex-basis: calc(100% / var(--donation-amount__button_count));
 }
 
-// .radio-to-buttons_donationAmt > .en__field > .en__field__element .en__field__item.en__field__item--other{
-//     flex-basis: calc((100% / var(--donation-amount__button_count)) - 1rem);  
-// }
-
 .donation-amount_count_1{--donation-amount__button_count: 1;}
 .donation-amount_count_2{--donation-amount__button_count: 2;}
 .donation-amount_count_3{--donation-amount__button_count: 3;}
@@ -275,10 +280,6 @@
 .radio-to-buttons_recurrfreq> .en__field--recurrfreq > .en__field__element .en__field__item{
     flex-basis: calc(100% / var(--recurring-frequency__button_count));
 }
-
-// .radio-to-buttons_recurrfreq > .en__field > .en__field__element .en__field__item.en__field__item--other{
-//     flex-basis: calc((100% / var(--recurring-frequency__button_count)) - 1rem);
-// }
 
 .recurring-frequency_count_1{--recurring-frequency__button_count: 1;}
 .recurring-frequency_count_2{--recurring-frequency__button_count: 2;}
@@ -336,7 +337,6 @@
     color: var(--button_color_checked);
     background-color: var(--button_background-color_checked);
     border-color: var(--button_border-color_checked);
-	// outline: none;
 }
 
 // Give By Select
@@ -345,7 +345,6 @@
     color: var(--give-by-select__button_color_checked);
     background-color: var(--give-by-select__button_background-color_checked);
     border-color: var(--give-by-select__button_border-color_checked);
-	// outline: none;
 }
 
 // Donation Amount
@@ -353,7 +352,6 @@
     color: var(--donation-amount__button_color_checked);
     background-color: var(--donation-amount__button_background-color_checked);
     border-color: var(--donation-amount__button_border-color_checked);
-	// outline: none;
 }
 
 // Recurring Frequency
@@ -362,7 +360,6 @@
     color: var(--recurring-frequency__button_color_checked);
     background-color: var(--recurring-frequency__button_background-color_checked);
     border-color: var(--recurring-frequency__button_border-color_checked);
-	// outline: none;
 }
 
 /*
