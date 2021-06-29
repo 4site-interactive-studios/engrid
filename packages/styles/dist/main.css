@@ -2191,7 +2191,9 @@ input[type=text],
   appearance: none; }
 
 input[type=radio] + label {
-  cursor: pointer; }
+  cursor: pointer;
+  align-items: center;
+  display: flex; }
   input[type=radio] + label:before {
     content: var(--radio_content);
     display: flex;
@@ -2227,7 +2229,9 @@ input[type=radio]:checked + label:before {
 
 input[type=checkbox] + label {
   cursor: pointer;
-  content: ""; }
+  content: "";
+  align-items: center;
+  display: flex; }
   input[type=checkbox] + label:before {
     content: var(--checkbox_content_checked);
     display: flex;
@@ -2508,7 +2512,8 @@ input.en__contactDetails__select {
   cursor: pointer;
   transition-duration: 0.25s;
   transition-property: border-color, background-color;
-  top: 5px; }
+  top: 5px;
+  left: 0; }
 
 .en__contactDetails__rows:before {
   color: var(--checkbox_color);
@@ -3507,6 +3512,7 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
     padding-right: 0rem; } }
 
 :root {
+  --page-backgroundImage-url: var(--engrid__page-backgroundImage_url);
   --engrid__body-side_background-color: var(--engrid__body-main_background-color);
   --engrid__body-side_margin: var(--engrid__body-main_margin);
   --engrid__body-side_padding: var(--engrid__body-main_padding); }
@@ -3627,7 +3633,8 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   padding: var(--button_padding);
   background-position-x: 40px;
   width: 100%;
-  text-align: center; }
+  text-align: center;
+  justify-content: center; }
 
 .radio-to-buttons > .en__field > .en__field__element > .en__field__item {
   flex-basis: calc(100% / var(--radio-to-buttons__button_count)); }
@@ -3664,7 +3671,8 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   padding: var(--give-by-select__button_padding);
   background-position-x: 40px;
   width: 100%;
-  text-align: center; }
+  text-align: center;
+  justify-content: center; }
 
 .en__field--giveBySelect > .en__field__element .en__field__item {
   flex-basis: calc(100% / var(--give-by-select__button_count)); }
@@ -3701,7 +3709,8 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   padding: var(--donation-amount__button_padding);
   background-position-x: 40px;
   width: 100%;
-  text-align: center; }
+  text-align: center;
+  justify-content: center; }
 
 .radio-to-buttons_donationAmt > .en__field--donationAmt > .en__field__element .en__field__item {
   flex-basis: calc(100% / var(--donation-amount__button_count)); }
@@ -3738,7 +3747,8 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   padding: var(--recurring-frequency__button_padding);
   background-position-x: 40px;
   width: 100%;
-  text-align: center; }
+  text-align: center;
+  justify-content: center; }
 
 .radio-to-buttons_recurrfreq > .en__field--recurrfreq > .en__field__element .en__field__item {
   flex-basis: calc(100% / var(--recurring-frequency__button_count)); }
@@ -3859,6 +3869,9 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
 ########################################################################
 */
 /* prettier-ignore */
+[data-engrid-transaction-recurring-frequency] .radio-to-buttons_donationAmt .en__field--donationAmt div:not(.en__field__item--other) .en__field__label--item::after {
+  margin-left: 0.5rem; }
+
 /* prettier-ignore */
 [data-engrid-transaction-recurring-frequency="monthly"] .radio-to-buttons_donationAmt .en__field--donationAmt div:not(.en__field__item--other) .en__field__label--item::after {
   content: var(--give-monthly-donation-amount-appended-label); }

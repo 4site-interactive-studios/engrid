@@ -1,5 +1,4 @@
 export declare class PageBackground {
-    private bgClass;
     private pageBackground;
     constructor();
     private setDataAttributes;

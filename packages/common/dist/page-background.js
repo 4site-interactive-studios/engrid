@@ -2,8 +2,7 @@ import { ENGrid } from "./engrid";
 export class PageBackground {
     constructor() {
         // @TODO: Change page-backgroundImage to page-background
-        this.bgClass = 'page-backgroundImage';
-        this.pageBackground = document.querySelector("." + this.bgClass);
+        this.pageBackground = document.querySelector(".page-backgroundImage");
         // Finds any <img> added to the "backgroundImage" ENGRid section and sets it as the "--engrid__page-backgroundImage_url" CSS Custom Property
         if (this.pageBackground) {
             const pageBackgroundImg = this.pageBackground.querySelector("img");
@@ -13,13 +12,13 @@ export class PageBackground {
                 if (ENGrid.debug)
                     console.log("A background image set in the page was found with a data-src value, setting it as --engrid__page-backgroundImage_url", pageBackgroundImgDataSrc);
                 pageBackgroundImgDataSrc = "url('" + pageBackgroundImgDataSrc + "')";
-                this.pageBackground.style.setProperty('--' + this.bgClass + '-url', pageBackgroundImgDataSrc);
+                this.pageBackground.style.setProperty('--engrid__page-backgroundImage_url', pageBackgroundImgDataSrc);
             }
             else if (this.pageBackground && pageBackgroundImgSrc) {
                 if (ENGrid.debug)
                     console.log("A background image set in the page was found with a src value, setting it as --engrid__page-backgroundImage_url", pageBackgroundImgSrc);
                 pageBackgroundImgSrc = "url('" + pageBackgroundImgSrc + "')";
-                this.pageBackground.style.setProperty('--' + this.bgClass + '-url', pageBackgroundImgSrc);
+                this.pageBackground.style.setProperty('--engrid__page-backgroundImage_url', pageBackgroundImgSrc);
             }
             else if (pageBackgroundImg) {
                 if (ENGrid.debug)
