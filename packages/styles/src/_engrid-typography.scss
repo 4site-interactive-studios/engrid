@@ -4,47 +4,47 @@
 
     // TYPOGRAPHY DEFAULT
     --default_font-family: var(--native-fonts__sans-serif);
-    --default_color: initial;
+    // --default_color: initial;
     --default_font-size: var(--root_font-size);
     --default_font-weight: initial;
     --default_line-height: initial;
 
     // TYPOGRAPHY H1
     --h1_font-family: var(--default_font-family);
-    --h1_color: initial;
+    // --h1_color: initial;
     --h1_font-size: calc(var(--root_font-size) * var(--scale-up_160pct));
     --h1_font-weight: initial;
     --h1_line-height: initial;
         
     // TYPOGRAPHY H2
     --h2_font-family: var(--h1_font-family);
-    --h2_color: initial;
+    // --h2_color: initial;
     --h2_font-size: calc(var(--root_font-size) * var(--scale-up_80pct));
     --h2_font-weight: initial;
     --h2_line-height: initial;
         
     // TYPOGRAPHY H3
     --h3_font-family: var(--h1_font-family);
-    --h3_color: initial;
+    // --h3_color: initial;
     --h3_font-size: calc(var(--root_font-size) * var(--scale-up_40pct));
     --h3_font-weight: initial;
     --h3_line-height: initial;    
         
     // TYPOGRAPHY P
     --p_font-family: var(--default_font-family);
-    --p_color: initial;
+    // --p_color: initial;
     --p_font-size: var(--root_font-size);
     --p_font-weight: initial;
     --p_line-height: initial;
 
     // TYPOGRAPHY A
     --a_font-family: var(--default_font-family);
-    --a_color: initial;
+    // --a_color: initial;
     --a_text-decoration: underline;
 
     // TYPOGRAPHY A:FOCUS
     // TYPOGRAPHY A:HOVER
-    --a_color_hover: var(--a_color);
+    // --a_color_hover: var(--a_color);
     --a_text-decoration_hover: initial;
 }
   

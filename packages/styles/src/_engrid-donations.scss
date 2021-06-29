@@ -1,49 +1,49 @@
 :root{
     // TYPOGRAPHY GIVING FREQUENCY BUTTON
     --recurring-frequency__button_font-family: var(--button_font-family);
-    --recurring-frequency__button_color: var(--button_color);
+    // --recurring-frequency__button_color: var(--button_color);
     --recurring-frequency__button_font-size: var(--button_font-size);
     --recurring-frequency__button_font-weight: var(--button_font-weight);
     --recurring-frequency__button_line-height: var(--button_line-height);
-    --recurring-frequency__button_background-color: var(--button_background-color);
+    // --recurring-frequency__button_background-color: var(--button_background-color);
     --recurring-frequency__button_border-width: var(--button_border-width);
-    --recurring-frequency__button_border-color: var(--button_border-color);
+    // --recurring-frequency__button_border-color: var(--button_border-color);
     --recurring-frequency__button_border-radius: var(--button_border-radius);
     --recurring-frequency__button_padding: var(--button_padding);
     --recurring-frequency__button_count: 4;
 
     // TYPOGRAPHY GIVING FREQUENCY BUTTON:HOVER  
-    --recurring-frequency__button_color_hover: var(--button_color_hover);
-    --recurring-frequency__button_background-color_hover: var(--button_background-color_hover);
-    --recurring-frequency__button_border-color_hover: var(--button_border-color_hover);    
+    // --recurring-frequency__button_color_hover: var(--button_color_hover);
+    // --recurring-frequency__button_background-color_hover: var(--button_background-color_hover);
+    // --recurring-frequency__button_border-color_hover: var(--button_border-color_hover);    
 
     // TYPOGRAPHY GIVING FREQUENCY BUTTON:CHECKED
-    --recurring-frequency__button_color_checked: var(--button_color_hover);
-    --recurring-frequency__button_background-color_checked: var(--button_background-color_hover);
-    --recurring-frequency__button_border-color_checked: var(--button_border-color_hover);   
+    // --recurring-frequency__button_color_checked: var(--button_color_hover);
+    // --recurring-frequency__button_background-color_checked: var(--button_background-color_hover);
+    // --recurring-frequency__button_border-color_checked: var(--button_border-color_hover);   
 
     // TYPOGRAPHY GIVING AMOUNT BUTTON
     --donation-amount__button_font-family: var(--button_font-family);
-    --donation-amount__button_color: var(--button_color);
+    // --donation-amount__button_color: var(--button_color);
     --donation-amount__button_font-size: var(--button_font-size);
     --donation-amount__button_font-weight: var(--button_font-weight);
     --donation-amount__button_line-height: var(--button_line-height);
-    --donation-amount__button_background-color: var(--button_background-color);
+    // --donation-amount__button_background-color: var(--button_background-color);
     --donation-amount__button_border-width: var(--button_border-width);
-    --donation-amount__button_border-color: var(--button_border-color);
+    // --donation-amount__button_border-color: var(--button_border-color);
     --donation-amount__button_border-radius: var(--button_border-radius);
     --donation-amount__button_padding: var(--button_padding);
     --donation-amount__button_count: 4;
 
     // TYPOGRAPHY GIVING AMOUNT BUTTON:HOVER  
-    --donation-amount__button_color_hover: var(--button_color_hover);
-    --donation-amount__button_background-color_hover: var(--button_background-color_hover);
-    --donation-amount__button_border-color_hover: var(--button_border-color_hover);  
+    // --donation-amount__button_color_hover: var(--button_color_hover);
+    // --donation-amount__button_background-color_hover: var(--button_background-color_hover);
+    // --donation-amount__button_border-color_hover: var(--button_border-color_hover);  
 
     // TYPOGRAPHY GIVING AMOUNT BUTTON:CHECKED
-    --donation-amount__button_color_checked: var(--button_color_hover);
-    --donation-amount__button_background-color_checked: var(--button_background-color_hover);
-    --donation-amount__button_border-color_checked: var(--button_border-color_hover);  
+    // --donation-amount__button_color_checked: var(--button_color_hover);
+    // --donation-amount__button_background-color_checked: var(--button_background-color_hover);
+    // --donation-amount__button_border-color_checked: var(--button_border-color_hover);  
 
     // LABEL APPENDED TO DONTIONAL GIVING AMOUNTS BASED ON GIVING FREQUENCY
     --give-monthly-donation-amount-appended-label: "/mo";
@@ -51,26 +51,26 @@
 
     // TYPOGRAPHY GIVE BY SELECT BUTTON
     --give-by-select__button_font-family: var(--button_font-family);
-    --give-by-select__button_color: var(--button_color);
+    // --give-by-select__button_color: var(--button_color);
     --give-by-select__button_font-size: var(--button_font-size);
     --give-by-select__button_font-weight: var(--button_font-weight);
     --give-by-select__button_line-height: var(--button_line-height);
-    --give-by-select__button_background-color: var(--button_background-color);
+    // --give-by-select__button_background-color: var(--button_background-color);
     --give-by-select__button_border-width: var(--button_border-width);
-    --give-by-select__button_border-color: var(--button_border-color);
+    // --give-by-select__button_border-color: var(--button_border-color);
     --give-by-select__button_border-radius: var(--button_border-radius);
     --give-by-select__button_padding: var(--button_padding);
     --give-by-select__button_count: 4;
 
     // TYPOGRAPHY GIVE BY SELECT BUTTON:HOVER  
-    --give-by-select__button_color_hover: var(--button_color_hover);
-    --give-by-select__button_background-color_hover: var(--button_background-color_hover);
-    --give-by-select__button_border-color_hover: var(--button_border-color_hover);
+    // --give-by-select__button_color_hover: var(--button_color_hover);
+    // --give-by-select__button_background-color_hover: var(--button_background-color_hover);
+    // --give-by-select__button_border-color_hover: var(--button_border-color_hover);
     
     // TYPOGRAPHY GIVE BY SELECT BUTTON:CHECKED
-    --give-by-select__button_color_checked: var(--button_color_hover);
-    --give-by-select__button_background-color_checked: var(--button_background-color_hover);
-    --give-by-select__button_border-color_checked: var(--button_border-color_hover);
+    // --give-by-select__button_color_checked: var(--button_color_hover);
+    // --give-by-select__button_background-color_checked: var(--button_background-color_hover);
+    // --give-by-select__button_border-color_checked: var(--button_border-color_hover);
 
     // RADIO TO BUTTONS
     --radio-to-buttons__button_count: 4;

@@ -1,28 +1,28 @@
 :root{  
   // TYPOGRAPHY BUTTON
   --button_font-family: var(--default_font-family);
-  --button_color: var(--color_white);
+  // --button_color: var(--color_primary_overlay);
   --button_font-size: var(--root_font-size);
   --button_font-weight: initial;
   --button_line-height: normal;
-  --button_background-color: #535b61;
+  --button_background-color: var(--color_primary);
   --button_border-width: 1px;
-  --button_border-color: var(--color_black);
+  --button_border-color: var(--color_primary_accent);
   --button_border-radius: 6px;
   --button_padding: 1ch 1.2ch;
 
-
   // TYPOGRAPHY BUTTON:HOVER
-  --button_color_hover: var(--button_color);
-  --button_background-color_hover: var(--color_black);
-  --button_border-color_hover: var(--button_background-color_hover);
+  // --button_color_hover: var(--button_color);
+  // --button_background-color_hover: var(--color_black);
+  // --button_border-color_hover: var(--button_background-color_hover);
 
   // TYPOGRAPHY BUTTON:SELECTED
-  --button_color_checked: var(--button_color_hover);
-  --button_background-color_checked: var(--button_background-color_hover);
-  --button_border-color_checked: var(--button_border-color_hover);
+  // --button_color_checked: var(--button_color_hover);
+  // --button_background-color_checked: var(--button_background-color_hover);
+  // --button_border-color_checked: var(--button_border-color_hover);
 
   // TYPOGRAPHY SUBMIT BUTTON
+  // @TODO Add Submit Button Background Color and Color
   --submit__button_padding-top: 1ch;
   --submit__button_padding-bottom: 1ch;
   --submit__button_font-size: var(--root_font-size);
@@ -74,15 +74,6 @@ button,
 .en__submit button,
 .en__submit .button {
   margin-top: 2rem;
-  // background-color: var(--button_background-color);
-  // border-color: var(--button_border-color);
-  // color: var(--button_color);
-  // border-radius: var(--button_border-radius);
-  // display: block;
-  // font-size: calc(0.05552rem * 24);
-  // font-weight: 900;
-  // line-height: 1;
-  // padding: 18px 0;
 }
 
 .en__submit,

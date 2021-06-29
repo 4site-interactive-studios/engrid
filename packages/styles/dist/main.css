@@ -3956,7 +3956,7 @@ button.en__ecarditems__addrecipient {
 .en__ecarditems__thumb img {
   height: 150px !important;
   width: auto;
-  border: 2px solid var(--color_cta);
+  border: 2px solid var(--color_primary);
   -webkit-filter: brightness(75%);
   filter: brightness(75%); }
 
@@ -4808,8 +4808,8 @@ figure.media-with-attribution {
         margin: auto; }
   #goMonthly #upsellYesButton a {
     margin-bottom: 20px;
-    background-color: var(--color_cta);
-    border-color: var(--color_cta);
+    background-color: var(--color_primary);
+    border-color: var(--color_primary);
     color: var(--p_color);
     font-family: var(--h1_font-family);
     font-size: 1.3rem; }
@@ -4915,7 +4915,7 @@ div[id^=nb-field-].nb-success input {
   width: auto; }
 
 .en__pg--selected .en__pg__image--selected {
-  outline-color: var(--color_cta_hover); }
+  outline-color: var(--color_primary_overlay); }
 
 .en__pgList[data-nogift] .en__pg:last-of-type .en__pg__display {
   flex-basis: 0;

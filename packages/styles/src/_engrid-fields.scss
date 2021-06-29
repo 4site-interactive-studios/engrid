@@ -3,39 +3,39 @@
 :root{  
   // TYPOGRAPHY LABEL
   --label-font-family: var(--default_font-family);
-  --label-color: initial;
+  // --label-color: initial;
   --label-font-size: var(--root_font-size);
   --label-font-weight: initial;
   --label-line-height: initial;
 
   // TYPOGRAPHY INPUT
   --input_font-family: var(--default_font-family);
-  --input_color: #000000;
+  // --input_color: #000000;
   --input_font-size: var(--root_font-size);
   --input_font-weight: initial;
   --input_line-height: initial;
-  --input_background-color: #fafafa;
+  // --input_background-color: #fafafa;
   --input_border-width: 1px;
-  --input_border-color: #dfdfe1;
+  // --input_border-color: #dfdfe1;
   --input_border-radius: 6px;
-  --input_placeholder-color: var(--color_light-gray);
+  // --input_placeholder-color: var(--color_light-gray);
   --input_box-shadow: inset 0 2px 2px -1px rgba(74, 74, 104, 0.1);
   --input_padding: 1ch 1.2ch;
       
   // TYPOGRAPHY INPUT:FOCUS
   // TYPOGRAPHY INPUT:HOVER
-  --input_color_hover: var(--input_color);
-  --input_background-color_hover: var(--input_background-color);
-  --input_border-color_hover: #767677;
-  --input_border-bottom-color_hover: var(--input_border-color_hover);
+  // --input_color_hover: var(--input_color);
+  // --input_background-color_hover: var(--input_background-color);
+  // --input_border-color_hover: #767677;
+  // --input_border-bottom-color_hover: var(--input_border-color_hover);
   --input_box-shadow_hover: var(--input_box-shadow);
       
   // TYPOGRAPHY RADIO
   --radio_content: "";
-  --radio_color: var(--input_color);
-  --radio_background-color: var(--input_background-color);
+  // --radio_color: var(--input_color);
+  // --radio_background-color: var(--input_background-color);
   --radio_border-width: var(--input_border-width);
-  --radio_border-color: var(--input_border-color);
+  // --radio_border-color: var(--input_border-color);
   --radio_border-radius: 50%;
   --radio_box-shadow: none;
   --radio_width: 1.4rem;
@@ -43,22 +43,22 @@
 
   // TYPOGRAPHY RADIO INPUT:FOCUS
   // TYPOGRAPHY RADIO INPUT:HOVER
-  --radio_color_hover: var(--radio_color);
-  --radio_background-color_hover: var(--radio_background-color);
-  --radio_border-color_hover: var(--input_border-color_hover);
+  // --radio_color_hover: var(--radio_color);
+  // --radio_background-color_hover: var(--radio_background-color);
+  // --radio_border-color_hover: var(--input_border-color_hover);
   --radio_box-shadow_hover: inset 0 0 0 6px #f5f5f5;
 
   // TYPOGRAPHY RADIO INPUT:SELECTED
-  --radio_color_selected: var(--radio_color_hover);
-  --radio_background-color_selected: var(--radio_background-color_hover);
-  --radio_border-color_selected: var(--input_border-color_hover);
+  // --radio_color_selected: var(--radio_color_hover);
+  // --radio_background-color_selected: var(--radio_background-color_hover);
+  // --radio_border-color_selected: var(--input_border-color_hover);
   --radio_box-shadow_selected: inset 0 0 0 6px #000000;
 
   // TYPOGRAPHY CHECKBOX
-  --checkbox_color: var(--color_black);
-  --checkbox_background-color: var(--radio_background-color);
+  // --checkbox_color: var(--color_black);
+  // --checkbox_background-color: var(--radio_background-color);
   --checkbox_border-width: 1px;
-  --checkbox_border-color: var(--radio_border-color);
+  // --checkbox_border-color: var(--radio_border-color);
   --checkbox_border-radius: var(--input_border-radius);
   --checkbox_font-weight: 700;
   --checkbox_width: 1.4rem;
@@ -66,57 +66,57 @@
 
   // TYPOGRAPHY CHECKBOX INPUT:FOCUS
   // TYPOGRAPHY CHECKBOX INPUT:HOVER
-  --checkbox_color_hover: var(--checkbox_color);
-  --checkbox_background-color_hover: var(--radio_background-color_hover);
-  --checkbox_border-color_hover: var(--radio_border-color_hover);
+  // --checkbox_color_hover: var(--checkbox_color);
+  // --checkbox_background-color_hover: var(--radio_background-color_hover);
+  // --checkbox_border-color_hover: var(--radio_border-color_hover);
 
   // TYPOGRAPHY CHECKBOX INPUT:CHECKED
   --checkbox_content_checked:"✓";
-  --checkbox_color_checked: var(--checkbox_color_hover);
-  --checkbox_background-color_checked: var(--radio_background-color_hover);
-  --checkbox_border-color_checked: var(--color_black);
+  // --checkbox_color_checked: var(--checkbox_color_hover);
+  // --checkbox_background-color_checked: var(--radio_background-color_hover);
+  // --checkbox_border-color_checked: var(--color_black);
 
   // TYPOGRAPHY SELECT
   --select_font-family: var(--default_font-family);
-  --select_color: var(--input_color);
+  // --select_color: var(--input_color);
   --select_font-size: var(--root_font-size);
   --select_font-weight: initial;
   --select_line-height: initial;
-  --select_background-color: var(--input_background-color);
+  // --select_background-color: var(--input_background-color);
   --select_border-width: 1px;
-  --select_border-color: var(--input_border-color);
+  // --select_border-color: var(--input_border-color);
   --select_border-radius: var(--input_border-radius);
   --select_box-shadow: var(--input_box-shadow);
   --select_padding: 1ch 1.2ch;
 
   // TYPOGRAPHY SELECT:FOCUS
   // TYPOGRAPHY SELECT:HOVER
-  --select_color_hover: var(--select_color);
-  --select_background-color_hover: var(--select_background-color);
-  --select_border-color_hover: var(--input_border-color_hover);
-  --select_border-bottom-color_hover: var(--select_border-color_hover);
+  // --select_color_hover: var(--select_color);
+  // --select_background-color_hover: var(--select_background-color);
+  // --select_border-color_hover: var(--input_border-color_hover);
+  // --select_border-bottom-color_hover: var(--select_border-color_hover);
   --select_box-shadow_hover: var(--input_box-shadow_hover);
 
   // TYPOGRAPHY TEXTAREA
   --textarea_font-family: var(--default_font-family);
-  --textarea_color: var(--input_color);
+  // --textarea_color: var(--input_color);
   --textarea_font-size: var(--root_font-size);
   --textarea_font-weight: initial;
   --textarea_line-height: initial;
-  --textarea_background-color: var(--input_background-color);
+  // --textarea_background-color: var(--input_background-color);
   --textarea_border-width: 1px;
-  --textarea_border-color: var(--input_border-color);
+  // --textarea_border-color: var(--input_border-color);
   --textarea_border-radius: var(--input_border-radius);
-  --textarea_placeholder-color: var(--color_light-gray);
+  // --textarea_placeholder-color: var(--color_light-gray);
   --textarea_box-shadow: var(--input_box-shadow);
   --textarea_padding: 1ch 1.2ch;
       
   // TYPOGRAPHY TEXTAREA:FOCUS
   // TYPOGRAPHY TEXTAREA:HOVER
-  --textarea_color_hover: var(--textarea_color);
-  --textarea_background-color_hover: var(--textarea_background-color);
-  --textarea_border-color_hover: var(--input_border-color_hover);
-  --textarea_border-bottom-color_hover: var(--textarea_border-color_hover);
+  // --textarea_color_hover: var(--textarea_color);
+  // --textarea_background-color_hover: var(--textarea_background-color);
+  // --textarea_border-color_hover: var(--input_border-color_hover);
+  // --textarea_border-bottom-color_hover: var(--textarea_border-color_hover);
   --textarea_box-shadow_hover: var(--input_box-shadow_hover);
 }
 
@@ -658,7 +658,7 @@ input.en__contactDetails__select {
   + .en__contactDetails__rows::after {
   // Needs and SVG safe color passed in https://stackoverflow.com/questions/25477819/scss-variable-in-background-image-with-svg-image-data-uri
   // content: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='21' height='16' viewBox='0 0 21 16'><path fill="#color-white" fill-rule='nonzero' d='M18.76.16L6.68 12.113l-4.44-4.392a.555.555 0 0 0-.779 0L.161 9.006a.541.541 0 0 0 0 .771L6.29 15.84a.555.555 0 0 0 .78 0l13.77-13.624a.541.541 0 0 0 0-.771L19.539.16a.555.555 0 0 0-.779 0z'/></svg>");
-  // fill: var(--color_cta);
+  // fill: var(--color_primary);
   content: "✓"; // REF: https://www.toptal.com/designers/htmlarrows/symbols/check-mark/
   position: absolute;
   left: 4px;
