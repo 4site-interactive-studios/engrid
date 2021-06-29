@@ -50,7 +50,7 @@
     --input_color: #000000;
     --input_background-color: #fafafa;
     --input_border-color: #dfdfe1;
-    --input_placeholder-color: var(--color_light-gray);
+    --input_placeholder-color: hsl(0, 0%, 67%);
     --input_color_hover: var(--input_color);
     --input_background-color_hover: var(--input_background-color);
     --input_border-color_hover: #767677;
@@ -96,6 +96,19 @@
     --button_color_checked: var(--button_color_hover);
     --button_background-color_checked: var(--button_background-color_hover);
     --button_border-color_checked: var(--button_border-color_hover);
+
+    // SUBMIT BUTTONS
+    --submit__button_color: var(--button_color);
+    --submit__button_border-color: var(--button_border-color);
+    --submit__button_backgrond-color: var(--button_background-color);
+    --submit__button_color_hover: var(--button_color);
+    --submit__button_background-color_hover: var(--color_black);
+    --submit__button_border-color_hover: var(--button_background-color_hover);
+    --submit__button_color_checked: var(--button_color_hover);
+    --submit__button_background-color_checked: var(--button_background-color_hover);
+    --submit__button_border-color_checked: var(--button_border-color_hover);
+
+    // DONATION PAGE (RADIO TO BUTTONS)
     --recurring-frequency__button_color: var(--button_color);
     --recurring-frequency__button_background-color: var(--button_background-color);
     --recurring-frequency__button_border-color: var(--button_border-color);

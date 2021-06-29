@@ -23,10 +23,22 @@
 
   // TYPOGRAPHY SUBMIT BUTTON
   // @TODO Add Submit Button Background Color and Color
+  // --submit__button_color: var(--button_color);
+  // --submit__button_border-color: var(--button_border-color);
+  // --submit__button_backgrond-color: var(--button_background-color);
   --submit__button_padding-top: 1ch;
   --submit__button_padding-bottom: 1ch;
   --submit__button_font-size: var(--root_font-size);
   
+  // TYPOGRAPHY SUBMIT BUTTON:HOVER
+  // --submit__button_color_hover: var(--button_color);
+  // --submit__button_background-color_hover: var(--color_black);
+  // --submit__button_border-color_hover: var(--button_background-color_hover);
+
+  // TYPOGRAPHY SUBMIT BUTTON:SELECTED
+  // --submit__button_color_checked: var(--button_color_hover);
+  // --submit__button_background-color_checked: var(--button_background-color_hover);
+  // --submit__button_border-color_checked: var(--button_border-color_hover);
 }
 
 /* @TODO Design buttons with style (Primary, Secondary, Text Only, Outine)
@@ -71,28 +83,34 @@ button,
   }  
 }
 
-.en__submit button,
-.en__submit .button {
-  margin-top: 2rem;
-}
-
-.en__submit,
-.en__submit button,
-.en__submit .button {
+// The submit button container should span the full width of its parent
+.en__submit{
   width: 100%;
 }
 
 .en__submit button,
-.en__submit .button{
+.en__submit .button {
+  margin-top: 2rem;
   padding-top: var(--submit__button_padding-top);
-  padding-bottom: var(--submit__button_padding-bottom);;
+  padding-bottom: var(--submit__button_padding-bottom);
   font-size: var(--submit__button_font-size);
+  width: 100%;
+
+  &:focus,
+  &:hover{
+      color: var(--submit__button_color_hover);
+      background-color: var(--submit__button_background-color_hover);
+      border-color: var(--submit__button_border-color_hover);
+  }
+
+  &:active{
+      color: var(--submit__button_color_checked);
+      background-color: var(--submit__button_background-color_checked);
+      border-color: var(--submit__button_border-color_checked);
+  } 
 }
 
-.en__submit button:hover,
-.en__submit button:focus,
-.en__submit .button:hover,
-.en__submit .button:focus,
+// @TODO The "primary" styling might no longer be needed
 button.primary:hover,
 button.primary:focus,
 .button.primary:hover,
@@ -119,13 +137,6 @@ button.primary:focus,
 .next-step .en__submit .button {
   width: initial;
   margin-left: auto;
-}
-
-button:hover,
-button:focus,
-.button:hover,
-.button:focus {
-  background-color: var(--button_background-color_checked);
 }
 
 button[disabled],
