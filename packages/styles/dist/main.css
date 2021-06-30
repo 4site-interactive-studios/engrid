@@ -1925,11 +1925,11 @@ body[data-engrid-debug]:before {
   max-width: 46.875rem;
   max-height: 3.4375rem; }
 
-:root {
+[data-engrid-theme] {
   --root_font-size: 16px;
   font-size: var(--root_font-size); }
 
-:root {
+[data-engrid-theme] {
   --native-fonts__sans-serif: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
   --default_font-family: var(--native-fonts__sans-serif);
   --default_font-size: var(--root_font-size);
@@ -2015,7 +2015,7 @@ a {
     color: var(--a_color_hover);
     text-decoration: var(--a_text-decoration_hover); }
 
-:root {
+[data-engrid-theme] {
   --label-font-family: var(--default_font-family);
   --label-font-size: var(--root_font-size);
   --label-font-weight: initial;
@@ -2770,7 +2770,7 @@ textarea:-webkit-autofill::first-line {
 select:-webkit-autofill::first-line {
   font-size: var(--select_font-size); }
 
-:root {
+[data-engrid-theme] {
   --engrid__page-backgroundImage_url: "url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)"; }
 
 body:not(#en__pagebuilder) .page-backgroundImage img {
@@ -2879,7 +2879,7 @@ body {
   body:not([data-engrid-embedded]) #engrid {
     height: 100vh; }
 
-:root {
+[data-engrid-theme] {
   --button_font-family: var(--default_font-family);
   --button_font-size: var(--root_font-size);
   --button_font-weight: initial;
@@ -2991,7 +2991,7 @@ button[disabled],
   cursor: not-allowed;
   filter: grayscale(1); }
 
-:root {
+[data-engrid-theme] {
   --click-to-expand__copy-area_height: 450px;
   --click-to-expand__cta-image_url: url("https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_open.png");
   --click-to-expand__cta-image_width: 16px;
@@ -3021,7 +3021,7 @@ body:not(#en__pagebuilder) .click-to-expand:not(.expanded) {
 body:not(#en__pagebuilder) .click-to-expand.expanded .click-to-expand-text-wrapper {
   outline: none; }
 
-:root {
+[data-engrid-theme] {
   --color_transparent: transparent;
   --color_white: hsl(0, 0%, 100%);
   --color_off-white: hsl(0, 0%, 83%);
@@ -3503,7 +3503,7 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
     padding-left: 0rem;
     padding-right: 0rem; } }
 
-:root {
+[data-engrid-theme] {
   --color_cta: var(--color_primary);
   --color_cta_hover: var(--color_primary_overlay);
   --page-backgroundImage-url: var(--engrid__page-backgroundImage_url);
@@ -3511,7 +3511,7 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   --engrid__body-side_margin: var(--engrid__body-main_margin);
   --engrid__body-side_padding: var(--engrid__body-main_padding); }
 
-:root {
+[data-engrid-theme] {
   --recurring-frequency__button_font-family: var(--button_font-family);
   --recurring-frequency__button_font-size: var(--button_font-size);
   --recurring-frequency__button_font-weight: var(--button_font-weight);
@@ -4011,7 +4011,7 @@ button.en__ecarditems__prevclose {
   to {
     width: 1.25em; } }
 
-:root {
+[data-engrid-theme] {
   --error__border-width: var(--input_border-width); }
 
 /************************************
@@ -4540,9 +4540,8 @@ img:not([width]) {
     -webkit-transform: rotate(360deg);
     tranform: rotate(360deg); } }
 
-:root {
+[data-engrid-theme] {
   --media-attribution__font-family: var(--default_font-family);
-  --media-attribution__color: rgba(255, 255, 255, 0.9);
   --media-attribution__font-size: 75%;
   --media-attribution__font-style: normal;
   --media-attribution__font-weight: bold;
@@ -4643,7 +4642,8 @@ figure.media-with-attribution {
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden; }
+  overflow-y: scroll;
+  overflow-x: hide; }
   #enModal.is-hidden {
     top: -500vh;
     transition: none;
@@ -5052,7 +5052,7 @@ body:not(#en__pagebuilder) .simple_country_select.country-select-visible .en__fi
   background-color: var(--button_background-color_checked);
   border-color: var(--button_border-color_checked); }
 
-:root {
+[data-engrid-theme] {
   --scale-up_20pct: 1.2;
   --scale-up_40pct: 1.4;
   --scale-up_80pct: 1.8;
@@ -5066,7 +5066,7 @@ body:not(#en__pagebuilder) .simple_country_select.country-select-visible .en__fi
   --spacing_xlg: calc(0.8652rem * 5); }
 
 /* ENGRID LAYOUTS */
-:root {
+[data-engrid-theme] {
   --engrid__page_background-color: var(--color_transparent);
   --engrid__page_padding: 0px;
   --engrid__page_margin: 0px;
@@ -6249,7 +6249,7 @@ body:not(#en__pagebuilder)[data-engrid-layout="centerright1col"] .page-backgroun
     #debug-bar #buttons-wrapper button:hover, #debug-bar #buttons-wrapper button:focus, #debug-bar #buttons-wrapper button:active {
       background-color: #1c6d9e; }
 
-:root {
+[data-engrid-theme] {
   --pagebuilder__background-color: #C1C0C0; }
 
 /*
