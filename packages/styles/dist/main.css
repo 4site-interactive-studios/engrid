@@ -2516,7 +2516,6 @@ input.en__contactDetails__select {
 .en__field--rating,
 .en__field--imgselect,
 .en__field--withOther {
-  min-width: calc(100% + 1rem);
   position: relative;
   left: -0.5rem;
   right: -0.5rem; }
@@ -2658,7 +2657,8 @@ input[type="number"]::-webkit-outer-spin-button {
 /* Default Stylings for Common Form Fields */
 .en__component--formblock {
   display: flex;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  justify-content: center; }
 
 /* All basic field types */
 .en__field--survey,

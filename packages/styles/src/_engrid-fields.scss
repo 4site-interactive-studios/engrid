@@ -686,7 +686,7 @@ input.en__contactDetails__select {
 .en__field--rating,
 .en__field--imgselect,
 .en__field--withOther{
-  min-width: calc(100% + 1rem); // Accounts for negative margin
+  // min-width: calc(100% + 1rem); // Accounts for negative margin
   position: relative;
   left: -0.5rem; // Negative margins are allowed so that the buttons can reflow onto new lines without unexpected issues with padding on wrap
   right: -0.5rem; // Negative margins are allowed so that the buttons can reflow onto new lines without unexpected issues with padding on wrap
@@ -846,6 +846,7 @@ input[type="number"]::-webkit-outer-spin-button {
 .en__component--formblock {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 /* All basic field types */
