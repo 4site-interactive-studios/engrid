@@ -515,8 +515,8 @@ textarea,
 
 .en__component--formblock .en__field:only-child,
 .en__component--formblock .en__field div.en__field__item:only-child {
-  margin-left: 0;
-  margin-right: 0;
+  // margin-left: 0;
+  // margin-right: 0;
 }
 
 .en__component--formblock .row-wrap .en__field,
@@ -676,20 +676,34 @@ input.en__contactDetails__select {
   margin-bottom: 0rem;
 }
 
+/* All Single Fields that do not Wrap */
+.en__field--survey,
+.en__field--number,
+.en__field--calendar,
+.en__field--select,
+.en__field--text, 
+.en__field--telephone, 
+.en__field--range, 
+.en__field--password, 
+.en__field--calendar{
+  flex-basis: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+
 // For Coumpound Fields that Wrap
+.en__field--checkbox,
+.en__field--radio,
+.en__field--rating,
+.en__field--imgselect,
 .en__field--splittext,
 .en__field--tripletext,
 .en__field--splitselect,
 .en__field--tripleselect,
-.en__field--radio,
-.en__field--checkbox,
-.en__field--rating,
-.en__field--imgselect,
 .en__field--withOther{
-  // min-width: calc(100% + 1rem); // Accounts for negative margin
-  position: relative;
-  left: -0.5rem; // Negative margins are allowed so that the buttons can reflow onto new lines without unexpected issues with padding on wrap
-  right: -0.5rem; // Negative margins are allowed so that the buttons can reflow onto new lines without unexpected issues with padding on wrap
+  flex-basis: calc(100% + 1rem);
+  margin-left: -0.5rem; // Negative margins are allowed so that the buttons can reflow onto new lines without unexpected issues with padding on wrap
+  margin-right: -0.5rem; // Negative margins are allowed so that the buttons can reflow onto new lines without unexpected issues with padding on wrap
 
   > .en__field__label,
   > .en__field__helpText{
@@ -847,27 +861,4 @@ input[type="number"]::-webkit-outer-spin-button {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-}
-
-/* All basic field types */
-.en__field--survey,
-.en__field--number,
-.en__field--calendar,
-.en__field--tripletext,
-.en__field--tripleselect,
-.en__field--splitselect,
-.en__field--splittext,
-.en__field--checkbox,
-.en__field--radio,
-.en__field--select,
-.en__field--text, 
-.en__field--telephone, 
-.en__field--rating, 
-.en__field--range, 
-.en__field--password, 
-.en__field--calendar, 
-.en__field--imgselect{
-  flex-basis: 100%;
-  padding-left: 0;
-  padding-right: 0;
 }

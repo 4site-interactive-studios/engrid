@@ -111,21 +111,21 @@
   padding-right: 0.5rem;
 }
 
-.i1-100 .en__field:nth-of-type(1),
-.i2-100 .en__field:nth-of-type(2),
-.i3-100 .en__field:nth-of-type(3),
-.i4-100 .en__field:nth-of-type(4),
-.i5-100 .en__field:nth-of-type(5),
-.i6-100 .en__field:nth-of-type(6),
-.i7-100 .en__field:nth-of-type(7),
-.i8-100 .en__field:nth-of-type(8),
-.i9-100 .en__field:nth-of-type(9),
-.i10-100 .en__field:nth-of-type(10),
-.i11-100 .en__field:nth-of-type(11) {
-  flex-basis: 100%;
-  padding-left: 0rem;
-  padding-right: 0rem;
-}
+// .i1-100 .en__field:nth-of-type(1),
+// .i2-100 .en__field:nth-of-type(2),
+// .i3-100 .en__field:nth-of-type(3),
+// .i4-100 .en__field:nth-of-type(4),
+// .i5-100 .en__field:nth-of-type(5),
+// .i6-100 .en__field:nth-of-type(6),
+// .i7-100 .en__field:nth-of-type(7),
+// .i8-100 .en__field:nth-of-type(8),
+// .i9-100 .en__field:nth-of-type(9),
+// .i10-100 .en__field:nth-of-type(10),
+// .i11-100 .en__field:nth-of-type(11) {
+//   flex-basis: 100%;
+//   padding-left: 0rem;
+//   padding-right: 0rem;
+// }
 
 /* For items at the start of a row, remove left padding */
 .i1-start .en__field:nth-of-type(1),

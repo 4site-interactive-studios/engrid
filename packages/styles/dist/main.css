@@ -2516,9 +2516,9 @@ input.en__contactDetails__select {
 .en__field--rating,
 .en__field--imgselect,
 .en__field--withOther {
-  position: relative;
-  left: -0.5rem;
-  right: -0.5rem; }
+  flex-basis: calc(100% + 1rem) !important;
+  margin-left: -0.5rem;
+  margin-right: -0.5rem; }
   .en__field--splittext > .en__field__label,
   .en__field--splittext > .en__field__helpText,
   .en__field--tripletext > .en__field__label,
