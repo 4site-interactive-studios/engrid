@@ -13,7 +13,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  overflow-y: scroll; // Scroll vertically (used when modal contents are larger than the viewport)
+  overflow-x: hide; // Do not scroll horizontally
   &.is-hidden {
     top: -500vh;
     transition: none; /* When the modal gains the "is-hidden" class it will dissapear instantly */
