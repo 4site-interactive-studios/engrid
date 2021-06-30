@@ -4643,7 +4643,7 @@ figure.media-with-attribution {
   justify-content: center;
   align-items: center;
   overflow-y: scroll;
-  overflow-x: hide; }
+  overflow-x: hidden; }
   #enModal.is-hidden {
     top: -500vh;
     transition: none;
