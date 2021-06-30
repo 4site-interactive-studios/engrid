@@ -150,7 +150,7 @@
 }
 
 .radio-to-buttons_recurrfreq > .en__field > .en__field__element .en__field__input--other{
-    border-radius: Tvar(--recurring-frequency__button_border-radius);
+    border-radius: var(--recurring-frequency__button_border-radius);
 }
 
 /*
