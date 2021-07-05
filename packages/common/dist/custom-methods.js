@@ -379,7 +379,7 @@ export const watchInmemField = () => {
 };
 // @TODO Refactor (low priority)
 export const watchGiveBySelectField = () => {
-    const enFieldGiveBySelect = document.querySelector(".en__field--giveBySelect");
+    const enFieldGiveBySelect = document.querySelector(".en__field--give-by-select");
     const transactionGiveBySelect = document.getElementsByName("transaction.giveBySelect");
     const enFieldPaymentType = document.querySelector("#en__field_transaction_paymenttype");
     let enFieldGiveBySelectCurrentValue = document.querySelector('input[name="transaction.giveBySelect"]:checked');

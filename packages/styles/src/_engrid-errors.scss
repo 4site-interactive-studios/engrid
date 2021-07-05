@@ -34,20 +34,20 @@
 /* Field Level Inline Errors */
 
 /* Pick up the normal spacing on the error element to contunue form pacing continues as expected when in an error state */
-.en__component .en__field.en__field--select.en__field--validationFailed,
-.en__component .en__field.en__field--radio.en__field--validationFailed,
-.en__component .en__field.en__field--checkbox.en__field--validationFailed,
-.en__component .en__field.en__field--splittext.en__field--validationFailed,
-.en__component .en__field.en__field--tripletext.en__field--validationFailed,
-.en__component .en__field.en__field--splitselect.en__field--validationFailed,
-.en__component .en__field.en__field--tripleselect.en__field--validationFailed {
-  margin-bottom: 1rem;
-}
+// .en__component .en__field.en__field--select.en__field--validationFailed,
+// .en__component .en__field.en__field--radio.en__field--validationFailed,
+// .en__component .en__field.en__field--checkbox.en__field--validationFailed,
+// .en__component .en__field.en__field--splittext.en__field--validationFailed,
+// .en__component .en__field.en__field--tripletext.en__field--validationFailed,
+// .en__component .en__field.en__field--splitselect.en__field--validationFailed,
+// .en__component .en__field.en__field--tripleselect.en__field--validationFailed {
+//   margin-bottom: 1rem;
+// }
 
 .en__component .en__field__error {
   padding: 0.25rem 0.5rem 0 0;
   color: var(--error__color);
-  font-size: 0.75rem;
+  font-size: calc(max(75%, 10px));
   order: 3;
 }
 
@@ -61,8 +61,8 @@
 .en__field--rating .en__field__error,
 .en__field--imgselect .en__field__error,
 .en__field--withOther .en__field__error{
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  // padding-left: 0.5rem;
+  // padding-right: 0.5rem;
 }
 
 /* @TODO Not working anymore since we removed our corresponding JS */
@@ -103,12 +103,18 @@ body.error-jump-assist .en__component .en__field__error {
   .en__field__element,
 .en__component
   .en__field.en__field--tripleselect.en__field--validationFailed
+  .en__field__element,
+.en__component
+  .en__field.en__field--imgselect.en__field--validationFailed
+  .en__field__element,
+.en__component
+  .en__field.en__field--rating.en__field--validationFailed
   .en__field__element {
   border: var(--error__border-width) solid var(--error__color);
   background-color: var(--error__color_faded);
-  padding-top: 0.5rem;
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
+  // padding-top: 0.5rem;
+  margin-left: 0rem;
+  margin-right: 0rem;
   border-radius: var(--input_border-radius);
 }
 

@@ -2076,7 +2076,8 @@ label a.label-tooltip {
   right: 0;
   text-decoration: underline;
   color: var(--label-color);
-  font-weight: 400; }
+  font-weight: 400;
+  padding-right: 0.5rem; }
 
 input,
 input.en__field__input {
@@ -2326,6 +2327,10 @@ textarea,
     border-color: var(--textarea_border-color_hover);
     border-bottom-color: var(--textarea_border-bottom-color_hover);
     box-shadow: var(--textarea_box-shadow_hover); }
+  textarea.en__field,
+  .en__contactMessage__plainText.en__field {
+    margin-left: 0;
+    margin-right: 0; }
 
 .en__field__item {
   padding: initial; }
@@ -2363,7 +2368,6 @@ textarea,
 .en__hidden {
   display: none !important; }
 
-.en__field,
 .en__captcha {
   padding-bottom: 0;
   margin-bottom: 1rem;
@@ -2388,16 +2392,6 @@ textarea,
 
 /* If the form field has a hidden "other" field we need to remove the end of row spacing */
 /* NEED TO REVISIT FOR CODE CLEANUP */
-.en__component--formblock
-.en__field--withOther
-div.en__field__item:nth-last-child(2) {
-  margin-right: 0px; }
-
-.en__component--formblock .row-wrap .en__field,
-.en__component--formblock .row-wrap .en__field div.en__field__item {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem; }
-
 /************************************
 * Inputs
 ***********************************/
@@ -2485,7 +2479,7 @@ input.en__contactDetails__select {
 .en__field__input--checkbox:focus + .en__field__label,
 .en__contactDetails__select:focus + .en__contactDetails__rows {
   outline: -webkit-focus-ring-color auto 1px;
-  outline-offset: 3px; }
+  outline-offset: calc(0.5rem - 3px); }
 
 /* QA Needed: EN's hidden input field */
 .en__field--hidden {
@@ -2497,62 +2491,79 @@ input.en__contactDetails__select {
 /* Should confirm if the EN class field could even hold enough chars to fit defining 20 fields plus their start/stop classes */
 /* Why 20 pre-defined options? To cover a single form component with all of the following: * 1. First Name (50%) | 2. Last Name (50%) * 3. Email (100%) * 4. Email Opt-in (100%) * 5. Phone (100%) * 6. Phone Opt-in (100%) * 7. Street (100%) * 8. Street 2 (100%) * 9. City (33%) | 10. State (33%) | 11. Zip (33%) * 12. Country (100%) * 13. Giving Frequency (100%) * 14. Giving Amount (100%) * 15. Gift Type (100%) * 16. Credit Card Number (100%) * 17. Credit Card Expiration (50%) | 18. Credit Card CVV (50%) * 19. Custom Field (100%) * 20. Custom Field (100%) */
 /* Make all en fields 100% */
-.en__field {
-  flex-basis: 100%;
-  padding-bottom: 1rem;
-  margin-bottom: 0rem; }
-
-/* All Single Fields that do not Wrap */
-.en__field--survey,
-.en__field--number,
-.en__field--calendar,
-.en__field--select,
-.en__field--text,
-.en__field--telephone,
-.en__field--range,
-.en__field--password,
-.en__field--calendar {
-  flex-basis: 100%;
-  padding-left: 0;
-  padding-right: 0; }
-
-.en__field--checkbox,
-.en__field--radio,
-.en__field--rating,
-.en__field--imgselect,
-.en__field--splittext,
-.en__field--tripletext,
-.en__field--splitselect,
-.en__field--tripleselect,
-.en__field--withOther {
-  flex-basis: calc(100% + 1rem);
+.en__component--formblock,
+.en__component--svblock {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
   margin-left: -0.5rem;
   margin-right: -0.5rem; }
-  .en__field--checkbox > .en__field__label,
-  .en__field--checkbox > .en__field__helpText,
-  .en__field--radio > .en__field__label,
-  .en__field--radio > .en__field__helpText,
-  .en__field--rating > .en__field__label,
-  .en__field--rating > .en__field__helpText,
-  .en__field--imgselect > .en__field__label,
-  .en__field--imgselect > .en__field__helpText,
-  .en__field--splittext > .en__field__label,
-  .en__field--splittext > .en__field__helpText,
-  .en__field--tripletext > .en__field__label,
-  .en__field--tripletext > .en__field__helpText,
-  .en__field--splitselect > .en__field__label,
-  .en__field--splitselect > .en__field__helpText,
-  .en__field--tripleselect > .en__field__label,
-  .en__field--tripleselect > .en__field__helpText,
-  .en__field--withOther > .en__field__label,
-  .en__field--withOther > .en__field__helpText {
+  .en__component--formblock > *,
+  .en__component--svblock > * {
     padding-left: 0.5rem;
     padding-right: 0.5rem; }
+  .en__component--formblock .en__field,
+  .en__component--svblock .en__field {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    padding-bottom: 0rem;
+    margin-bottom: 0.5rem; }
+    .en__component--formblock .en__field .en__field__element .en__field__label,
+    .en__component--formblock .en__field .en__field__element .en__field__helpText,
+    .en__component--svblock .en__field .en__field__element .en__field__label,
+    .en__component--svblock .en__field .en__field__element .en__field__helpText {
+      padding-top: 0.5rem;
+      padding-right: 0rem;
+      padding-bottom: 0.25rem;
+      padding-left: 0rem; }
+    .en__component--formblock .en__field .en__field__element > *:only-of-type,
+    .en__component--formblock .en__field .en__field__element .en__submit,
+    .en__component--svblock .en__field .en__field__element > *:only-of-type,
+    .en__component--svblock .en__field .en__field__element .en__submit {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+      margin-bottom: 0.5rem; }
+      .en__component--formblock .en__field .en__field__element > *:only-of-type.en__rangeFieldLabels,
+      .en__component--formblock .en__field .en__field__element .en__submit.en__rangeFieldLabels,
+      .en__component--svblock .en__field .en__field__element > *:only-of-type.en__rangeFieldLabels,
+      .en__component--svblock .en__field .en__field__element .en__submit.en__rangeFieldLabels {
+        padding-left: 0;
+        padding-right: 0; }
+    .en__component--formblock .en__field .en__field__element.en__field__element--checkbox, .en__component--formblock .en__field .en__field__element.en__field__element--radio, .en__component--formblock .en__field .en__field__element.en__field__element--rating, .en__component--formblock .en__field .en__field__element.en__field__element--imgselect, .en__component--formblock .en__field .en__field__element.en__field__element--splittext, .en__component--formblock .en__field .en__field__element.en__field__element--tripletext, .en__component--formblock .en__field .en__field__element.en__field__element--splitselect, .en__component--formblock .en__field .en__field__element.en__field__element--tripleselect, .en__component--formblock .en__field .en__field__element.en__field__element--withOther,
+    .en__component--svblock .en__field .en__field__element.en__field__element--checkbox,
+    .en__component--svblock .en__field .en__field__element.en__field__element--radio,
+    .en__component--svblock .en__field .en__field__element.en__field__element--rating,
+    .en__component--svblock .en__field .en__field__element.en__field__element--imgselect,
+    .en__component--svblock .en__field .en__field__element.en__field__element--splittext,
+    .en__component--svblock .en__field .en__field__element.en__field__element--tripletext,
+    .en__component--svblock .en__field .en__field__element.en__field__element--splitselect,
+    .en__component--svblock .en__field .en__field__element.en__field__element--tripleselect,
+    .en__component--svblock .en__field .en__field__element.en__field__element--withOther {
+      margin-left: -0.5rem;
+      margin-right: -0.5rem; }
+      .en__component--formblock .en__field .en__field__element.en__field__element--checkbox .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--radio .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--rating .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--imgselect .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--splittext .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--tripletext .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--splitselect .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--tripleselect .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--withOther .en__field__item,
+      .en__component--svblock .en__field .en__field__element.en__field__element--checkbox .en__field__item,
+      .en__component--svblock .en__field .en__field__element.en__field__element--radio .en__field__item,
+      .en__component--svblock .en__field .en__field__element.en__field__element--rating .en__field__item,
+      .en__component--svblock .en__field .en__field__element.en__field__element--imgselect .en__field__item,
+      .en__component--svblock .en__field .en__field__element.en__field__element--splittext .en__field__item,
+      .en__component--svblock .en__field .en__field__element.en__field__element--tripletext .en__field__item,
+      .en__component--svblock .en__field .en__field__element.en__field__element--splitselect .en__field__item,
+      .en__component--svblock .en__field .en__field__element.en__field__element--tripleselect .en__field__item,
+      .en__component--svblock .en__field .en__field__element.en__field__element--withOther .en__field__item {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem; }
+    .en__component--formblock .en__field.en__field--withOther .en__field__element,
+    .en__component--svblock .en__field.en__field--withOther .en__field__element {
+      margin-left: -0.5rem;
+      margin-right: -0.5rem; }
+      .en__component--formblock .en__field.en__field--withOther .en__field__element .en__field__item,
+      .en__component--svblock .en__field.en__field--withOther .en__field__element .en__field__item {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem; }
 
-.en__field__item {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem; }
-
+/* All Single Fields that do not Wrap */
 .en__field__element--splittext,
 .en__field__element--splitselect,
 .en__field__element--tripleselect {
@@ -2616,9 +2627,6 @@ input.en__contactDetails__select {
 .en__imageSelectField__image {
   padding-bottom: 0.5rem; }
 
-.en__field--withOther .en__field__element--select .en__field__item:first-child {
-  margin-right: 0 !important; }
-
 /* Custom Styles */
 .inline-country .en__field--country {
   position: absolute;
@@ -2662,12 +2670,6 @@ input[type="number"]::-webkit-outer-spin-button {
 /* Microsoft Edge */
 ::-ms-input-placeholder {
   color: var(--color_light-gray); }
-
-/* Default Stylings for Common Form Fields */
-.en__component--formblock {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center; }
 
 /* ENGRID STYLINGS */
 @supports (-webkit-appearance: -apple-pay-button) {
@@ -3157,9 +3159,7 @@ body:not(#en__pagebuilder) .en__component--column:last-of-type,
 .i9-20 .en__field:nth-of-type(9),
 .i10-20 .en__field:nth-of-type(10),
 .i11-20 .en__field:nth-of-type(11) {
-  flex-basis: 20%;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem; }
+  flex-basis: 20%; }
 
 .i1-25 .en__field:nth-of-type(1),
 .i2-25 .en__field:nth-of-type(2),
@@ -3172,9 +3172,7 @@ body:not(#en__pagebuilder) .en__component--column:last-of-type,
 .i9-25 .en__field:nth-of-type(9),
 .i10-25 .en__field:nth-of-type(10),
 .i11-25 .en__field:nth-of-type(11) {
-  flex-basis: 25%;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem; }
+  flex-basis: 25%; }
 
 .i1-33 .en__field:nth-of-type(1),
 .i2-33 .en__field:nth-of-type(2),
@@ -3187,9 +3185,7 @@ body:not(#en__pagebuilder) .en__component--column:last-of-type,
 .i9-33 .en__field:nth-of-type(9),
 .i10-33 .en__field:nth-of-type(10),
 .i11-33 .en__field:nth-of-type(11) {
-  flex-basis: 33.33333%;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem; }
+  flex-basis: 33.33333%; }
 
 .i1-40 .en__field:nth-of-type(1),
 .i2-40 .en__field:nth-of-type(2),
@@ -3202,9 +3198,7 @@ body:not(#en__pagebuilder) .en__component--column:last-of-type,
 .i9-40 .en__field:nth-of-type(9),
 .i10-40 .en__field:nth-of-type(10),
 .i11-40 .en__field:nth-of-type(11) {
-  flex-basis: 40%;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem; }
+  flex-basis: 40%; }
 
 .i1-50 .en__field:nth-of-type(1),
 .i2-50 .en__field:nth-of-type(2),
@@ -3217,9 +3211,7 @@ body:not(#en__pagebuilder) .en__component--column:last-of-type,
 .i9-50 .en__field:nth-of-type(9),
 .i10-50 .en__field:nth-of-type(10),
 .i11-50 .en__field:nth-of-type(11) {
-  flex-basis: 50%;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem; }
+  flex-basis: 50%; }
 
 .i1-66 .en__field:nth-of-type(1),
 .i2-66 .en__field:nth-of-type(2),
@@ -3232,9 +3224,7 @@ body:not(#en__pagebuilder) .en__component--column:last-of-type,
 .i9-66 .en__field:nth-of-type(9),
 .i10-66 .en__field:nth-of-type(10),
 .i11-66 .en__field:nth-of-type(11) {
-  flex-basis: 66.66666%;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem; }
+  flex-basis: 66.66666%; }
 
 .i1-75 .en__field:nth-of-type(1),
 .i2-75 .en__field:nth-of-type(2),
@@ -3247,38 +3237,10 @@ body:not(#en__pagebuilder) .en__component--column:last-of-type,
 .i9-75 .en__field:nth-of-type(9),
 .i10-75 .en__field:nth-of-type(10),
 .i11-75 .en__field:nth-of-type(11) {
-  flex-basis: 75%;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem; }
+  flex-basis: 75%; }
 
 /* For items at the start of a row, remove left padding */
-.i1-start .en__field:nth-of-type(1),
-.i2-start .en__field:nth-of-type(2),
-.i3-start .en__field:nth-of-type(3),
-.i4-start .en__field:nth-of-type(4),
-.i5-start .en__field:nth-of-type(5),
-.i6-start .en__field:nth-of-type(6),
-.i7-start .en__field:nth-of-type(7),
-.i8-start .en__field:nth-of-type(8),
-.i9-start .en__field:nth-of-type(9),
-.i10-start .en__field:nth-of-type(10),
-.i11-start .en__field:nth-of-type(11) {
-  padding-left: 0; }
-
 /* For items at the end of a row, remove right padding */
-.i1-end .en__field:nth-of-type(1),
-.i2-end .en__field:nth-of-type(2),
-.i3-end .en__field:nth-of-type(3),
-.i4-end .en__field:nth-of-type(4),
-.i5-end .en__field:nth-of-type(5),
-.i6-end .en__field:nth-of-type(6),
-.i7-end .en__field:nth-of-type(7),
-.i8-end .en__field:nth-of-type(8),
-.i9-end .en__field:nth-of-type(9),
-.i10-end .en__field:nth-of-type(10),
-.i11-end .en__field:nth-of-type(11) {
-  padding-right: 0; }
-
 .i1-center .en__field:nth-of-type(1),
 .i2-center .en__field:nth-of-type(2),
 .i3-center .en__field:nth-of-type(3),
@@ -3431,9 +3393,7 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   .i9-m50 .en__field:nth-of-type(9),
   .i10-m50 .en__field:nth-of-type(10),
   .i11-m50 .en__field:nth-of-type(11) {
-    flex-basis: 50%;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem; }
+    flex-basis: 50%; }
   /* For items at the start of a row, remove left padding */
   .i1-mstart .en__field:nth-of-type(1),
   .i2-mstart .en__field:nth-of-type(2),
@@ -3446,7 +3406,8 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   .i9-mstart .en__field:nth-of-type(9),
   .i10-mstart .en__field:nth-of-type(10),
   .i11-mstart .en__field:nth-of-type(11) {
-    padding-left: 0; }
+    padding-left: 0;
+    margin-right: 0; }
   /* For items at the end of a row, remove right padding */
   .i1-mend .en__field:nth-of-type(1),
   .i2-mend .en__field:nth-of-type(2),
@@ -3459,21 +3420,8 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   .i9-mend .en__field:nth-of-type(9),
   .i10-mend .en__field:nth-of-type(10),
   .i11-mend .en__field:nth-of-type(11) {
-    padding-right: 0; }
-  .i1-m100 .en__field:nth-of-type(1),
-  .i2-m100 .en__field:nth-of-type(2),
-  .i3-m100 .en__field:nth-of-type(3),
-  .i4-m100 .en__field:nth-of-type(4),
-  .i5-m100 .en__field:nth-of-type(5),
-  .i6-m100 .en__field:nth-of-type(6),
-  .i7-m100 .en__field:nth-of-type(7),
-  .i8-m100 .en__field:nth-of-type(8),
-  .i9-m100 .en__field:nth-of-type(9),
-  .i10-m100 .en__field:nth-of-type(10),
-  .i11-m100 .en__field:nth-of-type(11) {
-    flex-basis: 100%;
-    padding-left: 0rem;
-    padding-right: 0rem; } }
+    padding-right: 0;
+    margin-left: 0; } }
 
 [data-engrid-theme] {
   --color_cta: var(--color_primary);
@@ -3512,22 +3460,10 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   --give-by-select__button_count: 4;
   --radio-to-buttons__button_count: 4; }
 
-.en__field--splitselect.en__field--ccexpire {
-  flex-basis: calc((100% / 3) * 2);
-  min-width: auto;
-  position: relative;
-  left: -0.5rem; }
-
-.en__field--ccvv {
-  flex-basis: calc(100% / 3);
-  min-width: auto;
-  position: relative;
-  right: -0.5rem; }
-
 .en__field--recurrfreq .en__field__element,
 .en__field--recurrpay .en__field__element,
 .en__field--donationAmt .en__field__element,
-.en__field--giveBySelect .en__field__element {
+.en__field--give-by-select .en__field__element {
   justify-content: center; }
 
 .en__field--donationAmt.en__field--withOther
@@ -3542,13 +3478,13 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
 
 /* prettier-ignore */
 .radio-to-buttons .en__field--radio .en__field__input--radio + .en__field__label:before,
-.en__field--giveBySelect.en__field--radio .en__field__input--radio + .en__field__label:before,
+.en__field--give-by-select.en__field--radio .en__field__input--radio + .en__field__label:before,
 .radio-to-buttons_donationAmt .en__field--donationAmt.en__field--radio .en__field__input--radio + .en__field__label:before,
 .radio-to-buttons_recurrfreq .en__field--recurrfreq.en__field--radio .en__field__input--radio + .en__field__label:before {
   display: none; }
 
 .radio-to-buttons > .en__field > .en__field__element > .en__field__item:not(.en__field__item--other),
-.en__field--giveBySelect > .en__field__element .en__field__item:not(.en__field__item--other),
+.en__field--give-by-select > .en__field__element .en__field__item:not(.en__field__item--other),
 .radio-to-buttons_donationAmt > .en__field > .en__field__element .en__field__item:not(.en__field__item--other),
 .radio-to-buttons_recurrfreq > .en__field > .en__field__element .en__field__item:not(.en__field__item--other) {
   padding-left: 0;
@@ -3557,7 +3493,7 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   flex-shrink: 1; }
 
 .radio-to-buttons > .en__field > .en__field__element > .en__field__item--other,
-.en__field--giveBySelect > .en__field__element .en__field__item--other,
+.en__field--give-by-select > .en__field__element .en__field__item--other,
 .radio-to-buttons_donationAmt > .en__field > .en__field__element .en__field__item--other,
 .radio-to-buttons_recurrfreq > .en__field > .en__field__element .en__field__item--other {
   padding-left: .5rem;
@@ -3568,7 +3504,7 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
 .radio-to-buttons > .en__field > .en__field__element > .en__field__input--other {
   border-radius: var(--button_border-radius); }
 
-.en__field--giveBySelect > .en__field__element .en__field__input--other {
+.en__field--give-by-select > .en__field__element .en__field__input--other {
   border-radius: var(--give-by-select__button_border-radius); }
 
 .radio-to-buttons_donationAmt > .en__field > .en__field__element .en__field__input--other {
@@ -3621,7 +3557,7 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   --radio-to-buttons__button_count: 5; }
 
 /* prettier-ignore */
-.en__field--giveBySelect.en__field--radio input[type=radio] + label {
+.en__field--give-by-select.en__field--radio input[type=radio] + label {
   font-family: var(--give-by-select__button_font-family);
   color: var(--give-by-select__button_color);
   font-size: var(--give-by-select__button_font-size);
@@ -3640,7 +3576,7 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   text-align: center;
   justify-content: center; }
 
-.en__field--giveBySelect > .en__field__element .en__field__item {
+.en__field--give-by-select > .en__field__element .en__field__item {
   flex-basis: calc(100% / var(--give-by-select__button_count)); }
 
 .give-by-select_count_1 {
@@ -3746,7 +3682,7 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   border-color: var(--button_border-color_hover); }
 
 /* prettier-ignore */
-.en__field--giveBySelect.en__field--radio .en__field__item:hover input[type=radio] + label {
+.en__field--give-by-select.en__field--radio .en__field__item:hover input[type=radio] + label {
   color: var(--give-by-select__button_color_hover);
   background-color: var(--give-by-select__button_background-color_hover);
   border-color: var(--give-by-select__button_border-color_hover); }
@@ -3775,7 +3711,7 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   border-color: var(--button_border-color_checked); }
 
 /* prettier-ignore */
-.en__field--giveBySelect.en__field--radio .en__field__item input[type=radio]:checked + label {
+.en__field--give-by-select.en__field--radio .en__field__item input[type=radio]:checked + label {
   color: var(--give-by-select__button_color_checked);
   background-color: var(--give-by-select__button_background-color_checked);
   border-color: var(--give-by-select__button_border-color_checked); }
@@ -3803,7 +3739,7 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   border-color: var(--button_border-color_checked); }
 
 /* prettier-ignore */
-.en__field--giveBySelect.en__field--radio .en__field__item:hover input[type=radio]:checked + label {
+.en__field--give-by-select.en__field--radio .en__field__item:hover input[type=radio]:checked + label {
   color: var(--give-by-select__button_color_checked);
   background-color: var(--give-by-select__button_background-color_checked);
   border-color: var(--give-by-select__button_border-color_checked); }
@@ -4028,18 +3964,6 @@ button.en__ecarditems__prevclose {
   font-size: 0.75rem;
   order: 3; }
 
-.en__field--splittext .en__field__error,
-.en__field--tripletext .en__field__error,
-.en__field--splitselect .en__field__error,
-.en__field--tripleselect .en__field__error,
-.en__field--radio .en__field__error,
-.en__field--checkbox .en__field__error,
-.en__field--rating .en__field__error,
-.en__field--imgselect .en__field__error,
-.en__field--withOther .en__field__error {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem; }
-
 /* @TODO Not working anymore since we removed our corresponding JS */
 /* When EN's field validator flags an error it jumps the user to the first error on thepage. Our custom error JS executes after EN's and sets a body level class that we can reorder the field presentation on. If we don't wait to re-order the fields, the page will jump to the error which appears below the input resulting in the user having to scroll up to make the change. This is something that should be fixed on EN's end and how they handle errors, but until then we need this work around */
 /* Code dependent on "oc-en-error-helpers.js" which must execute after EN's "pagedata.js" */
@@ -4079,8 +4003,8 @@ body.error-jump-assist .en__component .en__field__error {
   border: var(--error__border-width) solid var(--error__color);
   background-color: var(--error__color_faded);
   padding-top: 0.5rem;
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
+  margin-left: 0rem;
+  margin-right: 0rem;
   border-radius: var(--input_border-radius); }
 
 .en__field--text.en__field--validationFailed .en__field__error,
@@ -6469,3 +6393,62 @@ body:not(#en__pagebuilder)[data-engrid-layout="centerright1col"] .page-backgroun
     #EN__RootElement .pboAdvancedRow__preview .hide.pboAdvancedRow__preview .en__component--column {
       outline-color: #ff0000 !important;
       z-index: 1; }
+
+/*
+* ##########################################################
+* # Page Builder Visual Changes for Editing Restricted Library Components
+* .edit-warning - https://d.pr/i/11bENF
+* .edit-lock - https://d.pr/i/vsA4ao
+* ##########################################################
+*/
+/* Make the border of componetn with an edit warning, red  */
+#en__pagebuilder .edit-warning.en__component.en__component--active.en__component--activeTarget {
+  box-shadow: 0 0 0 2px #f12222; }
+
+/* Make the border of component with an edit lock, black  */
+#en__pagebuilder .edit-lock.en__component.en__component--active.en__component--activeTarget {
+  box-shadow: 0 0 0 2px #000000; }
+
+/* Remove action handle from its normal position */
+/* Style the edit warning and lock messages to match the styling of the component actions */
+#en__pagebuilder .edit-warning.en__component.en__component--active.en__component--activeTarget .en__component__actions::after,
+#en__pagebuilder .edit-lock.en__component.en__component--active.en__component--activeTarget .en__component__actions::after {
+  display: block;
+  text-decoration: none;
+  line-height: 30px;
+  font-weight: 700;
+  padding: 0 6px 0 28px;
+  min-width: 30px;
+  text-align: left;
+  z-index: 9999;
+  white-space: nowrap; }
+
+/* Style edit warning messages to match the styling of the component actions */
+#en__pagebuilder .edit-warning.en__component.en__component--active.en__component--activeTarget .en__component__actions {
+  background-color: #f12222;
+  color: #fff; }
+
+/* Style the edit lock messages to match the styling of the component actions */
+#en__pagebuilder .edit-lock.en__component.en__component--active.en__component--activeTarget .en__component__actions {
+  background-color: #000000;
+  color: #fff; }
+
+/* Add edit warning message */
+#en__pagebuilder .edit-warning.en__component.en__component--active.en__component--activeTarget .en__component__actions::after {
+  content: "Unlink Before Editing"; }
+
+/* Add edit lock message */
+#en__pagebuilder .edit-lock.en__component.en__component--active.en__component--activeTarget .en__component__actions::after {
+  content: "Edit From Library"; }
+
+/* Hide the edit action when editing of the form component has been locked */
+#en__pagebuilder .edit-lock.en__component.en__component--active.en__component--activeTarget > .en__component__actions > a.en__component__action.en__component__action--settings {
+  display: none; }
+
+/* Change the background color of the component actions, when an edit warning is added, to further visually differentiate them */
+#en__pagebuilder .edit-warning.en__component.en__component--active.en__component--activeTarget > .en__component__actions > a.en__component__action {
+  background-color: #f12222; }
+
+/* Change the background color of the component actions, when an edit warning is added, to further visually differentiate them */
+#en__pagebuilder .edit-lock.en__component.en__component--active.en__component--activeTarget > .en__component__actions > a.en__component__action {
+  background-color: #000000; }

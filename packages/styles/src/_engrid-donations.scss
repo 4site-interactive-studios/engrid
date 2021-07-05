@@ -9,7 +9,7 @@
     --recurring-frequency__button_border-width: var(--button_border-width);
     // --recurring-frequency__button_border-color: var(--button_border-color);
     --recurring-frequency__button_border-radius: var(--button_border-radius);
-    --recurring-frequency__button_padding: var(--button_padding);
+    --recurring-frequency__button_padding: var(--button_padding) !important;
     --recurring-frequency__button_count: 4;
 
     // TYPOGRAPHY GIVING FREQUENCY BUTTON:HOVER  
@@ -32,7 +32,7 @@
     --donation-amount__button_border-width: var(--button_border-width);
     // --donation-amount__button_border-color: var(--button_border-color);
     --donation-amount__button_border-radius: var(--button_border-radius);
-    --donation-amount__button_padding: var(--button_padding);
+    --donation-amount__button_padding: var(--button_padding) !important;
     --donation-amount__button_count: 4;
 
     // TYPOGRAPHY GIVING AMOUNT BUTTON:HOVER  
@@ -59,7 +59,7 @@
     --give-by-select__button_border-width: var(--button_border-width);
     // --give-by-select__button_border-color: var(--button_border-color);
     --give-by-select__button_border-radius: var(--button_border-radius);
-    --give-by-select__button_padding: var(--button_padding);
+    --give-by-select__button_padding: var(--button_padding) !important;
     --give-by-select__button_count: 4;
 
     // TYPOGRAPHY GIVE BY SELECT BUTTON:HOVER  
@@ -78,24 +78,24 @@
 
 // Style the Donation Amount, Recurring Frequency, Radio to Buttons, and Give By Select Pseduo Fields as if they were buttons
 
-.en__field--splitselect.en__field--ccexpire {
-    flex-basis: calc((100% / 3) * 2);
-    min-width: auto;  
-    position: relative;
-    left: -0.5rem;
-}
+// .en__field--splitselect.en__field--ccexpire {
+//     flex-basis: calc((100% / 3) * 2);
+//     min-width: auto;  
+//     position: relative;
+//     left: -0.5rem;
+// }
 
-.en__field--ccvv {
-    flex-basis: calc(100% / 3);
-    min-width: auto;
-    position: relative;
-    right: -0.5rem;
-}
+// .en__field--ccvv {
+//     flex-basis: calc(100% / 3);
+//     min-width: auto;
+//     position: relative;
+//     right: -0.5rem;
+// }
 
 .en__field--recurrfreq .en__field__element,
 .en__field--recurrpay .en__field__element,
 .en__field--donationAmt .en__field__element,
-.en__field--giveBySelect .en__field__element {
+.en__field--give-by-select .en__field__element {
     justify-content: center;
 }
 
@@ -115,28 +115,28 @@
 // Hide the radio select fields when we style them like buttons
 /* prettier-ignore */
 .radio-to-buttons .en__field--radio .en__field__input--radio+.en__field__label:before,
-.en__field--giveBySelect.en__field--radio .en__field__input--radio+.en__field__label:before,
+.en__field--give-by-select.en__field--radio .en__field__input--radio+.en__field__label:before,
 .radio-to-buttons_donationAmt .en__field--donationAmt.en__field--radio .en__field__input--radio+.en__field__label:before,
 .radio-to-buttons_recurrfreq .en__field--recurrfreq.en__field--radio .en__field__input--radio+.en__field__label:before{
 	display: none;
 }
 
 .radio-to-buttons > .en__field > .en__field__element > .en__field__item:not(.en__field__item--other),
-.en__field--giveBySelect > .en__field__element .en__field__item:not(.en__field__item--other),
+.en__field--give-by-select > .en__field__element .en__field__item:not(.en__field__item--other),
 .radio-to-buttons_donationAmt > .en__field > .en__field__element .en__field__item:not(.en__field__item--other),
 .radio-to-buttons_recurrfreq > .en__field > .en__field__element .en__field__item:not(.en__field__item--other){
-    padding-left: 0;
-    padding-right: 0;
+    // padding-left: 0;
+    // padding-right: 0;
     justify-content: center;
     flex-shrink: 1;
 }
 
 .radio-to-buttons > .en__field > .en__field__element > .en__field__item--other,
-.en__field--giveBySelect > .en__field__element .en__field__item--other,
+.en__field--give-by-select > .en__field__element .en__field__item--other,
 .radio-to-buttons_donationAmt > .en__field > .en__field__element .en__field__item--other,
 .radio-to-buttons_recurrfreq > .en__field > .en__field__element .en__field__item--other{
-    padding-left: .5rem;
-    padding-right: .5rem;
+    // padding-left: .5rem;
+    // padding-right: .5rem;
     justify-content: center;
     flex-shrink: 1;
 }
@@ -145,7 +145,7 @@
     border-radius: var(--button_border-radius);
 }
 
-.en__field--giveBySelect > .en__field__element .en__field__input--other{
+.en__field--give-by-select > .en__field__element .en__field__input--other{
     border-radius: var(--give-by-select__button_border-radius);
 }
 
@@ -176,11 +176,11 @@
     border-color: var(--button_border-color);
     border-radius: var(--button_border-radius);
 	border-style: solid;
-	margin-left: 0.5rem;
-	margin-right: 0.5rem;
-    padding: var(--button_padding);
+	// margin-left: 0.5rem;
+	// margin-right: 0.5rem;
+    padding: var(--button_padding) !important;
 	background-position-x: 40px;
-    width: 100%;
+    // width: 100%;
     text-align: center;
     justify-content: center;
 }
@@ -197,7 +197,7 @@
 
 // Give By Select
 /* prettier-ignore */
-.en__field--giveBySelect.en__field--radio input[type=radio]+label{
+.en__field--give-by-select.en__field--radio input[type=radio]+label{
 	font-family: var(--give-by-select__button_font-family);
     color: var(--give-by-select__button_color);
     font-size: var(--give-by-select__button_font-size);
@@ -208,16 +208,16 @@
     border-color: var(--give-by-select__button_border-color);
     border-radius: var(--give-by-select__button_border-radius);
 	border-style: solid;
-	margin-left: 0.5rem;
-	margin-right: 0.5rem;
-    padding: var(--give-by-select__button_padding);
+	// margin-left: 0.5rem;
+	// margin-right: 0.5rem;
+    padding: var(--give-by-select__button_padding) !important;
 	background-position-x: 40px;
-    width: 100%;
+    // width: 100%;
     text-align: center;
     justify-content: center;
 }
 
-.en__field--giveBySelect > .en__field__element .en__field__item{
+.en__field--give-by-select > .en__field__element .en__field__item{
     flex-basis: calc(100% / var(--give-by-select__button_count));
 }
 
@@ -240,11 +240,11 @@
     border-color: var(--donation-amount__button_border-color);
     border-radius: var(--donation-amount__button_border-radius);
 	border-style: solid;
-	margin-left: 0.5rem;
-	margin-right: 0.5rem;
-    padding: var(--donation-amount__button_padding);
+	// margin-left: 0.5rem;
+	// margin-right: 0.5rem;
+    padding: var(--donation-amount__button_padding) !important;
 	background-position-x: 40px;
-    width: 100%;
+    // width: 100%;
     text-align: center;
     justify-content: center;
 }
@@ -272,11 +272,11 @@
     border-color: var(--recurring-frequency__button_border-color);
     border-radius: var(--recurring-frequency__button_border-radius);
 	border-style: solid;
-	margin-left: 0.5rem;
-	margin-right: 0.5rem;
-    padding: var(--recurring-frequency__button_padding);
+	// margin-left: 0.5rem;
+	// margin-right: 0.5rem;
+    padding: var(--recurring-frequency__button_padding) !important;
 	background-position-x: 40px;
-    width: 100%;
+    // width: 100%;
     text-align: center;
     justify-content: center;
 }
@@ -307,7 +307,7 @@
 
 // Give By Select
 /* prettier-ignore */
-.en__field--giveBySelect.en__field--radio .en__field__item:hover input[type=radio]+label{
+.en__field--give-by-select.en__field--radio .en__field__item:hover input[type=radio]+label{
     color: var(--give-by-select__button_color_hover);
     background-color: var(--give-by-select__button_background-color_hover);
     border-color: var(--give-by-select__button_border-color_hover);
@@ -345,7 +345,7 @@
 
 // Give By Select
 /* prettier-ignore */
-.en__field--giveBySelect.en__field--radio .en__field__item input[type=radio]:checked+label{
+.en__field--give-by-select.en__field--radio .en__field__item input[type=radio]:checked+label{
     color: var(--give-by-select__button_color_checked);
     background-color: var(--give-by-select__button_background-color_checked);
     border-color: var(--give-by-select__button_border-color_checked);
@@ -382,7 +382,7 @@
 
 // Give By Select
 /* prettier-ignore */
-.en__field--giveBySelect.en__field--radio .en__field__item:hover input[type=radio]:checked+label{
+.en__field--give-by-select.en__field--radio .en__field__item:hover input[type=radio]:checked+label{
     color: var(--give-by-select__button_color_checked);
     background-color: var(--give-by-select__button_background-color_checked);
     border-color: var(--give-by-select__button_border-color_checked);
@@ -418,7 +418,7 @@
 
 // Give By Select
 /* prettier-ignore */
-.en__field--giveBySelect.en__field--radio input[type=radio]:focus+label{
+.en__field--give-by-select.en__field--radio input[type=radio]:focus+label{
 	// outline: none;
 }
 

@@ -4,104 +4,55 @@
 * ##########################################################
 */
 
-[data-engrid-errors="fancy"] .en__component .en__field__error {
-  padding: 0.25rem 0.5rem;
-  color: var(--color_white);
-  font-size: 0.75rem;
-  border-bottom-left-radius: var(--input_border-radius);
-  border-bottom-right-radius: var(--input_border-radius);
-  background-color: var(--error__color);
-  order: 3;
-}
-
-// Compound Fields
-[data-engrid-errors="fancy"] .en__field--splittext .en__field__error,
-[data-engrid-errors="fancy"] .en__field--tripletext .en__field__error,
-[data-engrid-errors="fancy"] .en__field--splitselect .en__field__error,
-[data-engrid-errors="fancy"] .en__field--tripleselect .en__field__error,
-[data-engrid-errors="fancy"] .en__field--radio .en__field__error,
-[data-engrid-errors="fancy"] .en__field--checkbox .en__field__error,
-[data-engrid-errors="fancy"] .en__field--rating .en__field__error,
-[data-engrid-errors="fancy"] .en__field--imgselect .en__field__error,
-[data-engrid-errors="fancy"] .en__field--withOther .en__field__error{
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-}
-
 [data-engrid-errors="fancy"] {
+
+  .en__field__error {
+    padding: 0.25rem 0.5rem;
+    color: var(--color_white);
+    font-size: calc(max(75%, 10px)); // Do not let the font size fall below 10px
+    border-bottom-left-radius: var(--input_border-radius);
+    border-bottom-right-radius: var(--input_border-radius);
+    background-color: var(--error__color);
+    order: 3;
+  }
+
   .en__field--text.en__field--validationFailed input,
   .en__field--email.en__field--validationFailed input,
   .en__field--telephone.en__field--validationFailed input,
   .en__field--number.en__field--validationFailed input,
   .en__field--textarea.en__field--validationFailed textarea,
-  .en__field--select.en__field--validationFailed select {
+  .en__field--select.en__field--validationFailed select,
+  .en__field--password.en__field--validationFailed input,
+  .en__field--calendar.en__field--validationFailed input{
     border-bottom-right-radius: 0px;
     border-bottom-left-radius: 0px;
+
+    &:only-of-type{
+      margin-bottom: 0 !important;
+    }
   }
-}
+    
+  .en__field--select.en__field--withOther,
+  .en__field--radio,
+  .en__field--checkbox,
+  .en__field--splittext,
+  .en__field--tripletext,
+  .en__field--splitselect,
+  .en__field--tripleselec,
+  .en__field--calendar,
+  .en__field--imgselect,
+  .en__field--rating{
 
-[data-engrid-errors="fancy"]
-  .en__component
-  .en__field.en__field--select.en__field--withOther.en__field--validationFailed
-  .en__field__element,
-[data-engrid-errors="fancy"]
-  .en__component
-  .en__field.en__field--radio.en__field--validationFailed
-  .en__field__element,
-[data-engrid-errors="fancy"]
-  .en__component
-  .en__field.en__field--checkbox.en__field--validationFailed
-  .en__field__element,
-[data-engrid-errors="fancy"]
-  .en__component
-  .en__field.en__field--splittext.en__field--validationFailed
-  .en__field__element,
-[data-engrid-errors="fancy"]
-  .en__component
-  .en__field.en__field--tripletext.en__field--validationFailed
-  .en__field__element,
-[data-engrid-errors="fancy"]
-  .en__component
-  .en__field.en__field--splitselect.en__field--validationFailed
-  .en__field__element,
-[data-engrid-errors="fancy"]
-  .en__component
-  .en__field.en__field--tripleselect.en__field--validationFailed
-  .en__field__element {
-  border-bottom-left-radius: 0rem;
-  border-bottom-right-radius: 0rem;
-}
+    &.en__field--validationFailed .en__field__element{
 
-[data-engrid-errors="fancy"]
-  .en__component
-  .en__field.en__field--select.en__field--withOther.en__field--validationFailed.has-value
-  .en__field__element,
-[data-engrid-errors="fancy"]
-  .en__component
-  .en__field.en__field--radio.en__field--validationFailed.has-value
-  .en__field__element,
-[data-engrid-errors="fancy"]
-  .en__component
-  .en__field.en__field--checkbox.en__field--validationFailed.has-value
-  .en__field__element,
-[data-engrid-errors="fancy"]
-  .en__component
-  .en__field.en__field--splittext.en__field--validationFailed.has-value
-  .en__field__element,
-[data-engrid-errors="fancy"]
-  .en__component
-  .en__field.en__field--tripletext.en__field--validationFailed.has-value
-  .en__field__element,
-[data-engrid-errors="fancy"]
-  .en__component
-  .en__field.en__field--splitselect.en__field--validationFailed.has-value
-  .en__field__element,
-[data-engrid-errors="fancy"]
-  .en__component
-  .en__field.en__field--tripleselect.en__field--validationFailed.has-value
-  .en__field__element,
-[data-engrid-errors="fancy"] .en__field--validationFailed.has-value .en__field__error {
-  border-color: var(--error__color_grayscale);
-  background-color: var(--error__color_grayscale);
-  color: var(--color_white);
+      border-bottom-left-radius: 0rem !important;
+      border-bottom-right-radius: 0rem !important;
+    }
+
+    .en__field--validationFailed.has-value{
+      border-color: var(--error__color_grayscale);
+      background-color: var(--error__color_grayscale);
+      color: var(--color_white);
+    }
+  }
 }

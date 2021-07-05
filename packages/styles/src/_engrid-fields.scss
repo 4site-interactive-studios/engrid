@@ -120,7 +120,111 @@
   --textarea_box-shadow_hover: var(--input_box-shadow_hover);
 }
 
-label{
+/************************************
+ * Form Block and Survey Block Components
+ * Why 20 pre-defined options? To cover a single form component with all of the following: * 1. First Name (50%) | 2. Last Name (50%) * 3. Email (100%) * 4. Email Opt-in (100%) * 5. Phone (100%) * 6. Phone Opt-in (100%) * 7. Street (100%) * 8. Street 2 (100%) * 9. City (33%) | 10. State (33%) | 11. Zip (33%) * 12. Country (100%) * 13. Giving Frequency (100%) * 14. Giving Amount (100%) * 15. Gift Type (100%) * 16. Credit Card Number (100%) * 17. Credit Card Expiration (50%) | 18. Credit Card CVV (50%) * 19. Custom Field (100%) * 20. Custom Field (100%)
+ ***********************************/
+
+// Form Blocks and Survey Blocks need a negative horizontal margin so the contents inside it can have a horizontal padding applied.
+.en__component--formblock,
+.en__component--svblock{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+
+  // All first child elements of a form block should have horizontal padding applied
+  > * {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .en__field {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    padding-bottom: 0rem;
+    margin-bottom: 0.5rem;
+    align-self: flex-end;
+
+    .en__field__element{
+
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+
+      .en__field__label,
+      .en__field__helpText{
+        padding-top: 0rem;
+        padding-bottom: 0rem;
+      }
+
+      // The submit buttons needs horizontal padding.
+      .en__submit{
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+
+        // Remove horizontal padding for this single field's component
+        &.en__rangeFieldLabels {
+          padding-left: 0;
+          padding-right: 0;
+          margin-bottom: 0.5rem;
+        }
+      }
+  
+      // Compound field wrappers need a negative horizontal margin
+      &.en__field__element--checkbox,
+      &.en__field__element--radio,
+      &.en__field__element--rating,
+      &.en__field__element--imgselect,
+      &.en__field__element--splittext,
+      &.en__field__element--tripletext,
+      &.en__field__element--splitselect,
+      &.en__field__element--tripleselect,
+      &.en__field__element--withOther{
+        margin-left: -0.5rem;
+        margin-right: -0.5rem;
+  
+        // Fields inside a compound field wrapper need horizontal padding
+        .en__field__item{
+          padding-left: 0.5rem;
+          padding-right: 0.5rem;
+          padding-top: 0.5rem;
+          padding-bottom: 0.5rem;
+        }
+      }  
+    }
+  
+    &:not(.en__field--validationFailed) .en__field__element{
+      > input,
+      > select,
+      > textarea{
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+    }
+
+    // "With other" compound fields need a negative horizontal margin on their wrapper
+    &.en__field--withOther{
+      .en__field__element{
+        margin-left: -0.5rem;
+        margin-right: -0.5rem;
+        
+        // Fields inside a compound field wrapper need horizontal padding
+        .en__field__item{
+          padding-left: 0.5rem;
+          padding-right: 0.5rem;
+        }
+      }
+    }
+  }
+}
+
+/************************************
+ * Labels
+ ***********************************/
+ label{
   font-family: var(--label-font-family);
   color: var(--label-color);
   font-size: var(--label-font-size);
@@ -136,9 +240,19 @@ label a.label-tooltip {
   text-decoration: underline;
   color: var(--label-color);
   font-weight: 400;
+  padding-right: 0.5rem;
 }
 
-// The use of "input.en__field__input" is needed to provide enough specificity to suprass class selectors like ".en__field__input--calendar" in enPage.css
+// Helps when the field label gets additional content added to it. https://d.pr/v/9rFaiW 
+ .en__field__label{
+  position: relative;
+  padding-bottom: 0.25rem;
+}
+
+/************************************
+ * Inputs
+ * The use of "input.en__field__input" is needed to provide enough specificity to suprass class selectors like ".en__field__input--calendar" in enPage.css
+ ***********************************/
 input,
 input.en__field__input{
   font-family: var(--input_font-family);
@@ -188,10 +302,12 @@ input[type="password"]{
   }
 }
 
-// Remove the padding set on all other input fields
+// Remove the padding and box shadow on the range slider
 input[type="range"]{
   padding-left: 0;
   padding-right: 0;
+  border: 0;
+  box-shadow: none;
 }
 
 // Removes the input shadow added by iOS 5 and later
@@ -202,11 +318,12 @@ input[type=text],
 :not(#EN__RootElement) input[type=email],
 :not(#EN__RootElement) input[type=number],
 :not(#EN__RootElement) input[type=tel]{
-  // -webkit-appearance: none;
-  // -moz-appearance: none;
   appearance: none;
 }
 
+/************************************
+* Radio Select Fields
+***********************************/
 input[type=radio]{
   + label{
     cursor: pointer;
@@ -252,6 +369,9 @@ input[type=radio]{
   }
 }
 
+/************************************
+* Checkbox Fields
+***********************************/
 // ✓
 input[type=checkbox]{
   + label{
@@ -299,8 +419,12 @@ input[type=checkbox]{
   }  
 }
 
-// For checkboxes with only an input and no label
-// @TODO See if "en__contactDetails__select" styling can be merged in
+/************************************
+* Tweet to Target Fields
+* For checkboxes with only an input and no label
+* @TODO See if "en__contactDetails__select" styling can be merged in
+***********************************/
+
 .en__twitterTarget__select{
   cursor: pointer;
   visibility: hidden; // Used to hide parent while keeping its pseduo element visible
@@ -346,6 +470,37 @@ input[type=checkbox]{
   }  
 }
 
+/************************************
+* Radio Select, Checkbox, and Email to Target Contact Fields
+***********************************/
+
+/* Custom Styling for Radio & Checkbox Inputs */
+input.en__field__input--radio,
+input.en__field__input--checkbox,
+input.en__contactDetails__select {
+  border: 0;
+  clip: rect(0 0 0 0);
+  -webkit-clip-path: inset(50%);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
+}
+
+.en__field__input--radio:focus + .en__field__label,
+.en__field__input--checkbox:focus + .en__field__label,
+.en__contactDetails__select:focus + .en__contactDetails__rows {
+  outline: -webkit-focus-ring-color auto 1px;
+  outline-offset: calc(0.5rem - 3px);
+}
+
+/************************************
+ * Select Fields
+ ***********************************/
 select,
 select.en__field__input--select,
 select.en__field__input--splitselect,
@@ -390,10 +545,14 @@ select.en__field__input--tripleselect{
       // outline: none; // Shared between input:focus, textarea:focus, and select:focus
       box-shadow: var(--select_box-shadow_hover);
   }
-
 }
 
+
+/************************************
+ * Textarea Fields
+ ***********************************/
 textarea,
+.en__field__input--textarea,
 .en__contactMessage__plainText{
   font-family: var(--textarea_font-family);
   color: var(--textarea_color);
@@ -416,7 +575,7 @@ textarea,
   border-style: solid; // Shared between input, textarea, and select
   box-shadow: var(--textarea_box-shadow);
   transition: box-shadow 0.25s, border-color 0.25s ease-in-out; // Shared between input, textarea, and select
-  height: 7rem;
+  min-height: calc(1rem + 10ch);
   resize: vertical;
 
   &:focus,
@@ -430,136 +589,61 @@ textarea,
   }
 }
 
-
-// Engaging Networks Overrides and Fixes
-.en__field__item {
-  padding: initial;
+/************************************
+ * Split Text and Split Select Fields
+ ***********************************/
+.en__field__element--splittext,
+.en__field__element--splitselect{
+  .en__field__item{
+    flex-basis: calc(100% / 2);
+  }
 }
 
-.en__field__item,
-.en__field__element--calendar,
-.en__field__element--checkbox,
-.en__field__element--email,
-.en__field__element--number,
-.en__field__element--password,
-.en__field__element--radio,
-.en__field__element--range,
-.en__field__element--rating,
-.en__field__element--select,
-.en__field__element--splitselect,
-.en__field__element--splittext,
-.en__field__element--telephone,
-.en__field__element--text,
-.en__field__element--textarea,
-.en__field__element--tripleselect,
-.en__field__element--tripletext {
+/************************************
+ * Triple Text and Triple Select Fields
+ ***********************************/
+.en__field__element--tripletext,
+.en__field__element--tripleselect{
+  .en__field__item{
+    flex-basis: calc(100% / 3);
+  }
+}
+
+/************************************
+ * Image Select Field
+ ***********************************/
+.en__imageSelectField__image{
+  padding-bottom: 0.5rem;
+}
+
+.en__field__element--imgselect{
   display: flex;
   flex-wrap: wrap;
 }
 
-/* Reset height */
-.en__field__input--textarea {
-  height: auto;
-  width: 100%;
+.en__field--imgselect .en__field__item{
+  flex-basis: calc(100% / 3);
 }
 
-/************************************
-    * General overrides of EN styles
-    ***********************************/
-
-/* In the event Theme CSS causes a hidden field to become displayed, force its display to remain hidden */
-/* This was an issue originally reported by EN staff, not sure if it still persists with recent styling updates */
-.en__hidden {
-  display: none !important;
-}
-
-.en__field,
-.en__captcha {
-  padding-bottom: 0;
-  margin-bottom: 1rem;
+.en__imageSelectField__control{
   display: flex;
   flex-direction: column;
-  position: relative;
-}
-
-/* Make the spacing between wrapping elements tighter so the user knows they're related */
-
-.en__field--select .en__field__item:not(.en__field__item--other),
-.en__field--radio .en__field__item:not(.en__field__item--other),
-.en__field--checkbox .en__field__item:not(.en__field__item--other),
-.en__field--splittext .en__field__item:not(.en__field__item--other),
-.en__field--tripletext .en__field__item:not(.en__field__item--other),
-.en__field--splitselect .en__field__item:not(.en__field__item--other),
-.en__field--tripleselect .en__field__item:not(.en__field__item--other) {
-  margin-bottom: 0.5rem;
-  // margin-right: 1rem;
-  display: flex;
-  // flex-grow: 1; /* Fields should expand to fill their flexbox container */
   align-items: center;
-  // width: 100%;
+
+  .en__field__input--imageSelectField{
+    width: auto;
+  }
 }
 
-.en__component div[class*="withOther"].en__field .en__field__item {
-  margin-bottom: 0.5rem;
-  // margin-right: 1rem;
-}
-
-/* If the form field has a hidden "other" field we need to remove the end of row spacing */
-/* NEED TO REVISIT FOR CODE CLEANUP */
-
-.en__component--formblock
-  .en__field--withOther
-  div.en__field__item:nth-last-child(2) {
-  margin-right: 0px;
-}
-
-.en__component--formblock .en__field:only-child,
-.en__component--formblock .en__field div.en__field__item:only-child {
-  // margin-left: 0;
-  // margin-right: 0;
-}
-
-.en__component--formblock .row-wrap .en__field,
-.en__component--formblock .row-wrap .en__field div.en__field__item {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
+.en__field--imgselect .en__imageSelectField{
+  display: flex;
+  flex-direction: column;
 }
 
 /************************************
-* Inputs
-***********************************/
-
-/**
-      * Form Block Component: Select Fields
-      * Overrides EN Default Styling to ensure mobile friendly widths
-      */
-.en__field__input--select {
-  min-width: initial !important;
-}
-
-/* Custom Styling for Radio & Checkbox Inputs */
-input.en__field__input--radio,
-input.en__field__input--checkbox,
-input.en__contactDetails__select {
-  border: 0;
-  clip: rect(0 0 0 0);
-  -webkit-clip-path: inset(50%);
-  clip-path: inset(50%);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-  white-space: nowrap;
-}
-
-/* Helps when the field label gets additional content added to it. https://d.pr/v/9rFaiW */
-.en__field__label{
-  position: relative;
-}
-
-.en__contactDetails__rows {
+ * Email to Target: Contact Fields
+ ***********************************/
+ .en__contactDetails__rows {
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
@@ -588,7 +672,6 @@ input.en__contactDetails__select {
   left: 0;
 }
 
-// .en__field__input--checkbox + .en__field__label:before,
 .en__contactDetails__rows:before {
   color: var(--checkbox_color);
   border-radius: var(--checkbox_border-radius);
@@ -606,14 +689,6 @@ input.en__contactDetails__select {
 // @BODY Currently, the checkbox checkmark uses the checkmark character, but if the font doesn't have this character or the designer wants to use something else, it falls apart. We should switch to an "image" based solution. Ideally, it would be a data-uri and not require a separate image asset. This should be added as default and client SCSS variable where the necessary CSS are mapped to custom properties.
 // REF: Cross browser tested radio / checkbox stylings https://codepen.io/aaroniker/pen/ZEYoxEY
 
-// .en__field__input--radio:checked + .en__field__label:before {
-//   color: var(--radio_color_selected);
-//   background-color: var(--radio_radio-background-color);
-//   // -webkit-box-shadow: inset 0 0 0 4px var(--radio_background-color);
-//   box-shadow: inset 0 0 0 4px var(--radio_background-color);
-//   border-width: var(--radio_border-width);
-// }
-
 .en__contacts:not(.en__contacts--hideCheck)
   .en__contactDetails__select:checked
   + .en__contactDetails__rows:before {
@@ -628,7 +703,7 @@ input.en__contactDetails__select {
 .en__contacts:not(.en__contacts--hideCheck)
   .en__contactDetails__select:checked
   + .en__contactDetails__rows::after {
-  // Needs and SVG safe color passed in https://stackoverflow.com/questions/25477819/scss-variable-in-background-image-with-svg-image-data-uri
+  // Needs an SVG safe color passed in https://stackoverflow.com/questions/25477819/scss-variable-in-background-image-with-svg-image-data-uri
   // content: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='21' height='16' viewBox='0 0 21 16'><path fill="#color-white" fill-rule='nonzero' d='M18.76.16L6.68 12.113l-4.44-4.392a.555.555 0 0 0-.779 0L.161 9.006a.541.541 0 0 0 0 .771L6.29 15.84a.555.555 0 0 0 .78 0l13.77-13.624a.541.541 0 0 0 0-.771L19.539.16a.555.555 0 0 0-.779 0z'/></svg>");
   // fill: var(--color_primary);
   content: "✓"; // REF: https://www.toptal.com/designers/htmlarrows/symbols/check-mark/
@@ -644,189 +719,19 @@ input.en__contactDetails__select {
   cursor: pointer;
 }
 
-/* QA Needed: Would like to find a way so that radio input focus is round rather than square. May require re-writing how radio inputs are styled */
-.en__field__input--radio:focus + .en__field__label:before,
-.en__field__input--checkbox:focus + .en__field__label:before,
-.en__contactDetails__select:focus + .en__contactDetails__rows:before {
-  // outline: var(--color_gray) auto 0.3125rem;
-  // border-color: var(--input_border-color_checked);
-}
-
-.en__field__input--radio:focus + .en__field__label,
-.en__field__input--checkbox:focus + .en__field__label,
-.en__contactDetails__select:focus + .en__contactDetails__rows {
-  outline: -webkit-focus-ring-color auto 1px;
-  outline-offset: 3px;
-}
-
-/* QA Needed: EN's hidden input field */
-.en__field--hidden {
-  display: block;
-  width: 100% !important;
-}
-
-/* Uses Padding instead of Margin because padding is counted in the Flex-basis width whereas Margin is outside */
-/* One optimization idea is to break this file up into three CSS files, 1-10, 11-20, and 21-30. That was they can be included only if that template is using them. */
-/* Should confirm if the EN class field could even hold enough chars to fit defining 20 fields plus their start/stop classes */
-/* Why 20 pre-defined options? To cover a single form component with all of the following: * 1. First Name (50%) | 2. Last Name (50%) * 3. Email (100%) * 4. Email Opt-in (100%) * 5. Phone (100%) * 6. Phone Opt-in (100%) * 7. Street (100%) * 8. Street 2 (100%) * 9. City (33%) | 10. State (33%) | 11. Zip (33%) * 12. Country (100%) * 13. Giving Frequency (100%) * 14. Giving Amount (100%) * 15. Gift Type (100%) * 16. Credit Card Number (100%) * 17. Credit Card Expiration (50%) | 18. Credit Card CVV (50%) * 19. Custom Field (100%) * 20. Custom Field (100%) */
-/* Make all en fields 100% */
-.en__field {
-  flex-basis: 100%;
-  padding-bottom: 1rem;
-  margin-bottom: 0rem;
-}
-
-/* All Single Fields that do not Wrap */
-.en__field--survey,
-.en__field--number,
-.en__field--calendar,
-.en__field--select,
-.en__field--text, 
-.en__field--telephone, 
-.en__field--range, 
-.en__field--password, 
-.en__field--calendar{
-  flex-basis: 100%;
-  padding-left: 0;
-  padding-right: 0;
-}
-
-// For Coumpound Fields that Wrap
-.en__field--checkbox,
-.en__field--radio,
-.en__field--rating,
-.en__field--imgselect,
-.en__field--splittext,
-.en__field--tripletext,
-.en__field--splitselect,
-.en__field--tripleselect,
-.en__field--withOther{
-  flex-basis: calc(100% + 1rem);
-  margin-left: -0.5rem; // Negative margins are allowed so that the buttons can reflow onto new lines without unexpected issues with padding on wrap
-  margin-right: -0.5rem; // Negative margins are allowed so that the buttons can reflow onto new lines without unexpected issues with padding on wrap
-
-  > .en__field__label,
-  > .en__field__helpText{
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-  }
-
-}
-
-.en__field__item{
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-}
-
-// @TODO Style "Radios with Input" to be a in a column instead of a row. Will need to use CSS Grid and not Flexbox. This is so that the last Radio when selected has the input field displayed to its immediate right on desktop and below on mobile https://d.pr/v/Ed9lyE
-
-.en__field__element--splittext,
-.en__field__element--splitselect,
-.en__field__element--tripleselect {
-  align-items: flex-start;
-}
-
-/* Includes overrides of existing CSS, need for resolve this duplicate styling */
-.en__field__element--splittext .en__field__item:nth-of-type(1),
-.en__field__element--splitselect:not(.en__field--ccexpire)
-  .en__field__item:nth-of-type(1) {
-  flex-basis: 50%;
-  padding-bottom: 0.5rem;
-  margin: 0;
-}
-
-/* Includes overrides of existing CSS, need for resolve this duplicate styling */
-.en__field__element--splittext .en__field__item:nth-of-type(2),
-.en__field__element--splitselect:not(.en__field--ccexpire)
-  .en__field__item:nth-of-type(2) {
-  flex-basis: 50%;
-  padding-bottom: 0.5rem;
-  margin: 0;
-}
-
-/* Includes overrides of existing CSS, need for resolve this duplicate styling */
-.en__field__element--tripletext .en__field__item:nth-of-type(1),
-.en__field__element--tripleselect .en__field__item:nth-of-type(1) {
-  flex-basis: calc(100% / 3);
-  padding-bottom: 0.5rem;
-  margin: 0;
-}
-
-/* Includes overrides of existing CSS, need for resolve this duplicate styling */
-.en__field__element--tripletext .en__field__item:nth-of-type(2),
-.en__field__element--tripleselect .en__field__item:nth-of-type(2) {
-  flex-basis: calc(100% / 3);
-  // padding-left: 0.5rem;
-  // padding-right: 0.5rem;
-  padding-bottom: 0.5rem;
-  margin: 0;
-}
-
-/* Includes overrides of existing CSS, need for resolve this duplicate styling */
-.en__field__element--tripletext .en__field__item:nth-of-type(3),
-.en__field__element--tripleselect .en__field__item:nth-of-type(3) {
-  flex-basis: calc(100% / 3);
-  padding-bottom: 0.5rem;
-  margin: 0;
-}
-
-.en__field__element--imgselect{
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.en__field--engrid-image-select .en__field__item{
-  flex-basis: calc(100% / 3);
-}
-
-.en__imageSelectField__control{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  .en__field__input--imageSelectField{
-    width: auto;
-  }
-}
-
-.en__field--engrid-image-select .en__imageSelectField{
-  display: flex;
-  flex-direction: column;
-}
-
-.en__imageSelectField__image{
-  padding-bottom: 0.5rem;
-}
-
-.en__field--withOther .en__field__element--select .en__field__item:first-child {
-  margin-right: 0 !important;
-}
-
-/* Custom Styles */
-
-// Inline Country Helper
-.inline-country .en__field--country {
-  position: absolute;
-  right: 0;
-  align-items: flex-end;
-
-  select {
-    width: 80px;
-    // z-index: 1;
-    background-color: transparent;
-    // -webkit-box-shadow: none;
-    box-shadow: none;
-    text-align-last: right;
-  }
-}
-
-// Remove Number Input Spinners https://stackoverflow.com/a/4298216
+/************************************
+ * Number Input Spinner Field
+ * Remove Number Input Spinners https://stackoverflow.com/a/4298216
+ ***********************************/
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
 
-/* Placeholder styling */
+/************************************
+ * Field Placeholder Styling
+ * @TODO Can this be simplified because we use Autoprefixer?
+ ***********************************/
 /* Chrome, Firefox, Opera, Safari 10.1+ */::-webkit-input-placeholder {
   color: var(--color_light-gray);
   opacity: 1;
@@ -856,9 +761,48 @@ input[type="number"]::-webkit-outer-spin-button {
   color: var(--color_light-gray);
 }
 
-/* Default Stylings for Common Form Fields */
-.en__component--formblock {
+/************************************
+ * Hidden Input Field
+ ***********************************/
+
+/* In the event Theme CSS causes a hidden field to become displayed, force its display to remain hidden */
+/* This was an issue originally reported by EN staff, not sure if it still persists with recent styling updates */
+.en__hidden {
+  display: none !important;
+}
+
+/* QA Needed: EN's hidden input field */
+.en__field--hidden {
+  display: block;
+  width: 100% !important;
+}
+
+/************************************
+ * Captcha
+ ***********************************/
+
+.en__captcha {
+  padding-bottom: 0;
+  margin-bottom: 1rem;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
+  position: relative;
+}
+
+/************************************
+ * Inline Country Styling
+ ***********************************/
+.inline-country .en__field--country {
+  position: absolute;
+  right: 0;
+  align-items: flex-end;
+
+  select {
+    width: 80px;
+    // z-index: 1;
+    background-color: transparent;
+    // -webkit-box-shadow: none;
+    box-shadow: none;
+    text-align-last: right;
+  }
 }
