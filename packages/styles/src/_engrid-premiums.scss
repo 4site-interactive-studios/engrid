@@ -1,37 +1,33 @@
+
+// CSS Grid Layout: https://grid.layoutit.com/
 .en__pg__body {
     display: grid;
-    grid-template-columns: min-content 1fr;
-    grid-template-rows: min-content 1fr;
+    grid-template-columns: min-content min-content 1fr;
+    grid-template-rows: min-content;
     grid-auto-columns: min-content;
     grid-auto-rows: min-content;
     gap: 0px 0px;
     grid-auto-flow: row;
+    align-items: center;
     grid-template-areas:
-        "en__pg__select en__pg__display"
-        "en__pg__select en__pg__detail";
-}
-
-.en__pg__select {
+      "en__pg__select en__pg__display en__pg__detail";
+  }
+  
+  .en__pg__select {
+  
     align-self: center;
     grid-area: en__pg__select;
-}
-
-.en__pg__display {
-    grid-area: en__pg__display;
-}
-
-.en__pg__detail {
-    grid-area: en__pg__detail;
-}
-
+  }
   
+  .en__pg__display { grid-area: en__pg__display; }
   
-  
+  .en__pg__detail { grid-area: en__pg__detail; }
   
   
   .en__pg__images img{
     width: auto; // Force the width to be its native size rather than 100% 
     margin: 0; // Do not "auto center" the image
+    max-width: 20vw; // Prevent the image fro ever being larger than it probably should be
 }
 
 .en__pg__select{
