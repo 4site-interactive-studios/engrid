@@ -1,21 +1,52 @@
-.en__pg__body{
-    display: flex;
-    flex-direction: row;
+.en__pg__body {
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    grid-template-rows: min-content 1fr;
+    grid-auto-columns: min-content;
+    grid-auto-rows: min-content;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "en__pg__select en__pg__display"
+        "en__pg__select en__pg__detail";
+}
+
+.en__pg__select {
+    align-self: center;
+    grid-area: en__pg__select;
+}
+
+.en__pg__display {
+    grid-area: en__pg__display;
+}
+
+.en__pg__detail {
+    grid-area: en__pg__detail;
+}
+
+  
+  
+  
+  
+  
+  .en__pg__images img{
+    width: auto; // Force the width to be its native size rather than 100% 
+    margin: 0; // Do not "auto center" the image
 }
 
 .en__pg__select{
-    flex-basis: 15px;
+    // flex-basis: 15px;
     padding: 0;
 }
 
 .en__pg__display{
-    flex-basis: 150px;
+    // flex-basis: 150px;
     padding-top: 0;
     padding-bottom: 0;
 }
 
 .en__pg__detail{
-    flex-basis: calc(100% - 150px - 15px);
+    // flex-basis: calc(100% - 150px - 15px);
     margin-top: 0;
     padding-top: 0;
     padding-bottom: 0;        

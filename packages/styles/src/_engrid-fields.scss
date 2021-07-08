@@ -470,6 +470,58 @@ input[type=checkbox]{
 }
 
 /************************************
+* Premium Gift Selects
+* For radio selects with only an input and no label
+* @TODO See if "en__contactDetails__select" styling can be merged in
+***********************************/
+
+.en__pg__select input{
+  cursor: pointer;
+  visibility: hidden; // Used to hide parent while keeping its pseduo element visible
+  max-width: min-content;
+  content: "";
+  height: calc(var(--radio_height) + (var(--radio_border-width) * 2)); // Give it a height to match the pseduo element
+
+  &:before{
+    visibility: visible;  // Used to keep psuedo element visible while hiding the parent
+    content: var(--radio_content);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // margin-right: 0.5rem;
+    color: var(--radio_color);
+    background-color: var(--radio_background-color);
+    border-style: solid;
+    border-width: var(--radio_border-width);
+    border-color: var(--radio_border-color);
+    border-radius: var(--radio_border-radius);
+    height: var(--radio_height);
+    width: var(--radio_width);
+    box-shadow: var(--radio_box-shadow);
+    display: flex; // Changed from inline-flex to flex
+  }
+
+  &:focus:before,
+  &:hover:before{
+    color: var(--radio_color_hover);
+    background-color: var(--radio_background-color_hover);
+    border-color: var(--radio_border-color_hover);
+    box-shadow: var(--radio_box-shadow_hover);
+  }
+
+  &:not(:checked):before{
+    color: transparent;
+  }  
+
+  &:checked:before{
+    color: var(--radio_color_selected);
+    background-color: var(--radio_background-color_selected);
+    border-color: var(--radio_border-color_selected);
+    box-shadow: var(--radio_box-shadow_selected);
+  }  
+}
+
+/************************************
 * Radio Select, Checkbox, and Email to Target Contact Fields
 ***********************************/
 
