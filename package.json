@@ -39,7 +39,7 @@
     "fork-ts-checker-webpack-plugin": "6.2.12",
     "html-loader": "^2.1.2",
     "html-webpack-plugin": "^5.3.1",
-    "mini-css-extract-plugin": "^1.6.2",
+    "mini-css-extract-plugin": "^2.1.0",
     "node-sass": "^6.0.1",
     "popper.js": "^1.16.1",
     "postcss-loader": "^6.1.0",
