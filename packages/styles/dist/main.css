@@ -2062,6 +2062,95 @@ a {
   --textarea_padding: 1ch 1.2ch;
   --textarea_box-shadow_hover: var(--input_box-shadow_hover); }
 
+/************************************
+ * Form Block and Survey Block Components
+ * Why 20 pre-defined options? To cover a single form component with all of the following: * 1. First Name (50%) | 2. Last Name (50%) * 3. Email (100%) * 4. Email Opt-in (100%) * 5. Phone (100%) * 6. Phone Opt-in (100%) * 7. Street (100%) * 8. Street 2 (100%) * 9. City (33%) | 10. State (33%) | 11. Zip (33%) * 12. Country (100%) * 13. Giving Frequency (100%) * 14. Giving Amount (100%) * 15. Gift Type (100%) * 16. Credit Card Number (100%) * 17. Credit Card Expiration (50%) | 18. Credit Card CVV (50%) * 19. Custom Field (100%) * 20. Custom Field (100%)
+ ***********************************/
+.en__component--formblock,
+.en__component--svblock {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-left: -0.5rem;
+  margin-right: -0.5rem; }
+  .en__component--formblock > *,
+  .en__component--svblock > * {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem; }
+  .en__component--formblock .en__field,
+  .en__component--svblock .en__field {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    padding-bottom: 0rem;
+    margin-bottom: 0.5rem;
+    align-self: flex-end; }
+    .en__component--formblock .en__field .en__field__element,
+    .en__component--svblock .en__field .en__field__element {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center; }
+      .en__component--formblock .en__field .en__field__element .en__field__label,
+      .en__component--formblock .en__field .en__field__element .en__field__helpText,
+      .en__component--svblock .en__field .en__field__element .en__field__label,
+      .en__component--svblock .en__field .en__field__element .en__field__helpText {
+        padding-top: 0rem;
+        padding-bottom: 0rem; }
+      .en__component--formblock .en__field .en__field__element .en__submit,
+      .en__component--svblock .en__field .en__field__element .en__submit {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem; }
+        .en__component--formblock .en__field .en__field__element .en__submit.en__rangeFieldLabels,
+        .en__component--svblock .en__field .en__field__element .en__submit.en__rangeFieldLabels {
+          padding-left: 0;
+          padding-right: 0;
+          margin-bottom: 0.5rem; }
+      .en__component--formblock .en__field .en__field__element.en__field__element--checkbox, .en__component--formblock .en__field .en__field__element.en__field__element--radio, .en__component--formblock .en__field .en__field__element.en__field__element--rating, .en__component--formblock .en__field .en__field__element.en__field__element--imgselect, .en__component--formblock .en__field .en__field__element.en__field__element--splittext, .en__component--formblock .en__field .en__field__element.en__field__element--tripletext, .en__component--formblock .en__field .en__field__element.en__field__element--splitselect, .en__component--formblock .en__field .en__field__element.en__field__element--tripleselect, .en__component--formblock .en__field .en__field__element.en__field__element--withOther,
+      .en__component--svblock .en__field .en__field__element.en__field__element--checkbox,
+      .en__component--svblock .en__field .en__field__element.en__field__element--radio,
+      .en__component--svblock .en__field .en__field__element.en__field__element--rating,
+      .en__component--svblock .en__field .en__field__element.en__field__element--imgselect,
+      .en__component--svblock .en__field .en__field__element.en__field__element--splittext,
+      .en__component--svblock .en__field .en__field__element.en__field__element--tripletext,
+      .en__component--svblock .en__field .en__field__element.en__field__element--splitselect,
+      .en__component--svblock .en__field .en__field__element.en__field__element--tripleselect,
+      .en__component--svblock .en__field .en__field__element.en__field__element--withOther {
+        margin-left: -0.5rem;
+        margin-right: -0.5rem; }
+        .en__component--formblock .en__field .en__field__element.en__field__element--checkbox .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--radio .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--rating .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--imgselect .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--splittext .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--tripletext .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--splitselect .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--tripleselect .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--withOther .en__field__item,
+        .en__component--svblock .en__field .en__field__element.en__field__element--checkbox .en__field__item,
+        .en__component--svblock .en__field .en__field__element.en__field__element--radio .en__field__item,
+        .en__component--svblock .en__field .en__field__element.en__field__element--rating .en__field__item,
+        .en__component--svblock .en__field .en__field__element.en__field__element--imgselect .en__field__item,
+        .en__component--svblock .en__field .en__field__element.en__field__element--splittext .en__field__item,
+        .en__component--svblock .en__field .en__field__element.en__field__element--tripletext .en__field__item,
+        .en__component--svblock .en__field .en__field__element.en__field__element--splitselect .en__field__item,
+        .en__component--svblock .en__field .en__field__element.en__field__element--tripleselect .en__field__item,
+        .en__component--svblock .en__field .en__field__element.en__field__element--withOther .en__field__item {
+          padding-left: 0.5rem;
+          padding-right: 0.5rem;
+          padding-top: 0.5rem;
+          padding-bottom: 0.5rem; }
+    .en__component--formblock .en__field:not(.en__field--validationFailed) .en__field__element > input,
+    .en__component--formblock .en__field:not(.en__field--validationFailed) .en__field__element > select,
+    .en__component--formblock .en__field:not(.en__field--validationFailed) .en__field__element > textarea,
+    .en__component--svblock .en__field:not(.en__field--validationFailed) .en__field__element > input,
+    .en__component--svblock .en__field:not(.en__field--validationFailed) .en__field__element > select,
+    .en__component--svblock .en__field:not(.en__field--validationFailed) .en__field__element > textarea {
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem; }
+    .en__component--formblock .en__field.en__field--withOther .en__field__element,
+    .en__component--svblock .en__field.en__field--withOther .en__field__element {
+      margin-left: -0.5rem;
+      margin-right: -0.5rem; }
+      .en__component--formblock .en__field.en__field--withOther .en__field__element .en__field__item,
+      .en__component--svblock .en__field.en__field--withOther .en__field__element .en__field__item {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem; }
+
+/************************************
+ * Labels
+ ***********************************/
 label {
   font-family: var(--label-font-family);
   color: var(--label-color);
@@ -2079,6 +2168,14 @@ label a.label-tooltip {
   font-weight: 400;
   padding-right: 0.5rem; }
 
+.en__field__label {
+  position: relative;
+  padding-bottom: 0.25rem; }
+
+/************************************
+ * Inputs
+ * The use of "input.en__field__input" is needed to provide enough specificity to suprass class selectors like ".en__field__input--calendar" in enPage.css
+ ***********************************/
 input,
 input.en__field__input {
   font-family: var(--input_font-family);
@@ -2106,8 +2203,7 @@ input.en__field__input {
     color: var(--input_color_hover);
     background-color: var(--input_background-color_hover);
     border-color: var(--input_border-color_hover);
-    border-bottom-color: var(--input_border-bottom-color_hover);
-    box-shadow: var(--input_box-shadow_hover); }
+    border-bottom-color: var(--input_border-bottom-color_hover); }
 
 input[type="text"],
 input[type="email"],
@@ -2134,7 +2230,9 @@ input[type="password"] {
 
 input[type="range"] {
   padding-left: 0;
-  padding-right: 0; }
+  padding-right: 0;
+  border: 0;
+  box-shadow: none; }
 
 input[type=text],
 :not(#EN__RootElement) input[type=email],
@@ -2142,6 +2240,9 @@ input[type=text],
 :not(#EN__RootElement) input[type=tel] {
   appearance: none; }
 
+/************************************
+* Radio Select Fields
+***********************************/
 input[type=radio] + label {
   cursor: pointer;
   align-items: center;
@@ -2179,6 +2280,9 @@ input[type=radio]:checked + label:before {
   border-color: var(--radio_border-color_selected);
   box-shadow: var(--radio_box-shadow_selected); }
 
+/************************************
+* Checkbox Fields
+***********************************/
 input[type=checkbox] + label {
   cursor: pointer;
   content: "";
@@ -2216,6 +2320,11 @@ input[type=checkbox]:checked + label:before {
   background-color: var(--checkbox_background-color_checked);
   border-color: var(--checkbox_border-color_checked); }
 
+/************************************
+* Tweet to Target Fields
+* For checkboxes with only an input and no label
+* @TODO See if "en__contactDetails__select" styling can be merged in
+***********************************/
 .en__twitterTarget__select {
   cursor: pointer;
   visibility: hidden;
@@ -2249,6 +2358,74 @@ input[type=checkbox]:checked + label:before {
     background-color: var(--checkbox_background-color_checked);
     border-color: var(--checkbox_border-color_checked); }
 
+/************************************
+* Premium Gift Selects
+* For radio selects with only an input and no label
+* @TODO See if "en__contactDetails__select" styling can be merged in
+***********************************/
+.en__pg__select input {
+  cursor: pointer;
+  visibility: hidden;
+  max-width: min-content;
+  content: "";
+  min-height: var(--radio_height); }
+  .en__pg__select input:before {
+    visibility: visible;
+    content: var(--radio_content);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--radio_color);
+    background-color: var(--radio_background-color);
+    border-style: solid;
+    border-width: var(--radio_border-width);
+    border-color: var(--radio_border-color);
+    border-radius: var(--radio_border-radius);
+    height: var(--radio_height);
+    width: var(--radio_width);
+    box-shadow: var(--radio_box-shadow);
+    display: flex; }
+  .en__pg__select input:focus:before, .en__pg__select input:hover:before {
+    color: var(--radio_color_hover);
+    background-color: var(--radio_background-color_hover);
+    border-color: var(--radio_border-color_hover);
+    box-shadow: var(--radio_box-shadow_hover); }
+  .en__pg__select input:not(:checked):before {
+    color: transparent; }
+  .en__pg__select input:checked:before {
+    color: var(--radio_color_selected);
+    background-color: var(--radio_background-color_selected);
+    border-color: var(--radio_border-color_selected);
+    box-shadow: var(--radio_box-shadow_selected); }
+
+/************************************
+* Radio Select, Checkbox, and Email to Target Contact Fields
+***********************************/
+/* Custom Styling for Radio & Checkbox Inputs */
+input.en__field__input--radio,
+input.en__field__input--checkbox,
+input.en__contactDetails__select {
+  border: 0;
+  clip: rect(0 0 0 0);
+  -webkit-clip-path: inset(50%);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap; }
+
+.en__field__input--radio:focus + .en__field__label,
+.en__field__input--checkbox:focus + .en__field__label,
+.en__contactDetails__select:focus + .en__contactDetails__rows {
+  outline: -webkit-focus-ring-color auto 1px;
+  outline-offset: calc(0.5rem - 3px); }
+
+/************************************
+ * Select Fields
+ ***********************************/
 select,
 select.en__field__input--select,
 select.en__field__input--splitselect,
@@ -2295,7 +2472,11 @@ select.en__field__input--tripleselect {
     border-bottom-color: var(--select_border-bottom-color_hover);
     box-shadow: var(--select_box-shadow_hover); }
 
+/************************************
+ * Textarea Fields
+ ***********************************/
 textarea,
+.en__field__input--textarea,
 .en__contactMessage__plainText {
   font-family: var(--textarea_font-family);
   color: var(--textarea_color);
@@ -2317,9 +2498,11 @@ textarea,
   border-style: solid;
   box-shadow: var(--textarea_box-shadow);
   transition: box-shadow 0.25s, border-color 0.25s ease-in-out;
-  height: 7rem;
+  min-height: calc(1rem + 10ch);
   resize: vertical; }
   textarea:focus, textarea:hover,
+  .en__field__input--textarea:focus,
+  .en__field__input--textarea:hover,
   .en__contactMessage__plainText:focus,
   .en__contactMessage__plainText:hover {
     color: var(--textarea_color_hover);
@@ -2327,101 +2510,48 @@ textarea,
     border-color: var(--textarea_border-color_hover);
     border-bottom-color: var(--textarea_border-bottom-color_hover);
     box-shadow: var(--textarea_box-shadow_hover); }
-  textarea.en__field,
-  .en__contactMessage__plainText.en__field {
-    margin-left: 0;
-    margin-right: 0; }
 
-.en__field__item {
-  padding: initial; }
+/************************************
+ * Split Text and Split Select Fields
+ ***********************************/
+.en__field__element--splittext .en__field__item,
+.en__field__element--splitselect .en__field__item {
+  flex-basis: calc(100% / 2); }
 
-.en__field__item,
-.en__field__element--calendar,
-.en__field__element--checkbox,
-.en__field__element--email,
-.en__field__element--number,
-.en__field__element--password,
-.en__field__element--radio,
-.en__field__element--range,
-.en__field__element--rating,
-.en__field__element--select,
-.en__field__element--splitselect,
-.en__field__element--splittext,
-.en__field__element--telephone,
-.en__field__element--text,
-.en__field__element--textarea,
-.en__field__element--tripleselect,
-.en__field__element--tripletext {
+/************************************
+ * Triple Text and Triple Select Fields
+ ***********************************/
+.en__field__element--tripletext .en__field__item,
+.en__field__element--tripleselect .en__field__item {
+  flex-basis: calc(100% / 3); }
+
+/************************************
+ * Image Select Field
+ ***********************************/
+.en__imageSelectField__image {
+  padding-bottom: 0.5rem; }
+
+.en__field__element--imgselect {
   display: flex;
   flex-wrap: wrap; }
 
-/* Reset height */
-.en__field__input--textarea {
-  height: auto;
-  width: 100%; }
+.en__field--imgselect .en__field__item {
+  flex-basis: calc(100% / 3); }
 
-/************************************
-    * General overrides of EN styles
-    ***********************************/
-/* In the event Theme CSS causes a hidden field to become displayed, force its display to remain hidden */
-/* This was an issue originally reported by EN staff, not sure if it still persists with recent styling updates */
-.en__hidden {
-  display: none !important; }
-
-.en__captcha {
-  padding-bottom: 0;
-  margin-bottom: 1rem;
+.en__imageSelectField__control {
   display: flex;
   flex-direction: column;
-  position: relative; }
-
-/* Make the spacing between wrapping elements tighter so the user knows they're related */
-.en__field--select .en__field__item:not(.en__field__item--other),
-.en__field--radio .en__field__item:not(.en__field__item--other),
-.en__field--checkbox .en__field__item:not(.en__field__item--other),
-.en__field--splittext .en__field__item:not(.en__field__item--other),
-.en__field--tripletext .en__field__item:not(.en__field__item--other),
-.en__field--splitselect .en__field__item:not(.en__field__item--other),
-.en__field--tripleselect .en__field__item:not(.en__field__item--other) {
-  margin-bottom: 0.5rem;
-  display: flex;
   align-items: center; }
+  .en__imageSelectField__control .en__field__input--imageSelectField {
+    width: auto; }
 
-.en__component div[class*="withOther"].en__field .en__field__item {
-  margin-bottom: 0.5rem; }
+.en__field--imgselect .en__imageSelectField {
+  display: flex;
+  flex-direction: column; }
 
-/* If the form field has a hidden "other" field we need to remove the end of row spacing */
-/* NEED TO REVISIT FOR CODE CLEANUP */
 /************************************
-* Inputs
-***********************************/
-/**
-      * Form Block Component: Select Fields
-      * Overrides EN Default Styling to ensure mobile friendly widths
-      */
-.en__field__input--select {
-  min-width: initial !important; }
-
-/* Custom Styling for Radio & Checkbox Inputs */
-input.en__field__input--radio,
-input.en__field__input--checkbox,
-input.en__contactDetails__select {
-  border: 0;
-  clip: rect(0 0 0 0);
-  -webkit-clip-path: inset(50%);
-  clip-path: inset(50%);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-  white-space: nowrap; }
-
-/* Helps when the field label gets additional content added to it. https://d.pr/v/9rFaiW */
-.en__field__label {
-  position: relative; }
-
+ * Email to Target: Contact Fields
+ ***********************************/
 .en__contactDetails__rows {
   flex-direction: column;
   align-items: flex-start;
@@ -2474,175 +2604,18 @@ input.en__contactDetails__select {
   font-weight: var(--checkbox_font-weight);
   cursor: pointer; }
 
-/* QA Needed: Would like to find a way so that radio input focus is round rather than square. May require re-writing how radio inputs are styled */
-.en__field__input--radio:focus + .en__field__label,
-.en__field__input--checkbox:focus + .en__field__label,
-.en__contactDetails__select:focus + .en__contactDetails__rows {
-  outline: -webkit-focus-ring-color auto 1px;
-  outline-offset: calc(0.5rem - 3px); }
-
-/* QA Needed: EN's hidden input field */
-.en__field--hidden {
-  display: block;
-  width: 100% !important; }
-
-/* Uses Padding instead of Margin because padding is counted in the Flex-basis width whereas Margin is outside */
-/* One optimization idea is to break this file up into three CSS files, 1-10, 11-20, and 21-30. That was they can be included only if that template is using them. */
-/* Should confirm if the EN class field could even hold enough chars to fit defining 20 fields plus their start/stop classes */
-/* Why 20 pre-defined options? To cover a single form component with all of the following: * 1. First Name (50%) | 2. Last Name (50%) * 3. Email (100%) * 4. Email Opt-in (100%) * 5. Phone (100%) * 6. Phone Opt-in (100%) * 7. Street (100%) * 8. Street 2 (100%) * 9. City (33%) | 10. State (33%) | 11. Zip (33%) * 12. Country (100%) * 13. Giving Frequency (100%) * 14. Giving Amount (100%) * 15. Gift Type (100%) * 16. Credit Card Number (100%) * 17. Credit Card Expiration (50%) | 18. Credit Card CVV (50%) * 19. Custom Field (100%) * 20. Custom Field (100%) */
-/* Make all en fields 100% */
-.en__component--formblock,
-.en__component--svblock {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  margin-left: -0.5rem;
-  margin-right: -0.5rem; }
-  .en__component--formblock > *,
-  .en__component--svblock > * {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem; }
-  .en__component--formblock .en__field,
-  .en__component--svblock .en__field {
-    display: flex;
-    flex-direction: column;
-    flex-basis: 100%;
-    padding-bottom: 0rem;
-    margin-bottom: 0.5rem; }
-    .en__component--formblock .en__field .en__field__element .en__field__label,
-    .en__component--formblock .en__field .en__field__element .en__field__helpText,
-    .en__component--svblock .en__field .en__field__element .en__field__label,
-    .en__component--svblock .en__field .en__field__element .en__field__helpText {
-      padding-top: 0.5rem;
-      padding-right: 0rem;
-      padding-bottom: 0.25rem;
-      padding-left: 0rem; }
-    .en__component--formblock .en__field .en__field__element > *:only-of-type,
-    .en__component--formblock .en__field .en__field__element .en__submit,
-    .en__component--svblock .en__field .en__field__element > *:only-of-type,
-    .en__component--svblock .en__field .en__field__element .en__submit {
-      padding-left: 0.5rem;
-      padding-right: 0.5rem;
-      margin-bottom: 0.5rem; }
-      .en__component--formblock .en__field .en__field__element > *:only-of-type.en__rangeFieldLabels,
-      .en__component--formblock .en__field .en__field__element .en__submit.en__rangeFieldLabels,
-      .en__component--svblock .en__field .en__field__element > *:only-of-type.en__rangeFieldLabels,
-      .en__component--svblock .en__field .en__field__element .en__submit.en__rangeFieldLabels {
-        padding-left: 0;
-        padding-right: 0; }
-    .en__component--formblock .en__field .en__field__element.en__field__element--checkbox, .en__component--formblock .en__field .en__field__element.en__field__element--radio, .en__component--formblock .en__field .en__field__element.en__field__element--rating, .en__component--formblock .en__field .en__field__element.en__field__element--imgselect, .en__component--formblock .en__field .en__field__element.en__field__element--splittext, .en__component--formblock .en__field .en__field__element.en__field__element--tripletext, .en__component--formblock .en__field .en__field__element.en__field__element--splitselect, .en__component--formblock .en__field .en__field__element.en__field__element--tripleselect, .en__component--formblock .en__field .en__field__element.en__field__element--withOther,
-    .en__component--svblock .en__field .en__field__element.en__field__element--checkbox,
-    .en__component--svblock .en__field .en__field__element.en__field__element--radio,
-    .en__component--svblock .en__field .en__field__element.en__field__element--rating,
-    .en__component--svblock .en__field .en__field__element.en__field__element--imgselect,
-    .en__component--svblock .en__field .en__field__element.en__field__element--splittext,
-    .en__component--svblock .en__field .en__field__element.en__field__element--tripletext,
-    .en__component--svblock .en__field .en__field__element.en__field__element--splitselect,
-    .en__component--svblock .en__field .en__field__element.en__field__element--tripleselect,
-    .en__component--svblock .en__field .en__field__element.en__field__element--withOther {
-      margin-left: -0.5rem;
-      margin-right: -0.5rem; }
-      .en__component--formblock .en__field .en__field__element.en__field__element--checkbox .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--radio .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--rating .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--imgselect .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--splittext .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--tripletext .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--splitselect .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--tripleselect .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--withOther .en__field__item,
-      .en__component--svblock .en__field .en__field__element.en__field__element--checkbox .en__field__item,
-      .en__component--svblock .en__field .en__field__element.en__field__element--radio .en__field__item,
-      .en__component--svblock .en__field .en__field__element.en__field__element--rating .en__field__item,
-      .en__component--svblock .en__field .en__field__element.en__field__element--imgselect .en__field__item,
-      .en__component--svblock .en__field .en__field__element.en__field__element--splittext .en__field__item,
-      .en__component--svblock .en__field .en__field__element.en__field__element--tripletext .en__field__item,
-      .en__component--svblock .en__field .en__field__element.en__field__element--splitselect .en__field__item,
-      .en__component--svblock .en__field .en__field__element.en__field__element--tripleselect .en__field__item,
-      .en__component--svblock .en__field .en__field__element.en__field__element--withOther .en__field__item {
-        padding-left: 0.5rem;
-        padding-right: 0.5rem; }
-    .en__component--formblock .en__field.en__field--withOther .en__field__element,
-    .en__component--svblock .en__field.en__field--withOther .en__field__element {
-      margin-left: -0.5rem;
-      margin-right: -0.5rem; }
-      .en__component--formblock .en__field.en__field--withOther .en__field__element .en__field__item,
-      .en__component--svblock .en__field.en__field--withOther .en__field__element .en__field__item {
-        padding-left: 0.5rem;
-        padding-right: 0.5rem; }
-
-/* All Single Fields that do not Wrap */
-.en__field__element--splittext,
-.en__field__element--splitselect,
-.en__field__element--tripleselect {
-  align-items: flex-start; }
-
-/* Includes overrides of existing CSS, need for resolve this duplicate styling */
-.en__field__element--splittext .en__field__item:nth-of-type(1),
-.en__field__element--splitselect:not(.en__field--ccexpire)
-.en__field__item:nth-of-type(1) {
-  flex-basis: 50%;
-  padding-bottom: 0.5rem;
-  margin: 0; }
-
-/* Includes overrides of existing CSS, need for resolve this duplicate styling */
-.en__field__element--splittext .en__field__item:nth-of-type(2),
-.en__field__element--splitselect:not(.en__field--ccexpire)
-.en__field__item:nth-of-type(2) {
-  flex-basis: 50%;
-  padding-bottom: 0.5rem;
-  margin: 0; }
-
-/* Includes overrides of existing CSS, need for resolve this duplicate styling */
-.en__field__element--tripletext .en__field__item:nth-of-type(1),
-.en__field__element--tripleselect .en__field__item:nth-of-type(1) {
-  flex-basis: calc(100% / 3);
-  padding-bottom: 0.5rem;
-  margin: 0; }
-
-/* Includes overrides of existing CSS, need for resolve this duplicate styling */
-.en__field__element--tripletext .en__field__item:nth-of-type(2),
-.en__field__element--tripleselect .en__field__item:nth-of-type(2) {
-  flex-basis: calc(100% / 3);
-  padding-bottom: 0.5rem;
-  margin: 0; }
-
-/* Includes overrides of existing CSS, need for resolve this duplicate styling */
-.en__field__element--tripletext .en__field__item:nth-of-type(3),
-.en__field__element--tripleselect .en__field__item:nth-of-type(3) {
-  flex-basis: calc(100% / 3);
-  padding-bottom: 0.5rem;
-  margin: 0; }
-
-.en__field__element--imgselect {
-  display: flex;
-  flex-wrap: wrap; }
-
-.en__field--engrid-image-select .en__field__item {
-  flex-basis: calc(100% / 3); }
-
-.en__imageSelectField__control {
-  display: flex;
-  flex-direction: column;
-  align-items: center; }
-  .en__imageSelectField__control .en__field__input--imageSelectField {
-    width: auto; }
-
-.en__field--engrid-image-select .en__imageSelectField {
-  display: flex;
-  flex-direction: column; }
-
-.en__imageSelectField__image {
-  padding-bottom: 0.5rem; }
-
-/* Custom Styles */
-.inline-country .en__field--country {
-  position: absolute;
-  right: 0;
-  align-items: flex-end; }
-  .inline-country .en__field--country select {
-    width: 80px;
-    background-color: transparent;
-    box-shadow: none;
-    text-align-last: right; }
-
+/************************************
+ * Number Input Spinner Field
+ * Remove Number Input Spinners https://stackoverflow.com/a/4298216
+ ***********************************/
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none; }
 
-/* Placeholder styling */
+/************************************
+ * Field Placeholder Styling
+ * @TODO Can this be simplified because we use Autoprefixer?
+ ***********************************/
 /* Chrome, Firefox, Opera, Safari 10.1+ */
 ::-webkit-input-placeholder {
   color: var(--color_light-gray);
@@ -2670,6 +2643,42 @@ input[type="number"]::-webkit-outer-spin-button {
 /* Microsoft Edge */
 ::-ms-input-placeholder {
   color: var(--color_light-gray); }
+
+/************************************
+ * Hidden Input Field
+ ***********************************/
+/* In the event Theme CSS causes a hidden field to become displayed, force its display to remain hidden */
+/* This was an issue originally reported by EN staff, not sure if it still persists with recent styling updates */
+.en__hidden {
+  display: none !important; }
+
+/* QA Needed: EN's hidden input field */
+.en__field--hidden {
+  display: block;
+  width: 100% !important; }
+
+/************************************
+ * Captcha
+ ***********************************/
+.en__captcha {
+  padding-bottom: 0;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  position: relative; }
+
+/************************************
+ * Inline Country Styling
+ ***********************************/
+.inline-country .en__field--country {
+  position: absolute;
+  right: 0;
+  align-items: flex-end; }
+  .inline-country .en__field--country select {
+    width: 80px;
+    background-color: transparent;
+    box-shadow: none;
+    text-align-last: right; }
 
 /* ENGRID STYLINGS */
 @supports (-webkit-appearance: -apple-pay-button) {
@@ -3394,34 +3403,18 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   .i10-m50 .en__field:nth-of-type(10),
   .i11-m50 .en__field:nth-of-type(11) {
     flex-basis: 50%; }
-  /* For items at the start of a row, remove left padding */
-  .i1-mstart .en__field:nth-of-type(1),
-  .i2-mstart .en__field:nth-of-type(2),
-  .i3-mstart .en__field:nth-of-type(3),
-  .i4-mstart .en__field:nth-of-type(4),
-  .i5-mstart .en__field:nth-of-type(5),
-  .i6-mstart .en__field:nth-of-type(6),
-  .i7-mstart .en__field:nth-of-type(7),
-  .i8-mstart .en__field:nth-of-type(8),
-  .i9-mstart .en__field:nth-of-type(9),
-  .i10-mstart .en__field:nth-of-type(10),
-  .i11-mstart .en__field:nth-of-type(11) {
-    padding-left: 0;
-    margin-right: 0; }
-  /* For items at the end of a row, remove right padding */
-  .i1-mend .en__field:nth-of-type(1),
-  .i2-mend .en__field:nth-of-type(2),
-  .i3-mend .en__field:nth-of-type(3),
-  .i4-mend .en__field:nth-of-type(4),
-  .i5-mend .en__field:nth-of-type(5),
-  .i6-mend .en__field:nth-of-type(6),
-  .i7-mend .en__field:nth-of-type(7),
-  .i8-mend .en__field:nth-of-type(8),
-  .i9-mend .en__field:nth-of-type(9),
-  .i10-mend .en__field:nth-of-type(10),
-  .i11-mend .en__field:nth-of-type(11) {
-    padding-right: 0;
-    margin-left: 0; } }
+  .i1-m100 .en__field:nth-of-type(1),
+  .i2-m100 .en__field:nth-of-type(2),
+  .i3-m100 .en__field:nth-of-type(3),
+  .i4-m100 .en__field:nth-of-type(4),
+  .i5-m100 .en__field:nth-of-type(5),
+  .i6-m100 .en__field:nth-of-type(6),
+  .i7-m100 .en__field:nth-of-type(7),
+  .i8-m100 .en__field:nth-of-type(8),
+  .i9-m100 .en__field:nth-of-type(9),
+  .i10-m100 .en__field:nth-of-type(10),
+  .i11-m100 .en__field:nth-of-type(11) {
+    flex-basis: 100%; } }
 
 [data-engrid-theme] {
   --color_cta: var(--color_primary);
@@ -3438,7 +3431,7 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   --recurring-frequency__button_line-height: var(--button_line-height);
   --recurring-frequency__button_border-width: var(--button_border-width);
   --recurring-frequency__button_border-radius: var(--button_border-radius);
-  --recurring-frequency__button_padding: var(--button_padding);
+  --recurring-frequency__button_padding: var(--button_padding) !important;
   --recurring-frequency__button_count: 4;
   --donation-amount__button_font-family: var(--button_font-family);
   --donation-amount__button_font-size: var(--button_font-size);
@@ -3446,7 +3439,7 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   --donation-amount__button_line-height: var(--button_line-height);
   --donation-amount__button_border-width: var(--button_border-width);
   --donation-amount__button_border-radius: var(--button_border-radius);
-  --donation-amount__button_padding: var(--button_padding);
+  --donation-amount__button_padding: var(--button_padding) !important;
   --donation-amount__button_count: 4;
   --give-monthly-donation-amount-appended-label: "/mo";
   --give-annual-donation-amount-appended-label: "/yr";
@@ -3456,7 +3449,7 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   --give-by-select__button_line-height: var(--button_line-height);
   --give-by-select__button_border-width: var(--button_border-width);
   --give-by-select__button_border-radius: var(--button_border-radius);
-  --give-by-select__button_padding: var(--button_padding);
+  --give-by-select__button_padding: var(--button_padding) !important;
   --give-by-select__button_count: 4;
   --radio-to-buttons__button_count: 4; }
 
@@ -3487,8 +3480,6 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
 .en__field--give-by-select > .en__field__element .en__field__item:not(.en__field__item--other),
 .radio-to-buttons_donationAmt > .en__field > .en__field__element .en__field__item:not(.en__field__item--other),
 .radio-to-buttons_recurrfreq > .en__field > .en__field__element .en__field__item:not(.en__field__item--other) {
-  padding-left: 0;
-  padding-right: 0;
   justify-content: center;
   flex-shrink: 1; }
 
@@ -3496,8 +3487,6 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
 .en__field--give-by-select > .en__field__element .en__field__item--other,
 .radio-to-buttons_donationAmt > .en__field > .en__field__element .en__field__item--other,
 .radio-to-buttons_recurrfreq > .en__field > .en__field__element .en__field__item--other {
-  padding-left: .5rem;
-  padding-right: .5rem;
   justify-content: center;
   flex-shrink: 1; }
 
@@ -3530,11 +3519,8 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   border-color: var(--button_border-color);
   border-radius: var(--button_border-radius);
   border-style: solid;
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-  padding: var(--button_padding);
+  padding: var(--button_padding) !important;
   background-position-x: 40px;
-  width: 100%;
   text-align: center;
   justify-content: center; }
 
@@ -3568,11 +3554,8 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   border-color: var(--give-by-select__button_border-color);
   border-radius: var(--give-by-select__button_border-radius);
   border-style: solid;
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-  padding: var(--give-by-select__button_padding);
+  padding: var(--give-by-select__button_padding) !important;
   background-position-x: 40px;
-  width: 100%;
   text-align: center;
   justify-content: center; }
 
@@ -3606,11 +3589,8 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   border-color: var(--donation-amount__button_border-color);
   border-radius: var(--donation-amount__button_border-radius);
   border-style: solid;
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-  padding: var(--donation-amount__button_padding);
+  padding: var(--donation-amount__button_padding) !important;
   background-position-x: 40px;
-  width: 100%;
   text-align: center;
   justify-content: center; }
 
@@ -3644,11 +3624,8 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   border-color: var(--recurring-frequency__button_border-color);
   border-radius: var(--recurring-frequency__button_border-radius);
   border-style: solid;
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-  padding: var(--recurring-frequency__button_padding);
+  padding: var(--recurring-frequency__button_padding) !important;
   background-position-x: 40px;
-  width: 100%;
   text-align: center;
   justify-content: center; }
 
@@ -3949,19 +3926,10 @@ button.en__ecarditems__prevclose {
 
 /* Field Level Inline Errors */
 /* Pick up the normal spacing on the error element to contunue form pacing continues as expected when in an error state */
-.en__component .en__field.en__field--select.en__field--validationFailed,
-.en__component .en__field.en__field--radio.en__field--validationFailed,
-.en__component .en__field.en__field--checkbox.en__field--validationFailed,
-.en__component .en__field.en__field--splittext.en__field--validationFailed,
-.en__component .en__field.en__field--tripletext.en__field--validationFailed,
-.en__component .en__field.en__field--splitselect.en__field--validationFailed,
-.en__component .en__field.en__field--tripleselect.en__field--validationFailed {
-  margin-bottom: 1rem; }
-
 .en__component .en__field__error {
   padding: 0.25rem 0.5rem 0 0;
   color: var(--error__color);
-  font-size: 0.75rem;
+  font-size: calc(max(75%, 10px));
   order: 3; }
 
 /* @TODO Not working anymore since we removed our corresponding JS */
@@ -3999,10 +3967,15 @@ body.error-jump-assist .en__component .en__field__error {
 .en__field__element,
 .en__component
 .en__field.en__field--tripleselect.en__field--validationFailed
+.en__field__element,
+.en__component
+.en__field.en__field--imgselect.en__field--validationFailed
+.en__field__element,
+.en__component
+.en__field.en__field--rating.en__field--validationFailed
 .en__field__element {
   border: var(--error__border-width) solid var(--error__color);
   background-color: var(--error__color_faded);
-  padding-top: 0.5rem;
   margin-left: 0rem;
   margin-right: 0rem;
   border-radius: var(--input_border-radius); }
@@ -4207,96 +4180,58 @@ button.en__eventOccurrence__select {
 * # Field Level Inline "Fancy Errors"
 * ##########################################################
 */
-[data-engrid-errors="fancy"] .en__component .en__field__error {
+[data-engrid-errors="fancy"] .en__field__error {
   padding: 0.25rem 0.5rem;
   color: var(--color_white);
-  font-size: 0.75rem;
+  font-size: calc(max(75%, 10px));
   border-bottom-left-radius: var(--input_border-radius);
   border-bottom-right-radius: var(--input_border-radius);
   background-color: var(--error__color);
   order: 3; }
-
-[data-engrid-errors="fancy"] .en__field--splittext .en__field__error,
-[data-engrid-errors="fancy"] .en__field--tripletext .en__field__error,
-[data-engrid-errors="fancy"] .en__field--splitselect .en__field__error,
-[data-engrid-errors="fancy"] .en__field--tripleselect .en__field__error,
-[data-engrid-errors="fancy"] .en__field--radio .en__field__error,
-[data-engrid-errors="fancy"] .en__field--checkbox .en__field__error,
-[data-engrid-errors="fancy"] .en__field--rating .en__field__error,
-[data-engrid-errors="fancy"] .en__field--imgselect .en__field__error,
-[data-engrid-errors="fancy"] .en__field--withOther .en__field__error {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem; }
 
 [data-engrid-errors="fancy"] .en__field--text.en__field--validationFailed input,
 [data-engrid-errors="fancy"] .en__field--email.en__field--validationFailed input,
 [data-engrid-errors="fancy"] .en__field--telephone.en__field--validationFailed input,
 [data-engrid-errors="fancy"] .en__field--number.en__field--validationFailed input,
 [data-engrid-errors="fancy"] .en__field--textarea.en__field--validationFailed textarea,
-[data-engrid-errors="fancy"] .en__field--select.en__field--validationFailed select {
+[data-engrid-errors="fancy"] .en__field--select.en__field--validationFailed select,
+[data-engrid-errors="fancy"] .en__field--password.en__field--validationFailed input,
+[data-engrid-errors="fancy"] .en__field--calendar.en__field--validationFailed input {
   border-bottom-right-radius: 0px;
   border-bottom-left-radius: 0px; }
+  [data-engrid-errors="fancy"] .en__field--text.en__field--validationFailed input:only-of-type,
+  [data-engrid-errors="fancy"] .en__field--email.en__field--validationFailed input:only-of-type,
+  [data-engrid-errors="fancy"] .en__field--telephone.en__field--validationFailed input:only-of-type,
+  [data-engrid-errors="fancy"] .en__field--number.en__field--validationFailed input:only-of-type,
+  [data-engrid-errors="fancy"] .en__field--textarea.en__field--validationFailed textarea:only-of-type,
+  [data-engrid-errors="fancy"] .en__field--select.en__field--validationFailed select:only-of-type,
+  [data-engrid-errors="fancy"] .en__field--password.en__field--validationFailed input:only-of-type,
+  [data-engrid-errors="fancy"] .en__field--calendar.en__field--validationFailed input:only-of-type {
+    margin-bottom: 0 !important; }
 
-[data-engrid-errors="fancy"]
-.en__component
-.en__field.en__field--select.en__field--withOther.en__field--validationFailed
-.en__field__element,
-[data-engrid-errors="fancy"]
-.en__component
-.en__field.en__field--radio.en__field--validationFailed
-.en__field__element,
-[data-engrid-errors="fancy"]
-.en__component
-.en__field.en__field--checkbox.en__field--validationFailed
-.en__field__element,
-[data-engrid-errors="fancy"]
-.en__component
-.en__field.en__field--splittext.en__field--validationFailed
-.en__field__element,
-[data-engrid-errors="fancy"]
-.en__component
-.en__field.en__field--tripletext.en__field--validationFailed
-.en__field__element,
-[data-engrid-errors="fancy"]
-.en__component
-.en__field.en__field--splitselect.en__field--validationFailed
-.en__field__element,
-[data-engrid-errors="fancy"]
-.en__component
-.en__field.en__field--tripleselect.en__field--validationFailed
-.en__field__element {
-  border-bottom-left-radius: 0rem;
-  border-bottom-right-radius: 0rem; }
+[data-engrid-errors="fancy"] .en__field--select.en__field--withOther.en__field--validationFailed .en__field__element,
+[data-engrid-errors="fancy"] .en__field--radio.en__field--validationFailed .en__field__element,
+[data-engrid-errors="fancy"] .en__field--checkbox.en__field--validationFailed .en__field__element,
+[data-engrid-errors="fancy"] .en__field--splittext.en__field--validationFailed .en__field__element,
+[data-engrid-errors="fancy"] .en__field--tripletext.en__field--validationFailed .en__field__element,
+[data-engrid-errors="fancy"] .en__field--splitselect.en__field--validationFailed .en__field__element,
+[data-engrid-errors="fancy"] .en__field--tripleselec.en__field--validationFailed .en__field__element,
+[data-engrid-errors="fancy"] .en__field--calendar.en__field--validationFailed .en__field__element,
+[data-engrid-errors="fancy"] .en__field--imgselect.en__field--validationFailed .en__field__element,
+[data-engrid-errors="fancy"] .en__field--rating.en__field--validationFailed .en__field__element {
+  border-bottom-left-radius: 0rem !important;
+  border-bottom-right-radius: 0rem !important; }
 
-[data-engrid-errors="fancy"]
-.en__component
-.en__field.en__field--select.en__field--withOther.en__field--validationFailed.has-value
-.en__field__element,
-[data-engrid-errors="fancy"]
-.en__component
-.en__field.en__field--radio.en__field--validationFailed.has-value
-.en__field__element,
-[data-engrid-errors="fancy"]
-.en__component
-.en__field.en__field--checkbox.en__field--validationFailed.has-value
-.en__field__element,
-[data-engrid-errors="fancy"]
-.en__component
-.en__field.en__field--splittext.en__field--validationFailed.has-value
-.en__field__element,
-[data-engrid-errors="fancy"]
-.en__component
-.en__field.en__field--tripletext.en__field--validationFailed.has-value
-.en__field__element,
-[data-engrid-errors="fancy"]
-.en__component
-.en__field.en__field--splitselect.en__field--validationFailed.has-value
-.en__field__element,
-[data-engrid-errors="fancy"]
-.en__component
-.en__field.en__field--tripleselect.en__field--validationFailed.has-value
-.en__field__element,
-[data-engrid-errors="fancy"] .en__field--validationFailed.has-value .en__field__error {
+[data-engrid-errors="fancy"] .en__field--select.en__field--withOther .en__field--validationFailed.has-value,
+[data-engrid-errors="fancy"] .en__field--radio .en__field--validationFailed.has-value,
+[data-engrid-errors="fancy"] .en__field--checkbox .en__field--validationFailed.has-value,
+[data-engrid-errors="fancy"] .en__field--splittext .en__field--validationFailed.has-value,
+[data-engrid-errors="fancy"] .en__field--tripletext .en__field--validationFailed.has-value,
+[data-engrid-errors="fancy"] .en__field--splitselect .en__field--validationFailed.has-value,
+[data-engrid-errors="fancy"] .en__field--tripleselec .en__field--validationFailed.has-value,
+[data-engrid-errors="fancy"] .en__field--calendar .en__field--validationFailed.has-value,
+[data-engrid-errors="fancy"] .en__field--imgselect .en__field--validationFailed.has-value,
+[data-engrid-errors="fancy"] .en__field--rating .en__field--validationFailed.has-value {
   border-color: var(--error__color_grayscale);
   background-color: var(--error__color_grayscale);
   color: var(--color_white); }
@@ -4767,20 +4702,39 @@ div[id^=nb-field-].nb-success input {
   border-color: initial !important; }
 
 .en__pg__body {
-  display: flex;
-  flex-direction: row; }
+  display: grid;
+  grid-template-columns: min-content min-content 1fr;
+  grid-template-rows: min-content;
+  grid-auto-columns: min-content;
+  grid-auto-rows: min-content;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  align-items: center;
+  grid-template-areas: "en__pg__select en__pg__display en__pg__detail"; }
 
 .en__pg__select {
-  flex-basis: 15px;
+  align-self: center;
+  grid-area: en__pg__select; }
+
+.en__pg__display {
+  grid-area: en__pg__display; }
+
+.en__pg__detail {
+  grid-area: en__pg__detail; }
+
+.en__pg__images img {
+  width: auto;
+  margin: 0;
+  max-width: 20vw; }
+
+.en__pg__select {
   padding: 0; }
 
 .en__pg__display {
-  flex-basis: 150px;
   padding-top: 0;
   padding-bottom: 0; }
 
 .en__pg__detail {
-  flex-basis: calc(100% - 150px - 15px);
   margin-top: 0;
   padding-top: 0;
   padding-bottom: 0; }
