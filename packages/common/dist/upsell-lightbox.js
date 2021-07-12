@@ -220,8 +220,9 @@ export class UpsellLightbox {
             if (ENGrid.debug)
                 console.log("Upsold");
             this.setOriginalAmount(this._amount.amount.toString());
+            const upsoldAmount = this.getUpsellAmount();
             this._frequency.setFrequency("monthly");
-            this._amount.setAmount(this.getUpsellAmount());
+            this._amount.setAmount(upsoldAmount);
         }
         else {
             this.setOriginalAmount('');
