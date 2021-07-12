@@ -480,7 +480,7 @@ input[type=checkbox]{
   visibility: hidden; // Used to hide parent while keeping its pseduo element visible
   max-width: min-content;
   content: "";
-  height: calc(var(--radio_height) + (var(--radio_border-width) * 2)); // Give it a height to match the pseduo element
+  min-height: var(--radio_height); // Give it a min height to match the pseduo element
 
   &:before{
     visibility: visible;  // Used to keep psuedo element visible while hiding the parent
