@@ -412,7 +412,7 @@ export const watchInmemField = () => {
 // @TODO Refactor (low priority)
 export const watchGiveBySelectField = () => {
   const enFieldGiveBySelect = document.querySelector(
-    ".en__field--giveBySelect"
+    ".en__field--give-by-select"
   ) as HTMLElement;
   const transactionGiveBySelect = document.getElementsByName(
     "transaction.giveBySelect"
