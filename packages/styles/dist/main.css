@@ -918,7 +918,7 @@ body[data-engrid-debug]:before {
 
 .en__eventOccurrence__select > label {
   display: block;
-  padding: 0.375rem 0.875rem;
+  padding: 0;
   cursor: pointer; }
 
 .en__eventOccurrencesPagination {
@@ -2043,7 +2043,7 @@ a {
   --checkbox_width: 1.4rem;
   --checkbox_height: 1.4rem;
   --checkbox_content_checked:"✓";
-  --select_font-family: var(--default_font-family);
+  --select_font-family: var(--input_font-family);
   --select_font-size: var(--root_font-size);
   --select_font-weight: initial;
   --select_line-height: initial;
@@ -2589,7 +2589,7 @@ textarea,
   background-color: var(--checkbox_background-color_checked);
   box-shadow: inset 0 0 0 0 var(--checkbox_background-color);
   border-width: var(--checkbox_border-width);
-  border-color: var(--checkbox_border-color); }
+  border-color: var(--checkbox_border-color_checked); }
 
 .en__contacts:not(.en__contacts--hideCheck)
 .en__contactDetails__select:checked
@@ -2598,8 +2598,7 @@ textarea,
   position: absolute;
   left: 4px;
   top: 5px;
-  color: var(--checkbox_color);
-  background-color: transparent;
+  color: var(--checkbox_color_checked);
   font-size: calc(0.05552rem * 18);
   font-weight: var(--checkbox_font-weight);
   cursor: pointer; }
@@ -2896,7 +2895,10 @@ body {
  */
 /* Buttons */
 button,
-.button {
+.button,
+button.en__ticketRecurring__select,
+button.en__ticketSummary__checkout,
+button.en__eventOccurrence__select {
   font-family: var(--button_font-family);
   color: var(--button_color);
   font-size: var(--button_font-size);
@@ -2919,12 +2921,21 @@ button,
   cursor: pointer; }
   button:focus, button:hover,
   .button:focus,
-  .button:hover {
+  .button:hover,
+  button.en__ticketRecurring__select:focus,
+  button.en__ticketRecurring__select:hover,
+  button.en__ticketSummary__checkout:focus,
+  button.en__ticketSummary__checkout:hover,
+  button.en__eventOccurrence__select:focus,
+  button.en__eventOccurrence__select:hover {
     color: var(--button_color_hover);
     background-color: var(--button_background-color_hover);
     border-color: var(--button_border-color_hover); }
   button:active,
-  .button:active {
+  .button:active,
+  button.en__ticketRecurring__select:active,
+  button.en__ticketSummary__checkout:active,
+  button.en__eventOccurrence__select:active {
     color: var(--button_color_checked);
     background-color: var(--button_background-color_checked);
     border-color: var(--button_border-color_checked); }
@@ -3104,7 +3115,7 @@ body:not(#en__pagebuilder) .click-to-expand.expanded .click-to-expand-text-wrapp
   --submit__button_border-color: var(--button_border-color);
   --submit__button_backgrond-color: var(--button_background-color);
   --submit__button_color_hover: var(--button_color);
-  --submit__button_background-color_hover: var(--color_black);
+  --submit__button_background-color_hover: var(--button_background-color_hover);
   --submit__button_border-color_hover: var(--button_background-color_hover);
   --submit__button_color_checked: var(--button_color_hover);
   --submit__button_background-color_checked: var(--button_background-color_hover);
@@ -4164,10 +4175,10 @@ input[type=text].en__ticket__quantity {
   width: 100%; }
 
 button.en__eventOccurrence__select {
-  margin-bottom: 0;
-  background-color: var(--button_background-color); }
-  button.en__eventOccurrence__select:hover {
-    background-color: var(--button_background-color_hover); }
+  margin-bottom: 0; }
+
+button.en__eventOccurrence__select > label {
+  font-family: var(--button_font-family); }
 
 @media screen and (max-width: 599px) {
   .en__registrants__registrantDetails .en__field.en__field--text.en__field {
@@ -4898,13 +4909,14 @@ body:not(#en__pagebuilder) .simple_country_select.country-select-visible .en__fi
   border-width: var(--button_border-width);
   border-color: var(--button_border-color);
   border-radius: var(--button_border-radius);
+  padding: var(--button_padding);
   cursor: pointer; }
 
 .en__tweetButton a:focus,
 .en__tweetButton a:hover {
-  color: var(--button_color_checked);
-  background-color: var(--button_background-color_checked);
-  border-color: var(--button_border-color_checked); }
+  color: var(--button_color_hover);
+  background-color: var(--button_background-color_hover);
+  border-color: var(--button_border-color_hover); }
 
 [data-engrid-theme] {
   --scale-up_20pct: 1.2;

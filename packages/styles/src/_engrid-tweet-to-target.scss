@@ -75,13 +75,14 @@
     background-color: var(--button_background-color);
     border-width: var(--button_border-width);
     border-color: var(--button_border-color);
-    border-radius: var(--button_border-radius);    
+    border-radius: var(--button_border-radius);   
+    padding: var(--button_padding); 
     cursor: pointer;
 }
 
 .en__tweetButton a:focus,
 .en__tweetButton a:hover{
-    color: var(--button_color_checked);
-    background-color: var(--button_background-color_checked);
-    border-color: var(--button_border-color_checked);
+    color: var(--button_color_hover);
+    background-color: var(--button_background-color_hover);
+    border-color: var(--button_border-color_hover);
 }

@@ -167,13 +167,21 @@ input[type=text].en__ticket__quantity{
   width: 100%;
 }
 
+// button.en__eventOccurrence__select{
+//   margin-bottom: 0;
+//   background-color: var(--button_background-color);
+
+//   &:hover{
+//     background-color: var(--button_background-color_hover);
+//   }
+// }
+
 button.en__eventOccurrence__select{
   margin-bottom: 0;
-  background-color: var(--button_background-color);
+}
 
-  &:hover{
-    background-color: var(--button_background-color_hover);
-  }
+button.en__eventOccurrence__select > label{
+  font-family: var(--button_font-family);
 }
 
 @media screen and (max-width: 599px){

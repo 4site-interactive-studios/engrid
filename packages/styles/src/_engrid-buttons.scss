@@ -32,7 +32,7 @@
   
   // TYPOGRAPHY SUBMIT BUTTON:HOVER
   // --submit__button_color_hover: var(--button_color);
-  // --submit__button_background-color_hover: var(--color_black);
+  // --submit__button_background-color_hover: var(--button_background-color_hover);
   // --submit__button_border-color_hover: var(--button_background-color_hover);
 
   // TYPOGRAPHY SUBMIT BUTTON:SELECTED
@@ -47,7 +47,10 @@
 
 /* Buttons */
 button,
-.button {
+.button,
+button.en__ticketRecurring__select,
+button.en__ticketSummary__checkout,
+button.en__eventOccurrence__select {
   font-family: var(--button_font-family);
   color: var(--button_color);
   font-size: var(--button_font-size);
