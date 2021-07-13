@@ -90,6 +90,8 @@
 
     // BUTTONS
     --button_color: var(--color_primary_overlay);
+    --button_background-color: var(--color_primary);
+    --button_border-color: var(--color_primary_accent);
     --button_color_hover: var(--button_color);  
     --button_background-color_hover: var(--color_black);
     --button_border-color_hover: var(--button_background-color_hover);  
