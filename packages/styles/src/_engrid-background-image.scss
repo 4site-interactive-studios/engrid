@@ -112,8 +112,8 @@ body {
 
     .page-backgroundImage,
     .page-backgroundImageOverlay {
-      grid-column: pc !important;
-      grid-row: body-banner !important;
+      grid-column: pc;
+      grid-row: body-banner;
       min-height: 200px;
       aspect-ratio: 16/9;
       video,
