@@ -1,3 +1,12 @@
+// ONE COLUMN LAYOUTS
+$one_col_content-column_max-width: 880px !default; // Overridable in client theme
+$one_col_body-column_max-width: 500px !default; // Overridable in client theme
+$one_col_body-column_offset-width: 130px !default; // Overridable in client theme
+
+// TWO COLUMN LAYOUTS
+$two_col_content-column_max-width: 1280px !default; // Overridable in client theme
+$two_col_body-column_max-width: 900px !default; // Overridable in client theme
+
 [data-engrid-theme]{
   // GROUPED SECTION SETTINGS (BACKGROUND COLOR, PADDING, MARGIN)
   // CHANGE THESE PROPERTIES TO CHANGE ALL PROPERTIES VALUES IN THOSE SECTIONS
@@ -134,26 +143,6 @@ body:not([data-engrid-embedded]) .en__component--advrow {
     rbc-start rbc-end bc-end rcc-start rcc-end cc-end rpc-start rpc-end pc-end
   ];
 }
-
-
-/* Sum of all MIN values of the Body Columns */
-@media screen and (min-width: 650px) {
-  /* prettier-ignore */
-  .en__component--advrow,
-  .pseudo-subgrid{
-    /* autoprefixer grid: off */
-    grid-template-columns:
-    [
-      pc-start lpc-start]  minmax(25px, 1fr)     [lpc-end
-      cc-start lcc-start]  minmax(0px, 0px)      [lcc-end
-      bc-start lbc-start]  minmax(300px, 425px)  [lbc-end
-      rbc-start]           minmax(300px, 425px)  [rbc-end bc-end
-      rcc-start]           minmax(0px, 0px)      [rcc-end cc-end
-      rpc-start]           minmax(25px, 1fr)     [rpc-end pc-end
-    ];
-  }
-}
-
 
 // Define all the named rows of the ENGrid
 /* prettier-ignore */

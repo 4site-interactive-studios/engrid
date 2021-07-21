@@ -1,7 +1,6 @@
 /*
 * ####################################################################################################################
-* # ENGRID EMBEDDED LAYOUT
-* # Embedded Layout for Seamless Embedding
+* # ENGRID Layout - Embedded Layout for Seamless Embedding
 * ####################################################################################################################
 */
 
@@ -35,7 +34,6 @@
   /* prettier-ignore */
   .en__component--advrow,
   .en__component--advrow .pseudo-subgrid {
-    /* autoprefixer grid: off */
     grid-template-columns:
     [
       pc-start lpc-start]  minmax(0px, 0px)    [lpc-end
@@ -47,10 +45,9 @@
     ] !important;
   }
 
-  // When embedded "content-footerSpacer" does not need to be set to 1fr
-  // Define all the named rows of the ENGrid
   /* prettier-ignore */
   .en__component--advrow{
+      // When embedded "content-footerSpacer" does not need to be set to 1fr
     /* autoprefixer grid: off */
     // grid-template-rows:
     // [
@@ -88,6 +85,7 @@
       box-shadow: none !important;
     }
   }
+
   .page-backgroundImage,
   .page-backgroundImageOverlay {
     display: none;

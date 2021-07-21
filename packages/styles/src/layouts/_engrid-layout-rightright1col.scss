@@ -1,69 +1,33 @@
 /*
 * ####################################################################################################################
-* # ENGRID CLIENT LAYOUT
-* # Right Right 1 Column
+* # ENGRID Layout - Right Right 1 Column
 * ####################################################################################################################
 */
 
-/*
-* ##########################################################
-* # MOBILE FIRST BREAKPOINT
-* ##########################################################
-*/
+$rightright1col_content-column_max-width: $one_col_content-column_max-width !default; // Overridable in client theme
+$rightright1col_body-column_max-width: $one_col_body-column_max-width !default; // Overridable in client theme
 
-[data-engrid-layout="rightright1col"] {
-  /* prettier-ignore */
-  .en__component--advrow,
-  .en__component--advrow .pseudo-subgrid {
-    /* autoprefixer grid: off */
-    grid-template-columns:
-    [
-    pc-start lpc-start]  minmax(0px, 1fr)                  [lpc-end
-    cc-start lcc-start]  minmax(15px, 1fr)                 [lcc-end
-    bc-start lbc-start]  minmax(calc(50vw - 15px), 250px)  [lbc-end
-    rbc-start]           minmax(calc(50vw - 15px), 250px)  [rbc-end bc-end
-    rcc-start]           minmax(15px, 1fr)                 [rcc-end cc-end
-    rpc-start]           minmax(0px, 1fr)                  [rpc-end pc-end               
-    ];
-  }
-}
-
-/*
-* ##########################################################
-* # BODY BREAKPOINT
-* # Sum of all MIN values of the Body Columns
-* ##########################################################
-*/
-
-@media screen and (min-width: 500px) {
+@media screen and (min-width: $rightright1col_body-column_max-width) {
+  
   [data-engrid-layout="rightright1col"] {
+
     /* prettier-ignore */
     .en__component--advrow,
     .en__component--advrow .pseudo-subgrid {
-      /* autoprefixer grid: off */
       grid-template-columns:
       [
-        pc-start lpc-start]  minmax(0, 1fr)        [lpc-end
-        cc-start lcc-start]  minmax(0, 0)          [lcc-end
-        bc-start lbc-start]  minmax(250px, 340px)  [lbc-end
-        rbc-start]           minmax(250px, 340px)  [rbc-end bc-end
-        rcc-start]           minmax(0, 0)          [rcc-end cc-end
-        rpc-start]           minmax(0, 0)          [rpc-end pc-end            
+        pc-start lpc-start]  minmax(0px, 1fr)                           [lpc-end
+        cc-start lcc-start]  minmax(0px, 0px)                           [lcc-end
+        bc-start lbc-start]  $rightright1col_body-column_max-width / 2  [lbc-end
+        rbc-start]           $rightright1col_body-column_max-width / 2  [rbc-end bc-end
+        rcc-start]           minmax(0px, 0px)                           [rcc-end cc-end
+        rpc-start]           minmax(0px, 0px)                           [rpc-end pc-end            
       ]; 
     }
 
-  }
-  body:not(#en__pagebuilder)[data-engrid-layout="rightright1col"] {
-    .page-backgroundImage {
+    &body:not(#en__pagebuilder) .page-backgroundImage {
       grid-row: page-start / content-footer-end;
       grid-column: lpc-start / lpc-end;
     }
   }
 }
-
-/*
-* ##########################################################
-* # CONTENT BREAKPOINT
-* # Sum of all MAX values of the Body Columns + 1px
-* ##########################################################
-*/

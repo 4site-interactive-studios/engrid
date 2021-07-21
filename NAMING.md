@@ -46,4 +46,4 @@ Pattern: **block-name__elem-name_mod-name_mod-val**
 
 ## Examples
 - [data-engrid-errors="fancy"]
-- [data-engrid-layout="centercenter1col-wide"]
+- [data-engrid-layout="centercenter1col"]

@@ -209,10 +209,6 @@ export const debugBar = () => {
             if (enGrid) {
                 if (enGrid.classList.contains("layout-centercenter1col")) {
                     removeClassesByPrefix(enGrid, "layout-");
-                    enGrid.classList.add("layout-centercenter1col-wide");
-                }
-                else if (enGrid.classList.contains("layout-centercenter1col-wide")) {
-                    removeClassesByPrefix(enGrid, "layout-");
                     enGrid.classList.add("layout-centerright1col");
                 }
                 else if (enGrid.classList.contains("layout-centerright1col")) {

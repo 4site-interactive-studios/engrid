@@ -1,96 +1,34 @@
 /*
 * ####################################################################################################################
-* # ENGRID CLIENT LAYOUT
-* # Center Left 1 Column
+* # ENGRID Layout - Center Left 1 Column
 * ####################################################################################################################
 */
 
-/*
-* ##########################################################
-* # MOBILE FIRST BREAKPOINT
-* ##########################################################
-*/
+$centerleft1col_content-column_max-width: $one_col_content-column_max-width !default; // Overridable in client theme
+$centerleft1col_body-column_max-width: $one_col_body-column_max-width !default; // Overridable in client theme
+$centerleft1col_body-column_offset-width: $one_col_body-column_offset-width !default; // Overridable in client theme
+$centerleft1col_body-column_offset-width-remaining: $centerleft1col_content-column_max-width - $centerleft1col_body-column_max-width - $centerleft1col_body-column_offset-width;
 
-[data-engrid-layout="centerleft1col"] {
-  /* prettier-ignore */
-  .en__component--advrow,
-  .en__component--advrow .pseudo-subgrid {
-    /* autoprefixer grid: off */
-    grid-template-columns:
-    [
-    pc-start lpc-start]  minmax(0px, 1fr)                  [lpc-end
-    cc-start lcc-start]  minmax(15px, 1fr)                 [lcc-end
-    bc-start lbc-start]  minmax(calc(50vw - 15px), 250px)  [lbc-end
-    rbc-start]           minmax(calc(50vw - 15px), 250px)  [rbc-end bc-end
-    rcc-start]           minmax(15px, 1fr)                 [rcc-end cc-end
-    rpc-start]           minmax(0px, 1fr)                  [rpc-end pc-end               
-    ];
-  }
-
-  // Moves body-title below body-bannerOverlay
-  /* prettier-ignore */
-  .en__component--advrow{
-    /* autoprefixer grid: off */
-    grid-template-rows:
-    [
-      page-start page-alert-start]        min-content        [page-alert-end
-      content-header-start]               min-content        [content-header-end
-      body-headerOutside-start]           min-content        [body-headerOutside-end
-      body-header-start]                  min-content        [body-header-end
-      body-banner-start]                  min-content        [body-banner-end
-      body-bannerOverlay-start]           min-content        [body-bannerOverlay-end
-      body-title-start]                   min-content        [body-title-end
-      body-top-start]                     min-content        [body-top-end
-      body-side-start]                    min-content        [body-side-end  
-      body-main-start]                    min-content        [body-main-end  
-      body-bottom-start]                  min-content        [body-bottom-end  
-      body-footer-start]                  min-content        [body-footer-end
-      body-footerOutside-start]           min-content        [body-footerOutside-end  
-      content-footerSpacer-start]         minmax(0px, 1fr)   [content-footerSpacer-end
-      content-preFooter-start]            min-content        [content-preFooter-end
-      content-footer-start]               min-content        [content-footer-end
-      page-backgroundImage-start]         min-content        [page-backgroundImage-end
-      page-backgroundImageOverlay-start]  min-content        [page-backgroundImageOverlay-end page-end
-      page-customCode-start]              min-content        [page-customCode-end        
-    ];        
-  }
-}
-
-body:not(#en__pagebuilder)[data-engrid-layout="centerleft1col"] {
-  .page-backgroundImage {
-    grid-row: page-start / content-footerSpacer-end;
-  }
-}
-
-/*
-* ##########################################################
-* # BODY BREAKPOINT
-* # Sum of all MIN values of the Body Columns
-* ##########################################################
-*/
-
-@media screen and (min-width: 600px) {
+@media screen and (min-width: $centerleft1col_body-column_max-width) {
+  
   [data-engrid-layout="centerleft1col"] {
+
     /* prettier-ignore */
     .en__component--advrow,
     .en__component--advrow .pseudo-subgrid {
-      /* autoprefixer grid: off */
       grid-template-columns:
       [
-        pc-start lpc-start]  minmax(25px, 1fr)     [lpc-end
-        cc-start lcc-start]  minmax(25px, 25px)    [lcc-end
-        bc-start lbc-start]  minmax(250px, 340px)  [lbc-end
-        rbc-start]           minmax(250px, 340px)  [rbc-end bc-end
-        rcc-start]           minmax(25px, 475px)   [rcc-end cc-end
-        rpc-start]           minmax(25px, 1fr)     [rpc-end pc-end            
+        pc-start lpc-start]  minmax(0px, 1fr)                                                 [lpc-end
+        cc-start lcc-start]  minmax(0px, $centerleft1col_body-column_offset-width)            [lcc-end
+        bc-start lbc-start]  $centerleft1col_body-column_max-width / 2                        [lbc-end
+        rbc-start]           $centerleft1col_body-column_max-width / 2                        [rbc-end bc-end
+        rcc-start]           minmax(0px, $centerleft1col_body-column_offset-width-remaining)  [rcc-end cc-end
+        rpc-start]           minmax(0px, 1fr)                                                 [rpc-end pc-end            
       ]; 
+    }
+
+    &body:not(#en__pagebuilder) .page-backgroundImage {
+      grid-row: page-start / content-footerSpacer-end;
     }
   }
 }
-
-/*
-* ##########################################################
-* # CONTENT BREAKPOINT
-* # Sum of all MAX values of the Body Columns + 1px
-* ##########################################################
-*/
