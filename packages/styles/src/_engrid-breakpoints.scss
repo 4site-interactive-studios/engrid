@@ -10,20 +10,6 @@ $mq-responsive: true;
 // across team members. It will improve communication between
 // stakeholders, designers, developers, and testers.
 
-// Breakpoints Defined in Chrome
-// Mobile S: 320px
-// Mobile M: 375px
-// Mobile L: 425px
-// Tablet: 768px
-// Laptop: 1024px
-// Laptop L: 1440px
-// 4k: 2560px
-
-// Breakpoints based on OC Page Traffic
-// Narrow: 410px (43.41%)
-// Mid: 1440px (42.38%)
-// Wide: 1980px (13.48%)
-// Ultrawide: 2700px (0.73%)
 $mq-breakpoints: (
   mobile: 320px,
   tablet: 600px,

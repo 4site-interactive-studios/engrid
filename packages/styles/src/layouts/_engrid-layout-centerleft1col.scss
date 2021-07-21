@@ -5,14 +5,14 @@
 */
 
 $centerleft1col_content-column_max-width: $one_col_content-column_max-width !default; // Overridable in client theme
+$centerleft1col_content-column_min-width: $one_col_content-column_min-width !default; // Overridable in client theme
 $centerleft1col_body-column_max-width: $one_col_body-column_max-width !default; // Overridable in client theme
 $centerleft1col_body-column_offset-width: $one_col_body-column_offset-width !default; // Overridable in client theme
 $centerleft1col_body-column_offset-width-remaining: $centerleft1col_content-column_max-width - $centerleft1col_body-column_max-width - $centerleft1col_body-column_offset-width;
 
-@media screen and (min-width: $centerleft1col_body-column_max-width) {
-  
-  [data-engrid-layout="centerleft1col"] {
+[data-engrid-layout="centerleft1col"] {
 
+  @media screen and (min-width: $centerleft1col_content-column_min-width) {
     /* prettier-ignore */
     .en__component--advrow,
     .en__component--advrow .pseudo-subgrid {
@@ -30,5 +30,10 @@ $centerleft1col_body-column_offset-width-remaining: $centerleft1col_content-colu
     &body:not(#en__pagebuilder) .page-backgroundImage {
       grid-row: page-start / content-footerSpacer-end;
     }
+  }
+
+  @media screen and (max-width: $centerleft1col_content-column_min-width) {
+    // _engrid-layout-centerleft1col.scss
+    @include background-image-small-device;
   }
 }

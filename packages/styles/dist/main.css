@@ -2830,42 +2830,6 @@ body .page-backgroundImage video.crop-on-right {
   transform: translate(0%, -50%);
   /* % of current element */ }
 
-@media (max-width: 37.49em) {
-  [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .body-banner,
-  [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .body-bannerOverlay,
-  [data-engrid-page-background="video"] .body-banner,
-  [data-engrid-page-background="video"] .body-bannerOverlay {
-    display: none; }
-  [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImage,
-  [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImageOverlay,
-  [data-engrid-page-background="video"] .page-backgroundImage,
-  [data-engrid-page-background="video"] .page-backgroundImageOverlay {
-    grid-column: pc;
-    grid-row: body-banner;
-    min-height: 200px;
-    aspect-ratio: 16/9; }
-    [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImage video,
-    [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImage figure,
-    [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImageOverlay video,
-    [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImageOverlay figure,
-    [data-engrid-page-background="video"] .page-backgroundImage video,
-    [data-engrid-page-background="video"] .page-backgroundImage figure,
-    [data-engrid-page-background="video"] .page-backgroundImageOverlay video,
-    [data-engrid-page-background="video"] .page-backgroundImageOverlay figure {
-      position: absolute !important;
-      top: 0 !important;
-      left: 0 !important;
-      transform: none !important;
-      width: 100vw !important;
-      height: 100% !important;
-      min-height: 200px;
-      aspect-ratio: 16/9; }
-    [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImage::before,
-    [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImageOverlay::before,
-    [data-engrid-page-background="video"] .page-backgroundImage::before,
-    [data-engrid-page-background="video"] .page-backgroundImageOverlay::before {
-      content: none !important; } }
-
 .body-banner img[data-src] {
   background-color: var(--engrid__body-banner_background-color); }
 
@@ -4995,6 +4959,7 @@ header .indicator__percentage {
       color: #ffffff; } }
 
 /* ENGRID LAYOUTS */
+/* MUST COME AFTER OTHER ENGRID STYLES WHICH MIGHT DEFINE MIXINS REFERENCED IN THE LAYOUTS */
 [data-engrid-theme] {
   --engrid__page_background-color: var(--color_transparent);
   --engrid__page_padding: 0px;
@@ -5372,28 +5337,62 @@ body:not(#en__pagebuilder) .page-customCode:empty {
 * # ENGRID Layout - Center Center 1 Column
 * ####################################################################################################################
 */
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 700px) {
   [data-engrid-layout="centercenter1col"] {
     /* prettier-ignore */ }
     [data-engrid-layout="centercenter1col"] .en__component--advrow,
     [data-engrid-layout="centercenter1col"] .en__component--advrow .pseudo-subgrid {
-      /* autoprefixer grid: off */
       grid-template-columns: [pc-start lpc-start] minmax(0px, 1fr) [lpc-end cc-start lcc-start] minmax(0px, 190px) [lcc-end bc-start lbc-start] 250px [lbc-end rbc-start] 250px [rbc-end bc-end rcc-start] minmax(0px, 190px) [rcc-end cc-end rpc-start] minmax(0px, 1fr) [rpc-end pc-end];
       grid-template-rows: [page-start page-alert-start] min-content [page-alert-end content-header-start] min-content [content-header-end body-headerOutside-start] min-content [body-headerOutside-end body-header-start] min-content [body-header-end body-banner-start] min-content [body-banner-end body-bannerOverlay-start] min-content [body-bannerOverlay-end body-title-start] min-content [body-title-end body-top-start] min-content [body-top-end body-side-start] min-content [body-side-end body-main-start] min-content [body-main-end body-bottom-start] min-content [body-bottom-end body-footer-start] min-content [body-footer-end body-footerOutside-start] min-content [body-footerOutside-end content-footerSpacer-start] minmax(0px, 1fr) [content-footerSpacer-end content-preFooter-start] min-content [content-preFooter-end content-footer-start] min-content [content-footer-end page-backgroundImage-start] min-content [page-backgroundImage-end page-backgroundImageOverlay-start] min-content [page-backgroundImageOverlay-end page-end page-customCode-start] min-content [page-customCode-end]; }
     [data-engrid-layout="centercenter1col"]body:not(#en__pagebuilder) .page-backgroundImage {
       grid-row: page-start / content-footerSpacer-end; } }
+
+@media screen and (max-width: 700px) {
+  [data-engrid-layout="centercenter1col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .body-banner,
+  [data-engrid-layout="centercenter1col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .body-bannerOverlay,
+  [data-engrid-layout="centercenter1col"] [data-engrid-page-background="video"] .body-banner,
+  [data-engrid-layout="centercenter1col"] [data-engrid-page-background="video"] .body-bannerOverlay {
+    display: none; }
+  [data-engrid-layout="centercenter1col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImage,
+  [data-engrid-layout="centercenter1col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImageOverlay,
+  [data-engrid-layout="centercenter1col"] [data-engrid-page-background="video"] .page-backgroundImage,
+  [data-engrid-layout="centercenter1col"] [data-engrid-page-background="video"] .page-backgroundImageOverlay {
+    grid-column: pc;
+    grid-row: body-banner;
+    min-height: 200px;
+    aspect-ratio: 16/9; }
+    [data-engrid-layout="centercenter1col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImage video,
+    [data-engrid-layout="centercenter1col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImage figure,
+    [data-engrid-layout="centercenter1col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImageOverlay video,
+    [data-engrid-layout="centercenter1col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImageOverlay figure,
+    [data-engrid-layout="centercenter1col"] [data-engrid-page-background="video"] .page-backgroundImage video,
+    [data-engrid-layout="centercenter1col"] [data-engrid-page-background="video"] .page-backgroundImage figure,
+    [data-engrid-layout="centercenter1col"] [data-engrid-page-background="video"] .page-backgroundImageOverlay video,
+    [data-engrid-layout="centercenter1col"] [data-engrid-page-background="video"] .page-backgroundImageOverlay figure {
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      transform: none !important;
+      width: 100vw !important;
+      height: 100% !important;
+      min-height: 200px;
+      aspect-ratio: 16/9; }
+    [data-engrid-layout="centercenter1col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImage::before,
+    [data-engrid-layout="centercenter1col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImageOverlay::before,
+    [data-engrid-layout="centercenter1col"] [data-engrid-page-background="video"] .page-backgroundImage::before,
+    [data-engrid-layout="centercenter1col"] [data-engrid-page-background="video"] .page-backgroundImageOverlay::before {
+      content: none !important; } }
 
 /*
 * ####################################################################################################################
 * # ENGRID Layout - Center Center 2 Column
 * ####################################################################################################################
 */
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 1100px) {
   [data-engrid-layout="centercenter2col"] {
     /* prettier-ignore */ }
     [data-engrid-layout="centercenter2col"] .en__component--advrow,
     [data-engrid-layout="centercenter2col"] .en__component--advrow .pseudo-subgrid {
-      /* autoprefixer grid: off */
       grid-template-columns: [pc-start lpc-start] minmax(0px, 1fr) [lpc-end cc-start lcc-start] minmax(0px, 190px) [lcc-end bc-start lbc-start] 450px [lbc-end rbc-start] 450px [rbc-end bc-end rcc-start] minmax(0px, 190px) [rcc-end cc-end rpc-start] minmax(0px, 1fr) [rpc-end pc-end];
       grid-template-rows: [page-start page-alert-start] min-content [page-alert-end content-header-start] min-content [content-header-end body-headerOutside-start] min-content [body-headerOutside-end body-header-start] min-content [body-header-end body-title-start] min-content [body-title-end body-banner-start] min-content [body-banner-end body-bannerOverlay-start] min-content [body-bannerOverlay-end body-top-start] minmax(0px, 1fr) [body-top-end body-side-start] min-content [body-side-end body-main-start] min-content [body-main-end body-bottom-start] min-content [body-bottom-end body-footer-start] min-content [body-footer-end body-footerOutside-start] min-content [body-footerOutside-end content-footerSpacer-start] max-content [content-footerSpacer-end content-preFooter-start] min-content [content-preFooter-end content-footer-start] min-content [content-footer-end page-backgroundImage-start] min-content [page-backgroundImage-end page-backgroundImageOverlay-start] min-content [page-backgroundImageOverlay-end page-end page-customCode-start] min-content [page-customCode-end]; }
     [data-engrid-layout="centercenter2col"]body:not(#en__pagebuilder) .page-backgroundImage {
@@ -5412,12 +5411,48 @@ body:not(#en__pagebuilder) .page-customCode:empty {
     [data-engrid-layout="centercenter2col"] .body-main {
       grid-row: body-top-start / body-main-end; } }
 
+@media screen and (max-width: 1100px) {
+  [data-engrid-layout="centercenter2col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .body-banner,
+  [data-engrid-layout="centercenter2col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .body-bannerOverlay,
+  [data-engrid-layout="centercenter2col"] [data-engrid-page-background="video"] .body-banner,
+  [data-engrid-layout="centercenter2col"] [data-engrid-page-background="video"] .body-bannerOverlay {
+    display: none; }
+  [data-engrid-layout="centercenter2col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImage,
+  [data-engrid-layout="centercenter2col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImageOverlay,
+  [data-engrid-layout="centercenter2col"] [data-engrid-page-background="video"] .page-backgroundImage,
+  [data-engrid-layout="centercenter2col"] [data-engrid-page-background="video"] .page-backgroundImageOverlay {
+    grid-column: pc;
+    grid-row: body-banner;
+    min-height: 200px;
+    aspect-ratio: 16/9; }
+    [data-engrid-layout="centercenter2col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImage video,
+    [data-engrid-layout="centercenter2col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImage figure,
+    [data-engrid-layout="centercenter2col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImageOverlay video,
+    [data-engrid-layout="centercenter2col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImageOverlay figure,
+    [data-engrid-layout="centercenter2col"] [data-engrid-page-background="video"] .page-backgroundImage video,
+    [data-engrid-layout="centercenter2col"] [data-engrid-page-background="video"] .page-backgroundImage figure,
+    [data-engrid-layout="centercenter2col"] [data-engrid-page-background="video"] .page-backgroundImageOverlay video,
+    [data-engrid-layout="centercenter2col"] [data-engrid-page-background="video"] .page-backgroundImageOverlay figure {
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      transform: none !important;
+      width: 100vw !important;
+      height: 100% !important;
+      min-height: 200px;
+      aspect-ratio: 16/9; }
+    [data-engrid-layout="centercenter2col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImage::before,
+    [data-engrid-layout="centercenter2col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImageOverlay::before,
+    [data-engrid-layout="centercenter2col"] [data-engrid-page-background="video"] .page-backgroundImage::before,
+    [data-engrid-layout="centercenter2col"] [data-engrid-page-background="video"] .page-backgroundImageOverlay::before {
+      content: none !important; } }
+
 /*
 * ####################################################################################################################
 * # ENGRID Layout - Center Left 1 Column
 * ####################################################################################################################
 */
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 700px) {
   [data-engrid-layout="centerleft1col"] {
     /* prettier-ignore */ }
     [data-engrid-layout="centerleft1col"] .en__component--advrow,
@@ -5426,12 +5461,48 @@ body:not(#en__pagebuilder) .page-customCode:empty {
     [data-engrid-layout="centerleft1col"]body:not(#en__pagebuilder) .page-backgroundImage {
       grid-row: page-start / content-footerSpacer-end; } }
 
+@media screen and (max-width: 700px) {
+  [data-engrid-layout="centerleft1col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .body-banner,
+  [data-engrid-layout="centerleft1col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .body-bannerOverlay,
+  [data-engrid-layout="centerleft1col"] [data-engrid-page-background="video"] .body-banner,
+  [data-engrid-layout="centerleft1col"] [data-engrid-page-background="video"] .body-bannerOverlay {
+    display: none; }
+  [data-engrid-layout="centerleft1col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImage,
+  [data-engrid-layout="centerleft1col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImageOverlay,
+  [data-engrid-layout="centerleft1col"] [data-engrid-page-background="video"] .page-backgroundImage,
+  [data-engrid-layout="centerleft1col"] [data-engrid-page-background="video"] .page-backgroundImageOverlay {
+    grid-column: pc;
+    grid-row: body-banner;
+    min-height: 200px;
+    aspect-ratio: 16/9; }
+    [data-engrid-layout="centerleft1col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImage video,
+    [data-engrid-layout="centerleft1col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImage figure,
+    [data-engrid-layout="centerleft1col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImageOverlay video,
+    [data-engrid-layout="centerleft1col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImageOverlay figure,
+    [data-engrid-layout="centerleft1col"] [data-engrid-page-background="video"] .page-backgroundImage video,
+    [data-engrid-layout="centerleft1col"] [data-engrid-page-background="video"] .page-backgroundImage figure,
+    [data-engrid-layout="centerleft1col"] [data-engrid-page-background="video"] .page-backgroundImageOverlay video,
+    [data-engrid-layout="centerleft1col"] [data-engrid-page-background="video"] .page-backgroundImageOverlay figure {
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      transform: none !important;
+      width: 100vw !important;
+      height: 100% !important;
+      min-height: 200px;
+      aspect-ratio: 16/9; }
+    [data-engrid-layout="centerleft1col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImage::before,
+    [data-engrid-layout="centerleft1col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImageOverlay::before,
+    [data-engrid-layout="centerleft1col"] [data-engrid-page-background="video"] .page-backgroundImage::before,
+    [data-engrid-layout="centerleft1col"] [data-engrid-page-background="video"] .page-backgroundImageOverlay::before {
+      content: none !important; } }
+
 /*
 * ####################################################################################################################
 * # ENGRID Layout - Center Right 1 Column
 * ####################################################################################################################
 */
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 700px) {
   [data-engrid-layout="centerright1col"] {
     /* prettier-ignore */ }
     [data-engrid-layout="centerright1col"] .en__component--advrow,
@@ -5440,12 +5511,48 @@ body:not(#en__pagebuilder) .page-customCode:empty {
     [data-engrid-layout="centerright1col"]body:not(#en__pagebuilder) .page-backgroundImage {
       grid-row: page-start / content-footerSpacer-end; } }
 
+@media screen and (max-width: 700px) {
+  [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .body-banner,
+  [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .body-bannerOverlay,
+  [data-engrid-page-background="video"] .body-banner,
+  [data-engrid-page-background="video"] .body-bannerOverlay {
+    display: none; }
+  [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImage,
+  [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImageOverlay,
+  [data-engrid-page-background="video"] .page-backgroundImage,
+  [data-engrid-page-background="video"] .page-backgroundImageOverlay {
+    grid-column: pc;
+    grid-row: body-banner;
+    min-height: 200px;
+    aspect-ratio: 16/9; }
+    [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImage video,
+    [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImage figure,
+    [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImageOverlay video,
+    [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImageOverlay figure,
+    [data-engrid-page-background="video"] .page-backgroundImage video,
+    [data-engrid-page-background="video"] .page-backgroundImage figure,
+    [data-engrid-page-background="video"] .page-backgroundImageOverlay video,
+    [data-engrid-page-background="video"] .page-backgroundImageOverlay figure {
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      transform: none !important;
+      width: 100vw !important;
+      height: 100% !important;
+      min-height: 200px;
+      aspect-ratio: 16/9; }
+    [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImage::before,
+    [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImageOverlay::before,
+    [data-engrid-page-background="video"] .page-backgroundImage::before,
+    [data-engrid-page-background="video"] .page-backgroundImageOverlay::before {
+      content: none !important; } }
+
 /*
 * ####################################################################################################################
 * # ENGRID Layout - Left Left 1 Column
 * ####################################################################################################################
 */
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 700px) {
   [data-engrid-layout="leftleft1col"] {
     /* prettier-ignore */ }
     [data-engrid-layout="leftleft1col"] .en__component--advrow,
@@ -5455,12 +5562,48 @@ body:not(#en__pagebuilder) .page-customCode:empty {
       grid-row: page-start / content-footer-end;
       grid-column: rcc-start / pc-end; } }
 
+@media screen and (max-width: 700px) {
+  [data-engrid-layout="leftleft1col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .body-banner,
+  [data-engrid-layout="leftleft1col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .body-bannerOverlay,
+  [data-engrid-layout="leftleft1col"] [data-engrid-page-background="video"] .body-banner,
+  [data-engrid-layout="leftleft1col"] [data-engrid-page-background="video"] .body-bannerOverlay {
+    display: none; }
+  [data-engrid-layout="leftleft1col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImage,
+  [data-engrid-layout="leftleft1col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImageOverlay,
+  [data-engrid-layout="leftleft1col"] [data-engrid-page-background="video"] .page-backgroundImage,
+  [data-engrid-layout="leftleft1col"] [data-engrid-page-background="video"] .page-backgroundImageOverlay {
+    grid-column: pc;
+    grid-row: body-banner;
+    min-height: 200px;
+    aspect-ratio: 16/9; }
+    [data-engrid-layout="leftleft1col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImage video,
+    [data-engrid-layout="leftleft1col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImage figure,
+    [data-engrid-layout="leftleft1col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImageOverlay video,
+    [data-engrid-layout="leftleft1col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImageOverlay figure,
+    [data-engrid-layout="leftleft1col"] [data-engrid-page-background="video"] .page-backgroundImage video,
+    [data-engrid-layout="leftleft1col"] [data-engrid-page-background="video"] .page-backgroundImage figure,
+    [data-engrid-layout="leftleft1col"] [data-engrid-page-background="video"] .page-backgroundImageOverlay video,
+    [data-engrid-layout="leftleft1col"] [data-engrid-page-background="video"] .page-backgroundImageOverlay figure {
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      transform: none !important;
+      width: 100vw !important;
+      height: 100% !important;
+      min-height: 200px;
+      aspect-ratio: 16/9; }
+    [data-engrid-layout="leftleft1col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImage::before,
+    [data-engrid-layout="leftleft1col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImageOverlay::before,
+    [data-engrid-layout="leftleft1col"] [data-engrid-page-background="video"] .page-backgroundImage::before,
+    [data-engrid-layout="leftleft1col"] [data-engrid-page-background="video"] .page-backgroundImageOverlay::before {
+      content: none !important; } }
+
 /*
 * ####################################################################################################################
 * # ENGRID Layout - Right Right 1 Column
 * ####################################################################################################################
 */
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 700px) {
   [data-engrid-layout="rightright1col"] {
     /* prettier-ignore */ }
     [data-engrid-layout="rightright1col"] .en__component--advrow,
@@ -5469,6 +5612,42 @@ body:not(#en__pagebuilder) .page-customCode:empty {
     [data-engrid-layout="rightright1col"]body:not(#en__pagebuilder) .page-backgroundImage {
       grid-row: page-start / content-footer-end;
       grid-column: lpc-start / lpc-end; } }
+
+@media screen and (max-width: 700px) {
+  [data-engrid-layout="rightright1col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .body-banner,
+  [data-engrid-layout="rightright1col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .body-bannerOverlay,
+  [data-engrid-layout="rightright1col"] [data-engrid-page-background="video"] .body-banner,
+  [data-engrid-layout="rightright1col"] [data-engrid-page-background="video"] .body-bannerOverlay {
+    display: none; }
+  [data-engrid-layout="rightright1col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImage,
+  [data-engrid-layout="rightright1col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImageOverlay,
+  [data-engrid-layout="rightright1col"] [data-engrid-page-background="video"] .page-backgroundImage,
+  [data-engrid-layout="rightright1col"] [data-engrid-page-background="video"] .page-backgroundImageOverlay {
+    grid-column: pc;
+    grid-row: body-banner;
+    min-height: 200px;
+    aspect-ratio: 16/9; }
+    [data-engrid-layout="rightright1col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImage video,
+    [data-engrid-layout="rightright1col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImage figure,
+    [data-engrid-layout="rightright1col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImageOverlay video,
+    [data-engrid-layout="rightright1col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImageOverlay figure,
+    [data-engrid-layout="rightright1col"] [data-engrid-page-background="video"] .page-backgroundImage video,
+    [data-engrid-layout="rightright1col"] [data-engrid-page-background="video"] .page-backgroundImage figure,
+    [data-engrid-layout="rightright1col"] [data-engrid-page-background="video"] .page-backgroundImageOverlay video,
+    [data-engrid-layout="rightright1col"] [data-engrid-page-background="video"] .page-backgroundImageOverlay figure {
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      transform: none !important;
+      width: 100vw !important;
+      height: 100% !important;
+      min-height: 200px;
+      aspect-ratio: 16/9; }
+    [data-engrid-layout="rightright1col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImage::before,
+    [data-engrid-layout="rightright1col"] [data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImageOverlay::before,
+    [data-engrid-layout="rightright1col"] [data-engrid-page-background="video"] .page-backgroundImage::before,
+    [data-engrid-layout="rightright1col"] [data-engrid-page-background="video"] .page-backgroundImageOverlay::before {
+      content: none !important; } }
 
 /*
 * ####################################################################################################################

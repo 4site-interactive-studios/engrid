@@ -51,6 +51,7 @@
 @import "engrid-progress-bar";
 
 /* ENGRID LAYOUTS */
+/* MUST COME AFTER OTHER ENGRID STYLES WHICH MIGHT DEFINE MIXINS REFERENCED IN THE LAYOUTS */
 @import "layouts/engrid-layout";
 @import "layouts/engrid-layout-centercenter1col";
 @import "layouts/engrid-layout-centercenter2col";

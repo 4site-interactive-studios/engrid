@@ -1,11 +1,29 @@
 // ONE COLUMN LAYOUTS
 $one_col_content-column_max-width: 880px !default; // Overridable in client theme
-$one_col_body-column_max-width: 500px !default; // Overridable in client theme
+$one_col_content-column_min-width: 700px !default; // Overridable in client theme
+$one_col_body-column_max-width:    500px !default; // Overridable in client theme
 $one_col_body-column_offset-width: 130px !default; // Overridable in client theme
 
 // TWO COLUMN LAYOUTS
 $two_col_content-column_max-width: 1280px !default; // Overridable in client theme
-$two_col_body-column_max-width: 900px !default; // Overridable in client theme
+$two_col_content-column_min-width: 1100px !default; // Overridable in client theme
+$two_col_body-column_max-width:     900px !default; // Overridable in client theme
+
+// SIZE REFERENCES
+// Breakpoints Defined in Chrome
+// Mobile S: 320px
+// Mobile M: 375px
+// Mobile L: 425px
+// Tablet: 768px
+// Laptop: 1024px
+// Laptop L: 1440px
+// 4k: 2560px
+
+// Breakpoints based on OC Page Traffic
+// Narrow: 410px (43.41%)
+// Mid: 1440px (42.38%)
+// Wide: 1980px (13.48%)
+// Ultrawide: 2700px (0.73%)
 
 [data-engrid-theme]{
   // GROUPED SECTION SETTINGS (BACKGROUND COLOR, PADDING, MARGIN)

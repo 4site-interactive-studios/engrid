@@ -5,11 +5,12 @@
 */
 
 $centerright1col_content-column_max-width: $one_col_content-column_max-width !default; // Overridable in client theme
+$centerright1col_content-column_min-width: $one_col_content-column_min-width !default; // Overridable in client theme
 $centerright1col_body-column_max-width: $one_col_body-column_max-width !default; // Overridable in client theme
 $centerright1col_body-column_offset-width: $one_col_body-column_offset-width !default; // Overridable in client theme
 $centerright1col_body-column_offset-width-remaining: $centerright1col_content-column_max-width - $centerright1col_body-column_max-width - $centerright1col_body-column_offset-width;
 
-@media screen and (min-width: $centerright1col_body-column_max-width) {
+@media screen and (min-width: $centerright1col_content-column_min-width) {
   
   [data-engrid-layout="centerright1col"] {
 
@@ -31,4 +32,8 @@ $centerright1col_body-column_offset-width-remaining: $centerright1col_content-co
       grid-row: page-start / content-footerSpacer-end;
     }
   }
+}
+
+@media screen and (max-width: $centerright1col_content-column_min-width) {
+  @include background-image-small-device;
 }
