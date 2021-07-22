@@ -12,21 +12,21 @@ $mq-responsive: true;
 
 $mq-breakpoints: (
   mobile: 320px,
-  tablet: 600px,
-  desktop: 1024px,
-  wide: 1400px,
-  fullHD: 1920px,
-  UHD: 3840px,
+  mobile-l: 425px,
+  tablet: 768px,
+  laptop: 1024px,
+  laptop-l: 1440px,
+  ultrawide: 3840px,
 );
 
 // Define the breakpoint from the $mq-breakpoints list that should
 // be used as the target width when outputting a static stylesheet
 // (when $mq-responsive is set to 'false').
-$mq-static-breakpoint: desktop;
+$mq-static-breakpoint: laptop-l;
 
 // If you want to display the currently active breakpoint in the top
 // right corner of your site during development, add the breakpoints
 // to this list, ordered by width. For example: (mobile, tablet, desktop).
-$mq-show-breakpoints: (mobile, tablet, desktop, wide, fullHD, UHD);
+$mq-show-breakpoints: (mobile, mobile-l, tablet, laptop, laptop-l, ultrawide);
 
 @import "mq";

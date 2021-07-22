@@ -506,21 +506,21 @@ body[data-engrid-debug]:before {
   @media (min-width: 20em) {
     body[data-engrid-debug]:before {
       content: "mobile >= 320px (20em)"; } }
-  @media (min-width: 37.5em) {
+  @media (min-width: 26.5625em) {
     body[data-engrid-debug]:before {
-      content: "tablet >= 600px (37.5em)"; } }
+      content: "mobile-l >= 425px (26.5625em)"; } }
+  @media (min-width: 48em) {
+    body[data-engrid-debug]:before {
+      content: "tablet >= 768px (48em)"; } }
   @media (min-width: 64em) {
     body[data-engrid-debug]:before {
-      content: "desktop >= 1024px (64em)"; } }
-  @media (min-width: 87.5em) {
+      content: "laptop >= 1024px (64em)"; } }
+  @media (min-width: 90em) {
     body[data-engrid-debug]:before {
-      content: "wide >= 1400px (87.5em)"; } }
-  @media (min-width: 120em) {
-    body[data-engrid-debug]:before {
-      content: "fullHD >= 1920px (120em)"; } }
+      content: "laptop-l >= 1440px (90em)"; } }
   @media (min-width: 240em) {
     body[data-engrid-debug]:before {
-      content: "UHD >= 3840px (240em)"; } }
+      content: "ultrawide >= 3840px (240em)"; } }
 
 /* ENGRID OVERRIDES, TYPOGRAPHY, AND MORE */
 /*
@@ -4804,7 +4804,7 @@ body:not(#en__pagebuilder) .simple_country_select.country-select-visible .en__fi
     display: flex;
     justify-content: flex-end;
     white-space: nowrap; }
-    @media (max-width: 37.49em) {
+    @media (max-width: 47.99em) {
       .en__component--socialshareblock::before {
         content: none; } }
   .en__component--socialshareblock .en__socialShares a {
