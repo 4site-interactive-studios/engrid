@@ -5027,12 +5027,12 @@ header .indicator__percentage {
   --engrid__page-customCode_margin: var(--engrid__page_margin); }
 
 form > .en__component--row.en__component--advrow,
-.pseudo-subgrid {
+.pseudo-subgrid > * {
   /* autoprefixer grid: off */
   display: grid; }
 
-body#en__pagebuilder .page-backgroundImage.pseudo-subgrid {
-  display: block; }
+body#en__pagebuilder .page-backgroundImage.pseudo-subgrid > * > * {
+  grid-column: pc; }
 
 form > .en__component--advrow {
   width: 100%;
@@ -5070,9 +5070,6 @@ form > .en__component--advrow {
   background-color: var(--engrid__content-header_background-color);
   padding: var(--engrid__content-header_padding);
   margin: var(--engrid__content-header_margin); }
-
-.content-header.pseudo-subgrid > div {
-  grid-column: cc; }
 
 .body-headerOutside {
   grid-column: bc;
@@ -5178,9 +5175,6 @@ form > .en__component--advrow {
   padding: var(--engrid__content-footer_padding);
   margin: var(--engrid__content-footer_margin); }
 
-.content-footer.pseudo-subgrid > div {
-  grid-column: cc; }
-
 .page-backgroundImage {
   grid-column: pc;
   grid-row: page-backgroundImage;
@@ -5231,14 +5225,14 @@ body:not(#en__pagebuilder) .body-bannerOverlay:empty {
 .en__component--column.body-footer {
   position: relative; }
 
-.body-header:before,
-.body-title:before,
-.body-banner:before,
-.body-top:before,
-.body-side:before,
-.body-main:before,
-.body-bottom:before,
-.body-footer:before {
+div:not(.pboAdvancedRow__preview) > .en__component--advrow > .body-header:before,
+div:not(.pboAdvancedRow__preview) > .en__component--advrow > .body-title:before,
+div:not(.pboAdvancedRow__preview) > .en__component--advrow > .body-banner:before,
+div:not(.pboAdvancedRow__preview) > .en__component--advrow > .body-top:before,
+div:not(.pboAdvancedRow__preview) > .en__component--advrow > .body-side:before,
+div:not(.pboAdvancedRow__preview) > .en__component--advrow > .body-main:before,
+div:not(.pboAdvancedRow__preview) > .en__component--advrow > .body-bottom:before,
+div:not(.pboAdvancedRow__preview) > .en__component--advrow > .body-footer:before {
   content: "";
   position: absolute;
   top: 0;
@@ -5256,7 +5250,7 @@ body:not(#en__pagebuilder) .page-backgroundImage figcaption {
 
 @supports not (display: grid) {
   form > .en__component--advrow,
-  .pseudo-subgrid {
+  .pseudo-subgrid > * {
     display: flex;
     flex-direction: column;
     max-width: 840px;
@@ -5341,7 +5335,7 @@ body:not(#en__pagebuilder) .page-customCode:empty {
   [data-engrid-layout="centercenter1col"] {
     /* prettier-ignore */ }
     [data-engrid-layout="centercenter1col"] .en__component--advrow,
-    [data-engrid-layout="centercenter1col"] .en__component--advrow .pseudo-subgrid {
+    [data-engrid-layout="centercenter1col"] .pseudo-subgrid > * {
       grid-template-columns: [pc-start lpc-start] minmax(0px, 1fr) [lpc-end cc-start lcc-start] minmax(0px, 190px) [lcc-end bc-start lbc-start] 250px [lbc-end rbc-start] 250px [rbc-end bc-end rcc-start] minmax(0px, 190px) [rcc-end cc-end rpc-start] minmax(0px, 1fr) [rpc-end pc-end];
       grid-template-rows: [page-start page-alert-start] min-content [page-alert-end content-header-start] min-content [content-header-end body-headerOutside-start] min-content [body-headerOutside-end body-header-start] min-content [body-header-end body-banner-start] min-content [body-banner-end body-bannerOverlay-start] min-content [body-bannerOverlay-end body-title-start] min-content [body-title-end body-top-start] min-content [body-top-end body-side-start] min-content [body-side-end body-main-start] min-content [body-main-end body-bottom-start] min-content [body-bottom-end body-footer-start] min-content [body-footer-end body-footerOutside-start] min-content [body-footerOutside-end content-footerSpacer-start] minmax(0px, 1fr) [content-footerSpacer-end content-preFooter-start] min-content [content-preFooter-end content-footer-start] min-content [content-footer-end page-backgroundImage-start] min-content [page-backgroundImage-end page-backgroundImageOverlay-start] min-content [page-backgroundImageOverlay-end page-end page-customCode-start] min-content [page-customCode-end]; }
     [data-engrid-layout="centercenter1col"]body:not(#en__pagebuilder) .page-backgroundImage {
@@ -5392,7 +5386,7 @@ body:not(#en__pagebuilder) .page-customCode:empty {
   [data-engrid-layout="centercenter2col"] {
     /* prettier-ignore */ }
     [data-engrid-layout="centercenter2col"] .en__component--advrow,
-    [data-engrid-layout="centercenter2col"] .en__component--advrow .pseudo-subgrid {
+    [data-engrid-layout="centercenter2col"] .pseudo-subgrid > * {
       grid-template-columns: [pc-start lpc-start] minmax(0px, 1fr) [lpc-end cc-start lcc-start] minmax(0px, 190px) [lcc-end bc-start lbc-start] 450px [lbc-end rbc-start] 450px [rbc-end bc-end rcc-start] minmax(0px, 190px) [rcc-end cc-end rpc-start] minmax(0px, 1fr) [rpc-end pc-end];
       grid-template-rows: [page-start page-alert-start] min-content [page-alert-end content-header-start] min-content [content-header-end body-headerOutside-start] min-content [body-headerOutside-end body-header-start] min-content [body-header-end body-title-start] min-content [body-title-end body-banner-start] min-content [body-banner-end body-bannerOverlay-start] min-content [body-bannerOverlay-end body-top-start] minmax(0px, 1fr) [body-top-end body-side-start] min-content [body-side-end body-main-start] min-content [body-main-end body-bottom-start] min-content [body-bottom-end body-footer-start] min-content [body-footer-end body-footerOutside-start] min-content [body-footerOutside-end content-footerSpacer-start] max-content [content-footerSpacer-end content-preFooter-start] min-content [content-preFooter-end content-footer-start] min-content [content-footer-end page-backgroundImage-start] min-content [page-backgroundImage-end page-backgroundImageOverlay-start] min-content [page-backgroundImageOverlay-end page-end page-customCode-start] min-content [page-customCode-end]; }
     [data-engrid-layout="centercenter2col"]body:not(#en__pagebuilder) .page-backgroundImage {
@@ -5456,7 +5450,7 @@ body:not(#en__pagebuilder) .page-customCode:empty {
   [data-engrid-layout="centerleft1col"] {
     /* prettier-ignore */ }
     [data-engrid-layout="centerleft1col"] .en__component--advrow,
-    [data-engrid-layout="centerleft1col"] .en__component--advrow .pseudo-subgrid {
+    [data-engrid-layout="centerleft1col"] .pseudo-subgrid > * {
       grid-template-columns: [pc-start lpc-start] minmax(0px, 1fr) [lpc-end cc-start lcc-start] minmax(0px, 130px) [lcc-end bc-start lbc-start] 250px [lbc-end rbc-start] 250px [rbc-end bc-end rcc-start] minmax(0px, 250px) [rcc-end cc-end rpc-start] minmax(0px, 1fr) [rpc-end pc-end]; }
     [data-engrid-layout="centerleft1col"]body:not(#en__pagebuilder) .page-backgroundImage {
       grid-row: page-start / content-footerSpacer-end; } }
@@ -5506,7 +5500,7 @@ body:not(#en__pagebuilder) .page-customCode:empty {
   [data-engrid-layout="centerright1col"] {
     /* prettier-ignore */ }
     [data-engrid-layout="centerright1col"] .en__component--advrow,
-    [data-engrid-layout="centerright1col"] .en__component--advrow .pseudo-subgrid {
+    [data-engrid-layout="centerright1col"] .pseudo-subgrid > * {
       grid-template-columns: [pc-start lpc-start] minmax(0px, 1fr) [lpc-end cc-start lcc-start] minmax(0px, 250px) [lcc-end bc-start lbc-start] 250px [lbc-end rbc-start] 250px [rbc-end bc-end rcc-start] minmax(0px, 130px) [rcc-end cc-end rpc-start] minmax(0px, 1fr) [rpc-end pc-end]; }
     [data-engrid-layout="centerright1col"]body:not(#en__pagebuilder) .page-backgroundImage {
       grid-row: page-start / content-footerSpacer-end; } }
@@ -5556,7 +5550,7 @@ body:not(#en__pagebuilder) .page-customCode:empty {
   [data-engrid-layout="leftleft1col"] {
     /* prettier-ignore */ }
     [data-engrid-layout="leftleft1col"] .en__component--advrow,
-    [data-engrid-layout="leftleft1col"] .en__component--advrow .pseudo-subgrid {
+    [data-engrid-layout="leftleft1col"] .pseudo-subgrid > * {
       grid-template-columns: [pc-start lpc-start] minmax(0px, 0px) [lpc-end cc-start lcc-start] minmax(0px, 0px) [lcc-end bc-start lbc-start] 250px [lbc-end rbc-start] 250px [rbc-end bc-end rcc-start] minmax(0px, 0px) [rcc-end cc-end rpc-start] minmax(0px, 1fr) [rpc-end pc-end]; }
     [data-engrid-layout="leftleft1col"]body:not(#en__pagebuilder) .page-backgroundImage {
       grid-row: page-start / content-footer-end;
@@ -5607,7 +5601,7 @@ body:not(#en__pagebuilder) .page-customCode:empty {
   [data-engrid-layout="rightright1col"] {
     /* prettier-ignore */ }
     [data-engrid-layout="rightright1col"] .en__component--advrow,
-    [data-engrid-layout="rightright1col"] .en__component--advrow .pseudo-subgrid {
+    [data-engrid-layout="rightright1col"] .pseudo-subgrid > * {
       grid-template-columns: [pc-start lpc-start] minmax(0px, 1fr) [lpc-end cc-start lcc-start] minmax(0px, 0px) [lcc-end bc-start lbc-start] 250px [lbc-end rbc-start] 250px [rbc-end bc-end rcc-start] minmax(0px, 0px) [rcc-end cc-end rpc-start] minmax(0px, 0px) [rpc-end pc-end]; }
     [data-engrid-layout="rightright1col"]body:not(#en__pagebuilder) .page-backgroundImage {
       grid-row: page-start / content-footer-end;
@@ -5681,7 +5675,7 @@ body:not(#en__pagebuilder) .page-customCode:empty {
   /* prettier-ignore */
   /* prettier-ignore */ }
   [data-engrid-embedded] .en__component--advrow,
-  [data-engrid-embedded] .en__component--advrow .pseudo-subgrid {
+  [data-engrid-embedded] .pseudo-subgrid > * {
     grid-template-columns: [pc-start lpc-start] minmax(0px, 0px) [lpc-end cc-start lcc-start] minmax(0px, 0px) [lcc-end bc-start lbc-start] minmax(0px, 50vw) [lbc-end rbc-start] minmax(0px, 50vw) [rbc-end bc-end rcc-start] minmax(0px, 0px) [rcc-end cc-end rpc-start] minmax(0px, 0px) [rpc-end pc-end] !important; }
   [data-engrid-embedded] .en__component--advrow {
     /* autoprefixer grid: off */ }
@@ -6153,7 +6147,6 @@ body:not(#en__pagebuilder) .page-customCode:empty {
   width: calc(100% - 51px);
   /* If the user accidentally deletes all content from the form, prevent it from completely collapsing in on itself and making it impossible for the user to add new content */
   /* Sometimes our styles might cause a code blocks title and label to display inline, rather than in rows. This should help prevent that https://d.pr/v/vXlAUM */
-  /* Highlight images not using our method for lazy loading them */
   /* Adjust the editable space in the Page Editor so that the content can occupy as much space as possible */
   /* prettier-ignore */
   /* prettier-ignore */
@@ -6176,9 +6169,6 @@ body:not(#en__pagebuilder) .page-customCode:empty {
   /* prettier-ignore */ }
   #en__pagebuilder form {
     min-height: 25px !important; }
-  #en__pagebuilder .page-backgroundImage,
-  #en__pagebuilder .page-customCode {
-    background-color: var(--color_transparent) !important; }
   #en__pagebuilder .en__placeholder__text {
     flex-direction: column !important; }
   #en__pagebuilder img:not([alt]) {
@@ -6194,6 +6184,9 @@ body:not(#en__pagebuilder) .page-customCode:empty {
     grid-row: page; }
   #en__pagebuilder .page-backgroundImage img:not([data-src]) {
     border: 5px solid var(--error__color); }
+  #en__pagebuilder .page-backgroundImage img[src] {
+    height: 250px;
+    width: auto; }
   #en__pagebuilder .en__container {
     margin-left: 1px !important;
     margin-right: 1px !important;
@@ -6320,50 +6313,60 @@ body:not(#en__pagebuilder) .page-customCode:empty {
 * ##########################################################
 */
 #EN__RootElement .pboAdvancedRow__preview {
-  /* Page builder adds a hidden div to the bottom of the layout, this can result in undesired spacing */
-  /* Something in EN is causing outlines to overlap, this prevents the issue */ }
+  /* Page builder adds a hidden div to the bottom of the layout, this can result in undesired spacing */ }
   #EN__RootElement .pboAdvancedRow__preview .en__component--row:nth-last-child(2) {
     padding-bottom: 0px; }
-  #EN__RootElement .pboAdvancedRow__preview .en__component--column {
-    margin-bottom: 1px; }
-    #EN__RootElement .pboAdvancedRow__preview .en__component--column.page-alert:before {
-      content: "Page Alert"; }
-    #EN__RootElement .pboAdvancedRow__preview .en__component--column.content-header:before {
-      content: "Content Header"; }
-    #EN__RootElement .pboAdvancedRow__preview .en__component--column.body-headerOutside:before {
-      content: "Body Header Outside"; }
-    #EN__RootElement .pboAdvancedRow__preview .en__component--column.body-header:before {
-      content: "Body Header Spacer"; }
-    #EN__RootElement .pboAdvancedRow__preview .en__component--column.body-title:before {
-      content: "Body Title"; }
-    #EN__RootElement .pboAdvancedRow__preview .en__component--column.body-banner:before {
-      content: "Body Banner"; }
-    #EN__RootElement .pboAdvancedRow__preview .en__component--column.body-bannerOverlay:before {
-      content: "Body Banner Overlay"; }
-    #EN__RootElement .pboAdvancedRow__preview .en__component--column.body-top:before {
-      content: "Body Top (Copy)"; }
-    #EN__RootElement .pboAdvancedRow__preview .en__component--column.body-side:before {
-      content: "Body Side (Legacy)"; }
-    #EN__RootElement .pboAdvancedRow__preview .en__component--column.body-main:before {
-      content: "Body Main (Form)"; }
-    #EN__RootElement .pboAdvancedRow__preview .en__component--column.body-bottom:before {
-      content: "Body Bottom (Copy)"; }
-    #EN__RootElement .pboAdvancedRow__preview .en__component--column.body-footer:before {
-      content: "Body Footer Spacer"; }
-    #EN__RootElement .pboAdvancedRow__preview .en__component--column.body-footerOutside:before {
-      content: "Body Footer Outside"; }
-    #EN__RootElement .pboAdvancedRow__preview .en__component--column.content-footerSpacer:before {
-      content: "Content Footer Spacer"; }
-    #EN__RootElement .pboAdvancedRow__preview .en__component--column.content-preFooter:before {
-      content: "Content Pre Footer"; }
-    #EN__RootElement .pboAdvancedRow__preview .en__component--column.content-footer:before {
-      content: "Content Footer"; }
-    #EN__RootElement .pboAdvancedRow__preview .en__component--column.page-backgroundImage:before {
-      content: "Page Background Image"; }
-    #EN__RootElement .pboAdvancedRow__preview .en__component--column.page-backgroundImageOverlay:before {
-      content: "Page Background Image Overlay"; }
-    #EN__RootElement .pboAdvancedRow__preview .en__component--column.page-customCode:before {
-      content: "Page Custom Code"; }
+  #EN__RootElement .pboAdvancedRow__preview .en__component--advcolumn {
+    align-items: center;
+    display: flex;
+    justify-content: center; }
+  #EN__RootElement .pboAdvancedRow__preview .en__component--column.page-alert:before, #EN__RootElement .pboAdvancedRow__preview .en__component--column.content-header:before, #EN__RootElement .pboAdvancedRow__preview .en__component--column.body-headerOutside:before, #EN__RootElement .pboAdvancedRow__preview .en__component--column.body-header:before, #EN__RootElement .pboAdvancedRow__preview .en__component--column.body-title:before, #EN__RootElement .pboAdvancedRow__preview .en__component--column.body-banner:before, #EN__RootElement .pboAdvancedRow__preview .en__component--column.body-bannerOverlay:before, #EN__RootElement .pboAdvancedRow__preview .en__component--column.body-top:before, #EN__RootElement .pboAdvancedRow__preview .en__component--column.body-side:before, #EN__RootElement .pboAdvancedRow__preview .en__component--column.body-main:before, #EN__RootElement .pboAdvancedRow__preview .en__component--column.body-bottom:before, #EN__RootElement .pboAdvancedRow__preview .en__component--column.body-footer:before, #EN__RootElement .pboAdvancedRow__preview .en__component--column.body-footerOutside:before, #EN__RootElement .pboAdvancedRow__preview .en__component--column.content-footerSpacer:before, #EN__RootElement .pboAdvancedRow__preview .en__component--column.content-preFooter:before, #EN__RootElement .pboAdvancedRow__preview .en__component--column.content-footer:before, #EN__RootElement .pboAdvancedRow__preview .en__component--column.page-backgroundImage:before, #EN__RootElement .pboAdvancedRow__preview .en__component--column.page-backgroundImageOverlay:before, #EN__RootElement .pboAdvancedRow__preview .en__component--column.page-customCode:before {
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 10px;
+    overflow: hidden; }
+  #EN__RootElement .pboAdvancedRow__preview .en__component--column.page-alert:before {
+    content: "Page Alert"; }
+  #EN__RootElement .pboAdvancedRow__preview .en__component--column.content-header:before {
+    content: "Content Header"; }
+  #EN__RootElement .pboAdvancedRow__preview .en__component--column.body-headerOutside:before {
+    content: "Body Header Outside"; }
+  #EN__RootElement .pboAdvancedRow__preview .en__component--column.body-header:before {
+    content: "Body Header Spacer"; }
+  #EN__RootElement .pboAdvancedRow__preview .en__component--column.body-title:before {
+    content: "Body Title"; }
+  #EN__RootElement .pboAdvancedRow__preview .en__component--column.body-banner:before {
+    content: "Body Banner"; }
+  #EN__RootElement .pboAdvancedRow__preview .en__component--column.body-bannerOverlay:before {
+    content: "Body Banner Overlay"; }
+  #EN__RootElement .pboAdvancedRow__preview .en__component--column.body-top:before {
+    content: "Body Top (Copy)"; }
+  #EN__RootElement .pboAdvancedRow__preview .en__component--column.body-side:before {
+    content: "Body Side (Legacy)"; }
+  #EN__RootElement .pboAdvancedRow__preview .en__component--column.body-main:before {
+    content: "Body Main (Form)"; }
+  #EN__RootElement .pboAdvancedRow__preview .en__component--column.body-bottom:before {
+    content: "Body Bottom (Copy)"; }
+  #EN__RootElement .pboAdvancedRow__preview .en__component--column.body-footer:before {
+    content: "Body Footer Spacer"; }
+  #EN__RootElement .pboAdvancedRow__preview .en__component--column.body-footerOutside:before {
+    content: "Body Footer Outside"; }
+  #EN__RootElement .pboAdvancedRow__preview .en__component--column.content-footerSpacer:before {
+    content: "Content Footer Spacer"; }
+  #EN__RootElement .pboAdvancedRow__preview .en__component--column.content-preFooter:before {
+    content: "Content Pre Footer"; }
+  #EN__RootElement .pboAdvancedRow__preview .en__component--column.content-footer:before {
+    content: "Content Footer"; }
+  #EN__RootElement .pboAdvancedRow__preview .en__component--column.page-backgroundImage:before {
+    content: "Page Background Image"; }
+  #EN__RootElement .pboAdvancedRow__preview .en__component--column.page-backgroundImageOverlay:before {
+    content: "Page Background Image Overlay"; }
+  #EN__RootElement .pboAdvancedRow__preview .en__component--column.page-customCode:before {
+    content: "Page Custom Code"; }
+
+#EN__RootElement div:not(.pboAdvancedRow__preview) > .en__component--advrow > .page-backgroundImage,
+#EN__RootElement div:not(.pboAdvancedRow__preview) > .en__component--advrow > .page-customCode {
+  background-color: var(--color_transparent) !important; }
 
 /*
 * ##########################################################
