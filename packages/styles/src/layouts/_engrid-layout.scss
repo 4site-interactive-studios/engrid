@@ -120,13 +120,13 @@ $two_col_body-column_max-width:     900px !default; // Overridable in client the
 // ####################################################################
 
 form > .en__component--row.en__component--advrow,
-.pseudo-subgrid{
+.pseudo-subgrid > *{
   /* autoprefixer grid: off */
   display: grid;
 }
 
 // @TODO This prevents a layout problem in pagebuilder (https://d.pr/i/cEcwSo)
-body#en__pagebuilder .page-backgroundImage.pseudo-subgrid > * {
+body#en__pagebuilder .page-backgroundImage.pseudo-subgrid > * > * {
   grid-column: pc;
 }
 
@@ -457,7 +457,7 @@ body:not(#en__pagebuilder) .page-backgroundImage figcaption{
 // ####################################################################
 @supports not (display: grid) {
   form > .en__component--advrow,
-  .pseudo-subgrid {
+  .pseudo-subgrid > * {
     display: flex;
     flex-direction: column;
     max-width: 840px;

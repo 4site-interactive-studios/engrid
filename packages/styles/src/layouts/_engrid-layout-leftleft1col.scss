@@ -13,7 +13,7 @@ $leftleft1col_body-column_max-width: $one_col_body-column_max-width !default; //
   @media screen and (min-width: $leftleft1col_content-column_min-width) {
     /* prettier-ignore */
     .en__component--advrow,
-    .en__component--advrow .pseudo-subgrid {
+    .pseudo-subgrid > * {
       grid-template-columns:
       [
         pc-start lpc-start]  minmax(0px, 0px)                         [lpc-end
