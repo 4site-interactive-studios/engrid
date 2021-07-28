@@ -55,10 +55,10 @@
   .page-backgroundImage img:not([data-src]) {
     border: 5px solid var(--error__color); // Highlight images not using our method for lazy loading them
   }
-  
+
   .page-backgroundImage img[src] {
-    height: 250px; // Resizes images to a reasonable dimension if they visually display in the WYSIWYG
-    width: auto; // Resizes images to a reasonable dimension if they visually display in the WYSIWYG
+    height: 250px; // Resize background images to a reasonable dimension if they visually display in the WYSIWYG
+    width: auto; // Resize background images to a reasonable dimension if they visually display in the WYSIWYG
   }
 
   /* Adjust the editable space in the Page Editor so that the content can occupy as much space as possible */
