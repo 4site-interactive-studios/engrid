@@ -25,7 +25,7 @@ $rightright1col_body-column_max-width: $one_col_body-column_max-width !default; 
       ]; 
     }
 
-    &body:not(#en__pagebuilder) .page-backgroundImage {
+    &:not(#en__pagebuilder) .page-backgroundImage {
       grid-row: page-start / content-footer-end;
       grid-column: lpc-start / lpc-end;
     }

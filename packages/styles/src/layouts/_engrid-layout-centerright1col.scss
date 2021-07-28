@@ -28,7 +28,7 @@ $centerright1col_body-column_offset-width-remaining: $centerright1col_content-co
       ]; 
     }
 
-    &body:not(#en__pagebuilder) .page-backgroundImage {
+    &:not(#en__pagebuilder) .page-backgroundImage {
       grid-row: page-start / content-footerSpacer-end;
     }
   }

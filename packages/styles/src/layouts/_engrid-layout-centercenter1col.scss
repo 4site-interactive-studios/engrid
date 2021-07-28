@@ -50,7 +50,7 @@ $centercenter1col_body-column_offset-width-remaining: $centercenter1col_content-
       ];   
     }
 
-    &body:not(#en__pagebuilder) .page-backgroundImage{
+    &:not(#en__pagebuilder) .page-backgroundImage{
       grid-row: page-start / content-footerSpacer-end;
     }
   }
