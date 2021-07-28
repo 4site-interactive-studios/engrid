@@ -208,10 +208,6 @@ form > .en__component--advrow{
   margin: var(--engrid__content-header_margin);
 }
 
-.content-header.pseudo-subgrid > div{
-  grid-column: cc;
-}
-
 .body-headerOutside{
   grid-column: bc;
   grid-row: body-headerOutside;
@@ -328,10 +324,6 @@ form > .en__component--advrow{
   background-color: var(--engrid__content-footer_background-color);
   padding: var(--engrid__content-footer_padding);
   margin: var(--engrid__content-footer_margin);
-}
-
-.content-footer.pseudo-subgrid > div{
-  grid-column: cc;
 }
 
 .page-backgroundImage{
