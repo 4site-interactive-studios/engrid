@@ -120,6 +120,7 @@ $two_col_body-column_max-width:     900px !default; // Overridable in client the
 // ####################################################################
 
 form > .en__component--row.en__component--advrow,
+#engrid > .en__component--row.en__component--advrow,
 .pseudo-subgrid > *{
   /* autoprefixer grid: off */
   display: grid;
@@ -131,7 +132,8 @@ body#en__pagebuilder .page-backgroundImage.pseudo-subgrid > * > * {
 }
 
 // Ensure the ENGrid advanced row (there should only be one) occupies the full viewport at a minimum
-form > .en__component--advrow {
+form > .en__component--advrow,
+#engrid > .en__component--advrow {
   width: 100%;
   max-width: 100vw;
 }
