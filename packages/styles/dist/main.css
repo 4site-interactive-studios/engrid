@@ -2837,7 +2837,7 @@ body {
   background-color: var(--engrid__page_background-color);
   min-width: 100vw;
   min-height: 100vh; }
-  body:not([data-engrid-embedded]) #engrid {
+  body:not([data-engrid-embedded]) form {
     height: 100vh; }
 
 [data-engrid-theme] {
@@ -5026,7 +5026,7 @@ header .indicator__percentage {
   --engrid__page-customCode_padding: var(--engrid__page_padding);
   --engrid__page-customCode_margin: var(--engrid__page_margin); }
 
-.en__component--row.en__component--advrow,
+form > .en__component--row.en__component--advrow,
 .pseudo-subgrid {
   /* autoprefixer grid: off */
   display: grid; }
@@ -5034,11 +5034,11 @@ header .indicator__percentage {
 body#en__pagebuilder .page-backgroundImage.pseudo-subgrid {
   display: block; }
 
-.en__component--advrow {
+form > .en__component--advrow {
   width: 100%;
   max-width: 100vw; }
 
-body:not([data-engrid-embedded]) .en__component--advrow {
+body:not([data-engrid-embedded]) form > .en__component--advrow {
   min-height: 100vh; }
 
 /*
@@ -5047,13 +5047,13 @@ body:not([data-engrid-embedded]) .en__component--advrow {
 * ##########################################################
 */
 /* prettier-ignore */
-.en__component--advrow,
+form > .en__component--advrow,
 .pseudo-subgrid {
   /* autoprefixer grid: off */
   grid-template-columns: [pc-start lpc-start lpc-end cc-start lcc-start lcc-end bc-start lbc-start lbc-end] auto [rbc-start rbc-end bc-end rcc-start rcc-end cc-end rpc-start rpc-end pc-end]; }
 
 /* prettier-ignore */
-.en__component--advrow {
+form > .en__component--advrow {
   /* autoprefixer grid: off */
   grid-template-rows: [page-start page-alert-start] min-content [page-alert-end content-header-start] min-content [content-header-end body-headerOutside-start] min-content [body-headerOutside-end body-header-start] min-content [body-header-end body-title-start] min-content [body-title-end body-banner-start] min-content [body-banner-end body-bannerOverlay-start] min-content [body-bannerOverlay-end body-top-start] min-content [body-top-end body-side-start] min-content [body-side-end body-main-start] min-content [body-main-end body-bottom-start] min-content [body-bottom-end body-footer-start] min-content [body-footer-end body-footerOutside-start] min-content [body-footerOutside-end content-footerSpacer-start] minmax(0px, 1fr) [content-footerSpacer-end content-preFooter-start] min-content [content-preFooter-end content-footer-start] min-content [content-footer-end page-backgroundImage-start] min-content [page-backgroundImage-end page-backgroundImageOverlay-start] min-content [page-backgroundImageOverlay-end page-end page-customCode-start] min-content [page-customCode-end]; }
 
@@ -5207,7 +5207,7 @@ body:not([data-engrid-embedded]) .en__component--advrow {
 body:not(#en__pagebuilder) .page-customCode {
   display: none; }
 
-.en__component--advrow:not([class*="-"]) > div {
+form > .en__component--advrow:not([class*="-"]) > div {
   grid-row: na; }
 
 /*
@@ -5255,14 +5255,14 @@ body:not(#en__pagebuilder) .page-backgroundImage figcaption {
   display: none; }
 
 @supports not (display: grid) {
-  .en__component--advrow,
+  form > .en__component--advrow,
   .pseudo-subgrid {
     display: flex;
     flex-direction: column;
     max-width: 840px;
     width: 100%;
     margin: 0 auto; }
-  .en__component--advrow > *,
+  form > .en__component--advrow > *,
   .pseudo-subgrid > * {
     width: 100%;
     margin-left: auto;
@@ -6189,7 +6189,7 @@ body:not(#en__pagebuilder) .page-customCode:empty {
   #en__pagebuilder .page-backgroundImageOverlay {
     grid-row: page-backgroundImageOverlay !important;
     background-color: var(--engrid__body-banner_background-color) !important; }
-  #en__pagebuilder .en__component--advrow.en__component--active
+  #en__pagebuilder form > .en__component--advrow.en__component--active
 .en__component__actions.en__component__actions--advrow {
     grid-row: page; }
   #en__pagebuilder .page-backgroundImage img:not([data-src]) {
@@ -6322,23 +6322,10 @@ body:not(#en__pagebuilder) .page-customCode:empty {
 #EN__RootElement .pboAdvancedRow__preview {
   /* Page builder adds a hidden div to the bottom of the layout, this can result in undesired spacing */
   /* Something in EN is causing outlines to overlap, this prevents the issue */ }
-  #EN__RootElement .pboAdvancedRow__preview .en__component--advrow {
-    display: grid !important;
-    grid-template-rows: [page-start page-alert-start] minmax(0, auto) [page-alert-end content-header-start] minmax(0, auto) [content-header-end body-headerOutside-start] minmax(0, auto) [body-headerOutside-end body-header-start] minmax(0, auto) [body-header-end body-title-start] minmax(0, auto) [body-title-end body-banner-start] minmax(0, auto) [body-banner-end body-bannerOverlay-start] minmax(0, auto) [body-bannerOverlay-end body-top-start] minmax(0, auto) [body-top-end body-side-start] minmax(0, auto) [body-side-end body-main-start] minmax(0, auto) [body-main-end body-bottom-start] minmax(0, auto) [body-bottom-end body-footer-start] minmax(0, auto) [body-footer-end body-footerOutside-start] minmax(0, auto) [body-footerOutside-end content-footerSpacer-start] minmax(0, auto) [content-footerSpacer-end c ontent-preFooter-start] minmax(0, auto) [content-preFooter-end content-footer-start] minmax(0, auto) [content-footer-end page-backgroundImage-start] minmax(0, auto) [page-backgroundImage-end page-backgroundImageOverlay-start] minmax(0, auto) [page-backgroundImageOverlay-end page-end page-customCode-start] minmax(0, auto) [page-customCode-end] !important; }
-  #EN__RootElement .pboAdvancedRow__preview .en__component--advrow,
-  #EN__RootElement .pboAdvancedRow__preview .en__component--advrow .pseudo-subgrid {
-    /* autoprefixer grid: off */
-    grid-template-columns: [pc-start lpc-start] minmax(25px, 1fr) [lpc-end cc-start lcc-start] minmax(25px, 1fr) [lcc-end bc-start lbc-start] minmax(25px, 2fr) [lbc-end rbc-start] minmax(25px, 2fr) [rbc-end bc-end rcc-start] minmax(25px, 1fr) [rcc-end cc-end rpc-start] minmax(25px, 1fr) [rpc-end pc-end] !important; }
   #EN__RootElement .pboAdvancedRow__preview .en__component--row:nth-last-child(2) {
     padding-bottom: 0px; }
-  #EN__RootElement .pboAdvancedRow__preview .en__component--advcolumn {
-    align-items: center;
-    display: flex;
-    justify-content: center; }
   #EN__RootElement .pboAdvancedRow__preview .en__component--column {
     margin-bottom: 1px; }
-    #EN__RootElement .pboAdvancedRow__preview .en__component--column:before {
-      padding: 0.5rem 0; }
     #EN__RootElement .pboAdvancedRow__preview .en__component--column.page-alert:before {
       content: "Page Alert"; }
     #EN__RootElement .pboAdvancedRow__preview .en__component--column.content-header:before {
@@ -6377,11 +6364,6 @@ body:not(#en__pagebuilder) .page-customCode:empty {
       content: "Page Background Image Overlay"; }
     #EN__RootElement .pboAdvancedRow__preview .en__component--column.page-customCode:before {
       content: "Page Custom Code"; }
-  #EN__RootElement .pboAdvancedRow__preview .hide {
-    background-color: #ff00001a !important; }
-    #EN__RootElement .pboAdvancedRow__preview .hide.pboAdvancedRow__preview .en__component--column {
-      outline-color: #ff0000 !important;
-      z-index: 1; }
 
 /*
 * ##########################################################
@@ -6390,7 +6372,7 @@ body:not(#en__pagebuilder) .page-customCode:empty {
 * .edit-lock - https://d.pr/i/vsA4ao
 * ##########################################################
 */
-/* Make the border of componetn with an edit warning, red  */
+/* Make the border of component with an edit warning, red  */
 #en__pagebuilder .edit-warning.en__component.en__component--active.en__component--activeTarget {
   box-shadow: 0 0 0 2px #f12222; }
 

@@ -6,7 +6,7 @@ body {
   // Fixes issue with the grid not going right up to the last pixel of the browser
   // Recording: https://d.pr/v/g4ZCDA
   &:not([data-engrid-embedded]) {
-    #engrid {
+    form {
       height: 100vh;
     }
   }

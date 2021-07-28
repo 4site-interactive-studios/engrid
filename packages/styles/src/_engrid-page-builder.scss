@@ -24,11 +24,6 @@
     min-height: 25px !important;
   }
 
-  .page-backgroundImage,
-  .page-customCode {
-    background-color: var(--color_transparent) !important;
-  }
-
   /* Sometimes our styles might cause a code blocks title and label to display inline, rather than in rows. This should help prevent that https://d.pr/v/vXlAUM */
   .en__placeholder__text {
     flex-direction: column !important;
@@ -52,7 +47,7 @@
   }
 
   // Helps position the Engaging Networks pagebuilder tabs that are shown on hover of the Advanced Row
-  .en__component--advrow.en__component--active
+  form > .en__component--advrow.en__component--active
     .en__component__actions.en__component__actions--advrow {
     grid-row: page;
   }
@@ -198,73 +193,95 @@
 * # Page Builders Custom Layout Editor
 * ##########################################################
 */
+
+// @TODO The "en__component--advrow" styling will break the Engaging Networks Free and Flexible templates because they might have one or more advanced rows
 #EN__RootElement {
   .pboAdvancedRow__preview {
-    .en__component--advrow {
-      display: grid !important;
-      grid-template-rows:
-        [
-        page-start page-alert-start] minmax(0, auto) [page-alert-end
-        content-header-start] minmax(0, auto) [content-header-end
-        body-headerOutside-start] minmax(0, auto) [body-headerOutside-end
-        body-header-start] minmax(0, auto) [body-header-end
-        body-title-start] minmax(0, auto) [body-title-end
-        body-banner-start] minmax(0, auto) [body-banner-end
-        body-bannerOverlay-start] minmax(0, auto) [body-bannerOverlay-end
-        body-top-start] minmax(0, auto) [body-top-end
-        body-side-start] minmax(0, auto) [body-side-end
-        body-main-start] minmax(0, auto) [body-main-end
-        body-bottom-start] minmax(0, auto) [body-bottom-end
-        body-footer-start] minmax(0, auto) [body-footer-end
-        body-footerOutside-start] minmax(0, auto) [body-footerOutside-end
-        content-footerSpacer-start] minmax(0, auto) [content-footerSpacer-end c
-        ontent-preFooter-start] minmax(0, auto) [content-preFooter-end
-        content-footer-start] minmax(0, auto) [content-footer-end
-        page-backgroundImage-start] minmax(0, auto) [page-backgroundImage-end
-        page-backgroundImageOverlay-start] minmax(
-          0,
-          auto
-        ) [page-backgroundImageOverlay-end page-end
-        page-customCode-start] minmax(0, auto) [page-customCode-end
-        ] !important;
-    }
+    // .en__component--advrow {
+    //   display: grid !important;
+    //   grid-template-rows:
+    //     [
+    //     page-start page-alert-start] minmax(0, auto) [page-alert-end
+    //     content-header-start] minmax(0, auto) [content-header-end
+    //     body-headerOutside-start] minmax(0, auto) [body-headerOutside-end
+    //     body-header-start] minmax(0, auto) [body-header-end
+    //     body-title-start] minmax(0, auto) [body-title-end
+    //     body-banner-start] minmax(0, auto) [body-banner-end
+    //     body-bannerOverlay-start] minmax(0, auto) [body-bannerOverlay-end
+    //     body-top-start] minmax(0, auto) [body-top-end
+    //     body-side-start] minmax(0, auto) [body-side-end
+    //     body-main-start] minmax(0, auto) [body-main-end
+    //     body-bottom-start] minmax(0, auto) [body-bottom-end
+    //     body-footer-start] minmax(0, auto) [body-footer-end
+    //     body-footerOutside-start] minmax(0, auto) [body-footerOutside-end
+    //     content-footerSpacer-start] minmax(0, auto) [content-footerSpacer-end c
+    //     ontent-preFooter-start] minmax(0, auto) [content-preFooter-end
+    //     content-footer-start] minmax(0, auto) [content-footer-end
+    //     page-backgroundImage-start] minmax(0, auto) [page-backgroundImage-end
+    //     page-backgroundImageOverlay-start] minmax(
+    //       0,
+    //       auto
+    //     ) [page-backgroundImageOverlay-end page-end
+    //     page-customCode-start] minmax(0, auto) [page-customCode-end
+    //     ] !important;
+    // }
 
-    .en__component--advrow,
-    .en__component--advrow .pseudo-subgrid {
-      /* autoprefixer grid: off */
-      grid-template-columns:
-        [
-        pc-start lpc-start] minmax(25px, 1fr) [lpc-end
-        cc-start lcc-start] minmax(25px, 1fr) [lcc-end
-        bc-start lbc-start] minmax(25px, 2fr) [lbc-end
-        rbc-start] minmax(25px, 2fr) [rbc-end bc-end
-        rcc-start] minmax(25px, 1fr) [rcc-end cc-end
-        rpc-start] minmax(25px, 1fr) [rpc-end pc-end
-        ] !important;
+    // .en__component--advrow,
+    // .en__component--advrow .pseudo-subgrid {
+    //   /* autoprefixer grid: off */
+    //   grid-template-columns:
+    //     [
+    //     pc-start lpc-start] minmax(25px, 1fr) [lpc-end
+    //     cc-start lcc-start] minmax(25px, 1fr) [lcc-end
+    //     bc-start lbc-start] minmax(25px, 2fr) [lbc-end
+    //     rbc-start] minmax(25px, 2fr) [rbc-end bc-end
+    //     rcc-start] minmax(25px, 1fr) [rcc-end cc-end
+    //     rpc-start] minmax(25px, 1fr) [rpc-end pc-end
+    //     ] !important;
 
-      // grid-template-columns: [
-      //   pc-start lpc-start lpc-end cc-start lcc-start lcc-end bc-start lbc-start lbc-end] auto [rbc-start rbc-end bc-end rcc-start rcc-end cc-end rpc-start rpc-end pc-end
-      // ]
-    }
+    //   // grid-template-columns: [
+    //   //   pc-start lpc-start lpc-end cc-start lcc-start lcc-end bc-start lbc-start lbc-end] auto [rbc-start rbc-end bc-end rcc-start rcc-end cc-end rpc-start rpc-end pc-end
+    //   // ]
+    // }
 
     /* Page builder adds a hidden div to the bottom of the layout, this can result in undesired spacing */
     .en__component--row:nth-last-child(2) {
       padding-bottom: 0px;
     }
 
-    // Vertically center the labels
+    // Vertically and Horizontally center the labels
     .en__component--advcolumn {
       align-items: center;
       display: flex;
       justify-content: center;
     }
 
-    /* Something in EN is causing outlines to overlap, this prevents the issue */
     .en__component--column {
-      margin-bottom: 1px;
+      // margin-bottom: 1px; /* Something in EN is causing outlines to overlap, this prevents the issue */
 
-      &:before {
-        padding: 0.5rem 0;
+      &.page-alert:before,
+      &.content-header:before,
+      &.body-headerOutside:before,
+      &.body-header:before,
+      &.body-title:before,
+      &.body-banner:before,
+      &.body-bannerOverlay:before,
+      &.body-top:before,
+      &.body-side:before,
+      &.body-main:before,
+      &.body-bottom:before,
+      &.body-footer:before,
+      &.body-footerOutside:before,
+      &.content-footerSpacer:before,
+      &.content-preFooter:before,
+      &.content-footer:before,
+      &.page-backgroundImage:before,
+      &.page-backgroundImageOverlay:before,
+      &.page-customCode:before{
+        padding-left: 5px;
+        padding-right: 5px;
+        font-size: 10px;
+        overflow: hidden;
       }
 
       &.page-alert:before {
@@ -344,12 +361,20 @@
       }
     }
 
-    .hide {
-      background-color: #ff00001a !important;
-      &.pboAdvancedRow__preview .en__component--column {
-        outline-color: #ff0000 !important;
-        z-index: 1;
-      }
+    // .hide {
+    //   background-color: #ff00001a !important;
+    //   &.pboAdvancedRow__preview .en__component--column {
+    //     outline-color: #ff0000 !important;
+    //     z-index: 1;
+    //   }
+    // }
+  }
+
+  // In Page Builder but not in the Advanced Row Preview Modal
+  div:not(.pboAdvancedRow__preview) > .en__component--advrow > {
+    .page-backgroundImage,
+    .page-customCode {
+      background-color: var(--color_transparent) !important;
     }
   }
 }
@@ -362,7 +387,7 @@
 * ##########################################################
 */
 
-/* Make the border of componetn with an edit warning, red  */
+/* Make the border of component with an edit warning, red  */
 #en__pagebuilder .edit-warning.en__component.en__component--active.en__component--activeTarget{
   box-shadow: 0 0 0 2px #f12222;
 }
