@@ -83,7 +83,7 @@
   // --select_color: var(--input_color);
   --select_font-size: var(--root_font-size);
   --select_font-weight: initial;
-  --select_line-height: initial;
+  --select_line-height: var(--input_line-height);
   // --select_background-color: var(--input_background-color);
   --select_border-width: 1px;
   // --select_border-color: var(--input_border-color);
