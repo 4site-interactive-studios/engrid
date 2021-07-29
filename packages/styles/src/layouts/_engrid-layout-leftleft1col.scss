@@ -12,7 +12,8 @@ $leftleft1col_body-column_max-width: $one_col_body-column_max-width !default; //
 
   @media screen and (min-width: $leftleft1col_content-column_min-width) {
     /* prettier-ignore */
-    .en__component--advrow,
+    form > .en__component--advrow,
+    #engrid > .en__component--advrow,
     .pseudo-subgrid > * {
       grid-template-columns:
       [

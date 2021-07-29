@@ -105,8 +105,8 @@ body {
 
 @mixin background-image-small-device {
   // @mixin background-image-small-device
-  [data-engrid-body-banner="empty"][data-engrid-page-background="image"],
-  [data-engrid-page-background="video"] {
+  &[data-engrid-body-banner="empty"][data-engrid-page-background="image"],
+  &[data-engrid-page-background="video"] {
     .body-banner,
     .body-bannerOverlay {
       display: none;
@@ -116,8 +116,8 @@ body {
     .page-backgroundImageOverlay {
       grid-column: pc;
       grid-row: body-banner;
-      min-height: 200px;
-      aspect-ratio: 16/9;
+      // min-height: 200px;
+      // aspect-ratio: 16/9;
 
       video,
       figure {
@@ -129,6 +129,10 @@ body {
         height: 100% !important;
         min-height: 200px;
         aspect-ratio: 16/9;
+      }
+
+      img{
+        display: block !important;
       }
 
       &::before {

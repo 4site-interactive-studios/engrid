@@ -15,7 +15,8 @@ $centerright1col_body-column_offset-width-remaining: $centerright1col_content-co
   [data-engrid-layout="centerright1col"] {
 
     /* prettier-ignore */
-    .en__component--advrow,
+    form > .en__component--advrow,
+    #engrid > .en__component--advrow,
     .pseudo-subgrid > * {
       grid-template-columns:
       [

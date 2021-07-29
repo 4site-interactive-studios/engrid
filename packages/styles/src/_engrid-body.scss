@@ -7,7 +7,7 @@ body {
   // Recording: https://d.pr/v/g4ZCDA
   &:not([data-engrid-embedded]) {
     form {
-      height: 100vh;
+      min-height: 100vh;
     }
   }
 }
