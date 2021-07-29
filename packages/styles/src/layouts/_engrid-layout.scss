@@ -116,18 +116,19 @@ $two_col_body-column_max-width:     900px !default; // Overridable in client the
 }
 
 // ####################################################################
-//  Style Sections Both Inside AND Outside of Page Builder
+//  Style Sections Both Inside AND Outside of Page Builder 
 // ####################################################################
 
 form > .en__component--row.en__component--advrow,
 #engrid > .en__component--row.en__component--advrow,
-.pseudo-subgrid > *{
+.pseudo-subgrid{
   /* autoprefixer grid: off */
   display: grid;
 }
 
 // @TODO This prevents a layout problem in pagebuilder (https://d.pr/i/cEcwSo)
-body#en__pagebuilder .page-backgroundImage.pseudo-subgrid > * > * {
+// @TODO Should this be "body#en__pagebuilder .page-backgroundImage.pseudo-subgrid{"
+body#en__pagebuilder .page-backgroundImage.pseudo-subgrid > * {
   grid-column: pc;
 }
 
@@ -140,7 +141,7 @@ form > .en__component--advrow,
 
 // Forces Advanced Rows that are direct decendents of the form tag to display as Flexboxes again
 // Used by the Engaging Networks Free and Flexible 2 Page Templates
-form > .en__component--row.en__component--advrow{
+.en__component--row.en__component--advrow form > .en__component--row.en__component--advrow{
   display: flex;
 }
 
@@ -453,32 +454,31 @@ body:not(#en__pagebuilder) .page-backgroundImage figcaption{
   display: none;
 }
 
-
 // ####################################################################
 //  FOR BROWSERS THAT DO NOT SUPPORT CSS GRID, FLEXBOX
 // ####################################################################
-@supports not (display: grid) {
-  form > .en__component--advrow,
-  .pseudo-subgrid > * {
-    display: flex;
-    flex-direction: column;
-    max-width: 840px;
-    width: 100%;
-    margin: 0 auto;
-  }
+// @supports not (display: grid) {
+//   form > .en__component--advrow,
+//   .pseudo-subgrid{
+//     display: flex;
+//     flex-direction: column;
+//     max-width: 840px;
+//     width: 100%;
+//     margin: 0 auto;
+//   }
 
-  form > .en__component--advrow > *,
-  .pseudo-subgrid > *{
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 100%;
-  }
+//   form > .en__component--advrow > *,
+//   .pseudo-subgrid > *{
+//     width: 100%;
+//     margin-left: auto;
+//     margin-right: auto;
+//     max-width: 100%;
+//   }
 
-  .en__component--advcolumn {
-    flex-basis: auto; // Required otherwise Flexbox collapses in on itself in IE11
-  }
-}
+//   .en__component--advcolumn {
+//     flex-basis: auto; // Required otherwise Flexbox collapses in on itself in IE11
+//   }
+// }
 
 // ####################################################################
 //  Explicitly set every sections default z-index

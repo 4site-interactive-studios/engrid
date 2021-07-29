@@ -16,7 +16,7 @@ $centercenter2col_body-column_offset-width-remaining: $centercenter2col_content-
     /* prettier-ignore */
     form > .en__component--advrow,
     #engrid > .en__component--advrow,
-    .pseudo-subgrid > * {
+    .pseudo-subgrid{
       grid-template-columns:
       [
         pc-start lpc-start]  minmax(0px, 1fr)                                                   [lpc-end

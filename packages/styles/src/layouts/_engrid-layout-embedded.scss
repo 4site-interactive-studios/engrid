@@ -33,7 +33,7 @@
 
   /* prettier-ignore */
   .en__component--advrow,
-  .pseudo-subgrid > * {
+  .pseudo-subgrid{
     grid-template-columns:
     [
       pc-start lpc-start]  minmax(0px, 0px)    [lpc-end

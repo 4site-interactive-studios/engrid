@@ -7,6 +7,8 @@
   --label-font-size: var(--root_font-size);
   --label-font-weight: initial;
   --label-line-height: initial;
+  --label-text-transform: initial;
+  --label-letter-spacing: initial;
 
   // TYPOGRAPHY INPUT
   --input_font-family: var(--default_font-family);
@@ -231,6 +233,8 @@
   font-weight: var(--label-font-weight);
   line-height: var(--label-line-height);
   display: flex;
+  text-transform: var(--label-text-transform);
+  letter-spacing: var(--label-letter-spacing);
 }
 
 label a.label-tooltip {
@@ -843,17 +847,17 @@ input[type="number"]::-webkit-outer-spin-button {
 /************************************
  * Inline Country Styling
  ***********************************/
-.inline-country .en__field--country {
-  position: absolute;
-  right: 0;
-  align-items: flex-end;
+// .inline-country .en__field--country {
+//   position: absolute;
+//   right: 0;
+//   align-items: flex-end;
 
-  select {
-    width: 80px;
-    // z-index: 1;
-    background-color: transparent;
-    // -webkit-box-shadow: none;
-    box-shadow: none;
-    text-align-last: right;
-  }
-}
+//   select {
+//     width: 80px;
+//     // z-index: 1;
+//     background-color: transparent;
+//     // -webkit-box-shadow: none;
+//     box-shadow: none;
+//     text-align-last: right;
+//   }
+// }
