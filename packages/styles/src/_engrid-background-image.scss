@@ -103,10 +103,15 @@ body {
   }
 }
 
-@mixin background-image-small-device {
-  // @mixin background-image-small-device
-  &[data-engrid-body-banner="empty"][data-engrid-page-background="image"],
-  &[data-engrid-page-background="video"] {
+@mixin engrid_replace-banner-with-background {
+  // Depends on page-background.ts
+  // Documentation: https://docs.google.com/document/d/1zF-86Iq8tCRk4HCv-JaJYZulkC273x-_QODUed9F0Pw/edit#heading=h.72pw1gcv9zk7
+  &[data-replace-banner-with-background="if-background-exists"][data-engrid-page-background="image"],
+  &[data-replace-banner-with-background="if-background-exists"][data-engrid-page-background="video"],
+  &[data-replace-banner-with-background="if-background-image"][data-engrid-page-background="image"],
+  &[data-replace-banner-with-background="if-background-video"][data-engrid-page-background="video"],
+  &[data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="image"],
+  &[data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="video"]{
     .body-banner,
     .body-bannerOverlay {
       display: none;
@@ -116,8 +121,6 @@ body {
     .page-backgroundImageOverlay {
       grid-column: pc;
       grid-row: body-banner;
-      // min-height: 200px;
-      // aspect-ratio: 16/9;
 
       video,
       figure {
@@ -127,7 +130,6 @@ body {
         transform: none !important;
         width: 100vw !important;
         height: 100% !important;
-        min-height: 200px;
         aspect-ratio: 16/9;
       }
 
