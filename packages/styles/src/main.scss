@@ -61,6 +61,9 @@
 @import "layouts/engrid-layout-rightright1col";
 @import "layouts/engrid-layout-embedded"; // COMES LAST SO IT SUPERSEDES ANY PREVIOUS LAYOUTS IN THE CSS CASCADE
 
+/* ENGRID THEMES */
+@import "themes/engrid-theme-flex2";
+
 /* TIPPY.JS CSS */
 @import "tippy.js/dist/tippy";
 

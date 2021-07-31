@@ -1,0 +1,255 @@
+// The most broadly used CSS Custom Properties for quick theming.
+// Uncomment to use and reference engrid-scrips SASS files for more CSS Custom Properties.
+// All CSS Custom Properties should be scoped to the theme using CSS Data Attributes.
+[data-engrid-theme="flex2"]{
+    --engrid__page_background-color: lightgrey;
+    --engrid__body_padding: 0 2.5rem;
+    --engrid__body_border-radius: 6px;
+    --engrid__body-header_margin: 1rem 0 0 0;
+    --engrid__body-footer_margin: 0 0 3rem 0;
+    --engrid__body-footer_padding: 0 2.5rem 2rem 2.5rem;
+
+    // TYPOGRAPHY DEFAULT
+    // --default_font-family: var(--native-fonts__sans-serif);
+    // --default_color: initial;
+    // --default_font-size: var(--root_font-size);
+    // --default_font-weight: initial;
+    // --default_line-height: initial;
+
+    // TYPOGRAPHY H1
+    // --h1_font-family: var(--default_font-family);
+    // --h1_color: initial;
+    // --h1_font-size: calc(var(--root_font-size) * var(--scale-up_160pct));
+    // --h1_font-weight: initial;
+    // --h1_line-height: initial;
+        
+    // TYPOGRAPHY P
+    // --p_font-family: var(--default_font-family);
+    // --p_color: initial;
+    // --p_font-size: var(--root_font-size);
+    // --p_font-weight: initial;
+    // --p_line-height: initial;
+
+    // TYPOGRAPHY A
+    // --a_font-family: var(--default_font-family);
+    // --a_color: initial;
+    // --a_text-decoration: underline;
+
+    // TYPOGRAPHY A:FOCUS
+    // TYPOGRAPHY A:HOVER
+    // --a_color_hover: var(--a_color);
+    // --a_text-decoration_hover: initial;
+
+    // TYPOGRAPHY INPUT
+    // --input_font-family: var(--default_font-family);
+    // --input_color: #000000;
+    // --input_font-size: var(--root_font-size);
+    // --input_font-weight: initial;
+    // --input_line-height: initial;
+    // --input_background-color: #fafafa;
+    // --input_border-width: 1px;
+    // --input_border-color: #dfdfe1;
+    // --input_border-radius: 6px;
+    // --input_placeholder-color: var(--color_light-gray);
+    // --input_box-shadow: inset 0 2px 2px -1px rgba(74, 74, 104, 0.1);
+        
+    // TYPOGRAPHY INPUT:FOCUS
+    // TYPOGRAPHY INPUT:HOVER
+    // --input_color_hover: var(--input_color);
+    // --input_background-color_hover: var(--input_background-color);
+    // --input_border-color_hover: #767677;
+    // --input_border-bottom-color_hover: var(--input_border-color_hover);
+    // --input_box-shadow_hover: --input_box-shadow;
+
+    // TYPOGRAPHY BUTTON
+    // --button_font-family: var(--default_font-family);
+    // --button_color: var(--color_white);
+    // --button_font-size: var(--root_font-size);
+    // --button_font-weight: initial;
+    // --button_line-height: initial;
+    // --button_background-color: #535b61;
+    // --button_border-width: 1px;
+    // --button_border-color: var(--color_black);
+    // --button_border-radius: 6px;
+
+    // TYPOGRAPHY BUTTON:HOVER
+    // --button_color_hover: var(--button_color);
+    // --button_background-color_hover: var(--color_black);
+    // --button_border-color_hover: var(--button_background-color_hover);
+
+    // TYPOGRAPHY BUTTON:SELECTED
+    // --button_color_checked: var(--button_color_hover);
+    // --button_background-color_checked: var(--button_background-color_hover);
+    // --button_border-color_checked: var(--button_border-color_hover);
+
+    // DONATION PAGE
+    // --give-monthly-donation-amount-appended-label: "/mo";
+    // --give-annual-donation-amount-appended-label: "/yr";  
+    // --recurring-frequency__button_count: 4;
+    // --donation-amount__button_count: 4;
+    // --give-by-select__button_count: 4;
+}
+
+/* Add your custom theme styles here */
+[data-engrid-theme="flex2"]{
+
+    @mixin client_under_layout_breakpoint{
+        --engrid__body_padding: 0 1.5rem;
+        --engrid__body_border-radius: 0px;
+        --engrid__body-header_margin: 0px;
+        --engrid__body-footer_margin: 0px;
+
+        // Set the background color to whatever the body main is using
+        --engrid__page_background-color: var(--engrid__body-main_background-color);
+
+        // Remove the box shadow
+        div:not(.pboAdvancedRow__preview) > .en__component--advrow > .body-header:before,
+        div:not(.pboAdvancedRow__preview) > .en__component--advrow > .body-banner:before,
+        div:not(.pboAdvancedRow__preview) > .en__component--advrow > .body-main:before,
+        div:not(.pboAdvancedRow__preview) > .en__component--advrow > .body-footer:before{
+            box-shadow: none;
+        }
+
+        // This is when any two column rows should stack
+        .en__component--row--2{
+            flex-direction: column;
+
+            > .en__component--column{
+                width: 100%;
+            }
+        }
+
+    }
+
+    &[data-engrid-layout="centerleft1col"]{
+        @media screen and (max-width: $centerleft1col_content-column_min-width) {
+          @include client_under_layout_breakpoint;
+        }
+    }
+
+    &[data-engrid-layout="centercenter1col"]{
+        @media screen and (max-width: $centercenter1col_content-column_min-width) {
+            @include client_under_layout_breakpoint;
+        }
+    }
+
+    &[data-engrid-layout="centerright1col"]{
+        @media screen and (max-width: $centerright1col_content-column_min-width) {
+            @include client_under_layout_breakpoint;
+        }
+    }
+
+    &[data-engrid-layout="leftleft1col"]{
+        @media screen and (max-width: $leftleft1col_content-column_min-width) {
+            //TBD
+        }
+        @include client_under_layout_breakpoint;
+    }
+
+    &[data-engrid-layout="rightright1col"]{
+        @media screen and (max-width: $rightright1col_content-column_min-width) {
+            //TBD
+        }
+        @include client_under_layout_breakpoint;
+    }
+
+    &[data-engrid-layout="centercenter2col"] {
+        @media screen and (max-width: $centercenter2col_content-column_min-width) {
+            @include client_under_layout_breakpoint;
+        }
+
+        @media screen and (min-width: $centercenter2col_content-column_min-width) {
+            .en__component--row--2 .en__component--column--2{
+                > *{
+                    margin-left: 1rem;
+                    padding-left: 1rem;
+                    padding-right: 1rem;
+                    background-color: lightgrey;
+
+                    &:first-child{
+                        padding-top: 1rem;
+                        border-top-left-radius: var(--engrid__body_border-radius);
+                        border-top-right-radius: var(--engrid__body_border-radius);
+                    }
+    
+                    &:last-child{
+                        padding-bottom: 1rem;
+                        border-bottom-left-radius: var(--engrid__body_border-radius);
+                        border-bottom-right-radius: var(--engrid__body_border-radius);
+                    }
+                }
+            }
+        }
+
+        .body-main{
+            grid-column: bc;
+        }
+    }
+    
+    // Pad the img (presumably the logo) rather than the section. If for some reason a user wants to put their logo in another place, then this section will visually collapse without an image in it
+    .body-header img{
+        padding: 1rem;
+    }
+
+    // Force the visibility of the body-footer, even when empty
+    &:not(#en__pagebuilder) .body-footer:empty{
+        display: block;
+    }
+
+    &#en__pagebuilder{
+        // Helps with a strange offset that crops the bottom pixel of the main content area in page builder ( https://d.pr/v/gsuJB8 )
+        form{
+            inset: -1px auto auto 0px;
+        }
+
+        // Remove this margin because our page will always have other padding / margin
+        .en__container{
+            margin-top: 0;
+        }
+
+        // Hide these sections as there is no way to interact with them
+        .body-banner,
+        .page-backgroundImage,
+        .page-customCode{
+            display: none;
+        }
+
+        // Remove the outline width on these sections as there is no way to interact with them or they are a drop target for row widgets
+        .body-header,
+        .body-main,
+        .body-footer{
+            outline-width: 0;
+        }
+
+        // Remove the custom section text
+        .body-main .messageOverlay.hidden:only-child:before{
+            content: "";
+        }
+
+        // Helper stylings for if the last row is deleted
+        form > .messageOverlay.hidden:only-of-type div:before {
+            outline: dashed 1px var(--error__color);
+            visibility: visible;
+            content: "Add a Row";
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            color: var(--error__color);
+            min-height: 25px;
+            position: relative;
+            top: -12.5px;
+            font-weight: 700;
+        }
+    }
+
+    // Remove min-height from the form component
+    &:not([data-engrid-embedded]) form {
+        min-height: auto;
+    }
+    
+    // And add the min-height to the wrapped div
+    &:not([data-engrid-embedded]) #engrid {
+        min-height: 100vh;
+    }
+}
