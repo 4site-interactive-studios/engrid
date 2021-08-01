@@ -10,7 +10,7 @@
 body:not(#en__pagebuilder) .click-to-expand:not(.expanded){
     cursor: pointer;
     max-height: var(--click-to-expand__copy-area_height);
-    overflow: hidden;
+    // overflow: hidden; // No longer needed as the max-height on the wrapper will handle it
 
     // Works with transparent backgrounds for when the ENGrid is in its embedded state
     // REF: https://stackoverflow.com/a/58740440/815683

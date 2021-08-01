@@ -104,6 +104,12 @@ body {
 }
 
 @mixin engrid_replace-banner-with-background {
+  // Hide the background media
+  .page-backgroundImage,
+  .page-backgroundImage:before{
+    display: none;
+  }
+
   // Depends on page-background.ts
   // Documentation: https://docs.google.com/document/d/1zF-86Iq8tCRk4HCv-JaJYZulkC273x-_QODUed9F0Pw/edit#heading=h.72pw1gcv9zk7
   &[data-replace-banner-with-background="if-background-exists"][data-engrid-page-background="image"],

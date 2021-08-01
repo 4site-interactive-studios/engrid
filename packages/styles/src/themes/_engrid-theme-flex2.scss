@@ -1,6 +1,7 @@
 // The most broadly used CSS Custom Properties for quick theming.
 // Uncomment to use and reference engrid-scrips SASS files for more CSS Custom Properties.
 // All CSS Custom Properties should be scoped to the theme using CSS Data Attributes.
+
 [data-engrid-theme="flex2"]{
     --engrid__page_background-color: lightgrey;
     --engrid__body_padding: 0 2.5rem;
@@ -8,6 +9,8 @@
     --engrid__body-header_margin: 1rem 0 0 0;
     --engrid__body-footer_margin: 0 0 3rem 0;
     --engrid__body-footer_padding: 0 2.5rem 2rem 2.5rem;
+    // --engrid__page-backgroundImage_url: url("https://placeimg.com/1920/1080/nature");
+    --engrid__page-backgroundImage_url: var(--background-image); // Sets a simpler CSS Custom Property name
 
     // TYPOGRAPHY DEFAULT
     // --default_font-family: var(--native-fonts__sans-serif);
@@ -189,6 +192,27 @@
     // Pad the img (presumably the logo) rather than the section. If for some reason a user wants to put their logo in another place, then this section will visually collapse without an image in it
     .body-header img{
         padding: 1rem;
+    }
+
+    // Copied from: _engrid-background-image.scss
+    // High resolution imagery can cause FPS drops when scrolling due to page redraws
+    // REF: Fix scrolling performance with CSS will-change property (https://www.fourkitchens.com/blog/article/fix-scrolling-performance-css-will-change-property/)
+    .page-backgroundImage {
+        overflow: hidden; // added for before pseudo-element to help improve page redraw and subsequent page scroll FPS
+        position: relative; // added for before pseudo-element to help improve page redraw and subsequent page scroll FPS
+
+        &:before {
+        content: " ";
+        position: fixed; // instead of background-attachment
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-image: var(--engrid__page-backgroundImage_url);
+        will-change: transform; // creates a new paint
+        }
     }
 
     // Force the visibility of the body-footer, even when empty

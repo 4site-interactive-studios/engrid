@@ -28,89 +28,89 @@ $two_col_body-column_max-width:     900px !default; // Overridable in client the
 [data-engrid-theme]{
   // GROUPED SECTION SETTINGS (BACKGROUND COLOR, PADDING, MARGIN)
   // CHANGE THESE PROPERTIES TO CHANGE ALL PROPERTIES VALUES IN THOSE SECTIONS
-  --engrid__page_background-color: var(--color_transparent);
+  // --engrid__page_background-color: var(--color_transparent);
   --engrid__page_padding: 0px;
   --engrid__page_margin: 0px;
 
-  --engrid__content_background-color: var(--color_transparent);
+  // --engrid__content_background-color: var(--color_transparent);
   --engrid__content_padding: 0px;
   --engrid__content_margin: 0px;
 
-  --engrid__body_background-color: var(--color_white);
+  // --engrid__body_background-color: var(--color_white);
   --engrid__body_padding: 0px var(--spacing_lg);
   --engrid__body_margin: 0px;
   --engrid__body_border-radius: 0px; // UNIQUE TO THE BODY
 
   // INDIVIDUAL SECTION SETTINGS (BACKGROUND COLOR, PADDING, MARGIN)
-  --engrid__page-alert_background-color: var(--engrid__page_background-color);
+  // --engrid__page-alert_background-color: var(--engrid__page_background-color);
   --engrid__page-alert_padding: var(--engrid__page_padding);
   --engrid__page-alert_margin: var(--engrid__page_margin);
 
-  --engrid__content-header_background-color: var(--engrid__content_background-color);
+  // --engrid__content-header_background-color: var(--engrid__content_background-color);
   --engrid__content-header_padding: var(--engrid__content_padding);
   --engrid__content-header_margin: var(--engrid__content_margin);
 
-  --engrid__body-headerOutside_background-color: var(--color_transparent);
+  // --engrid__body-headerOutside_background-color: var(--color_transparent);
   --engrid__body-headerOutside_padding: var(--engrid__body_padding);
   --engrid__body-headerOutside_margin: var(--engrid__body_margin);
 
-  --engrid__body-header_background-color: var(--engrid__body_background-color);
+  // --engrid__body-header_background-color: var(--engrid__body_background-color);
   --engrid__body-header_padding: var(--engrid__body_padding);
   --engrid__body-header_margin: var(--engrid__body_margin);
 
-  --engrid__body-title_background-color: var(--engrid__body_background-color);
+  // --engrid__body-title_background-color: var(--engrid__body_background-color);
   --engrid__body-title_padding: var(--engrid__body_padding);
   --engrid__body-title_margin: var(--engrid__body_margin);
 
-  --engrid__body-banner_background-color: var(--engrid__body_background-color);
+  // --engrid__body-banner_background-color: var(--engrid__body_background-color);
   --engrid__body-banner_padding: 0px;
   --engrid__body-banner_margin: var(--engrid__body_margin);
 
-  --engrid__body-bannerOverlay_background-color: var(--color_transparent);
+  // --engrid__body-bannerOverlay_background-color: var(--color_transparent);
   --engrid__body-bannerOverlay_padding: var(--engrid__body_padding);
   --engrid__body-bannerOverlay_margin: var(--engrid__body_margin);
 
-  --engrid__body-top_background-color: var(--engrid__body_background-color);
+  // --engrid__body-top_background-color: var(--engrid__body_background-color);
   --engrid__body-top_padding: var(--engrid__body_padding);
   --engrid__body-top_margin: var(--engrid__body_margin);
 
-  --engrid__body-main_background-color: var(--engrid__body_background-color);
+  // --engrid__body-main_background-color: var(--engrid__body_background-color);
   --engrid__body-main_padding: var(--engrid__body_padding);
   --engrid__body-main_margin: var(--engrid__body_margin);
 
-  --engrid__body-bottom_background-color: var(--engrid__body_background-color);
+  // --engrid__body-bottom_background-color: var(--engrid__body_background-color);
   --engrid__body-bottom_padding: var(--engrid__body_padding);
   --engrid__body-bottom_margin: var(--engrid__body_margin);
 
-  --engrid__body-footer_background-color: var(--engrid__body_background-color);
+  // --engrid__body-footer_background-color: var(--engrid__body_background-color);
   --engrid__body-footer_padding: var(--engrid__body_padding);
   --engrid__body-footer_margin: var(--engrid__body_margin);
 
-  --engrid__body-footerOutside_background-color: var(--color_transparent);
+  // --engrid__body-footerOutside_background-color: var(--color_transparent);
   --engrid__body-footerOutside_padding: var(--engrid__body_padding);
   --engrid__body-footerOutside_margin: var(--engrid__body_margin);
 
-  --engrid__content-footerSpacer_background-color: var(--engrid__content_background-color);
+  // --engrid__content-footerSpacer_background-color: var(--engrid__content_background-color);
   --engrid__content-footerSpacer_padding: var(--engrid__content_padding);
   --engrid__content-footerSpacer_margin: var(--engrid__content_margin);
 
-  --engrid__content-preFooter_background-color: var(--engrid__content_background-color);
+  // --engrid__content-preFooter_background-color: var(--engrid__content_background-color);
   --engrid__content-preFooter_padding: var(--engrid__content_padding);
   --engrid__content-preFooter_margin: var(--engrid__content_margin);
 
-  --engrid__content-footer_background-color: var(--engrid__content_background-color);
+  // --engrid__content-footer_background-color: var(--engrid__content_background-color);
   --engrid__content-footer_padding: var(--engrid__content_padding);
   --engrid__content-footer_margin: var(--engrid__content_margin);
 
-  --engrid__page-backgroundImage_background-color: var(--engrid__page_background-color);
+  // --engrid__page-backgroundImage_background-color: var(--engrid__page_background-color);
   --engrid__page-backgroundImage_padding: 0px;
   --engrid__page-backgroundImage_margin: var(--engrid__page_margin);
 
-  --engrid__page-backgroundImageOverlay_background-color: var(--color_transparent);
+  // --engrid__page-backgroundImageOverlay_background-color: var(--color_transparent);
   --engrid__page-backgroundImageOverlay_padding: var(--engrid__page_padding);
   --engrid__page-backgroundImageOverlay_margin: var(--engrid__page_margin);
 
-  --engrid__page-customCode_background-color: var(--engrid__page_background-color);
+  // --engrid__page-customCode_background-color: var(--engrid__page_background-color);
   --engrid__page-customCode_padding: var(--engrid__page_padding);    
   --engrid__page-customCode_margin: var(--engrid__page_margin);   
 }

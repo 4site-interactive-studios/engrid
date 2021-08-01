@@ -138,4 +138,27 @@
     --give-by-select__button_color_checked: var(--button_color_hover);
     --give-by-select__button_background-color_checked: var(--button_background-color_hover);
     --give-by-select__button_border-color_checked: var(--button_border-color_hover);
+
+    // PAGE SECTIONS
+    --engrid__page_background-color: var(--color_transparent);
+    --engrid__content_background-color: var(--color_transparent);
+    --engrid__body_background-color: var(--color_white);
+    --engrid__page-alert_background-color: var(--engrid__page_background-color);
+    --engrid__content-header_background-color: var(--engrid__content_background-color);
+    --engrid__body-headerOutside_background-color: var(--color_transparent);
+    --engrid__body-header_background-color: var(--engrid__body_background-color);
+    --engrid__body-title_background-color: var(--engrid__body_background-color);
+    --engrid__body-banner_background-color: var(--engrid__body_background-color);
+    --engrid__body-bannerOverlay_background-color: var(--color_transparent);
+    --engrid__body-top_background-color: var(--engrid__body_background-color);
+    --engrid__body-main_background-color: var(--engrid__body_background-color);
+    --engrid__body-bottom_background-color: var(--engrid__body_background-color);
+    --engrid__body-footer_background-color: var(--engrid__body_background-color);
+    --engrid__body-footerOutside_background-color: var(--color_transparent);
+    --engrid__content-footerSpacer_background-color: var(--engrid__content_background-color);
+    --engrid__content-preFooter_background-color: var(--engrid__content_background-color);
+    --engrid__content-footer_background-color: var(--engrid__content_background-color);
+    --engrid__page-backgroundImage_background-color: var(--engrid__page_background-color);
+    --engrid__page-backgroundImageOverlay_background-color: var(--color_transparent);
+    --engrid__page-customCode_background-color: var(--engrid__page_background-color);
 }
