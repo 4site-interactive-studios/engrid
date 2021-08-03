@@ -3,9 +3,9 @@
 .body-banner img[data-src] {
   background-color: var(--engrid__body-banner_background-color);
 }
-.body-banner video {
-  max-width: 100%;
-}
+// .body-banner video {
+//   max-width: 100%;
+// }
 
 // Retired because placeholder data-uri's are now being used for all images. And banner images will always fill the width of its container while retaining its aspect ratio for its height.
 // Make the images inserted into the Banner Area as responsive as possible
