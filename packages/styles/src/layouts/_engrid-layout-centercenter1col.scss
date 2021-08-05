@@ -15,18 +15,32 @@ $centercenter1col_body-column_offset-width-remaining: $centercenter1col_content-
   @media screen and (min-width: $centercenter1col_content-column_min-width) {
     /* prettier-ignore */
     form > .en__component--advrow,
-    #engrid > .en__component--advrow,
-    .pseudo-subgrid{
+    #engrid > .en__component--advrow{
+      grid-template-columns:
+      [
+        pc-start lpc-start]  minmax(0px, 1fr)                                                                                  [lpc-end
+        cc-start lcc-start]  minmax(0px, $centercenter1col_body-column_offset-width)                                           [lcc-end
+        bc-start lbc-start]  minmax($centercenter1col_body-column_max-width / 2, $centercenter1col_body-column_max-width / 2)  [lbc-end
+        rbc-start]           minmax($centercenter1col_body-column_max-width / 2, $centercenter1col_body-column_max-width / 2)  [rbc-end bc-end
+        rcc-start]           minmax(0px, $centercenter1col_body-column_offset-width-remaining)                                 [rcc-end cc-end
+        rpc-start]           minmax(0px, 1fr)                                                                                  [rpc-end pc-end                 
+      ]; 
+    }
+
+    form > .en__component--advrow > *{
       grid-template-columns:
       [
         pc-start lpc-start]  minmax(0px, 1fr)                                                   [lpc-end
         cc-start lcc-start]  minmax(0px, $centercenter1col_body-column_offset-width)            [lcc-end
-        bc-start lbc-start]  $centercenter1col_body-column_max-width / 2                        [lbc-end
-        rbc-start]           $centercenter1col_body-column_max-width / 2                        [rbc-end bc-end
+        bc-start lbc-start]  minmax(0px, $centercenter1col_body-column_max-width / 2)           [lbc-end
+        rbc-start]           minmax(0px, $centercenter1col_body-column_max-width / 2)           [rbc-end bc-end
         rcc-start]           minmax(0px, $centercenter1col_body-column_offset-width-remaining)  [rcc-end cc-end
         rpc-start]           minmax(0px, 1fr)                                                   [rpc-end pc-end                 
       ]; 
+    }
 
+    form > .en__component--advrow,
+    #engrid > .en__component--advrow{
       grid-template-rows:
       [
         page-start page-alert-start]        min-content        [page-alert-end
@@ -51,7 +65,7 @@ $centercenter1col_body-column_offset-width-remaining: $centercenter1col_content-
       ];   
     }
 
-    &:not(#en__pagebuilder) .page-backgroundImage{
+    &:not(#en__pagebuilder) .page-backgroundImage {
       grid-row: page-start / content-footerSpacer-end;
     }
   }

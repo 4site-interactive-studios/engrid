@@ -33,15 +33,15 @@
 
   /* prettier-ignore */
   .en__component--advrow,
-  .pseudo-subgrid{
+  .en__component--advrow > *{
     grid-template-columns:
     [
-      pc-start lpc-start]  minmax(0px, 0px)    [lpc-end
-      cc-start lcc-start]  minmax(0px, 0px)    [lcc-end
-      bc-start lbc-start]  minmax(0px, 50vw)   [lbc-end
-      rbc-start]           minmax(0px, 50vw)   [rbc-end bc-end
-      rcc-start]           minmax(0px, 0px)    [rcc-end cc-end
-      rpc-start]           minmax(0px, 0px)    [rpc-end pc-end               
+      pc-start lpc-start]  minmax(0px, 0px)   [lpc-end
+      cc-start lcc-start]  minmax(0px, 0px)   [lcc-end
+      bc-start lbc-start]  minmax(0px, 50vw)  [lbc-end
+      rbc-start]           minmax(0px, 50vw)  [rbc-end bc-end
+      rcc-start]           minmax(0px, 0px)   [rcc-end cc-end
+      rpc-start]           minmax(0px, 0px)   [rpc-end pc-end               
     ] !important;
   }
 

@@ -16,14 +16,25 @@ $centerright1col_body-column_offset-width-remaining: $centerright1col_content-co
 
     /* prettier-ignore */
     form > .en__component--advrow,
-    #engrid > .en__component--advrow,
-    .pseudo-subgrid{
+    #engrid > .en__component--advrow{
+      grid-template-columns:
+      [
+        pc-start lpc-start]  minmax(0px, 1fr)                                                                                [lpc-end
+        cc-start lcc-start]  minmax(0px, $centerright1col_body-column_offset-width-remaining)                                [lcc-end
+        bc-start lbc-start]  minmax($centerright1col_body-column_max-width / 2, $centerright1col_body-column_max-width / 2)  [lbc-end
+        rbc-start]           minmax($centerright1col_body-column_max-width / 2, $centerright1col_body-column_max-width / 2)  [rbc-end bc-end
+        rcc-start]           minmax(0px, $centerright1col_body-column_offset-width)                                          [rcc-end cc-end
+        rpc-start]           minmax(0px, 1fr)                                                                                [rpc-end pc-end            
+      ]; 
+    }
+
+    form > .en__component--advrow > *{
       grid-template-columns:
       [
         pc-start lpc-start]  minmax(0px, 1fr)                                                  [lpc-end
         cc-start lcc-start]  minmax(0px, $centerright1col_body-column_offset-width-remaining)  [lcc-end
-        bc-start lbc-start]  $centerright1col_body-column_max-width / 2                        [lbc-end
-        rbc-start]           $centerright1col_body-column_max-width / 2                        [rbc-end bc-end
+        bc-start lbc-start]  minmax(0px, $centerright1col_body-column_max-width / 2)           [lbc-end
+        rbc-start]           minmax(0px, $centerright1col_body-column_max-width / 2)           [rbc-end bc-end
         rcc-start]           minmax(0px, $centerright1col_body-column_offset-width)            [rcc-end cc-end
         rpc-start]           minmax(0px, 1fr)                                                  [rpc-end pc-end            
       ]; 

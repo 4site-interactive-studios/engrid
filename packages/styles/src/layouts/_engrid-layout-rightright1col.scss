@@ -13,22 +13,32 @@ $rightright1col_body-column_max-width: $one_col_body-column_max-width !default; 
   @media screen and (min-width: $rightright1col_content-column_min-width) {
     /* prettier-ignore */
     form > .en__component--advrow,
-    #engrid > .en__component--advrow,
-    .pseudo-subgrid{
+    #engrid > .en__component--advrow{
       grid-template-columns:
       [
-        pc-start lpc-start]  minmax(0px, 1fr)                           [lpc-end
-        cc-start lcc-start]  minmax(0px, 0px)                           [lcc-end
-        bc-start lbc-start]  $rightright1col_body-column_max-width / 2  [lbc-end
-        rbc-start]           $rightright1col_body-column_max-width / 2  [rbc-end bc-end
-        rcc-start]           minmax(0px, 0px)                           [rcc-end cc-end
-        rpc-start]           minmax(0px, 0px)                           [rpc-end pc-end            
+        pc-start lpc-start]  minmax(0px, 1fr)                                                                              [lpc-end
+        cc-start lcc-start]  minmax(0px, 0px)                                                                              [lcc-end
+        bc-start lbc-start]  minmax($rightright1col_body-column_max-width / 2, $rightright1col_body-column_max-width / 2)  [lbc-end
+        rbc-start]           minmax($rightright1col_body-column_max-width / 2, $rightright1col_body-column_max-width / 2)  [rbc-end bc-end
+        rcc-start]           minmax(0px, 0px)                                                                              [rcc-end cc-end
+        rpc-start]           minmax(0px, 0px)                                                                              [rpc-end pc-end            
+      ]; 
+    }
+
+    form > .en__component--advrow > *{
+      grid-template-columns:
+      [
+        pc-start lpc-start]  minmax(0px, 1fr)                                        [lpc-end
+        cc-start lcc-start]  minmax(0px, 0px)                                        [lcc-end
+        bc-start lbc-start]  minmax(0px, $rightright1col_body-column_max-width / 2)  [lbc-end
+        rbc-start]           minmax(0px, $rightright1col_body-column_max-width / 2)  [rbc-end bc-end
+        rcc-start]           minmax(0px, 0px)                                        [rcc-end cc-end
+        rpc-start]           minmax(0px, 0px)                                        [rpc-end pc-end            
       ]; 
     }
 
     &:not(#en__pagebuilder) .page-backgroundImage {
-      grid-row: page-start / content-footer-end;
-      grid-column: lpc-start / lpc-end;
+      grid-row: page-start / content-footerSpacer-end;
     }
   }
 
