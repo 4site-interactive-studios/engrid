@@ -10,6 +10,7 @@
   // --button_border-color: var(--color_primary_accent);
   --button_border-radius: 6px;
   --button_padding: 1ch 1.2ch;
+  --button_text-transform: none;
 
   // TYPOGRAPHY BUTTON:HOVER
   // --button_color_hover: var(--button_color);
@@ -29,6 +30,7 @@
   --submit__button_padding-top: 1ch;
   --submit__button_padding-bottom: 1ch;
   --submit__button_font-size: var(--root_font-size);
+  --submit__button_text-transform: var(--button_text-transform);
   
   // TYPOGRAPHY SUBMIT BUTTON:HOVER
   // --submit__button_color_hover: var(--button_color);
@@ -65,6 +67,7 @@ button.en__eventOccurrence__select {
   display: block;
   margin: 0 0 1rem 0;
   padding: var(--button_padding);
+  text-transform: var(--button_text-transform);
   -webkit-appearance: none;
   -webkit-transition: background-color 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out;
   transition: background-color 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out;
@@ -98,6 +101,7 @@ button.en__eventOccurrence__select {
   margin-top: 2rem;
   padding-top: var(--submit__button_padding-top);
   padding-bottom: var(--submit__button_padding-bottom);
+  text-transform: var(--submit__button_text-transform);
   font-size: var(--submit__button_font-size);
   width: 100%;
 

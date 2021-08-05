@@ -2016,6 +2016,8 @@ a {
     text-decoration: var(--a_text-decoration_hover); }
 
 [data-engrid-theme] {
+  --fields_horizontal_spacing: 0.5rem;
+  --fields_vertical_spacing: 0.5rem;
   --label-font-family: var(--default_font-family);
   --label-font-size: var(--root_font-size);
   --label-font-weight: initial;
@@ -2073,19 +2075,19 @@ a {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  margin-left: -0.5rem;
-  margin-right: -0.5rem; }
+  margin-left: calc(var(--fields_horizontal_spacing) * -1);
+  margin-right: calc(var(--fields_horizontal_spacing) * -1); }
   .en__component--formblock > *,
   .en__component--svblock > * {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem; }
+    padding-left: var(--fields_horizontal_spacing);
+    padding-right: var(--fields_horizontal_spacing); }
   .en__component--formblock .en__field,
   .en__component--svblock .en__field {
     display: flex;
     flex-direction: column;
     flex-basis: 100%;
     padding-bottom: 0rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--fields_horizontal_spacing);
     align-self: flex-end; }
     .en__component--formblock .en__field .en__field__element,
     .en__component--svblock .en__field .en__field__element {
@@ -2100,13 +2102,13 @@ a {
         padding-bottom: 0rem; }
       .en__component--formblock .en__field .en__field__element .en__submit,
       .en__component--svblock .en__field .en__field__element .en__submit {
-        padding-left: 0.5rem;
-        padding-right: 0.5rem; }
+        padding-left: var(--fields_horizontal_spacing);
+        padding-right: var(--fields_horizontal_spacing); }
         .en__component--formblock .en__field .en__field__element .en__submit.en__rangeFieldLabels,
         .en__component--svblock .en__field .en__field__element .en__submit.en__rangeFieldLabels {
           padding-left: 0;
           padding-right: 0;
-          margin-bottom: 0.5rem; }
+          margin-bottom: var(--fields_horizontal_spacing); }
       .en__component--formblock .en__field .en__field__element.en__field__element--checkbox, .en__component--formblock .en__field .en__field__element.en__field__element--radio, .en__component--formblock .en__field .en__field__element.en__field__element--rating, .en__component--formblock .en__field .en__field__element.en__field__element--imgselect, .en__component--formblock .en__field .en__field__element.en__field__element--splittext, .en__component--formblock .en__field .en__field__element.en__field__element--tripletext, .en__component--formblock .en__field .en__field__element.en__field__element--splitselect, .en__component--formblock .en__field .en__field__element.en__field__element--tripleselect, .en__component--formblock .en__field .en__field__element.en__field__element--withOther,
       .en__component--svblock .en__field .en__field__element.en__field__element--checkbox,
       .en__component--svblock .en__field .en__field__element.en__field__element--radio,
@@ -2117,8 +2119,8 @@ a {
       .en__component--svblock .en__field .en__field__element.en__field__element--splitselect,
       .en__component--svblock .en__field .en__field__element.en__field__element--tripleselect,
       .en__component--svblock .en__field .en__field__element.en__field__element--withOther {
-        margin-left: -0.5rem;
-        margin-right: -0.5rem; }
+        margin-left: calc(var(--fields_horizontal_spacing) * -1);
+        margin-right: calc(var(--fields_horizontal_spacing) * -1); }
         .en__component--formblock .en__field .en__field__element.en__field__element--checkbox .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--radio .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--rating .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--imgselect .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--splittext .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--tripletext .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--splitselect .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--tripleselect .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--withOther .en__field__item,
         .en__component--svblock .en__field .en__field__element.en__field__element--checkbox .en__field__item,
         .en__component--svblock .en__field .en__field__element.en__field__element--radio .en__field__item,
@@ -2129,26 +2131,26 @@ a {
         .en__component--svblock .en__field .en__field__element.en__field__element--splitselect .en__field__item,
         .en__component--svblock .en__field .en__field__element.en__field__element--tripleselect .en__field__item,
         .en__component--svblock .en__field .en__field__element.en__field__element--withOther .en__field__item {
-          padding-left: 0.5rem;
-          padding-right: 0.5rem;
-          padding-top: 0.5rem;
-          padding-bottom: 0.5rem; }
-    .en__component--formblock .en__field:not(.en__field--validationFailed) .en__field__element > input,
-    .en__component--formblock .en__field:not(.en__field--validationFailed) .en__field__element > select,
-    .en__component--formblock .en__field:not(.en__field--validationFailed) .en__field__element > textarea,
-    .en__component--svblock .en__field:not(.en__field--validationFailed) .en__field__element > input,
-    .en__component--svblock .en__field:not(.en__field--validationFailed) .en__field__element > select,
-    .en__component--svblock .en__field:not(.en__field--validationFailed) .en__field__element > textarea {
-      margin-top: 0.5rem;
-      margin-bottom: 0.5rem; }
+          padding-left: var(--fields_horizontal_spacing);
+          padding-right: var(--fields_horizontal_spacing);
+          padding-top: var(--fields_vertical_spacing);
+          padding-bottom: var(--fields_vertical_spacing); }
+    .en__component--formblock .en__field .en__field__element > input,
+    .en__component--formblock .en__field .en__field__element > select,
+    .en__component--formblock .en__field .en__field__element > textarea,
+    .en__component--svblock .en__field .en__field__element > input,
+    .en__component--svblock .en__field .en__field__element > select,
+    .en__component--svblock .en__field .en__field__element > textarea {
+      margin-top: var(--fields_horizontal_spacing);
+      margin-bottom: var(--fields_horizontal_spacing); }
     .en__component--formblock .en__field.en__field--withOther .en__field__element,
     .en__component--svblock .en__field.en__field--withOther .en__field__element {
-      margin-left: -0.5rem;
-      margin-right: -0.5rem; }
+      margin-left: calc(var(--fields_horizontal_spacing) * -1);
+      margin-right: calc(var(--fields_horizontal_spacing) * -1); }
       .en__component--formblock .en__field.en__field--withOther .en__field__element .en__field__item,
       .en__component--svblock .en__field.en__field--withOther .en__field__element .en__field__item {
-        padding-left: 0.5rem;
-        padding-right: 0.5rem; }
+        padding-left: var(--fields_horizontal_spacing);
+        padding-right: var(--fields_horizontal_spacing); }
 
 /************************************
  * Labels
@@ -2170,7 +2172,7 @@ label a.label-tooltip {
   text-decoration: underline;
   color: var(--label-color);
   font-weight: 400;
-  padding-right: 0.5rem; }
+  padding-right: var(--fields_horizontal_spacing); }
 
 .en__field__label {
   position: relative;
@@ -2256,7 +2258,7 @@ input[type=radio] + label {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 0.5rem;
+    margin-right: var(--fields_horizontal_spacing);
     color: var(--radio_color);
     background-color: var(--radio_background-color);
     border-style: solid;
@@ -2297,7 +2299,7 @@ input[type=checkbox] + label {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 0.5rem;
+    margin-right: var(--fields_horizontal_spacing);
     color: var(--checkbox_color);
     background-color: var(--checkbox_background-color);
     border-style: solid;
@@ -2425,7 +2427,7 @@ input.en__contactDetails__select {
 .en__field__input--checkbox:focus + .en__field__label,
 .en__contactDetails__select:focus + .en__contactDetails__rows {
   outline: -webkit-focus-ring-color auto 1px;
-  outline-offset: calc(0.5rem - 3px); }
+  outline-offset: calc(max(var(--fields_horizontal_spacing), var(--fields_vertical_spacing)) - 3px); }
 
 /************************************
  * Select Fields
@@ -2533,7 +2535,7 @@ textarea,
  * Image Select Field
  ***********************************/
 .en__imageSelectField__image {
-  padding-bottom: 0.5rem; }
+  padding-bottom: var(--fields_vertical_spacing); }
 
 .en__field__element--imgselect {
   display: flex;
@@ -2561,7 +2563,7 @@ textarea,
   align-items: flex-start;
   width: 100%;
   flex-basis: 100%;
-  margin-left: calc(var(--checkbox_width) + 0.5rem); }
+  margin-left: calc(var(--checkbox_width) +  var(--fields_horizontal_spacing)); }
 
 .en__contacts:not(.en__contacts--hideCheck) .en__contactDetails__rows:before {
   content: "";
@@ -2843,9 +2845,11 @@ body {
   --button_border-width: 1px;
   --button_border-radius: 6px;
   --button_padding: 1ch 1.2ch;
+  --button_text-transform: none;
   --submit__button_padding-top: 1ch;
   --submit__button_padding-bottom: 1ch;
-  --submit__button_font-size: var(--root_font-size); }
+  --submit__button_font-size: var(--root_font-size);
+  --submit__button_text-transform: var(--button_text-transform); }
 
 /* @TODO Design buttons with style (Primary, Secondary, Text Only, Outine)
  * See #3 https://medium.com/eightshapes-llc/component-examples-9c4b3bb3b308
@@ -2870,6 +2874,7 @@ button.en__eventOccurrence__select {
   display: block;
   margin: 0 0 1rem 0;
   padding: var(--button_padding);
+  text-transform: var(--button_text-transform);
   -webkit-appearance: none;
   -webkit-transition: background-color 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out;
   transition: background-color 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out;
@@ -2901,9 +2906,13 @@ button.en__eventOccurrence__select {
 
 .en__submit button,
 .en__submit .button {
+  color: var(--submit__button_color);
+  background-color: var(--submit__button_background-color);
+  border-color: var(--submit__button_border-color);
   margin-top: 2rem;
   padding-top: var(--submit__button_padding-top);
   padding-bottom: var(--submit__button_padding-bottom);
+  text-transform: var(--submit__button_text-transform);
   font-size: var(--submit__button_font-size);
   width: 100%; }
   .en__submit button:focus, .en__submit button:hover,
@@ -3424,6 +3433,7 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   --recurring-frequency__button_border-width: var(--button_border-width);
   --recurring-frequency__button_border-radius: var(--button_border-radius);
   --recurring-frequency__button_padding: var(--button_padding) !important;
+  --recurring-frequency__button_text-transform: var(--button_text-transform);
   --recurring-frequency__button_count: 4;
   --donation-amount__button_font-family: var(--button_font-family);
   --donation-amount__button_font-size: var(--button_font-size);
@@ -3432,6 +3442,7 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   --donation-amount__button_border-width: var(--button_border-width);
   --donation-amount__button_border-radius: var(--button_border-radius);
   --donation-amount__button_padding: var(--button_padding) !important;
+  --donation-amount__button_text-transform: var(--button_text-transform);
   --donation-amount__button_count: 4;
   --give-monthly-donation-amount-appended-label: "/mo";
   --give-annual-donation-amount-appended-label: "/yr";
@@ -3442,6 +3453,7 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   --give-by-select__button_border-width: var(--button_border-width);
   --give-by-select__button_border-radius: var(--button_border-radius);
   --give-by-select__button_padding: var(--button_padding) !important;
+  --give-by-select__button_text-transform: var(--button_text-transform);
   --give-by-select__button_count: 4;
   --radio-to-buttons__button_count: 4; }
 
@@ -3510,6 +3522,7 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   border-width: var(--button_border-width);
   border-color: var(--button_border-color);
   border-radius: var(--button_border-radius);
+  text-transform: var(--button_text-transform);
   border-style: solid;
   padding: var(--button_padding) !important;
   background-position-x: 40px;
@@ -3545,6 +3558,7 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   border-width: var(--give-by-select__button_border-width);
   border-color: var(--give-by-select__button_border-color);
   border-radius: var(--give-by-select__button_border-radius);
+  text-transform: var(--give-by-select__button_text-transform);
   border-style: solid;
   padding: var(--give-by-select__button_padding) !important;
   background-position-x: 40px;
@@ -3582,6 +3596,7 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   border-radius: var(--donation-amount__button_border-radius);
   border-style: solid;
   padding: var(--donation-amount__button_padding) !important;
+  text-transform: var(--donation-amount__button_text-transform);
   background-position-x: 40px;
   text-align: center;
   justify-content: center; }
@@ -3617,6 +3632,7 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   border-radius: var(--recurring-frequency__button_border-radius);
   border-style: solid;
   padding: var(--recurring-frequency__button_padding) !important;
+  text-transform: var(--recurring-frequency__button_text-transform);
   background-position-x: 40px;
   text-align: center;
   justify-content: center; }
@@ -3924,8 +3940,15 @@ button.en__ecarditems__prevclose {
   font-size: calc(max(75%, 10px));
   order: 3; }
 
+/************************************
+ * Field Placeholder Styling
+ * @TODO Can this be simplified because we use Autoprefixer?
+ ***********************************/
+.en__field--validationFailed:not(.has-focus):not(.has-value) {
+  --input_placeholder-color: var(--error__color); }
+
 /* @TODO Not working anymore since we removed our corresponding JS */
-/* When EN's field validator flags an error it jumps the user to the first error on thepage. Our custom error JS executes after EN's and sets a body level class that we can reorder the field presentation on. If we don't wait to re-order the fields, the page will jump to the error which appears below the input resulting in the user having to scroll up to make the change. This is something that should be fixed on EN's end and how they handle errors, but until then we need this work around */
+/* When EN's field validator flags an error it jumps the user to the first error on the page. Our custom error JS executes after EN's and sets a body level class that we can reorder the field presentation on. If we don't wait to re-order the fields, the page will jump to the error which appears below the input resulting in the user having to scroll up to make the change. This is something that should be fixed on EN's end and how they handle errors, but until then we need this work around */
 /* Code dependent on "oc-en-error-helpers.js" which must execute after EN's "pagedata.js" */
 body.error-jump-assist .en__component .en__field__error {
   order: 1; }
@@ -3933,9 +3956,9 @@ body.error-jump-assist .en__component .en__field__error {
 .en__field--validationFailed label {
   color: var(--error__color); }
 
-.en__field--validationFailed [type],
-.en__field--validationFailed textarea,
-.en__field--validationFailed select {
+.en__field--validationFailed:not(.has-value):not(.has-focus) [type],
+.en__field--validationFailed:not(.has-value):not(.has-focus) textarea,
+.en__field--validationFailed:not(.has-value):not(.has-focus) select {
   border-color: var(--error__color);
   background-color: var(--error__color_faded); }
 
@@ -4005,12 +4028,6 @@ body.error-jump-assist .en__component .en__field__error {
 .en__field--radio.en__field--validationFailed
 .en__field--checkbox.en__field--validationFailed {
   border-color: var(--error__color); }
-
-.en__field--validationFailed.has-value input,
-.en__field--validationFailed.has-value textarea,
-.en__field--select.en__field--validationFailed.has-value select {
-  border-color: var(--error__color_grayscale);
-  background-color: initial; }
 
 .radio-to-buttons_donationAmt .en__field--donationAmt.en__field--withOther.en__field--validationFailed
 .en__field__element--radio {

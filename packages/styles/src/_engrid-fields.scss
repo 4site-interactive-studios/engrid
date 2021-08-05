@@ -2,8 +2,8 @@
 
 [data-engrid-theme]{  
   // FIELD SPACING
-  --fields_horizontal_spacing: 0.5em;
-  --fields_vertical_spacing: 0.5em;
+  --fields_horizontal_spacing: 0.5rem;
+  --fields_vertical_spacing: 0.5rem;
 
   // TYPOGRAPHY LABEL
   --label-font-family: var(--default_font-family);
@@ -137,13 +137,13 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  margin-left: -0.5rem;
-  margin-right: -0.5rem;
+  margin-left:  calc(var(--fields_horizontal_spacing) * -1);
+  margin-right:  calc(var(--fields_horizontal_spacing) * -1);
 
   // All first child elements of a form block should have horizontal padding applied
   > * {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+    padding-left:  var(--fields_horizontal_spacing);
+    padding-right:  var(--fields_horizontal_spacing);
   }
 
   .en__field {
@@ -151,7 +151,7 @@
     flex-direction: column;
     flex-basis: 100%;
     padding-bottom: 0rem;
-    margin-bottom: 0.5rem;
+    margin-bottom:  var(--fields_horizontal_spacing);
     align-self: flex-end;
 
     .en__field__element{
@@ -168,14 +168,14 @@
 
       // The submit buttons needs horizontal padding.
       .en__submit{
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
+        padding-left:  var(--fields_horizontal_spacing);
+        padding-right:  var(--fields_horizontal_spacing);
 
         // Remove horizontal padding for this single field's component
         &.en__rangeFieldLabels {
           padding-left: 0;
           padding-right: 0;
-          margin-bottom: 0.5rem;
+          margin-bottom:  var(--fields_horizontal_spacing);
         }
       }
   
@@ -189,38 +189,38 @@
       &.en__field__element--splitselect,
       &.en__field__element--tripleselect,
       &.en__field__element--withOther{
-        margin-left: -0.5rem;
-        margin-right: -0.5rem;
+        margin-left:  calc(var(--fields_horizontal_spacing) * -1);
+        margin-right:  calc(var(--fields_horizontal_spacing) * -1);
   
         // Fields inside a compound field wrapper need horizontal padding
         .en__field__item{
-          padding-left: 0.5rem;
-          padding-right: 0.5rem;
-          padding-top: 0.5rem;
-          padding-bottom: 0.5rem;
+          padding-left:  var(--fields_horizontal_spacing);
+          padding-right:  var(--fields_horizontal_spacing);
+          padding-top:  var(--fields_vertical_spacing);
+          padding-bottom:  var(--fields_vertical_spacing);
         }
       }  
     }
   
-    &:not(.en__field--validationFailed) .en__field__element{
+    .en__field__element{
       > input,
       > select,
       > textarea{
-        margin-top: 0.5rem;
-        margin-bottom: 0.5rem;
+        margin-top:  var(--fields_horizontal_spacing);
+        margin-bottom:  var(--fields_horizontal_spacing);
       }
     }
 
     // "With other" compound fields need a negative horizontal margin on their wrapper
     &.en__field--withOther{
       .en__field__element{
-        margin-left: -0.5rem;
-        margin-right: -0.5rem;
+        margin-left:  calc(var(--fields_horizontal_spacing) * -1);
+        margin-right:  calc(var(--fields_horizontal_spacing) * -1);
         
         // Fields inside a compound field wrapper need horizontal padding
         .en__field__item{
-          padding-left: 0.5rem;
-          padding-right: 0.5rem;
+          padding-left:  var(--fields_horizontal_spacing);
+          padding-right:  var(--fields_horizontal_spacing);
         }
       }
     }
@@ -248,7 +248,7 @@ label a.label-tooltip {
   text-decoration: underline;
   color: var(--label-color);
   font-weight: 400;
-  padding-right: 0.5rem;
+  padding-right:  var(--fields_horizontal_spacing);
 }
 
 // Helps when the field label gets additional content added to it. https://d.pr/v/9rFaiW 
@@ -343,7 +343,7 @@ input[type=radio]{
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-right: 0.5rem;
+      margin-right:  var(--fields_horizontal_spacing);
       color: var(--radio_color);
       background-color: var(--radio_background-color);
       border-style: solid;
@@ -393,7 +393,7 @@ input[type=checkbox]{
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-right: 0.5rem;
+      margin-right:  var(--fields_horizontal_spacing);
       color: var(--checkbox_color);
       background-color: var(--checkbox_background-color);
       border-style: solid;
@@ -445,7 +445,7 @@ input[type=checkbox]{
     display: flex;
     justify-content: center;
     align-items: center;
-    // margin-right: 0.5rem;
+    // margin-right:  var(--fields_horizontal_spacing);
     color: var(--checkbox_color);
     background-color: var(--checkbox_background-color);
     border-style: solid;
@@ -497,7 +497,7 @@ input[type=checkbox]{
     display: flex;
     justify-content: center;
     align-items: center;
-    // margin-right: 0.5rem;
+    // margin-right:  var(--fields_horizontal_spacing);
     color: var(--radio_color);
     background-color: var(--radio_background-color);
     border-style: solid;
@@ -555,7 +555,7 @@ input.en__contactDetails__select {
 .en__field__input--checkbox:focus + .en__field__label,
 .en__contactDetails__select:focus + .en__contactDetails__rows {
   outline: -webkit-focus-ring-color auto 1px;
-  outline-offset: calc(0.5rem - 3px);
+  outline-offset: calc(max(var(--fields_horizontal_spacing), var(--fields_vertical_spacing)) - 3px);
 }
 
 /************************************
@@ -675,7 +675,7 @@ textarea,
  * Image Select Field
  ***********************************/
 .en__imageSelectField__image{
-  padding-bottom: 0.5rem;
+  padding-bottom:  var(--fields_vertical_spacing);
 }
 
 .en__field__element--imgselect{
@@ -710,7 +710,7 @@ textarea,
   align-items: flex-start;
   width: 100%;
   flex-basis: 100%;
-  margin-left: calc(var(--checkbox_width) + 0.5rem);
+  margin-left: calc(var(--checkbox_width) +  var(--fields_horizontal_spacing));
 }
 
 .en__contacts:not(.en__contacts--hideCheck) .en__contactDetails__rows:before {

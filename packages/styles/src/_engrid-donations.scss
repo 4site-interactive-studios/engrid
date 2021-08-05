@@ -9,7 +9,8 @@
     --recurring-frequency__button_border-width: var(--button_border-width);
     // --recurring-frequency__button_border-color: var(--button_border-color);
     --recurring-frequency__button_border-radius: var(--button_border-radius);
-    --recurring-frequency__button_padding: var(--button_padding) !important;
+    --recurring-frequency__button_padding: var(--button_padding);
+    --recurring-frequency__button_text-transform: var(--button_text-transform);
     --recurring-frequency__button_count: 4;
 
     // TYPOGRAPHY GIVING FREQUENCY BUTTON:HOVER  
@@ -32,7 +33,8 @@
     --donation-amount__button_border-width: var(--button_border-width);
     // --donation-amount__button_border-color: var(--button_border-color);
     --donation-amount__button_border-radius: var(--button_border-radius);
-    --donation-amount__button_padding: var(--button_padding) !important;
+    --donation-amount__button_padding: var(--button_padding);
+    --donation-amount__button_text-transform: var(--button_text-transform);
     --donation-amount__button_count: 4;
 
     // TYPOGRAPHY GIVING AMOUNT BUTTON:HOVER  
@@ -59,7 +61,8 @@
     --give-by-select__button_border-width: var(--button_border-width);
     // --give-by-select__button_border-color: var(--button_border-color);
     --give-by-select__button_border-radius: var(--button_border-radius);
-    --give-by-select__button_padding: var(--button_padding) !important;
+    --give-by-select__button_padding: var(--button_padding);
+    --give-by-select__button_text-transform: var(--button_text-transform);
     --give-by-select__button_count: 4;
 
     // TYPOGRAPHY GIVE BY SELECT BUTTON:HOVER  
@@ -175,6 +178,7 @@
     border-width: var(--button_border-width);
     border-color: var(--button_border-color);
     border-radius: var(--button_border-radius);
+    text-transform: var(--button_text-transform);
 	border-style: solid;
 	// margin-left: 0.5rem;
 	// margin-right: 0.5rem;
@@ -207,6 +211,7 @@
     border-width: var(--give-by-select__button_border-width);
     border-color: var(--give-by-select__button_border-color);
     border-radius: var(--give-by-select__button_border-radius);
+    text-transform: var(--give-by-select__button_text-transform);
 	border-style: solid;
 	// margin-left: 0.5rem;
 	// margin-right: 0.5rem;
@@ -243,6 +248,7 @@
 	// margin-left: 0.5rem;
 	// margin-right: 0.5rem;
     padding: var(--donation-amount__button_padding) !important;
+    text-transform: var(--donation-amount__button_text-transform);
 	background-position-x: 40px;
     // width: 100%;
     text-align: center;
@@ -275,6 +281,7 @@
 	// margin-left: 0.5rem;
 	// margin-right: 0.5rem;
     padding: var(--recurring-frequency__button_padding) !important;
+    text-transform: var(--recurring-frequency__button_text-transform);
 	background-position-x: 40px;
     // width: 100%;
     text-align: center;
