@@ -788,32 +788,32 @@ input[type="number"]::-webkit-outer-spin-button {
  * @TODO Can this be simplified because we use Autoprefixer?
  ***********************************/
 /* Chrome, Firefox, Opera, Safari 10.1+ */::-webkit-input-placeholder {
-  color: var(--color_light-gray);
+  color: var(--input_placeholder-color);
   opacity: 1;
 }
 
 /* Firefox */:-ms-input-placeholder {
-  color: var(--color_light-gray);
+  color: var(--input_placeholder-color);
   opacity: 1;
   
 }
 
 /* Firefox */::-ms-input-placeholder {
-  color: var(--color_light-gray);
+  color: var(--input_placeholder-color);
   opacity: 1;
 }
 
 /* Firefox */::placeholder {
-  color: var(--color_light-gray);
+  color: var(--input_placeholder-color);
   opacity: 1;
 }
 
 /* Internet Explorer 10-11 */:-ms-input-placeholder {
-  color: var(--color_light-gray);
+  color: var(--input_placeholder-color);
 }
 
 /* Microsoft Edge */::-ms-input-placeholder {
-  color: var(--color_light-gray);
+  color: var(--input_placeholder-color);
 }
 
 /************************************

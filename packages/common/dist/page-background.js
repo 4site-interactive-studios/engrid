@@ -43,9 +43,13 @@ export class PageBackground {
         return ENGrid.setBodyData('page-background', 'empty');
     }
     hasVideoBackground() {
-        return !!this.pageBackground.querySelector('video');
+        if (this.pageBackground) {
+            return !!this.pageBackground.querySelector('video');
+        }
     }
     hasImageBackground() {
-        return !this.hasVideoBackground() && !!this.pageBackground.querySelector('img');
+        if (this.pageBackground) {
+            return !this.hasVideoBackground() && !!this.pageBackground.querySelector('img');
+        }
     }
 }
