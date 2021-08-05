@@ -5038,11 +5038,6 @@ form > .en__component--row.en__component--advrow > * {
     form > .en__component--row.en__component--advrow > * > * > * {
       grid-column: cc; }
 
-form > .en__component--advrow,
-#engrid > .en__component--advrow {
-  width: 100%;
-  max-width: 100vw; }
-
 .en__component--row.en__component--advrow form > .en__component--row.en__component--advrow {
   display: flex; }
 

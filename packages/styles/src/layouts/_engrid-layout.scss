@@ -135,7 +135,7 @@ form > .en__component--row.en__component--advrow{
     > *{
       grid-column: pc;
 
-      // All gra-grand children elements on an advanced row should default to the content column
+      // All great-grand children elements on an advanced row should default to the content column
       > *{
         grid-column: cc;
       }
@@ -143,12 +143,12 @@ form > .en__component--row.en__component--advrow{
   }
 }
 
-// Ensure the ENGrid advanced row (there should only be one) occupies the full viewport at a minimum
-form > .en__component--advrow,
-#engrid > .en__component--advrow {
-  width: 100%;
-  max-width: 100vw;
-}
+// // Ensure the ENGrid advanced row (there should only be one) occupies the full viewport at a minimum
+// form > .en__component--advrow,
+// #engrid > .en__component--advrow {
+//   width: 100%;
+//   max-width: 100vw;
+// }
 
 // Forces Advanced Rows that are direct decendents of the form tag to display as Flexboxes again
 // Used by the Engaging Networks Free and Flexible 2 Page Templates
