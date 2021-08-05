@@ -92,6 +92,9 @@ button.en__eventOccurrence__select {
 
 .en__submit button,
 .en__submit .button {
+  color: var(--submit__button_color);
+  background-color: var(--submit__button_background-color);
+  border-color: var(--submit__button_border-color);
   margin-top: 2rem;
   padding-top: var(--submit__button_padding-top);
   padding-bottom: var(--submit__button_padding-bottom);
