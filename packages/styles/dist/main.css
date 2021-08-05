@@ -2016,8 +2016,8 @@ a {
     text-decoration: var(--a_text-decoration_hover); }
 
 [data-engrid-theme] {
-  --fields_horizontal_spacing: 0.5rem;
-  --fields_vertical_spacing: 0.5rem;
+  --fields_spacing-inline: 0.5rem;
+  --fields_spacing-block: 0.5rem;
   --label-font-family: var(--default_font-family);
   --label-font-size: var(--root_font-size);
   --label-font-weight: initial;
@@ -2075,19 +2075,19 @@ a {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  margin-left: calc(var(--fields_horizontal_spacing) * -1);
-  margin-right: calc(var(--fields_horizontal_spacing) * -1); }
+  margin-left: calc(var(--fields_spacing-inline) * -1);
+  margin-right: calc(var(--fields_spacing-inline) * -1); }
   .en__component--formblock > *,
   .en__component--svblock > * {
-    padding-left: var(--fields_horizontal_spacing);
-    padding-right: var(--fields_horizontal_spacing); }
+    padding-left: var(--fields_spacing-inline);
+    padding-right: var(--fields_spacing-inline); }
   .en__component--formblock .en__field,
   .en__component--svblock .en__field {
     display: flex;
     flex-direction: column;
     flex-basis: 100%;
     padding-bottom: 0rem;
-    margin-bottom: var(--fields_horizontal_spacing);
+    margin-bottom: var(--fields_spacing-inline);
     align-self: flex-end; }
     .en__component--formblock .en__field .en__field__element,
     .en__component--svblock .en__field .en__field__element {
@@ -2102,13 +2102,13 @@ a {
         padding-bottom: 0rem; }
       .en__component--formblock .en__field .en__field__element .en__submit,
       .en__component--svblock .en__field .en__field__element .en__submit {
-        padding-left: var(--fields_horizontal_spacing);
-        padding-right: var(--fields_horizontal_spacing); }
+        padding-left: var(--fields_spacing-inline);
+        padding-right: var(--fields_spacing-inline); }
         .en__component--formblock .en__field .en__field__element .en__submit.en__rangeFieldLabels,
         .en__component--svblock .en__field .en__field__element .en__submit.en__rangeFieldLabels {
           padding-left: 0;
           padding-right: 0;
-          margin-bottom: var(--fields_horizontal_spacing); }
+          margin-bottom: var(--fields_spacing-inline); }
       .en__component--formblock .en__field .en__field__element.en__field__element--checkbox, .en__component--formblock .en__field .en__field__element.en__field__element--radio, .en__component--formblock .en__field .en__field__element.en__field__element--rating, .en__component--formblock .en__field .en__field__element.en__field__element--imgselect, .en__component--formblock .en__field .en__field__element.en__field__element--splittext, .en__component--formblock .en__field .en__field__element.en__field__element--tripletext, .en__component--formblock .en__field .en__field__element.en__field__element--splitselect, .en__component--formblock .en__field .en__field__element.en__field__element--tripleselect, .en__component--formblock .en__field .en__field__element.en__field__element--withOther,
       .en__component--svblock .en__field .en__field__element.en__field__element--checkbox,
       .en__component--svblock .en__field .en__field__element.en__field__element--radio,
@@ -2119,8 +2119,8 @@ a {
       .en__component--svblock .en__field .en__field__element.en__field__element--splitselect,
       .en__component--svblock .en__field .en__field__element.en__field__element--tripleselect,
       .en__component--svblock .en__field .en__field__element.en__field__element--withOther {
-        margin-left: calc(var(--fields_horizontal_spacing) * -1);
-        margin-right: calc(var(--fields_horizontal_spacing) * -1); }
+        margin-left: calc(var(--fields_spacing-inline) * -1);
+        margin-right: calc(var(--fields_spacing-inline) * -1); }
         .en__component--formblock .en__field .en__field__element.en__field__element--checkbox .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--radio .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--rating .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--imgselect .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--splittext .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--tripletext .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--splitselect .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--tripleselect .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--withOther .en__field__item,
         .en__component--svblock .en__field .en__field__element.en__field__element--checkbox .en__field__item,
         .en__component--svblock .en__field .en__field__element.en__field__element--radio .en__field__item,
@@ -2131,26 +2131,26 @@ a {
         .en__component--svblock .en__field .en__field__element.en__field__element--splitselect .en__field__item,
         .en__component--svblock .en__field .en__field__element.en__field__element--tripleselect .en__field__item,
         .en__component--svblock .en__field .en__field__element.en__field__element--withOther .en__field__item {
-          padding-left: var(--fields_horizontal_spacing);
-          padding-right: var(--fields_horizontal_spacing);
-          padding-top: var(--fields_vertical_spacing);
-          padding-bottom: var(--fields_vertical_spacing); }
+          padding-left: var(--fields_spacing-inline);
+          padding-right: var(--fields_spacing-inline);
+          padding-top: var(--fields_spacing-block);
+          padding-bottom: var(--fields_spacing-block); }
     .en__component--formblock .en__field .en__field__element > input,
     .en__component--formblock .en__field .en__field__element > select,
     .en__component--formblock .en__field .en__field__element > textarea,
     .en__component--svblock .en__field .en__field__element > input,
     .en__component--svblock .en__field .en__field__element > select,
     .en__component--svblock .en__field .en__field__element > textarea {
-      margin-top: var(--fields_horizontal_spacing);
-      margin-bottom: var(--fields_horizontal_spacing); }
+      margin-top: var(--fields_spacing-inline);
+      margin-bottom: var(--fields_spacing-inline); }
     .en__component--formblock .en__field.en__field--withOther .en__field__element,
     .en__component--svblock .en__field.en__field--withOther .en__field__element {
-      margin-left: calc(var(--fields_horizontal_spacing) * -1);
-      margin-right: calc(var(--fields_horizontal_spacing) * -1); }
+      margin-left: calc(var(--fields_spacing-inline) * -1);
+      margin-right: calc(var(--fields_spacing-inline) * -1); }
       .en__component--formblock .en__field.en__field--withOther .en__field__element .en__field__item,
       .en__component--svblock .en__field.en__field--withOther .en__field__element .en__field__item {
-        padding-left: var(--fields_horizontal_spacing);
-        padding-right: var(--fields_horizontal_spacing); }
+        padding-left: var(--fields_spacing-inline);
+        padding-right: var(--fields_spacing-inline); }
 
 /************************************
  * Labels
@@ -2172,7 +2172,7 @@ label a.label-tooltip {
   text-decoration: underline;
   color: var(--label-color);
   font-weight: 400;
-  padding-right: var(--fields_horizontal_spacing); }
+  padding-right: var(--fields_spacing-inline); }
 
 .en__field__label {
   position: relative;
@@ -2258,7 +2258,7 @@ input[type=radio] + label {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: var(--fields_horizontal_spacing);
+    margin-right: var(--fields_spacing-inline);
     color: var(--radio_color);
     background-color: var(--radio_background-color);
     border-style: solid;
@@ -2299,7 +2299,7 @@ input[type=checkbox] + label {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: var(--fields_horizontal_spacing);
+    margin-right: var(--fields_spacing-inline);
     color: var(--checkbox_color);
     background-color: var(--checkbox_background-color);
     border-style: solid;
@@ -2427,7 +2427,7 @@ input.en__contactDetails__select {
 .en__field__input--checkbox:focus + .en__field__label,
 .en__contactDetails__select:focus + .en__contactDetails__rows {
   outline: -webkit-focus-ring-color auto 1px;
-  outline-offset: calc(max(var(--fields_horizontal_spacing), var(--fields_vertical_spacing)) - 3px); }
+  outline-offset: calc(max(var(--fields_spacing-inline), var(--fields_spacing-block)) - 3px); }
 
 /************************************
  * Select Fields
@@ -2535,7 +2535,7 @@ textarea,
  * Image Select Field
  ***********************************/
 .en__imageSelectField__image {
-  padding-bottom: var(--fields_vertical_spacing); }
+  padding-bottom: var(--fields_spacing-block); }
 
 .en__field__element--imgselect {
   display: flex;
@@ -2563,7 +2563,7 @@ textarea,
   align-items: flex-start;
   width: 100%;
   flex-basis: 100%;
-  margin-left: calc(var(--checkbox_width) +  var(--fields_horizontal_spacing)); }
+  margin-left: calc(var(--checkbox_width) +  var(--fields_spacing-inline)); }
 
 .en__contacts:not(.en__contacts--hideCheck) .en__contactDetails__rows:before {
   content: "";
