@@ -20,3 +20,4 @@ export * from './set-recurr-freq';
 export * from './page-background';
 export * from './neverbounce';
 export * from './progress-bar';
+export * from './events';
