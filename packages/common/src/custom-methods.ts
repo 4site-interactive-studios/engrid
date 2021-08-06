@@ -650,7 +650,7 @@ const handleCCUpdate = () => {
 
   if (card_type && payment_text != card_type) {
     field_payment_type.value = Array.from(field_payment_type.options).filter(
-      d => card_values[card_type].indexOf(d.value.toLowerCase())
+      d => card_values[card_type].includes(d.value.toLowerCase())
     )[0].value;
   }
 };
