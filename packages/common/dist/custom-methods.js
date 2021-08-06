@@ -348,6 +348,15 @@ export const inputPlaceholder = () => {
         enFieldBankRoutingNumber.placeholder = "Bank Routing Number";
     }
 };
+export const preventAutocomplete = () => {
+    let enFieldDonationAmt = document.querySelector(".en__field--donationAmt.en__field--withOther .en__field__input--other");
+    if (enFieldDonationAmt) {
+        enFieldDonationAmt.setAttribute("autocomplete", "off");
+    }
+    if (enFieldDonationAmt) {
+        enFieldDonationAmt.setAttribute("data-lpignore", "true");
+    }
+};
 export const watchInmemField = () => {
     const enFieldTransactionInmem = document.getElementById("en__field_transaction_inmem");
     const handleEnFieldTransactionInmemChange = (e) => {

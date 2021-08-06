@@ -50,6 +50,7 @@ export class App extends ENGrid {
 
         // TODO: Abstract everything to the App class so we can remove custom-methods
         legacy.inputPlaceholder();
+        legacy.preventAutocomplete();
         legacy.watchInmemField();
         legacy.watchGiveBySelectField();
         legacy.SetEnFieldOtherAmountRadioStepValue();
