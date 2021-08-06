@@ -29,7 +29,7 @@
   // --submit__button_background-color: var(--button_background-color);
   --submit__button_padding-top: 1ch;
   --submit__button_padding-bottom: 1ch;
-  --submit__button_font-size: var(--root_font-size);
+  --submit__button_font-size: var(--button_font-size);
   --submit__button_text-transform: var(--button_text-transform);
   
   // TYPOGRAPHY SUBMIT BUTTON:HOVER
@@ -104,6 +104,7 @@ button.en__eventOccurrence__select {
   text-transform: var(--submit__button_text-transform);
   font-size: var(--submit__button_font-size);
   width: 100%;
+  max-width: var(--submit__button_max-width);
 
   &:focus,
   &:hover{

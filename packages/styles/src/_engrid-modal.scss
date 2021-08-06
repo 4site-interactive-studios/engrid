@@ -78,23 +78,23 @@
     }
   }
   h1 {
-    font-family: var(--h1_font-family);
-    color: var(--h1_color);
-    font-size: var(--h1_font-size);
-    font-weight: var(--h1_font-weight);
-    line-height: var(--h1_line-height);
-    font-style: normal;
-    font-weight: 300;
+    // font-family: var(--h1_font-family);
+    // color: var(--h1_color);
+    // font-size: var(--h1_font-size);
+    // font-weight: var(--h1_font-weight);
+    // line-height: var(--h1_line-height);
+    // font-style: normal;
+    // font-weight: 300;
     .upsell_suggestion {
       font-weight: 700;
     }
   }
   p {
-    font-family: var(--p_font-family);
-    color: var(--p_color);
-    font-size: var(--p_font-size);
-    font-weight: var(--p_font-weight);
-    line-height: var(--p_line-height);
+    // font-family: var(--p_font-family);
+    // color: var(--color_primary);
+    // font-size: var(--p_font-size);
+    // font-weight: var(--p_font-weight);
+    // line-height: var(--p_line-height);
   }
   #secondOtherField {
     width: 80px;
@@ -132,27 +132,28 @@
   #upsellYesButton a,
   #upsellNoButton button {
     margin: 0 0 1rem 0;
-    font-family: inherit;
-    padding: 0.85rem 1rem;
-    -webkit-appearance: none;
-    border: 1px solid transparent;
+    color: var(--button_color);
+    background-color: var(--button_background-color);
+    padding-top: var(--button_padding-top);
+    padding-bottom: var(--button_padding-bottom);
+    font-size: var(--button_font-size);
+    text-transform: var(--button_text-transform);
+    border-color: var(--button_border-color);
     border-radius: var(--button_border-radius);
+    padding-left: 3ch;
+    padding-right: 3ch;
+    -webkit-appearance: none;    
     -webkit-transition: background-color 0.2s ease-out, color 0.2s ease-out,
       border-color 0.2s ease-out;
     transition: background-color 0.2s ease-out, color 0.2s ease-out,
       border-color 0.2s ease-out;
-    font-size: 1rem;
     text-align: center;
     cursor: pointer;
-    background-color: var(--button_background-color);
-    color: var(--button_color);
     box-sizing: border-box;
     height: 80px;
     width: 100%;
     text-decoration: none;
     position: relative;
-    line-height: 1;
-    font-weight: 400;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -183,12 +184,16 @@
   }
   #upsellYesButton a {
     margin-bottom: 20px;
-    background-color: var(--color_primary);
-    border-color: var(--color_primary);
-    color: var(--p_color);
-    font-family: var(--h1_font-family);
-    font-size: 1.3rem;
+    color: var(--submit__button_color);
+    background-color: var(--submit__button_background-color);
+    padding-top: var(--submit__button_padding-top);
+    padding-bottom: var(--submit__button_padding-bottom);
+    font-size: var(--submit__button_font-size);
+    text-transform: var(--submit__button_text-transform);
+    border-color: var(--submit__button_border-color);
+    border-radius: var(--submit__button_border-radius);
   }
+
   #goMonthlyClose {
     position: absolute;
     right: 10px;

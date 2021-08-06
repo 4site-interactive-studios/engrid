@@ -2002,7 +2002,6 @@ h6 {
 
 p {
   font-family: var(--p_font-family);
-  color: var(--p_color);
   font-size: var(--p_font-size);
   font-weight: var(--p_font-weight);
   line-height: var(--p_line-height); }
@@ -2087,7 +2086,7 @@ a {
     flex-direction: column;
     flex-basis: 100%;
     padding-bottom: 0rem;
-    margin-bottom: var(--fields_spacing-inline);
+    margin-bottom: var(--fields_spacing-block);
     align-self: flex-end; }
     .en__component--formblock .en__field .en__field__label:not(.en__field__label--item),
     .en__component--formblock .en__field .en__field__helpText,
@@ -2110,7 +2109,7 @@ a {
         .en__component--svblock .en__field .en__field__element .en__submit.en__rangeFieldLabels {
           padding-left: 0;
           padding-right: 0;
-          margin-bottom: var(--fields_spacing-inline); }
+          margin-bottom: var(--fields_spacing-block); }
       .en__component--formblock .en__field .en__field__element.en__field__element--checkbox, .en__component--formblock .en__field .en__field__element.en__field__element--radio, .en__component--formblock .en__field .en__field__element.en__field__element--rating, .en__component--formblock .en__field .en__field__element.en__field__element--imgselect, .en__component--formblock .en__field .en__field__element.en__field__element--splittext, .en__component--formblock .en__field .en__field__element.en__field__element--tripletext, .en__component--formblock .en__field .en__field__element.en__field__element--splitselect, .en__component--formblock .en__field .en__field__element.en__field__element--tripleselect, .en__component--formblock .en__field .en__field__element.en__field__element--withOther,
       .en__component--svblock .en__field .en__field__element.en__field__element--checkbox,
       .en__component--svblock .en__field .en__field__element.en__field__element--radio,
@@ -2144,7 +2143,7 @@ a {
     .en__component--svblock .en__field .en__field__element > select,
     .en__component--svblock .en__field .en__field__element > textarea {
       margin-top: calc(var(--fields_spacing-inline) * 0.5);
-      margin-bottom: var(--fields_spacing-inline); }
+      margin-bottom: var(--fields_spacing-block); }
     .en__component--formblock .en__field.en__field--withOther .en__field__element,
     .en__component--svblock .en__field.en__field--withOther .en__field__element {
       margin-left: calc(var(--fields_spacing-inline) * -1);
@@ -2153,6 +2152,9 @@ a {
       .en__component--svblock .en__field.en__field--withOther .en__field__element .en__field__item {
         padding-left: var(--fields_spacing-inline);
         padding-right: var(--fields_spacing-inline); }
+  .en__component--formblock .en__field.en__field--validationFailed,
+  .en__component--svblock .en__field.en__field--validationFailed {
+    align-self: flex-start; }
 
 /************************************
  * Labels
@@ -2256,7 +2258,7 @@ input[type=radio] + label {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: var(--fields_spacing-inline);
+    margin-right: MAX(var(--fields_spacing-inline), 1ch, 0.5rem);
     color: var(--radio_color);
     background-color: var(--radio_background-color);
     border-style: solid;
@@ -2297,7 +2299,7 @@ input[type=checkbox] + label {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: var(--fields_spacing-inline);
+    margin-right: MAX(var(--fields_spacing-inline), 1ch, 0.5rem);
     color: var(--checkbox_color);
     background-color: var(--checkbox_background-color);
     border-style: solid;
@@ -2846,7 +2848,7 @@ body {
   --button_text-transform: none;
   --submit__button_padding-top: 1ch;
   --submit__button_padding-bottom: 1ch;
-  --submit__button_font-size: var(--root_font-size);
+  --submit__button_font-size: var(--button_font-size);
   --submit__button_text-transform: var(--button_text-transform); }
 
 /* @TODO Design buttons with style (Primary, Secondary, Text Only, Outine)
@@ -2912,7 +2914,8 @@ button.en__eventOccurrence__select {
   padding-bottom: var(--submit__button_padding-bottom);
   text-transform: var(--submit__button_text-transform);
   font-size: var(--submit__button_font-size);
-  width: 100%; }
+  width: 100%;
+  max-width: var(--submit__button_max-width); }
   .en__submit button:focus, .en__submit button:hover,
   .en__submit .button:focus,
   .en__submit .button:hover {
@@ -3009,16 +3012,16 @@ body:not(#en__pagebuilder) .click-to-expand.expanded .click-to-expand-text-wrapp
   --color_secondary_accent: #000000;
   --color_tertiary: #ffffff;
   --color_tertiary_overlay: #000000;
-  --color_tertiary_accent: var(--color_tertiary_overlay);
+  --color_tertiary_accent: #ffffff;
   --default_color: initial;
   --h1_color: initial;
   --h2_color: initial;
   --h3_color: initial;
-  --p_color: initial;
+  --color_primary: initial;
   --a_color: initial;
   --a_color_hover: var(--a_color);
-  --highlight__background-color: #227F9E;
-  --highlight__color: #FFFFFF;
+  --highlight__background-color: var(--color_primary);
+  --highlight__color: var(--color_primary_overlay);
   --media-attribution__color: rgba(255, 255, 255, 0.9);
   --media-attribution__background-color: rgba(0, 0, 0, 0.3);
   --error__color: #ff530a;
@@ -3522,7 +3525,7 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   border-radius: var(--button_border-radius);
   text-transform: var(--button_text-transform);
   border-style: solid;
-  padding: var(--button_padding) !important;
+  padding: var(--button_padding);
   background-position-x: 40px;
   text-align: center;
   justify-content: center; }
@@ -3558,7 +3561,7 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   border-radius: var(--give-by-select__button_border-radius);
   text-transform: var(--give-by-select__button_text-transform);
   border-style: solid;
-  padding: var(--give-by-select__button_padding) !important;
+  padding: var(--give-by-select__button_padding);
   background-position-x: 40px;
   text-align: center;
   justify-content: center; }
@@ -3593,7 +3596,7 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   border-color: var(--donation-amount__button_border-color);
   border-radius: var(--donation-amount__button_border-radius);
   border-style: solid;
-  padding: var(--donation-amount__button_padding) !important;
+  padding: var(--donation-amount__button_padding);
   text-transform: var(--donation-amount__button_text-transform);
   background-position-x: 40px;
   text-align: center;
@@ -3629,7 +3632,7 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   border-color: var(--recurring-frequency__button_border-color);
   border-radius: var(--recurring-frequency__button_border-radius);
   border-style: solid;
-  padding: var(--recurring-frequency__button_padding) !important;
+  padding: var(--recurring-frequency__button_padding);
   text-transform: var(--recurring-frequency__button_text-transform);
   background-position-x: 40px;
   text-align: center;
@@ -3755,7 +3758,7 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
 */
 /* prettier-ignore */
 [data-engrid-transaction-recurring-frequency] .radio-to-buttons_donationAmt .en__field--donationAmt div:not(.en__field__item--other) .en__field__label--item::after {
-  margin-left: 0.5rem; }
+  margin-left: var(--fields_spacing-inline); }
 
 /* prettier-ignore */
 [data-engrid-transaction-recurring-frequency="monthly"] .radio-to-buttons_donationAmt .en__field--donationAmt div:not(.en__field__item--other) .en__field__label--item::after {
@@ -4537,22 +4540,8 @@ video:not([width]) {
     @media only screen and (max-width: 675px) {
       #goMonthly .background {
         display: none; } }
-  #goMonthly h1 {
-    font-family: var(--h1_font-family);
-    color: var(--h1_color);
-    font-size: var(--h1_font-size);
-    font-weight: var(--h1_font-weight);
-    line-height: var(--h1_line-height);
-    font-style: normal;
-    font-weight: 300; }
-    #goMonthly h1 .upsell_suggestion {
-      font-weight: 700; }
-  #goMonthly p {
-    font-family: var(--p_font-family);
-    color: var(--p_color);
-    font-size: var(--p_font-size);
-    font-weight: var(--p_font-weight);
-    line-height: var(--p_line-height); }
+  #goMonthly h1 .upsell_suggestion {
+    font-weight: 700; }
   #goMonthly #secondOtherField {
     width: 80px;
     height: 40px;
@@ -4585,25 +4574,26 @@ video:not([width]) {
   #goMonthly #upsellYesButton a,
   #goMonthly #upsellNoButton button {
     margin: 0 0 1rem 0;
-    font-family: inherit;
-    padding: 0.85rem 1rem;
-    -webkit-appearance: none;
-    border: 1px solid transparent;
+    color: var(--button_color);
+    background-color: var(--button_background-color);
+    padding-top: var(--button_padding-top);
+    padding-bottom: var(--button_padding-bottom);
+    font-size: var(--button_font-size);
+    text-transform: var(--button_text-transform);
+    border-color: var(--button_border-color);
     border-radius: var(--button_border-radius);
+    padding-left: 3ch;
+    padding-right: 3ch;
+    -webkit-appearance: none;
     -webkit-transition: background-color 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out;
     transition: background-color 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out;
-    font-size: 1rem;
     text-align: center;
     cursor: pointer;
-    background-color: var(--button_background-color);
-    color: var(--button_color);
     box-sizing: border-box;
     height: 80px;
     width: 100%;
     text-decoration: none;
     position: relative;
-    line-height: 1;
-    font-weight: 400;
     display: flex;
     justify-content: center;
     align-items: center; }
@@ -4632,11 +4622,14 @@ video:not([width]) {
         margin: auto; }
   #goMonthly #upsellYesButton a {
     margin-bottom: 20px;
-    background-color: var(--color_primary);
-    border-color: var(--color_primary);
-    color: var(--p_color);
-    font-family: var(--h1_font-family);
-    font-size: 1.3rem; }
+    color: var(--submit__button_color);
+    background-color: var(--submit__button_background-color);
+    padding-top: var(--submit__button_padding-top);
+    padding-bottom: var(--submit__button_padding-bottom);
+    font-size: var(--submit__button_font-size);
+    text-transform: var(--submit__button_text-transform);
+    border-color: var(--submit__button_border-color);
+    border-radius: var(--submit__button_border-radius); }
   #goMonthly #goMonthlyClose {
     position: absolute;
     right: 10px;
@@ -4829,7 +4822,7 @@ body:not(#en__pagebuilder) .simple_country_select.country-select-visible .en__fi
     content: "SHARE";
     box-sizing: border-box;
     font-family: var(--p_font-family);
-    color: var(--p_color);
+    color: var(--color_primary);
     line-height: var(--p_line-height);
     text-align: right;
     font-size: 12px;
@@ -5334,7 +5327,7 @@ body:not(#en__pagebuilder) .page-customCode:empty {
 * # ENGRID Layout - Center Center 1 Column
 * ####################################################################################################################
 */
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 500px) {
   [data-engrid-layout="centercenter1col"] {
     /* prettier-ignore */ }
     [data-engrid-layout="centercenter1col"] form > .en__component--advrow,
@@ -5348,7 +5341,7 @@ body:not(#en__pagebuilder) .page-customCode:empty {
     [data-engrid-layout="centercenter1col"]:not(#en__pagebuilder) .page-backgroundImage {
       grid-row: page-start / content-footerSpacer-end; } }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 500px) {
   [data-engrid-layout="centercenter1col"] .page-backgroundImage,
   [data-engrid-layout="centercenter1col"] .page-backgroundImage:before {
     display: none; }
@@ -5422,9 +5415,9 @@ body:not(#en__pagebuilder) .page-customCode:empty {
     /* prettier-ignore */ }
     [data-engrid-layout="centercenter2col"] form > .en__component--advrow,
     [data-engrid-layout="centercenter2col"] #engrid > .en__component--advrow {
-      grid-template-columns: [pc-start lpc-start] minmax(0px, 1fr) [lpc-end cc-start lcc-start] minmax(0px, 190px) [lcc-end bc-start lbc-start] minmax(450px, 450px) [lbc-end rbc-start] minmax(450px, 450px) [rbc-end bc-end rcc-start] minmax(0px, 190px) [rcc-end cc-end rpc-start] minmax(0px, 1fr) [rpc-end pc-end]; }
+      grid-template-columns: [pc-start lpc-start] minmax(0px, 1fr) [lpc-end cc-start lcc-start] minmax(0px, 140px) [lcc-end bc-start lbc-start] minmax(450px, 500px) [lbc-end rbc-start] minmax(450px, 500px) [rbc-end bc-end rcc-start] minmax(0px, 140px) [rcc-end cc-end rpc-start] minmax(0px, 1fr) [rpc-end pc-end]; }
     [data-engrid-layout="centercenter2col"] form > .en__component--advrow > * {
-      grid-template-columns: [pc-start lpc-start] minmax(0px, 1fr) [lpc-end cc-start lcc-start] minmax(0px, 190px) [lcc-end bc-start lbc-start] minmax(0px, 450px) [lbc-end rbc-start] minmax(0px, 450px) [rbc-end bc-end rcc-start] minmax(0px, 190px) [rcc-end cc-end rpc-start] minmax(0px, 1fr) [rpc-end pc-end]; }
+      grid-template-columns: [pc-start lpc-start] minmax(0px, 1fr) [lpc-end cc-start lcc-start] minmax(0px, 140px) [lcc-end bc-start lbc-start] minmax(0px, 500px) [lbc-end rbc-start] minmax(0px, 500px) [rbc-end bc-end rcc-start] minmax(0px, 140px) [rcc-end cc-end rpc-start] minmax(0px, 1fr) [rpc-end pc-end]; }
     [data-engrid-layout="centercenter2col"] form > .en__component--advrow,
     [data-engrid-layout="centercenter2col"] #engrid > .en__component--advrow {
       grid-template-rows: [page-start page-alert-start] min-content [page-alert-end content-header-start] min-content [content-header-end body-headerOutside-start] min-content [body-headerOutside-end body-header-start] min-content [body-header-end body-title-start] min-content [body-title-end body-banner-start] min-content [body-banner-end body-bannerOverlay-start] min-content [body-bannerOverlay-end body-top-start] minmax(0px, 1fr) [body-top-end body-side-start] min-content [body-side-end body-main-start] min-content [body-main-end body-bottom-start] min-content [body-bottom-end body-footer-start] min-content [body-footer-end body-footerOutside-start] min-content [body-footerOutside-end content-footerSpacer-start] max-content [content-footerSpacer-end content-preFooter-start] min-content [content-preFooter-end content-footer-start] min-content [content-footer-end page-backgroundImage-start] min-content [page-backgroundImage-end page-backgroundImageOverlay-start] min-content [page-backgroundImageOverlay-end page-end page-customCode-start] min-content [page-customCode-end]; }
@@ -5522,7 +5515,7 @@ body:not(#en__pagebuilder) .page-customCode:empty {
 * # ENGRID Layout - Center Left 1 Column
 * ####################################################################################################################
 */
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 500px) {
   [data-engrid-layout="centerleft1col"] {
     /* prettier-ignore */ }
     [data-engrid-layout="centerleft1col"] form > .en__component--advrow,
@@ -5533,7 +5526,7 @@ body:not(#en__pagebuilder) .page-customCode:empty {
     [data-engrid-layout="centerleft1col"]:not(#en__pagebuilder) .page-backgroundImage {
       grid-row: page-start / content-footerSpacer-end; } }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 500px) {
   [data-engrid-layout="centerleft1col"] .page-backgroundImage,
   [data-engrid-layout="centerleft1col"] .page-backgroundImage:before {
     display: none; }
@@ -5602,7 +5595,7 @@ body:not(#en__pagebuilder) .page-customCode:empty {
 * # ENGRID Layout - Center Right 1 Column
 * ####################################################################################################################
 */
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 500px) {
   [data-engrid-layout="centerright1col"] {
     /* prettier-ignore */ }
     [data-engrid-layout="centerright1col"] form > .en__component--advrow,
@@ -5613,7 +5606,7 @@ body:not(#en__pagebuilder) .page-customCode:empty {
     [data-engrid-layout="centerright1col"]:not(#en__pagebuilder) .page-backgroundImage {
       grid-row: page-start / content-footerSpacer-end; } }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 500px) {
   .page-backgroundImage,
   .page-backgroundImage:before {
     display: none; }

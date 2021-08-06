@@ -151,8 +151,8 @@
     flex-direction: column;
     flex-basis: 100%;
     padding-bottom: 0rem;
-    margin-bottom: var(--fields_spacing-inline);
-    align-self: flex-end;
+    margin-bottom: var(--fields_spacing-block);
+    // align-self: flex-end;
 
     // Helps when the field label gets additional content added to it. https://d.pr/v/9rFaiW 
     .en__field__label:not(.en__field__label--item),
@@ -180,7 +180,7 @@
         &.en__rangeFieldLabels {
           padding-left: 0;
           padding-right: 0;
-          margin-bottom: var(--fields_spacing-inline);
+          margin-bottom: var(--fields_spacing-block);
         }
       }
   
@@ -212,7 +212,7 @@
       > select,
       > textarea{
         margin-top: calc(var(--fields_spacing-inline) * 0.5);
-        margin-bottom: var(--fields_spacing-inline);
+        margin-bottom: var(--fields_spacing-block);
       }
     }
 
@@ -230,6 +230,7 @@
       }
     }
   }
+
 }
 
 /************************************
@@ -342,7 +343,7 @@ input[type=radio]{
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-right: var(--fields_spacing-inline);
+      margin-right: MAX(var(--fields_spacing-inline), 1ch, 0.5rem); // Uppercase "MAX" to bybass CSS-Sass naming conflict https://github.com/fancyapps/fancybox/issues/2182#issuecomment-763374376
       color: var(--radio_color);
       background-color: var(--radio_background-color);
       border-style: solid;
@@ -392,7 +393,7 @@ input[type=checkbox]{
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-right: var(--fields_spacing-inline);
+      margin-right: MAX(var(--fields_spacing-inline), 1ch, 0.5rem); // Uppercase "MAX" to bybass CSS-Sass naming conflict https://github.com/fancyapps/fancybox/issues/2182#issuecomment-763374376
       color: var(--checkbox_color);
       background-color: var(--checkbox_background-color);
       border-style: solid;

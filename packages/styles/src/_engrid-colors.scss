@@ -24,18 +24,18 @@
     // TERTIARY COLORS
     --color_tertiary: #ffffff;
     --color_tertiary_overlay: #000000;
-    --color_tertiary_accent: var(--color_tertiary_overlay);
+    --color_tertiary_accent: #ffffff;
 
     // TEXT
     --default_color: initial;
     --h1_color: initial;
     --h2_color: initial;
     --h3_color: initial;
-    --p_color: initial;
+    --color_primary: initial;
     --a_color: initial;
     --a_color_hover: var(--a_color);
-    --highlight__background-color: #227F9E;
-    --highlight__color: #FFFFFF;
+    --highlight__background-color: var(--color_primary);
+    --highlight__color: var(--color_primary_overlay);
     --media-attribution__color: rgba(255, 255, 255, 0.9);
     --media-attribution__background-color: rgba(0, 0, 0, 0.3);
 
@@ -92,9 +92,11 @@
     --button_color: var(--color_primary_overlay);
     --button_background-color: var(--color_primary);
     --button_border-color: var(--button_background-color);
+
     --button_color_hover: var(--button_color);  
     --button_background-color_hover: var(--color_black);
     --button_border-color_hover: var(--button_background-color_hover);  
+
     --button_color_checked: var(--button_color_hover);
     --button_background-color_checked: var(--button_background-color_hover);
     --button_border-color_checked: var(--button_border-color_hover);

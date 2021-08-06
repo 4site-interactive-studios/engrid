@@ -7,12 +7,13 @@
 $centercenter2col_content-column_max-width: $two_col_content-column_max-width !default; // Overridable in client theme
 $centercenter2col_content-column_min-width: $two_col_content-column_min-width !default; // Overridable in client theme
 $centercenter2col_body-column_max-width: $two_col_body-column_max-width !default; // Overridable in client theme
+$centercenter2col_body-column_min-width: $two_col_body-column_min-width !default; // Overridable in client theme
 $centercenter2col_body-column_offset-width: ($centercenter2col_content-column_max-width - $centercenter2col_body-column_max-width) / 2;
 $centercenter2col_body-column_offset-width-remaining: $centercenter2col_content-column_max-width - $centercenter2col_body-column_max-width - $centercenter2col_body-column_offset-width;
 
 [data-engrid-layout="centercenter2col"] {
 
-  @media screen and (min-width: $centercenter2col_content-column_min-width) {
+  @media screen and (min-width: $centercenter2col_body-column_min-width) {
     /* prettier-ignore */
     form > .en__component--advrow,
     #engrid > .en__component--advrow{
@@ -20,8 +21,8 @@ $centercenter2col_body-column_offset-width-remaining: $centercenter2col_content-
       [
         pc-start lpc-start]  minmax(0px, 1fr)                                                                                  [lpc-end
         cc-start lcc-start]  minmax(0px, $centercenter2col_body-column_offset-width)                                           [lcc-end
-        bc-start lbc-start]  minmax($centercenter2col_body-column_max-width / 2, $centercenter2col_body-column_max-width / 2)  [lbc-end
-        rbc-start]           minmax($centercenter2col_body-column_max-width / 2, $centercenter2col_body-column_max-width / 2)  [rbc-end bc-end
+        bc-start lbc-start]  minmax($centercenter2col_body-column_min-width / 2, $centercenter2col_body-column_max-width / 2)  [lbc-end
+        rbc-start]           minmax($centercenter2col_body-column_min-width / 2, $centercenter2col_body-column_max-width / 2)  [rbc-end bc-end
         rcc-start]           minmax(0px, $centercenter2col_body-column_offset-width-remaining)                                 [rcc-end cc-end
         rpc-start]           minmax(0px, 1fr)                                                                                  [rpc-end pc-end                 
       ]; 
@@ -94,7 +95,7 @@ $centercenter2col_body-column_offset-width-remaining: $centercenter2col_content-
     }
   }
 
-  @media screen and (max-width: $centercenter2col_content-column_min-width) {
+  @media screen and (max-width: $centercenter2col_body-column_min-width) {
     @include engrid_replace-banner-with-background;
   }
 }

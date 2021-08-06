@@ -32,7 +32,7 @@
         
     // TYPOGRAPHY P
     --p_font-family: var(--default_font-family);
-    // --p_color: initial;
+    // --color_primary: initial;
     --p_font-size: var(--root_font-size);
     --p_font-weight: initial;
     --p_line-height: initial;
@@ -104,7 +104,6 @@ h6{
 
 p{
     font-family: var(--p_font-family);
-    color: var(--p_color);
     font-size: var(--p_font-size);
     font-weight: var(--p_font-weight);
     line-height: var(--p_line-height);

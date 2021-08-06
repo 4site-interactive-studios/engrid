@@ -182,7 +182,7 @@
 	border-style: solid;
 	// margin-left: 0.5rem;
 	// margin-right: 0.5rem;
-    padding: var(--button_padding) !important;
+    padding: var(--button_padding);
 	background-position-x: 40px;
     // width: 100%;
     text-align: center;
@@ -215,7 +215,7 @@
 	border-style: solid;
 	// margin-left: 0.5rem;
 	// margin-right: 0.5rem;
-    padding: var(--give-by-select__button_padding) !important;
+    padding: var(--give-by-select__button_padding);
 	background-position-x: 40px;
     // width: 100%;
     text-align: center;
@@ -247,7 +247,7 @@
 	border-style: solid;
 	// margin-left: 0.5rem;
 	// margin-right: 0.5rem;
-    padding: var(--donation-amount__button_padding) !important;
+    padding: var(--donation-amount__button_padding);
     text-transform: var(--donation-amount__button_text-transform);
 	background-position-x: 40px;
     // width: 100%;
@@ -280,7 +280,7 @@
 	border-style: solid;
 	// margin-left: 0.5rem;
 	// margin-right: 0.5rem;
-    padding: var(--recurring-frequency__button_padding) !important;
+    padding: var(--recurring-frequency__button_padding);
     text-transform: var(--recurring-frequency__button_text-transform);
 	background-position-x: 40px;
     // width: 100%;
@@ -450,7 +450,7 @@
 // If the gift has a recurring frequency, prepare to append a label on the giving amounts
 /* prettier-ignore */
 [data-engrid-transaction-recurring-frequency] .radio-to-buttons_donationAmt .en__field--donationAmt div:not(.en__field__item--other) .en__field__label--item::after{
-    margin-left: 0.5rem;
+    margin-left: var(--fields_spacing-inline);
 }
 
 // Append "/mo" to giving amount labels
