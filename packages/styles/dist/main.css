@@ -2086,8 +2086,7 @@ a {
     flex-direction: column;
     flex-basis: 100%;
     padding-bottom: 0rem;
-    margin-bottom: var(--fields_spacing-block);
-    align-self: flex-end; }
+    margin-bottom: var(--fields_spacing-block); }
     .en__component--formblock .en__field .en__field__label:not(.en__field__label--item),
     .en__component--formblock .en__field .en__field__helpText,
     .en__component--svblock .en__field .en__field__label:not(.en__field__label--item),
@@ -2152,9 +2151,6 @@ a {
       .en__component--svblock .en__field.en__field--withOther .en__field__element .en__field__item {
         padding-left: var(--fields_spacing-inline);
         padding-right: var(--fields_spacing-inline); }
-  .en__component--formblock .en__field.en__field--validationFailed,
-  .en__component--svblock .en__field.en__field--validationFailed {
-    align-self: flex-start; }
 
 /************************************
  * Labels
