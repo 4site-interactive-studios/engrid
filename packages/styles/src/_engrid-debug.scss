@@ -4,14 +4,14 @@
 * ##########################################################
 */
 
-.debug-accessability{
+[data-engrid-debug="accessability"]{
     // To help page editors identify images missing alt attributes which improve accesability
     img:not([alt]){
       outline: 1px dashed #FF0000;
     }
 }
 
-.debug-image-sizes{
+[data-engrid-debug="image-sizes"]{
     // To help page editors identify images missing height or width attributes which improve page shift during loading
     img:not([height]){
       outline: 1px dashed #00ff00;
@@ -28,7 +28,7 @@
 
 
 // REF: https://github.com/tachyons-css/tachyons/blob/master/src/_debug.css
-.debug-layout{
+[data-engrid-debug="layout"]{
   *{            outline: 1px dotted  #eeeeee !important; }
   body {        outline: 1px solid  #2980B9!important; }
   article {     outline: 1px solid  #3498DB!important; }
@@ -138,61 +138,87 @@
   wbr {         outline: 1px solid #DB175B!important; }
 }
 
-#debug-bar {
-  display: flex;
-  padding: 1ch 1.2ch;
-  border-bottom: 1px solid #cccccc;
-  justify-content: space-between;
-  background: #f5f5f5;
-  position: fixed;
-  width: 100vw;
-  top: 0;
-  z-index: 2147483640;
-  box-shadow: 0 36px 50px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
-    0 2px 1px -1px rgba(0, 0, 0, 0.12);
+// For the breakpoints overlay
+body[data-engrid-debug]:before{
+  z-index: 2147483641;
+}
 
-  #info-wrapper,
-  #buttons-wrapper {
+[data-engrid-debug]{
+
+  margin-top: 56px;
+
+  #debug-bar {
     display: flex;
-  }
+    padding: 1ch 1.2ch;
+    border-bottom: 1px solid #cccccc;
+    justify-content: center;
+    background: #f5f5f5;
+    position: fixed;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 2147483640;
+    box-shadow: 0 36px 50px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
+      0 2px 1px -1px rgba(0, 0, 0, 0.12);
 
-  #info-wrapper span {
-    margin: 0rem 1rem 0rem 0rem;
-    font-size: 0.75rem;
-    font-weight: 700;
-    line-height: 1;
-    font-family: Arial, sans-serif;
-    display: flex;
-    align-items: center;
-  }
+    #info-wrapper {
+      display: flex;
+      margin: 0rem 1rem 0rem 0rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      line-height: 1;
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+    }
 
-  #buttons-wrapper span {
-    margin: 0rem 1rem 0rem 1rem;
-    font-size: 0.75rem;
-    font-weight: 700;
-    line-height: 1;
-    font-family: Arial, sans-serif;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-  }
+    #buttons-wrapper {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
 
-  #buttons-wrapper button {
-    margin: 0rem 0rem 0rem 1rem;
-    padding: 9px;
-    border: none;
-    background-color: #3d9cd6;
-    color: #ffffff;
-    cursor: pointer;
-    font-size: 0.75rem;
-    font-weight: 700;
-    line-height: 1;
-    font-family: Arial, sans-serif;
-    border-radius: 6px;
-    &:hover,
-    &:focus,
-    &:active {
-      background-color: #1c6d9e;
+      p{
+        font-weight: bold;
+        margin-right: 1rem;
+      }
+
+      button,
+      .button {
+        // TYPOGRAPHY BUTTON
+        --button_font-family: Arial, sans-serif;
+        --button_color: #ffffff;
+        --button_font-size: 16px
+        --button_font-weight: initial;
+        --button_line-height: normal;
+        --button_background-color: #000000;
+        --button_border-width: 0px;
+        --button_border-color: #000000;
+        --button_border-radius: 6px;
+        --button_padding: 1ch 1.2ch;
+        --button_text-transform: none;
+
+        // TYPOGRAPHY BUTTON:HOVER
+        --button_color_hover: #ffffff;
+        --button_background-color_hover: #3d9cd6;
+        --button_border-color_hover: #3d9cd6;
+
+        // TYPOGRAPHY BUTTON:SELECTED
+        --button_color_checked: #ffffff;
+        --button_background-color_checked: #3d9cd6;
+        --button_border-color_checked: #3d9cd6;
+
+        text-decoration: none;
+        margin: 0;
+
+        &:not(:last-child){
+          margin-right: 1rem;
+        }
+      }
     }
   }
+}
+
+body:not([data-engrid-debug]) #debug-bar{
+  display: none;
 }
