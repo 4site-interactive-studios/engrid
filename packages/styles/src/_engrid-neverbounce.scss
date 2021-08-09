@@ -61,3 +61,9 @@ div[id^=nb-field-].nb-error{
 div[id^=nb-field-].nb-success input{
     border-color: initial !important;
 }
+
+// Replicate field spacing pattern for when the nb-wrapper sits between the ".en__field__element" and the email "input"
+#nb-wrapper > input[type="email"]{
+    margin-top: calc(var(--fields_spacing-inline) * 0.5);
+    margin-bottom: var(--fields_spacing-block);
+}

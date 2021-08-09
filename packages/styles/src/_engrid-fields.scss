@@ -201,7 +201,7 @@
         .en__field__item{
           padding-left: var(--fields_spacing-inline);
           padding-right: var(--fields_spacing-inline);
-          padding-top: var(--fields_spacing-block);
+          padding-top: calc(var(--fields_spacing-block) * 0.5);
           padding-bottom: var(--fields_spacing-block);
         }
       }  
