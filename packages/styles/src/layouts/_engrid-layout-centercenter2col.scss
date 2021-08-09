@@ -70,8 +70,7 @@ $centercenter2col_body-column_offset-width-remaining: $centercenter2col_content-
       grid-row: page-start / content-footerSpacer-end;
     }
 
-    form > .en__component--advrow,
-    #engrid > .en__component--advrow{
+    form > .en__component--advrow{
       .body-title,
       .body-banner,
       .body-bannerOverlay,
@@ -91,6 +90,14 @@ $centercenter2col_body-column_offset-width-remaining: $centercenter2col_content-
 
       .body-main{
         grid-row: body-header-end / body-main-end;
+      }
+    }
+
+    // The Free and Flexible Template has no need for a right margin on the second column when displayed on desktop
+    #engrid > .en__component--advrow .en__component--column--2{
+      .en__component--formblock,
+      .en__component--svblock{
+        margin-right: 0;
       }
     }
   }

@@ -4,93 +4,12 @@
 
 [data-engrid-theme="flex2"]{
     --engrid__page_background-color: lightgrey;
+    --engrid__body-header_padding: 0 2.5rem;
     --engrid__body_padding: 0 2.5rem;
     --engrid__body_border-radius: 6px;
     --engrid__body-header_margin: 1rem 0 0 0;
     --engrid__body-footer_margin: 0 0 3rem 0;
     --engrid__body-footer_padding: 0 2.5rem 2rem 2.5rem;
-    // --engrid__page-backgroundImage_url: url("https://placeimg.com/1920/1080/nature");
-    --engrid__page-backgroundImage_url: var(--background-image); // Sets a simpler CSS Custom Property name
-
-    // TYPOGRAPHY DEFAULT
-    // --default_font-family: var(--native-fonts__sans-serif);
-    // --default_color: initial;
-    // --default_font-size: var(--root_font-size);
-    // --default_font-weight: initial;
-    // --default_line-height: initial;
-
-    // TYPOGRAPHY H1
-    // --h1_font-family: var(--default_font-family);
-    // --h1_color: initial;
-    // --h1_font-size: calc(var(--root_font-size) * var(--scale-up_160pct));
-    // --h1_font-weight: initial;
-    // --h1_line-height: initial;
-        
-    // TYPOGRAPHY P
-    // --p_font-family: var(--default_font-family);
-    // --color_primary: initial;
-    // --p_font-size: var(--root_font-size);
-    // --p_font-weight: initial;
-    // --p_line-height: initial;
-
-    // TYPOGRAPHY A
-    // --a_font-family: var(--default_font-family);
-    // --a_color: initial;
-    // --a_text-decoration: underline;
-
-    // TYPOGRAPHY A:FOCUS
-    // TYPOGRAPHY A:HOVER
-    // --a_color_hover: var(--a_color);
-    // --a_text-decoration_hover: initial;
-
-    // TYPOGRAPHY INPUT
-    // --input_font-family: var(--default_font-family);
-    // --input_color: #000000;
-    // --input_font-size: var(--root_font-size);
-    // --input_font-weight: initial;
-    // --input_line-height: initial;
-    // --input_background-color: #fafafa;
-    // --input_border-width: 1px;
-    // --input_border-color: #dfdfe1;
-    // --input_border-radius: 6px;
-    // --input_placeholder-color: var(--color_light-gray);
-    // --input_box-shadow: inset 0 2px 2px -1px rgba(74, 74, 104, 0.1);
-        
-    // TYPOGRAPHY INPUT:FOCUS
-    // TYPOGRAPHY INPUT:HOVER
-    // --input_color_hover: var(--input_color);
-    // --input_background-color_hover: var(--input_background-color);
-    // --input_border-color_hover: #767677;
-    // --input_border-bottom-color_hover: var(--input_border-color_hover);
-    // --input_box-shadow_hover: --input_box-shadow;
-
-    // TYPOGRAPHY BUTTON
-    // --button_font-family: var(--default_font-family);
-    // --button_color: var(--color_white);
-    // --button_font-size: var(--root_font-size);
-    // --button_font-weight: initial;
-    // --button_line-height: initial;
-    // --button_background-color: #535b61;
-    // --button_border-width: 1px;
-    // --button_border-color: var(--color_black);
-    // --button_border-radius: 6px;
-
-    // TYPOGRAPHY BUTTON:HOVER
-    // --button_color_hover: var(--button_color);
-    // --button_background-color_hover: var(--color_black);
-    // --button_border-color_hover: var(--button_background-color_hover);
-
-    // TYPOGRAPHY BUTTON:SELECTED
-    // --button_color_checked: var(--button_color_hover);
-    // --button_background-color_checked: var(--button_background-color_hover);
-    // --button_border-color_checked: var(--button_border-color_hover);
-
-    // DONATION PAGE
-    // --give-monthly-donation-amount-appended-label: "/mo";
-    // --give-annual-donation-amount-appended-label: "/yr";  
-    // --recurring-frequency__button_count: 4;
-    // --donation-amount__button_count: 4;
-    // --give-by-select__button_count: 4;
 }
 
 /* Add your custom theme styles here */
@@ -122,6 +41,12 @@
             }
         }
 
+    }
+
+    // When you have a row/column, that has a copy block placed inside it as the first element, remove the top margin/padding from the first element inside the copy block
+    .en__component--row > .en__component--column > .en__component--copyblock:first-child > *:first-child{
+        margin-top: 0;
+        padding-top: 0;
     }
 
     &[data-engrid-layout="centerleft1col"]{
@@ -233,8 +158,7 @@
 
         // Hide these sections as there is no way to interact with them
         .body-banner,
-        .page-backgroundImage,
-        .page-customCode{
+        .page-backgroundImage{
             display: none;
         }
 
