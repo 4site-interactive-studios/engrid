@@ -3015,7 +3015,6 @@ body:not(#en__pagebuilder) .click-to-expand.expanded .click-to-expand-text-wrapp
   --h1_color: initial;
   --h2_color: initial;
   --h3_color: initial;
-  --color_primary: initial;
   --a_color: initial;
   --a_color_hover: var(--a_color);
   --highlight__background-color: var(--color_primary);
@@ -5412,7 +5411,14 @@ body:not(#en__pagebuilder) .page-customCode:empty {
     [data-engrid-layout="centercenter1col"][data-replace-banner-with-background="if-background-video"][data-engrid-page-background="video"] .page-backgroundImageOverlay::before, [data-engrid-layout="centercenter1col"][data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImage::before,
     [data-engrid-layout="centercenter1col"][data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImageOverlay::before, [data-engrid-layout="centercenter1col"][data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="video"] .page-backgroundImage::before,
     [data-engrid-layout="centercenter1col"][data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="video"] .page-backgroundImageOverlay::before {
-      content: none !important; } }
+      content: none !important; }
+  [data-engrid-layout="centercenter1col"] body[data-engrid-has-body-title] .body-bannerOverlay {
+    display: none; }
+  [data-engrid-layout="centercenter1col"] body:not([data-engrid-has-body-title]) .body-bannerOverlay {
+    grid-row: body-title; }
+    [data-engrid-layout="centercenter1col"] body:not([data-engrid-has-body-title]) .body-bannerOverlay > * {
+      padding: var(--engrid__body-top_padding);
+      width: 100%; } }
 
 /*
 * ####################################################################################################################
@@ -5511,7 +5517,14 @@ body:not(#en__pagebuilder) .page-customCode:empty {
     [data-engrid-layout="centercenter2col"][data-replace-banner-with-background="if-background-video"][data-engrid-page-background="video"] .page-backgroundImageOverlay::before, [data-engrid-layout="centercenter2col"][data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImage::before,
     [data-engrid-layout="centercenter2col"][data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImageOverlay::before, [data-engrid-layout="centercenter2col"][data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="video"] .page-backgroundImage::before,
     [data-engrid-layout="centercenter2col"][data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="video"] .page-backgroundImageOverlay::before {
-      content: none !important; } }
+      content: none !important; }
+  [data-engrid-layout="centercenter2col"] body[data-engrid-has-body-title] .body-bannerOverlay {
+    display: none; }
+  [data-engrid-layout="centercenter2col"] body:not([data-engrid-has-body-title]) .body-bannerOverlay {
+    grid-row: body-title; }
+    [data-engrid-layout="centercenter2col"] body:not([data-engrid-has-body-title]) .body-bannerOverlay > * {
+      padding: var(--engrid__body-top_padding);
+      width: 100%; } }
 
 /*
 * ####################################################################################################################
@@ -5591,7 +5604,14 @@ body:not(#en__pagebuilder) .page-customCode:empty {
     [data-engrid-layout="centerleft1col"][data-replace-banner-with-background="if-background-video"][data-engrid-page-background="video"] .page-backgroundImageOverlay::before, [data-engrid-layout="centerleft1col"][data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImage::before,
     [data-engrid-layout="centerleft1col"][data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImageOverlay::before, [data-engrid-layout="centerleft1col"][data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="video"] .page-backgroundImage::before,
     [data-engrid-layout="centerleft1col"][data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="video"] .page-backgroundImageOverlay::before {
-      content: none !important; } }
+      content: none !important; }
+  [data-engrid-layout="centerleft1col"] body[data-engrid-has-body-title] .body-bannerOverlay {
+    display: none; }
+  [data-engrid-layout="centerleft1col"] body:not([data-engrid-has-body-title]) .body-bannerOverlay {
+    grid-row: body-title; }
+    [data-engrid-layout="centerleft1col"] body:not([data-engrid-has-body-title]) .body-bannerOverlay > * {
+      padding: var(--engrid__body-top_padding);
+      width: 100%; } }
 
 /*
 * ####################################################################################################################
@@ -5696,7 +5716,14 @@ body:not(#en__pagebuilder) .page-customCode:empty {
     [data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImageOverlay::before,
     [data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="video"] .page-backgroundImage::before,
     [data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="video"] .page-backgroundImageOverlay::before {
-      content: none !important; } }
+      content: none !important; }
+  body[data-engrid-has-body-title] .body-bannerOverlay {
+    display: none; }
+  body:not([data-engrid-has-body-title]) .body-bannerOverlay {
+    grid-row: body-title; }
+    body:not([data-engrid-has-body-title]) .body-bannerOverlay > * {
+      padding: var(--engrid__body-top_padding);
+      width: 100%; } }
 
 /*
 * ####################################################################################################################
@@ -5776,7 +5803,14 @@ body:not(#en__pagebuilder) .page-customCode:empty {
     [data-engrid-layout="leftleft1col"][data-replace-banner-with-background="if-background-video"][data-engrid-page-background="video"] .page-backgroundImageOverlay::before, [data-engrid-layout="leftleft1col"][data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImage::before,
     [data-engrid-layout="leftleft1col"][data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImageOverlay::before, [data-engrid-layout="leftleft1col"][data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="video"] .page-backgroundImage::before,
     [data-engrid-layout="leftleft1col"][data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="video"] .page-backgroundImageOverlay::before {
-      content: none !important; } }
+      content: none !important; }
+  [data-engrid-layout="leftleft1col"] body[data-engrid-has-body-title] .body-bannerOverlay {
+    display: none; }
+  [data-engrid-layout="leftleft1col"] body:not([data-engrid-has-body-title]) .body-bannerOverlay {
+    grid-row: body-title; }
+    [data-engrid-layout="leftleft1col"] body:not([data-engrid-has-body-title]) .body-bannerOverlay > * {
+      padding: var(--engrid__body-top_padding);
+      width: 100%; } }
 
 /*
 * ####################################################################################################################
@@ -5856,7 +5890,14 @@ body:not(#en__pagebuilder) .page-customCode:empty {
     [data-engrid-layout="rightright1col"][data-replace-banner-with-background="if-background-video"][data-engrid-page-background="video"] .page-backgroundImageOverlay::before, [data-engrid-layout="rightright1col"][data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImage::before,
     [data-engrid-layout="rightright1col"][data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="image"] .page-backgroundImageOverlay::before, [data-engrid-layout="rightright1col"][data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="video"] .page-backgroundImage::before,
     [data-engrid-layout="rightright1col"][data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="video"] .page-backgroundImageOverlay::before {
-      content: none !important; } }
+      content: none !important; }
+  [data-engrid-layout="rightright1col"] body[data-engrid-has-body-title] .body-bannerOverlay {
+    display: none; }
+  [data-engrid-layout="rightright1col"] body:not([data-engrid-has-body-title]) .body-bannerOverlay {
+    grid-row: body-title; }
+    [data-engrid-layout="rightright1col"] body:not([data-engrid-has-body-title]) .body-bannerOverlay > * {
+      padding: var(--engrid__body-top_padding);
+      width: 100%; } }
 
 /*
 * ####################################################################################################################
@@ -5920,6 +5961,10 @@ body:not(#en__pagebuilder) .page-customCode:empty {
   --engrid__body-footer_padding: 0 2.5rem 2rem 2.5rem; }
 
 /* Add your custom theme styles here */
+[data-engrid-theme="flex2"] .en__component--row > .en__component--column > .en__component--copyblock:first-child > *:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
 @media screen and (max-width: 700px) {
   [data-engrid-theme="flex2"][data-engrid-layout="centerleft1col"] {
     --engrid__body_padding: 0 1.5rem;
