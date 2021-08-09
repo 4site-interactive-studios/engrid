@@ -49,6 +49,7 @@
   form > .en__component--advrow.en__component--active
     .en__component__actions.en__component__actions--advrow {
     grid-row: page;
+    display: block;
   }
 
   .page-backgroundImage img:not([data-src]) {
