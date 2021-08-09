@@ -4699,7 +4699,7 @@ div[id^=nb-field-].nb-error input {
 div[id^=nb-field-].nb-success input {
   border-color: initial !important; }
 
-.en__pg__body {
+.en__pg .en__pg__body {
   display: grid;
   grid-template-columns: min-content min-content 1fr;
   grid-template-rows: min-content;
@@ -4709,6 +4709,12 @@ div[id^=nb-field-].nb-success input {
   grid-auto-flow: row;
   align-items: center;
   grid-template-areas: "en__pg__select en__pg__display en__pg__detail"; }
+
+.en__pg:first-child .en__pg__body {
+  padding: calc(var(--fields_spacing-block) * 2) calc(var(--fields_spacing-inline) * 2) var(--fields_spacing-block); }
+
+.en__pg:last-child .en__pg__body {
+  padding: var(--fields_spacing-block) calc(var(--fields_spacing-inline) * 2) calc(var(--fields_spacing-block) * 2); }
 
 .en__pg__select {
   align-self: center;
@@ -4721,21 +4727,19 @@ div[id^=nb-field-].nb-success input {
   grid-area: en__pg__detail; }
 
 .en__pg__images img {
-  width: auto;
   margin: 0;
-  max-width: 20vw; }
+  width: auto;
+  max-width: 25%;
+  min-width: 75px; }
 
 .en__pg__select {
-  padding: 0; }
+  padding: 0 calc(var(--fields_spacing-inline) * 2) 0 0; }
 
 .en__pg__display {
-  padding-top: 0;
-  padding-bottom: 0; }
+  padding: 0 calc(var(--fields_spacing-inline) * 2) 0 0; }
 
 .en__pg__detail {
-  margin-top: 0;
-  padding-top: 0;
-  padding-bottom: 0; }
+  padding: 0; }
 
 .en__pg__name {
   margin-top: 0; }
@@ -5030,18 +5034,21 @@ header .indicator__percentage {
   --engrid__page-customCode_padding: var(--engrid__page_padding);
   --engrid__page-customCode_margin: var(--engrid__page_margin); }
 
-form > .en__component--row.en__component--advrow,
+form > .en__component--row.en__component--advrow {
+  display: grid;
+  width: 100%;
+  max-width: 100vw; }
+  form > .en__component--row.en__component--advrow > * {
+    display: grid; }
+    form > .en__component--row.en__component--advrow > * > * {
+      grid-column: pc; }
+      form > .en__component--row.en__component--advrow > * > * > * {
+        grid-column: cc; }
+
 #engrid > .en__component--row.en__component--advrow {
   display: grid;
   width: 100%;
   max-width: 100vw; }
-
-form > .en__component--row.en__component--advrow > * {
-  display: grid; }
-  form > .en__component--row.en__component--advrow > * > * {
-    grid-column: pc; }
-    form > .en__component--row.en__component--advrow > * > * > * {
-      grid-column: cc; }
 
 .en__component--row.en__component--advrow form > .en__component--row.en__component--advrow {
   display: flex; }
@@ -6595,7 +6602,8 @@ body:not([data-engrid-debug]) #debug-bar {
     background-color: var(--engrid__body-banner_background-color) !important; }
   #en__pagebuilder form > .en__component--advrow.en__component--active
 .en__component__actions.en__component__actions--advrow {
-    grid-row: page; }
+    grid-row: page;
+    display: block; }
   #en__pagebuilder .page-backgroundImage img:not([data-src]) {
     border: 5px solid var(--error__color); }
   #en__pagebuilder .page-backgroundImage img[src] {
