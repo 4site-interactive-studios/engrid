@@ -150,15 +150,3 @@ body {
     }
   }
 }
-
-@mixin engrid_mobile-banner {
-    // If there is content in the body-title, hide the body-bannerOverlay on mobile
-    body[data-engrid-has-body-title] .body-bannerOverlay{
-      display: none;
-    }
-  
-    // If there is no content in body-title, make the body-bannerOverlay act as the body-title
-    body:not([data-engrid-has-body-title]) .body-bannerOverlay{
-      grid-row: body-title;
-    }
-}
