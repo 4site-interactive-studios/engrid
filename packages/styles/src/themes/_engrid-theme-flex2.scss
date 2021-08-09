@@ -43,6 +43,18 @@
 
     }
 
+    &[data-highlight-required-fields]{
+        .en__mandatory > label{
+            justify-content: flex-start;
+
+            &:after {
+                content: "*";
+                color: var(--error__color);
+                margin-left: var(--fields_spacing-inline);
+            }
+        }
+    }
+
     // When you have a row/column, that has a copy block placed inside it as the first element, remove the top margin/padding from the first element inside the copy block
     .en__component--row > .en__component--column > .en__component--copyblock:first-child > *:first-child{
         margin-top: 0;

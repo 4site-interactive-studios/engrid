@@ -1,4 +1,4 @@
-import { ENGrid, Options } from './';
+import { ENGrid, Options } from "./";
 export declare class App extends ENGrid {
     private _form;
     private _fees;

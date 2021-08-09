@@ -1,5 +1,5 @@
-import { DonationAmount, DonationFrequency, EnForm, ProcessingFees } from './events';
-import { ProgressBar, UpsellLightbox, ENGrid, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, CapitalizeFields, ClickToExpand, legacy, IE, LiveVariables, sendIframeHeight, sendIframeFormStatus, ShowHideRadioCheckboxes, SimpleCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce } from './';
+import { DonationAmount, DonationFrequency, EnForm, ProcessingFees, } from "./events";
+import { ProgressBar, UpsellLightbox, ENGrid, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, CapitalizeFields, ClickToExpand, legacy, IE, LiveVariables, sendIframeHeight, sendIframeFormStatus, ShowHideRadioCheckboxes, SimpleCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce, } from "./";
 export class App extends ENGrid {
     constructor(options) {
         super();
@@ -10,7 +10,7 @@ export class App extends ENGrid {
         this._frequency = DonationFrequency.getInstance();
         this.shouldScroll = () => {
             // If you find a error, scroll
-            if (document.querySelector('.en__errorHeader')) {
+            if (document.querySelector(".en__errorHeader")) {
                 return true;
             }
             // Try to match the iframe referrer URL by testing valid EN Page URLs
@@ -42,8 +42,8 @@ export class App extends ENGrid {
     }
     run() {
         // Enable debug if available is the first thing
-        if (this.options.Debug || App.getUrlParameter('debug') == 'true')
-            App.setBodyData('debug', '');
+        if (this.options.Debug || App.getUrlParameter("debug") == "true")
+            App.setBodyData("debug", "");
         // IE Warning
         new IE();
         // Page Background
@@ -70,8 +70,8 @@ export class App extends ENGrid {
         // Event Listener Examples
         this._amount.onAmountChange.subscribe((s) => console.log(`Live Amount: ${s}`));
         this._frequency.onFrequencyChange.subscribe((s) => console.log(`Live Frequency: ${s}`));
-        this._form.onSubmit.subscribe((s) => console.log('Submit: ', s));
-        this._form.onError.subscribe((s) => console.log('Error:', s));
+        this._form.onSubmit.subscribe((s) => console.log("Submit: ", s));
+        this._form.onError.subscribe((s) => console.log("Error:", s));
         window.enOnSubmit = () => {
             this._form.dispatchSubmit();
             return this._form.submit;
@@ -129,7 +129,7 @@ export class App extends ENGrid {
                 console.log("iFrame Event - window.onload");
             sendIframeHeight();
             window.parent.postMessage({
-                scroll: this.shouldScroll()
+                scroll: this.shouldScroll(),
             }, "*");
             // On click fire the resize event
             document.addEventListener("click", (e) => {
@@ -165,7 +165,7 @@ export class App extends ENGrid {
             this.options.onSubmit();
         }
         if (this.inIframe()) {
-            sendIframeFormStatus('submit');
+            sendIframeFormStatus("submit");
         }
     }
     onError() {
@@ -196,8 +196,12 @@ export class App extends ENGrid {
     // Use this function to add any Data Attributes to the Body tag
     setDataAttributes() {
         // Add a body banner data attribute if it's empty
-        if (!document.querySelector('.body-banner img')) {
-            App.setBodyData('body-banner', 'empty');
+        if (!document.querySelector(".body-banner img")) {
+            App.setBodyData("body-banner", "empty");
+        }
+        // Add a body title data attribute if it is empty
+        if (document.querySelector(".body-title *")) {
+            App.setBodyData("has-body-title", "");
         }
     }
 }
