@@ -6,13 +6,13 @@
   --fields_spacing-block: 0.5rem;
 
   // TYPOGRAPHY LABEL
-  --label-font-family: var(--default_font-family);
-  // --label-color: initial;
-  --label-font-size: var(--root_font-size);
-  --label-font-weight: initial;
-  --label-line-height: initial;
-  --label-text-transform: initial;
-  --label-letter-spacing: initial;
+  --label_font-family: var(--default_font-family);
+  // --label_color: initial;
+  --label_font-size: var(--root_font-size);
+  --label_font-weight: initial;
+  --label_line-height: initial;
+  --label_text-transform: initial;
+  --label_letter-spacing: initial;
 
   // TYPOGRAPHY INPUT
   --input_font-family: var(--default_font-family);
@@ -237,21 +237,21 @@
  * Labels
  ***********************************/
  label{
-  font-family: var(--label-font-family);
-  color: var(--label-color);
-  font-size: var(--label-font-size);
-  font-weight: var(--label-font-weight);
-  line-height: var(--label-line-height);
+  font-family: var(--label_font-family);
+  color: var(--label_color);
+  font-size: var(--label_font-size);
+  font-weight: var(--label_font-weight);
+  line-height: var(--label_line-height);
   display: flex;
-  text-transform: var(--label-text-transform);
-  letter-spacing: var(--label-letter-spacing);
+  text-transform: var(--label_text-transform);
+  letter-spacing: var(--label_letter-spacing);
 }
 
 label a.label-tooltip {
   text-transform: none;
   right: 0;
   text-decoration: underline;
-  color: var(--label-color);
+  color: var(--label_color);
   font-weight: 400;
   margin-left: var(--fields_spacing-inline);
   margin-right: var(--fields_spacing-inline);

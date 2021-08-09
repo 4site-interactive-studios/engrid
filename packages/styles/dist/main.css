@@ -2017,12 +2017,12 @@ a {
 [data-engrid-theme] {
   --fields_spacing-inline: 0.5rem;
   --fields_spacing-block: 0.5rem;
-  --label-font-family: var(--default_font-family);
-  --label-font-size: var(--root_font-size);
-  --label-font-weight: initial;
-  --label-line-height: initial;
-  --label-text-transform: initial;
-  --label-letter-spacing: initial;
+  --label_font-family: var(--default_font-family);
+  --label_font-size: var(--root_font-size);
+  --label_font-weight: initial;
+  --label_line-height: initial;
+  --label_text-transform: initial;
+  --label_letter-spacing: initial;
   --input_font-family: var(--default_font-family);
   --input_font-size: var(--root_font-size);
   --input_font-weight: initial;
@@ -2156,20 +2156,20 @@ a {
  * Labels
  ***********************************/
 label {
-  font-family: var(--label-font-family);
-  color: var(--label-color);
-  font-size: var(--label-font-size);
-  font-weight: var(--label-font-weight);
-  line-height: var(--label-line-height);
+  font-family: var(--label_font-family);
+  color: var(--label_color);
+  font-size: var(--label_font-size);
+  font-weight: var(--label_font-weight);
+  line-height: var(--label_line-height);
   display: flex;
-  text-transform: var(--label-text-transform);
-  letter-spacing: var(--label-letter-spacing); }
+  text-transform: var(--label_text-transform);
+  letter-spacing: var(--label_letter-spacing); }
 
 label a.label-tooltip {
   text-transform: none;
   right: 0;
   text-decoration: underline;
-  color: var(--label-color);
+  color: var(--label_color);
   font-weight: 400;
   margin-left: var(--fields_spacing-inline);
   margin-right: var(--fields_spacing-inline); }
@@ -3025,7 +3025,7 @@ body:not(#en__pagebuilder) .click-to-expand.expanded .click-to-expand-text-wrapp
   --error__color_grayscale: #949494;
   --error__color_faded: #fff8f4;
   --error__background-color: #fff8f4;
-  --label-color: initial;
+  --label_color: initial;
   --input_color: #000000;
   --input_background-color: #fafafa;
   --input_border-color: #dfdfe1;
