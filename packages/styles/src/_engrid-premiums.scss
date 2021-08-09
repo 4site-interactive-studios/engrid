@@ -1,51 +1,60 @@
+.en__pg{
+    .en__pg__body {
+        display: grid;
+        grid-template-columns: min-content min-content 1fr;
+        grid-template-rows: min-content;
+        grid-auto-columns: min-content;
+        grid-auto-rows: min-content;
+        gap: 0px 0px;
+        grid-auto-flow: row;
+        align-items: center;
+        grid-template-areas: "en__pg__select en__pg__display en__pg__detail";
+    }
 
-// CSS Grid Layout: https://grid.layoutit.com/
-.en__pg__body {
-    display: grid;
-    grid-template-columns: min-content min-content 1fr;
-    grid-template-rows: min-content;
-    grid-auto-columns: min-content;
-    grid-auto-rows: min-content;
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    align-items: center;
-    grid-template-areas:
-      "en__pg__select en__pg__display en__pg__detail";
-  }
+    &:first-child .en__pg__body{
+        padding: calc(var(--fields_spacing-block) * 2) calc(var(--fields_spacing-inline) * 2) var(--fields_spacing-block);
+    }
+
+    &:not(:first-child):not(:last-child) .en__pg__body{
+        
+    }
+
+    &:last-child .en__pg__body{
+        padding: var(--fields_spacing-block) calc(var(--fields_spacing-inline) * 2) calc(var(--fields_spacing-block) * 2)
+    }
+}
   
-  .en__pg__select {
-  
+.en__pg__select {
     align-self: center;
     grid-area: en__pg__select;
-  }
+}
   
-  .en__pg__display { grid-area: en__pg__display; }
+.en__pg__display {
+    grid-area: en__pg__display;
+}
   
-  .en__pg__detail { grid-area: en__pg__detail; }
+.en__pg__detail {
+    grid-area: en__pg__detail;
+}
   
   
-  .en__pg__images img{
-    width: auto; // Force the width to be its native size rather than 100% 
+.en__pg__images img{
     margin: 0; // Do not "auto center" the image
-    max-width: 20vw; // Prevent the image fro ever being larger than it probably should be
+    width: auto; // Force the width to be its native size rather than 100% 
+    max-width: 25%; // Prevent the image from being too large
+    min-width: 75px; // Prevent the image from being too small
 }
 
 .en__pg__select{
-    // flex-basis: 15px;
-    padding: 0;
+    padding: 0 calc(var(--fields_spacing-inline) * 2) 0 0;
 }
 
 .en__pg__display{
-    // flex-basis: 150px;
-    padding-top: 0;
-    padding-bottom: 0;
+    padding: 0 calc(var(--fields_spacing-inline) * 2) 0 0;
 }
 
 .en__pg__detail{
-    // flex-basis: calc(100% - 150px - 15px);
-    margin-top: 0;
-    padding-top: 0;
-    padding-bottom: 0;        
+    padding: 0;     
 }
 
 .en__pg__name{
