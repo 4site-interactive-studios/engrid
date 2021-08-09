@@ -249,12 +249,16 @@
 
 label a.label-tooltip {
   text-transform: none;
-  position: absolute;
   right: 0;
   text-decoration: underline;
   color: var(--label-color);
   font-weight: 400;
-  padding-right: var(--fields_spacing-inline);
+  margin-left: var(--fields_spacing-inline);
+  margin-right: var(--fields_spacing-inline);
+
+  &:last-child{
+    margin-right: 0;
+  }
 }
 
 /************************************

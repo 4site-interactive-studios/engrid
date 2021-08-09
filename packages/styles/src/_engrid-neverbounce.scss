@@ -63,6 +63,7 @@ div[id^=nb-field-].nb-success input{
 }
 
 // Replicate field spacing pattern for when the nb-wrapper sits between the ".en__field__element" and the email "input"
+// REF: _engrid-fields.scss https://github.com/4site-interactive-studios/engrid-scripts/blob/34dee282babbd576f58cb1aa8b3f911c87897371/packages/styles/src/_engrid-fields.scss#L264
 #nb-wrapper > input[type="email"]{
     margin-top: calc(var(--fields_spacing-inline) * 0.5);
     margin-bottom: var(--fields_spacing-block);
