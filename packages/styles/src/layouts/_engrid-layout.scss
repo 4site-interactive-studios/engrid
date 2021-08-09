@@ -123,14 +123,12 @@ $two_col_body-column_min-width:     900px !default; // Overridable in client the
 //  Style Sections Both Inside AND Outside of Page Builder 
 // ####################################################################
 
-form > .en__component--row.en__component--advrow,
-#engrid > .en__component--row.en__component--advrow{
+// ENGrid Templates follow this markup pattern
+form > .en__component--row.en__component--advrow{
   display: grid;
   width: 100%; // Ensure the ENGrid advanced row (there should only be one) occupies the full viewport at a minimum
   max-width: 100vw; // Ensure the ENGrid advanced row (there should only be one) occupies the full viewport at a minimum
-}
 
-form > .en__component--row.en__component--advrow{
   // All child elements on an advanced row can now act as pseudo-subgrids
   > *{
     display: grid;
@@ -147,15 +145,16 @@ form > .en__component--row.en__component--advrow{
   }
 }
 
-// // Ensure the ENGrid advanced row (there should only be one) occupies the full viewport at a minimum
-// form > .en__component--advrow,
-// #engrid > .en__component--advrow {
-//   width: 100%;
-//   max-width: 100vw;
-// }
+// Free and Flexible Templates follow this markup pattern
+#engrid > .en__component--row.en__component--advrow{
+  display: grid;
+  width: 100%; // Ensure the ENGrid advanced row (there should only be one) occupies the full viewport at a minimum
+  max-width: 100vw; // Ensure the ENGrid advanced row (there should only be one) occupies the full viewport at a minimum
+}
 
+
+// For Free and Flexible Templates you will have an "advanced row" inside another "advanced row".
 // Forces Advanced Rows that are direct decendents of the form tag to display as Flexboxes again
-// Used by the Engaging Networks Free and Flexible 2 Page Templates
 .en__component--row.en__component--advrow form > .en__component--row.en__component--advrow{
   display: flex;
 }
