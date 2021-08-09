@@ -104,5 +104,6 @@ $centercenter2col_body-column_offset-width-remaining: $centercenter2col_content-
 
   @media screen and (max-width: $centercenter2col_body-column_min-width) {
     @include engrid_replace-banner-with-background;
+    @include engrid_mobile-banner;
   }
 }
