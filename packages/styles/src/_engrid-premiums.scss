@@ -1,7 +1,7 @@
 .en__pg{
     .en__pg__body {
         display: grid;
-        grid-template-columns: min-content 1fr min-content;
+        grid-template-columns: min-content auto auto;
         grid-template-rows: min-content;
         grid-auto-columns: min-content;
         grid-auto-rows: min-content;
@@ -27,33 +27,17 @@
 .en__pg__select {
     align-self: center;
     grid-area: en__pg__select;
+    padding: 0 calc(var(--fields_spacing-inline) * 2) 0 0;
 }
   
 .en__pg__display {
     grid-area: en__pg__display;
+    padding: 0 0 0 calc(var(--fields_spacing-inline)*2);
 }
   
 .en__pg__detail {
     grid-area: en__pg__detail;
-}
-  
-.en__pg__images img{
-    margin: 0; // Do not "auto center" the image
-    width: auto; // Force the width to be its native size rather than 100% 
-    max-width: 25%; // Prevent the image from being too large
-    min-width: 75px; // Prevent the image from being too small
-}
-
-.en__pg__select{
-    padding: 0 calc(var(--fields_spacing-inline) * 2) 0 0;
-}
-
-.en__pg__display{
-    padding: 0 0 0 calc(var(--fields_spacing-inline)*2);
-}
-
-.en__pg__detail{
-    padding: 0;     
+    padding: 0;   
 }
 
 .en__pg__name{
@@ -70,6 +54,11 @@ h2.en__pg__name{
 
 .en__pg__optionType select{
     width: auto;
+}
+
+.en__pg__image{
+    max-width: 125px;
+    min-width: 100%;
 }
 
 .en__pg--selected .en__pg__image--selected{
