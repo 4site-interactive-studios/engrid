@@ -204,7 +204,7 @@
     }
 
     // Remove min-height from the form component
-    &:not([data-engrid-embedded]) form {
+    &:not([data-engrid-embedded]) form > .en__component--row.en__component--advrow{
         min-height: auto;
     }
     

@@ -145,6 +145,14 @@ form > .en__component--row.en__component--advrow{
   }
 }
 
+// Fixes issue with the grid not going right up to the last pixel of the browser. Recording: https://d.pr/v/g4ZCDA
+// Set the min-height of a page to the viewport height; except when embedded because there is no "viewport" as far as the iframe is concerned
+// This also prevents an issue with Safari where the height of the iFrame'ed page can not be calculated correctly (https://d.pr/v/O2kcrb)
+body:not([data-engrid-embedded]) form > .en__component--row.en__component--advrow{
+  min-height: 100vh;
+}
+
+
 // Free and Flexible Templates follow this markup pattern
 #engrid > .en__component--row.en__component--advrow{
   display: grid;
@@ -157,12 +165,6 @@ form > .en__component--row.en__component--advrow{
 // Forces Advanced Rows that are direct decendents of the form tag to display as Flexboxes again
 .en__component--row.en__component--advrow form > .en__component--row.en__component--advrow{
   display: flex;
-}
-
-// Set the min-height of a page to the viewport height; except when embedded because there is no "viewport" as far as the iframe is concerned
-// This also prevents an issue with Safari where the height of the iFrame'ed page can not be calculated correctly (https://d.pr/v/O2kcrb)
-body:not([data-engrid-embedded]) form {
-  min-height: 100vh;
 }
 
 /*
