@@ -38,28 +38,31 @@ export class SrcDefer {
         for (let i = 0; i < this.videoBackground.length; i++) {
             let video = this.videoBackground[i];
             // Process one or more defined sources in the <video> tag
-            let videoBackgroundSource = video.querySelectorAll("source");
-            let videoBackgroundSourcedDataSrc = this.videoBackgroundSource[i].getAttribute("data-src");
-            if (videoBackgroundSource) {
-                for (let i = 0; i < this.videoBackgroundSource.length; i++) {
-                    // Construct the <video> tags new <source>
-                    if (videoBackgroundSourcedDataSrc) {
-                        this.videoBackgroundSource[i].setAttribute("src", videoBackgroundSourcedDataSrc);
-                        this.videoBackgroundSource[i].setAttribute("data-engrid-data-src-processed", "true"); // Sets an attribute to mark that it has been processed by ENGrid
-                        this.videoBackgroundSource[i].removeAttribute("data-src"); // Removes the data-source
+            this.videoBackgroundSource = video.querySelectorAll("source");
+            if (this.videoBackgroundSource) {
+                // loop through all the sources
+                for (let j = 0; j < this.videoBackgroundSource.length; j++) {
+                    let videoSource = this.videoBackgroundSource[j];
+                    if (videoSource) {
+                        let videoBackgroundSourcedDataSrc = videoSource.getAttribute("data-src");
+                        if (videoBackgroundSourcedDataSrc) {
+                            videoSource.setAttribute("src", videoBackgroundSourcedDataSrc);
+                            videoSource.setAttribute("data-engrid-data-src-processed", "true"); // Sets an attribute to mark that it has been processed by ENGrid
+                            videoSource.removeAttribute("data-src"); // Removes the data-source
+                        }
                     }
-                    // To get the browser to request the video asset defined we need to remove the <video> tag and re-add it
-                    let videoBackgroundParent = video.parentNode; // Determine the parent of the <video> tag
-                    let copyOfVideoBackground = video; // Copy the <video> tag
-                    if (videoBackgroundParent && copyOfVideoBackground) {
-                        videoBackgroundParent.replaceChild(copyOfVideoBackground, this.videoBackground[i]); // Replace the <video> with the copy of itself
-                        // Update the video to auto play, mute, loop
-                        video.muted = true; // Mute the video by default
-                        video.controls = false; // Hide the browser controls
-                        video.loop = true; // Loop the video
-                        video.playsInline = true; // Encourage the user agent to display video content within the element's playback area
-                        video.play(); // Plays the video
-                    }
+                }
+                // To get the browser to request the video asset defined we need to remove the <video> tag and re-add it
+                let videoBackgroundParent = video.parentNode; // Determine the parent of the <video> tag
+                let copyOfVideoBackground = video; // Copy the <video> tag
+                if (videoBackgroundParent && copyOfVideoBackground) {
+                    videoBackgroundParent.replaceChild(copyOfVideoBackground, video); // Replace the <video> with the copy of itself
+                    // Update the video to auto play, mute, loop
+                    video.muted = true; // Mute the video by default
+                    video.controls = false; // Hide the browser controls
+                    video.loop = true; // Loop the video
+                    video.playsInline = true; // Encourage the user agent to display video content within the element's playback area
+                    video.play(); // Plays the video
                 }
             }
         }
