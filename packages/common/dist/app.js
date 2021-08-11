@@ -201,131 +201,131 @@ export class App extends ENGrid {
         if (!document.querySelector(".body-banner img")) {
             App.setBodyData("body-banner", "empty");
         }
-
         // Add a page-alert data attribute if it is empty
         if (document.querySelector(".page-alert *")) {
             App.setBodyData("has-page-alert", "");
-        } else {
+        }
+        else {
             App.setBodyData("does-not-have-page-alert", "");
-        }       
-
+        }
         // Add a content-header data attribute if it is empty
         if (document.querySelector(".content-header *")) {
             App.setBodyData("has-content-header", "");
-        } else {
+        }
+        else {
             App.setBodyData("does-not-have-content-header", "");
-        }         
-
+        }
         // Add a body-headerOutside data attribute if it is empty
         if (document.querySelector(".body-headerOutside *")) {
             App.setBodyData("has-body-headerOutside", "");
-        } else {
+        }
+        else {
             App.setBodyData("does-not-have-body-headerOutside", "");
-        }         
-
+        }
         // Add a body-header data attribute if it is empty
         if (document.querySelector(".body-header *")) {
             App.setBodyData("has-body-header", "");
-        } else {
+        }
+        else {
             App.setBodyData("does-not-have-body-header", "");
-        }         
-
+        }
         // Add a body-title data attribute if it is empty
         if (document.querySelector(".body-title *")) {
             App.setBodyData("has-body-title", "");
-        } else {
+        }
+        else {
             App.setBodyData("does-not-have-body-title", "");
-        }         
-
+        }
         // Add a body-banner data attribute if it is empty
         if (document.querySelector(".body-banner *")) {
             App.setBodyData("has-body-banner", "");
-        } else {
+        }
+        else {
             App.setBodyData("does-not-have-body-banner", "");
-        }     
-
+        }
         // Add a body-bannerOverlay data attribute if it is empty
         if (document.querySelector(".body-bannerOverlay *")) {
             App.setBodyData("has-body-bannerOverlay", "");
-        } else {
+        }
+        else {
             App.setBodyData("does-not-have-body-bannerOverlay", "");
-        }         
-
+        }
         // Add a body-top data attribute if it is empty
         if (document.querySelector(".body-top *")) {
             App.setBodyData("has-body-top", "");
-        } else {
+        }
+        else {
             App.setBodyData("does-not-have-body-top", "");
-        }         
-
+        }
         // Add a body-main data attribute if it is empty
         if (document.querySelector(".body-main *")) {
             App.setBodyData("has-body-main", "");
-        } else {
+        }
+        else {
             App.setBodyData("does-not-have-body-main", "");
-        }         
-
+        }
         // Add a body-bottom data attribute if it is empty
         if (document.querySelector(".body-bottom *")) {
             App.setBodyData("has-body-bottom", "");
-        } else {
+        }
+        else {
             App.setBodyData("does-not-have-body-bottom", "");
-        }         
-
+        }
         // Add a body-footer data attribute if it is empty
         if (document.querySelector(".body-footer *")) {
             App.setBodyData("has-body-footer", "");
-        } else {
+        }
+        else {
             App.setBodyData("does-not-have-body-footer", "");
-        }         
-
+        }
         // Add a body-footerOutside data attribute if it is empty
         if (document.querySelector(".body-footerOutside *")) {
             App.setBodyData("has-body-footerOutside", "");
-        } else {
+        }
+        else {
             App.setBodyData("does-not-have-body-footerOutside", "");
-        }       
-
+        }
         // Add a content-footerSpacer data attribute if it is empty
         if (document.querySelector(".content-footerSpacer *")) {
             App.setBodyData("has-content-footerSpacer", "");
-        } else {
+        }
+        else {
             App.setBodyData("does-not-have-content-footerSpacer", "");
-        }      
-
+        }
         // Add a content-preFooter data attribute if it is empty
         if (document.querySelector(".content-preFooter *")) {
             App.setBodyData("has-content-preFooter", "");
-        } else {
+        }
+        else {
             App.setBodyData("does-not-have-content-preFooter", "");
-        }     
-        
+        }
         // Add a content-footer data attribute if it is empty
         if (document.querySelector(".content-footer *")) {
             App.setBodyData("has-content-footer", "");
-        } else {
+        }
+        else {
             App.setBodyData("does-not-have-content-footer", "");
-        }     
-
+        }
         // Add a page-backgroundImage data attribute if it is empty
         if (document.querySelector(".page-backgroundImage *")) {
             App.setBodyData("has-page-backgroundImage", "");
-        } else {
+        }
+        else {
             App.setBodyData("does-not-have-page-backgroundImage", "");
-        }     
-
+        }
         // Add a page-backgroundImageOverlay data attribute if it is empty
         if (document.querySelector(".page-backgroundImageOverlay *")) {
             App.setBodyData("has-page-backgroundImageOverlay", "");
-        } else {
+        }
+        else {
             App.setBodyData("does-not-have-page-backgroundImageOverlay", "");
-        }     
-
+        }
         // Add a page-customCode data attribute if it is empty
         if (document.querySelector(".page-customCode *")) {
             App.setBodyData("has-page-customCode", "");
-        } else {
+        }
+        else {
             App.setBodyData("does-not-have-page-customCode", "");
-        }     
+        }
     }
 }

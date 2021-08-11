@@ -15,5 +15,5 @@ export declare class App extends ENGrid {
     private inIframe;
     private shouldScroll;
     private loadIFrame;
-    private setDataAttributes;
+    setDataAttributes(): void;
 }
