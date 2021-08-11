@@ -94,7 +94,8 @@ button.en__eventOccurrence__select {
 }
 
 .en__submit button,
-.en__submit .button {
+.en__submit .button,
+.pseduo__en__submit_button{
   color: var(--submit__button_color);
   background-color: var(--submit__button_background-color);
   border-color: var(--submit__button_border-color);

@@ -1,6 +1,6 @@
 // ONE COLUMN LAYOUTS
 $one_col_content-column_max-width: 1440px !default; // Overridable in client theme
-$one_col_content-column_min-width: 700px !default; // Overridable in client theme
+$one_col_content-column_min-width: 500px !default; // Overridable in client theme
 $one_col_body-column_max-width:    500px !default; // Overridable in client theme
 $one_col_body-column_min-width:    500px !default; // Overridable in client theme
 $one_col_body-column_offset-width: 100px !default; // Overridable in client theme
@@ -148,10 +148,14 @@ form > .en__component--row.en__component--advrow{
 // Fixes issue with the grid not going right up to the last pixel of the browser. Recording: https://d.pr/v/g4ZCDA
 // Set the min-height of a page to the viewport height; except when embedded because there is no "viewport" as far as the iframe is concerned
 // This also prevents an issue with Safari where the height of the iFrame'ed page can not be calculated correctly (https://d.pr/v/O2kcrb)
+body:not([data-engrid-embedded]) > #engrid > form{
+  height: 100vh;
+}
+
+// @TODO This might not be neccessary
 body:not([data-engrid-embedded]) form > .en__component--row.en__component--advrow{
   min-height: 100vh;
 }
-
 
 // Free and Flexible Templates follow this markup pattern
 #engrid > .en__component--row.en__component--advrow{
@@ -530,34 +534,27 @@ body:not(#en__pagebuilder){
 //  Outside of page builder, if a grid section contains no content, hide it. Except for footerSpacer.
 // ####################################################################
 
-body:not(#en__pagebuilder) .en__component--advrow{
-  .page-alert:empty,
-  .content-header:empty,
-  .body-headerOutside:empty,
-  .body-header:empty,
-  .body-title:empty,
-  .body-banner:empty,
-  .body-bannerOverlay:empty,
-  .body-top:empty,
-  .body-side:empty,
-  .body-main:empty,
-  .body-bottom:empty,
-  .body-footer:empty,
-  .body-footerOutside:empty,
-  .content-preFooter:empty,
-  .content-footer:empty,
-  .page-backgroundImage:empty,
-  .page-backgroundImageOverlay:empty,
-  .page-customCode:empty{
-    display: none;
-  }
-}
-
 // Testing out a new method for hiding ENGrid sections
-body:not(#en__pagebuilder):not([data-engrid-has-body-title]) .en__component--advrow{
-  .body-title{
+// Excludes content-footerSpacer
+body:not(#en__pagebuilder)[data-engrid-does-not-have-page-alert] .en__component--advrow .page-alert,
+body:not(#en__pagebuilder)[data-engrid-does-not-have-content-header] .en__component--advrow .content-header,
+body:not(#en__pagebuilder)[data-engrid-does-not-have-body-headerOutside] .en__component--advrow .body-headerOutside,
+body:not(#en__pagebuilder)[data-engrid-does-not-have-body-header] .en__component--advrow .body-header,
+body:not(#en__pagebuilder)[data-engrid-does-not-have-body-title ] .en__component--advrow .body-title ,
+body:not(#en__pagebuilder)[data-engrid-does-not-have-body-banner] .en__component--advrow .body-banner,
+body:not(#en__pagebuilder)[data-engrid-does-not-have-body-bannerOverlay] .en__component--advrow .body-bannerOverlay,
+body:not(#en__pagebuilder)[data-engrid-does-not-have-body-top] .en__component--advrow .body-top,
+body:not(#en__pagebuilder)[data-engrid-does-not-have-body-main] .en__component--advrow .body-main,
+body:not(#en__pagebuilder)[data-engrid-does-not-have-body-bottom] .en__component--advrow .body-bottom,
+body:not(#en__pagebuilder)[data-engrid-does-not-have-body-footer] .en__component--advrow .body-footer,
+body:not(#en__pagebuilder)[data-engrid-does-not-have-body-footerOutside] .en__component--advrow .body-footerOutside,
+body:not(#en__pagebuilder)[data-engrid-does-not-have-content-preFooter] .en__component--advrow .content-preFooter,
+body:not(#en__pagebuilder)[data-engrid-does-not-have-content-footer] .en__component--advrow .content-footer,
+body:not(#en__pagebuilder)[data-engrid-does-not-have-page-backgroundImage] .en__component--advrow .page-backgroundImage,
+body:not(#en__pagebuilder)[data-engrid-does-not-have-page-backgroundImageOverlay] .en__component--advrow .page-backgroundImageOverlay,
+body:not(#en__pagebuilder)[data-engrid-does-not-have-page-customCode] .en__component--advrow .page-customCode,
+body:not(#en__pagebuilder)[data-engrid-does-not-have-body-title] .en__component--advrow .body-title{  
     display: none;
-  }
 }
 
 // ####################################################################

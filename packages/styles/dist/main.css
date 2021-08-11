@@ -2832,8 +2832,6 @@ body {
   background-color: var(--engrid__page_background-color);
   min-width: 100vw;
   min-height: 100vh; }
-  body:not([data-engrid-embedded]) form {
-    min-height: 100vh; }
 
 [data-engrid-theme] {
   --button_font-family: var(--default_font-family);
@@ -2844,7 +2842,7 @@ body {
   --button_border-radius: 6px;
   --button_padding: 1ch 1.2ch;
   --button_text-transform: none;
-  --submit__button_padding-top: 1ch;
+  : 1ch;
   --submit__button_padding-bottom: 1ch;
   --submit__button_font-size: var(--button_font-size);
   --submit__button_text-transform: var(--button_text-transform); }
@@ -2903,12 +2901,13 @@ button.en__eventOccurrence__select {
   width: 100%; }
 
 .en__submit button,
-.en__submit .button {
+.en__submit .button,
+.pseduo__en__submit_button {
   color: var(--submit__button_color);
   background-color: var(--submit__button_background-color);
   border-color: var(--submit__button_border-color);
   margin-top: 2rem;
-  padding-top: var(--submit__button_padding-top);
+  padding-top: var();
   padding-bottom: var(--submit__button_padding-bottom);
   text-transform: var(--submit__button_text-transform);
   font-size: var(--submit__button_font-size);
@@ -2916,12 +2915,15 @@ button.en__eventOccurrence__select {
   max-width: var(--submit__button_max-width); }
   .en__submit button:focus, .en__submit button:hover,
   .en__submit .button:focus,
-  .en__submit .button:hover {
+  .en__submit .button:hover,
+  .pseduo__en__submit_button:focus,
+  .pseduo__en__submit_button:hover {
     color: var(--submit__button_color_hover);
     background-color: var(--submit__button_background-color_hover);
     border-color: var(--submit__button_border-color_hover); }
   .en__submit button:active,
-  .en__submit .button:active {
+  .en__submit .button:active,
+  .pseduo__en__submit_button:active {
     color: var(--submit__button_color_checked);
     background-color: var(--submit__button_background-color_checked);
     border-color: var(--submit__button_border-color_checked); }
@@ -3933,7 +3935,6 @@ button.en__ecarditems__prevclose {
 /* Field Level Inline Errors */
 /* Pick up the normal spacing on the error element to contunue form pacing continues as expected when in an error state */
 .en__component .en__field__error {
-  padding: 0.25rem 0.5rem 0 0;
   color: var(--error__color);
   font-size: calc(max(75%, 10px));
   order: 3; }
@@ -4570,23 +4571,6 @@ video:not([width]) {
       margin: 0; }
   #goMonthly #upsellYesButton a,
   #goMonthly #upsellNoButton button {
-    margin: 0 0 1rem 0;
-    color: var(--button_color);
-    background-color: var(--button_background-color);
-    padding-top: var(--button_padding-top);
-    padding-bottom: var(--button_padding-bottom);
-    font-size: var(--button_font-size);
-    text-transform: var(--button_text-transform);
-    border-color: var(--button_border-color);
-    border-radius: var(--button_border-radius);
-    padding-left: 3ch;
-    padding-right: 3ch;
-    -webkit-appearance: none;
-    -webkit-transition: background-color 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out;
-    transition: background-color 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out;
-    text-align: center;
-    cursor: pointer;
-    box-sizing: border-box;
     height: 80px;
     width: 100%;
     text-decoration: none;
@@ -4597,9 +4581,6 @@ video:not([width]) {
     #goMonthly #upsellYesButton a span,
     #goMonthly #upsellNoButton button span {
       font-weight: 700; }
-    #goMonthly #upsellYesButton a:hover,
-    #goMonthly #upsellNoButton button:hover {
-      opacity: 0.8; }
     #goMonthly #upsellYesButton a div,
     #goMonthly #upsellNoButton button div {
       line-height: 1.2; }
@@ -4617,16 +4598,6 @@ video:not([width]) {
       #goMonthly #upsellYesButton a .loader-wrapper .loader,
       #goMonthly #upsellNoButton button .loader-wrapper .loader {
         margin: auto; }
-  #goMonthly #upsellYesButton a {
-    margin-bottom: 20px;
-    color: var(--submit__button_color);
-    background-color: var(--submit__button_background-color);
-    padding-top: var(--submit__button_padding-top);
-    padding-bottom: var(--submit__button_padding-bottom);
-    font-size: var(--submit__button_font-size);
-    text-transform: var(--submit__button_text-transform);
-    border-color: var(--submit__button_border-color);
-    border-radius: var(--submit__button_border-radius); }
   #goMonthly #goMonthlyClose {
     position: absolute;
     right: 10px;
@@ -4706,14 +4677,14 @@ div[id^=nb-field-].nb-success input {
 
 .en__pg .en__pg__body {
   display: grid;
-  grid-template-columns: min-content min-content 1fr;
+  grid-template-columns: min-content auto auto;
   grid-template-rows: min-content;
   grid-auto-columns: min-content;
   grid-auto-rows: min-content;
   gap: 0px 0px;
   grid-auto-flow: row;
   align-items: center;
-  grid-template-areas: "en__pg__select en__pg__display en__pg__detail"; }
+  grid-template-areas: "en__pg__select en__pg__detail en__pg__display"; }
 
 .en__pg:first-child .en__pg__body {
   padding: calc(var(--fields_spacing-block) * 2) calc(var(--fields_spacing-inline) * 2) var(--fields_spacing-block); }
@@ -4723,37 +4694,32 @@ div[id^=nb-field-].nb-success input {
 
 .en__pg__select {
   align-self: center;
-  grid-area: en__pg__select; }
-
-.en__pg__display {
-  grid-area: en__pg__display; }
-
-.en__pg__detail {
-  grid-area: en__pg__detail; }
-
-.en__pg__images img {
-  margin: 0;
-  width: auto;
-  max-width: 25%;
-  min-width: 75px; }
-
-.en__pg__select {
+  grid-area: en__pg__select;
   padding: 0 calc(var(--fields_spacing-inline) * 2) 0 0; }
 
 .en__pg__display {
-  padding: 0 calc(var(--fields_spacing-inline) * 2) 0 0; }
+  grid-area: en__pg__display;
+  padding: 0 0 0 calc(var(--fields_spacing-inline)*2); }
 
 .en__pg__detail {
+  grid-area: en__pg__detail;
   padding: 0; }
 
 .en__pg__name {
   margin-top: 0; }
+
+h2.en__pg__name {
+  text-align: left; }
 
 .en__pg__optionType {
   display: flex; }
 
 .en__pg__optionType select {
   width: auto; }
+
+.en__pg__image {
+  max-width: 125px;
+  min-width: 100%; }
 
 .en__pg--selected .en__pg__image--selected {
   outline-color: transparent; }
@@ -5050,6 +5016,9 @@ form > .en__component--row.en__component--advrow {
       form > .en__component--row.en__component--advrow > * > * > * {
         grid-column: cc; }
 
+body:not([data-engrid-embedded]) form > .en__component--row.en__component--advrow {
+  min-height: 100vh; }
+
 #engrid > .en__component--row.en__component--advrow {
   display: grid;
   width: 100%;
@@ -5057,9 +5026,6 @@ form > .en__component--row.en__component--advrow {
 
 .en__component--row.en__component--advrow form > .en__component--row.en__component--advrow {
   display: flex; }
-
-body:not([data-engrid-embedded]) form {
-  min-height: 100vh; }
 
 /*
 * ##########################################################
@@ -6146,7 +6112,7 @@ body:not(#en__pagebuilder):not([data-engrid-has-body-title]) .en__component--adv
   top: -12.5px;
   font-weight: 700; }
 
-[data-engrid-theme="flex2"]:not([data-engrid-embedded]) form {
+[data-engrid-theme="flex2"]:not([data-engrid-embedded]) form > .en__component--row.en__component--advrow {
   min-height: auto; }
 
 [data-engrid-theme="flex2"]:not([data-engrid-embedded]) #engrid {

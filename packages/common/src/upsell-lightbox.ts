@@ -61,7 +61,7 @@ export class UpsellLightbox {
                 </p>
                 <!-- YES BUTTON -->
                 <div id="upsellYesButton">
-                  <a href="#">
+                  <a class="pseduo__en__submit_button" href="#">
                     <div>
                     <span class='loader-wrapper'><span class='loader loader-quart'></span></span>
                     <span class='label'>${yes}</span>

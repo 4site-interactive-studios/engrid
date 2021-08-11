@@ -13,7 +13,7 @@ $centercenter2col_body-column_offset-width-remaining: $centercenter2col_content-
 
 [data-engrid-layout="centercenter2col"] {
 
-  @media screen and (min-width: $centercenter2col_body-column_min-width) {
+  @media screen and (min-width: $centercenter2col_content-column_min-width) {
     /* prettier-ignore */
     form > .en__component--advrow,
     #engrid > .en__component--advrow{
@@ -86,6 +86,7 @@ $centercenter2col_body-column_offset-width-remaining: $centercenter2col_content-
 
       .body-top{
         grid-row: body-top-start / body-main-end; 
+        // grid-row: body-banner-end / body-bottom-end; // @TODO, CHECK IF THIS IS A BETTER DEFAULT, USED ON AIUSA
       }
 
       .body-main{
@@ -102,7 +103,7 @@ $centercenter2col_body-column_offset-width-remaining: $centercenter2col_content-
     }
   }
 
-  @media screen and (max-width: $centercenter2col_body-column_min-width) {
+  @media screen and (max-width: $centercenter2col_content-column_min-width) {
     @include engrid_replace-banner-with-background;
     @include engrid_mobile-banner;
   }
