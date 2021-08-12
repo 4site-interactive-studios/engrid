@@ -2045,7 +2045,7 @@ a {
   --checkbox_font-weight: 700;
   --checkbox_width: 1.4rem;
   --checkbox_height: 1.4rem;
-  --checkbox_content_checked:"✓";
+  --checkbox_content_checked:"\2713";
   --select_font-family: var(--input_font-family);
   --select_font-size: var(--input_font-size);
   --select_font-weight: initial;
