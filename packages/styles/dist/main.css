@@ -3887,6 +3887,9 @@ button.en__ecarditems__prevclose {
     right: 17px;
     color: #9e9e9e; } }
 
+body:not[data-engrid-show-ecard-options] .show-if-ecard {
+  display: none; }
+
 /************************************
  * Adds an animated ellipsis at the end of content
  * To use, add the class "ellipsis-loader" tp the content
@@ -5948,7 +5951,8 @@ body:not(#en__pagebuilder)[data-engrid-does-not-have-page-customCode] .en__compo
   [data-engrid-theme="flex2"][data-highlight-required-fields] .en__mandatory > label:after {
     content: "*";
     color: var(--error__color);
-    margin-left: var(--fields_spacing-inline); }
+    margin-left: calc(1ch * 0.25);
+    margin-right: auto; }
 
 [data-engrid-theme="flex2"] .en__component--row > .en__component--column > .en__component--copyblock:first-child > *:first-child {
   margin-top: 0;

@@ -50,7 +50,8 @@
             &:after {
                 content: "*";
                 color: var(--error__color);
-                margin-left: var(--fields_spacing-inline);
+                margin-left: calc(1ch * 0.25);
+                margin-right: auto;
             }
         }
     }
