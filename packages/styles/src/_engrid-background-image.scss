@@ -118,7 +118,9 @@ body {
   &[data-replace-banner-with-background="if-background-image"][data-engrid-page-background="image"],
   &[data-replace-banner-with-background="if-background-video"][data-engrid-page-background="video"],
   &[data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="image"],
-  &[data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="video"]{
+  &[data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="video"],
+  &[data-replace-banner-with-background="if-banner-empty-or-background-video"][data-engrid-body-banner="empty"],
+  &[data-replace-banner-with-background="if-banner-empty-or-background-video"][data-engrid-page-background="video"]{
     .body-banner,
     .body-bannerOverlay {
       display: none;
