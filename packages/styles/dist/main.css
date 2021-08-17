@@ -1926,41 +1926,37 @@ body[data-engrid-debug]:before {
   max-height: 3.4375rem; }
 
 [data-engrid-theme] {
-  --root_font-size: 16px;
-  font-size: var(--root_font-size); }
-
-[data-engrid-theme] {
   --native-fonts__sans-serif: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
   --default_font-family: var(--native-fonts__sans-serif);
-  --default_font-size: var(--root_font-size);
+  --default_font-size: 16px;
   --default_font-weight: initial;
   --default_line-height: initial;
   --h1_font-family: var(--default_font-family);
-  --h1_font-size: calc(var(--root_font-size) * var(--scale-up_160pct));
+  --h1_font-size: calc(var(--default_font-size) * var(--scale-up_160pct));
   --h1_font-weight: initial;
   --h1_line-height: initial;
   --h2_font-family: var(--h1_font-family);
-  --h2_font-size: calc(var(--root_font-size) * var(--scale-up_80pct));
+  --h2_font-size: calc(var(--default_font-size) * var(--scale-up_80pct));
   --h2_font-weight: initial;
   --h2_line-height: initial;
   --h3_font-family: var(--h1_font-family);
-  --h3_font-size: calc(var(--root_font-size) * var(--scale-up_40pct));
+  --h3_font-size: calc(var(--default_font-size) * var(--scale-up_40pct));
   --h3_font-weight: initial;
   --h3_line-height: initial;
   --h4_font-family: var(--h1_font-family);
-  --h4_font-size: calc(var(--root_font-size) * var(--scale-up_40pct));
+  --h4_font-size: calc(var(--default_font-size) * var(--scale-up_40pct));
   --h4_font-weight: initial;
   --h4_line-height: initial;
   --h5_font-family: var(--h1_font-family);
-  --h5_font-size: calc(var(--root_font-size) * var(--scale-up_40pct));
+  --h5_font-size: calc(var(--default_font-size) * var(--scale-up_40pct));
   --h5_font-weight: initial;
   --h5_line-height: initial;
   --h6_font-family: var(--h1_font-family);
-  --h6_font-size: calc(var(--root_font-size) * var(--scale-up_40pct));
+  --h6_font-size: calc(var(--default_font-size) * var(--scale-up_40pct));
   --h6_font-weight: initial;
   --h6_line-height: initial;
   --p_font-family: var(--default_font-family);
-  --p_font-size: var(--root_font-size);
+  --p_font-size: var(--default_font-size);
   --p_font-weight: initial;
   --p_line-height: initial;
   --a_font-family: var(--default_font-family);
@@ -2030,13 +2026,13 @@ a {
   --fields_spacing-inline: 0.5rem;
   --fields_spacing-block: 0.5rem;
   --label_font-family: var(--default_font-family);
-  --label_font-size: var(--root_font-size);
+  --label_font-size: var(--default_font-size);
   --label_font-weight: initial;
   --label_line-height: initial;
   --label_text-transform: initial;
   --label_letter-spacing: initial;
   --input_font-family: var(--default_font-family);
-  --input_font-size: var(--root_font-size);
+  --input_font-size: var(--default_font-size);
   --input_font-weight: initial;
   --input_line-height: initial;
   --input_border-width: 1px;
@@ -2847,7 +2843,7 @@ body {
 
 [data-engrid-theme] {
   --button_font-family: var(--default_font-family);
-  --button_font-size: var(--root_font-size);
+  --button_font-size: var(--default_font-size);
   --button_font-weight: initial;
   --button_line-height: normal;
   --button_border-width: 1px;
@@ -3438,7 +3434,8 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   --page-backgroundImage-url: var(--engrid__page-backgroundImage_url);
   --engrid__body-side_background-color: var(--engrid__body-main_background-color);
   --engrid__body-side_margin: var(--engrid__body-main_margin);
-  --engrid__body-side_padding: var(--engrid__body-main_padding); }
+  --engrid__body-side_padding: var(--engrid__body-main_padding);
+  --root_font-size: 16px; }
 
 [data-engrid-theme] {
   --recurring-frequency__button_font-family: var(--button_font-family);
