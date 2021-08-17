@@ -28,9 +28,12 @@
 
     // TEXT
     --default_color: initial;
-    --h1_color: initial;
-    --h2_color: initial;
-    --h3_color: initial;
+    --h1_color: var(--default_color);
+    --h2_color: var(--h1_color);
+    --h3_color: var(--h1_color);
+    --h4_color: var(--h1_color);
+    --h5_color: var(--h1_color);
+    --h6_color: var(--h1_color);
     --a_color: initial;
     --a_color_hover: var(--a_color);
     --highlight__background-color: var(--color_primary);
