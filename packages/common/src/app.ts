@@ -253,7 +253,7 @@ export class App extends ENGrid {
     // Add a body banner data attribute if the banner contains no image
     // @TODO Should this account for video?
     // @TODO Should we merge this with the script that checks the background image?
-    if (document.querySelector(".body-banner img")) {
+    if (!document.querySelector(".body-banner img")) {
         App.setBodyData("body-banner", "empty");
     }
 
