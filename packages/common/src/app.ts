@@ -259,92 +259,92 @@ export class App extends ENGrid {
 
     // Add a page-alert data attribute if it is empty
     if (!document.querySelector(".page-alert *")) {
-        App.setBodyData("does-not-have-page-alert", "");
+        App.setBodyData("no-page-alert", "");
     }       
 
     // Add a content-header data attribute if it is empty
     if (!document.querySelector(".content-header *")) {
-        App.setBodyData("does-not-have-content-header", "");
+        App.setBodyData("no-content-header", "");
     }         
 
     // Add a body-headerOutside data attribute if it is empty
     if (!document.querySelector(".body-headerOutside *")) {
-        App.setBodyData("does-not-have-body-headerOutside", "");
+        App.setBodyData("no-body-headerOutside", "");
     }         
 
     // Add a body-header data attribute if it is empty
     if (!document.querySelector(".body-header *")) {
-        App.setBodyData("does-not-have-body-header", "");
+        App.setBodyData("no-body-header", "");
     }         
 
     // Add a body-title data attribute if it is empty
     if (!document.querySelector(".body-title *")) {
-        App.setBodyData("does-not-have-body-title", "");
+        App.setBodyData("no-body-title", "");
     }         
 
     // Add a body-banner data attribute if it is empty
     if (!document.querySelector(".body-banner *")) {
-        App.setBodyData("does-not-have-body-banner", "");
+        App.setBodyData("no-body-banner", "");
     }     
 
     // Add a body-bannerOverlay data attribute if it is empty
     if (!document.querySelector(".body-bannerOverlay *")) {
-        App.setBodyData("does-not-have-body-bannerOverlay", "");
+        App.setBodyData("no-body-bannerOverlay", "");
     }         
 
     // Add a body-top data attribute if it is empty
     if (!document.querySelector(".body-top *")) {
-        App.setBodyData("does-not-have-body-top", "");
+        App.setBodyData("no-body-top", "");
     }         
 
     // Add a body-main data attribute if it is empty
     if (!document.querySelector(".body-main *")) {
-        App.setBodyData("does-not-have-body-main", "");
+        App.setBodyData("no-body-main", "");
     }         
 
     // Add a body-bottom data attribute if it is empty
     if (!document.querySelector(".body-bottom *")) {
-        App.setBodyData("does-not-have-body-bottom", "");
+        App.setBodyData("no-body-bottom", "");
     }         
 
     // Add a body-footer data attribute if it is empty
     if (!document.querySelector(".body-footer *")) {
-        App.setBodyData("does-not-have-body-footer", "");
+        App.setBodyData("no-body-footer", "");
     }         
 
     // Add a body-footerOutside data attribute if it is empty
     if (!document.querySelector(".body-footerOutside *")) {
-        App.setBodyData("does-not-have-body-footerOutside", "");
+        App.setBodyData("no-body-footerOutside", "");
     }       
 
     // Add a content-footerSpacer data attribute if it is empty
     if (!document.querySelector(".content-footerSpacer *")) {
-        App.setBodyData("does-not-have-content-footerSpacer", "");
+        App.setBodyData("no-content-footerSpacer", "");
     }      
 
     // Add a content-preFooter data attribute if it is empty
     if (!document.querySelector(".content-preFooter *")) {
-        App.setBodyData("does-not-have-content-preFooter", "");
+        App.setBodyData("no-content-preFooter", "");
     }     
     
     // Add a content-footer data attribute if it is empty
     if (!document.querySelector(".content-footer *")) {
-        App.setBodyData("does-not-have-content-footer", "");
+        App.setBodyData("no-content-footer", "");
     }     
 
     // Add a page-backgroundImage data attribute if it is empty
     if (!document.querySelector(".page-backgroundImage *")) {
-        App.setBodyData("does-not-have-page-backgroundImage", "");
+        App.setBodyData("no-page-backgroundImage", "");
     }     
 
     // Add a page-backgroundImageOverlay data attribute if it is empty
     if (!document.querySelector(".page-backgroundImageOverlay *")) {
-        App.setBodyData("does-not-have-page-backgroundImageOverlay", "");
+        App.setBodyData("no-page-backgroundImageOverlay", "");
     }     
 
     // Add a page-customCode data attribute if it is empty
     if (!document.querySelector(".page-customCode *")) {
-        App.setBodyData("does-not-have-page-customCode", "");
+        App.setBodyData("no-page-customCode", "");
     }     
   }
 }
