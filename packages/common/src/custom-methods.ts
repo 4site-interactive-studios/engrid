@@ -1,7 +1,6 @@
 export const body = document.body;
 export const enGrid = document.getElementById("engrid") as HTMLElement;
 export const enInput = (() => {
-  /* @TODO */
   /************************************
    * Globablly Scoped Constants and Variables
    ***********************************/
