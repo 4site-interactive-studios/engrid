@@ -344,7 +344,6 @@ input[type=radio]{
 
     &:before{
       content: var(--radio_content);
-      display: flex;
       justify-content: center;
       align-items: center;
       margin-right: MAX(var(--fields_spacing-inline), 1ch, 0.5rem); // Uppercase "MAX" to bybass CSS-Sass naming conflict https://github.com/fancyapps/fancybox/issues/2182#issuecomment-763374376
@@ -392,8 +391,7 @@ input[type=checkbox]{
     display: flex;
 
     &:before{
-      content: var(--checkbox_content_checked);
-      display: flex;
+      content: " ";
       justify-content: center;
       align-items: center;
       margin-right: MAX(var(--fields_spacing-inline), 1ch, 0.5rem); // Uppercase "MAX" to bybass CSS-Sass naming conflict https://github.com/fancyapps/fancybox/issues/2182#issuecomment-763374376
@@ -423,6 +421,7 @@ input[type=checkbox]{
   }  
 
   &:checked + label:before{
+    content: var(--checkbox_content_checked);
     color: var(--checkbox_color_checked);
     background-color: var(--checkbox_background-color_checked);
     border-color: var(--checkbox_border-color_checked);
@@ -444,8 +443,7 @@ input[type=checkbox]{
 
   &:before{
     visibility: visible;  // Used to keep psuedo element visible while hiding the parent
-    content: var(--checkbox_content_checked);
-    display: flex;
+    content: " ";
     justify-content: center;
     align-items: center;
     // margin-right: var(--fields_spacing-inline);
@@ -474,6 +472,7 @@ input[type=checkbox]{
   }  
 
   &:checked:before{
+    content: var(--checkbox_content_checked);
     color: var(--checkbox_color_checked);
     background-color: var(--checkbox_background-color_checked);
     border-color: var(--checkbox_border-color_checked);
@@ -497,7 +496,6 @@ input[type=checkbox]{
   &:before{
     visibility: visible;  // Used to keep psuedo element visible while hiding the parent
     content: var(--radio_content);
-    display: flex;
     justify-content: center;
     align-items: center;
     // margin-right: var(--fields_spacing-inline);
@@ -771,7 +769,7 @@ textarea,
   // Needs an SVG safe color passed in https://stackoverflow.com/questions/25477819/scss-variable-in-background-image-with-svg-image-data-uri
   // content: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='21' height='16' viewBox='0 0 21 16'><path fill="#color-white" fill-rule='nonzero' d='M18.76.16L6.68 12.113l-4.44-4.392a.555.555 0 0 0-.779 0L.161 9.006a.541.541 0 0 0 0 .771L6.29 15.84a.555.555 0 0 0 .78 0l13.77-13.624a.541.541 0 0 0 0-.771L19.539.16a.555.555 0 0 0-.779 0z'/></svg>");
   // fill: var(--color_primary);
-  content: "✓"; // REF: https://www.toptal.com/designers/htmlarrows/symbols/check-mark/
+  content: var(--checkbox_content_checked); // REF: https://www.toptal.com/designers/htmlarrows/symbols/check-mark/
   position: absolute;
   left: 4px;
   top: 5px;
