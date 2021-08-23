@@ -359,7 +359,8 @@
 }
 
 // Donation Amount
-.radio-to-buttons_donationAmt .en__field--donationAmt.en__field--radio .en__field__item input[type=radio]:checked+label {
+.radio-to-buttons_donationAmt .en__field--donationAmt.en__field--radio .en__field__item input[type=radio]:checked+label,
+.radio-to-buttons_donationAmt .en__field--donationAmt.en__field--radio.en__field--withOther--active .en__field__item .en__field__input--other {
     color: var(--donation-amount__button_color_checked);
     background-color: var(--donation-amount__button_background-color_checked);
     border-color: var(--donation-amount__button_border-color_checked);
@@ -450,7 +451,7 @@
 // If the gift has a recurring frequency, prepare to append a label on the giving amounts
 /* prettier-ignore */
 [data-engrid-transaction-recurring-frequency] .radio-to-buttons_donationAmt .en__field--donationAmt div:not(.en__field__item--other) .en__field__label--item::after{
-    margin-left: var(--fields_spacing-inline);
+    margin-left: calc(var(--fields_spacing-inline) / 2);
 }
 
 // Append "/mo" to giving amount labels

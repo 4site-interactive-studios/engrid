@@ -68,3 +68,10 @@ div[id^=nb-field-].nb-success input{
     margin-top: calc(var(--fields_spacing-inline) * 0.5);
     margin-bottom: var(--fields_spacing-block);
 }
+
+// NeverBounce wraps the email field in its own div which causes field styles to no longer be applied. This restores that styling.
+.en__component--formblock .en__field .en__field__element > [id^="nb"] > input,
+.en__component--svblock .en__field .en__field__element > [id^="nb"] > input{
+    margin-top: calc(var(--fields_spacing-inline) * 0.5);
+    margin-bottom: var(--fields_spacing-block);
+}

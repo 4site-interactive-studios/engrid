@@ -44,8 +44,9 @@
   // --radio_border-color: var(--input_border-color);
   --radio_border-radius: 50%;
   --radio_box-shadow: none;
-  --radio_width: 1.4rem;
-  --radio_height: 1.4rem;
+  --radio_width: 20px; // REM's can result in fractional pixel values. By defining integers values you avoid oblong radio buttons ( https://d.pr/v/2ApFvk ).
+  --radio_height: 20px; // REM's can result in fractional pixel values. By defining integers values  you avoid oblong radio buttons ( https://d.pr/v/2ApFvk ).
+  --radio_top: 0px;
 
   // TYPOGRAPHY RADIO INPUT:FOCUS
   // TYPOGRAPHY RADIO INPUT:HOVER
@@ -67,8 +68,11 @@
   // --checkbox_border-color: var(--radio_border-color);
   --checkbox_border-radius: var(--input_border-radius);
   --checkbox_font-weight: 700;
-  --checkbox_width: 1.4rem;
-  --checkbox_height: 1.4rem;
+  --checkbox_width: var(--radio_width);
+  --checkbox_height: var(--radio_height);
+  --checkbox_top: 0px;
+  --checkbox_padding-top: 0px;
+  --checkbox_padding-left: 0px;
 
   // TYPOGRAPHY CHECKBOX INPUT:FOCUS
   // TYPOGRAPHY CHECKBOX INPUT:HOVER
@@ -341,6 +345,7 @@ input[type=radio]{
     cursor: pointer;
     align-items: center;
     display: flex;
+    padding-top: MAX(0px, calc(var(--radio_top) * -1)); // Padding offset to account for negative height on the radio
 
     &:before{
       content: var(--radio_content);
@@ -356,7 +361,9 @@ input[type=radio]{
       height: var(--radio_height);
       width: var(--radio_width);
       box-shadow: var(--radio_box-shadow);
-      display: inline-flex;
+      display: flex;
+      position: relative;
+      top: var(--radio_top);
     }
   }
 
@@ -389,6 +396,7 @@ input[type=checkbox]{
     content: "";
     align-items: center;
     display: flex;
+    padding-top: MAX(0px, calc(var(--checkbox_top) * -1)); // Padding offset to account for negative height on the checkbox
 
     &:before{
       content: " ";
@@ -403,9 +411,13 @@ input[type=checkbox]{
       border-radius: var(--checkbox_border-radius);
       height: var(--checkbox_height);
       width: var(--checkbox_width);
-      display: inline-flex;
+      display: flex;
       font-weight: var(--checkbox_font-weight);
       flex: 1 0 auto;
+      position: relative;
+      top: var(--checkbox_top);
+      padding-top: var(--checkbox_padding-top);
+      padding-left: var(--checkbox_padding-left);
     }
   }
 
@@ -437,9 +449,10 @@ input[type=checkbox]{
 
 .en__twitterTarget__select{
   cursor: pointer;
+  content: "";
   visibility: hidden; // Used to hide parent while keeping its pseduo element visible
   max-width: min-content;
-  content: "";
+  padding-top: MAX(0px, calc(var(--checkbox_top) * -1)); // Padding offset to account for negative height on the checkbox
 
   &:before{
     visibility: visible;  // Used to keep psuedo element visible while hiding the parent
@@ -455,9 +468,13 @@ input[type=checkbox]{
     border-radius: var(--checkbox_border-radius);
     height: var(--checkbox_height);
     width: var(--checkbox_width);
-    display: inline-flex;
+    display: flex;
     font-weight: var(--checkbox_font-weight);
     font-size: calc(0.05552rem * 18);
+    position: relative;
+    top: var(--checkbox_top);
+    padding-top: var(--checkbox_padding-top);
+    padding-left: var(--checkbox_padding-left);
   }
 
   &:focus:before,
@@ -509,6 +526,8 @@ input[type=checkbox]{
     width: var(--radio_width);
     box-shadow: var(--radio_box-shadow);
     display: flex; // Changed from inline-flex to flex
+    // position: relative;
+    // top: var(--radio_top);
   }
 
   &:focus:before,
