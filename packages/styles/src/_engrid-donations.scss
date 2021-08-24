@@ -12,6 +12,7 @@
     --recurring-frequency__button_padding: var(--button_padding);
     --recurring-frequency__button_text-transform: var(--button_text-transform);
     --recurring-frequency__button_count: 4;
+    --recurring-frequency__flex-grow: initial;
 
     // TYPOGRAPHY GIVING FREQUENCY BUTTON:HOVER  
     // --recurring-frequency__button_color_hover: var(--button_color_hover);
@@ -36,6 +37,7 @@
     --donation-amount__button_padding: var(--button_padding);
     --donation-amount__button_text-transform: var(--button_text-transform);
     --donation-amount__button_count: 4;
+    --donation-amount__flex-grow: initial;
 
     // TYPOGRAPHY GIVING AMOUNT BUTTON:HOVER  
     // --donation-amount__button_color_hover: var(--button_color_hover);
@@ -64,6 +66,7 @@
     --give-by-select__button_padding: var(--button_padding);
     --give-by-select__button_text-transform: var(--button_text-transform);
     --give-by-select__button_count: 4;
+    --give-by-select__flex-grow: initial;
 
     // TYPOGRAPHY GIVE BY SELECT BUTTON:HOVER  
     // --give-by-select__button_color_hover: var(--button_color_hover);
@@ -226,6 +229,7 @@
 
 .en__field--give-by-select > .en__field__element .en__field__item{
     flex-basis: calc(100% / var(--give-by-select__button_count));
+    flex-grow: var(--give-by-select__flex-grow);
 }
 
 .give-by-select_count_1{--give-by-select__button_count: 1;}
@@ -260,6 +264,7 @@
 
 .radio-to-buttons_donationAmt > .en__field--donationAmt > .en__field__element .en__field__item{
     flex-basis: calc(100% / var(--donation-amount__button_count));
+    flex-grow: var(--donation-amount__flex-grow);
 }
 
 .donation-amount_count_1{--donation-amount__button_count: 1;}
@@ -294,6 +299,7 @@
 
 .radio-to-buttons_recurrfreq> .en__field--recurrfreq > .en__field__element .en__field__item{
     flex-basis: calc(100% / var(--recurring-frequency__button_count));
+    flex-grow: var(--recurring-frequency__flex-grow);
 }
 
 .recurring-frequency_count_1{--recurring-frequency__button_count: 1;}
