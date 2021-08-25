@@ -129,8 +129,8 @@
 
 .radio-to-buttons > .en__field > .en__field__element > .en__field__item:not(.en__field__item--other),
 .en__field--give-by-select > .en__field__element .en__field__item:not(.en__field__item--other),
-.radio-to-buttons_donationAmt > .en__field > .en__field__element .en__field__item:not(.en__field__item--other),
-.radio-to-buttons_recurrfreq > .en__field > .en__field__element .en__field__item:not(.en__field__item--other){
+.radio-to-buttons_donationAmt .en__field--donationAmt.en__field--radio > .en__field__element .en__field__item:not(.en__field__item--other),
+.radio-to-buttons_recurrfreq .en__field--recurrfreq.en__field--radio > .en__field__element .en__field__item:not(.en__field__item--other){
     // padding-left: 0;
     // padding-right: 0;
     justify-content: center;
@@ -139,8 +139,8 @@
 
 .radio-to-buttons > .en__field > .en__field__element > .en__field__item--other,
 .en__field--give-by-select > .en__field__element .en__field__item--other,
-.radio-to-buttons_donationAmt > .en__field > .en__field__element .en__field__item--other,
-.radio-to-buttons_recurrfreq > .en__field > .en__field__element .en__field__item--other{
+.radio-to-buttons_donationAmt .en__field--donationAmt.en__field--radio > .en__field__element .en__field__item--other,
+.radio-to-buttons_recurrfreq .en__field--recurrfreq.en__field--radio > .en__field__element .en__field__item--other{
     // padding-left: .5rem;
     // padding-right: .5rem;
     justify-content: center;
@@ -155,11 +155,11 @@
     border-radius: var(--give-by-select__button_border-radius);
 }
 
-.radio-to-buttons_donationAmt > .en__field > .en__field__element .en__field__input--other{
+.radio-to-buttons_donationAmt .en__field--donationAmt.en__field--radio > .en__field__element .en__field__input--other{
     border-radius: var(--donation-amount__button_border-radius);
 }
 
-.radio-to-buttons_recurrfreq > .en__field > .en__field__element .en__field__input--other{
+.radio-to-buttons_recurrfreq .en__field--recurrfreq.en__field--radio > .en__field__element .en__field__input--other{
     border-radius: var(--recurring-frequency__button_border-radius);
 }
 
@@ -262,7 +262,7 @@
     flex-flow: wrap;
 }
 
-.radio-to-buttons_donationAmt > .en__field--donationAmt > .en__field__element .en__field__item{
+.radio-to-buttons_donationAmt .en__field--donationAmt.en__field--radio > .en__field__element .en__field__item{
     flex-basis: calc(100% / var(--donation-amount__button_count));
     flex-grow: var(--donation-amount__flex-grow);
 }
@@ -297,7 +297,7 @@
     flex-flow: wrap;
 }
 
-.radio-to-buttons_recurrfreq> .en__field--recurrfreq > .en__field__element .en__field__item{
+.radio-to-buttons_recurrfreq .en__field--recurrfreq.en__field--radio > .en__field__element .en__field__item{
     flex-basis: calc(100% / var(--recurring-frequency__button_count));
     flex-grow: var(--recurring-frequency__flex-grow);
 }
