@@ -85,7 +85,7 @@ $centercenter2col_body-column_offset-width-remaining: $centercenter2col_content-
       }
 
       .body-top{
-        grid-row: body-top-start / body-main-end; 
+        grid-row: body-top-start / body-footer-start; 
         // grid-row: body-banner-end / body-bottom-end; // @TODO, CHECK IF THIS IS A BETTER DEFAULT, USED ON AIUSA
       }
 

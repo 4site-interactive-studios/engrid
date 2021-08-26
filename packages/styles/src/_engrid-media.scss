@@ -13,3 +13,8 @@ img:not([width]),
 video:not([width]){
   width: 100%;
 }
+
+// Prevents text (file name) from being visible on an image while the it's downloading on a slow connection
+img{
+  color: transparent;
+}

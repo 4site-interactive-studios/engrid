@@ -3525,16 +3525,20 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   flex-shrink: 1; }
 
 .radio-to-buttons > .en__field > .en__field__element > .en__field__input--other {
-  border-radius: var(--button_border-radius); }
+  border-radius: var(--button_border-radius);
+  border-width: var(--button_border-width); }
 
 .en__field--give-by-select > .en__field__element .en__field__input--other {
-  border-radius: var(--give-by-select__button_border-radius); }
+  border-radius: var(--give-by-select__button_border-radius);
+  border-width: var(--give-by-select__button_border-width); }
 
 .radio-to-buttons_donationAmt .en__field--donationAmt.en__field--radio > .en__field__element .en__field__input--other {
-  border-radius: var(--donation-amount__button_border-radius); }
+  border-radius: var(--donation-amount__button_border-radius);
+  border-width: var(--donation-amount__button_border-width); }
 
 .radio-to-buttons_recurrfreq .en__field--recurrfreq.en__field--radio > .en__field__element .en__field__input--other {
-  border-radius: var(--recurring-frequency__button_border-radius); }
+  border-radius: var(--recurring-frequency__button_border-radius);
+  border-width: var(--recurring-frequency__button_border-width); }
 
 /*
 ########################################################################
@@ -4423,6 +4427,9 @@ img:not([width]),
 video:not([width]) {
   width: 100%; }
 
+img {
+  color: transparent; }
+
 #enModal {
   position: fixed;
   top: 0;
@@ -4683,7 +4690,8 @@ h2.en__pg__name {
   text-align: left; }
 
 .en__pg__optionType {
-  display: flex; }
+  display: flex;
+  flex-direction: column; }
 
 .en__pg__optionType select {
   width: auto; }
@@ -5399,7 +5407,7 @@ body:not(#en__pagebuilder)[data-engrid-does-not-have-page-customCode] .en__compo
     [data-engrid-layout="centercenter2col"] form > .en__component--advrow .body-bottom {
       grid-column: rbc; }
     [data-engrid-layout="centercenter2col"] form > .en__component--advrow .body-top {
-      grid-row: body-top-start / body-main-end; }
+      grid-row: body-top-start / body-footer-start; }
     [data-engrid-layout="centercenter2col"] form > .en__component--advrow .body-main {
       grid-row: body-header-end / body-main-end; }
     [data-engrid-layout="centercenter2col"] #engrid > .en__component--advrow .en__component--column--2 .en__component--formblock,
