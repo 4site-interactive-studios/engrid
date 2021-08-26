@@ -2876,6 +2876,7 @@ body {
 /* Buttons */
 button,
 .button,
+.pseduo__en__submit_button,
 button.en__ticketRecurring__select,
 button.en__ticketSummary__checkout,
 button.en__eventOccurrence__select {
@@ -2902,6 +2903,8 @@ button.en__eventOccurrence__select {
   button:focus, button:hover,
   .button:focus,
   .button:hover,
+  .pseduo__en__submit_button:focus,
+  .pseduo__en__submit_button:hover,
   button.en__ticketRecurring__select:focus,
   button.en__ticketRecurring__select:hover,
   button.en__ticketSummary__checkout:focus,
@@ -2913,6 +2916,7 @@ button.en__eventOccurrence__select {
     border-color: var(--button_border-color_hover); }
   button:active,
   .button:active,
+  .pseduo__en__submit_button:active,
   button.en__ticketRecurring__select:active,
   button.en__ticketSummary__checkout:active,
   button.en__eventOccurrence__select:active {
@@ -4430,9 +4434,8 @@ video:not([width]) {
 img {
   color: transparent; }
 
-img[data-src] {
-  font-size: 0;
-  line-height: 0; }
+body:not(#en__pagebuilder) img:not([src]):not([srcset]) {
+  visibility: hidden; }
 
 #enModal {
   position: fixed;
