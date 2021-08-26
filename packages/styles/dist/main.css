@@ -2044,19 +2044,28 @@ a {
   --radio_border-width: var(--input_border-width);
   --radio_border-radius: 50%;
   --radio_box-shadow: none;
+  --radio_font-family: var(--p_font-family);
+  --radio_font-size: var(--p_font-size);
+  --radio_font-weight: var(--p_font-weight);
+  --radio_line-height: var(--p_line-height);
   --radio_width: 20px;
   --radio_height: 20px;
   --radio_top: 0px;
+  --radio_text-transform: initial;
   --radio_box-shadow_hover: inset 0 0 0 6px #f5f5f5;
   --radio_box-shadow_selected: inset 0 0 0 6px #000000;
   --checkbox_border-width: var(--input_border-width);
   --checkbox_border-radius: var(--input_border-radius);
-  --checkbox_font-weight: 700;
+  --checkbox_font-family: var(--radio_font-family);
+  --checkbox_font-size: var(--radio_font-size);
+  --checkbox_font-weight: var(--radio_font-weight);
+  --checkbox_line-height: var(--radio_line-height);
   --checkbox_width: var(--radio_width);
   --checkbox_height: var(--radio_height);
   --checkbox_top: 0px;
   --checkbox_padding-top: 0px;
   --checkbox_padding-left: 0px;
+  --checkbox_text-transform: var(--radio_text-transform);
   --checkbox_content_checked:"\2713";
   --select_font-family: var(--input_font-family);
   --select_font-size: var(--input_font-size);
@@ -2263,7 +2272,12 @@ input[type=radio] + label {
   cursor: pointer;
   align-items: center;
   display: flex;
-  padding-top: MAX(0px, calc(var(--radio_top) * -1)); }
+  padding-top: MAX(0px, calc(var(--radio_top) * -1));
+  font-family: var(--radio_font-family);
+  font-size: var(--radio_font-size);
+  font-weight: var(--radio_font-weight);
+  line-height: var(--radio_line-height);
+  text-transform: var(--radio_text-transform); }
   input[type=radio] + label:before {
     content: var(--radio_content);
     justify-content: center;
@@ -2306,7 +2320,12 @@ input[type=checkbox] + label {
   content: "";
   align-items: center;
   display: flex;
-  padding-top: MAX(0px, calc(var(--checkbox_top) * -1)); }
+  padding-top: MAX(0px, calc(var(--checkbox_top) * -1));
+  font-family: var(--checkbox_font-family);
+  font-size: var(--checkbox_font-size);
+  font-weight: var(--checkbox_font-weight);
+  line-height: var(--checkbox_line-height);
+  text-transform: var(--checkbox_text-transform); }
   input[type=checkbox] + label:before {
     content: " ";
     justify-content: center;
@@ -2321,7 +2340,6 @@ input[type=checkbox] + label {
     height: var(--checkbox_height);
     width: var(--checkbox_width);
     display: flex;
-    font-weight: var(--checkbox_font-weight);
     flex: 1 0 auto;
     position: relative;
     top: var(--checkbox_top);
@@ -2368,8 +2386,6 @@ input[type=checkbox]:checked + label:before {
     height: var(--checkbox_height);
     width: var(--checkbox_width);
     display: flex;
-    font-weight: var(--checkbox_font-weight);
-    font-size: calc(0.05552rem * 18);
     position: relative;
     top: var(--checkbox_top);
     padding-top: var(--checkbox_padding-top);
@@ -2626,8 +2642,6 @@ textarea,
   left: 4px;
   top: 5px;
   color: var(--checkbox_color_checked);
-  font-size: calc(0.05552rem * 18);
-  font-weight: var(--checkbox_font-weight);
   cursor: pointer; }
 
 /************************************
