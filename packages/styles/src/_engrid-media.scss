@@ -19,7 +19,11 @@ img{
   color: transparent;
 }
 
-img[data-src]{
-  font-size: 0;
-  line-height: 0;
+// img[data-src]{
+//   font-size: 0;
+//   line-height: 0;
+// }
+
+body:not(#en__pagebuilder) img:not([src]):not([srcset]) {
+  visibility: hidden;
 }
