@@ -152,6 +152,10 @@
     }
   }
 
+  .en__pg__imageSelector{
+    display: none; // Fixes a display issue https://d.pr/v/U33TmD
+  }
+
   /* prettier-ignore */
   .page-alert .messageOverlay.hidden:only-child:before { content: "Page Alert"; }
   /* prettier-ignore */
@@ -429,6 +433,7 @@
   background-size: contain;
   background-position: center center;
   background-repeat: no-repeat;
+  display: inline-block;
 }
 
 #en__pagebuilder img[data-src]{

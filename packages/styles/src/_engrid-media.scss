@@ -18,3 +18,8 @@ video:not([width]){
 img{
   color: transparent;
 }
+
+img[data-src]{
+  font-size: 0;
+  line-height: 0;
+}

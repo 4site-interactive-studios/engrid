@@ -2280,7 +2280,7 @@ only screen and (max-device-width:600px) {
 
 .en__pg__imageSelector label {
 	width: 0.75rem; // 12px
-	font-weight: 0.75rem; // 12px - @HOLD-TODO Let EN know that they want "font-weight" or "font-size" and not "weight". Not sure which one given the value was 12px and not 700 like all other font-weights
+	font-weight: 400; // 12px - @HOLD-TODO Let EN know that they want "font-weight" or "font-size" and not "weight". Not sure which one given the value was 12px and not 700 like all other font-weights
 	// display: inline-block;
 	// cursor: pointer
 }

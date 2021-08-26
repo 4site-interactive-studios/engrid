@@ -110,7 +110,7 @@ export class UpsellLightbox {
         'EngridUpsell' in window &&
             !!window.pageJson &&
             window.pageJson.pageNumber == 1 &&
-            window.pageJson.pageType == "donation");
+            ['donation', 'premiumgift'].includes(window.pageJson.pageType));
     }
     popupOtherField() {
         var _a, _b;
