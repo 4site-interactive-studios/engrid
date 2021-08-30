@@ -1616,7 +1616,7 @@ only screen and (max-device-width:600px) {
 	width: 1.5625rem; // 25px - @HOLD-TODO There has to be a better way to do this than a fixed width
 	// cursor: pointer;
 	// text-align: center;
-	font: Arial, sans-serif; // @HOLD-TODO Investigate, there has to be a better way to do this
+	font-family: Arial, sans-serif; // @HOLD-TODO Investigate, there has to be a better way to do this
 	color: var(--color_black)
 }
 

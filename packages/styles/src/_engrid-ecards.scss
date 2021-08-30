@@ -92,13 +92,18 @@ button.en__ecarditems__addrecipient {
 }
 
 button.en__ecarditems__prevclose {
-  background-color: transparent;
-  top: 5px;
-  right: -29px;
+  background-color: white;
+  top: 0;
+  right: 0;
   font-size: 2rem;
-  padding: 0;
+  padding: 0.35ch;
   margin: 0;
   border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: auto;
 }
 
 .en__ecarditems__showprev {
