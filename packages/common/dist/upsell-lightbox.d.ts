@@ -1,10 +1,7 @@
-import { DonationAmount } from "./events";
-export declare class UpsellLightbox {
-    private options;
-    private overlay;
+import { UpsellBase } from "./";
+export declare class UpsellLightbox extends UpsellBase {
     private _form;
-    _amount: DonationAmount;
-    private _frequency;
+    private overlay;
     constructor();
     private renderLightbox;
     private shouldRun;
@@ -13,7 +10,6 @@ export declare class UpsellLightbox {
     private getUpsellAmount;
     private shouldOpen;
     private open;
-    private setOriginalAmount;
     private continue;
     private close;
 }

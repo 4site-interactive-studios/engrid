@@ -1,4 +1,4 @@
-export interface UpsellOptions {
+export interface UpsellLightboxOptions {
     image: string,
     imagePosition: string, // left or right
     title: string,
@@ -13,7 +13,7 @@ export interface UpsellOptions {
     submitOnClose: boolean,
 }
 
-export const UpsellOptionsDefaults: UpsellOptions = {
+export const UpsellLightboxOptionsDefaults: UpsellLightboxOptions = {
     image: "https://picsum.photos/480/650",
     imagePosition: "left", // left or right
     title:

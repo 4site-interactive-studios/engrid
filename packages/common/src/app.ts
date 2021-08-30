@@ -7,6 +7,7 @@ import {
 import {
   ProgressBar,
   UpsellLightbox,
+  UpsellPseudoSelector,
   ENGrid,
   Options,
   OptionsDefaults,
@@ -131,6 +132,9 @@ export class App extends ENGrid {
 
     // Upsell Lightbox
     new UpsellLightbox();
+
+    // Upsell Pseudoselector
+    new UpsellPseudoSelector();
 
     // On the end of the script, after all subscribers defined, let's load the current value
     this._amount.load();

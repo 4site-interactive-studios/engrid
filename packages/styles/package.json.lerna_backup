@@ -1,0 +1,40 @@
+{
+  "name": "@4site/engrid-styles",
+  "version": "0.3.24",
+  "description": "Main SASS Styles for the ENGRID Project",
+  "main": "./src/main.scss",
+  "scripts": {
+    "build": "node-sass src -o dist  --importer node_modules/node-sass-import",
+    "postpublish": "git push origin --tags"
+  },
+  "keywords": [
+    "Engaging Networks",
+    "ENGrid",
+    "4Site Studios",
+    "4Site",
+    "Page Templates",
+    "Non Profit",
+    "Non-Profit",
+    "CRM"
+  ],
+  "author": "4Site Studios",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/4site-interactive-studios/engrid-scripts/issues"
+  },
+  "homepage": "https://github.com/4site-interactive-studios/engrid-scripts#readme",
+  "url": "https://github.com/4site-interactive-studios/engrid-scripts",
+  "devDependencies": {
+    "node-sass": "^4.14.1"
+  },
+  "dependencies": {
+    "node-sass-import": "^1.1.1",
+    "sanitize.css": "^11.0.1",
+    "tippy.js": "^6.3.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/4site-interactive-studios/engrid-scripts.git",
+    "directory": "packages/styles"
+  }
+}

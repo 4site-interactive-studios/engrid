@@ -1,5 +1,6 @@
 import { Options } from "./options";
-import { UpsellOptions } from "./upsell-options";
+import { UpsellLightboxOptions } from "./upsell-lightbox-options";
+import { UpsellPseudoSelectorOptions } from "./upsell-pseudoselector-options";
 
 export { }; // this file needs to be a module
 declare global {
@@ -11,7 +12,8 @@ declare global {
         EngagingNetworks: any;
         EngridAmounts: any;
         EngridOptions: Options,
-        EngridUpsell: UpsellOptions,
+        EngridUpsell: UpsellLightboxOptions,
+        EngridPseudoSelectorUpsell: UpsellPseudoSelectorOptions,
         _NBSettings: object,
         _nb: any
     }

@@ -31,7 +31,9 @@ export abstract class ENGrid {
 
     // Set a value to any field. If it's a dropdown, radio or checkbox, it selects the proper option matching the value
     static setFieldValue(name: string, value: unknown) {
+        console.log('sfv', name, value);
         (document.getElementsByName(name) as NodeListOf<HTMLFormElement>).forEach((field) => {
+            console.log('sfv2', field);
             if ('type' in field) {
                 switch (field.type) {
                     case 'select-one':

@@ -1,7 +1,8 @@
 export * from './deprecated'; // Runs first so it can change the DOM markup before any markup dependent code fires
 
 export { Options, OptionsDefaults } from './interfaces/options';
-export { UpsellOptions, UpsellOptionsDefaults } from './interfaces/upsell-options';
+export { UpsellLightboxOptions, UpsellLightboxOptionsDefaults } from './interfaces/upsell-lightbox-options';
+export { UpsellPseudoSelectorOptions, UpsellPseudoSelectorOptionsDefaults } from './interfaces/upsell-pseudoselector-options';
 
 export * from './app';
 export * from './engrid';
@@ -13,7 +14,9 @@ export * from './ie';
 export * from './iframe';
 export * from './media-attribution';
 export * from './live-variables';
+export * from './upsell-base';
 export * from './upsell-lightbox';
+export * from './upsell-pseudoselector';
 export * from './show-hide-radio-checkboxes';
 export * from './simple-country-select';
 export * from './skip-link';
