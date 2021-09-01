@@ -2084,6 +2084,7 @@ a {
   --textarea_border-radius: var(--input_border-radius);
   --textarea_box-shadow: var(--input_box-shadow);
   --textarea_padding: var(--input_padding);
+  --textarea_min-height: calc(var(--textarea_padding) + (var(--textarea_font-size) * 10));
   --textarea_box-shadow_hover: var(--input_box-shadow_hover); }
 
 /************************************
@@ -2541,7 +2542,7 @@ textarea,
   border-style: solid;
   box-shadow: var(--textarea_box-shadow);
   transition: box-shadow 0.25s, border-color 0.25s ease-in-out;
-  min-height: calc(1rem + 10ch);
+  min-height: var(--textarea_min-height);
   resize: vertical; }
   textarea:focus, textarea:hover,
   .en__field__input--textarea:focus,

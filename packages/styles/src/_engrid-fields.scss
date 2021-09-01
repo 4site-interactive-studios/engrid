@@ -129,6 +129,7 @@
   // --textarea_placeholder-color: var(--color_light-gray);
   --textarea_box-shadow: var(--input_box-shadow);
   --textarea_padding: var(--input_padding);
+  --textarea_min-height: calc(var(--textarea_padding) + (var(--textarea_font-size) * 10));
       
   // TYPOGRAPHY TEXTAREA:FOCUS
   // TYPOGRAPHY TEXTAREA:HOVER
@@ -672,7 +673,7 @@ textarea,
   border-style: solid; // Shared between input, textarea, and select
   box-shadow: var(--textarea_box-shadow);
   transition: box-shadow 0.25s, border-color 0.25s ease-in-out; // Shared between input, textarea, and select
-  min-height: calc(1rem + 10ch);
+  min-height: var(--textarea_min-height);
   resize: vertical;
 
   &:focus,
