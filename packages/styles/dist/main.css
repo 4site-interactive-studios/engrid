@@ -3014,6 +3014,7 @@ button[disabled],
   --click-to-expand__cta-image_height: 16px; }
 
 body:not(#en__pagebuilder) .click-to-expand:not(.expanded) {
+  overflow: hidden;
   cursor: pointer;
   max-height: var(--click-to-expand__copy-area_height); }
   body:not(#en__pagebuilder) .click-to-expand:not(.expanded) .click-to-expand-text-wrapper {

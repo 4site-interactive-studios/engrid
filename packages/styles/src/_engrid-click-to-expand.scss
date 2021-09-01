@@ -8,6 +8,7 @@
 
 // Depends on click-to-expand.ts
 body:not(#en__pagebuilder) .click-to-expand:not(.expanded){
+    overflow: hidden; // Prevents content from extending beyond the visible area of the unexpanded click-to-expand section https://d.pr/v/4tc9u2
     cursor: pointer;
     max-height: var(--click-to-expand__copy-area_height);
     // overflow: hidden; // No longer needed as the max-height on the wrapper will handle it
