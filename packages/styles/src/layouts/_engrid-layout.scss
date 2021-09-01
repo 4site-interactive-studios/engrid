@@ -132,6 +132,7 @@ form > .en__component--row.en__component--advrow{
   // All child elements on an advanced row can now act as pseudo-subgrids
   > *{
     display: grid;
+    grid-auto-rows: min-content; // Sections should not take up any more height than their content needs, otherwise they will expand to fill its height https://d.pr/v/RIAfKv
 
     // All grand child elements on an advanced row should default to the page column
     > *{

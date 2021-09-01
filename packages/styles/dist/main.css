@@ -1359,7 +1359,7 @@ body[data-engrid-debug]:before {
   z-index: 9999;
   line-height: 1.5625rem;
   width: 1.5625rem;
-  font: Arial, sans-serif;
+  font-family: Arial, sans-serif;
   color: var(--color_black); }
 
 .en__hubOverlay,
@@ -3929,13 +3929,18 @@ button.en__ecarditems__addrecipient {
   height: 18rem; }
 
 button.en__ecarditems__prevclose {
-  background-color: transparent;
-  top: 5px;
-  right: -29px;
+  background-color: white;
+  top: 0;
+  right: 0;
   font-size: 2rem;
-  padding: 0;
+  padding: 0.35ch;
   margin: 0;
-  border: none; }
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: auto; }
 
 .en__ecarditems__showprev {
   background-color: #323232;
@@ -5010,7 +5015,8 @@ form > .en__component--row.en__component--advrow {
   width: 100%;
   max-width: 100vw; }
   form > .en__component--row.en__component--advrow > * {
-    display: grid; }
+    display: grid;
+    grid-auto-rows: min-content; }
     form > .en__component--row.en__component--advrow > * > * {
       grid-column: pc; }
       form > .en__component--row.en__component--advrow > * > * > * {
