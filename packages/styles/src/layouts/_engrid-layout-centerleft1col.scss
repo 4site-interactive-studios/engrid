@@ -45,7 +45,7 @@ $centerleft1col_body-column_offset-width-remaining: $centerleft1col_content-colu
     }
   }
 
-  @media screen and (max-width: $centerleft1col_content-column_min-width) {
+  @media screen and (max-width: $centerleft1col_content-column_min-width - 1px) {
     @include engrid_replace-banner-with-background;
     @include engrid_mobile-banner;
   }
