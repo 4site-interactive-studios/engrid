@@ -6,6 +6,9 @@ export interface Options {
     ClickToExpand?: boolean;
     CurrencySymbol?: string;
     CurrencySeparator?: string;
+    ThousandsSeparator?: string;
+    DecimalSeparator?: string;
+    DecimalPlaces?: number;
     SkipToMainContentLink?: boolean;
     SrcDefer?: boolean;
     NeverBounceAPI?: string | null;

@@ -7,12 +7,15 @@ export class ProcessingFees {
         this._amount = DonationAmount.getInstance();
         this._form = EnForm.getInstance();
         this._fee = 0;
-        this._field = document.querySelector('input[name="supporter.processing_fees"]');
+        this._field = null;
         // console.log('%c Processing Fees Constructor', 'font-size: 30px; background-color: #000; color: #FF0');
         // Run only if it is a Donation Page with a Donation Amount field
         if (!document.getElementsByName("transaction.donationAmt").length) {
             return;
         }
+        this._field = this.isENfeeCover()
+            ? document.querySelector("#en__field_transaction_feeCover")
+            : document.querySelector('input[name="supporter.processing_fees"]');
         // Watch the Radios for Changes
         if (this._field instanceof HTMLInputElement) {
             // console.log('%c Processing Fees Start', 'font-size: 30px; background-color: #000; color: #FF0');
@@ -46,13 +49,15 @@ export class ProcessingFees {
         this._onFeeChange.dispatch(this._fee);
     }
     calculateFees() {
-        if (this._field instanceof HTMLInputElement &&
-            this._field.checked &&
-            "dataset" in this._field) {
+        var _a;
+        if (this._field instanceof HTMLInputElement && this._field.checked) {
+            if (this.isENfeeCover()) {
+                return window.EngagingNetworks.require._defined.enjs.getDonationFee();
+            }
             const fees = Object.assign({
                 processingfeepercentadded: "0",
-                processingfeefixedamountadded: "0"
-            }, this._field.dataset);
+                processingfeefixedamountadded: "0",
+            }, (_a = this._field) === null || _a === void 0 ? void 0 : _a.dataset);
             const processing_fee = (parseFloat(fees.processingfeepercentadded) / 100) *
                 this._amount.amount +
                 parseFloat(fees.processingfeefixedamountadded);
@@ -62,12 +67,24 @@ export class ProcessingFees {
     }
     // Add Fees to Amount
     addFees() {
-        if (this._form.submit) {
+        if (this._form.submit && !this.isENfeeCover()) {
             this._amount.setAmount(this._amount.amount + this.fee, false);
         }
     }
     // Remove Fees From Amount
     removeFees() {
-        this._amount.setAmount(this._amount.amount - this.fee);
+        if (!this.isENfeeCover())
+            this._amount.setAmount(this._amount.amount - this.fee);
+    }
+    // Check if this is a Processing Fee from EN
+    isENfeeCover() {
+        if ("feeCover" in window.EngagingNetworks) {
+            for (const key in window.EngagingNetworks.feeCover) {
+                if (window.EngagingNetworks.feeCover.hasOwnProperty(key)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
