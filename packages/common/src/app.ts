@@ -90,6 +90,34 @@ export class App extends ENGrid {
     new ShowHideRadioCheckboxes("transaction.inmem", "inmem-");
     new ShowHideRadioCheckboxes("transaction.recurrpay", "recurrpay-");
 
+    // Automatically show/hide all radios
+    let radioFields: string[] = [];
+    const allRadios: NodeListOf<HTMLInputElement> =
+      document.querySelectorAll("input[type=radio]");
+    allRadios.forEach((radio) => {
+      if ("name" in radio && radioFields.includes(radio.name) === false) {
+        radioFields.push(radio.name);
+      }
+    });
+    radioFields.forEach((field) => {
+      new ShowHideRadioCheckboxes(
+        field,
+        "engrid__" + field.replace(/\./g, "") + "-"
+      );
+    });
+
+    // Automatically show/hide all checkboxes
+    const allCheckboxes: NodeListOf<HTMLInputElement> =
+      document.querySelectorAll("input[type=checkbox]");
+    allCheckboxes.forEach((checkbox) => {
+      if ("name" in checkbox) {
+        new ShowHideRadioCheckboxes(
+          checkbox.name,
+          "engrid__" + checkbox.name.replace(/\./g, "") + "-"
+        );
+      }
+    });
+
     // Controls if the Theme has a the "Debug Bar"
     // legacy.debugBar();
 
@@ -254,97 +282,97 @@ export class App extends ENGrid {
     // @TODO Should this account for video?
     // @TODO Should we merge this with the script that checks the background image?
     if (!document.querySelector(".body-banner img")) {
-        App.setBodyData("body-banner", "empty");
+      App.setBodyData("body-banner", "empty");
     }
 
     // Add a page-alert data attribute if it is empty
     if (!document.querySelector(".page-alert *")) {
-        App.setBodyData("no-page-alert", "");
-    }       
+      App.setBodyData("no-page-alert", "");
+    }
 
     // Add a content-header data attribute if it is empty
     if (!document.querySelector(".content-header *")) {
-        App.setBodyData("no-content-header", "");
-    }         
+      App.setBodyData("no-content-header", "");
+    }
 
     // Add a body-headerOutside data attribute if it is empty
     if (!document.querySelector(".body-headerOutside *")) {
-        App.setBodyData("no-body-headerOutside", "");
-    }         
+      App.setBodyData("no-body-headerOutside", "");
+    }
 
     // Add a body-header data attribute if it is empty
     if (!document.querySelector(".body-header *")) {
-        App.setBodyData("no-body-header", "");
-    }         
+      App.setBodyData("no-body-header", "");
+    }
 
     // Add a body-title data attribute if it is empty
     if (!document.querySelector(".body-title *")) {
-        App.setBodyData("no-body-title", "");
-    }         
+      App.setBodyData("no-body-title", "");
+    }
 
     // Add a body-banner data attribute if it is empty
     if (!document.querySelector(".body-banner *")) {
-        App.setBodyData("no-body-banner", "");
-    }     
+      App.setBodyData("no-body-banner", "");
+    }
 
     // Add a body-bannerOverlay data attribute if it is empty
     if (!document.querySelector(".body-bannerOverlay *")) {
-        App.setBodyData("no-body-bannerOverlay", "");
-    }         
+      App.setBodyData("no-body-bannerOverlay", "");
+    }
 
     // Add a body-top data attribute if it is empty
     if (!document.querySelector(".body-top *")) {
-        App.setBodyData("no-body-top", "");
-    }         
+      App.setBodyData("no-body-top", "");
+    }
 
     // Add a body-main data attribute if it is empty
     if (!document.querySelector(".body-main *")) {
-        App.setBodyData("no-body-main", "");
-    }         
+      App.setBodyData("no-body-main", "");
+    }
 
     // Add a body-bottom data attribute if it is empty
     if (!document.querySelector(".body-bottom *")) {
-        App.setBodyData("no-body-bottom", "");
-    }         
+      App.setBodyData("no-body-bottom", "");
+    }
 
     // Add a body-footer data attribute if it is empty
     if (!document.querySelector(".body-footer *")) {
-        App.setBodyData("no-body-footer", "");
-    }         
+      App.setBodyData("no-body-footer", "");
+    }
 
     // Add a body-footerOutside data attribute if it is empty
     if (!document.querySelector(".body-footerOutside *")) {
-        App.setBodyData("no-body-footerOutside", "");
-    }       
+      App.setBodyData("no-body-footerOutside", "");
+    }
 
     // Add a content-footerSpacer data attribute if it is empty
     if (!document.querySelector(".content-footerSpacer *")) {
-        App.setBodyData("no-content-footerSpacer", "");
-    }      
+      App.setBodyData("no-content-footerSpacer", "");
+    }
 
     // Add a content-preFooter data attribute if it is empty
     if (!document.querySelector(".content-preFooter *")) {
-        App.setBodyData("no-content-preFooter", "");
-    }     
-    
+      App.setBodyData("no-content-preFooter", "");
+    }
+
     // Add a content-footer data attribute if it is empty
     if (!document.querySelector(".content-footer *")) {
-        App.setBodyData("no-content-footer", "");
-    }     
+      App.setBodyData("no-content-footer", "");
+    }
 
     // Add a page-backgroundImage data attribute if it is empty
     if (!document.querySelector(".page-backgroundImage *")) {
-        App.setBodyData("no-page-backgroundImage", "");
-    }     
+      App.setBodyData("no-page-backgroundImage", "");
+    }
 
     // Add a page-backgroundImageOverlay data attribute if it is empty
     if (!document.querySelector(".page-backgroundImageOverlay *")) {
-        App.setBodyData("no-page-backgroundImageOverlay", "");
-    }     
+      App.setBodyData("no-page-backgroundImageOverlay", "");
+    }
 
     // Add a page-customCode data attribute if it is empty
     if (!document.querySelector(".page-customCode *")) {
-        App.setBodyData("no-page-customCode", "");
-    }     
+      App.setBodyData("no-page-customCode", "");
+    }
   }
 }
