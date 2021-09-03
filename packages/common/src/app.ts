@@ -15,6 +15,7 @@ import {
   MediaAttribution,
   ApplePay,
   CapitalizeFields,
+  Ecard,
   ClickToExpand,
   legacy,
   IE,
@@ -172,6 +173,8 @@ export class App extends ENGrid {
     if (this.options.applePay) new ApplePay();
     // Capitalize Fields
     if (this.options.CapitalizeFields) new CapitalizeFields();
+    // Ecard Class
+    new Ecard();
     // Click To Expand
     if (this.options.ClickToExpand) new ClickToExpand();
     if (this.options.SkipToMainContentLink) new SkipToMainContentLink();
