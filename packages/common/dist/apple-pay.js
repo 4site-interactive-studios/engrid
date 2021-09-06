@@ -33,9 +33,9 @@ export class ApplePay {
     checkApplePay() {
         return __awaiter(this, void 0, void 0, function* () {
             const pageform = document.querySelector("form.en__component--page");
-            if (!this.applePay || !window.hasOwnProperty('ApplePaySession')) {
+            if (!this.applePay || !window.hasOwnProperty("ApplePaySession")) {
                 if (ENGrid.debug)
-                    console.log('Apple Pay DISABLED');
+                    console.log("Apple Pay DISABLED");
                 return false;
             }
             const promise = ApplePaySession.canMakePaymentsWithActiveCard(merchantIdentifier);
@@ -52,16 +52,16 @@ export class ApplePay {
                 }
             });
             if (ENGrid.debug)
-                console.log('applePayEnabled', applePayEnabled);
-            let applePayWrapper = this.applePay.closest('.en__field__item');
+                console.log("applePayEnabled", applePayEnabled);
+            let applePayWrapper = this.applePay.closest(".en__field__item");
             if (applePayEnabled) {
                 // Set Apple Pay Class
-                applePayWrapper === null || applePayWrapper === void 0 ? void 0 : applePayWrapper.classList.add('applePayWrapper');
+                applePayWrapper === null || applePayWrapper === void 0 ? void 0 : applePayWrapper.classList.add("applePayWrapper");
             }
             else {
                 // Hide Apple Pay Wrapper
                 if (applePayWrapper)
-                    applePayWrapper.style.display = 'none';
+                    applePayWrapper.style.display = "none";
             }
             return applePayEnabled;
         });
@@ -75,23 +75,28 @@ export class ApplePay {
             merchantSession.domainName = merchantDomainName;
             merchantSession.epochTimestamp = merchantEpochTimestamp;
             merchantSession.signature = merchantSignature;
-            var validationData = "&merchantIdentifier=" + merchantIdentifier + "&merchantDomain=" + merchantDomainName + "&displayName=" + merchantDisplayName;
-            var validationUrl = '/ea-dataservice/rest/applepay/validateurl?url=' + url + validationData;
+            var validationData = "&merchantIdentifier=" +
+                merchantIdentifier +
+                "&merchantDomain=" +
+                merchantDomainName +
+                "&displayName=" +
+                merchantDisplayName;
+            var validationUrl = "/ea-dataservice/rest/applepay/validateurl?url=" + url + validationData;
             var xhr = new XMLHttpRequest();
             xhr.onload = function () {
                 var data = JSON.parse(this.responseText);
                 if (ENGrid.debug)
-                    console.log('Apple Pay Validation', data);
+                    console.log("Apple Pay Validation", data);
                 resolve(data);
             };
             xhr.onerror = reject;
-            xhr.open('GET', validationUrl);
+            xhr.open("GET", validationUrl);
             xhr.send();
         });
     }
     log(name, msg) {
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', '/ea-dataservice/rest/applepay/log?name=' + name + '&msg=' + msg);
+        xhr.open("GET", "/ea-dataservice/rest/applepay/log?name=" + name + "&msg=" + msg);
         xhr.send();
     }
     sendPaymentToken(token) {
@@ -104,7 +109,7 @@ export class ApplePay {
         const applePayToken = document.getElementById("applePayToken");
         const formClass = this._form;
         // Only work if Payment Type is Apple Pay
-        if (enFieldPaymentType.value == 'applepay' && applePayToken.value == '') {
+        if (enFieldPaymentType.value == "applepay" && applePayToken.value == "") {
             try {
                 let donationAmount = this._amount.amount;
                 var request = {
@@ -114,29 +119,33 @@ export class ApplePay {
                     currencyCode: merchantCurrencyCode,
                     total: {
                         label: merchantTotalLabel,
-                        amount: donationAmount
-                    }
+                        amount: donationAmount,
+                    },
                 };
                 var session = new ApplePaySession(1, request);
                 var thisClass = this;
                 session.onvalidatemerchant = function (event) {
-                    thisClass.performValidation(event.validationURL).then(function (merchantSession) {
+                    thisClass
+                        .performValidation(event.validationURL)
+                        .then(function (merchantSession) {
                         if (ENGrid.debug)
-                            console.log('Apple Pay merchantSession', merchantSession);
+                            console.log("Apple Pay merchantSession", merchantSession);
                         session.completeMerchantValidation(merchantSession);
                     });
                 };
                 session.onpaymentauthorized = function (event) {
-                    thisClass.sendPaymentToken(event.payment.token).then(function (success) {
+                    thisClass
+                        .sendPaymentToken(event.payment.token)
+                        .then(function (success) {
                         if (ENGrid.debug)
-                            console.log('Apple Pay Token', event.payment.token);
+                            console.log("Apple Pay Token", event.payment.token);
                         document.getElementById("applePayToken").value = JSON.stringify(event.payment.token);
                         formClass.submitForm();
                     });
                 };
                 session.oncancel = function (event) {
                     if (ENGrid.debug)
-                        console.log('Cancelled', event);
+                        console.log("Cancelled", event);
                     alert("You cancelled. Sorry it didn't work out.");
                     formClass.dispatchError();
                 };

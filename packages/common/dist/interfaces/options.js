@@ -14,5 +14,6 @@ export const OptionsDefaults = {
     NeverBounceDateField: null,
     NeverBounceStatusField: null,
     ProgressBar: false,
+    AutoYear: false,
     Debug: false,
 };

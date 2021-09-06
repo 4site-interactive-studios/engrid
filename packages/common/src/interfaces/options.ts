@@ -15,6 +15,7 @@ export interface Options {
   NeverBounceDateField?: string | null;
   NeverBounceStatusField?: string | null;
   ProgressBar?: boolean | null;
+  AutoYear?: boolean;
   Debug?: boolean;
   onLoad?: () => void;
   onResize?: () => void;
@@ -39,5 +40,6 @@ export const OptionsDefaults: Options = {
   NeverBounceDateField: null,
   NeverBounceStatusField: null,
   ProgressBar: false,
+  AutoYear: false,
   Debug: false,
 };

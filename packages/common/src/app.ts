@@ -27,6 +27,7 @@ import {
   SkipToMainContentLink,
   SrcDefer,
   NeverBounce,
+  AutoYear,
 } from "./";
 
 export class App extends ENGrid {
@@ -173,6 +174,8 @@ export class App extends ENGrid {
     if (this.options.applePay) new ApplePay();
     // Capitalize Fields
     if (this.options.CapitalizeFields) new CapitalizeFields();
+    // Auto Year Class
+    if (this.options.AutoYear) new AutoYear();
     // Ecard Class
     new Ecard();
     // Click To Expand
