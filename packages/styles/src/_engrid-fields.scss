@@ -130,7 +130,7 @@
   // --textarea_placeholder-color: var(--color_light-gray);
   --textarea_box-shadow: var(--input_box-shadow);
   --textarea_padding: var(--input_padding);
-  --textarea_min-height: calc(var(--textarea_padding) + (var(--textarea_font-size) * 10));
+  --textarea_min-height: calc(1ch + (var(--textarea_font-size) * 10));
       
   // TYPOGRAPHY TEXTAREA:FOCUS
   // TYPOGRAPHY TEXTAREA:HOVER

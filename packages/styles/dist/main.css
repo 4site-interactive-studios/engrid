@@ -2066,6 +2066,7 @@ a {
   --checkbox_padding-top: 0px;
   --checkbox_padding-left: 0px;
   --checkbox_text-transform: var(--radio_text-transform);
+  --checkbox_check_font-size: var(--radio_font-size);
   --checkbox_content_checked:"\2713";
   --select_font-family: var(--input_font-family);
   --select_font-size: var(--input_font-size);
@@ -2084,7 +2085,7 @@ a {
   --textarea_border-radius: var(--input_border-radius);
   --textarea_box-shadow: var(--input_box-shadow);
   --textarea_padding: var(--input_padding);
-  --textarea_min-height: calc(var(--textarea_padding) + (var(--textarea_font-size) * 10));
+  --textarea_min-height: calc(1ch + (var(--textarea_font-size) * 10));
   --textarea_box-shadow_hover: var(--input_box-shadow_hover); }
 
 /************************************
@@ -2328,7 +2329,9 @@ input[type=checkbox] + label {
   line-height: var(--checkbox_line-height);
   text-transform: var(--checkbox_text-transform); }
   input[type=checkbox] + label:before {
-    content: " ";
+    content: var(--checkbox_content_checked);
+    color: transparent;
+    font-size: var(--checkbox_check_font-size);
     justify-content: center;
     align-items: center;
     margin-right: MAX(var(--fields_spacing-inline), 1ch, 0.5rem);
@@ -2375,7 +2378,9 @@ input[type=checkbox]:checked + label:before {
   padding-top: MAX(0px, calc(var(--checkbox_top) * -1)); }
   .en__twitterTarget__select:before {
     visibility: visible;
-    content: " ";
+    content: var(--checkbox_content_checked);
+    color: transparent;
+    font-size: var(--checkbox_check_font-size);
     justify-content: center;
     align-items: center;
     color: var(--checkbox_color);
