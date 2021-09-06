@@ -1,5 +1,5 @@
 import { DonationAmount, DonationFrequency, EnForm, ProcessingFees, } from "./events";
-import { ProgressBar, UpsellLightbox, ENGrid, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, CapitalizeFields, ClickToExpand, legacy, IE, LiveVariables, sendIframeHeight, sendIframeFormStatus, ShowHideRadioCheckboxes, SimpleCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce, } from "./";
+import { ProgressBar, UpsellLightbox, ENGrid, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, CapitalizeFields, Ecard, ClickToExpand, legacy, IE, LiveVariables, sendIframeHeight, sendIframeFormStatus, ShowHideRadioCheckboxes, SimpleCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce, } from "./";
 export class App extends ENGrid {
     constructor(options) {
         super();
@@ -61,6 +61,24 @@ export class App extends ENGrid {
         new ShowHideRadioCheckboxes("transaction.giveBySelect", "giveBySelect-");
         new ShowHideRadioCheckboxes("transaction.inmem", "inmem-");
         new ShowHideRadioCheckboxes("transaction.recurrpay", "recurrpay-");
+        // Automatically show/hide all radios
+        let radioFields = [];
+        const allRadios = document.querySelectorAll("input[type=radio]");
+        allRadios.forEach((radio) => {
+            if ("name" in radio && radioFields.includes(radio.name) === false) {
+                radioFields.push(radio.name);
+            }
+        });
+        radioFields.forEach((field) => {
+            new ShowHideRadioCheckboxes(field, "engrid__" + field.replace(/\./g, "") + "-");
+        });
+        // Automatically show/hide all checkboxes
+        const allCheckboxes = document.querySelectorAll("input[type=checkbox]");
+        allCheckboxes.forEach((checkbox) => {
+            if ("name" in checkbox) {
+                new ShowHideRadioCheckboxes(checkbox.name, "engrid__" + checkbox.name.replace(/\./g, "") + "-");
+            }
+        });
         // Controls if the Theme has a the "Debug Bar"
         // legacy.debugBar();
         // Client onSubmit and onError functions
@@ -105,6 +123,8 @@ export class App extends ENGrid {
         // Capitalize Fields
         if (this.options.CapitalizeFields)
             new CapitalizeFields();
+        // Ecard Class
+        new Ecard();
         // Click To Expand
         if (this.options.ClickToExpand)
             new ClickToExpand();

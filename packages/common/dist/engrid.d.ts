@@ -16,4 +16,5 @@ export declare abstract class ENGrid {
     static getBodyData(dataName: string): string | null;
     static getOption<K extends keyof Options>(key: K): Options[K] | null;
     static loadJS(url: string, onload?: (() => void) | null, head?: boolean): void;
+    static formatNumber(number: string | number, decimals?: number, dec_point?: string, thousands_sep?: string): string;
 }

@@ -16,4 +16,5 @@ export declare class ProcessingFees {
     private calculateFees;
     private addFees;
     private removeFees;
+    private isENfeeCover;
 }

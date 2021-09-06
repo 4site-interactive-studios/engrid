@@ -1,5 +1,5 @@
-import { DonationAmount, EnForm, DonationFrequency, ProcessingFees } from "./events";
-import { ENGrid, OptionsDefaults } from './';
+import { DonationAmount, EnForm, DonationFrequency, ProcessingFees, } from "./events";
+import { ENGrid, OptionsDefaults } from "./";
 export class LiveVariables {
     constructor(options) {
         var _a;
@@ -9,7 +9,8 @@ export class LiveVariables {
         this._form = EnForm.getInstance();
         this.multiplier = 1 / 12;
         this.options = Object.assign(Object.assign({}, OptionsDefaults), options);
-        this.submitLabel = ((_a = document.querySelector(".en__submit button")) === null || _a === void 0 ? void 0 : _a.innerHTML) || "Donate";
+        this.submitLabel =
+            ((_a = document.querySelector(".en__submit button")) === null || _a === void 0 ? void 0 : _a.innerHTML) || "Donate";
         this._amount.onAmountChange.subscribe(() => this.changeSubmitButton());
         this._amount.onAmountChange.subscribe(() => this.changeLiveAmount());
         this._amount.onAmountChange.subscribe(() => this.changeLiveUpsellAmount());
@@ -37,17 +38,22 @@ export class LiveVariables {
         });
     }
     getAmountTxt(amount = 0) {
-        var _a, _b;
-        const symbol = (_a = this.options.CurrencySymbol) !== null && _a !== void 0 ? _a : '$';
-        const separator = (_b = this.options.CurrencySeparator) !== null && _b !== void 0 ? _b : '.';
-        const amountTxt = Number.isInteger(amount)
-            ? symbol + amount
-            : symbol + amount.toFixed(2).replace('.', separator);
-        return amount > 0 ? amountTxt : "";
+        var _a, _b, _c, _d;
+        const symbol = (_a = this.options.CurrencySymbol) !== null && _a !== void 0 ? _a : "$";
+        const dec_separator = (_b = this.options.DecimalSeparator) !== null && _b !== void 0 ? _b : ".";
+        const thousands_separator = (_c = this.options.ThousandsSeparator) !== null && _c !== void 0 ? _c : "";
+        const dec_places = amount % 1 == 0 ? 0 : (_d = this.options.DecimalPlaces) !== null && _d !== void 0 ? _d : 2;
+        const amountTxt = ENGrid.formatNumber(amount, dec_places, dec_separator, thousands_separator);
+        return amount > 0 ? symbol + amountTxt : "";
     }
     getUpsellAmountTxt(amount = 0) {
-        const amountTxt = this.options.CurrencySymbol + Math.ceil(amount / 5) * 5;
-        return amount > 0 ? amountTxt : "";
+        var _a, _b, _c, _d;
+        const symbol = (_a = this.options.CurrencySymbol) !== null && _a !== void 0 ? _a : "$";
+        const dec_separator = (_b = this.options.DecimalSeparator) !== null && _b !== void 0 ? _b : ".";
+        const thousands_separator = (_c = this.options.ThousandsSeparator) !== null && _c !== void 0 ? _c : "";
+        const dec_places = amount % 1 == 0 ? 0 : (_d = this.options.DecimalPlaces) !== null && _d !== void 0 ? _d : 2;
+        const amountTxt = ENGrid.formatNumber(Math.ceil(amount / 5) * 5, dec_places, dec_separator, thousands_separator);
+        return amount > 0 ? symbol + amountTxt : "";
     }
     getUpsellAmountRaw(amount = 0) {
         const amountRaw = Math.ceil(amount / 5) * 5;
@@ -56,15 +62,19 @@ export class LiveVariables {
     changeSubmitButton() {
         const submit = document.querySelector(".en__submit button");
         const amount = this.getAmountTxt(this._amount.amount + this._fees.fee);
-        const frequency = this._frequency.frequency == "onetime" ? "" : this._frequency.frequency == "annual" ? "annually" : this._frequency.frequency;
+        const frequency = this._frequency.frequency == "onetime"
+            ? ""
+            : this._frequency.frequency == "annual"
+                ? "annually"
+                : this._frequency.frequency;
         let label = this.submitLabel;
         if (amount) {
             label = label.replace("$AMOUNT", amount);
             label = label.replace("$FREQUENCY", frequency);
         }
         else {
-            label = label.replace("$AMOUNT", '');
-            label = label.replace("$FREQUENCY", '');
+            label = label.replace("$AMOUNT", "");
+            label = label.replace("$FREQUENCY", "");
         }
         if (submit && label) {
             submit.innerHTML = label;
@@ -83,41 +93,50 @@ export class LiveVariables {
     changeLiveAmount() {
         const value = this._amount.amount + this._fees.fee;
         const live_amount = document.querySelectorAll(".live-giving-amount");
-        live_amount.forEach(elem => (elem.innerHTML = this.getAmountTxt(value)));
+        live_amount.forEach((elem) => (elem.innerHTML = this.getAmountTxt(value)));
     }
     changeLiveUpsellAmount() {
         const value = (this._amount.amount + this._fees.fee) * this.multiplier;
         const live_upsell_amount = document.querySelectorAll(".live-giving-upsell-amount");
-        live_upsell_amount.forEach(elem => (elem.innerHTML = this.getUpsellAmountTxt(value)));
+        live_upsell_amount.forEach((elem) => (elem.innerHTML = this.getUpsellAmountTxt(value)));
         const live_upsell_amount_raw = document.querySelectorAll(".live-giving-upsell-amount-raw");
-        live_upsell_amount_raw.forEach(elem => (elem.innerHTML = this.getUpsellAmountRaw(value)));
+        live_upsell_amount_raw.forEach((elem) => (elem.innerHTML = this.getUpsellAmountRaw(value)));
     }
     changeLiveFrequency() {
         const live_frequency = document.querySelectorAll(".live-giving-frequency");
-        live_frequency.forEach(elem => (elem.innerHTML =
-            this._frequency.frequency == "onetime" ? "" : this._frequency.frequency));
+        live_frequency.forEach((elem) => (elem.innerHTML =
+            this._frequency.frequency == "onetime"
+                ? ""
+                : this._frequency.frequency));
     }
     changeRecurrency() {
         const recurrpay = document.querySelector("[name='transaction.recurrpay']");
-        if (recurrpay && recurrpay.type != 'radio') {
-            recurrpay.value = this._frequency.frequency == 'onetime' ? 'N' : 'Y';
+        if (recurrpay && recurrpay.type != "radio") {
+            recurrpay.value = this._frequency.frequency == "onetime" ? "N" : "Y";
             this._frequency.recurring = recurrpay.value;
-            if (ENGrid.getOption('Debug'))
-                console.log('Recurpay Changed!');
+            if (ENGrid.getOption("Debug"))
+                console.log("Recurpay Changed!");
         }
     }
     swapAmounts() {
-        if ("EngridAmounts" in window && this._frequency.frequency in window.EngridAmounts) {
+        if ("EngridAmounts" in window &&
+            this._frequency.frequency in window.EngridAmounts) {
             const loadEnAmounts = (amountArray) => {
                 let ret = [];
                 for (let amount in amountArray.amounts) {
-                    ret.push({ selected: amountArray.amounts[amount] === amountArray.default, label: amount, value: amountArray.amounts[amount].toString() });
+                    ret.push({
+                        selected: amountArray.amounts[amount] === amountArray.default,
+                        label: amount,
+                        value: amountArray.amounts[amount].toString(),
+                    });
                 }
                 return ret;
             };
-            window.EngagingNetworks.require._defined.enjs.swapList("donationAmt", loadEnAmounts(window.EngridAmounts[this._frequency.frequency]), { ignoreCurrentValue: !window.EngagingNetworks.require._defined.enjs.checkSubmissionFailed() });
+            window.EngagingNetworks.require._defined.enjs.swapList("donationAmt", loadEnAmounts(window.EngridAmounts[this._frequency.frequency]), {
+                ignoreCurrentValue: !window.EngagingNetworks.require._defined.enjs.checkSubmissionFailed(),
+            });
             this._amount.load();
-            if (ENGrid.getOption('Debug'))
+            if (ENGrid.getOption("Debug"))
                 console.log("Amounts Swapped To", window.EngridAmounts[this._frequency.frequency]);
         }
     }
