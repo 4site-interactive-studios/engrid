@@ -1,0 +1,34 @@
+<!-- Placed right after engrid.js -->
+<!-- Start Render Critical Javascript -->
+<script>
+    window.addEventListener("DOMContentLoaded", (event) => {
+      // Move this DOM elements before the page renders
+      let inlineMonthlyUpsell = document.querySelectorAll(
+        ".move-after-transaction-recurrfreq"
+      )[0];
+      let recurrFrequencyField = document.querySelectorAll(
+        ".en__field--recurrfreq"
+      )[0];
+      if (inlineMonthlyUpsell && recurrFrequencyField) {
+        recurrFrequencyField.insertAdjacentElement(
+          "beforeend",
+          inlineMonthlyUpsell
+        );
+      }
+  
+      // Move this DOM elements before the page renders
+      let inlineDonationAmountHeader = document.querySelectorAll(
+        ".move-before-transaction-donationamt"
+      )[0];
+      let donationAmtField = document.querySelectorAll(
+        ".en__field--donationAmt"
+      )[0];
+      if (inlineDonationAmountHeader && donationAmtField) {
+        donationAmtField.insertAdjacentElement(
+          "afterbegin",
+          inlineDonationAmountHeader
+        );
+      }
+    });
+</script>
+<!-- End Render Critical Javascript -->

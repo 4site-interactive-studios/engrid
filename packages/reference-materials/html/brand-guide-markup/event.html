@@ -1,0 +1,761 @@
+<h1 class="brand-guide-section-header">Event</h1>
+
+<h2 class="brand-guide-section-header">Online Only, No Tickets</h2>
+<div class="en__component en__component--eventtickets">
+	<div class="en__ticketBlock">
+		<div class="en__tickets">
+			<div class="en__additional">
+				<div class="en__additional__label">Additional Donation</div>
+				<div class="en__additional__amount">
+					<input class="en__additional__input" name="event.additionalAmount" type="text">USD
+				</div>
+				<div class="en__additional__promo">
+					<input class="en__additional__code" name="event.discount" maxlength="35" type="text" placeholder="Promo Code">
+				</div>
+			</div>
+		</div>
+		<div class="en__ticketSummary">
+			<button class="en__ticketSummary__checkout" type="submit">Checkout</button>
+		</div>
+	</div>
+
+</div>
+
+<h2 class="brand-guide-section-header">In Person, Tickets</h2>
+<div class="en__component en__component--eventtickets">
+	<div class="en__ticketBlock">
+		<div class="en__tickets">
+				<div class="en__ticket en__ticket--ENBL">
+					<div class="en__ticket__field en__ticket__field--info">
+						<div class="en__ticket__name">Ticket 1 Name</div>
+						<div class="en__ticket__desc">Ticket 1 Short Description</div>
+					</div>
+					<div class="en__ticket__field en__ticket__field--cost">
+							<div class="en__ticket__price en__ticket__price--earlybird">75</div>
+						<div class="en__ticket__currency">USD</div>
+					</div>
+					<div class="en__ticket__field en__ticket__field--quantity">
+							<div class="en__ticket__selector">
+								<input name="event.ticketType.0.id" value="19798" type="hidden">
+								<div class="en__ticket__minus"></div>
+								<input class="en__ticket__quantity" name="event.ticketType.0.quantity" value="0" type="text" data-min="1" data-max="10">
+								<div class="en__ticket__plus"></div>
+								<div data-remaining="1000" class="en__ticket__remaining" data-node-uid="1">1000 tickets left</div>
+							</div>
+					</div>
+				</div>
+				<div class="en__ticket en__ticket--ENBL">
+					<div class="en__ticket__field en__ticket__field--info">
+						<div class="en__ticket__name">Ticket 2 Name</div>
+						<div class="en__ticket__desc">Ticket 2 Short Description</div>
+					</div>
+					<div class="en__ticket__field en__ticket__field--cost">
+							<div class="en__ticket__price">500</div>
+						<div class="en__ticket__currency">USD</div>
+					</div>
+					<div class="en__ticket__field en__ticket__field--quantity">
+							<div class="en__ticket__selector">
+								<input name="event.ticketType.1.id" value="19800" type="hidden">
+								<div class="en__ticket__minus"></div>
+								<input class="en__ticket__quantity" name="event.ticketType.1.quantity" value="0" type="text" data-min="1" data-max="5">
+								<div class="en__ticket__plus"></div>
+								<div data-remaining="1000" class="en__ticket__remaining" data-node-uid="2">1000 tickets left</div>
+							</div>
+					</div>
+				</div>
+				<div class="en__ticket en__ticket--ENBL">
+					<div class="en__ticket__field en__ticket__field--info">
+						<div class="en__ticket__name">Ticket 3 Name</div>
+						<div class="en__ticket__desc">Ticket 3 Description</div>
+					</div>
+					<div class="en__ticket__field en__ticket__field--cost">
+							<div class="en__ticket__price">0</div>
+						<div class="en__ticket__currency">USD</div>
+					</div>
+					<div class="en__ticket__field en__ticket__field--quantity">
+							<div class="en__ticket__selector">
+								<input name="event.ticketType.2.id" value="19799" type="hidden">
+								<div class="en__ticket__minus"></div>
+								<input class="en__ticket__quantity" name="event.ticketType.2.quantity" value="0" type="text" data-min="1" data-max="1">
+								<div class="en__ticket__plus"></div>
+								<div data-remaining="1000" class="en__ticket__remaining" data-node-uid="3">1000 tickets left</div>
+							</div>
+					</div>
+				</div>
+			<div class="en__additional">
+				<div class="en__additional__label">Additional Donation</div>
+				<div class="en__additional__amount">
+					<input class="en__additional__input" name="event.additionalAmount" type="text">USD
+				</div>
+				<div class="en__additional__promo">
+					<input class="en__additional__code" name="event.discount" maxlength="35" type="text" placeholder="Promo Code" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAfBJREFUWAntVk1OwkAUZkoDKza4Utm61iP0AqyIDXahN2BjwiHYGU+gizap4QDuegWN7lyCbMSlCQjU7yO0TOlAi6GwgJc0fT/fzPfmzet0crmD7HsFBAvQbrcrw+Gw5fu+AfOYvgylJ4TwCoVCs1ardYTruqfj8fgV5OUMSVVT93VdP9dAzpVvm5wJHZFbg2LQ2pEYOlZ/oiDvwNcsFoseY4PBwMCrhaeCJyKWZU37KOJcYdi27QdhcuuBIb073BvTNL8ln4NeeR6NRi/wxZKQcGurQs5oNhqLshzVTMBewW/LMU3TTNlO0ieTiStjYhUIyi6DAp0xbEdgTt+LE0aCKQw24U4llsCs4ZRJrYopB6RwqnpA1YQ5NGFZ1YQ41Z5S8IQQdP5laEBRJcD4Vj5DEsW2gE6s6g3d/YP/g+BDnT7GNi2qCjTwGd6riBzHaaCEd3Js01vwCPIbmWBRx1nwAN/1ov+/drgFWIlfKpVukyYihtgkXNp4mABK+1GtVr+SBhJDbBIubVw+Cd/TDgKO2DPiN3YUo6y/nDCNEIsqTKH1en2tcwA9FKEItyDi3aIh8Gl1sRrVnSDzNFDJT1bAy5xpOYGn5fP5JuL95ZjMIn1ya7j5dPGfv0A5eAnpZUY3n5jXcoec5J67D9q+VuAPM47D3XaSeL4AAAAASUVORK5CYII=&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+				</div>
+			</div>
+		</div>
+		<div class="en__ticketSummary">
+			<button class="en__ticketSummary__checkout" type="submit">Checkout</button>
+		</div>
+	</div>
+
+</div>
+
+<div class="en__eventOccurrences en__eventOccurrences--selecting">
+		<div class="en__eventOccurrences__title">
+			<h3>Select Date</h3>
+		</div>
+		<div class="en__eventOccurrences__header">
+			<div class="en__eventOccurrences__columnHead">
+				<h4>Upcoming dates</h4>
+			</div>
+			<div class="en__eventOccurrencesDateSelector">
+				<label for="en__eventOccurrenceDateFilter" class="en__eventOccurrencesDateSelector__label">Filter by date:</label>
+				<input id="en__eventOccurrenceDateFilter" class="en__eventOccurrencesDateSelector__input" type="date" pattern="\d{4}-\d{2}-\d{2}">
+				<div class="en__eventOccurrencesDateSelector__clear">Clear</div>
+			</div>
+		</div>		
+		<div class="en__eventOccurrences__list">
+			<div class="en__eventOccurrence en__eventOccurrence--paginated" data-iso="2021-06-15T21:00:00">
+				<div class="en__eventOccurrence__description">Tuesday, June 15, 2021, 9:00 PM</div>
+				<div class="en__eventOccurrence__controls">
+					<input class="en__eventOccurrence__radio" type="radio" name="event.occurrence.id" value="12" id="en__eventOccurrence__radio--12" data-iso="2021-06-15T21:00:00">
+					<button type="button" class="en__eventOccurrence__select">
+						<label for="en__eventOccurrence__radio--12">
+							Select Date
+						</label>
+					</button>
+				</div>
+			</div>
+			<div class="en__eventOccurrence en__eventOccurrence--paginated" data-iso="2021-06-22T21:00:00">
+				<div class="en__eventOccurrence__description">Tuesday, June 22, 2021, 9:00 PM</div>
+				<div class="en__eventOccurrence__controls">
+					<input class="en__eventOccurrence__radio" type="radio" name="event.occurrence.id" value="13" id="en__eventOccurrence__radio--13" data-iso="2021-06-22T21:00:00">
+					<button type="button" class="en__eventOccurrence__select">
+						<label for="en__eventOccurrence__radio--13">
+							Select Date
+						</label>
+					</button>
+				</div>
+			</div>
+			<div class="en__eventOccurrence en__eventOccurrence--paginated" data-iso="2021-06-29T21:00:00">
+				<div class="en__eventOccurrence__description">Tuesday, June 29, 2021, 9:00 PM</div>
+				<div class="en__eventOccurrence__controls">
+					<input class="en__eventOccurrence__radio" type="radio" name="event.occurrence.id" value="14" id="en__eventOccurrence__radio--14" data-iso="2021-06-29T21:00:00">
+					<button type="button" class="en__eventOccurrence__select">
+						<label for="en__eventOccurrence__radio--14">
+							Select Date
+						</label>
+					</button>
+				</div>
+			</div>
+			<div class="en__eventOccurrence en__eventOccurrence--paginated" data-iso="2021-07-06T21:00:00">
+				<div class="en__eventOccurrence__description">Tuesday, July 6, 2021, 9:00 PM</div>
+				<div class="en__eventOccurrence__controls">
+					<input class="en__eventOccurrence__radio" type="radio" name="event.occurrence.id" value="15" id="en__eventOccurrence__radio--15" data-iso="2021-07-06T21:00:00">
+					<button type="button" class="en__eventOccurrence__select">
+						<label for="en__eventOccurrence__radio--15">
+							Select Date
+						</label>
+					</button>
+				</div>
+			</div>
+			<div class="en__eventOccurrence en__eventOccurrence--paginated" data-iso="2021-07-13T21:00:00">
+				<div class="en__eventOccurrence__description">Tuesday, July 13, 2021, 9:00 PM</div>
+				<div class="en__eventOccurrence__controls">
+					<input class="en__eventOccurrence__radio" type="radio" name="event.occurrence.id" value="16" id="en__eventOccurrence__radio--16" data-iso="2021-07-13T21:00:00">
+					<button type="button" class="en__eventOccurrence__select">
+						<label for="en__eventOccurrence__radio--16">
+							Select Date
+						</label>
+					</button>
+				</div>
+			</div>
+			<div class="en__eventOccurrence en__eventOccurrence--paginated" data-iso="2021-07-20T21:00:00">
+				<div class="en__eventOccurrence__description">Tuesday, July 20, 2021, 9:00 PM</div>
+				<div class="en__eventOccurrence__controls">
+					<input class="en__eventOccurrence__radio" type="radio" name="event.occurrence.id" value="17" id="en__eventOccurrence__radio--17" data-iso="2021-07-20T21:00:00">
+					<button type="button" class="en__eventOccurrence__select">
+						<label for="en__eventOccurrence__radio--17">
+							Select Date
+						</label>
+					</button>
+				</div>
+			</div>
+			<div class="en__eventOccurrence en__eventOccurrence--paginated" data-iso="2021-07-27T21:00:00">
+				<div class="en__eventOccurrence__description">Tuesday, July 27, 2021, 9:00 PM</div>
+				<div class="en__eventOccurrence__controls">
+					<input class="en__eventOccurrence__radio" type="radio" name="event.occurrence.id" value="18" id="en__eventOccurrence__radio--18" data-iso="2021-07-27T21:00:00">
+					<button type="button" class="en__eventOccurrence__select">
+						<label for="en__eventOccurrence__radio--18">
+							Select Date
+						</label>
+					</button>
+				</div>
+			</div>
+			<div class="en__eventOccurrence en__eventOccurrence--paginated" data-iso="2021-08-03T21:00:00">
+				<div class="en__eventOccurrence__description">Tuesday, August 3, 2021, 9:00 PM</div>
+				<div class="en__eventOccurrence__controls">
+					<input class="en__eventOccurrence__radio" type="radio" name="event.occurrence.id" value="19" id="en__eventOccurrence__radio--19" data-iso="2021-08-03T21:00:00">
+					<button type="button" class="en__eventOccurrence__select">
+						<label for="en__eventOccurrence__radio--19">
+							Select Date
+						</label>
+					</button>
+				</div>
+			</div>
+			<div class="en__eventOccurrence en__eventOccurrence--paginated" data-iso="2021-08-10T21:00:00">
+				<div class="en__eventOccurrence__description">Tuesday, August 10, 2021, 9:00 PM</div>
+				<div class="en__eventOccurrence__controls">
+					<input class="en__eventOccurrence__radio" type="radio" name="event.occurrence.id" value="20" id="en__eventOccurrence__radio--20" data-iso="2021-08-10T21:00:00">
+					<button type="button" class="en__eventOccurrence__select">
+						<label for="en__eventOccurrence__radio--20">
+							Select Date
+						</label>
+					</button>
+				</div>
+			</div>
+			<div class="en__eventOccurrence en__eventOccurrence--paginated" data-iso="2021-08-17T21:00:00">
+				<div class="en__eventOccurrence__description">Tuesday, August 17, 2021, 9:00 PM</div>
+				<div class="en__eventOccurrence__controls">
+					<input class="en__eventOccurrence__radio" type="radio" name="event.occurrence.id" value="21" id="en__eventOccurrence__radio--21" data-iso="2021-08-17T21:00:00">
+					<button type="button" class="en__eventOccurrence__select">
+						<label for="en__eventOccurrence__radio--21">
+							Select Date
+						</label>
+					</button>
+				</div>
+			</div>
+			<div class="en__eventOccurrence en__eventOccurrence--paginated en__eventOccurrence--paginated--after" data-iso="2021-08-24T21:00:00">
+				<div class="en__eventOccurrence__description">Tuesday, August 24, 2021, 9:00 PM</div>
+				<div class="en__eventOccurrence__controls">
+					<input class="en__eventOccurrence__radio" type="radio" name="event.occurrence.id" value="22" id="en__eventOccurrence__radio--22" data-iso="2021-08-24T21:00:00">
+					<button type="button" class="en__eventOccurrence__select">
+						<label for="en__eventOccurrence__radio--22">
+							Select Date
+						</label>
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="en__eventOccurrencesPagination en__eventOccurrencesPagination--start">
+			<div class="en__eventOccurrencesPagination__control en__eventOccurrencesPagination__control--back"></div>
+			<div class="en__eventOccurrencesPagination__display en-noselect">1 / 2</div>
+			<div class="en__eventOccurrencesPagination__control en__eventOccurrencesPagination__control--forward"></div>
+		</div>
+		<div class="en__eventOccurrences__empty">
+			<p>No available dates found</p>
+		</div>
+	</div>
+
+
+
+
+
+    <h2 class="brand-guide-section-header">Recurring Ticket Date Selection</h2>
+
+    <div class="en__eventOccurrences en__eventOccurrences--selecting">
+		<div class="en__eventOccurrences__title">
+			<h3>Select Date</h3>
+		</div>
+		<div class="en__eventOccurrences__header">
+			<div class="en__eventOccurrences__columnHead">
+				<h4>Upcoming dates</h4>
+			</div>
+			<div class="en__eventOccurrencesDateSelector">
+				<label for="en__eventOccurrenceDateFilter" class="en__eventOccurrencesDateSelector__label">Filter by date:</label>
+				<input id="en__eventOccurrenceDateFilter" class="en__eventOccurrencesDateSelector__input" type="date" pattern="\d{4}-\d{2}-\d{2}">
+				<div class="en__eventOccurrencesDateSelector__clear">Clear</div>
+			</div>
+		</div>		
+		<div class="en__eventOccurrences__list">
+			<div class="en__eventOccurrence en__eventOccurrence--paginated" data-iso="2021-06-15T21:00:00">
+				<div class="en__eventOccurrence__description">Tuesday, June 15, 2021, 9:00 PM</div>
+				<div class="en__eventOccurrence__controls">
+					<input class="en__eventOccurrence__radio" type="radio" name="event.occurrence.id" value="12" id="en__eventOccurrence__radio--12" data-iso="2021-06-15T21:00:00">
+					<button type="button" class="en__eventOccurrence__select">
+						<label for="en__eventOccurrence__radio--12">
+							Select Date
+						</label>
+					</button>
+				</div>
+			</div>
+			<div class="en__eventOccurrence en__eventOccurrence--paginated" data-iso="2021-06-22T21:00:00">
+				<div class="en__eventOccurrence__description">Tuesday, June 22, 2021, 9:00 PM</div>
+				<div class="en__eventOccurrence__controls">
+					<input class="en__eventOccurrence__radio" type="radio" name="event.occurrence.id" value="13" id="en__eventOccurrence__radio--13" data-iso="2021-06-22T21:00:00">
+					<button type="button" class="en__eventOccurrence__select">
+						<label for="en__eventOccurrence__radio--13">
+							Select Date
+						</label>
+					</button>
+				</div>
+			</div>
+			<div class="en__eventOccurrence en__eventOccurrence--paginated" data-iso="2021-06-29T21:00:00">
+				<div class="en__eventOccurrence__description">Tuesday, June 29, 2021, 9:00 PM</div>
+				<div class="en__eventOccurrence__controls">
+					<input class="en__eventOccurrence__radio" type="radio" name="event.occurrence.id" value="14" id="en__eventOccurrence__radio--14" data-iso="2021-06-29T21:00:00">
+					<button type="button" class="en__eventOccurrence__select">
+						<label for="en__eventOccurrence__radio--14">
+							Select Date
+						</label>
+					</button>
+				</div>
+			</div>
+			<div class="en__eventOccurrence en__eventOccurrence--paginated" data-iso="2021-07-06T21:00:00">
+				<div class="en__eventOccurrence__description">Tuesday, July 6, 2021, 9:00 PM</div>
+				<div class="en__eventOccurrence__controls">
+					<input class="en__eventOccurrence__radio" type="radio" name="event.occurrence.id" value="15" id="en__eventOccurrence__radio--15" data-iso="2021-07-06T21:00:00">
+					<button type="button" class="en__eventOccurrence__select">
+						<label for="en__eventOccurrence__radio--15">
+							Select Date
+						</label>
+					</button>
+				</div>
+			</div>
+			<div class="en__eventOccurrence en__eventOccurrence--paginated" data-iso="2021-07-13T21:00:00">
+				<div class="en__eventOccurrence__description">Tuesday, July 13, 2021, 9:00 PM</div>
+				<div class="en__eventOccurrence__controls">
+					<input class="en__eventOccurrence__radio" type="radio" name="event.occurrence.id" value="16" id="en__eventOccurrence__radio--16" data-iso="2021-07-13T21:00:00">
+					<button type="button" class="en__eventOccurrence__select">
+						<label for="en__eventOccurrence__radio--16">
+							Select Date
+						</label>
+					</button>
+				</div>
+			</div>
+			<div class="en__eventOccurrence en__eventOccurrence--paginated" data-iso="2021-07-20T21:00:00">
+				<div class="en__eventOccurrence__description">Tuesday, July 20, 2021, 9:00 PM</div>
+				<div class="en__eventOccurrence__controls">
+					<input class="en__eventOccurrence__radio" type="radio" name="event.occurrence.id" value="17" id="en__eventOccurrence__radio--17" data-iso="2021-07-20T21:00:00">
+					<button type="button" class="en__eventOccurrence__select">
+						<label for="en__eventOccurrence__radio--17">
+							Select Date
+						</label>
+					</button>
+				</div>
+			</div>
+			<div class="en__eventOccurrence en__eventOccurrence--paginated" data-iso="2021-07-27T21:00:00">
+				<div class="en__eventOccurrence__description">Tuesday, July 27, 2021, 9:00 PM</div>
+				<div class="en__eventOccurrence__controls">
+					<input class="en__eventOccurrence__radio" type="radio" name="event.occurrence.id" value="18" id="en__eventOccurrence__radio--18" data-iso="2021-07-27T21:00:00">
+					<button type="button" class="en__eventOccurrence__select">
+						<label for="en__eventOccurrence__radio--18">
+							Select Date
+						</label>
+					</button>
+				</div>
+			</div>
+			<div class="en__eventOccurrence en__eventOccurrence--paginated" data-iso="2021-08-03T21:00:00">
+				<div class="en__eventOccurrence__description">Tuesday, August 3, 2021, 9:00 PM</div>
+				<div class="en__eventOccurrence__controls">
+					<input class="en__eventOccurrence__radio" type="radio" name="event.occurrence.id" value="19" id="en__eventOccurrence__radio--19" data-iso="2021-08-03T21:00:00">
+					<button type="button" class="en__eventOccurrence__select">
+						<label for="en__eventOccurrence__radio--19">
+							Select Date
+						</label>
+					</button>
+				</div>
+			</div>
+			<div class="en__eventOccurrence en__eventOccurrence--paginated" data-iso="2021-08-10T21:00:00">
+				<div class="en__eventOccurrence__description">Tuesday, August 10, 2021, 9:00 PM</div>
+				<div class="en__eventOccurrence__controls">
+					<input class="en__eventOccurrence__radio" type="radio" name="event.occurrence.id" value="20" id="en__eventOccurrence__radio--20" data-iso="2021-08-10T21:00:00">
+					<button type="button" class="en__eventOccurrence__select">
+						<label for="en__eventOccurrence__radio--20">
+							Select Date
+						</label>
+					</button>
+				</div>
+			</div>
+			<div class="en__eventOccurrence en__eventOccurrence--paginated" data-iso="2021-08-17T21:00:00">
+				<div class="en__eventOccurrence__description">Tuesday, August 17, 2021, 9:00 PM</div>
+				<div class="en__eventOccurrence__controls">
+					<input class="en__eventOccurrence__radio" type="radio" name="event.occurrence.id" value="21" id="en__eventOccurrence__radio--21" data-iso="2021-08-17T21:00:00">
+					<button type="button" class="en__eventOccurrence__select">
+						<label for="en__eventOccurrence__radio--21">
+							Select Date
+						</label>
+					</button>
+				</div>
+			</div>
+			<div class="en__eventOccurrence en__eventOccurrence--paginated en__eventOccurrence--paginated--after" data-iso="2021-08-24T21:00:00">
+				<div class="en__eventOccurrence__description">Tuesday, August 24, 2021, 9:00 PM</div>
+				<div class="en__eventOccurrence__controls">
+					<input class="en__eventOccurrence__radio" type="radio" name="event.occurrence.id" value="22" id="en__eventOccurrence__radio--22" data-iso="2021-08-24T21:00:00">
+					<button type="button" class="en__eventOccurrence__select">
+						<label for="en__eventOccurrence__radio--22">
+							Select Date
+						</label>
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="en__eventOccurrencesPagination en__eventOccurrencesPagination--start">
+			<div class="en__eventOccurrencesPagination__control en__eventOccurrencesPagination__control--back"></div>
+			<div class="en__eventOccurrencesPagination__display en-noselect">1 / 2</div>
+			<div class="en__eventOccurrencesPagination__control en__eventOccurrencesPagination__control--forward"></div>
+		</div>
+		<div class="en__eventOccurrences__empty">
+			<p>No available dates found</p>
+		</div>
+	</div>
+
+    <h2 class="brand-guide-section-header">Order Summary</h2>
+   <div class="en__component en__component--eventtickets">
+    <div class="en__orderSummary">
+        <div class="en__orderSummary__headers">
+            <div class="en__orderSummary__header en__orderSummary__header--type">Items: </div>
+            <div class="en__orderSummary__header en__orderSummary__header--quantity">Quantity: </div>
+            <div class="en__orderSummary__header en__orderSummary__header--promo">Code used: </div>
+            <div class="en__orderSummary__header en__orderSummary__header--cost">Cost: </div>
+        </div>
+        <div class="en__orderSummary__item en__orderSummary__item--19799">
+            <div class="en__orderSummary__data en__orderSummary__data--type">Ticket 3 Name</div>
+            <div class="en__orderSummary__data en__orderSummary__data--quantity">1</div>
+            <div class="en__orderSummary__data en__orderSummary__data--promo"></div>
+            <div class="en__orderSummary__data en__orderSummary__data--cost">0.00 USD</div>
+        </div>
+        <div class="en__orderSummary__additional">
+            <div class="en__orderSummary__data en__orderSummary__data--type">Additional donation</div>
+            <div class="en__orderSummary__data en__orderSummary__data--fill"></div>
+            <div class="en__orderSummary__data en__orderSummary__data--fill"></div>
+            <div class="en__orderSummary__data en__orderSummary__data--cost">0.00 USD</div>
+        </div>
+        <div class="en__orderSummary__total">
+            <div class="en__orderSummary__data en__orderSummary__data--totalLabel">TOTAL:</div>
+            <div class="en__orderSummary__data en__orderSummary__data--fill"></div>
+            <div class="en__orderSummary__data en__orderSummary__data--fill"></div>
+            <div class="en__orderSummary__data en__orderSummary__data--totalAmount">$0.00</div>
+        </div>
+    </div>
+</div>
+
+
+<h2 class="brand-guide-section-header">Recurring Ticket with Date Selected</h2>
+<div class="en__component en__component--eventtickets">
+	<div class="en__ticketBlock en__ticketBlock--recurring en__ticketBlock--recurring--selected">
+		<div class="en__tickets">
+				<div class="en__ticket en__ticket--ENBL">
+					<div class="en__ticket__field en__ticket__field--info">
+						<div class="en__ticket__name">Ticket 1 Name</div>
+						<div class="en__ticket__desc">Ticket 1 Short Description</div>
+					</div>
+					<div class="en__ticket__field en__ticket__field--cost">
+							<div class="en__ticket__price en__ticket__price--earlybird">75</div>
+						<div class="en__ticket__currency">USD</div>
+					</div>
+					<div class="en__ticket__field en__ticket__field--quantity">
+							<div class="en__ticket__selector">
+								<input name="event.ticketType.0.id" value="19798" type="hidden">
+								<div class="en__ticket__minus"></div>
+								<input class="en__ticket__quantity" name="event.ticketType.0.quantity" value="0" type="text" data-min="1" data-max="10">
+								<div class="en__ticket__plus"></div>
+								<div data-remaining="1000" class="en__ticket__remaining" data-node-uid="1">1000 tickets left</div>
+							</div>
+					</div>
+				</div>
+				<div class="en__ticket en__ticket--ENBL">
+					<div class="en__ticket__field en__ticket__field--info">
+						<div class="en__ticket__name">Ticket 2 Name</div>
+						<div class="en__ticket__desc">Ticket 2 Short Description</div>
+					</div>
+					<div class="en__ticket__field en__ticket__field--cost">
+							<div class="en__ticket__price">500</div>
+						<div class="en__ticket__currency">USD</div>
+					</div>
+					<div class="en__ticket__field en__ticket__field--quantity">
+							<div class="en__ticket__selector">
+								<input name="event.ticketType.1.id" value="19800" type="hidden">
+								<div class="en__ticket__minus"></div>
+								<input class="en__ticket__quantity" name="event.ticketType.1.quantity" value="0" type="text" data-min="1" data-max="5">
+								<div class="en__ticket__plus"></div>
+								<div data-remaining="1000" class="en__ticket__remaining" data-node-uid="2">1000 tickets left</div>
+							</div>
+					</div>
+				</div>
+				<div class="en__ticket en__ticket--ENBL">
+					<div class="en__ticket__field en__ticket__field--info">
+						<div class="en__ticket__name">Ticket 3 Name</div>
+						<div class="en__ticket__desc">Ticket 3 Description</div>
+					</div>
+					<div class="en__ticket__field en__ticket__field--cost">
+							<div class="en__ticket__price">0</div>
+						<div class="en__ticket__currency">USD</div>
+					</div>
+					<div class="en__ticket__field en__ticket__field--quantity">
+							<div class="en__ticket__selector">
+								<input name="event.ticketType.2.id" value="19799" type="hidden">
+								<div class="en__ticket__minus"></div>
+								<input class="en__ticket__quantity" name="event.ticketType.2.quantity" value="0" type="text" data-min="1" data-max="1">
+								<div class="en__ticket__plus"></div>
+								<div data-remaining="1000" class="en__ticket__remaining" data-node-uid="3">1000 tickets left</div>
+							</div>
+					</div>
+				</div>
+			<div class="en__additional">
+				<div class="en__additional__label">Additional Donation</div>
+				<div class="en__additional__amount">
+					<input class="en__additional__input" name="event.additionalAmount" type="text">USD
+				</div>
+				<div class="en__additional__promo">
+					<input class="en__additional__code" name="event.discount" maxlength="35" type="text" placeholder="Promo Code" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAfBJREFUWAntVk1OwkAUZkoDKza4Utm61iP0AqyIDXahN2BjwiHYGU+gizap4QDuegWN7lyCbMSlCQjU7yO0TOlAi6GwgJc0fT/fzPfmzet0crmD7HsFBAvQbrcrw+Gw5fu+AfOYvgylJ4TwCoVCs1ardYTruqfj8fgV5OUMSVVT93VdP9dAzpVvm5wJHZFbg2LQ2pEYOlZ/oiDvwNcsFoseY4PBwMCrhaeCJyKWZU37KOJcYdi27QdhcuuBIb073BvTNL8ln4NeeR6NRi/wxZKQcGurQs5oNhqLshzVTMBewW/LMU3TTNlO0ieTiStjYhUIyi6DAp0xbEdgTt+LE0aCKQw24U4llsCs4ZRJrYopB6RwqnpA1YQ5NGFZ1YQ41Z5S8IQQdP5laEBRJcD4Vj5DEsW2gE6s6g3d/YP/g+BDnT7GNi2qCjTwGd6riBzHaaCEd3Js01vwCPIbmWBRx1nwAN/1ov+/drgFWIlfKpVukyYihtgkXNp4mABK+1GtVr+SBhJDbBIubVw+Cd/TDgKO2DPiN3YUo6y/nDCNEIsqTKH1en2tcwA9FKEItyDi3aIh8Gl1sRrVnSDzNFDJT1bAy5xpOYGn5fP5JuL95ZjMIn1ya7j5dPGfv0A5eAnpZUY3n5jXcoec5J67D9q+VuAPM47D3XaSeL4AAAAASUVORK5CYII=&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+				</div>
+			</div>
+		</div>
+		<div class="en__ticketSummary">
+			<div class="en__occurrenceSummary">
+				<div class="en__occurrenceSummary__selected">
+					<div class="en__occurrenceSummary__description">June 15, 2021, 9:00 PM</div>
+				</div>
+				<a class="en__occurrenceSummary__change">Change Date</a>
+			</div>
+			<button class="en__ticketSummary__checkout" type="submit">Checkout</button>
+		</div>
+		<div class="en__ticketRecurring">
+			<button class="en__ticketRecurring__select" type="button">Select Date</button>
+		</div>
+	</div>
+	<div class="en__eventOccurrences">
+		<div class="en__eventOccurrences__title">
+			<h3>Select Date</h3>
+		</div>
+		<div class="en__eventOccurrences__header">
+			<div class="en__eventOccurrences__columnHead">
+				<h4>Upcoming dates</h4>
+			</div>
+			<div class="en__eventOccurrencesDateSelector">
+				<label for="en__eventOccurrenceDateFilter" class="en__eventOccurrencesDateSelector__label">Filter by date:</label>
+				<input id="en__eventOccurrenceDateFilter" class="en__eventOccurrencesDateSelector__input" type="date" pattern="\d{4}-\d{2}-\d{2}">
+				<div class="en__eventOccurrencesDateSelector__clear">Clear</div>
+			</div>
+		</div>		
+		<div class="en__eventOccurrences__list">
+			<div class="en__eventOccurrence en__eventOccurrence--paginated" data-iso="2021-06-15T21:00:00">
+				<div class="en__eventOccurrence__description">Tuesday, June 15, 2021, 9:00 PM</div>
+				<div class="en__eventOccurrence__controls">
+					<input class="en__eventOccurrence__radio" type="radio" name="event.occurrence.id" value="12" id="en__eventOccurrence__radio--12" data-iso="2021-06-15T21:00:00" data-node-uid="4">
+					<button type="button" class="en__eventOccurrence__select">
+						<label for="en__eventOccurrence__radio--12">
+							Select Date
+						</label>
+					</button>
+				</div>
+			</div>
+			<div class="en__eventOccurrence en__eventOccurrence--paginated" data-iso="2021-06-22T21:00:00">
+				<div class="en__eventOccurrence__description">Tuesday, June 22, 2021, 9:00 PM</div>
+				<div class="en__eventOccurrence__controls">
+					<input class="en__eventOccurrence__radio" type="radio" name="event.occurrence.id" value="13" id="en__eventOccurrence__radio--13" data-iso="2021-06-22T21:00:00">
+					<button type="button" class="en__eventOccurrence__select">
+						<label for="en__eventOccurrence__radio--13">
+							Select Date
+						</label>
+					</button>
+				</div>
+			</div>
+			<div class="en__eventOccurrence en__eventOccurrence--paginated" data-iso="2021-06-29T21:00:00">
+				<div class="en__eventOccurrence__description">Tuesday, June 29, 2021, 9:00 PM</div>
+				<div class="en__eventOccurrence__controls">
+					<input class="en__eventOccurrence__radio" type="radio" name="event.occurrence.id" value="14" id="en__eventOccurrence__radio--14" data-iso="2021-06-29T21:00:00">
+					<button type="button" class="en__eventOccurrence__select">
+						<label for="en__eventOccurrence__radio--14">
+							Select Date
+						</label>
+					</button>
+				</div>
+			</div>
+			<div class="en__eventOccurrence en__eventOccurrence--paginated" data-iso="2021-07-06T21:00:00">
+				<div class="en__eventOccurrence__description">Tuesday, July 6, 2021, 9:00 PM</div>
+				<div class="en__eventOccurrence__controls">
+					<input class="en__eventOccurrence__radio" type="radio" name="event.occurrence.id" value="15" id="en__eventOccurrence__radio--15" data-iso="2021-07-06T21:00:00">
+					<button type="button" class="en__eventOccurrence__select">
+						<label for="en__eventOccurrence__radio--15">
+							Select Date
+						</label>
+					</button>
+				</div>
+			</div>
+			<div class="en__eventOccurrence en__eventOccurrence--paginated" data-iso="2021-07-13T21:00:00">
+				<div class="en__eventOccurrence__description">Tuesday, July 13, 2021, 9:00 PM</div>
+				<div class="en__eventOccurrence__controls">
+					<input class="en__eventOccurrence__radio" type="radio" name="event.occurrence.id" value="16" id="en__eventOccurrence__radio--16" data-iso="2021-07-13T21:00:00">
+					<button type="button" class="en__eventOccurrence__select">
+						<label for="en__eventOccurrence__radio--16">
+							Select Date
+						</label>
+					</button>
+				</div>
+			</div>
+			<div class="en__eventOccurrence en__eventOccurrence--paginated" data-iso="2021-07-20T21:00:00">
+				<div class="en__eventOccurrence__description">Tuesday, July 20, 2021, 9:00 PM</div>
+				<div class="en__eventOccurrence__controls">
+					<input class="en__eventOccurrence__radio" type="radio" name="event.occurrence.id" value="17" id="en__eventOccurrence__radio--17" data-iso="2021-07-20T21:00:00">
+					<button type="button" class="en__eventOccurrence__select">
+						<label for="en__eventOccurrence__radio--17">
+							Select Date
+						</label>
+					</button>
+				</div>
+			</div>
+			<div class="en__eventOccurrence en__eventOccurrence--paginated" data-iso="2021-07-27T21:00:00">
+				<div class="en__eventOccurrence__description">Tuesday, July 27, 2021, 9:00 PM</div>
+				<div class="en__eventOccurrence__controls">
+					<input class="en__eventOccurrence__radio" type="radio" name="event.occurrence.id" value="18" id="en__eventOccurrence__radio--18" data-iso="2021-07-27T21:00:00">
+					<button type="button" class="en__eventOccurrence__select">
+						<label for="en__eventOccurrence__radio--18">
+							Select Date
+						</label>
+					</button>
+				</div>
+			</div>
+			<div class="en__eventOccurrence en__eventOccurrence--paginated" data-iso="2021-08-03T21:00:00">
+				<div class="en__eventOccurrence__description">Tuesday, August 3, 2021, 9:00 PM</div>
+				<div class="en__eventOccurrence__controls">
+					<input class="en__eventOccurrence__radio" type="radio" name="event.occurrence.id" value="19" id="en__eventOccurrence__radio--19" data-iso="2021-08-03T21:00:00">
+					<button type="button" class="en__eventOccurrence__select">
+						<label for="en__eventOccurrence__radio--19">
+							Select Date
+						</label>
+					</button>
+				</div>
+			</div>
+			<div class="en__eventOccurrence en__eventOccurrence--paginated" data-iso="2021-08-10T21:00:00">
+				<div class="en__eventOccurrence__description">Tuesday, August 10, 2021, 9:00 PM</div>
+				<div class="en__eventOccurrence__controls">
+					<input class="en__eventOccurrence__radio" type="radio" name="event.occurrence.id" value="20" id="en__eventOccurrence__radio--20" data-iso="2021-08-10T21:00:00">
+					<button type="button" class="en__eventOccurrence__select">
+						<label for="en__eventOccurrence__radio--20">
+							Select Date
+						</label>
+					</button>
+				</div>
+			</div>
+			<div class="en__eventOccurrence en__eventOccurrence--paginated" data-iso="2021-08-17T21:00:00">
+				<div class="en__eventOccurrence__description">Tuesday, August 17, 2021, 9:00 PM</div>
+				<div class="en__eventOccurrence__controls">
+					<input class="en__eventOccurrence__radio" type="radio" name="event.occurrence.id" value="21" id="en__eventOccurrence__radio--21" data-iso="2021-08-17T21:00:00">
+					<button type="button" class="en__eventOccurrence__select">
+						<label for="en__eventOccurrence__radio--21">
+							Select Date
+						</label>
+					</button>
+				</div>
+			</div>
+			<div class="en__eventOccurrence en__eventOccurrence--paginated en__eventOccurrence--paginated--after" data-iso="2021-08-24T21:00:00">
+				<div class="en__eventOccurrence__description">Tuesday, August 24, 2021, 9:00 PM</div>
+				<div class="en__eventOccurrence__controls">
+					<input class="en__eventOccurrence__radio" type="radio" name="event.occurrence.id" value="22" id="en__eventOccurrence__radio--22" data-iso="2021-08-24T21:00:00">
+					<button type="button" class="en__eventOccurrence__select">
+						<label for="en__eventOccurrence__radio--22">
+							Select Date
+						</label>
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="en__eventOccurrencesPagination en__eventOccurrencesPagination--start">
+			<div class="en__eventOccurrencesPagination__control en__eventOccurrencesPagination__control--back"></div>
+			<div class="en__eventOccurrencesPagination__display en-noselect">1 / 2</div>
+			<div class="en__eventOccurrencesPagination__control en__eventOccurrencesPagination__control--forward"></div>
+		</div>
+		<div class="en__eventOccurrences__empty">
+			<p>No available dates found</p>
+		</div>
+	</div>
+
+</div>
+
+
+
+
+
+
+
+
+<h2 class="brand-guide-section-header">Event Registrants</h2>
+<div class="en__component en__component--eventregistrants">
+    <div class="en__registrants">
+        <div class="en__registrants__ticket">
+            <div class="en__registrants__ticketHead">Ticket 3 Name ticket 1</div>
+            <div class="en__registrants__group">
+                <div class="en__registrants__registrant">
+                    <div class="en__registrants__registrantHead">Attendee 1</div>
+                    <div class="en__registrants__registrantDetails">
+                            <div class="en__field en__field--text en__field--registrant en__field--registrant--1--firstName en__field--registrant--mandatory">
+<label for="en__field_event_ticketType_2_tickets_0_registrants_0_firstName" class="en__field__label" style="">First name</label>
+<div class="en__field__element en__field__element--text">
+    <input id="en__field_event_ticketType_2_tickets_0_registrants_0_firstName" type="text" class="en__field__input en__field__input--text" name="event.ticketType.2.tickets.0.registrants.0.firstName" value="" maxlength="100" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAfBJREFUWAntVk1OwkAUZkoDKza4Utm61iP0AqyIDXahN2BjwiHYGU+gizap4QDuegWN7lyCbMSlCQjU7yO0TOlAi6GwgJc0fT/fzPfmzet0crmD7HsFBAvQbrcrw+Gw5fu+AfOYvgylJ4TwCoVCs1ardYTruqfj8fgV5OUMSVVT93VdP9dAzpVvm5wJHZFbg2LQ2pEYOlZ/oiDvwNcsFoseY4PBwMCrhaeCJyKWZU37KOJcYdi27QdhcuuBIb073BvTNL8ln4NeeR6NRi/wxZKQcGurQs5oNhqLshzVTMBewW/LMU3TTNlO0ieTiStjYhUIyi6DAp0xbEdgTt+LE0aCKQw24U4llsCs4ZRJrYopB6RwqnpA1YQ5NGFZ1YQ41Z5S8IQQdP5laEBRJcD4Vj5DEsW2gE6s6g3d/YP/g+BDnT7GNi2qCjTwGd6riBzHaaCEd3Js01vwCPIbmWBRx1nwAN/1ov+/drgFWIlfKpVukyYihtgkXNp4mABK+1GtVr+SBhJDbBIubVw+Cd/TDgKO2DPiN3YUo6y/nDCNEIsqTKH1en2tcwA9FKEItyDi3aIh8Gl1sRrVnSDzNFDJT1bAy5xpOYGn5fP5JuL95ZjMIn1ya7j5dPGfv0A5eAnpZUY3n5jXcoec5J67D9q+VuAPM47D3XaSeL4AAAAASUVORK5CYII=&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+ </div>
+</div>
+                            <div class="en__field en__field--text en__field--registrant en__field--registrant--2--lastName en__field--registrant--mandatory">
+<label for="en__field_event_ticketType_2_tickets_0_registrants_0_lastName" class="en__field__label" style="">Last name</label>
+<div class="en__field__element en__field__element--text">
+    <input id="en__field_event_ticketType_2_tickets_0_registrants_0_lastName" type="text" class="en__field__input en__field__input--text" name="event.ticketType.2.tickets.0.registrants.0.lastName" value="" maxlength="100">
+ </div>
+</div>
+                            <div class="en__field en__field--text en__field--registrant en__field--registrant--3--emailAddress en__field--registrant--mandatory">
+<label for="en__field_event_ticketType_2_tickets_0_registrants_0_emailAddress" class="en__field__label" style="">Email address</label>
+<div class="en__field__element en__field__element--text">
+    <input id="en__field_event_ticketType_2_tickets_0_registrants_0_emailAddress" type="text" class="en__field__input en__field__input--text" name="event.ticketType.2.tickets.0.registrants.0.emailAddress" value="" maxlength="100">
+ </div>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="en__registrants__ticket">
+            <div class="en__registrants__ticketHead">Ticket 3 Name ticket 2</div>
+            <div class="en__registrants__group">
+                <div class="en__registrants__registrant">
+                    <div class="en__registrants__registrantHead">Attendee 2</div>
+                    <div class="en__registrants__registrantDetails">
+                            <div class="en__field en__field--text en__field--registrant en__field--registrant--20--firstName en__field--registrant--mandatory">
+<label for="en__field_event_ticketType_2_tickets_1_registrants_0_firstName" class="en__field__label" style="">First name</label>
+<div class="en__field__element en__field__element--text">
+    <input id="en__field_event_ticketType_2_tickets_1_registrants_0_firstName" type="text" class="en__field__input en__field__input--text" name="event.ticketType.2.tickets.1.registrants.0.firstName" value="" maxlength="100">
+ </div>
+</div>
+                            <div class="en__field en__field--text en__field--registrant en__field--registrant--21--lastName en__field--registrant--mandatory">
+<label for="en__field_event_ticketType_2_tickets_1_registrants_0_lastName" class="en__field__label" style="">Last name</label>
+<div class="en__field__element en__field__element--text">
+    <input id="en__field_event_ticketType_2_tickets_1_registrants_0_lastName" type="text" class="en__field__input en__field__input--text" name="event.ticketType.2.tickets.1.registrants.0.lastName" value="" maxlength="100">
+ </div>
+</div>
+                            <div class="en__field en__field--text en__field--registrant en__field--registrant--22--emailAddress en__field--registrant--mandatory">
+<label for="en__field_event_ticketType_2_tickets_1_registrants_0_emailAddress" class="en__field__label" style="">Email address</label>
+<div class="en__field__element en__field__element--text">
+    <input id="en__field_event_ticketType_2_tickets_1_registrants_0_emailAddress" type="text" class="en__field__input en__field__input--text" name="event.ticketType.2.tickets.1.registrants.0.emailAddress" value="" maxlength="100">
+ </div>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="en__registrants__ticket">
+            <div class="en__registrants__ticketHead">Ticket 3 Name ticket 3</div>
+            <div class="en__registrants__group">
+                <div class="en__registrants__registrant">
+                    <div class="en__registrants__registrantHead">Attendee 3</div>
+                    <div class="en__registrants__registrantDetails">
+                            <div class="en__field en__field--text en__field--registrant en__field--registrant--39--firstName en__field--registrant--mandatory">
+<label for="en__field_event_ticketType_2_tickets_2_registrants_0_firstName" class="en__field__label" style="">First name</label>
+<div class="en__field__element en__field__element--text">
+    <input id="en__field_event_ticketType_2_tickets_2_registrants_0_firstName" type="text" class="en__field__input en__field__input--text" name="event.ticketType.2.tickets.2.registrants.0.firstName" value="" maxlength="100">
+ </div>
+</div>
+                            <div class="en__field en__field--text en__field--registrant en__field--registrant--40--lastName en__field--registrant--mandatory">
+<label for="en__field_event_ticketType_2_tickets_2_registrants_0_lastName" class="en__field__label" style="">Last name</label>
+<div class="en__field__element en__field__element--text">
+    <input id="en__field_event_ticketType_2_tickets_2_registrants_0_lastName" type="text" class="en__field__input en__field__input--text" name="event.ticketType.2.tickets.2.registrants.0.lastName" value="" maxlength="100">
+ </div>
+</div>
+                            <div class="en__field en__field--text en__field--registrant en__field--registrant--41--emailAddress en__field--registrant--mandatory">
+<label for="en__field_event_ticketType_2_tickets_2_registrants_0_emailAddress" class="en__field__label" style="">Email address</label>
+<div class="en__field__element en__field__element--text">
+    <input id="en__field_event_ticketType_2_tickets_2_registrants_0_emailAddress" type="text" class="en__field__input en__field__input--text" name="event.ticketType.2.tickets.2.registrants.0.emailAddress" value="" maxlength="100">
+ </div>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

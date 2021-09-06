@@ -82,6 +82,7 @@
   --checkbox_padding-top: 0px;
   --checkbox_padding-left: 0px;
   --checkbox_text-transform: var(--radio_text-transform);
+  --checkbox_check_font-size: var(--radio_font-size);
 
   // TYPOGRAPHY CHECKBOX INPUT:FOCUS
   // TYPOGRAPHY CHECKBOX INPUT:HOVER
@@ -419,7 +420,9 @@ input[type=checkbox]{
     text-transform: var(--checkbox_text-transform);
 
     &:before{
-      content: " ";
+      content: var(--checkbox_content_checked);
+      color: transparent;
+      font-size: var(--checkbox_check_font-size);
       justify-content: center;
       align-items: center;
       margin-right: MAX(var(--fields_spacing-inline), 1ch, 0.5rem); // Uppercase "MAX" to bybass CSS-Sass naming conflict https://github.com/fancyapps/fancybox/issues/2182#issuecomment-763374376
@@ -475,7 +478,9 @@ input[type=checkbox]{
 
   &:before{
     visibility: visible;  // Used to keep psuedo element visible while hiding the parent
-    content: " ";
+    content: var(--checkbox_content_checked);
+    color: transparent;
+    font-size: var(--checkbox_check_font-size);
     justify-content: center;
     align-items: center;
     // margin-right: var(--fields_spacing-inline);
