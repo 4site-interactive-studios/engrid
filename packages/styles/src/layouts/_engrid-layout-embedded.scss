@@ -91,5 +91,37 @@
   .page-backgroundImageOverlay {
     display: none;
   }
+}
 
+@mixin engrid_embedded-mobile-body{
+  &[data-engrid-embedded]{
+    #engrid > .en__component--advrow > *,
+    form > .en__component--advrow > *{
+      --engrid__body_border-radius: 0px;
+
+      --engrid__body_padding: 0px; // @TODO This should work but it doesn't, we have to specify everything below for it to work
+      --engrid__body-headerOutside_padding: 0px;
+      --engrid__body-header_padding: 0px;
+      --engrid__body-title_padding: 0px;
+      --engrid__body-banner_padding: 0px;
+      --engrid__body-bannerOverlay_padding: 0px;
+      --engrid__body-top_padding: 0px;
+      --engrid__body-main_padding: 0px;
+      --engrid__body-bottom_padding: 0px;
+      --engrid__body-footer_padding: 0px;
+      --engrid__body-footerOutside_padding: 0px;
+
+      --engrid__body_margin: 0px; // @TODO This should work but it doesn't, we have to specify everything below for it to work
+      --engrid__body-headerOutside_margin: 0px;
+      --engrid__body-header_margin: 0px;
+      --engrid__body-title_margin: 0px;
+      --engrid__body-banner_margin: 0px;
+      --engrid__body-bannerOverlay_margin: 0px;
+      --engrid__body-top_margin: 0px;
+      --engrid__body-main_margin: 0px;
+      --engrid__body-bottom_margin: 0px;
+      --engrid__body-footer_margin: 0px;
+      --engrid__body-footerOutside_margin: 0px;
+    }
+  }
 }

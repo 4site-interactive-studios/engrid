@@ -52,13 +52,13 @@
 /* ENGRID LAYOUTS */
 /* MUST COME AFTER OTHER ENGRID STYLES WHICH MIGHT DEFINE MIXINS REFERENCED IN THE LAYOUTS */
 @import "layouts/engrid-layout";
+@import "layouts/engrid-layout-embedded"; // COMES FIRST SO ITS MIXINS CAN BE USED BY OTHER LAYOUTS
 @import "layouts/engrid-layout-centercenter1col";
 @import "layouts/engrid-layout-centercenter2col";
 @import "layouts/engrid-layout-centerleft1col";
 @import "layouts/engrid-layout-centerright1col";
 @import "layouts/engrid-layout-leftleft1col";
 @import "layouts/engrid-layout-rightright1col";
-@import "layouts/engrid-layout-embedded"; // COMES LAST SO IT SUPERSEDES ANY PREVIOUS LAYOUTS IN THE CSS CASCADE
 
 /* ENGRID THEMES */
 @import "themes/engrid-theme-flex2";

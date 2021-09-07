@@ -39,10 +39,13 @@ $leftleft1col_body-column_max-width: $one_col_body-column_max-width !default; //
     &:not(#en__pagebuilder) .page-backgroundImage {
       grid-row: page-start / content-footerSpacer-end;
     }
+
+    @include engrid_hide-background-on-desktop;
   }
 
   @media screen and (max-width: $leftleft1col_content-column_min-width - 1px) {
     @include engrid_replace-banner-with-background;
     @include engrid_mobile-banner;
+    @include engrid_embedded-mobile-body;
   }
 }

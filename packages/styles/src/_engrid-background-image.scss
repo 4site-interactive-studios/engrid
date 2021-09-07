@@ -152,3 +152,12 @@ body {
     }
   }
 }
+
+@mixin engrid_hide-background-on-desktop {
+  &[data-engrid-embedded]{
+    .page-backgroundImage,
+    .page-backgroundImageOverlay {
+      display: none !important;
+    }
+  }
+}

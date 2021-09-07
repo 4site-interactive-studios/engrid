@@ -6025,7 +6025,7 @@ body:not(#en__pagebuilder)[data-engrid-does-not-have-page-customCode] .en__compo
       box-shadow: none !important; }
   [data-engrid-embedded] .page-backgroundImage,
   [data-engrid-embedded] .page-backgroundImageOverlay {
-    display: none; }
+    display: none !important; }
 
 /* ENGRID THEMES */
 [data-engrid-theme="flex2"] {
