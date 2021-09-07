@@ -5,6 +5,7 @@ export class AutoYear {
     "select[name='transaction.ccexpire']:not(#en__field_transaction_ccexpire)"
   );
   private years = 20;
+  private yearLength = 2;
 
   constructor() {
     if (this.yearField) {
@@ -15,13 +16,16 @@ export class AutoYear {
         const newOption = document.createElement("option");
         const optionText = document.createTextNode(year.toString());
         newOption.appendChild(optionText);
-        newOption.value = year.toString().substr(-2);
+        newOption.value =
+          this.yearLength == 2 ? year.toString().substr(-2) : year.toString();
         this.yearField.appendChild(newOption);
       }
     }
   }
   clearFieldOptions() {
     if (this.yearField) {
+      this.yearLength =
+        this.yearField.options[this.yearField.options.length - 1].value.length;
       while (this.yearField.options.length > 1) {
         this.yearField.remove(1);
       }

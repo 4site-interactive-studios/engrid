@@ -36,5 +36,6 @@
     "type": "git",
     "url": "https://github.com/4site-interactive-studios/engrid-scripts.git",
     "directory": "packages/styles"
-  }
+  },
+  "gitHead": "ff49f2c85226070f1b68a6dbfb7e367cbfadaedb"
 }
