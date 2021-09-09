@@ -1,5 +1,5 @@
 import { DonationAmount, DonationFrequency, EnForm, ProcessingFees, } from "./events";
-import { ProgressBar, UpsellLightbox, ENGrid, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, CapitalizeFields, Ecard, ClickToExpand, legacy, IE, LiveVariables, sendIframeHeight, sendIframeFormStatus, ShowHideRadioCheckboxes, SimpleCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce, AutoYear, } from "./";
+import { ProgressBar, UpsellLightbox, ENGrid, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, CapitalizeFields, Ecard, ClickToExpand, legacy, IE, LiveVariables, sendIframeHeight, sendIframeFormStatus, ShowHideRadioCheckboxes, SimpleCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce, AutoYear, Autocomplete, } from "./";
 export class App extends ENGrid {
     constructor(options) {
         super();
@@ -126,6 +126,8 @@ export class App extends ENGrid {
         // Auto Year Class
         if (this.options.AutoYear)
             new AutoYear();
+        // Autocomplete Class
+        new Autocomplete();
         // Ecard Class
         new Ecard();
         // Click To Expand
