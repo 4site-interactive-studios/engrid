@@ -3146,6 +3146,15 @@ body:not(#en__pagebuilder) .click-to-expand.expanded .click-to-expand-text-wrapp
   --recurring-frequency__button_color_checked: var(--button_color_hover);
   --recurring-frequency__button_background-color_checked: var(--button_background-color_hover);
   --recurring-frequency__button_border-color_checked: var(--button_border-color_hover);
+  --recurring-payment__button_color: var(--button_color);
+  --recurring-payment__button_background-color: var(--button_background-color);
+  --recurring-payment__button_border-color: var(--button_border-color);
+  --recurring-payment__button_color_hover: var(--button_color_hover);
+  --recurring-payment__button_background-color_hover: var(--button_background-color_hover);
+  --recurring-payment__button_border-color_hover: var(--button_border-color_hover);
+  --recurring-payment__button_color_checked: var(--button_color_hover);
+  --recurring-payment__button_background-color_checked: var(--button_background-color_hover);
+  --recurring-payment__button_border-color_checked: var(--button_border-color_hover);
   --donation-amount__button_color: var(--button_color);
   --donation-amount__button_background-color: var(--button_background-color);
   --donation-amount__button_border-color: var(--button_border-color);
@@ -3488,6 +3497,16 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   --recurring-frequency__button_text-transform: var(--button_text-transform);
   --recurring-frequency__button_count: 4;
   --recurring-frequency__flex-grow: initial;
+  --recurring-payment__button_font-family: var(--button_font-family);
+  --recurring-payment__button_font-size: var(--button_font-size);
+  --recurring-payment__button_font-weight: var(--button_font-weight);
+  --recurring-payment__button_line-height: var(--button_line-height);
+  --recurring-payment__button_border-width: var(--button_border-width);
+  --recurring-payment__button_border-radius: var(--button_border-radius);
+  --recurring-payment__button_padding: var(--button_padding);
+  --recurring-payment__button_text-transform: var(--button_text-transform);
+  --recurring-payment__button_count: 4;
+  --recurring-payment__flex-grow: initial;
   --donation-amount__button_font-family: var(--button_font-family);
   --donation-amount__button_font-size: var(--button_font-size);
   --donation-amount__button_font-weight: var(--button_font-weight);
@@ -3521,31 +3540,34 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
 .en__field--donationAmt.en__field--withOther
 .en__field__element--radio
 .en__field__item:nth-last-child(1) {
-  display: flex !important; }
+  display: flex; }
 
 .en__field--donationAmt.en__field--withOther
 .en__field__element--radio
 .en__field__item:nth-last-child(2) {
-  display: none !important; }
+  display: none; }
 
 /* prettier-ignore */
 .radio-to-buttons .en__field--radio .en__field__input--radio + .en__field__label:before,
 .en__field--give-by-select.en__field--radio .en__field__input--radio + .en__field__label:before,
 .radio-to-buttons_donationAmt .en__field--donationAmt.en__field--radio .en__field__input--radio + .en__field__label:before,
-.radio-to-buttons_recurrfreq .en__field--recurrfreq.en__field--radio .en__field__input--radio + .en__field__label:before {
+.radio-to-buttons_recurrfreq .en__field--recurrfreq.en__field--radio .en__field__input--radio + .en__field__label:before,
+.radio-to-buttons_recurrpay .en__field--recurrpay.en__field--radio .en__field__input--radio + .en__field__label:before {
   display: none; }
 
 .radio-to-buttons > .en__field > .en__field__element > .en__field__item:not(.en__field__item--other),
 .en__field--give-by-select > .en__field__element .en__field__item:not(.en__field__item--other),
 .radio-to-buttons_donationAmt .en__field--donationAmt.en__field--radio > .en__field__element .en__field__item:not(.en__field__item--other),
-.radio-to-buttons_recurrfreq .en__field--recurrfreq.en__field--radio > .en__field__element .en__field__item:not(.en__field__item--other) {
+.radio-to-buttons_recurrfreq .en__field--recurrfreq.en__field--radio > .en__field__element .en__field__item:not(.en__field__item--other),
+.radio-to-buttons_recurrpay .en__field--recurrpay.en__field--radio > .en__field__element .en__field__item:not(.en__field__item--other) {
   justify-content: center;
   flex-shrink: 1; }
 
 .radio-to-buttons > .en__field > .en__field__element > .en__field__item--other,
 .en__field--give-by-select > .en__field__element .en__field__item--other,
 .radio-to-buttons_donationAmt .en__field--donationAmt.en__field--radio > .en__field__element .en__field__item--other,
-.radio-to-buttons_recurrfreq .en__field--recurrfreq.en__field--radio > .en__field__element .en__field__item--other {
+.radio-to-buttons_recurrfreq .en__field--recurrfreq.en__field--radio > .en__field__element .en__field__item--other,
+.radio-to-buttons_recurrpay .en__field--recurrpay.en__field--radio > .en__field__element .en__field__item--other {
   justify-content: center;
   flex-shrink: 1; }
 
@@ -3564,6 +3586,10 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
 .radio-to-buttons_recurrfreq .en__field--recurrfreq.en__field--radio > .en__field__element .en__field__input--other {
   border-radius: var(--recurring-frequency__button_border-radius);
   border-width: var(--recurring-frequency__button_border-width); }
+
+.radio-to-buttons_recurrpay .en__field--recurrpay.en__field--radio > .en__field__element .en__field__input--other {
+  border-radius: var(--recurring-payment__button_border-radius);
+  border-width: var(--recurring-payment__button_border-width); }
 
 /*
 ########################################################################
@@ -3721,6 +3747,44 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
 .recurring-frequency_count_5 {
   --recurring-frequency__button_count: 5; }
 
+/* prettier-ignore */
+.radio-to-buttons_recurrpay .en__field--recurrpay.en__field--radio input[type=radio] + label {
+  font-family: var(--recurring-payment__button_font-family);
+  color: var(--recurring-payment__button_color);
+  font-size: var(--recurring-payment__button_font-size);
+  font-weight: var(--recurring-payment__button_font-weight);
+  line-height: var(--recurring-payment__button_line-height);
+  background-color: var(--recurring-payment__button_background-color);
+  border-width: var(--recurring-payment__button_border-width);
+  border-color: var(--recurring-payment__button_border-color);
+  border-radius: var(--recurring-payment__button_border-radius);
+  border-style: solid;
+  padding: var(--recurring-payment__button_padding);
+  text-transform: var(--recurring-payment__button_text-transform);
+  background-position-x: 40px;
+  text-align: center;
+  justify-content: center;
+  flex-flow: wrap; }
+
+.radio-to-buttons_recurrpay .en__field--recurrpay.en__field--radio > .en__field__element .en__field__item {
+  flex-basis: calc(100% / var(--recurring-payment__button_count));
+  flex-grow: var(--recurring-payment__flex-grow); }
+
+.recurring-payment_count_1 {
+  --recurring-payment__button_count: 1; }
+
+.recurring-payment_count_2 {
+  --recurring-payment__button_count: 2; }
+
+.recurring-payment_count_3 {
+  --recurring-payment__button_count: 3; }
+
+.recurring-payment_count_4 {
+  --recurring-payment__button_count: 4; }
+
+.recurring-payment_count_5 {
+  --recurring-payment__button_count: 5; }
+
 /*
 ########################################################################
 # HOVER STATE
@@ -3749,6 +3813,12 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   color: var(--recurring-frequency__button_color_hover);
   background-color: var(--recurring-frequency__button_background-color_hover);
   border-color: var(--recurring-frequency__button_border-color_hover); }
+
+/* prettier-ignore */
+.radio-to-buttons_recurrpay .en__field--recurrpay.en__field--radio .en__field__item:hover input[type=radio] + label {
+  color: var(--recurring-payment__button_color_hover);
+  background-color: var(--recurring-payment__button_background-color_hover);
+  border-color: var(--recurring-paymnet__button_border-color_hover); }
 
 /*
 ########################################################################
@@ -3779,6 +3849,12 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   background-color: var(--recurring-frequency__button_background-color_checked);
   border-color: var(--recurring-frequency__button_border-color_checked); }
 
+/* prettier-ignore */
+.radio-to-buttons_recurrpay .en__field--recurrpay.en__field--radio .en__field__item input[type=radio]:checked + label {
+  color: var(--recurring-payment__button_color_checked);
+  background-color: var(--recurring-payment__button_background-color_checked);
+  border-color: var(--recurring-payment__button_border-color_checked); }
+
 /*
 ########################################################################
 # HOVER AND CHECKED STATE
@@ -3808,11 +3884,18 @@ body:not(#en__pagebuilder) .i11-hide-label .en__field:nth-of-type(11) > label {
   background-color: var(--recurring-frequency__button_background-color_checked);
   border-color: var(--recurring-frequency__button_border-color_checked); }
 
+/* prettier-ignore */
+.radio-to-buttons_recurrpay .en__field--recurrpay.en__field--radio .en__field__item:hover input[type=radio]:checked + label {
+  color: var(--recurring-payment__button_color_checked);
+  background-color: var(--recurring-payment__button_background-color_checked);
+  border-color: var(--recurring-payment__button_border-color_checked); }
+
 /*
 ########################################################################
 # FOCUS STATE
 ########################################################################
 */
+/* prettier-ignore */
 /* prettier-ignore */
 /* prettier-ignore */
 /* prettier-ignore */
@@ -6202,6 +6285,14 @@ body:not(#en__pagebuilder)[data-engrid-does-not-have-page-customCode] .en__compo
   --engrid__body-footer_padding: 0 2.5rem 2rem 2.5rem; }
 
 /* Add your custom theme styles here */
+[data-engrid-theme="flex2"] .en__field--donationAmt.en__field--withOther .en__field__element--radio .en__field__item:nth-last-child(2) {
+  display: flex; }
+  [data-engrid-theme="flex2"] .en__field--donationAmt.en__field--withOther .en__field__element--radio .en__field__item:nth-last-child(2) label {
+    width: 100%; }
+
+[data-engrid-theme="flex2"] .en__field--donationAmt.en__field--withOther .en__field__element--radio .en__field__item.en__field__item--hidden:last-child {
+  display: none; }
+
 [data-engrid-theme="flex2"][data-highlight-required-fields] .en__mandatory > label {
   justify-content: flex-start; }
   [data-engrid-theme="flex2"][data-highlight-required-fields] .en__mandatory > label:after {
