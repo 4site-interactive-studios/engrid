@@ -14,6 +14,16 @@
 
 /* Add your custom theme styles here */
 [data-engrid-theme="flex2"]{
+    .en__field--donationAmt.en__field--withOther .en__field__element--radio .en__field__item:nth-last-child(2){
+        display: flex;
+        label{
+            width: 100%;
+        }
+    }
+
+    .en__field--donationAmt.en__field--withOther .en__field__element--radio .en__field__item.en__field__item--hidden:last-child{
+        display: none;
+    }
 
     @mixin client_under_layout_breakpoint{
         --engrid__body_padding: 0 1.5rem;

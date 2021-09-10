@@ -124,6 +124,15 @@
     --recurring-frequency__button_color_checked: var(--button_color_hover);
     --recurring-frequency__button_background-color_checked: var(--button_background-color_hover);
     --recurring-frequency__button_border-color_checked: var(--button_border-color_hover); 
+    --recurring-payment__button_color: var(--button_color);
+    --recurring-payment__button_background-color: var(--button_background-color);
+    --recurring-payment__button_border-color: var(--button_border-color);
+    --recurring-payment__button_color_hover: var(--button_color_hover);
+    --recurring-payment__button_background-color_hover: var(--button_background-color_hover);
+    --recurring-payment__button_border-color_hover: var(--button_border-color_hover);  
+    --recurring-payment__button_color_checked: var(--button_color_hover);
+    --recurring-payment__button_background-color_checked: var(--button_background-color_hover);
+    --recurring-payment__button_border-color_checked: var(--button_border-color_hover); 
     --donation-amount__button_color: var(--button_color);   
     --donation-amount__button_background-color: var(--button_background-color);
     --donation-amount__button_border-color: var(--button_border-color);
