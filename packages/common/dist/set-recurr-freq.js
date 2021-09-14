@@ -19,11 +19,27 @@ export class setRecurrFreq {
                 }
             });
         });
+        const currentFrequency = ENGrid.getFieldValue('transaction.recurrfreq').toUpperCase();
         // Watch checkboxes with the name checkboxName
         document.getElementsByName(this.checkboxName).forEach((element) => {
+            // set checked status per currently-set frequency
+            const frequency = element.value.toUpperCase();
+            if (frequency === currentFrequency) {
+                element.checked = true;
+            }
+            else {
+                element.checked = false;
+            }
             element.addEventListener("change", () => {
+                const frequency = element.value.toUpperCase();
                 if (element.checked) {
-                    ENGrid.setFieldValue('transaction.recurrfreq', element.value.toUpperCase());
+                    ENGrid.setFieldValue('transaction.recurrfreq', frequency);
+                    ENGrid.setFieldValue('transaction.recurrpay', 'Y');
+                    this._frequency.load();
+                }
+                else if (frequency !== 'ONETIME') {
+                    ENGrid.setFieldValue('transaction.recurrfreq', 'ONETIME');
+                    ENGrid.setFieldValue('transaction.recurrpay', 'N');
                     this._frequency.load();
                 }
             });

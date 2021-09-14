@@ -26,7 +26,7 @@ export class setRecurrFreq {
 
         // Watch checkboxes with the name checkboxName
         (document.getElementsByName(this.checkboxName) as NodeListOf<HTMLInputElement>).forEach((element) => {
-            // set checked status per currently-set frequency
+            // Set checked status per currently-set frequency
             const frequency = element.value.toUpperCase();
             if (frequency === currentFrequency) {
                 element.checked = true;
