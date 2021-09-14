@@ -699,11 +699,11 @@ body[data-engrid-debug]:before {
   background: #BFBFBF; }
 
 .en__button--ajax--inprogress {
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_loading.gif) center center no-repeat;
+  background: url(https://e-activist.com/pageassets/images/en_loading.gif) center center no-repeat;
   background-size: 1.875rem 1.875rem; }
 
 .en__button--ajax--done {
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en__end--30.png) center center no-repeat;
+  background: url(https://e-activist.com/pageassets/images/en__end--30.png) center center no-repeat;
   background-size: 1.875rem 1.875rem; }
 
 .en__orderSummary {
@@ -771,11 +771,11 @@ body[data-engrid-debug]:before {
   border-radius: var(--input_border-radius); }
 
 .en__ticket__plus {
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_plus.png) center center no-repeat var(--color_white);
+  background: url(https://e-activist.com/pageassets/images/en_plus.png) center center no-repeat var(--color_white);
   margin-left: 0.3125rem; }
 
 .en__ticket__minus {
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_minus.png) center center no-repeat var(--color_white);
+  background: url(https://e-activist.com/pageassets/images/en_minus.png) center center no-repeat var(--color_white);
   margin-right: 0.3125rem; }
 
 .en__ticket__soldout,
@@ -879,7 +879,7 @@ body[data-engrid-debug]:before {
 .en__eventOccurrencesDateSelector__label {
   padding-left: 1.875rem;
   margin-right: 0.375rem;
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/calendar.svg) center left no-repeat;
+  background: url(https://e-activist.com/pageassets/images/calendar.svg) center left no-repeat;
   display: block;
   line-height: 1.5rem;
   height: 1.5rem; }
@@ -940,10 +940,10 @@ body[data-engrid-debug]:before {
   cursor: pointer; }
 
 .en__eventOccurrencesPagination__control--back {
-  background-image: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_prev.png); }
+  background-image: url(https://e-activist.com/pageassets/images/en_prev.png); }
 
 .en__eventOccurrencesPagination__control--forward {
-  background-image: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_next.png); }
+  background-image: url(https://e-activist.com/pageassets/images/en_next.png); }
 
 .en__eventOccurrencesPagination--end .en__eventOccurrencesPagination__control--forward,
 .en__eventOccurrencesPagination--start .en__eventOccurrencesPagination__control--back {
@@ -1067,20 +1067,20 @@ body[data-engrid-debug]:before {
   width: auto; }
 
 .en__share__button--twitter {
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_share--twitter.png) center center no-repeat; }
+  background: url(https://e-activist.com/pageassets/images/en_share--twitter.png) center center no-repeat; }
 
 .en__share__button--facebook {
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_share--facebook.png) center center no-repeat; }
+  background: url(https://e-activist.com/pageassets/images/en_share--facebook.png) center center no-repeat; }
 
 .en__share__button--gplus {
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_share--gplus.png) center center no-repeat; }
+  background: url(https://e-activist.com/pageassets/images/en_share--gplus.png) center center no-repeat; }
 
 .en__share__button--small.en__share__button--twitter {
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_twitter--small.png) center 1px no-repeat;
+  background: url(https://e-activist.com/pageassets/images/en_twitter--small.png) center 1px no-repeat;
   width: auto; }
 
 .en__share__button--large.en__share__button--twitter {
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_twitter--large.png) center top no-repeat; }
+  background: url(https://e-activist.com/pageassets/images/en_twitter--large.png) center top no-repeat; }
 
 .en__socialShare {
   padding: 0.375rem; }
@@ -1102,7 +1102,7 @@ body[data-engrid-debug]:before {
   height: 3.75rem; }
 
 .en__contact__image.en__brokenImage {
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_contactPlaceholder.png) top center no-repeat; }
+  background: url(https://e-activist.com/pageassets/images/en_contactPlaceholder.png) top center no-repeat; }
 
 .en__contactMessage,
 .en__contactSubject {
@@ -1128,13 +1128,13 @@ body[data-engrid-debug]:before {
   cursor: pointer;
   width: 3.75rem;
   height: 0.9375rem;
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_open.png) center center no-repeat var(--color_white);
+  background: url(https://e-activist.com/pageassets/images/en_open.png) center center no-repeat var(--color_white);
   margin: 0 auto;
   border-bottom-left-radius: var(--input_border-radius);
   border-bottom-right-radius: var(--input_border-radius); }
 
 .en__contact--open .en__contact__toggle {
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_close.png) center center no-repeat var(--color_white); }
+  background: url(https://e-activist.com/pageassets/images/en_close.png) center center no-repeat var(--color_white); }
 
 .en__singleMessage {
   background: var(--color_white);
@@ -1146,13 +1146,13 @@ body[data-engrid-debug]:before {
 .en__contactDetails__background {
   width: 2.8125rem;
   height: 2.8125rem;
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_background.png) center center no-repeat #DFDFDF; }
+  background: url(https://e-activist.com/pageassets/images/en_background.png) center center no-repeat #DFDFDF; }
 
 .en__contact--showBackground .en__contactDetails__background {
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_message.png) center center no-repeat #DFDFDF; }
+  background: url(https://e-activist.com/pageassets/images/en_message.png) center center no-repeat #DFDFDF; }
 
 .en__contacts--singleMessageMode .en__contact--showBackground .en__contactDetails__background {
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_backgroundClose.png) center center no-repeat #DFDFDF; }
+  background: url(https://e-activist.com/pageassets/images/en_backgroundClose.png) center center no-repeat #DFDFDF; }
 
 .en__contactBackground {
   padding: 1.25rem;
@@ -1177,10 +1177,10 @@ body[data-engrid-debug]:before {
   margin-top: 0; }
 
 .en__contactBackground__cycle--next {
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_next.png) center right no-repeat var(--color_white); }
+  background: url(https://e-activist.com/pageassets/images/en_next.png) center right no-repeat var(--color_white); }
 
 .en__contactBackground__cycle--prev {
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_prev.png) center left no-repeat var(--color_white); }
+  background: url(https://e-activist.com/pageassets/images/en_prev.png) center left no-repeat var(--color_white); }
 
 .en__contactSection__content--uneditable,
 .en__contactSection__label {
@@ -1218,7 +1218,7 @@ body[data-engrid-debug]:before {
   content: " ";
   height: 3.75rem;
   width: 3.75rem;
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_twitter_fallback.png) center center no-repeat #DFDFDF; }
+  background: url(https://e-activist.com/pageassets/images/en_twitter_fallback.png) center center no-repeat #DFDFDF; }
 
 .en__tweet textarea {
   border: 1px solid #BFBFBF;
@@ -1244,7 +1244,7 @@ body[data-engrid-debug]:before {
 .en__tweetContact .en__tweetBackgroundToggle {
   width: 2.8125rem;
   height: 2.8125rem;
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_background.png) center center no-repeat #DFDFDF;
+  background: url(https://e-activist.com/pageassets/images/en_background.png) center center no-repeat #DFDFDF;
   margin: 0.625rem 0.625rem 0 0; }
 
 .en__tweetBackgroundText pre {
@@ -1252,7 +1252,7 @@ body[data-engrid-debug]:before {
   border-top: 1px solid #DFDFDF; }
 
 .en__tweetContact--showBackground .en__tweetBackgroundToggle {
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_backgroundClose.png) center center no-repeat #DFDFDF; }
+  background: url(https://e-activist.com/pageassets/images/en_backgroundClose.png) center center no-repeat #DFDFDF; }
 
 .en__component.en__component--ecardblock {
   max-width: 55rem; }
@@ -1380,7 +1380,7 @@ body[data-engrid-debug]:before {
 
 .en__hubOverlay__loading {
   opacity: .8;
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_loading.gif) center center no-repeat var(--color_white); }
+  background: url(https://e-activist.com/pageassets/images/en_loading.gif) center center no-repeat var(--color_white); }
 
 .en__hubOverlay--supporterdetails .en__hubOverlay__popup,
 .en__hubOverlay--supportersubscriptions .en__hubOverlay__popup {
@@ -1418,7 +1418,7 @@ body[data-engrid-debug]:before {
 
 .en__hubOverlay__header a {
   width: 2rem;
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_huboverlay_close.png) center center no-repeat;
+  background: url(https://e-activist.com/pageassets/images/en_huboverlay_close.png) center center no-repeat;
   text-indent: -500vw; }
 
 .en__hubOverlay__content {
@@ -1468,7 +1468,7 @@ body[data-engrid-debug]:before {
   padding: 0.75rem; }
 
 .en__myImpact__hubCopy span {
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_search.png) right center no-repeat;
+  background: url(https://e-activist.com/pageassets/images/en_search.png) right center no-repeat;
   border-radius: var(--input_border-radius);
   padding: 0.75rem 0; }
 
@@ -1486,7 +1486,7 @@ body[data-engrid-debug]:before {
   color: #0070BA; }
 
 .en__hubOverlay__impact .en__hubOverlay__content > div {
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_thumbsup.png) no-repeat;
+  background: url(https://e-activist.com/pageassets/images/en_thumbsup.png) no-repeat;
   padding: 0 0 0 11.25rem; }
 
 .en__p2phub__sites {
@@ -1504,7 +1504,7 @@ body[data-engrid-debug]:before {
   padding: 0.75rem 0; }
 
 .en__p2phub__site .en__p2phub__login {
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_lockopen-24.png) right center no-repeat; }
+  background: url(https://e-activist.com/pageassets/images/en_lockopen-24.png) right center no-repeat; }
 
 @media (max-width: 768px) {
   .en__hubOverlay__impact .en__hubOverlay__content > div {
@@ -1730,7 +1730,7 @@ body[data-engrid-debug]:before {
   padding: 0 0.625rem; }
 
 .en__memtyperenew__or {
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/dot.jpg) center center repeat-x; }
+  background: url(https://e-activist.com/pageassets/images/dot.jpg) center center repeat-x; }
 
 .en__memtyperenew__orText {
   background-color: var(--color_white);
@@ -1742,14 +1742,14 @@ body[data-engrid-debug]:before {
   background-color: var(--color_white); }
 
 .en__member__row {
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_background.png) left 10px center no-repeat;
+  background: url(https://e-activist.com/pageassets/images/en_background.png) left 10px center no-repeat;
   padding: 0 1.25rem 0 3.25rem;
   min-height: 3.25rem; }
 
 .en__member__toggle {
   width: 1rem;
   height: 1rem;
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_close.png) center center no-repeat; }
+  background: url(https://e-activist.com/pageassets/images/en_close.png) center center no-repeat; }
 
 .en__member__openButton {
   background-color: var(--color_white);
@@ -1770,7 +1770,7 @@ body[data-engrid-debug]:before {
   opacity: .3; }
 
 .en__member--closed .en__member__toggle {
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_open.png) center center no-repeat; }
+  background: url(https://e-activist.com/pageassets/images/en_open.png) center center no-repeat; }
 
 .en__overlay {
   background: rgba(0, 0, 0, 0.25);
@@ -1783,7 +1783,7 @@ body[data-engrid-debug]:before {
 
 .en__overlay__loading {
   opacity: .8;
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_loading.gif) center center no-repeat var(--color_white);
+  background: url(https://e-activist.com/pageassets/images/en_loading.gif) center center no-repeat var(--color_white);
   border-radius: 0.0625rem; }
 
 .en__overlay__message {
@@ -1811,7 +1811,7 @@ body[data-engrid-debug]:before {
 
 .en__overlay__header a {
   width: 2rem;
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_huboverlay_close.png) center center no-repeat;
+  background: url(https://e-activist.com/pageassets/images/en_huboverlay_close.png) center center no-repeat;
   text-indent: -500vw; }
 
 .en__overlay__content {
@@ -1864,7 +1864,7 @@ body[data-engrid-debug]:before {
   color: #32325D; }
 
 .en__stripeButtons__preview .en__stripeButtons__previewIcon {
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/gateways/buttons/stripe-icon.png) 0 center no-repeat;
+  background: url(https://e-activist.com/pageassets/images/gateways/buttons/stripe-icon.png) 0 center no-repeat;
   width: 1.375rem;
   height: 1.375rem;
   margin: 0 0 0 0.3125rem;
@@ -1883,12 +1883,12 @@ body[data-engrid-debug]:before {
   border-radius: var(--button_border-radius); }
 
 .en__paypalTouch__preview .en__paypalTouch__previewIcon {
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/gateways/buttons/paypal-icon-svg.svg) 0 center no-repeat;
+  background: url(https://e-activist.com/pageassets/images/gateways/buttons/paypal-icon-svg.svg) 0 center no-repeat;
   width: 1rem;
   background-size: 0.8125rem; }
 
 .en__paypalTouch__preview .en__paypalTouch__previewIcon2 {
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/gateways/buttons/paypal-text-svg.svg) 0 center no-repeat;
+  background: url(https://e-activist.com/pageassets/images/gateways/buttons/paypal-text-svg.svg) 0 center no-repeat;
   width: 3.75rem;
   background-size: 3.75rem; }
 
@@ -1896,11 +1896,11 @@ body[data-engrid-debug]:before {
   background: #0070BA; }
 
 .en__paypalTouch__preview.blue .en__paypalTouch__previewIcon {
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/gateways/buttons/paypal-icon-white-svg.svg) 0 center no-repeat;
+  background: url(https://e-activist.com/pageassets/images/gateways/buttons/paypal-icon-white-svg.svg) 0 center no-repeat;
   background-size: 0.8125rem; }
 
 .en__paypalTouch__preview.blue .en__paypalTouch__previewIcon2 {
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/gateways/buttons/paypal-text-white-svg.svg) 0 center no-repeat;
+  background: url(https://e-activist.com/pageassets/images/gateways/buttons/paypal-text-white-svg.svg) 0 center no-repeat;
   background-size: 3.75rem; }
 
 .en__paypalTouch__preview.white {
@@ -1911,11 +1911,11 @@ body[data-engrid-debug]:before {
   background: #404040; }
 
 .en__paypalTouch__preview.black .en__paypalTouch__previewIcon {
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/gateways/buttons/paypal-icon-white-svg.svg) 0 center no-repeat;
+  background: url(https://e-activist.com/pageassets/images/gateways/buttons/paypal-icon-white-svg.svg) 0 center no-repeat;
   background-size: 0.8125rem; }
 
 .en__paypalTouch__preview.black .en__paypalTouch__previewIcon2 {
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/gateways/buttons/paypal-text-white-svg.svg) 0 center no-repeat;
+  background: url(https://e-activist.com/pageassets/images/gateways/buttons/paypal-text-white-svg.svg) 0 center no-repeat;
   background-size: 3.75rem; }
 
 #en__digitalWallet .en__digitalWallet__button {
@@ -3015,7 +3015,7 @@ button[disabled],
 
 [data-engrid-theme] {
   --click-to-expand__copy-area_height: 450px;
-  --click-to-expand__cta-image_url: url("https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_open.png");
+  --click-to-expand__cta-image_url: url("https://e-activist.com/pageassets/images/en_open.png");
   --click-to-expand__cta-image_width: 16px;
   --click-to-expand__cta-image_height: 16px; }
 

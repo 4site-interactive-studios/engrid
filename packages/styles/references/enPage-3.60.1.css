@@ -316,12 +316,12 @@ only screen and (max-device-width:600px) {
 }
 
 .en__button--ajax--inprogress {
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_loading.gif) center center no-repeat;
+	background: url(https://e-activist.com/pageassets/images/en_loading.gif) center center no-repeat;
 	background-size: 30px 30px
 }
 
 .en__button--ajax--done {
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en__end--30.png) center center no-repeat;
+	background: url(https://e-activist.com/pageassets/images/en__end--30.png) center center no-repeat;
 	background-size: 30px 30px
 }
 
@@ -453,12 +453,12 @@ only screen and (max-device-width:600px) {
 }
 
 .en__ticket__plus {
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_plus.png) center center no-repeat #fff;
+	background: url(https://e-activist.com/pageassets/images/en_plus.png) center center no-repeat #fff;
 	margin-left: 5px
 }
 
 .en__ticket__minus {
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_minus.png) center center no-repeat #fff;
+	background: url(https://e-activist.com/pageassets/images/en_minus.png) center center no-repeat #fff;
 	margin-right: 5px
 }
 
@@ -732,19 +732,19 @@ only screen and (max-device-width:600px) {
 }
 
 .en__share__button--twitter {
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_share--twitter.png) center center no-repeat
+	background: url(https://e-activist.com/pageassets/images/en_share--twitter.png) center center no-repeat
 }
 
 .en__share__button--facebook {
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_share--facebook.png) center center no-repeat
+	background: url(https://e-activist.com/pageassets/images/en_share--facebook.png) center center no-repeat
 }
 
 .en__share__button--gplus {
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_share--gplus.png) center center no-repeat
+	background: url(https://e-activist.com/pageassets/images/en_share--gplus.png) center center no-repeat
 }
 
 .en__share__button--small.en__share__button--twitter {
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_twitter--small.png) center 1px no-repeat;
+	background: url(https://e-activist.com/pageassets/images/en_twitter--small.png) center 1px no-repeat;
 	width: 65px
 }
 
@@ -755,7 +755,7 @@ only screen and (max-device-width:600px) {
 }
 
 .en__share__button--large.en__share__button--twitter {
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_twitter--large.png) center top no-repeat
+	background: url(https://e-activist.com/pageassets/images/en_twitter--large.png) center top no-repeat
 }
 
 .en__socialShares {
@@ -817,7 +817,7 @@ only screen and (max-device-width:600px) {
 }
 
 .en__contact__image.en__brokenImage {
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_contactPlaceholder.png) top center no-repeat
+	background: url(https://e-activist.com/pageassets/images/en_contactPlaceholder.png) top center no-repeat
 }
 
 .en__contact__main {
@@ -887,14 +887,14 @@ only screen and (max-device-width:600px) {
 	cursor: pointer;
 	width: 60px;
 	height: 15px;
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_open.png) center center no-repeat #fff;
+	background: url(https://e-activist.com/pageassets/images/en_open.png) center center no-repeat #fff;
 	margin: 0 auto;
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px
 }
 
 .en__contact--open .en__contact__toggle {
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_close.png) center center no-repeat #fff
+	background: url(https://e-activist.com/pageassets/images/en_close.png) center center no-repeat #fff
 }
 
 .en__singleMessage {
@@ -911,7 +911,7 @@ only screen and (max-device-width:600px) {
 	display: none;
 	width: 45px;
 	height: 45px;
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_background.png) center center no-repeat #f0f0f0;
+	background: url(https://e-activist.com/pageassets/images/en_background.png) center center no-repeat #f0f0f0;
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -919,11 +919,11 @@ only screen and (max-device-width:600px) {
 }
 
 .en__contact--showBackground .en__contactDetails__background {
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_message.png) center center no-repeat #f0f0f0
+	background: url(https://e-activist.com/pageassets/images/en_message.png) center center no-repeat #f0f0f0
 }
 
 .en__contacts--singleMessageMode .en__contact--showBackground .en__contactDetails__background {
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_backgroundClose.png) center center no-repeat #f0f0f0
+	background: url(https://e-activist.com/pageassets/images/en_backgroundClose.png) center center no-repeat #f0f0f0
 }
 
 .en__contact--open .en__contactDetails__background,
@@ -978,12 +978,12 @@ only screen and (max-device-width:600px) {
 }
 
 .en__contactBackground__cycle--next {
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_next.png) center right no-repeat #fff;
+	background: url(https://e-activist.com/pageassets/images/en_next.png) center right no-repeat #fff;
 	right: 0
 }
 
 .en__contactBackground__cycle--prev {
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_prev.png) center left no-repeat #fff;
+	background: url(https://e-activist.com/pageassets/images/en_prev.png) center left no-repeat #fff;
 	left: 0
 }
 
@@ -1079,7 +1079,7 @@ only screen and (max-device-width:600px) {
 	position: absolute;
 	height: 60px;
 	width: 60px;
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_twitter_fallback.png) center center no-repeat #f0f0f0
+	background: url(https://e-activist.com/pageassets/images/en_twitter_fallback.png) center center no-repeat #f0f0f0
 }
 
 .en__tweet textarea {
@@ -1133,7 +1133,7 @@ only screen and (max-device-width:600px) {
 .en__tweetContact .en__tweetBackgroundToggle {
 	width: 45px;
 	height: 45px;
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_background.png) center center no-repeat #f0f0f0;
+	background: url(https://e-activist.com/pageassets/images/en_background.png) center center no-repeat #f0f0f0;
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -1150,7 +1150,7 @@ only screen and (max-device-width:600px) {
 }
 
 .en__tweetContact--showBackground .en__tweetBackgroundToggle {
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_backgroundClose.png) center center no-repeat #f0f0f0
+	background: url(https://e-activist.com/pageassets/images/en_backgroundClose.png) center center no-repeat #f0f0f0
 }
 
 .en__tweetContact--showBackground .en__tweetBackgroundText {
@@ -1428,7 +1428,7 @@ only screen and (max-device-width:600px) {
 	bottom: 0;
 	left: 0;
 	right: 0;
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_loading.gif) center center no-repeat #fff
+	background: url(https://e-activist.com/pageassets/images/en_loading.gif) center center no-repeat #fff
 }
 
 .en__hubOverlay__loading--active {
@@ -1483,7 +1483,7 @@ only screen and (max-device-width:600px) {
 	right: 0;
 	bottom: 0;
 	width: 32px;
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_huboverlay_close.png) center center no-repeat;
+	background: url(https://e-activist.com/pageassets/images/en_huboverlay_close.png) center center no-repeat;
 	overflow: hidden;
 	text-indent: -999px
 }
@@ -1579,7 +1579,7 @@ only screen and (max-device-width:600px) {
 
 .en__myImpact__hubCopy span {
 	display: block;
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_search.png) right center no-repeat;
+	background: url(https://e-activist.com/pageassets/images/en_search.png) right center no-repeat;
 	border-radius: 3px;
 	padding: 12px 0
 }
@@ -1605,7 +1605,7 @@ only screen and (max-device-width:600px) {
 }
 
 .en__hubOverlay__impact .en__hubOverlay__content>div {
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_thumbsup.png) no-repeat;
+	background: url(https://e-activist.com/pageassets/images/en_thumbsup.png) no-repeat;
 	padding: 0 0 0 160px
 }
 
@@ -1638,7 +1638,7 @@ only screen and (max-device-width:600px) {
 }
 
 .en__p2phub__site .en__p2phub__login {
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_lockopen-24.png) right center no-repeat
+	background: url(https://e-activist.com/pageassets/images/en_lockopen-24.png) right center no-repeat
 }
 
 .en__hubPledge__state {
@@ -1704,7 +1704,7 @@ only screen and (max-device-width:600px) {
 	cursor: pointer;
 	width: 24px;
 	margin-bottom: 18px;
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_edit.png) center center no-repeat;
+	background: url(https://e-activist.com/pageassets/images/en_edit.png) center center no-repeat;
 	margin-left: 24px
 }
 
@@ -1880,7 +1880,7 @@ only screen and (max-device-width:600px) {
 .en__hubMembership__card__update {
 	width: 24px;
 	height: 24px;
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_edit.png) center center no-repeat;
+	background: url(https://e-activist.com/pageassets/images/en_edit.png) center center no-repeat;
 	cursor: pointer;
 	text-indent: -99999px;
 	position: absolute;
@@ -2144,7 +2144,7 @@ only screen and (max-device-width:600px) {
 }
 
 .en__memtyperenew__or {
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/dot.jpg) center center repeat-x;
+	background: url(https://e-activist.com/pageassets/images/dot.jpg) center center repeat-x;
 	text-align: center
 }
 
@@ -2175,7 +2175,7 @@ only screen and (max-device-width:600px) {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_background.png) left 10px center no-repeat;
+	background: url(https://e-activist.com/pageassets/images/en_background.png) left 10px center no-repeat;
 	padding: 0 20px 0 52px;
 	min-height: 52px
 }
@@ -2184,7 +2184,7 @@ only screen and (max-device-width:600px) {
 	display: none;
 	width: 16px;
 	height: 16px;
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_close.png) center center no-repeat
+	background: url(https://e-activist.com/pageassets/images/en_close.png) center center no-repeat
 }
 
 .en__member__openButton {
@@ -2237,7 +2237,7 @@ only screen and (max-device-width:600px) {
 }
 
 .en__member--closed .en__member__toggle {
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_open.png) center center no-repeat
+	background: url(https://e-activist.com/pageassets/images/en_open.png) center center no-repeat
 }
 
 .en__overlay {
@@ -2264,7 +2264,7 @@ only screen and (max-device-width:600px) {
 	bottom: 0;
 	left: 0;
 	right: 0;
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_loading.gif) center center no-repeat #fff;
+	background: url(https://e-activist.com/pageassets/images/en_loading.gif) center center no-repeat #fff;
 	border-radius: 6px
 }
 
@@ -2307,7 +2307,7 @@ only screen and (max-device-width:600px) {
 	right: 0;
 	bottom: 0;
 	width: 32px;
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/en_huboverlay_close.png) center center no-repeat;
+	background: url(https://e-activist.com/pageassets/images/en_huboverlay_close.png) center center no-repeat;
 	overflow: hidden;
 	text-indent: -999px
 }
@@ -2431,7 +2431,7 @@ only screen and (max-device-width:600px) {
 }
 
 .en__stripeButtons__preview .en__stripeButtons__previewIcon {
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/gateways/buttons/stripe-icon.png) 0 center no-repeat;
+	background: url(https://e-activist.com/pageassets/images/gateways/buttons/stripe-icon.png) 0 center no-repeat;
 	width: 22px;
 	height: 22px;
 	display: inline-block;
@@ -2463,7 +2463,7 @@ only screen and (max-device-width:600px) {
 }
 
 .en__paypalTouch__preview .en__paypalTouch__previewIcon {
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/gateways/buttons/paypal-icon-svg.svg) 0 center no-repeat;
+	background: url(https://e-activist.com/pageassets/images/gateways/buttons/paypal-icon-svg.svg) 0 center no-repeat;
 	width: 16px;
 	height: 100%;
 	display: inline-block;
@@ -2471,7 +2471,7 @@ only screen and (max-device-width:600px) {
 }
 
 .en__paypalTouch__preview .en__paypalTouch__previewIcon2 {
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/gateways/buttons/paypal-text-svg.svg) 0 center no-repeat;
+	background: url(https://e-activist.com/pageassets/images/gateways/buttons/paypal-text-svg.svg) 0 center no-repeat;
 	width: 60px;
 	height: 100%;
 	display: inline-block;
@@ -2483,12 +2483,12 @@ only screen and (max-device-width:600px) {
 }
 
 .en__paypalTouch__preview.blue .en__paypalTouch__previewIcon {
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/gateways/buttons/paypal-icon-white-svg.svg) 0 center no-repeat;
+	background: url(https://e-activist.com/pageassets/images/gateways/buttons/paypal-icon-white-svg.svg) 0 center no-repeat;
 	background-size: 13px
 }
 
 .en__paypalTouch__preview.blue .en__paypalTouch__previewIcon2 {
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/gateways/buttons/paypal-text-white-svg.svg) 0 center no-repeat;
+	background: url(https://e-activist.com/pageassets/images/gateways/buttons/paypal-text-white-svg.svg) 0 center no-repeat;
 	background-size: 60px
 }
 
@@ -2502,12 +2502,12 @@ only screen and (max-device-width:600px) {
 }
 
 .en__paypalTouch__preview.black .en__paypalTouch__previewIcon {
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/gateways/buttons/paypal-icon-white-svg.svg) 0 center no-repeat;
+	background: url(https://e-activist.com/pageassets/images/gateways/buttons/paypal-icon-white-svg.svg) 0 center no-repeat;
 	background-size: 13px
 }
 
 .en__paypalTouch__preview.black .en__paypalTouch__previewIcon2 {
-	background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/images/gateways/buttons/paypal-text-white-svg.svg) 0 center no-repeat;
+	background: url(https://e-activist.com/pageassets/images/gateways/buttons/paypal-text-white-svg.svg) 0 center no-repeat;
 	background-size: 60px
 }
 
