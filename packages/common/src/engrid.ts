@@ -187,4 +187,32 @@ export abstract class ENGrid {
     }
     return s.join(dec);
   }
+  static disableSubmit(label: string = "") {
+    const submit = document.querySelector(
+      ".en__submit button"
+    ) as HTMLButtonElement;
+    submit.dataset.originalText = submit.innerText;
+    let submitButtonProcessingHTML =
+      "<span class='loader-wrapper'><span class='loader loader-quart'></span><span class='submit-button-text-wrapper'>" +
+      label +
+      "</span></span>";
+    if (submit) {
+      submit.disabled = true;
+      submit.innerHTML = submitButtonProcessingHTML;
+      return true;
+    }
+    return false;
+  }
+  static enableSubmit() {
+    const submit = document.querySelector(
+      ".en__submit button"
+    ) as HTMLButtonElement;
+    if (submit.dataset.originalText) {
+      submit.disabled = false;
+      submit.innerText = submit.dataset.originalText;
+      delete submit.dataset.originalText;
+      return true;
+    }
+    return false;
+  }
 }
