@@ -4285,10 +4285,6 @@ button.en__eventOccurrence__select > label {
 * # Field Level Inline "Fancy Errors"
 * ##########################################################
 */
-[data-engrid-errors="fancy"] .en__component--formblock .en__field.en__field--validationFailed,
-[data-engrid-errors="fancy"] .en__component--svblock .en__field.en__field--validationFailed {
-  margin-bottom: calc(var(--fields_spacing-block) * 2); }
-
 [data-engrid-errors="fancy"] .en__field__error {
   padding: 0.25rem 0.5rem;
   color: var(--color_white);

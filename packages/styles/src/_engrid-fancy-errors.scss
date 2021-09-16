@@ -8,7 +8,7 @@
 
   .en__component--formblock .en__field.en__field--validationFailed,
   .en__component--svblock .en__field.en__field--validationFailed{
-    margin-bottom: calc(var(--fields_spacing-block) * 2);
+    // margin-bottom: calc(var(--fields_spacing-block) * 2);
   }
 
   .en__field__error {
