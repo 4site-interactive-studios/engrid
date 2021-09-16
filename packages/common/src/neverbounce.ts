@@ -266,7 +266,11 @@ export class NeverBounce {
     if (this.nbStatus) {
       this.nbStatus.value = ENGrid.getFieldValue("nb-result");
     }
-    if (!["catchall", "valid"].includes(ENGrid.getFieldValue("nb-result"))) {
+    if (
+      !["catchall", "unknown", "valid"].includes(
+        ENGrid.getFieldValue("nb-result")
+      )
+    ) {
       this.setEmailStatus("required");
       this.emailField?.focus();
       return false;
