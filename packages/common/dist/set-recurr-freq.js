@@ -22,7 +22,7 @@ export class setRecurrFreq {
         const currentFrequency = ENGrid.getFieldValue('transaction.recurrfreq').toUpperCase();
         // Watch checkboxes with the name checkboxName
         document.getElementsByName(this.checkboxName).forEach((element) => {
-            // set checked status per currently-set frequency
+            // Set checked status per currently-set frequency
             const frequency = element.value.toUpperCase();
             if (frequency === currentFrequency) {
                 element.checked = true;
@@ -46,10 +46,21 @@ export class setRecurrFreq {
         });
         // Uncheck the checkbox when frequency != checkbox value
         this._frequency.onFrequencyChange.subscribe(() => {
-            const freq = this._frequency.frequency.toUpperCase();
-            document.getElementsByName(this.checkboxName).forEach((element) => {
-                if (element.checked && element.value != freq) {
+            const currentFrequency = this._frequency.frequency.toUpperCase();
+            /*
+            (document.getElementsByName(this.checkboxName) as NodeListOf<HTMLInputElement>).forEach((element) => {
+                if (element.checked && element.value.toUpperCase() != freq) {
                     element.checked = false;
+                }
+            });
+            */
+            document.getElementsByName(this.checkboxName).forEach((element) => {
+                var elementFrequency = element.value.toUpperCase();
+                if (element.checked && elementFrequency !== currentFrequency) {
+                    element.checked = false;
+                }
+                else if (!element.checked && elementFrequency === currentFrequency) {
+                    element.checked = true;
                 }
             });
         });

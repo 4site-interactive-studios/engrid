@@ -49,13 +49,17 @@ export class setRecurrFreq {
         });
         // Uncheck the checkbox when frequency != checkbox value
         this._frequency.onFrequencyChange.subscribe(() => {
-            const freq = this._frequency.frequency.toUpperCase();
+
+            const currentFrequency = this._frequency.frequency.toUpperCase();
             (document.getElementsByName(this.checkboxName) as NodeListOf<HTMLInputElement>).forEach((element) => {
-                if (element.checked && element.value != freq) {
+                var elementFrequency = element.value.toUpperCase();
+                if (element.checked && elementFrequency !== currentFrequency) {
                     element.checked = false;
+                } else if(!element.checked && elementFrequency === currentFrequency) {
+                    element.checked = true;
                 }
-            }
-            );
+            });
+
         });
     }
 }
