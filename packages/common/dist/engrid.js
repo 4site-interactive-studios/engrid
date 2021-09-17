@@ -119,7 +119,7 @@ export class ENGrid {
         const body = document.querySelector("body");
         // If value is boolean
         if (typeof value === "boolean" && value === false) {
-            body.removeAttribute(dataName);
+            body.removeAttribute(`data-engrid-${dataName}`);
             return;
         }
         body.setAttribute(`data-engrid-${dataName}`, value.toString());

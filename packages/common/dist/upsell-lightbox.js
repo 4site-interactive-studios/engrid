@@ -129,7 +129,7 @@ export class UpsellLightbox {
     liveAmounts() {
         const live_upsell_amount = document.querySelectorAll(".upsell_suggestion");
         const live_amount = document.querySelectorAll(".upsell_amount");
-        const suggestedAmount = this.getUpsellAmount();
+        const suggestedAmount = this.getUpsellAmount() + this._fees.fee;
         live_upsell_amount.forEach((elem) => (elem.innerHTML = this.getAmountTxt(suggestedAmount)));
         live_amount.forEach((elem) => (elem.innerHTML = this.getAmountTxt(this._amount.amount + this._fees.fee)));
     }
