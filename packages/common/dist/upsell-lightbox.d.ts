@@ -1,9 +1,11 @@
+import { ProcessingFees } from "./";
 import { DonationAmount } from "./events";
 export declare class UpsellLightbox {
     private options;
     private overlay;
     private _form;
     _amount: DonationAmount;
+    _fees: ProcessingFees;
     private _frequency;
     constructor();
     private renderLightbox;
@@ -16,4 +18,5 @@ export declare class UpsellLightbox {
     private setOriginalAmount;
     private continue;
     private close;
+    private getAmountTxt;
 }

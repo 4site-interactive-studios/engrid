@@ -128,9 +128,14 @@ export abstract class ENGrid {
   }
 
   // Set body engrid data attributes
-  static setBodyData(dataName: string, value: string) {
+  static setBodyData(dataName: string, value: string | boolean) {
     const body = <HTMLBodyElement>document.querySelector("body");
-    body.setAttribute(`data-engrid-${dataName}`, value);
+    // If value is boolean
+    if (typeof value === "boolean" && value === false) {
+      body.removeAttribute(dataName);
+      return;
+    }
+    body.setAttribute(`data-engrid-${dataName}`, value.toString());
   }
 
   // Get body engrid data attributes

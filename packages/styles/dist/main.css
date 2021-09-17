@@ -4542,6 +4542,9 @@ img {
 body:not(#en__pagebuilder) img:not([src]):not([srcset]) {
   visibility: hidden; }
 
+[data-engrid-has-lightbox] {
+  overflow: hidden; }
+
 #enModal {
   position: fixed;
   top: 0;
@@ -6560,214 +6563,214 @@ body:not(#en__pagebuilder)[data-engrid-does-not-have-page-customCode] .en__compo
 * ##########################################################
 */
 [data-engrid-debug="accessability"] img:not([alt]) {
-  outline: 1px dashed #FF0000; }
+  outline: 1px dashed #ff0000; }
 
 [data-engrid-debug="image-sizes"] img:not([height]) {
   outline: 1px dashed #00ff00; }
 
 [data-engrid-debug="image-sizes"] img:not([width]) {
-  outline: 1px dashed #0000FF; }
+  outline: 1px dashed #0000ff; }
 
 [data-engrid-debug="image-sizes"] img:not([height]):not([width]) {
   outline: 1px dashed #6a0dad; }
 
 [data-engrid-debug="layout"] * {
-  outline: 1px dotted  #eeeeee !important; }
+  outline: 1px dotted #eeeeee !important; }
 
 [data-engrid-debug="layout"] body {
-  outline: 1px solid #2980B9 !important; }
+  outline: 1px solid #2980b9 !important; }
 
 [data-engrid-debug="layout"] article {
-  outline: 1px solid #3498DB !important; }
+  outline: 1px solid #3498db !important; }
 
 [data-engrid-debug="layout"] nav {
-  outline: 1px solid #0088C3 !important; }
+  outline: 1px solid #0088c3 !important; }
 
 [data-engrid-debug="layout"] aside {
-  outline: 1px solid #33A0CE !important; }
+  outline: 1px solid #33a0ce !important; }
 
 [data-engrid-debug="layout"] section {
-  outline: 1px solid #66B8DA !important; }
+  outline: 1px solid #66b8da !important; }
 
 [data-engrid-debug="layout"] header {
-  outline: 1px solid #99CFE7 !important; }
+  outline: 1px solid #99cfe7 !important; }
 
 [data-engrid-debug="layout"] footer {
-  outline: 1px solid #CCE7F3 !important; }
+  outline: 1px solid #cce7f3 !important; }
 
 [data-engrid-debug="layout"] h1 {
   outline: 1px solid #162544 !important; }
 
 [data-engrid-debug="layout"] h2 {
-  outline: 1px solid #314E6E !important; }
+  outline: 1px solid #314e6e !important; }
 
 [data-engrid-debug="layout"] h3 {
-  outline: 1px solid #3E5E85 !important; }
+  outline: 1px solid #3e5e85 !important; }
 
 [data-engrid-debug="layout"] h4 {
-  outline: 1px solid #449BAF !important; }
+  outline: 1px solid #449baf !important; }
 
 [data-engrid-debug="layout"] h5 {
-  outline: 1px solid #C7D1CB !important; }
+  outline: 1px solid #c7d1cb !important; }
 
 [data-engrid-debug="layout"] h6 {
-  outline: 1px solid #4371D0 !important; }
+  outline: 1px solid #4371d0 !important; }
 
 [data-engrid-debug="layout"] main {
-  outline: 1px solid #2F4F90 !important; }
+  outline: 1px solid #2f4f90 !important; }
 
 [data-engrid-debug="layout"] address {
-  outline: 1px solid #1A2C51 !important; }
+  outline: 1px solid #1a2c51 !important; }
 
 [data-engrid-debug="layout"] div {
-  outline: 1px solid #036CDB !important; }
+  outline: 1px solid #036cdb !important; }
 
 [data-engrid-debug="layout"] p {
-  outline: 1px solid #AC050B !important; }
+  outline: 1px solid #ac050b !important; }
 
 [data-engrid-debug="layout"] hr {
-  outline: 1px solid #FF063F !important; }
+  outline: 1px solid #ff063f !important; }
 
 [data-engrid-debug="layout"] pre {
   outline: 1px solid #850440 !important; }
 
 [data-engrid-debug="layout"] blockquote {
-  outline: 1px solid #F1B8E7 !important; }
+  outline: 1px solid #f1b8e7 !important; }
 
 [data-engrid-debug="layout"] ol {
-  outline: 1px solid #FF050C !important; }
+  outline: 1px solid #ff050c !important; }
 
 [data-engrid-debug="layout"] ul {
-  outline: 1px solid #D90416 !important; }
+  outline: 1px solid #d90416 !important; }
 
 [data-engrid-debug="layout"] li {
-  outline: 1px solid #D90416 !important; }
+  outline: 1px solid #d90416 !important; }
 
 [data-engrid-debug="layout"] dl {
-  outline: 1px solid #FD3427 !important; }
+  outline: 1px solid #fd3427 !important; }
 
 [data-engrid-debug="layout"] dt {
-  outline: 1px solid #FF0043 !important; }
+  outline: 1px solid #ff0043 !important; }
 
 [data-engrid-debug="layout"] dd {
-  outline: 1px solid #E80174 !important; }
+  outline: 1px solid #e80174 !important; }
 
 [data-engrid-debug="layout"] figure {
-  outline: 1px solid #FF00BB !important; }
+  outline: 1px solid #ff00bb !important; }
 
 [data-engrid-debug="layout"] figcaption {
-  outline: 1px solid #BF0032 !important; }
+  outline: 1px solid #bf0032 !important; }
 
 [data-engrid-debug="layout"] table {
-  outline: 1px solid #00CC99 !important; }
+  outline: 1px solid #00cc99 !important; }
 
 [data-engrid-debug="layout"] caption {
-  outline: 1px solid #37FFC4 !important; }
+  outline: 1px solid #37ffc4 !important; }
 
 [data-engrid-debug="layout"] thead {
-  outline: 1px solid #98DACA !important; }
+  outline: 1px solid #98daca !important; }
 
 [data-engrid-debug="layout"] tbody {
-  outline: 1px solid #64A7A0 !important; }
+  outline: 1px solid #64a7a0 !important; }
 
 [data-engrid-debug="layout"] tfoot {
-  outline: 1px solid #22746B !important; }
+  outline: 1px solid #22746b !important; }
 
 [data-engrid-debug="layout"] tr {
-  outline: 1px solid #86C0B2 !important; }
+  outline: 1px solid #86c0b2 !important; }
 
 [data-engrid-debug="layout"] th {
-  outline: 1px solid #A1E7D6 !important; }
+  outline: 1px solid #a1e7d6 !important; }
 
 [data-engrid-debug="layout"] td {
-  outline: 1px solid #3F5A54 !important; }
+  outline: 1px solid #3f5a54 !important; }
 
 [data-engrid-debug="layout"] col {
-  outline: 1px solid #6C9A8F !important; }
+  outline: 1px solid #6c9a8f !important; }
 
 [data-engrid-debug="layout"] colgroup {
-  outline: 1px solid #6C9A9D !important; }
+  outline: 1px solid #6c9a9d !important; }
 
 [data-engrid-debug="layout"] button {
-  outline: 1px solid #DA8301 !important; }
+  outline: 1px solid #da8301 !important; }
 
 [data-engrid-debug="layout"] datalist {
-  outline: 1px solid #C06000 !important; }
+  outline: 1px solid #c06000 !important; }
 
 [data-engrid-debug="layout"] fieldset {
-  outline: 1px solid #D95100 !important; }
+  outline: 1px solid #d95100 !important; }
 
 [data-engrid-debug="layout"] form {
-  outline: 1px solid #D23600 !important; }
+  outline: 1px solid #d23600 !important; }
 
 [data-engrid-debug="layout"] input {
-  outline: 1px solid #FCA600 !important; }
+  outline: 1px solid #fca600 !important; }
 
 [data-engrid-debug="layout"] keygen {
-  outline: 1px solid #B31E00 !important; }
+  outline: 1px solid #b31e00 !important; }
 
 [data-engrid-debug="layout"] label {
-  outline: 1px solid #EE8900 !important; }
+  outline: 1px solid #ee8900 !important; }
 
 [data-engrid-debug="layout"] legend {
-  outline: 1px solid #DE6D00 !important; }
+  outline: 1px solid #de6d00 !important; }
 
 [data-engrid-debug="layout"] meter {
-  outline: 1px solid #E8630C !important; }
+  outline: 1px solid #e8630c !important; }
 
 [data-engrid-debug="layout"] optgroup {
-  outline: 1px solid #B33600 !important; }
+  outline: 1px solid #b33600 !important; }
 
 [data-engrid-debug="layout"] option {
-  outline: 1px solid #FF8A00 !important; }
+  outline: 1px solid #ff8a00 !important; }
 
 [data-engrid-debug="layout"] output {
-  outline: 1px solid #FF9619 !important; }
+  outline: 1px solid #ff9619 !important; }
 
 [data-engrid-debug="layout"] progress {
-  outline: 1px solid #E57C00 !important; }
+  outline: 1px solid #e57c00 !important; }
 
 [data-engrid-debug="layout"] select {
-  outline: 1px solid #E26E0F !important; }
+  outline: 1px solid #e26e0f !important; }
 
 [data-engrid-debug="layout"] textarea {
-  outline: 1px solid #CC5400 !important; }
+  outline: 1px solid #cc5400 !important; }
 
 [data-engrid-debug="layout"] details {
-  outline: 1px solid #33848F !important; }
+  outline: 1px solid #33848f !important; }
 
 [data-engrid-debug="layout"] summary {
-  outline: 1px solid #60A1A6 !important; }
+  outline: 1px solid #60a1a6 !important; }
 
 [data-engrid-debug="layout"] command {
-  outline: 1px solid #438DA1 !important; }
+  outline: 1px solid #438da1 !important; }
 
 [data-engrid-debug="layout"] menu {
-  outline: 1px solid #449DA6 !important; }
+  outline: 1px solid #449da6 !important; }
 
 [data-engrid-debug="layout"] del {
-  outline: 1px solid #BF0000 !important; }
+  outline: 1px solid #bf0000 !important; }
 
 [data-engrid-debug="layout"] ins {
   outline: 1px solid #400000 !important; }
 
 [data-engrid-debug="layout"] img {
-  outline: 1px solid #22746B !important; }
+  outline: 1px solid #22746b !important; }
 
 [data-engrid-debug="layout"] iframe {
-  outline: 1px solid #64A7A0 !important; }
+  outline: 1px solid #64a7a0 !important; }
 
 [data-engrid-debug="layout"] embed {
-  outline: 1px solid #98DACA !important; }
+  outline: 1px solid #98daca !important; }
 
 [data-engrid-debug="layout"] object {
-  outline: 1px solid #00CC99 !important; }
+  outline: 1px solid #00cc99 !important; }
 
 [data-engrid-debug="layout"] param {
-  outline: 1px solid #37FFC4 !important; }
+  outline: 1px solid #37ffc4 !important; }
 
 [data-engrid-debug="layout"] video {
-  outline: 1px solid #6EE866 !important; }
+  outline: 1px solid #6ee866 !important; }
 
 [data-engrid-debug="layout"] audio {
   outline: 1px solid #027353 !important; }
@@ -6776,100 +6779,100 @@ body:not(#en__pagebuilder)[data-engrid-does-not-have-page-customCode] .en__compo
   outline: 1px solid #012426 !important; }
 
 [data-engrid-debug="layout"] canvas {
-  outline: 1px solid #A2F570 !important; }
+  outline: 1px solid #a2f570 !important; }
 
 [data-engrid-debug="layout"] track {
-  outline: 1px solid #59A600 !important; }
+  outline: 1px solid #59a600 !important; }
 
 [data-engrid-debug="layout"] map {
-  outline: 1px solid #7BE500 !important; }
+  outline: 1px solid #7be500 !important; }
 
 [data-engrid-debug="layout"] area {
   outline: 1px solid #305900 !important; }
 
 [data-engrid-debug="layout"] a {
-  outline: 1px solid #FF62AB !important; }
+  outline: 1px solid #ff62ab !important; }
 
 [data-engrid-debug="layout"] em {
-  outline: 1px solid #800B41 !important; }
+  outline: 1px solid #800b41 !important; }
 
 [data-engrid-debug="layout"] strong {
-  outline: 1px solid #FF1583 !important; }
+  outline: 1px solid #ff1583 !important; }
 
 [data-engrid-debug="layout"] i {
   outline: 1px solid #803156 !important; }
 
 [data-engrid-debug="layout"] b {
-  outline: 1px solid #CC1169 !important; }
+  outline: 1px solid #cc1169 !important; }
 
 [data-engrid-debug="layout"] u {
-  outline: 1px solid #FF0430 !important; }
+  outline: 1px solid #ff0430 !important; }
 
 [data-engrid-debug="layout"] s {
-  outline: 1px solid #F805E3 !important; }
+  outline: 1px solid #f805e3 !important; }
 
 [data-engrid-debug="layout"] small {
-  outline: 1px solid #D107B2 !important; }
+  outline: 1px solid #d107b2 !important; }
 
 [data-engrid-debug="layout"] abbr {
-  outline: 1px solid #4A0263 !important; }
+  outline: 1px solid #4a0263 !important; }
 
 [data-engrid-debug="layout"] q {
   outline: 1px solid #240018 !important; }
 
 [data-engrid-debug="layout"] cite {
-  outline: 1px solid #64003C !important; }
+  outline: 1px solid #64003c !important; }
 
 [data-engrid-debug="layout"] dfn {
-  outline: 1px solid #B4005A !important; }
+  outline: 1px solid #b4005a !important; }
 
 [data-engrid-debug="layout"] sub {
-  outline: 1px solid #DBA0C8 !important; }
+  outline: 1px solid #dba0c8 !important; }
 
 [data-engrid-debug="layout"] sup {
-  outline: 1px solid #CC0256 !important; }
+  outline: 1px solid #cc0256 !important; }
 
 [data-engrid-debug="layout"] time {
-  outline: 1px solid #D6606D !important; }
+  outline: 1px solid #d6606d !important; }
 
 [data-engrid-debug="layout"] code {
-  outline: 1px solid #E04251 !important; }
+  outline: 1px solid #e04251 !important; }
 
 [data-engrid-debug="layout"] kbd {
-  outline: 1px solid #5E001F !important; }
+  outline: 1px solid #5e001f !important; }
 
 [data-engrid-debug="layout"] samp {
-  outline: 1px solid #9C0033 !important; }
+  outline: 1px solid #9c0033 !important; }
 
 [data-engrid-debug="layout"] var {
-  outline: 1px solid #D90047 !important; }
+  outline: 1px solid #d90047 !important; }
 
 [data-engrid-debug="layout"] mark {
-  outline: 1px solid #FF0053 !important; }
+  outline: 1px solid #ff0053 !important; }
 
 [data-engrid-debug="layout"] bdi {
-  outline: 1px solid #BF3668 !important; }
+  outline: 1px solid #bf3668 !important; }
 
 [data-engrid-debug="layout"] bdo {
-  outline: 1px solid #6F1400 !important; }
+  outline: 1px solid #6f1400 !important; }
 
 [data-engrid-debug="layout"] ruby {
-  outline: 1px solid #FF7B93 !important; }
+  outline: 1px solid #ff7b93 !important; }
 
 [data-engrid-debug="layout"] rt {
-  outline: 1px solid #FF2F54 !important; }
+  outline: 1px solid #ff2f54 !important; }
 
 [data-engrid-debug="layout"] rp {
-  outline: 1px solid #803E49 !important; }
+  outline: 1px solid #803e49 !important; }
 
 [data-engrid-debug="layout"] span {
-  outline: 1px solid #CC2643 !important; }
+  outline: 1px solid #cc2643 !important; }
 
 [data-engrid-debug="layout"] br {
-  outline: 1px solid #DB687D !important; }
+  outline: 1px solid #db687d !important; }
 
 [data-engrid-debug="layout"] wbr {
-  outline: 1px solid #DB175B !important; }
+  outline: 1px solid #db175b !important; }
 
 body[data-engrid-debug]:before {
   z-index: 2147483641; }
@@ -6909,7 +6912,7 @@ body[data-engrid-debug]:before {
       [data-engrid-debug] #debug-bar #buttons-wrapper .button {
         --button_font-family: Arial, sans-serif;
         --button_color: #ffffff;
-        --button_font-size: 16px
+        --button_font-size: 16px;
         --button_font-weight: initial;
         --button_line-height: normal;
         --button_background-color: #000000;
