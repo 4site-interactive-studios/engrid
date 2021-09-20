@@ -8,6 +8,8 @@ $centercenter2col_content-column_max-width: $two_col_content-column_max-width !d
 $centercenter2col_content-column_min-width: $two_col_content-column_min-width !default; // Overridable in client theme
 $centercenter2col_body-column_max-width: $two_col_body-column_max-width !default; // Overridable in client theme
 $centercenter2col_body-column_min-width: $two_col_body-column_min-width !default; // Overridable in client theme
+$centercenter2col_body-column_column-1_max-width: $centercenter2col_body-column_max-width / 2 !default; // Overridable in client theme
+$centercenter2col_body-column_column-2_max-width: $centercenter2col_body-column_max-width / 2 !default; // Overridable in client theme
 $centercenter2col_body-column_offset-width: ($centercenter2col_content-column_max-width - $centercenter2col_body-column_max-width) / 2;
 $centercenter2col_body-column_offset-width-remaining: $centercenter2col_content-column_max-width - $centercenter2col_body-column_max-width - $centercenter2col_body-column_offset-width;
 
