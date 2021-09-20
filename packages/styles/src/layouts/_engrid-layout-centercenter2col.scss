@@ -21,12 +21,12 @@ $centercenter2col_body-column_offset-width-remaining: $centercenter2col_content-
     #engrid > .en__component--advrow{
       grid-template-columns:
       [
-        pc-start lpc-start]  minmax(0px, 1fr)                                                                                  [lpc-end
-        cc-start lcc-start]  minmax(0px, $centercenter2col_body-column_offset-width)                                           [lcc-end
-        bc-start lbc-start]  minmax($centercenter2col_body-column_min-width / 2, $centercenter2col_body-column_max-width / 2)  [lbc-end
-        rbc-start]           minmax($centercenter2col_body-column_min-width / 2, $centercenter2col_body-column_max-width / 2)  [rbc-end bc-end
-        rcc-start]           minmax(0px, $centercenter2col_body-column_offset-width-remaining)                                 [rcc-end cc-end
-        rpc-start]           minmax(0px, 1fr)                                                                                  [rpc-end pc-end                 
+        pc-start lpc-start]  minmax(0px, 1fr)                                                                                       [lpc-end
+        cc-start lcc-start]  minmax(0px, $centercenter2col_body-column_offset-width)                                                [lcc-end
+        bc-start lbc-start]  minmax($centercenter2col_body-column_min-width / 2, $centercenter2col_body-column_column-1_max-width)  [lbc-end
+        rbc-start]           minmax($centercenter2col_body-column_min-width / 2, $centercenter2col_body-column_column-2_max-width)  [rbc-end bc-end
+        rcc-start]           minmax(0px, $centercenter2col_body-column_offset-width-remaining)                                      [rcc-end cc-end
+        rpc-start]           minmax(0px, 1fr)                                                                                       [rpc-end pc-end                 
       ]; 
     }
 
