@@ -29,6 +29,7 @@ import {
   NeverBounce,
   AutoYear,
   Autocomplete,
+  RememberMe
 } from "./";
 
 export class App extends ENGrid {
@@ -187,6 +188,9 @@ export class App extends ENGrid {
     if (this.options.SrcDefer) new SrcDefer();
     // Progress Bar
     if (this.options.ProgressBar) new ProgressBar();
+
+    // RememberMe
+    if (this.options.RememberMe) new RememberMe(this.options.RememberMe);
 
     if (this.options.NeverBounceAPI)
       new NeverBounce(

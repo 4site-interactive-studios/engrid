@@ -17,6 +17,7 @@ export interface Options {
   ProgressBar?: boolean | null;
   AutoYear?: boolean;
   Debug?: boolean;
+  RememberMe?: any;
   onLoad?: () => void;
   onResize?: () => void;
   onSubmit?: () => void;
@@ -42,4 +43,5 @@ export const OptionsDefaults: Options = {
   ProgressBar: false,
   AutoYear: false,
   Debug: false,
+  RememberMe: false
 };

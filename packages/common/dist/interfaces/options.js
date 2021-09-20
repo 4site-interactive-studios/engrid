@@ -16,4 +16,5 @@ export const OptionsDefaults = {
     ProgressBar: false,
     AutoYear: false,
     Debug: false,
+    RememberMe: false
 };

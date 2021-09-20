@@ -1,0 +1,34 @@
+import { EnForm } from "./events";
+export declare class RememberMe {
+    _form: EnForm;
+    private remoteUrl;
+    private cookieName;
+    private fieldNames;
+    private fieldData;
+    private cookieExpirationDays;
+    private iframe;
+    private rememberMeOptIn;
+    private fieldDonationAmountRadioName;
+    private fieldDonationAmountOtherName;
+    private fieldDonationRecurrPayRadioName;
+    private fieldDonationAmountOtherCheckboxID;
+    private fieldOptInSelectorTarget;
+    private fieldOptInSelectorTargetLocation;
+    private fieldClearSelectorTarget;
+    private fieldClearSelectorTargetLocation;
+    constructor(options: any);
+    private updateFieldData;
+    private insertClearRememberMeLink;
+    private insertRememberMeOptin;
+    private useRemote;
+    private createIframe;
+    private clearCookie;
+    private clearCookieOnRemote;
+    private saveCookieToRemote;
+    private readCookie;
+    private saveCookie;
+    private readFields;
+    private setFieldValue;
+    private clearFields;
+    private writeFields;
+}
