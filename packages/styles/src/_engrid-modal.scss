@@ -1,3 +1,6 @@
+[data-engrid-has-lightbox] {
+  overflow: hidden;
+}
 #enModal {
   position: fixed;
   top: 0;
@@ -88,6 +91,7 @@
   }
 
   h1 {
+    margin-top: 0;
     .upsell_suggestion {
       font-weight: 700;
     }
@@ -116,10 +120,10 @@
     }
   }
 
-  #upsellYesButton{
+  #upsellYesButton {
     margin-bottom: calc(var(--fields_spacing-block) * 2);
 
-    .label{
+    .label {
       color: var(--submit__button_color);
       font-weight: var(--submit__button_font-weight);
       font-family: var(--submit__button_font-family);
@@ -128,25 +132,25 @@
       text-transform: var(--submit__button_text-transform);
 
       &:focus .label,
-      &:hover .label{
-          color: var(--submit__button_color_hover);
-          background-color: var(--submit__button_background-color_hover);
-          border-color: var(--submit__button_border-color_hover);
+      &:hover .label {
+        color: var(--submit__button_color_hover);
+        background-color: var(--submit__button_background-color_hover);
+        border-color: var(--submit__button_border-color_hover);
       }
-    
-      &:active .label{
-          color: var(--submit__button_color_checked);
-          background-color: var(--submit__button_background-color_checked);
-          border-color: var(--submit__button_border-color_checked);
+
+      &:active .label {
+        color: var(--submit__button_color_checked);
+        background-color: var(--submit__button_background-color_checked);
+        border-color: var(--submit__button_border-color_checked);
       }
     }
   }
 
-  #upsellNoButton{
-    button{
+  #upsellNoButton {
+    button {
       margin-bottom: 0;
 
-      .label{
+      .label {
         color: var(--button_color);
         font-weight: var(--button_font-weight);
         font-family: var(--button_font-family);
@@ -156,16 +160,16 @@
       }
 
       &:focus .label,
-      &:hover .label{
-          color: var(--button_color_hover);
-          background-color: var(--button_background-color_hover);
-          border-color: var(--button_border-color_hover);
+      &:hover .label {
+        color: var(--button_color_hover);
+        background-color: var(--button_background-color_hover);
+        border-color: var(--button_border-color_hover);
       }
-    
-      &:active .label{
-          color: var(--button_color_checked);
-          background-color: var(--button_background-color_checked);
-          border-color: var(--button_border-color_checked);
+
+      &:active .label {
+        color: var(--button_color_checked);
+        background-color: var(--button_background-color_checked);
+        border-color: var(--button_border-color_checked);
       }
     }
   }

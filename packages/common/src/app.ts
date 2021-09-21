@@ -28,6 +28,7 @@ import {
   SrcDefer,
   NeverBounce,
   AutoYear,
+  Autocomplete,
 } from "./";
 
 export class App extends ENGrid {
@@ -176,6 +177,8 @@ export class App extends ENGrid {
     if (this.options.CapitalizeFields) new CapitalizeFields();
     // Auto Year Class
     if (this.options.AutoYear) new AutoYear();
+    // Autocomplete Class
+    new Autocomplete();
     // Ecard Class
     new Ecard();
     // Click To Expand

@@ -12,7 +12,6 @@ export class AutoYear {
       this.clearFieldOptions();
       for (let i = 0; i < this.years; i++) {
         const year = new Date().getFullYear() + i;
-        console.log(year);
         const newOption = document.createElement("option");
         const optionText = document.createTextNode(year.toString());
         newOption.appendChild(optionText);

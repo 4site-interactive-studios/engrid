@@ -117,7 +117,12 @@ export class ENGrid {
     // Set body engrid data attributes
     static setBodyData(dataName, value) {
         const body = document.querySelector("body");
-        body.setAttribute(`data-engrid-${dataName}`, value);
+        // If value is boolean
+        if (typeof value === "boolean" && value === false) {
+            body.removeAttribute(`data-engrid-${dataName}`);
+            return;
+        }
+        body.setAttribute(`data-engrid-${dataName}`, value.toString());
     }
     // Get body engrid data attributes
     static getBodyData(dataName) {
@@ -163,5 +168,28 @@ export class ENGrid {
             s[1] += new Array(prec - s[1].length + 1).join("0");
         }
         return s.join(dec);
+    }
+    static disableSubmit(label = "") {
+        const submit = document.querySelector(".en__submit button");
+        submit.dataset.originalText = submit.innerText;
+        let submitButtonProcessingHTML = "<span class='loader-wrapper'><span class='loader loader-quart'></span><span class='submit-button-text-wrapper'>" +
+            label +
+            "</span></span>";
+        if (submit) {
+            submit.disabled = true;
+            submit.innerHTML = submitButtonProcessingHTML;
+            return true;
+        }
+        return false;
+    }
+    static enableSubmit() {
+        const submit = document.querySelector(".en__submit button");
+        if (submit.dataset.originalText) {
+            submit.disabled = false;
+            submit.innerText = submit.dataset.originalText;
+            delete submit.dataset.originalText;
+            return true;
+        }
+        return false;
     }
 }

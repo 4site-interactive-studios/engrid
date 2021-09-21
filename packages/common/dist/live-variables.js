@@ -116,6 +116,9 @@ export class LiveVariables {
             this._frequency.recurring = recurrpay.value;
             if (ENGrid.getOption("Debug"))
                 console.log("Recurpay Changed!");
+            // Trigger the onChange event for the field
+            const event = new Event("change", { bubbles: true });
+            recurrpay.dispatchEvent(event);
         }
     }
     swapAmounts() {

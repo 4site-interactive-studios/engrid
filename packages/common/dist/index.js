@@ -6,6 +6,7 @@ export * from "./engrid";
 export * from "./apple-pay";
 export * from "./capitalize-fields";
 export * from "./auto-year";
+export * from "./autocomplete";
 export * from "./ecard";
 export * from "./click-to-expand";
 import * as legacy_1 from "./custom-methods";
