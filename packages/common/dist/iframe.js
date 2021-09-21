@@ -1,4 +1,4 @@
-import { ENGrid } from './';
+import { ENGrid } from "./";
 export const sendIframeHeight = () => {
     let height = document.body.offsetHeight;
     console.log("Sending iFrame height of: ", height, "px"); // check the message is being sent correctly
@@ -6,7 +6,7 @@ export const sendIframeHeight = () => {
         frameHeight: height,
         pageNumber: ENGrid.getPageNumber(),
         pageCount: ENGrid.getPageCount(),
-        giftProcess: ENGrid.getGiftProcess()
+        giftProcess: ENGrid.getGiftProcess(),
     }, "*");
 };
 export const sendIframeFormStatus = (status) => {
@@ -14,6 +14,6 @@ export const sendIframeFormStatus = (status) => {
         status: status,
         pageNumber: ENGrid.getPageNumber(),
         pageCount: ENGrid.getPageCount(),
-        giftProcess: ENGrid.getGiftProcess()
+        giftProcess: ENGrid.getGiftProcess(),
     }, "*");
 };

@@ -23,7 +23,7 @@ export class MediaAttribution {
             if (ENGrid.debug)
                 console.log("The following image was found with data attribution fields on it. It's markup will be changed to add caption support.", element);
             // Creates the wapping <figure> element
-            let figure = document.createElement('figure');
+            let figure = document.createElement("figure");
             figure.classList.add("media-with-attribution");
             // Moves the <img> inside its <figure> element
             let mediaWithAttributionParent = element.parentNode;
@@ -36,10 +36,14 @@ export class MediaAttribution {
                 if (attributionSource) {
                     let attributionSourceLink = mediaWithAttributionElement.dataset.attributionSourceLink;
                     if (attributionSourceLink) {
-                        mediaWithAttributionElement.insertAdjacentHTML('afterend', '<figattribution><a href="' + decodeURIComponent(attributionSourceLink) + '" target="_blank" tabindex="-1">' + attributionSource + '</a></figure>');
+                        mediaWithAttributionElement.insertAdjacentHTML("afterend", '<figattribution><a href="' +
+                            decodeURIComponent(attributionSourceLink) +
+                            '" target="_blank" tabindex="-1">' +
+                            attributionSource +
+                            "</a></figure>");
                     }
                     else {
-                        mediaWithAttributionElement.insertAdjacentHTML('afterend', '<figattribution>' + attributionSource + '</figure>');
+                        mediaWithAttributionElement.insertAdjacentHTML("afterend", "<figattribution>" + attributionSource + "</figure>");
                     }
                 }
             }

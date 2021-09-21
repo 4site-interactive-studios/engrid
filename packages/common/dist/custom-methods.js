@@ -10,7 +10,7 @@ export const enInput = (() => {
     const init = () => {
         const formInput = document.querySelectorAll(".en__field--text, .en__field--email:not(.en__field--checkbox), .en__field--telephone, .en__field--number, .en__field--textarea, .en__field--select, .en__field--checkbox");
         const otherInputs = document.querySelectorAll(".en__field__input--other");
-        Array.from(formInput).forEach(e => {
+        Array.from(formInput).forEach((e) => {
             // @TODO Currently checkboxes always return as having a value, since they do but they're just not checked. Need to update and account for that, should also do Radio's while we're at it
             let element = e.querySelector("input, textarea, select");
             if (element && element.value) {
@@ -22,9 +22,9 @@ export const enInput = (() => {
         /************************************
          * Automatically select other radio input when an amount is entered into it.
          ***********************************/
-        Array.from(otherInputs).forEach(e => {
-            ["focus", "input"].forEach(evt => {
-                e.addEventListener(evt, ev => {
+        Array.from(otherInputs).forEach((e) => {
+            ["focus", "input"].forEach((evt) => {
+                e.addEventListener(evt, (ev) => {
                     const target = ev.target;
                     if (target && target.parentNode && target.parentNode.parentNode) {
                         const targetWrapper = target.parentNode;
@@ -39,7 +39,7 @@ export const enInput = (() => {
         });
     };
     return {
-        init: init
+        init: init,
     };
 })();
 export const bindEvents = (e) => {
@@ -467,7 +467,7 @@ export const watchGiveBySelectField = () => {
     }
     // Watch each Giving Frequency radio input for a change
     if (transactionGiveBySelect) {
-        Array.from(transactionGiveBySelect).forEach(e => {
+        Array.from(transactionGiveBySelect).forEach((e) => {
             let element = e;
             element.addEventListener("change", handleEnFieldGiveBySelect);
         });
@@ -508,7 +508,7 @@ const getCardType = (cc_partial) => {
     const prefix = "live-card-type-";
     const field_credit_card_classes = field_credit_card.className
         .split(" ")
-        .filter(c => !c.startsWith(prefix));
+        .filter((c) => !c.startsWith(prefix));
     switch (key_character) {
         case "0":
             field_credit_card.className = field_credit_card_classes.join(" ").trim();
@@ -562,14 +562,14 @@ const getCardType = (cc_partial) => {
 const handleCCUpdate = () => {
     const card_type = getCardType(field_credit_card.value);
     const card_values = {
-        amex: ['amex', 'american express', 'americanexpress', 'amx', 'ax'],
-        visa: ['visa', 'vi'],
-        mastercard: ['mastercard', 'master card', 'mc'],
-        discover: ['discover', 'di']
+        amex: ["amex", "american express", "americanexpress", "amx", "ax"],
+        visa: ["visa", "vi"],
+        mastercard: ["mastercard", "master card", "mc"],
+        discover: ["discover", "di"],
     };
     const payment_text = field_payment_type.options[field_payment_type.selectedIndex].text;
     if (card_type && payment_text != card_type) {
-        field_payment_type.value = Array.from(field_payment_type.options).filter(d => card_values[card_type].includes(d.value.toLowerCase()))[0].value;
+        field_payment_type.value = Array.from(field_payment_type.options).filter((d) => card_values[card_type].includes(d.value.toLowerCase()))[0].value;
     }
 };
 const handleExpUpdate = (e) => {
@@ -655,7 +655,7 @@ export const contactDetailLabels = () => {
         }
     };
     if (contact) {
-        Array.from(contact).forEach(e => {
+        Array.from(contact).forEach((e) => {
             let element = e;
             element.addEventListener("click", recipientChange);
         });
@@ -691,14 +691,14 @@ export const simpleUnsubscribe = () => {
         if (forceUncheck) {
             // console.log("Found forceUnchecl dom elements", forceUncheck);
             // Step through each DOM element with forceUncheck looking for checkboxes
-            Array.from(forceUncheck).forEach(e => {
+            Array.from(forceUncheck).forEach((e) => {
                 let element = e;
                 // console.log("Checking this formComponent for checkboxes", element);
                 // In the forceUncheck form component, find any checboxes
                 let uncheckCheckbox = element.querySelectorAll("input[type='checkbox']");
                 if (uncheckCheckbox) {
                     // Step through each Checkbox in the forceUncheck form component
-                    Array.from(uncheckCheckbox).forEach(f => {
+                    Array.from(uncheckCheckbox).forEach((f) => {
                         let checkbox = f;
                         // console.log("Unchecking this checkbox", checkbox);
                         // Uncheck the checbox
@@ -740,8 +740,12 @@ const isInViewport = (e) => {
 };
 // Checks to see if the page is so short, the footer is above the fold. If the footer is above the folde we'll use this class to ensure at a minimum the page fills the full viewport height.
 if (contentFooter && isInViewport(contentFooter)) {
-    document.getElementsByTagName("BODY")[0].setAttribute("data-engrid-footer-above-fold", "");
+    document
+        .getElementsByTagName("BODY")[0]
+        .setAttribute("data-engrid-footer-above-fold", "");
 }
 else {
-    document.getElementsByTagName("BODY")[0].setAttribute("data-engrid-footer-below-fold", "");
+    document
+        .getElementsByTagName("BODY")[0]
+        .setAttribute("data-engrid-footer-below-fold", "");
 }

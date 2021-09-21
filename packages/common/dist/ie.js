@@ -4,8 +4,8 @@ export class IE {
         this.debug = false;
         this.overlay = document.createElement("div");
         const isIE = () => {
-            return (navigator.userAgent.indexOf('MSIE') !== -1
-                || navigator.appVersion.indexOf('Trident/') > -1);
+            return (navigator.userAgent.indexOf("MSIE") !== -1 ||
+                navigator.appVersion.indexOf("Trident/") > -1);
         };
         // If it's not IE, get out!
         if (!isIE())
@@ -25,7 +25,7 @@ export class IE {
         overlay.innerHTML = markup;
         const closeButton = overlay.querySelector(".button-close");
         closeButton.addEventListener("click", this.close.bind(this));
-        document.addEventListener("keyup", e => {
+        document.addEventListener("keyup", (e) => {
             if (e.key === "Escape") {
                 closeButton.click();
             }
