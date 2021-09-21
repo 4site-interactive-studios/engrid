@@ -47,13 +47,7 @@ export class setRecurrFreq {
         // Uncheck the checkbox when frequency != checkbox value
         this._frequency.onFrequencyChange.subscribe(() => {
             const currentFrequency = this._frequency.frequency.toUpperCase();
-            /*
-            (document.getElementsByName(this.checkboxName) as NodeListOf<HTMLInputElement>).forEach((element) => {
-                if (element.checked && element.value.toUpperCase() != freq) {
-                    element.checked = false;
-                }
-            });
-            */
+
             document.getElementsByName(this.checkboxName).forEach((element) => {
                 var elementFrequency = element.value.toUpperCase();
                 if (element.checked && elementFrequency !== currentFrequency) {
