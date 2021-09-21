@@ -52,7 +52,7 @@ export class setRecurrFreq {
 
             const currentFrequency = this._frequency.frequency.toUpperCase();
             (document.getElementsByName(this.checkboxName) as NodeListOf<HTMLInputElement>).forEach((element) => {
-                var elementFrequency = element.value.toUpperCase();
+                const elementFrequency = element.value.toUpperCase();
                 if (element.checked && elementFrequency !== currentFrequency) {
                     element.checked = false;
                 } else if(!element.checked && elementFrequency === currentFrequency) {
