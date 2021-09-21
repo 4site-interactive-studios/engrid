@@ -2,25 +2,25 @@
    REF: https://stackoverflow.com/questions/25477819/scss-variable-in-background-image-with-svg-image-data-uri
 */
 @function svg-friendly-color($color) {
-    @return '%23' + str-slice('#{$color}', 2, -1);
+  @return "%23" + str-slice("#{$color}", 2, -1);
 }
 
 /* Source: Using Custom Property “Stacks” to Tame the Cascade
    REF: https://css-tricks.com/using-custom-property-stacks-to-tame-the-cascade/
    REF: https://codepen.io/mirisuzanne/pen/GRpmOjr
 */
-@function vars($stack...)  {  
-    $output: null;
-    $close: '';
-    $length: length($stack);
-    @each $var in $stack {    
-      @if (str-index('#{$var}', '--') == 1) {
-        $var: 'var(#{$var}';
-        $close: '#{$close})';
-      }
-      
-      $output: if($output, '#{$output}, #{$var}' , $var);
+@function vars($stack...) {
+  $output: null;
+  $close: "";
+  $length: length($stack);
+  @each $var in $stack {
+    @if (str-index("#{$var}", "--") == 1) {
+      $var: "var(#{$var}";
+      $close: "#{$close})";
     }
-    
-    @return unquote($output + $close);
+
+    $output: if($output, "#{$output}, #{$var}", $var);
+  }
+
+  @return unquote($output + $close);
 }

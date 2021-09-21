@@ -12,24 +12,44 @@
   --engrid__content_background-color: var(--color_transparent) !important;
   --engrid__body_background-color: var(--color_transparent) !important;
   --engrid__page-alert_background-color: var(--color_transparent) !important;
-  --engrid__content-header_background-color: var(--color_transparent) !important;
-  --engrid__body-headerOutside_background-color: var(--color_transparent) !important;
+  --engrid__content-header_background-color: var(
+    --color_transparent
+  ) !important;
+  --engrid__body-headerOutside_background-color: var(
+    --color_transparent
+  ) !important;
   --engrid__body-header_background-color: var(--color_transparent) !important;
   --engrid__body-title_background-color: var(--color_transparent) !important;
   --engrid__body-banner_background-color: var(--color_transparent) !important;
-  --engrid__body-bannerOverlay_background-color: var(--color_transparent) !important;
+  --engrid__body-bannerOverlay_background-color: var(
+    --color_transparent
+  ) !important;
   --engrid__body-top_background-color: var(--color_transparent) !important;
   --engrid__body-side_background-color: var(--color_transparent) !important;
   --engrid__body-main_background-color: var(--color_transparent) !important;
   --engrid__body-bottom_background-color: var(--color_transparent) !important;
   --engrid__body-footer_background-color: var(--color_transparent) !important;
-  --engrid__body-footerOutside_background-color: var(--color_transparent) !important;
-  --engrid__content-footerSpacer_background-color: var(--color_transparent) !important;
-  --engrid__content-preFooter_background-color: var(--color_transparent) !important;
-  --engrid__content-footer_background-color: var(--color_transparent) !important;
-  --engrid__page-backgroundImage_background-color: var(--color_transparent) !important;
-  --engrid__page-backgroundImageOverlay_background-color: var(--color_transparent) !important;
-  --engrid__page-customCode_background-color: var(--color_transparent) !important;
+  --engrid__body-footerOutside_background-color: var(
+    --color_transparent
+  ) !important;
+  --engrid__content-footerSpacer_background-color: var(
+    --color_transparent
+  ) !important;
+  --engrid__content-preFooter_background-color: var(
+    --color_transparent
+  ) !important;
+  --engrid__content-footer_background-color: var(
+    --color_transparent
+  ) !important;
+  --engrid__page-backgroundImage_background-color: var(
+    --color_transparent
+  ) !important;
+  --engrid__page-backgroundImageOverlay_background-color: var(
+    --color_transparent
+  ) !important;
+  --engrid__page-customCode_background-color: var(
+    --color_transparent
+  ) !important;
   --engrid__body_box-shadow: none !important;
 
   /* prettier-ignore */
@@ -93,10 +113,10 @@
   }
 }
 
-@mixin engrid_embedded-mobile-body{
-  &[data-engrid-embedded]{
+@mixin engrid_embedded-mobile-body {
+  &[data-engrid-embedded] {
     #engrid > .en__component--advrow > *,
-    form > .en__component--advrow > *{
+    form > .en__component--advrow > * {
       --engrid__body_border-radius: 0px;
 
       --engrid__body_padding: 0px; // @TODO This should work but it doesn't, we have to specify everything below for it to work

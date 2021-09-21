@@ -16,10 +16,10 @@
   width: initial;
 }
 
-.en__additional__amount .en__additional__input{
+.en__additional__amount .en__additional__input {
   display: inline;
 }
-.en__additional__promo{
+.en__additional__promo {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
@@ -41,28 +41,28 @@
   background-color: #ffffff;
 }
 
-.en__ticketBlock{
+.en__ticketBlock {
   border: none;
   background-color: initial;
 }
 
-.en__tickets{
+.en__tickets {
   padding-left: 0;
   padding-right: 0;
 }
 
-.en__ticket__field--info{
+.en__ticket__field--info {
   padding-left: 0;
 }
 
-.en__ticket__selector{
+.en__ticket__selector {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
 }
 
 .en__ticket__minus,
-.en__ticket__plus{
+.en__ticket__plus {
   border: none;
   flex-basis: 20px;
   height: auto;
@@ -71,25 +71,25 @@
 .en__ticket__minus:focus,
 .en__ticket__minus:hover,
 .en__ticket__plus:focus,
-.en__ticket__plus:hover{
+.en__ticket__plus:hover {
   background-color: initial;
 }
 
-.en__ticket__field--quantity{
+.en__ticket__field--quantity {
   padding-right: 0;
   height: auto;
 }
 
-.en__ticket__remaining{
+.en__ticket__remaining {
   text-align: right;
 }
 
-.en__eventOccurrences__columnHead{
+.en__eventOccurrences__columnHead {
   display: flex;
   align-items: center;
 }
 
-input[type=text].en__ticket__quantity{
+input[type="text"].en__ticket__quantity {
   height: fit-content !important;
   border: none !important;
   box-shadow: none !important;
@@ -98,7 +98,7 @@ input[type=text].en__ticket__quantity{
   flex-basis: auto;
 }
 
-.en__registrants{
+.en__registrants {
   padding-left: 0;
   padding-right: 0;
 }
@@ -108,7 +108,7 @@ input[type=text].en__ticket__quantity{
   flex-wrap: wrap;
 }
 
-.en__registrants__registrant{
+.en__registrants__registrant {
   padding-left: 0;
   padding-right: 0;
   width: 100%;
@@ -128,42 +128,42 @@ input[type=text].en__ticket__quantity{
   padding-right: 0;
 }
 
-.en__ticketSummary{
+.en__ticketSummary {
   padding-top: 14px;
 }
 
-.en__ticketSummary{
+.en__ticketSummary {
   display: none;
 }
 
-.en__additional__label{
+.en__additional__label {
   padding-left: 0;
 }
 
 .en__orderSummary {
   padding: 0;
 
-  > * > :first-child{
+  > * > :first-child {
     padding-left: 0;
   }
 
-  > * > :last-child{
+  > * > :last-child {
     padding-right: 0;
   }
 }
 
 .en__ticketRecurring__select,
-.en__ticketSummary__checkout{
+.en__ticketSummary__checkout {
   width: auto;
   background-color: var(--button_background-color);
   margin-bottom: 0;
 
-  &:hover{
+  &:hover {
     background-color: var(--button_background-color_hover);
   }
 }
 
-.en__eventOccurrencesDateSelector__label{
+.en__eventOccurrencesDateSelector__label {
   width: 100%;
 }
 
@@ -176,18 +176,18 @@ input[type=text].en__ticket__quantity{
 //   }
 // }
 
-button.en__eventOccurrence__select{
+button.en__eventOccurrence__select {
   margin-bottom: 0;
 }
 
-button.en__eventOccurrence__select > label{
+button.en__eventOccurrence__select > label {
   font-family: var(--button_font-family);
 }
 
-@media screen and (max-width: 599px){
-  .en__registrants__registrantDetails .en__field.en__field--text.en__field{
-      flex-basis: 100%;
-      padding-left: 0;
-      padding-right: 0;
+@media screen and (max-width: 599px) {
+  .en__registrants__registrantDetails .en__field.en__field--text.en__field {
+    flex-basis: 100%;
+    padding-left: 0;
+    padding-right: 0;
   }
 }

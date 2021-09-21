@@ -1,177 +1,225 @@
-[data-engrid-theme]{
-    // COLOR PALETTE
-    --color_transparent: transparent;
-    --color_white: hsl(0, 0%, 100%);
-    --color_off-white: hsl(0, 0%, 83%);
-    --color_light-gray: hsl(0, 0%, 67%);
-    --color_gray: hsl(0, 0%, 50%);
-    --color_dark-gray: hsl(0, 0%, 33%);
-    --color_off-black: hsl(0, 0%, 17%);
-    --color_black: hsl(0, 0%, 0%);
-    
-    // PRIMARY COLORS
-    // e.g. Used for the main Submit Button
-    --color_primary: #22a3cb;
-    --color_primary_overlay: #ffffff;
-    --color_primary_accent: #000000;
+[data-engrid-theme] {
+  // COLOR PALETTE
+  --color_transparent: transparent;
+  --color_white: hsl(0, 0%, 100%);
+  --color_off-white: hsl(0, 0%, 83%);
+  --color_light-gray: hsl(0, 0%, 67%);
+  --color_gray: hsl(0, 0%, 50%);
+  --color_dark-gray: hsl(0, 0%, 33%);
+  --color_off-black: hsl(0, 0%, 17%);
+  --color_black: hsl(0, 0%, 0%);
 
-    // SECONDARY COLORS
-    // e.g. Used for the non-Submit Buttons
-    --color_secondary: #000000;
-    --color_secondary_overlay: #ffffff;
-    --color_secondary_accent: #000000;
+  // PRIMARY COLORS
+  // e.g. Used for the main Submit Button
+  --color_primary: #22a3cb;
+  --color_primary_overlay: #ffffff;
+  --color_primary_accent: #000000;
 
-    // TERTIARY COLORS
-    --color_tertiary: #ffffff;
-    --color_tertiary_overlay: #000000;
-    --color_tertiary_accent: #ffffff;
+  // SECONDARY COLORS
+  // e.g. Used for the non-Submit Buttons
+  --color_secondary: #000000;
+  --color_secondary_overlay: #ffffff;
+  --color_secondary_accent: #000000;
 
-    // TEXT
-    --default_color: initial;
-    --h1_color: var(--default_color);
-    --h2_color: var(--h1_color);
-    --h3_color: var(--h1_color);
-    --h4_color: var(--h1_color);
-    --h5_color: var(--h1_color);
-    --h6_color: var(--h1_color);
-    --a_color: initial;
-    --a_color_hover: var(--a_color);
-    --highlight__background-color: var(--color_primary);
-    --highlight__color: var(--color_primary_overlay);
-    --media-attribution__color: rgba(255, 255, 255, 0.9);
-    --media-attribution__background-color: rgba(0, 0, 0, 0.3);
+  // TERTIARY COLORS
+  --color_tertiary: #ffffff;
+  --color_tertiary_overlay: #000000;
+  --color_tertiary_accent: #ffffff;
 
-    // ERRORS
-    --error__color: #ff530a;
-    --error__color_grayscale: #949494;
-    --error__color_faded: #fff8f4;
-    --error__background-color: #fff8f4;
+  // TEXT
+  --default_color: initial;
+  --h1_color: var(--default_color);
+  --h2_color: var(--h1_color);
+  --h3_color: var(--h1_color);
+  --h4_color: var(--h1_color);
+  --h5_color: var(--h1_color);
+  --h6_color: var(--h1_color);
+  --a_color: initial;
+  --a_color_hover: var(--a_color);
+  --highlight__background-color: var(--color_primary);
+  --highlight__color: var(--color_primary_overlay);
+  --media-attribution__color: rgba(255, 255, 255, 0.9);
+  --media-attribution__background-color: rgba(0, 0, 0, 0.3);
 
-    // FIELDS
-    --label_color: initial;
-    --input_color: #000000;
-    --input_background-color: #fafafa;
-    --input_border-color: #dfdfe1;
-    --input_placeholder-color: hsl(0, 0%, 67%);
-    --input_color_hover: var(--input_color);
-    --input_background-color_hover: var(--input_background-color);
-    --input_border-color_hover: #767677;
-    --input_border-bottom-color_hover: var(--input_border-color_hover);
-    --radio_color: var(--input_color);
-    --radio_background-color: var(--input_background-color);
-    --radio_border-color: var(--input_border-color);
-    --radio_color_hover: var(--radio_color);
-    --radio_background-color_hover: var(--radio_background-color);
-    --radio_border-color_hover: var(--input_border-color_hover);
-    --radio_color_selected: var(--radio_color_hover);
-    --radio_background-color_selected: var(--radio_background-color_hover);
-    --radio_border-color_selected: var(--input_border-color_hover);
-    --checkbox_color: var(--color_black);
-    --checkbox_background-color: var(--radio_background-color);
-    --checkbox_border-color: var(--radio_border-color);
-    --checkbox_color_hover: var(--checkbox_color);
-    --checkbox_background-color_hover: var(--radio_background-color_hover);
-    --checkbox_border-color_hover: var(--radio_border-color_hover);
-    --checkbox_color_checked: var(--checkbox_color_hover);
-    --checkbox_background-color_checked: var(--radio_background-color_hover);
-    --checkbox_border-color_checked: var(--color_black);
-    --select_color: var(--input_color);
-    --select_background-color: var(--input_background-color);
-    --select_border-color: var(--input_border-color);
-    --select_background-color_hover: var(--select_background-color);
-    --select_border-color_hover: var(--input_border-color_hover);
-    --select_border-bottom-color_hover: var(--select_border-color_hover);
-    --textarea_color: var(--input_color);
-    --textarea_background-color: var(--input_background-color);
-    --textarea_border-color: var(--input_border-color);
-    --textarea_placeholder-color: var(--color_light-gray);
-    --textarea_color_hover: var(--textarea_color);
-    --textarea_background-color_hover: var(--textarea_background-color);
-    --textarea_border-color_hover: var(--input_border-color_hover);
-    --textarea_border-bottom-color_hover: var(--textarea_border-color_hover);
+  // ERRORS
+  --error__color: #ff530a;
+  --error__color_grayscale: #949494;
+  --error__color_faded: #fff8f4;
+  --error__background-color: #fff8f4;
 
-    // BUTTONS
-    --button_color: var(--color_primary_overlay);
-    --button_background-color: var(--color_primary);
-    --button_border-color: var(--button_background-color);
+  // FIELDS
+  --label_color: initial;
+  --input_color: #000000;
+  --input_background-color: #fafafa;
+  --input_border-color: #dfdfe1;
+  --input_placeholder-color: hsl(0, 0%, 67%);
+  --input_color_hover: var(--input_color);
+  --input_background-color_hover: var(--input_background-color);
+  --input_border-color_hover: #767677;
+  --input_border-bottom-color_hover: var(--input_border-color_hover);
+  --radio_color: var(--input_color);
+  --radio_background-color: var(--input_background-color);
+  --radio_border-color: var(--input_border-color);
+  --radio_color_hover: var(--radio_color);
+  --radio_background-color_hover: var(--radio_background-color);
+  --radio_border-color_hover: var(--input_border-color_hover);
+  --radio_color_selected: var(--radio_color_hover);
+  --radio_background-color_selected: var(--radio_background-color_hover);
+  --radio_border-color_selected: var(--input_border-color_hover);
+  --checkbox_color: var(--color_black);
+  --checkbox_background-color: var(--radio_background-color);
+  --checkbox_border-color: var(--radio_border-color);
+  --checkbox_color_hover: var(--checkbox_color);
+  --checkbox_background-color_hover: var(--radio_background-color_hover);
+  --checkbox_border-color_hover: var(--radio_border-color_hover);
+  --checkbox_color_checked: var(--checkbox_color_hover);
+  --checkbox_background-color_checked: var(--radio_background-color_hover);
+  --checkbox_border-color_checked: var(--color_black);
+  --select_color: var(--input_color);
+  --select_background-color: var(--input_background-color);
+  --select_border-color: var(--input_border-color);
+  --select_background-color_hover: var(--select_background-color);
+  --select_border-color_hover: var(--input_border-color_hover);
+  --select_border-bottom-color_hover: var(--select_border-color_hover);
+  --textarea_color: var(--input_color);
+  --textarea_background-color: var(--input_background-color);
+  --textarea_border-color: var(--input_border-color);
+  --textarea_placeholder-color: var(--color_light-gray);
+  --textarea_color_hover: var(--textarea_color);
+  --textarea_background-color_hover: var(--textarea_background-color);
+  --textarea_border-color_hover: var(--input_border-color_hover);
+  --textarea_border-bottom-color_hover: var(--textarea_border-color_hover);
 
-    --button_color_hover: var(--button_color);  
-    --button_background-color_hover: var(--color_black);
-    --button_border-color_hover: var(--button_background-color_hover);  
+  // BUTTONS
+  --button_color: var(--color_primary_overlay);
+  --button_background-color: var(--color_primary);
+  --button_border-color: var(--button_background-color);
 
-    --button_color_checked: var(--button_color_hover);
-    --button_background-color_checked: var(--button_background-color_hover);
-    --button_border-color_checked: var(--button_border-color_hover);
+  --button_color_hover: var(--button_color);
+  --button_background-color_hover: var(--color_black);
+  --button_border-color_hover: var(--button_background-color_hover);
 
-    // SUBMIT BUTTONS
-    --submit__button_color: var(--button_color);
-    --submit__button_border-color: var(--button_border-color);
-    --submit__button_background-color: var(--button_background-color);
-    --submit__button_color_hover: var(--button_color);
-    --submit__button_background-color_hover: var(--button_background-color_hover);
-    --submit__button_border-color_hover: var(--button_background-color_hover);
-    --submit__button_color_checked: var(--button_color_hover);
-    --submit__button_background-color_checked: var(--button_background-color_hover);
-    --submit__button_border-color_checked: var(--button_border-color_hover);
+  --button_color_checked: var(--button_color_hover);
+  --button_background-color_checked: var(--button_background-color_hover);
+  --button_border-color_checked: var(--button_border-color_hover);
 
-    // DONATION PAGE (RADIO TO BUTTONS)
-    --recurring-frequency__button_color: var(--button_color);
-    --recurring-frequency__button_background-color: var(--button_background-color);
-    --recurring-frequency__button_border-color: var(--button_border-color);
-    --recurring-frequency__button_color_hover: var(--button_color_hover);
-    --recurring-frequency__button_background-color_hover: var(--button_background-color_hover);
-    --recurring-frequency__button_border-color_hover: var(--button_border-color_hover);  
-    --recurring-frequency__button_color_checked: var(--button_color_hover);
-    --recurring-frequency__button_background-color_checked: var(--button_background-color_hover);
-    --recurring-frequency__button_border-color_checked: var(--button_border-color_hover); 
-    --recurring-payment__button_color: var(--button_color);
-    --recurring-payment__button_background-color: var(--button_background-color);
-    --recurring-payment__button_border-color: var(--button_border-color);
-    --recurring-payment__button_color_hover: var(--button_color_hover);
-    --recurring-payment__button_background-color_hover: var(--button_background-color_hover);
-    --recurring-payment__button_border-color_hover: var(--button_border-color_hover);  
-    --recurring-payment__button_color_checked: var(--button_color_hover);
-    --recurring-payment__button_background-color_checked: var(--button_background-color_hover);
-    --recurring-payment__button_border-color_checked: var(--button_border-color_hover); 
-    --donation-amount__button_color: var(--button_color);   
-    --donation-amount__button_background-color: var(--button_background-color);
-    --donation-amount__button_border-color: var(--button_border-color);
-    --donation-amount__button_color_hover: var(--button_color_hover);
-    --donation-amount__button_background-color_hover: var(--button_background-color_hover);
-    --donation-amount__button_border-color_hover: var(--button_border-color_hover);  
-    --donation-amount__button_color_checked: var(--button_color_hover);
-    --donation-amount__button_background-color_checked: var(--button_background-color_hover);
-    --donation-amount__button_border-color_checked: var(--button_border-color_hover); 
-    --give-by-select__button_color: var(--button_color);
-    --give-by-select__button_background-color: var(--button_background-color);
-    --give-by-select__button_border-color: var(--button_border-color);
-    --give-by-select__button_color_hover: var(--button_color_hover);
-    --give-by-select__button_background-color_hover: var(--button_background-color_hover);
-    --give-by-select__button_border-color_hover: var(--button_border-color_hover);
-    --give-by-select__button_color_checked: var(--button_color_hover);
-    --give-by-select__button_background-color_checked: var(--button_background-color_hover);
-    --give-by-select__button_border-color_checked: var(--button_border-color_hover);
+  // SUBMIT BUTTONS
+  --submit__button_color: var(--button_color);
+  --submit__button_border-color: var(--button_border-color);
+  --submit__button_background-color: var(--button_background-color);
+  --submit__button_color_hover: var(--button_color);
+  --submit__button_background-color_hover: var(--button_background-color_hover);
+  --submit__button_border-color_hover: var(--button_background-color_hover);
+  --submit__button_color_checked: var(--button_color_hover);
+  --submit__button_background-color_checked: var(
+    --button_background-color_hover
+  );
+  --submit__button_border-color_checked: var(--button_border-color_hover);
 
-    // PAGE SECTIONS
-    --engrid__page_background-color: var(--color_transparent);
-    --engrid__content_background-color: var(--color_transparent);
-    --engrid__body_background-color: var(--color_white);
-    --engrid__page-alert_background-color: var(--engrid__page_background-color);
-    --engrid__content-header_background-color: var(--engrid__content_background-color);
-    --engrid__body-headerOutside_background-color: var(--color_transparent);
-    --engrid__body-header_background-color: var(--engrid__body_background-color);
-    --engrid__body-title_background-color: var(--engrid__body_background-color);
-    --engrid__body-banner_background-color: var(--engrid__body_background-color);
-    --engrid__body-bannerOverlay_background-color: var(--color_transparent);
-    --engrid__body-top_background-color: var(--engrid__body_background-color);
-    --engrid__body-main_background-color: var(--engrid__body_background-color);
-    --engrid__body-bottom_background-color: var(--engrid__body_background-color);
-    --engrid__body-footer_background-color: var(--engrid__body_background-color);
-    --engrid__body-footerOutside_background-color: var(--color_transparent);
-    --engrid__content-footerSpacer_background-color: var(--engrid__content_background-color);
-    --engrid__content-preFooter_background-color: var(--engrid__content_background-color);
-    --engrid__content-footer_background-color: var(--engrid__content_background-color);
-    --engrid__page-backgroundImage_background-color: var(--engrid__page_background-color);
-    --engrid__page-backgroundImageOverlay_background-color: var(--color_transparent);
-    --engrid__page-customCode_background-color: var(--engrid__page_background-color);
+  // DONATION PAGE (RADIO TO BUTTONS)
+  --recurring-frequency__button_color: var(--button_color);
+  --recurring-frequency__button_background-color: var(
+    --button_background-color
+  );
+  --recurring-frequency__button_border-color: var(--button_border-color);
+  --recurring-frequency__button_color_hover: var(--button_color_hover);
+  --recurring-frequency__button_background-color_hover: var(
+    --button_background-color_hover
+  );
+  --recurring-frequency__button_border-color_hover: var(
+    --button_border-color_hover
+  );
+  --recurring-frequency__button_color_checked: var(--button_color_hover);
+  --recurring-frequency__button_background-color_checked: var(
+    --button_background-color_hover
+  );
+  --recurring-frequency__button_border-color_checked: var(
+    --button_border-color_hover
+  );
+  --recurring-payment__button_color: var(--button_color);
+  --recurring-payment__button_background-color: var(--button_background-color);
+  --recurring-payment__button_border-color: var(--button_border-color);
+  --recurring-payment__button_color_hover: var(--button_color_hover);
+  --recurring-payment__button_background-color_hover: var(
+    --button_background-color_hover
+  );
+  --recurring-payment__button_border-color_hover: var(
+    --button_border-color_hover
+  );
+  --recurring-payment__button_color_checked: var(--button_color_hover);
+  --recurring-payment__button_background-color_checked: var(
+    --button_background-color_hover
+  );
+  --recurring-payment__button_border-color_checked: var(
+    --button_border-color_hover
+  );
+  --donation-amount__button_color: var(--button_color);
+  --donation-amount__button_background-color: var(--button_background-color);
+  --donation-amount__button_border-color: var(--button_border-color);
+  --donation-amount__button_color_hover: var(--button_color_hover);
+  --donation-amount__button_background-color_hover: var(
+    --button_background-color_hover
+  );
+  --donation-amount__button_border-color_hover: var(
+    --button_border-color_hover
+  );
+  --donation-amount__button_color_checked: var(--button_color_hover);
+  --donation-amount__button_background-color_checked: var(
+    --button_background-color_hover
+  );
+  --donation-amount__button_border-color_checked: var(
+    --button_border-color_hover
+  );
+  --give-by-select__button_color: var(--button_color);
+  --give-by-select__button_background-color: var(--button_background-color);
+  --give-by-select__button_border-color: var(--button_border-color);
+  --give-by-select__button_color_hover: var(--button_color_hover);
+  --give-by-select__button_background-color_hover: var(
+    --button_background-color_hover
+  );
+  --give-by-select__button_border-color_hover: var(--button_border-color_hover);
+  --give-by-select__button_color_checked: var(--button_color_hover);
+  --give-by-select__button_background-color_checked: var(
+    --button_background-color_hover
+  );
+  --give-by-select__button_border-color_checked: var(
+    --button_border-color_hover
+  );
+
+  // PAGE SECTIONS
+  --engrid__page_background-color: var(--color_transparent);
+  --engrid__content_background-color: var(--color_transparent);
+  --engrid__body_background-color: var(--color_white);
+  --engrid__page-alert_background-color: var(--engrid__page_background-color);
+  --engrid__content-header_background-color: var(
+    --engrid__content_background-color
+  );
+  --engrid__body-headerOutside_background-color: var(--color_transparent);
+  --engrid__body-header_background-color: var(--engrid__body_background-color);
+  --engrid__body-title_background-color: var(--engrid__body_background-color);
+  --engrid__body-banner_background-color: var(--engrid__body_background-color);
+  --engrid__body-bannerOverlay_background-color: var(--color_transparent);
+  --engrid__body-top_background-color: var(--engrid__body_background-color);
+  --engrid__body-main_background-color: var(--engrid__body_background-color);
+  --engrid__body-bottom_background-color: var(--engrid__body_background-color);
+  --engrid__body-footer_background-color: var(--engrid__body_background-color);
+  --engrid__body-footerOutside_background-color: var(--color_transparent);
+  --engrid__content-footerSpacer_background-color: var(
+    --engrid__content_background-color
+  );
+  --engrid__content-preFooter_background-color: var(
+    --engrid__content_background-color
+  );
+  --engrid__content-footer_background-color: var(
+    --engrid__content_background-color
+  );
+  --engrid__page-backgroundImage_background-color: var(
+    --engrid__page_background-color
+  );
+  --engrid__page-backgroundImageOverlay_background-color: var(
+    --color_transparent
+  );
+  --engrid__page-customCode_background-color: var(
+    --engrid__page_background-color
+  );
 }

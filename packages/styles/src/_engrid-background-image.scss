@@ -1,7 +1,7 @@
-[data-engrid-theme]{
+[data-engrid-theme] {
   // ENGRID BACKGROUND IMAGE SECTION'S BACKGROUND PATTERN
   // This is a background pattern that is shown before the hi-resolution background image is lazy loaded in, if at all
-  // It's background color "--engrid__page-backgroundImage_background-color" should be the average color of the image 
+  // It's background color "--engrid__page-backgroundImage_background-color" should be the average color of the image
   // REF: (https://doodad.dev/pattern-generator/)
   --engrid__page-backgroundImage_url: "url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)"; // Invisible GIF
 }
@@ -107,7 +107,7 @@ body {
 @mixin engrid_replace-banner-with-background {
   // Hide the background media
   .page-backgroundImage,
-  .page-backgroundImage:before{
+  .page-backgroundImage:before {
     display: none;
   }
 
@@ -120,7 +120,7 @@ body {
   &[data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="image"],
   &[data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="video"],
   &[data-replace-banner-with-background="if-banner-empty-or-background-video"][data-engrid-body-banner="empty"],
-  &[data-replace-banner-with-background="if-banner-empty-or-background-video"][data-engrid-page-background="video"]{
+  &[data-replace-banner-with-background="if-banner-empty-or-background-video"][data-engrid-page-background="video"] {
     .body-banner,
     .body-bannerOverlay {
       display: none;
@@ -142,7 +142,7 @@ body {
         aspect-ratio: 16/9;
       }
 
-      img{
+      img {
         display: block !important;
       }
 
@@ -154,7 +154,7 @@ body {
 }
 
 @mixin engrid_hide-background-on-desktop {
-  &[data-engrid-embedded]{
+  &[data-engrid-embedded] {
     .page-backgroundImage,
     .page-backgroundImageOverlay {
       display: none !important;

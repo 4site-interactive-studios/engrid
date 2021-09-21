@@ -8,7 +8,6 @@ $leftleft1col_content-column_max-width: $one_col_content-column_max-width !defau
 $leftleft1col_content-column_min-width: $one_col_content-column_min-width !default; // Overridable in client theme
 $leftleft1col_body-column_max-width: $one_col_body-column_max-width !default; // Overridable in client theme
 [data-engrid-layout="leftleft1col"] {
-
   @media screen and (min-width: $leftleft1col_content-column_min-width) {
     /* prettier-ignore */
     form > .en__component--advrow,
@@ -24,16 +23,22 @@ $leftleft1col_body-column_max-width: $one_col_body-column_max-width !default; //
       ]; 
     }
 
-    form > .en__component--advrow > *{
+    form > .en__component--advrow > * {
       grid-template-columns:
-      [
-        pc-start lpc-start]  minmax(0px, 0px)                                      [lpc-end
-        cc-start lcc-start]  minmax(0px, 0px)                                      [lcc-end
-        bc-start lbc-start]  minmax(0px, $leftleft1col_body-column_max-width / 2)  [lbc-end
-        rbc-start]           minmax(0px, $leftleft1col_body-column_max-width / 2)  [rbc-end bc-end
-        rcc-start]           minmax(0px, 0px)                                      [rcc-end cc-end
-        rpc-start]           minmax(0px, 1fr)                                      [rpc-end pc-end            
-      ]; 
+        [
+        pc-start lpc-start] minmax(0px, 0px) [lpc-end
+        cc-start lcc-start] minmax(0px, 0px) [lcc-end
+        bc-start lbc-start] minmax(
+          0px,
+          $leftleft1col_body-column_max-width / 2
+        ) [lbc-end
+        rbc-start] minmax(
+          0px,
+          $leftleft1col_body-column_max-width / 2
+        ) [rbc-end bc-end
+        rcc-start] minmax(0px, 0px) [rcc-end cc-end
+        rpc-start] minmax(0px, 1fr) [rpc-end pc-end
+        ];
     }
 
     &:not(#en__pagebuilder) .page-backgroundImage {

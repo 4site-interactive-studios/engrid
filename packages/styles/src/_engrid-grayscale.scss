@@ -3,8 +3,7 @@
 .grayscale-image img,
 .grayscale-image picture,
 .grayscale-video video,
-img.grayscale-image
-picture.grayscale-image,
+img.grayscale-image picture.grayscale-image,
 video.grayscale-video {
-    filter: grayscale(100%);
+  filter: grayscale(100%);
 }

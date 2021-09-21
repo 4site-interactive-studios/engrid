@@ -10,7 +10,7 @@ export class EnForm {
 
   private static instance: EnForm;
 
-  private constructor() { }
+  private constructor() {}
 
   public static getInstance(): EnForm {
     if (!EnForm.instance) {

@@ -1,4 +1,4 @@
-[data-engrid-theme]{
+[data-engrid-theme] {
   // --error__color: #ff530a;
   // --error__color_grayscale: #949494;
   // --error__color_faded: #fff8f4;
@@ -54,7 +54,7 @@
  * Field Placeholder Styling
  * @TODO Can this be simplified because we use Autoprefixer?
  ***********************************/
-.en__field--validationFailed:not(.has-focus):not(.has-value){
+.en__field--validationFailed:not(.has-focus):not(.has-value) {
   --input_placeholder-color: var(--error__color);
 }
 
@@ -67,7 +67,7 @@
 .en__field--checkbox .en__field__error,
 .en__field--rating .en__field__error,
 .en__field--imgselect .en__field__error,
-.en__field--withOther .en__field__error{
+.en__field--withOther .en__field__error {
   // padding-left: 0.5rem;
   // padding-right: 0.5rem;
 }
@@ -79,13 +79,13 @@ body.error-jump-assist .en__component .en__field__error {
   order: 1;
 }
 
-.en__field--validationFailed label{
+.en__field--validationFailed label {
   color: var(--error__color);
 }
 
 .en__field--validationFailed:not(.has-value):not(.has-focus) [type],
 .en__field--validationFailed:not(.has-value):not(.has-focus) textarea,
-.en__field--validationFailed:not(.has-value):not(.has-focus) select{
+.en__field--validationFailed:not(.has-value):not(.has-focus) select {
   border-color: var(--error__color);
   background-color: var(--error__color_faded);
 }
@@ -168,13 +168,15 @@ body.error-jump-assist .en__component .en__field__error {
   // background-color: initial;
 }
 
-.radio-to-buttons_donationAmt .en__field--donationAmt.en__field--withOther.en__field--validationFailed
+.radio-to-buttons_donationAmt
+  .en__field--donationAmt.en__field--withOther.en__field--validationFailed
   .en__field__element--radio {
   border-radius: var(--donation-amount__button_border-radius);
   margin-bottom: 0.5rem;
 }
 
-.radio-to-buttons_donationAmt .en__field--donationAmt.en__field--withOther.en__field--validationFailed
+.radio-to-buttons_donationAmt
+  .en__field--donationAmt.en__field--withOther.en__field--validationFailed
   .en__field__error {
   border-radius: var(--donation-amount__button_border-radius);
 }

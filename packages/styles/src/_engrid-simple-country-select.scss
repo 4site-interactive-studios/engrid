@@ -15,9 +15,7 @@
   }
 }
 
-.en__component--formblock.country-select-visible
-.en__field--address1
-span {
+.en__component--formblock.country-select-visible .en__field--address1 span {
   display: none;
 }
 body:not(#en__pagebuilder) .simple_country_select {

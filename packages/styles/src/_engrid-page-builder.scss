@@ -1,6 +1,6 @@
 // Styles Related to the Engaging Networks Page Builder
-[data-engrid-theme]{
-  --pagebuilder__background-color: #C1C0C0;
+[data-engrid-theme] {
+  --pagebuilder__background-color: #c1c0c0;
 }
 
 /*
@@ -46,7 +46,8 @@
   }
 
   // Helps position the Engaging Networks pagebuilder tabs that are shown on hover of the Advanced Row
-  form > .en__component--advrow.en__component--active
+  form
+    > .en__component--advrow.en__component--active
     .en__component__actions.en__component__actions--advrow {
     grid-row: page;
     display: block;
@@ -152,7 +153,7 @@
     }
   }
 
-  .en__pg__imageSelector{
+  .en__pg__imageSelector {
     display: none; // Fixes a display issue https://d.pr/v/U33TmD
   }
 
@@ -238,7 +239,7 @@
       &.content-footer:before,
       &.page-backgroundImage:before,
       &.page-backgroundImageOverlay:before,
-      &.page-customCode:before{
+      &.page-customCode:before {
         padding-left: 5px;
         padding-right: 5px;
         font-size: 10px;
@@ -349,25 +350,31 @@
 */
 
 /* Make the border of component with an edit warning, red  */
-#en__pagebuilder .edit-warning.en__component.en__component--active.en__component--activeTarget{
+#en__pagebuilder
+  .edit-warning.en__component.en__component--active.en__component--activeTarget {
   box-shadow: 0 0 0 2px #f12222;
 }
 
 /* Make the border of component with an edit lock, black  */
-#en__pagebuilder .edit-lock.en__component.en__component--active.en__component--activeTarget {
+#en__pagebuilder
+  .edit-lock.en__component.en__component--active.en__component--activeTarget {
   box-shadow: 0 0 0 2px #000000;
 }
 
 /* Remove action handle from its normal position */
 #en__pagebuilder .edit-warning a.en__component__action--handle,
-#en__pagebuilder .edit-lock a.en__component__action--handle{
+#en__pagebuilder .edit-lock a.en__component__action--handle {
   // background-image: none;
   // padding-left: 6px;
 }
 
 /* Style the edit warning and lock messages to match the styling of the component actions */
-#en__pagebuilder .edit-warning.en__component.en__component--active.en__component--activeTarget .en__component__actions::after,
-#en__pagebuilder .edit-lock.en__component.en__component--active.en__component--activeTarget .en__component__actions::after{
+#en__pagebuilder
+  .edit-warning.en__component.en__component--active.en__component--activeTarget
+  .en__component__actions::after,
+#en__pagebuilder
+  .edit-lock.en__component.en__component--active.en__component--activeTarget
+  .en__component__actions::after {
   display: block;
   text-decoration: none;
   line-height: 30px;
@@ -384,39 +391,56 @@
 }
 
 /* Style edit warning messages to match the styling of the component actions */
-#en__pagebuilder .edit-warning.en__component.en__component--active.en__component--activeTarget .en__component__actions{
+#en__pagebuilder
+  .edit-warning.en__component.en__component--active.en__component--activeTarget
+  .en__component__actions {
   background-color: #f12222;
   color: #fff;
 }
 
 /* Style the edit lock messages to match the styling of the component actions */
-#en__pagebuilder .edit-lock.en__component.en__component--active.en__component--activeTarget .en__component__actions{
+#en__pagebuilder
+  .edit-lock.en__component.en__component--active.en__component--activeTarget
+  .en__component__actions {
   background-color: #000000;
   color: #fff;
 }
 
 /* Add edit warning message */
-#en__pagebuilder .edit-warning.en__component.en__component--active.en__component--activeTarget .en__component__actions::after{
+#en__pagebuilder
+  .edit-warning.en__component.en__component--active.en__component--activeTarget
+  .en__component__actions::after {
   content: "Unlink Before Editing";
 }
 
 /* Add edit lock message */
-#en__pagebuilder .edit-lock.en__component.en__component--active.en__component--activeTarget .en__component__actions::after{
+#en__pagebuilder
+  .edit-lock.en__component.en__component--active.en__component--activeTarget
+  .en__component__actions::after {
   content: "Edit From Library";
 }
 
 /* Hide the edit action when editing of the form component has been locked */
-#en__pagebuilder .edit-lock.en__component.en__component--active.en__component--activeTarget>.en__component__actions>a.en__component__action.en__component__action--settings{
+#en__pagebuilder
+  .edit-lock.en__component.en__component--active.en__component--activeTarget
+  > .en__component__actions
+  > a.en__component__action.en__component__action--settings {
   display: none;
 }
 
 /* Change the background color of the component actions, when an edit warning is added, to further visually differentiate them */
-#en__pagebuilder .edit-warning.en__component.en__component--active.en__component--activeTarget>.en__component__actions>a.en__component__action{
+#en__pagebuilder
+  .edit-warning.en__component.en__component--active.en__component--activeTarget
+  > .en__component__actions
+  > a.en__component__action {
   background-color: #f12222;
 }
 
 /* Change the background color of the component actions, when an edit warning is added, to further visually differentiate them */
-#en__pagebuilder .edit-lock.en__component.en__component--active.en__component--activeTarget>.en__component__actions>a.en__component__action{
+#en__pagebuilder
+  .edit-lock.en__component.en__component--active.en__component--activeTarget
+  > .en__component__actions
+  > a.en__component__action {
   background-color: #000000;
 }
 
@@ -428,7 +452,7 @@
 */
 
 #en__pagebuilder img[data-src],
-#en__pagebuilder video[data-src]{
+#en__pagebuilder video[data-src] {
   background-color: #cccccc;
   background-size: contain;
   background-position: center center;
@@ -436,11 +460,10 @@
   display: inline-block;
 }
 
-#en__pagebuilder img[data-src]{
+#en__pagebuilder img[data-src] {
   background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgMzAwIj4KICAgIDxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjY2NjY2NjIj48L3JlY3Q+CiAgICA8dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9Im1vbm9zcGFjZSIgZm9udC1zaXplPSIyNnB4IiBmaWxsPSIjMzMzMzMzIj5MYXp5IExvYWRlZCBJbWFnZTwvdGV4dD4gICAKPC9zdmc+);
 }
 
-#en__pagebuilder video[data-src]{
+#en__pagebuilder video[data-src] {
   background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgMzAwIj4KICAgIDxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjY2NjY2NjIj48L3JlY3Q+CiAgICA8dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9Im1vbm9zcGFjZSIgZm9udC1zaXplPSIyNnB4IiBmaWxsPSIjMzMzMzMzIj5MYXp5IExvYWRlZCBWaWRlbzwvdGV4dD4gICAKPC9zdmc+);
 }
-

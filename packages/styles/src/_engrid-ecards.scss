@@ -110,7 +110,7 @@ button.en__ecarditems__prevclose {
   background-color: #323232;
   margin-bottom: 40px;
   color: #ffffff;
-  :hover{
+  :hover {
     color: #ffffff;
   }
 }
@@ -123,6 +123,6 @@ button.en__ecarditems__prevclose {
 }
 
 // Hides any section with the "send-if-ecard" class until the [data-engrid-show-ecard-options] data attribute is added
-body:not[data-engrid-show-ecard-options] .show-if-ecard{
+body:not[data-engrid-show-ecard-options] .show-if-ecard {
   display: none;
 }

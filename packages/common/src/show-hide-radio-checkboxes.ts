@@ -13,7 +13,7 @@ export class ShowHideRadioCheckboxes {
   // Hide Single Element Div
   hide(item: HTMLInputElement) {
     let inputValue = item.value;
-    document.querySelectorAll("." + this.classes + inputValue).forEach(el => {
+    document.querySelectorAll("." + this.classes + inputValue).forEach((el) => {
       // Consider toggling "hide" class so these fields can be displayed when in a debug state
       if (el instanceof HTMLElement) el.style.display = "none";
     });
@@ -21,7 +21,7 @@ export class ShowHideRadioCheckboxes {
   // Show Single Element Div
   show(item: HTMLInputElement) {
     let inputValue = item.value;
-    document.querySelectorAll("." + this.classes + inputValue).forEach(el => {
+    document.querySelectorAll("." + this.classes + inputValue).forEach((el) => {
       // Consider toggling "hide" class so these fields can be displayed when in a debug state
       if (el instanceof HTMLElement) el.style.display = "";
     });

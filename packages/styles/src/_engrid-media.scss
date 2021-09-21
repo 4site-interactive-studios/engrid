@@ -10,12 +10,12 @@ video {
 
 // If the image or video has no width defined, we can help it out to maintain its aspect ratio while responsively expanding to fill the constraints of the container it's placed within
 img:not([width]),
-video:not([width]){
+video:not([width]) {
   width: 100%;
 }
 
 // Prevents text (file name) from being visible on an image while the it's downloading on a slow connection
-img{
+img {
   color: transparent;
 }
 

@@ -9,10 +9,11 @@ $centerleft1col_content-column_min-width: $one_col_content-column_min-width !def
 $centerleft1col_body-column_max-width: $one_col_body-column_max-width !default; // Overridable in client theme
 $centerleft1col_body-column_min-width: $one_col_body-column_min-width !default; // Overridable in client theme
 $centerleft1col_body-column_offset-width: $one_col_body-column_offset-width !default; // Overridable in client theme
-$centerleft1col_body-column_offset-width-remaining: $centerleft1col_content-column_max-width - $centerleft1col_body-column_max-width - $centerleft1col_body-column_offset-width;
+$centerleft1col_body-column_offset-width-remaining: $centerleft1col_content-column_max-width -
+  $centerleft1col_body-column_max-width -
+  $centerleft1col_body-column_offset-width;
 
 [data-engrid-layout="centerleft1col"] {
-
   @media screen and (min-width: $centerleft1col_content-column_min-width) {
     /* prettier-ignore */
     form > .en__component--advrow,
@@ -28,16 +29,28 @@ $centerleft1col_body-column_offset-width-remaining: $centerleft1col_content-colu
       ]; 
     }
 
-    form > .en__component--advrow > *{
+    form > .en__component--advrow > * {
       grid-template-columns:
-      [
-        pc-start lpc-start]  minmax(0px, 1fr)                                                 [lpc-end
-        cc-start lcc-start]  minmax(0px, $centerleft1col_body-column_offset-width)            [lcc-end
-        bc-start lbc-start]  minmax(0px, $centerleft1col_body-column_max-width / 2)           [lbc-end
-        rbc-start]           minmax(0px, $centerleft1col_body-column_max-width / 2)           [rbc-end bc-end
-        rcc-start]           minmax(0px, $centerleft1col_body-column_offset-width-remaining)  [rcc-end cc-end
-        rpc-start]           minmax(0px, 1fr)                                                 [rpc-end pc-end            
-      ]; 
+        [
+        pc-start lpc-start] minmax(0px, 1fr) [lpc-end
+        cc-start lcc-start] minmax(
+          0px,
+          $centerleft1col_body-column_offset-width
+        ) [lcc-end
+        bc-start lbc-start] minmax(
+          0px,
+          $centerleft1col_body-column_max-width / 2
+        ) [lbc-end
+        rbc-start] minmax(
+          0px,
+          $centerleft1col_body-column_max-width / 2
+        ) [rbc-end bc-end
+        rcc-start] minmax(
+          0px,
+          $centerleft1col_body-column_offset-width-remaining
+        ) [rcc-end cc-end
+        rpc-start] minmax(0px, 1fr) [rpc-end pc-end
+        ];
     }
 
     &:not(#en__pagebuilder) .page-backgroundImage {

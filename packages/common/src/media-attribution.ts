@@ -18,35 +18,52 @@
 import { ENGrid } from "./";
 
 export class MediaAttribution {
+  // Find all images with attribution but not with the "data-attribution-hide-overlay" attribute
+  mediaWithAttribution = document.querySelectorAll(
+    "img[data-attribution-source]:not([data-attribution-hide-overlay]), video[data-attribution-source]:not([data-attribution-hide-overlay])"
+  );
+  constructor() {
+    this.mediaWithAttribution.forEach((element) => {
+      if (ENGrid.debug)
+        console.log(
+          "The following image was found with data attribution fields on it. It's markup will be changed to add caption support.",
+          element
+        );
 
-    // Find all images with attribution but not with the "data-attribution-hide-overlay" attribute
-    mediaWithAttribution = document.querySelectorAll("img[data-attribution-source]:not([data-attribution-hide-overlay]), video[data-attribution-source]:not([data-attribution-hide-overlay])");
-    constructor() {
-        this.mediaWithAttribution.forEach((element) => {
-            if (ENGrid.debug) console.log("The following image was found with data attribution fields on it. It's markup will be changed to add caption support.", element);
+      // Creates the wapping <figure> element
+      let figure = document.createElement("figure");
+      figure.classList.add("media-with-attribution");
 
-            // Creates the wapping <figure> element
-            let figure = document.createElement('figure');
-            figure.classList.add("media-with-attribution");
+      // Moves the <img> inside its <figure> element
+      let mediaWithAttributionParent = element.parentNode;
+      if (mediaWithAttributionParent) {
+        mediaWithAttributionParent.insertBefore(figure, element);
+        figure.appendChild(element);
 
-            // Moves the <img> inside its <figure> element
-            let mediaWithAttributionParent = element.parentNode;
-            if (mediaWithAttributionParent) {
-                mediaWithAttributionParent.insertBefore(figure, element);
-                figure.appendChild(element);
-
-                let mediaWithAttributionElement = element as HTMLElement;
-                // Append the <figcaption> element after the <img> and conditionally add the Source's Link to it
-                let attributionSource = mediaWithAttributionElement.dataset.attributionSource;
-                if (attributionSource) {
-                    let attributionSourceLink = mediaWithAttributionElement.dataset.attributionSourceLink;
-                    if (attributionSourceLink) {
-                        mediaWithAttributionElement.insertAdjacentHTML('afterend', '<figattribution><a href="' + decodeURIComponent(attributionSourceLink) + '" target="_blank" tabindex="-1">' + attributionSource + '</a></figure>');
-                    } else {
-                        mediaWithAttributionElement.insertAdjacentHTML('afterend', '<figattribution>' + attributionSource + '</figure>');
-                    }
-                }
-            }
-        });
-    }
+        let mediaWithAttributionElement = element as HTMLElement;
+        // Append the <figcaption> element after the <img> and conditionally add the Source's Link to it
+        let attributionSource =
+          mediaWithAttributionElement.dataset.attributionSource;
+        if (attributionSource) {
+          let attributionSourceLink =
+            mediaWithAttributionElement.dataset.attributionSourceLink;
+          if (attributionSourceLink) {
+            mediaWithAttributionElement.insertAdjacentHTML(
+              "afterend",
+              '<figattribution><a href="' +
+                decodeURIComponent(attributionSourceLink) +
+                '" target="_blank" tabindex="-1">' +
+                attributionSource +
+                "</a></figure>"
+            );
+          } else {
+            mediaWithAttributionElement.insertAdjacentHTML(
+              "afterend",
+              "<figattribution>" + attributionSource + "</figure>"
+            );
+          }
+        }
+      }
+    });
+  }
 }

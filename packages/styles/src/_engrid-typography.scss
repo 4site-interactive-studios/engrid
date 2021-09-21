@@ -1,143 +1,144 @@
-[data-engrid-theme]{
-    // FONT STACKS (REF: https://markdotto.com/2018/02/07/github-system-fonts/)
-    --native-fonts__sans-serif: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+[data-engrid-theme] {
+  // FONT STACKS (REF: https://markdotto.com/2018/02/07/github-system-fonts/)
+  --native-fonts__sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
 
-    // TYPOGRAPHY DEFAULT
-    --default_font-family: var(--native-fonts__sans-serif);
-    // --default_color: initial;
-    --default_font-size: 16px; // Sets a baseline font size for all other REM based font-sizes to relatively build off of (http://www.standardista.com/px-to-rem-conversion-if-root-font-size-is-16px/)
-    --default_font-weight: initial;
-    --default_line-height: initial;
+  // TYPOGRAPHY DEFAULT
+  --default_font-family: var(--native-fonts__sans-serif);
+  // --default_color: initial;
+  --default_font-size: 16px; // Sets a baseline font size for all other REM based font-sizes to relatively build off of (http://www.standardista.com/px-to-rem-conversion-if-root-font-size-is-16px/)
+  --default_font-weight: initial;
+  --default_line-height: initial;
 
-    // TYPOGRAPHY H1
-    --h1_font-family: var(--default_font-family);
-    // --h1_color: initial;
-    --h1_font-size: calc(var(--default_font-size) * var(--scale-up_160pct));
-    --h1_font-weight: initial;
-    --h1_line-height: initial;
-        
-    // TYPOGRAPHY H2
-    --h2_font-family: var(--h1_font-family);
-    // --h2_color: initial;
-    --h2_font-size: calc(var(--default_font-size) * var(--scale-up_80pct));
-    --h2_font-weight: initial;
-    --h2_line-height: initial;
-        
-    // TYPOGRAPHY H3
-    --h3_font-family: var(--h1_font-family);
-    // --h3_color: initial;
-    --h3_font-size: calc(var(--default_font-size) * var(--scale-up_40pct));
-    --h3_font-weight: initial;
-    --h3_line-height: initial;    
-    
-    // TYPOGRAPHY H4
-    --h4_font-family: var(--h1_font-family);
-    // --h4_color: initial;
-    --h4_font-size: calc(var(--default_font-size) * var(--scale-up_40pct));
-    --h4_font-weight: initial;
-    --h4_line-height: initial;    
-    
-    // TYPOGRAPHY H5
-    --h5_font-family: var(--h1_font-family);
-    // --h5_color: initial;
-    --h5_font-size: calc(var(--default_font-size) * var(--scale-up_40pct));
-    --h5_font-weight: initial;
-    --h5_line-height: initial;    
-    
-    // TYPOGRAPHY H6
-    --h6_font-family: var(--h1_font-family);
-    // --h6_color: initial;
-    --h6_font-size: calc(var(--default_font-size) * var(--scale-up_40pct));
-    --h6_font-weight: initial;
-    --h6_line-height: initial;        
+  // TYPOGRAPHY H1
+  --h1_font-family: var(--default_font-family);
+  // --h1_color: initial;
+  --h1_font-size: calc(var(--default_font-size) * var(--scale-up_160pct));
+  --h1_font-weight: initial;
+  --h1_line-height: initial;
 
-    // TYPOGRAPHY P
-    --p_font-family: var(--default_font-family);
-    // --color_primary: initial;
-    --p_font-size: var(--default_font-size);
-    --p_font-weight: initial;
-    --p_line-height: initial;
+  // TYPOGRAPHY H2
+  --h2_font-family: var(--h1_font-family);
+  // --h2_color: initial;
+  --h2_font-size: calc(var(--default_font-size) * var(--scale-up_80pct));
+  --h2_font-weight: initial;
+  --h2_line-height: initial;
 
-    // TYPOGRAPHY A
-    --a_font-family: var(--default_font-family);
-    // --a_color: initial;
-    --a_text-decoration: underline;
+  // TYPOGRAPHY H3
+  --h3_font-family: var(--h1_font-family);
+  // --h3_color: initial;
+  --h3_font-size: calc(var(--default_font-size) * var(--scale-up_40pct));
+  --h3_font-weight: initial;
+  --h3_line-height: initial;
 
-    // TYPOGRAPHY A:FOCUS
-    // TYPOGRAPHY A:HOVER
-    // --a_color_hover: var(--a_color);
-    --a_text-decoration_hover: initial;
+  // TYPOGRAPHY H4
+  --h4_font-family: var(--h1_font-family);
+  // --h4_color: initial;
+  --h4_font-size: calc(var(--default_font-size) * var(--scale-up_40pct));
+  --h4_font-weight: initial;
+  --h4_line-height: initial;
+
+  // TYPOGRAPHY H5
+  --h5_font-family: var(--h1_font-family);
+  // --h5_color: initial;
+  --h5_font-size: calc(var(--default_font-size) * var(--scale-up_40pct));
+  --h5_font-weight: initial;
+  --h5_line-height: initial;
+
+  // TYPOGRAPHY H6
+  --h6_font-family: var(--h1_font-family);
+  // --h6_color: initial;
+  --h6_font-size: calc(var(--default_font-size) * var(--scale-up_40pct));
+  --h6_font-weight: initial;
+  --h6_line-height: initial;
+
+  // TYPOGRAPHY P
+  --p_font-family: var(--default_font-family);
+  // --color_primary: initial;
+  --p_font-size: var(--default_font-size);
+  --p_font-weight: initial;
+  --p_line-height: initial;
+
+  // TYPOGRAPHY A
+  --a_font-family: var(--default_font-family);
+  // --a_color: initial;
+  --a_text-decoration: underline;
+
+  // TYPOGRAPHY A:FOCUS
+  // TYPOGRAPHY A:HOVER
+  // --a_color_hover: var(--a_color);
+  --a_text-decoration_hover: initial;
 }
-  
+
 // The most common typographic elements for pages
 // @TODO Implement a more advanced SASS based method for fluidly scaling type size
 // @BODY https://css-tricks.com/snippets/css/fluid-typography/
 
-body{
-    font-family: var(--default_font-family);
-    color: var(--default_color);
-    font-size: var(--default_font-size);
-    font-weight: var(--default_font-weight);
-    line-height: var(--default_line-height);
+body {
+  font-family: var(--default_font-family);
+  color: var(--default_color);
+  font-size: var(--default_font-size);
+  font-weight: var(--default_font-weight);
+  line-height: var(--default_line-height);
 }
 
-h1{
-    font-family: var(--h1_font-family);
-    color: var(--h1_color);
-    font-size: var(--h1_font-size);
-    font-weight: var(--h1_font-weight);
-    line-height: var(--h1_line-height);
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+h1 {
+  font-family: var(--h1_font-family);
+  color: var(--h1_color);
+  font-size: var(--h1_font-size);
+  font-weight: var(--h1_font-weight);
+  line-height: var(--h1_line-height);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
 }
 
-h2{
-    font-family: var(--h2_font-family);
-    color: var(--h2_color);
-    font-size: var(--h2_font-size);
-    font-weight: var(--h2_font-weight);
-    line-height: var(--h2_line-height);
-    margin-top: calc(2rem * var(--scale-down_20pct));
-    margin-bottom: calc(1rem * var(--scale-down_20pct));
+h2 {
+  font-family: var(--h2_font-family);
+  color: var(--h2_color);
+  font-size: var(--h2_font-size);
+  font-weight: var(--h2_font-weight);
+  line-height: var(--h2_line-height);
+  margin-top: calc(2rem * var(--scale-down_20pct));
+  margin-bottom: calc(1rem * var(--scale-down_20pct));
 }
 
-h3{
-    font-family: var(--h3_font-family);
-    color: var(--h3_color);
-    font-size: var(--h3_font-size);
-    font-weight: var(--h3_font-weight);
-    line-height: var(--h3_line-height);
-    margin-top: calc(2rem * var(--scale-down_40pct));
-    margin-bottom: calc(1rem * var(--scale-down_40pct));
+h3 {
+  font-family: var(--h3_font-family);
+  color: var(--h3_color);
+  font-size: var(--h3_font-size);
+  font-weight: var(--h3_font-weight);
+  line-height: var(--h3_line-height);
+  margin-top: calc(2rem * var(--scale-down_40pct));
+  margin-bottom: calc(1rem * var(--scale-down_40pct));
 }
 
 h4,
 h5,
-h6{
-    font-family: var(--h3_font-family);
-    color: var(--h3_color);
-    font-size: calc(var(--h3_font-size) * var(--scale-down_20pct));
-    font-weight: var(--h3_font-weight);
-    line-height: var(--h3_line-height);
-    margin-top: calc(2rem * var(--scale-down_80pct));
-    margin-bottom: calc(1rem * var(--scale-down_80pct));
+h6 {
+  font-family: var(--h3_font-family);
+  color: var(--h3_color);
+  font-size: calc(var(--h3_font-size) * var(--scale-down_20pct));
+  font-weight: var(--h3_font-weight);
+  line-height: var(--h3_line-height);
+  margin-top: calc(2rem * var(--scale-down_80pct));
+  margin-bottom: calc(1rem * var(--scale-down_80pct));
 }
 
-p{
-    font-family: var(--p_font-family);
-    font-size: var(--p_font-size);
-    font-weight: var(--p_font-weight);
-    line-height: var(--p_line-height);
+p {
+  font-family: var(--p_font-family);
+  font-size: var(--p_font-size);
+  font-weight: var(--p_font-weight);
+  line-height: var(--p_line-height);
 }
 
-a{
-    font-family: var(--a_font-family);
-    color: var(--a_color);
-    text-decoration: var(--a_text-decoration);
+a {
+  font-family: var(--a_font-family);
+  color: var(--a_color);
+  text-decoration: var(--a_text-decoration);
 
-    &:focus,
-    &:hover{
-        color: var(--a_color_hover);
-        text-decoration: var(--a_text-decoration_hover);
-    }
+  &:focus,
+  &:hover {
+    color: var(--a_color_hover);
+    text-decoration: var(--a_text-decoration_hover);
+  }
 }

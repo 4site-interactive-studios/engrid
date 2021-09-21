@@ -1,44 +1,53 @@
-[data-engrid-theme]{
-    // CLICK TO EXPAND
-    --click-to-expand__copy-area_height: 450px;
-    --click-to-expand__cta-image_url: url("https://e-activist.com/pageassets/images/en_open.png");
-    --click-to-expand__cta-image_width: 16px;
-    --click-to-expand__cta-image_height: 16px;
+[data-engrid-theme] {
+  // CLICK TO EXPAND
+  --click-to-expand__copy-area_height: 450px;
+  --click-to-expand__cta-image_url: url("https://e-activist.com/pageassets/images/en_open.png");
+  --click-to-expand__cta-image_width: 16px;
+  --click-to-expand__cta-image_height: 16px;
 }
 
 // Depends on click-to-expand.ts
-body:not(#en__pagebuilder) .click-to-expand:not(.expanded){
-    overflow: hidden; // Prevents content from extending beyond the visible area of the unexpanded click-to-expand section https://d.pr/v/4tc9u2
-    cursor: pointer;
-    max-height: var(--click-to-expand__copy-area_height);
-    // overflow: hidden; // No longer needed as the max-height on the wrapper will handle it
+body:not(#en__pagebuilder) .click-to-expand:not(.expanded) {
+  overflow: hidden; // Prevents content from extending beyond the visible area of the unexpanded click-to-expand section https://d.pr/v/4tc9u2
+  cursor: pointer;
+  max-height: var(--click-to-expand__copy-area_height);
+  // overflow: hidden; // No longer needed as the max-height on the wrapper will handle it
 
-    // Works with transparent backgrounds for when the ENGrid is in its embedded state
-    // REF: https://stackoverflow.com/a/58740440/815683
-    .click-to-expand-text-wrapper {
-        max-height: calc(var(--click-to-expand__copy-area_height) - var(--click-to-expand__cta-image_height) - 35px);
-        mask-image: linear-gradient(to bottom, black 50%, rgba(255, 255, 255, 0) calc(100% - var(--click-to-expand__cta-image_height)));  
-    }
+  // Works with transparent backgrounds for when the ENGrid is in its embedded state
+  // REF: https://stackoverflow.com/a/58740440/815683
+  .click-to-expand-text-wrapper {
+    max-height: calc(
+      var(--click-to-expand__copy-area_height) -
+        var(--click-to-expand__cta-image_height) - 35px
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      black 50%,
+      rgba(255, 255, 255, 0)
+        calc(100% - var(--click-to-expand__cta-image_height))
+    );
+  }
 
-    .click-to-expand-cta {
-        background: var(--click-to-expand__cta-image_url);
-        background-position: center bottom;
-        background-repeat: no-repeat;
-        background-size: var(--click-to-expand__cta-image_width) var(--click-to-expand__cta-image_height);
-        // z-index: 100;
-        width: var(--click-to-expand__cta-image_width);
-        height: var(--click-to-expand__cta-image_height);
-        bottom: 0em;
-        position: absolute;
-        margin-left: auto;
-        margin-right: auto;
-        left: 0;
-        right: 0;
-    }
+  .click-to-expand-cta {
+    background: var(--click-to-expand__cta-image_url);
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: var(--click-to-expand__cta-image_width)
+      var(--click-to-expand__cta-image_height);
+    // z-index: 100;
+    width: var(--click-to-expand__cta-image_width);
+    height: var(--click-to-expand__cta-image_height);
+    bottom: 0em;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+  }
 }
 
-body:not(#en__pagebuilder) .click-to-expand.expanded{
-    .click-to-expand-text-wrapper {
-        outline: none;  
-    }  
+body:not(#en__pagebuilder) .click-to-expand.expanded {
+  .click-to-expand-text-wrapper {
+    outline: none;
+  }
 }

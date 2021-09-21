@@ -2,225 +2,241 @@
 // Uncomment to use and reference engrid-scrips SASS files for more CSS Custom Properties.
 // All CSS Custom Properties should be scoped to the theme using CSS Data Attributes.
 
-[data-engrid-theme="flex2"]{
-    --engrid__page_background-color: lightgrey;
-    --engrid__body-header_padding: 0 2.5rem;
-    --engrid__body_padding: 0 2.5rem;
-    --engrid__body_border-radius: 6px;
-    --engrid__body-header_margin: 1rem 0 0 0;
-    --engrid__body-footer_margin: 0 0 3rem 0;
-    --engrid__body-footer_padding: 0 2.5rem 2rem 2.5rem;
+[data-engrid-theme="flex2"] {
+  --engrid__page_background-color: lightgrey;
+  --engrid__body-header_padding: 0 2.5rem;
+  --engrid__body_padding: 0 2.5rem;
+  --engrid__body_border-radius: 6px;
+  --engrid__body-header_margin: 1rem 0 0 0;
+  --engrid__body-footer_margin: 0 0 3rem 0;
+  --engrid__body-footer_padding: 0 2.5rem 2rem 2.5rem;
 }
 
 /* Add your custom theme styles here */
-[data-engrid-theme="flex2"]{
-    .en__field--donationAmt.en__field--withOther .en__field__element--radio .en__field__item:nth-last-child(2){
-        display: flex;
-        label{
-            width: 100%;
-        }
+[data-engrid-theme="flex2"] {
+  .en__field--donationAmt.en__field--withOther
+    .en__field__element--radio
+    .en__field__item:nth-last-child(2) {
+    display: flex;
+    label {
+      width: 100%;
+    }
+  }
+
+  .en__field--donationAmt.en__field--withOther
+    .en__field__element--radio
+    .en__field__item.en__field__item--hidden:last-child {
+    display: none;
+  }
+
+  @mixin client_under_layout_breakpoint {
+    --engrid__body_padding: 0 1.5rem;
+    --engrid__body_border-radius: 0px;
+    --engrid__body-header_margin: 0px;
+    --engrid__body-footer_margin: 0px;
+
+    // Set the background color to whatever the body main is using
+    --engrid__page_background-color: var(--engrid__body-main_background-color);
+
+    // Remove the box shadow
+    div:not(.pboAdvancedRow__preview)
+      > .en__component--advrow
+      > .body-header:before,
+    div:not(.pboAdvancedRow__preview)
+      > .en__component--advrow
+      > .body-banner:before,
+    div:not(.pboAdvancedRow__preview)
+      > .en__component--advrow
+      > .body-main:before,
+    div:not(.pboAdvancedRow__preview)
+      > .en__component--advrow
+      > .body-footer:before {
+      box-shadow: none;
     }
 
-    .en__field--donationAmt.en__field--withOther .en__field__element--radio .en__field__item.en__field__item--hidden:last-child{
-        display: none;
-    }
+    // This is when any two column rows should stack
+    .en__component--row--2 {
+      flex-direction: column;
 
-    @mixin client_under_layout_breakpoint{
-        --engrid__body_padding: 0 1.5rem;
-        --engrid__body_border-radius: 0px;
-        --engrid__body-header_margin: 0px;
-        --engrid__body-footer_margin: 0px;
-
-        // Set the background color to whatever the body main is using
-        --engrid__page_background-color: var(--engrid__body-main_background-color);
-
-        // Remove the box shadow
-        div:not(.pboAdvancedRow__preview) > .en__component--advrow > .body-header:before,
-        div:not(.pboAdvancedRow__preview) > .en__component--advrow > .body-banner:before,
-        div:not(.pboAdvancedRow__preview) > .en__component--advrow > .body-main:before,
-        div:not(.pboAdvancedRow__preview) > .en__component--advrow > .body-footer:before{
-            box-shadow: none;
-        }
-
-        // This is when any two column rows should stack
-        .en__component--row--2{
-            flex-direction: column;
-
-            > .en__component--column{
-                width: 100%;
-            }
-        }
-
-    }
-
-    &[data-highlight-required-fields]{
-        .en__mandatory > label{
-            justify-content: flex-start;
-
-            &:after {
-                content: "*";
-                color: var(--error__color);
-                margin-left: calc(1ch * 0.25);
-                margin-right: auto;
-            }
-        }
-    }
-
-    // When you have a row/column, that has a copy block placed inside it as the first element, remove the top margin/padding from the first element inside the copy block
-    .en__component--row > .en__component--column > .en__component--copyblock:first-child > *:first-child{
-        margin-top: 0;
-        padding-top: 0;
-    }
-
-    &[data-engrid-layout="centerleft1col"]{
-        @media screen and (max-width: $centerleft1col_content-column_min-width) {
-          @include client_under_layout_breakpoint;
-        }
-    }
-
-    &[data-engrid-layout="centercenter1col"]{
-        @media screen and (max-width: $centercenter1col_content-column_min-width) {
-            @include client_under_layout_breakpoint;
-        }
-    }
-
-    &[data-engrid-layout="centerright1col"]{
-        @media screen and (max-width: $centerright1col_content-column_min-width) {
-            @include client_under_layout_breakpoint;
-        }
-    }
-
-    &[data-engrid-layout="leftleft1col"]{
-        @media screen and (max-width: $leftleft1col_content-column_min-width) {
-            //TBD
-        }
-        @include client_under_layout_breakpoint;
-    }
-
-    &[data-engrid-layout="rightright1col"]{
-        @media screen and (max-width: $rightright1col_content-column_min-width) {
-            //TBD
-        }
-        @include client_under_layout_breakpoint;
-    }
-
-    &[data-engrid-layout="centercenter2col"] {
-        @media screen and (max-width: $centercenter2col_content-column_min-width) {
-            @include client_under_layout_breakpoint;
-        }
-
-        @media screen and (min-width: $centercenter2col_content-column_min-width) {
-            .en__component--row--2 .en__component--column--2{
-                > *{
-                    margin-left: 1rem;
-                    padding-left: 1rem;
-                    padding-right: 1rem;
-                    background-color: lightgrey;
-
-                    &:first-child{
-                        padding-top: 1rem;
-                        border-top-left-radius: var(--engrid__body_border-radius);
-                        border-top-right-radius: var(--engrid__body_border-radius);
-                    }
-    
-                    &:last-child{
-                        padding-bottom: 1rem;
-                        border-bottom-left-radius: var(--engrid__body_border-radius);
-                        border-bottom-right-radius: var(--engrid__body_border-radius);
-                    }
-                }
-            }
-        }
-
-        .body-main{
-            grid-column: bc;
-        }
-    }
-    
-    // Pad the img (presumably the logo) rather than the section. If for some reason a user wants to put their logo in another place, then this section will visually collapse without an image in it
-    .body-header img{
-        padding: 1rem;
-    }
-
-    // Copied from: _engrid-background-image.scss
-    // High resolution imagery can cause FPS drops when scrolling due to page redraws
-    // REF: Fix scrolling performance with CSS will-change property (https://www.fourkitchens.com/blog/article/fix-scrolling-performance-css-will-change-property/)
-    .page-backgroundImage {
-        overflow: hidden; // added for before pseudo-element to help improve page redraw and subsequent page scroll FPS
-        position: relative; // added for before pseudo-element to help improve page redraw and subsequent page scroll FPS
-
-        &:before {
-        content: " ";
-        position: fixed; // instead of background-attachment
+      > .en__component--column {
         width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-image: var(--engrid__page-backgroundImage_url);
-        will-change: transform; // creates a new paint
-        }
+      }
+    }
+  }
+
+  &[data-highlight-required-fields] {
+    .en__mandatory > label {
+      justify-content: flex-start;
+
+      &:after {
+        content: "*";
+        color: var(--error__color);
+        margin-left: calc(1ch * 0.25);
+        margin-right: auto;
+      }
+    }
+  }
+
+  // When you have a row/column, that has a copy block placed inside it as the first element, remove the top margin/padding from the first element inside the copy block
+  .en__component--row
+    > .en__component--column
+    > .en__component--copyblock:first-child
+    > *:first-child {
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  &[data-engrid-layout="centerleft1col"] {
+    @media screen and (max-width: $centerleft1col_content-column_min-width) {
+      @include client_under_layout_breakpoint;
+    }
+  }
+
+  &[data-engrid-layout="centercenter1col"] {
+    @media screen and (max-width: $centercenter1col_content-column_min-width) {
+      @include client_under_layout_breakpoint;
+    }
+  }
+
+  &[data-engrid-layout="centerright1col"] {
+    @media screen and (max-width: $centerright1col_content-column_min-width) {
+      @include client_under_layout_breakpoint;
+    }
+  }
+
+  &[data-engrid-layout="leftleft1col"] {
+    @media screen and (max-width: $leftleft1col_content-column_min-width) {
+      //TBD
+    }
+    @include client_under_layout_breakpoint;
+  }
+
+  &[data-engrid-layout="rightright1col"] {
+    @media screen and (max-width: $rightright1col_content-column_min-width) {
+      //TBD
+    }
+    @include client_under_layout_breakpoint;
+  }
+
+  &[data-engrid-layout="centercenter2col"] {
+    @media screen and (max-width: $centercenter2col_content-column_min-width) {
+      @include client_under_layout_breakpoint;
     }
 
-    // Force the visibility of the body-footer, even when empty
-    &:not(#en__pagebuilder) .body-footer:empty{
-        display: block;
+    @media screen and (min-width: $centercenter2col_content-column_min-width) {
+      .en__component--row--2 .en__component--column--2 {
+        > * {
+          margin-left: 1rem;
+          padding-left: 1rem;
+          padding-right: 1rem;
+          background-color: lightgrey;
+
+          &:first-child {
+            padding-top: 1rem;
+            border-top-left-radius: var(--engrid__body_border-radius);
+            border-top-right-radius: var(--engrid__body_border-radius);
+          }
+
+          &:last-child {
+            padding-bottom: 1rem;
+            border-bottom-left-radius: var(--engrid__body_border-radius);
+            border-bottom-right-radius: var(--engrid__body_border-radius);
+          }
+        }
+      }
     }
 
-    &#en__pagebuilder{
-        // Helps with a strange offset that crops the bottom pixel of the main content area in page builder ( https://d.pr/v/gsuJB8 )
-        form{
-            inset: -1px auto auto 0px;
-        }
+    .body-main {
+      grid-column: bc;
+    }
+  }
 
-        // Remove this margin because our page will always have other padding / margin
-        .en__container{
-            margin-top: 0;
-        }
+  // Pad the img (presumably the logo) rather than the section. If for some reason a user wants to put their logo in another place, then this section will visually collapse without an image in it
+  .body-header img {
+    padding: 1rem;
+  }
 
-        // Hide these sections as there is no way to interact with them
-        .body-banner,
-        .page-backgroundImage{
-            display: none;
-        }
+  // Copied from: _engrid-background-image.scss
+  // High resolution imagery can cause FPS drops when scrolling due to page redraws
+  // REF: Fix scrolling performance with CSS will-change property (https://www.fourkitchens.com/blog/article/fix-scrolling-performance-css-will-change-property/)
+  .page-backgroundImage {
+    overflow: hidden; // added for before pseudo-element to help improve page redraw and subsequent page scroll FPS
+    position: relative; // added for before pseudo-element to help improve page redraw and subsequent page scroll FPS
 
-        // Remove the outline width on these sections as there is no way to interact with them or they are a drop target for row widgets
-        .body-header,
-        .body-main,
-        .body-footer{
-            outline-width: 0;
-        }
+    &:before {
+      content: " ";
+      position: fixed; // instead of background-attachment
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-image: var(--engrid__page-backgroundImage_url);
+      will-change: transform; // creates a new paint
+    }
+  }
 
-        // Remove the custom section text
-        .body-main .messageOverlay.hidden:only-child:before{
-            content: "";
-        }
+  // Force the visibility of the body-footer, even when empty
+  &:not(#en__pagebuilder) .body-footer:empty {
+    display: block;
+  }
 
-        // Helper stylings for if the last row is deleted
-        form > .messageOverlay.hidden:only-of-type div:before {
-            outline: dashed 1px var(--error__color);
-            visibility: visible;
-            content: "Add a Row";
-            display: flex;
-            width: 100%;
-            justify-content: center;
-            align-items: center;
-            color: var(--error__color);
-            min-height: 25px;
-            position: relative;
-            top: -12.5px;
-            font-weight: 700;
-        }
+  &#en__pagebuilder {
+    // Helps with a strange offset that crops the bottom pixel of the main content area in page builder ( https://d.pr/v/gsuJB8 )
+    form {
+      inset: -1px auto auto 0px;
     }
 
-    // Remove min-height from the form component
-    &:not([data-engrid-embedded]) form > .en__component--row.en__component--advrow{
-        min-height: auto;
+    // Remove this margin because our page will always have other padding / margin
+    .en__container {
+      margin-top: 0;
     }
-    
-    // And add the min-height to the wrapped div
-    &:not([data-engrid-embedded]) #engrid {
-        min-height: 100vh;
+
+    // Hide these sections as there is no way to interact with them
+    .body-banner,
+    .page-backgroundImage {
+      display: none;
     }
+
+    // Remove the outline width on these sections as there is no way to interact with them or they are a drop target for row widgets
+    .body-header,
+    .body-main,
+    .body-footer {
+      outline-width: 0;
+    }
+
+    // Remove the custom section text
+    .body-main .messageOverlay.hidden:only-child:before {
+      content: "";
+    }
+
+    // Helper stylings for if the last row is deleted
+    form > .messageOverlay.hidden:only-of-type div:before {
+      outline: dashed 1px var(--error__color);
+      visibility: visible;
+      content: "Add a Row";
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      color: var(--error__color);
+      min-height: 25px;
+      position: relative;
+      top: -12.5px;
+      font-weight: 700;
+    }
+  }
+
+  // Remove min-height from the form component
+  &:not([data-engrid-embedded])
+    form
+    > .en__component--row.en__component--advrow {
+    min-height: auto;
+  }
+
+  // And add the min-height to the wrapped div
+  &:not([data-engrid-embedded]) #engrid {
+    min-height: 100vh;
+  }
 }

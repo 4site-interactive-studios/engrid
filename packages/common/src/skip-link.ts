@@ -6,33 +6,52 @@
 import { ENGrid } from "./";
 
 export class SkipToMainContentLink {
+  constructor() {
+    const firstTitleInEngridBody = document.querySelector(
+      "div[class*='body-'] title"
+    );
+    const firstH1InEngridBody = document.querySelector(
+      "div[class*='body-'] h1"
+    );
+    const firstTitle = document.querySelector("title");
+    const firstH1 = document.querySelector("h1");
 
-    constructor() {
-        const firstTitleInEngridBody = document.querySelector("div[class*='body-'] title");
-        const firstH1InEngridBody = document.querySelector("div[class*='body-'] h1");
-        const firstTitle = document.querySelector("title");
-        const firstH1 = document.querySelector("h1");
-
-        if (firstTitleInEngridBody && firstTitleInEngridBody.parentElement) {
-            firstTitleInEngridBody.parentElement.insertAdjacentHTML('beforebegin', '<span id="skip-link"></span>');
-            this.insertSkipLinkSpan();
-        } else if (firstH1InEngridBody && firstH1InEngridBody.parentElement) {
-            firstH1InEngridBody.parentElement.insertAdjacentHTML('beforebegin', '<span id="skip-link"></span>');
-            this.insertSkipLinkSpan();
-        } else if (firstTitle && firstTitle.parentElement) {
-            firstTitle.parentElement.insertAdjacentHTML('beforebegin', '<span id="skip-link"></span>');
-            this.insertSkipLinkSpan();
-        } else if (firstH1 && firstH1.parentElement) {
-            firstH1.parentElement.insertAdjacentHTML('beforebegin', '<span id="skip-link"></span>');
-            this.insertSkipLinkSpan();
-        } else {
-            if (ENGrid.debug) console.log("This page contains no <title> or <h1> and a 'Skip to main content' link was not added");
-        }
+    if (firstTitleInEngridBody && firstTitleInEngridBody.parentElement) {
+      firstTitleInEngridBody.parentElement.insertAdjacentHTML(
+        "beforebegin",
+        '<span id="skip-link"></span>'
+      );
+      this.insertSkipLinkSpan();
+    } else if (firstH1InEngridBody && firstH1InEngridBody.parentElement) {
+      firstH1InEngridBody.parentElement.insertAdjacentHTML(
+        "beforebegin",
+        '<span id="skip-link"></span>'
+      );
+      this.insertSkipLinkSpan();
+    } else if (firstTitle && firstTitle.parentElement) {
+      firstTitle.parentElement.insertAdjacentHTML(
+        "beforebegin",
+        '<span id="skip-link"></span>'
+      );
+      this.insertSkipLinkSpan();
+    } else if (firstH1 && firstH1.parentElement) {
+      firstH1.parentElement.insertAdjacentHTML(
+        "beforebegin",
+        '<span id="skip-link"></span>'
+      );
+      this.insertSkipLinkSpan();
+    } else {
+      if (ENGrid.debug)
+        console.log(
+          "This page contains no <title> or <h1> and a 'Skip to main content' link was not added"
+        );
     }
+  }
 
-    private insertSkipLinkSpan() {
-        document.body.insertAdjacentHTML('afterbegin', '<a class="skip-link" href="#skip-link">Skip to main content</a>');
-    }
-
+  private insertSkipLinkSpan() {
+    document.body.insertAdjacentHTML(
+      "afterbegin",
+      '<a class="skip-link" href="#skip-link">Skip to main content</a>'
+    );
+  }
 }
-
