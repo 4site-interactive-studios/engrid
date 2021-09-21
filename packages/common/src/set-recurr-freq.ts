@@ -21,24 +21,45 @@ export class setRecurrFreq {
                 }
             });
         });
+
+        const currentFrequency = ENGrid.getFieldValue('transaction.recurrfreq').toUpperCase();
+
         // Watch checkboxes with the name checkboxName
         (document.getElementsByName(this.checkboxName) as NodeListOf<HTMLInputElement>).forEach((element) => {
+            // Set checked status per currently-set frequency
+            const frequency = element.value.toUpperCase();
+            if (frequency === currentFrequency) {
+                element.checked = true;
+            } else {
+                element.checked = false;
+            }
+
             element.addEventListener("change", () => {
+                const frequency = element.value.toUpperCase();
                 if (element.checked) {
-                    ENGrid.setFieldValue('transaction.recurrfreq', element.value.toUpperCase());
+                    ENGrid.setFieldValue('transaction.recurrfreq', frequency);
+                    ENGrid.setFieldValue('transaction.recurrpay', 'Y');
+                    this._frequency.load();
+                } else if(frequency !== 'ONETIME') {
+                    ENGrid.setFieldValue('transaction.recurrfreq', 'ONETIME');
+                    ENGrid.setFieldValue('transaction.recurrpay', 'N');
                     this._frequency.load();
                 }
             });
         });
         // Uncheck the checkbox when frequency != checkbox value
         this._frequency.onFrequencyChange.subscribe(() => {
-            const freq = this._frequency.frequency.toUpperCase();
+
+            const currentFrequency = this._frequency.frequency.toUpperCase();
             (document.getElementsByName(this.checkboxName) as NodeListOf<HTMLInputElement>).forEach((element) => {
-                if (element.checked && element.value != freq) {
+                const elementFrequency = element.value.toUpperCase();
+                if (element.checked && elementFrequency !== currentFrequency) {
                     element.checked = false;
+                } else if(!element.checked && elementFrequency === currentFrequency) {
+                    element.checked = true;
                 }
-            }
-            );
+            });
+
         });
     }
 }
