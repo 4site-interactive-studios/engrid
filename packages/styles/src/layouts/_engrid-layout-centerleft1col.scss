@@ -36,19 +36,20 @@ $centerleft1col_body-column_offset-width-remaining: $centerleft1col_content-colu
         cc-start lcc-start] minmax(
           0px,
           $centerleft1col_body-column_offset-width
-        ) [lcc-end
+        )
+        [lcc-end
         bc-start lbc-start] minmax(
           0px,
           $centerleft1col_body-column_max-width / 2
-        ) [lbc-end
-        rbc-start] minmax(
-          0px,
-          $centerleft1col_body-column_max-width / 2
-        ) [rbc-end bc-end
+        )
+        [lbc-end
+        rbc-start] minmax(0px, $centerleft1col_body-column_max-width / 2)
+        [rbc-end bc-end
         rcc-start] minmax(
           0px,
           $centerleft1col_body-column_offset-width-remaining
-        ) [rcc-end cc-end
+        )
+        [rcc-end cc-end
         rpc-start] minmax(0px, 1fr) [rpc-end pc-end
         ];
     }

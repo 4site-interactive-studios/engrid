@@ -28,14 +28,10 @@ $leftleft1col_body-column_max-width: $one_col_body-column_max-width !default; //
         [
         pc-start lpc-start] minmax(0px, 0px) [lpc-end
         cc-start lcc-start] minmax(0px, 0px) [lcc-end
-        bc-start lbc-start] minmax(
-          0px,
-          $leftleft1col_body-column_max-width / 2
-        ) [lbc-end
-        rbc-start] minmax(
-          0px,
-          $leftleft1col_body-column_max-width / 2
-        ) [rbc-end bc-end
+        bc-start lbc-start] minmax(0px, $leftleft1col_body-column_max-width / 2)
+        [lbc-end
+        rbc-start] minmax(0px, $leftleft1col_body-column_max-width / 2)
+        [rbc-end bc-end
         rcc-start] minmax(0px, 0px) [rcc-end cc-end
         rpc-start] minmax(0px, 1fr) [rpc-end pc-end
         ];

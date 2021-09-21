@@ -32,11 +32,10 @@ $rightright1col_body-column_max-width: $one_col_body-column_max-width !default; 
         bc-start lbc-start] minmax(
           0px,
           $rightright1col_body-column_max-width / 2
-        ) [lbc-end
-        rbc-start] minmax(
-          0px,
-          $rightright1col_body-column_max-width / 2
-        ) [rbc-end bc-end
+        )
+        [lbc-end
+        rbc-start] minmax(0px, $rightright1col_body-column_max-width / 2)
+        [rbc-end bc-end
         rcc-start] minmax(0px, 0px) [rcc-end cc-end
         rpc-start] minmax(0px, 0px) [rpc-end pc-end
         ];
