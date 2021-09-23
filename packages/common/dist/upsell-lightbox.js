@@ -225,8 +225,7 @@ export class UpsellLightbox {
     continue(e) {
         var _a;
         e.preventDefault();
-        if (e.target instanceof Element &&
-            ((_a = document.querySelector("#upsellYesButton")) === null || _a === void 0 ? void 0 : _a.contains(e.target))) {
+        if (e.target instanceof Element && ((_a = document.querySelector("#upsellYesButton")) === null || _a === void 0 ? void 0 : _a.contains(e.target))) {
             if (ENGrid.debug)
                 console.log("Upsold");
             this.setOriginalAmount(this._amount.amount.toString());
