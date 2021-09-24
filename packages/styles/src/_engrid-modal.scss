@@ -97,6 +97,42 @@
     }
   }
 
+  .upsellOtherAmountLabel {
+    p {
+      margin: 10px 0;
+    }
+  }
+
+  .upsellOtherAmount {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    .upsellOtherAmountInput {
+      position: relative;
+      small {
+        opacity: 0;
+        display: block;
+        text-align: center;
+        position: absolute;
+        bottom: 40px;
+        font-size: 0.75rem;
+        transition: opacity 0.3s ease-in-out, bottom 0.3s ease-in-out;
+        border-bottom-left-radius: var(--input_border-radius);
+        border-bottom-right-radius: var(--input_border-radius);
+        background-color: var(--error__color);
+        color: var(--color_white);
+        padding: 2px;
+        width: 100%;
+      }
+      &.is-invalid {
+        small {
+          opacity: 1;
+          bottom: -22px;
+        }
+      }
+    }
+  }
+
   #secondOtherField {
     width: 80px;
     height: 40px;
@@ -107,7 +143,6 @@
     background-position: left center;
     background-repeat: no-repeat;
     display: inline-block;
-    margin-left: 5px;
     margin-bottom: 0;
     transition: box-shadow 0.5s, border-color 0.25s ease-in-out;
     box-shadow: none;

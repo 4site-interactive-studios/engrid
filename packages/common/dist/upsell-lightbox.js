@@ -45,10 +45,17 @@ export class UpsellLightbox {
                 </h1>
                 ${this.options.otherAmount
             ? `
-                <p>
-                  <span>${this.options.otherLabel}</span>
-                  <input href="#" id="secondOtherField" name="secondOtherField" size="12" type="number" inputmode="numeric" step="1" value="">
-                </p>
+                <div class="upsellOtherAmount">
+                  <div class="upsellOtherAmountLabel">
+                    <p>
+                      ${this.options.otherLabel}
+                    </p>
+                  </div>
+                  <div class="upsellOtherAmountInput">
+                    <input href="#" id="secondOtherField" name="secondOtherField" size="12" type="number" inputmode="numeric" step="1" value="" autocomplete="off">
+                    <small>Minimum ${this.getAmountTxt(this.options.minAmount)}</small>
+                  </div>
+                </div>
                 `
             : ``}
 
@@ -119,17 +126,20 @@ export class UpsellLightbox {
         var _a, _b;
         const value = parseFloat((_b = (_a = this.overlay.querySelector("#secondOtherField")) === null || _a === void 0 ? void 0 : _a.value) !== null && _b !== void 0 ? _b : "");
         const live_upsell_amount = document.querySelectorAll("#upsellYesButton .upsell_suggestion");
+        const upsellAmount = this.getUpsellAmount();
         if (!isNaN(value) && value > 0) {
-            live_upsell_amount.forEach((elem) => (elem.innerHTML = this.getAmountTxt(value)));
+            this.checkOtherAmount(value);
         }
         else {
-            live_upsell_amount.forEach((elem) => (elem.innerHTML = this.getAmountTxt(this.getUpsellAmount())));
+            this.checkOtherAmount(upsellAmount);
         }
+        live_upsell_amount.forEach((elem) => (elem.innerHTML = this.getAmountTxt(upsellAmount + this._fees.calculateFees(upsellAmount))));
     }
     liveAmounts() {
         const live_upsell_amount = document.querySelectorAll(".upsell_suggestion");
         const live_amount = document.querySelectorAll(".upsell_amount");
-        const suggestedAmount = this.getUpsellAmount() + this._fees.fee;
+        const upsellAmount = this.getUpsellAmount();
+        const suggestedAmount = upsellAmount + this._fees.calculateFees(upsellAmount);
         live_upsell_amount.forEach((elem) => (elem.innerHTML = this.getAmountTxt(suggestedAmount)));
         live_amount.forEach((elem) => (elem.innerHTML = this.getAmountTxt(this._amount.amount + this._fees.fee)));
     }
@@ -139,7 +149,9 @@ export class UpsellLightbox {
         const amount = this._amount.amount;
         const otherAmount = parseFloat((_b = (_a = this.overlay.querySelector("#secondOtherField")) === null || _a === void 0 ? void 0 : _a.value) !== null && _b !== void 0 ? _b : "");
         if (otherAmount > 0) {
-            return otherAmount;
+            return otherAmount > this.options.minAmount
+                ? otherAmount
+                : this.options.minAmount;
         }
         let upsellAmount = 0;
         for (let i = 0; i < this.options.amountRange.length; i++) {
@@ -153,7 +165,9 @@ export class UpsellLightbox {
                 break;
             }
         }
-        return upsellAmount;
+        return upsellAmount > this.options.minAmount
+            ? upsellAmount
+            : this.options.minAmount;
     }
     shouldOpen() {
         const freq = this._frequency.frequency;
@@ -225,7 +239,8 @@ export class UpsellLightbox {
     continue(e) {
         var _a;
         e.preventDefault();
-        if (e.target instanceof Element && ((_a = document.querySelector("#upsellYesButton")) === null || _a === void 0 ? void 0 : _a.contains(e.target))) {
+        if (e.target instanceof Element &&
+            ((_a = document.querySelector("#upsellYesButton")) === null || _a === void 0 ? void 0 : _a.contains(e.target))) {
             if (ENGrid.debug)
                 console.log("Upsold");
             this.setOriginalAmount(this._amount.amount.toString());
@@ -260,5 +275,16 @@ export class UpsellLightbox {
         const dec_places = amount % 1 == 0 ? 0 : (_d = ENGrid.getOption("DecimalPlaces")) !== null && _d !== void 0 ? _d : 2;
         const amountTxt = ENGrid.formatNumber(amount, dec_places, dec_separator, thousands_separator);
         return amount > 0 ? symbol + amountTxt : "";
+    }
+    checkOtherAmount(value) {
+        const otherInput = document.querySelector(".upsellOtherAmountInput");
+        if (otherInput) {
+            if (value >= this.options.minAmount) {
+                otherInput.classList.remove("is-invalid");
+            }
+            else {
+                otherInput.classList.add("is-invalid");
+            }
+        }
     }
 }

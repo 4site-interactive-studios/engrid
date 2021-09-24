@@ -22,6 +22,7 @@ export const UpsellOptionsDefaults = {
         { max: 300, suggestion: 29 },
         { max: 500, suggestion: "Math.ceil((amount / 12)/5)*5" },
     ],
+    minAmount: 0,
     canClose: true,
     submitOnClose: false,
 };

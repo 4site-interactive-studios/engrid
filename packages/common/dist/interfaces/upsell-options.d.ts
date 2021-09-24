@@ -12,6 +12,7 @@ export interface UpsellOptions {
         max: number;
         suggestion: number | string;
     }>;
+    minAmount: number;
     canClose: boolean;
     submitOnClose: boolean;
 }

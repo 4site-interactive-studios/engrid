@@ -58,10 +58,19 @@ export class UpsellLightbox {
                 ${
                   this.options.otherAmount
                     ? `
-                <p>
-                  <span>${this.options.otherLabel}</span>
-                  <input href="#" id="secondOtherField" name="secondOtherField" size="12" type="number" inputmode="numeric" step="1" value="">
-                </p>
+                <div class="upsellOtherAmount">
+                  <div class="upsellOtherAmountLabel">
+                    <p>
+                      ${this.options.otherLabel}
+                    </p>
+                  </div>
+                  <div class="upsellOtherAmountInput">
+                    <input href="#" id="secondOtherField" name="secondOtherField" size="12" type="number" inputmode="numeric" step="1" value="" autocomplete="off">
+                    <small>Minimum ${this.getAmountTxt(
+                      this.options.minAmount
+                    )}</small>
+                  </div>
+                </div>
                 `
                     : ``
                 }
@@ -147,22 +156,27 @@ export class UpsellLightbox {
     const live_upsell_amount = document.querySelectorAll(
       "#upsellYesButton .upsell_suggestion"
     );
+    const upsellAmount = this.getUpsellAmount();
 
     if (!isNaN(value) && value > 0) {
-      live_upsell_amount.forEach(
-        (elem) => (elem.innerHTML = this.getAmountTxt(value))
-      );
+      this.checkOtherAmount(value);
     } else {
-      live_upsell_amount.forEach(
-        (elem) => (elem.innerHTML = this.getAmountTxt(this.getUpsellAmount()))
-      );
+      this.checkOtherAmount(upsellAmount);
     }
+    live_upsell_amount.forEach(
+      (elem) =>
+        (elem.innerHTML = this.getAmountTxt(
+          upsellAmount + this._fees.calculateFees(upsellAmount)
+        ))
+    );
   }
 
   private liveAmounts() {
     const live_upsell_amount = document.querySelectorAll(".upsell_suggestion");
     const live_amount = document.querySelectorAll(".upsell_amount");
-    const suggestedAmount = this.getUpsellAmount() + this._fees.fee;
+    const upsellAmount = this.getUpsellAmount();
+    const suggestedAmount =
+      upsellAmount + this._fees.calculateFees(upsellAmount);
 
     live_upsell_amount.forEach(
       (elem) => (elem.innerHTML = this.getAmountTxt(suggestedAmount))
@@ -183,7 +197,9 @@ export class UpsellLightbox {
         ?.value ?? ""
     );
     if (otherAmount > 0) {
-      return otherAmount;
+      return otherAmount > this.options.minAmount
+        ? otherAmount
+        : this.options.minAmount;
     }
     let upsellAmount: string | number = 0;
 
@@ -203,7 +219,9 @@ export class UpsellLightbox {
         break;
       }
     }
-    return upsellAmount;
+    return upsellAmount > this.options.minAmount
+      ? upsellAmount
+      : this.options.minAmount;
   }
   private shouldOpen() {
     const freq = this._frequency.frequency;
@@ -328,5 +346,15 @@ export class UpsellLightbox {
       thousands_separator
     );
     return amount > 0 ? <string>symbol + amountTxt : "";
+  }
+  private checkOtherAmount(value: number) {
+    const otherInput = document.querySelector(".upsellOtherAmountInput");
+    if (otherInput) {
+      if (value >= this.options.minAmount) {
+        otherInput.classList.remove("is-invalid");
+      } else {
+        otherInput.classList.add("is-invalid");
+      }
+    }
   }
 }

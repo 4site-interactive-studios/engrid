@@ -59,10 +59,12 @@ export class ProcessingFees {
     this._onFeeChange.dispatch(this._fee);
   }
 
-  private calculateFees() {
+  public calculateFees(amount: number = 0) {
     if (this._field instanceof HTMLInputElement && this._field.checked) {
       if (this.isENfeeCover()) {
-        return window.EngagingNetworks.require._defined.enjs.getDonationFee();
+        return amount > 0
+          ? window.EngagingNetworks.require._defined.enjs.feeCover.fee(amount)
+          : window.EngagingNetworks.require._defined.enjs.getDonationFee();
       }
       const fees = {
         ...{
@@ -71,9 +73,9 @@ export class ProcessingFees {
         },
         ...this._field?.dataset,
       };
+      const amountToFee = amount > 0 ? amount : this._amount.amount;
       const processing_fee =
-        (parseFloat(fees.processingfeepercentadded) / 100) *
-          this._amount.amount +
+        (parseFloat(fees.processingfeepercentadded) / 100) * amountToFee +
         parseFloat(fees.processingfeefixedamountadded);
       return Math.round(processing_fee * 100) / 100;
     }

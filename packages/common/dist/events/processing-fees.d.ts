@@ -13,7 +13,7 @@ export declare class ProcessingFees {
     get onFeeChange(): import("strongly-typed-events").ISimpleEvent<number>;
     get fee(): number;
     set fee(value: number);
-    private calculateFees;
+    calculateFees(amount?: number): any;
     private addFees;
     private removeFees;
     private isENfeeCover;

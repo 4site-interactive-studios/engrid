@@ -19,4 +19,5 @@ export declare class UpsellLightbox {
     private continue;
     private close;
     private getAmountTxt;
+    private checkOtherAmount;
 }

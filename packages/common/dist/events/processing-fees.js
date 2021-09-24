@@ -48,18 +48,20 @@ export class ProcessingFees {
         this._fee = value;
         this._onFeeChange.dispatch(this._fee);
     }
-    calculateFees() {
+    calculateFees(amount = 0) {
         var _a;
         if (this._field instanceof HTMLInputElement && this._field.checked) {
             if (this.isENfeeCover()) {
-                return window.EngagingNetworks.require._defined.enjs.getDonationFee();
+                return amount > 0
+                    ? window.EngagingNetworks.require._defined.enjs.feeCover.fee(amount)
+                    : window.EngagingNetworks.require._defined.enjs.getDonationFee();
             }
             const fees = Object.assign({
                 processingfeepercentadded: "0",
                 processingfeefixedamountadded: "0",
             }, (_a = this._field) === null || _a === void 0 ? void 0 : _a.dataset);
-            const processing_fee = (parseFloat(fees.processingfeepercentadded) / 100) *
-                this._amount.amount +
+            const amountToFee = amount > 0 ? amount : this._amount.amount;
+            const processing_fee = (parseFloat(fees.processingfeepercentadded) / 100) * amountToFee +
                 parseFloat(fees.processingfeefixedamountadded);
             return Math.round(processing_fee * 100) / 100;
         }

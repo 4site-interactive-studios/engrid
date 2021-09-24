@@ -9,6 +9,7 @@ export interface UpsellOptions {
   otherLabel: string;
   upsellOriginalGiftAmountFieldName: string;
   amountRange: Array<{ max: number; suggestion: number | string }>;
+  minAmount: number; // Never accept less than this amount
   canClose: boolean;
   submitOnClose: boolean;
 }
@@ -39,6 +40,7 @@ export const UpsellOptionsDefaults: UpsellOptions = {
     { max: 300, suggestion: 29 },
     { max: 500, suggestion: "Math.ceil((amount / 12)/5)*5" },
   ],
+  minAmount: 0,
   canClose: true,
   submitOnClose: false,
 };
