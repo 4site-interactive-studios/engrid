@@ -7,8 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { ENGrid } from "./";
-import { DonationAmount, EnForm } from "./events";
+import { EnForm, DonationAmount, ENGrid, ProcessingFees } from "./";
 /*global window */
 const ApplePaySession = window.ApplePaySession;
 const merchantIdentifier = window.merchantIdentifier;
@@ -27,6 +26,7 @@ export class ApplePay {
     constructor() {
         this.applePay = document.querySelector('.en__field__input.en__field__input--radio[value="applepay"]');
         this._amount = DonationAmount.getInstance();
+        this._fees = ProcessingFees.getInstance();
         this._form = EnForm.getInstance();
         this.checkApplePay();
     }
@@ -111,7 +111,7 @@ export class ApplePay {
         // Only work if Payment Type is Apple Pay
         if (enFieldPaymentType.value == "applepay" && applePayToken.value == "") {
             try {
-                let donationAmount = this._amount.amount;
+                let donationAmount = this._amount.amount + this._fees.fee;
                 var request = {
                     supportedNetworks: merchantSupportedNetworks,
                     merchantCapabilities: merchantCapabilities,
