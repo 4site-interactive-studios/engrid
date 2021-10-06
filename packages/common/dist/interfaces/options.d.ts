@@ -16,6 +16,7 @@ export interface Options {
     NeverBounceStatusField?: string | null;
     ProgressBar?: boolean | null;
     AutoYear?: boolean;
+    TranslateFields?: boolean;
     Debug?: boolean;
     onLoad?: () => void;
     onResize?: () => void;

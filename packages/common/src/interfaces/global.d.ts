@@ -1,3 +1,4 @@
+import { TranslateOptions } from "./translate-options";
 import { Options } from "./options";
 import { UpsellOptions } from "./upsell-options";
 
@@ -12,6 +13,7 @@ declare global {
     EngridAmounts: any;
     EngridOptions: Options;
     EngridUpsell: UpsellOptions;
+    EngridTranslate: TranslateOptions;
     _NBSettings: object;
     _nb: any;
   }

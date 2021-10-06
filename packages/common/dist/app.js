@@ -1,5 +1,5 @@
 import { DonationAmount, DonationFrequency, EnForm, ProcessingFees, } from "./events";
-import { ProgressBar, UpsellLightbox, ENGrid, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, CapitalizeFields, Ecard, ClickToExpand, legacy, IE, LiveVariables, sendIframeHeight, sendIframeFormStatus, ShowHideRadioCheckboxes, SimpleCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce, AutoYear, Autocomplete, } from "./";
+import { ProgressBar, UpsellLightbox, ENGrid, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, CapitalizeFields, Ecard, ClickToExpand, legacy, IE, LiveVariables, sendIframeHeight, sendIframeFormStatus, ShowHideRadioCheckboxes, SimpleCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce, AutoYear, Autocomplete, TranslateFields, } from "./";
 export class App extends ENGrid {
     constructor(options) {
         super();
@@ -112,6 +112,9 @@ export class App extends ENGrid {
         // On the end of the script, after all subscribers defined, let's load the current value
         this._amount.load();
         this._frequency.load();
+        // Translate Fields
+        if (this.options.TranslateFields)
+            new TranslateFields();
         // Simple Country Select
         new SimpleCountrySelect();
         // Add Image Attribution

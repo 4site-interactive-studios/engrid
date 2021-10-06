@@ -29,6 +29,7 @@ import {
   NeverBounce,
   AutoYear,
   Autocomplete,
+  TranslateFields,
 } from "./";
 
 export class App extends ENGrid {
@@ -166,6 +167,9 @@ export class App extends ENGrid {
     // On the end of the script, after all subscribers defined, let's load the current value
     this._amount.load();
     this._frequency.load();
+
+    // Translate Fields
+    if (this.options.TranslateFields) new TranslateFields();
 
     // Simple Country Select
     new SimpleCountrySelect();

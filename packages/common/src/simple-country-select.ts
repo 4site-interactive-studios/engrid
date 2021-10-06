@@ -6,9 +6,29 @@ export class SimpleCountrySelect {
   public countrySelect: HTMLSelectElement = document.querySelector(
     "#en__field_supporter_country"
   ) as HTMLSelectElement;
+  private countriesNames = new (Intl as any).DisplayNames(["en"], {
+    type: "region",
+  });
+  private country = null;
   constructor() {
-    // @TODO Check if there is a country select AN an address1 label, otherwise we can abort the function
+    fetch("https://www.cloudflare.com/cdn-cgi/trace")
+      .then((res) => res.text())
+      .then((t) => {
+        let data = t.replace(/[\r\n]+/g, '","').replace(/\=+/g, '":"');
+        data = '{"' + data.slice(0, data.lastIndexOf('","')) + '"}';
+        const jsondata = JSON.parse(data);
+        this.country = jsondata.loc;
+        this.init();
+        // console.log("Country:", this.country);
+      });
+  }
+
+  private init() {
     if (this.countrySelect) {
+      if (this.country) {
+        // We are setting the country by Name because the ISO code is not always the same. They have 2 and 3 letter codes.
+        this.setCountryByName(this.countriesNames.of(this.country));
+      }
       let countrySelectLabel =
         this.countrySelect.options[this.countrySelect.selectedIndex].innerHTML;
       let countrySelectValue =
@@ -87,5 +107,21 @@ export class SimpleCountrySelect {
 
     // Reinstate Country Select tab index
     this.countrySelect.removeAttribute("tabIndex");
+  }
+  private setCountryByName(countryName: string) {
+    if (this.countrySelect) {
+      let countrySelectOptions = this.countrySelect.options;
+      for (let i = 0; i < countrySelectOptions.length; i++) {
+        if (
+          countrySelectOptions[i].innerHTML.toLowerCase() ==
+          countryName.toLowerCase()
+        ) {
+          this.countrySelect.selectedIndex = i;
+          break;
+        }
+      }
+      const event = new Event("change", { bubbles: true });
+      this.countrySelect.dispatchEvent(event);
+    }
   }
 }
