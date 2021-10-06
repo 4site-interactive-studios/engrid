@@ -144,6 +144,11 @@ body {
 
       img {
         display: block !important;
+
+        // If the background image has a height set using the Style attribute, force it to have a height of auto
+        &[style] {
+          height: auto !important;
+      }
       }
 
       &::before {

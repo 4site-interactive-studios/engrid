@@ -74,3 +74,12 @@ div[id^="nb-field-"].nb-success input {
   margin-top: calc(var(--fields_spacing-inline) * 0.5);
   margin-bottom: var(--fields_spacing-block);
 }
+
+// Styles for our custom NeverBounce implimentation.
+#nb-wrapper{
+  width: 100%;
+
+  div.nb-hidden {
+    display: none !important;
+  }
+}

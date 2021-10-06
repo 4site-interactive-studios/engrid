@@ -4970,6 +4970,11 @@ div[id^="nb-field-"].nb-success input {
   margin-top: calc(var(--fields_spacing-inline) * 0.5);
   margin-bottom: var(--fields_spacing-block); }
 
+#nb-wrapper {
+  width: 100%; }
+  #nb-wrapper div.nb-hidden {
+    display: none !important; }
+
 .en__pg .en__pg__body {
   display: grid;
   grid-template-columns: min-content auto auto;
@@ -5110,6 +5115,9 @@ body:not(#en__pagebuilder) .simple_country_select.country-select-visible .en__fi
 
 .enWidget__bar .enWidget__progress {
   min-width: initial; }
+
+iframe[src*='enWidget.iframe.html']  {
+  width: 100%; }
 
 /* Make sure that background colors are not hard coded */
 .en__twitterTarget,
