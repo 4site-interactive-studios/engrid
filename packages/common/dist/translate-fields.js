@@ -18,7 +18,7 @@ export class TranslateFields {
         this.resetTranslatedFields();
         if (this.countrySelect.value in this.options) {
             this.options[this.countrySelect.value].forEach((field) => {
-                console.log(field);
+                // console.log(field);
                 this.translateField(field.field, field.translation);
             });
         }
@@ -28,14 +28,17 @@ export class TranslateFields {
             switch (this.countrySelect.value) {
                 case "FR":
                 case "FRA":
+                case "France":
                     recipient_block.forEach((elem) => (elem.innerHTML = "À:"));
                     break;
                 case "DE":
                 case "DEU":
+                case "Germany":
                     recipient_block.forEach((elem) => (elem.innerHTML = "Zu:"));
                     break;
                 case "NL":
                 case "NLD":
+                case "Netherlands":
                     recipient_block.forEach((elem) => (elem.innerHTML = "Aan:"));
                     break;
             }
@@ -78,22 +81,27 @@ export class TranslateFields {
         switch (country) {
             case "BR":
             case "BRA":
+            case "Brazil":
                 this.setStateValues("Estado", null);
                 break;
             case "FR":
             case "FRA":
+            case "France":
                 this.setStateValues("Région", null);
                 break;
             case "GB":
             case "GBR":
+            case "United Kingdom":
                 this.setStateValues("State/Region", null);
                 break;
             case "DE":
             case "DEU":
+            case "Germany":
                 this.setStateValues("Bundesland", null);
                 break;
             case "NL":
             case "NLD":
+            case "Netherlands":
                 this.setStateValues("Provincie", null);
                 break;
             case "AU":
@@ -108,6 +116,22 @@ export class TranslateFields {
                     { label: "Tasmania", value: "TAS" },
                     { label: "Northern Territory", value: "NT" },
                     { label: "Australian Capital Territory", value: "ACT" },
+                ]);
+                break;
+            case "Australia":
+                this.setStateValues("Province/State", [
+                    { label: "Select Province/State", value: "" },
+                    { label: "New South Wales", value: "New South Wales" },
+                    { label: "Victoria", value: "Victoria" },
+                    { label: "Queensland", value: "Queensland" },
+                    { label: "South Australia", value: "South Australia" },
+                    { label: "Western Australia", value: "Western Australia" },
+                    { label: "Tasmania", value: "Tasmania" },
+                    { label: "Northern Territory", value: "Northern Territory" },
+                    {
+                        label: "Australian Capital Territory",
+                        value: "Australian Capital Territory",
+                    },
                 ]);
                 break;
             case "US":
@@ -165,6 +189,102 @@ export class TranslateFields {
                     { label: "West Virginia", value: "WV" },
                     { label: "Wisconsin", value: "WI" },
                     { label: "Wyoming", value: "WY" },
+                ]);
+                break;
+            case "United States":
+                this.setStateValues("State", [
+                    { label: "Select State", value: "" },
+                    { label: "Alabama", value: "Alabama" },
+                    { label: "Alaska", value: "Alaska" },
+                    { label: "Arizona", value: "Arizona" },
+                    { label: "Arkansas", value: "Arkansas" },
+                    { label: "California", value: "California" },
+                    { label: "Colorado", value: "Colorado" },
+                    { label: "Connecticut", value: "Connecticut" },
+                    { label: "Delaware", value: "Delaware" },
+                    { label: "District of Columbia", value: "District of Columbia" },
+                    { label: "Florida", value: "Florida" },
+                    { label: "Georgia", value: "Georgia" },
+                    { label: "Hawaii", value: "Hawaii" },
+                    { label: "Idaho", value: "Idaho" },
+                    { label: "Illinois", value: "Illinois" },
+                    { label: "Indiana", value: "Indiana" },
+                    { label: "Iowa", value: "Iowa" },
+                    { label: "Kansas", value: "Kansas" },
+                    { label: "Kentucky", value: "Kentucky" },
+                    { label: "Louisiana", value: "Louisiana" },
+                    { label: "Maine", value: "Maine" },
+                    { label: "Maryland", value: "Maryland" },
+                    { label: "Massachusetts", value: "Massachusetts" },
+                    { label: "Michigan", value: "Michigan" },
+                    { label: "Minnesota", value: "Minnesota" },
+                    { label: "Mississippi", value: "Mississippi" },
+                    { label: "Missouri", value: "Missouri" },
+                    { label: "Montana", value: "Montana" },
+                    { label: "Nebraska", value: "Nebraska" },
+                    { label: "Nevada", value: "Nevada" },
+                    { label: "New Hampshire", value: "New Hampshire" },
+                    { label: "New Jersey", value: "New Jersey" },
+                    { label: "New Mexico", value: "New Mexico" },
+                    { label: "New York", value: "New York" },
+                    { label: "North Carolina", value: "North Carolina" },
+                    { label: "North Dakota", value: "North Dakota" },
+                    { label: "Ohio", value: "Ohio" },
+                    { label: "Oklahoma", value: "Oklahoma" },
+                    { label: "Oregon", value: "Oregon" },
+                    { label: "Pennsylvania", value: "Pennsylvania" },
+                    { label: "Rhode Island", value: "Rhode Island" },
+                    { label: "South Carolina", value: "South Carolina" },
+                    { label: "South Dakota", value: "South Dakota" },
+                    { label: "Tennessee", value: "Tennessee" },
+                    { label: "Texas", value: "Texas" },
+                    { label: "Utah", value: "Utah" },
+                    { label: "Vermont", value: "Vermont" },
+                    { label: "Virginia", value: "Virginia" },
+                    { label: "Washington", value: "Washington" },
+                    { label: "West Virginia", value: "West Virginia" },
+                    { label: "Wisconsin", value: "Wisconsin" },
+                    { label: "Wyoming", value: "Wyoming" },
+                ]);
+                break;
+            case "CA":
+            case "CAN":
+                this.setStateValues("Province/State", [
+                    { label: "Select Province/State", value: "" },
+                    { label: "Alberta", value: "AB" },
+                    { label: "British Columbia", value: "BC" },
+                    { label: "Manitoba", value: "MB" },
+                    { label: "New Brunswick", value: "NB" },
+                    { label: "Newfoundland and Labrador", value: "NL" },
+                    { label: "Northwest Territories", value: "NT" },
+                    { label: "Nova Scotia", value: "NS" },
+                    { label: "Nunavut", value: "NU" },
+                    { label: "Ontario", value: "ON" },
+                    { label: "Prince Edward Island", value: "PE" },
+                    { label: "Quebec", value: "QC" },
+                    { label: "Saskatchewan", value: "SK" },
+                    { label: "Yukon", value: "YT" },
+                ]);
+                break;
+            case "Canada":
+                this.setStateValues("Province/State", [
+                    { label: "Select Province/State", value: "" },
+                    { label: "Alberta", value: "Alberta" },
+                    { label: "British Columbia", value: "British Columbia" },
+                    { label: "Manitoba", value: "Manitoba" },
+                    { label: "New Brunswick", value: "New Brunswick" },
+                    {
+                        label: "Newfoundland and Labrador",
+                        value: "Newfoundland and Labrador",
+                    },
+                    { label: "Northwest Territories", value: "Northwest Territories" },
+                    { label: "Nova Scotia", value: "Nova Scotia" },
+                    { label: "Nunavut", value: "Nunavut" },
+                    { label: "Ontario", value: "Ontario" },
+                    { label: "Prince Edward Island", value: "Prince Edward Island" },
+                    { label: "Quebec", value: "Quebec" },
+                    { label: "Saskatchewan", value: "Saskatchewan" },
+                    { label: "Yukon", value: "Yukon" },
                 ]);
                 break;
             default:
