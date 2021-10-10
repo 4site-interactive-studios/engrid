@@ -3032,6 +3032,8 @@ body:not(#en__pagebuilder) .click-to-expand:not(.expanded) {
   body:not(#en__pagebuilder) .click-to-expand:not(.expanded) .click-to-expand-text-wrapper {
     max-height: calc( var(--click-to-expand__copy-area_height) - var(--click-to-expand__cta-image_height) - 35px);
     mask-image: linear-gradient(to bottom, black 50%, rgba(255, 255, 255, 0) calc(100% - var(--click-to-expand__cta-image_height))); }
+    body:not(#en__pagebuilder) .click-to-expand:not(.expanded) .click-to-expand-text-wrapper > :first-child {
+      margin-top: 0; }
   body:not(#en__pagebuilder) .click-to-expand:not(.expanded) .click-to-expand-cta {
     background: var(--click-to-expand__cta-image_url);
     background-position: center bottom;
@@ -4169,6 +4171,10 @@ button.en__ecarditems__addrecipient {
   position: relative;
   right: 2px; }
 
+.en__ecarditems__list {
+  margin-left: calc(var(--fields_spacing-inline) * -1);
+  margin-right: calc(var(--fields_spacing-inline) * -1); }
+
 .en__ecarditems__thumb {
   width: calc((100% - var(--fields_spacing-inline) * (var(--ecard_thumnail-row_count) * 2)) / var(--ecard_thumnail-row_count));
   margin-left: var(--fields_spacing-inline);
@@ -4189,12 +4195,6 @@ button.en__ecarditems__addrecipient {
 .en__ecarditems__thumb.thumb--active img {
   -webkit-filter: brightness(100%);
   filter: brightness(100%); }
-
-.en__ecarditems__thumb {
-  width: auto !important; }
-
-.en__ecarditems__thumb:last-child {
-  margin-right: 0px; }
 
 .en__ecardmessage__default {
   margin-bottom: 40px;
