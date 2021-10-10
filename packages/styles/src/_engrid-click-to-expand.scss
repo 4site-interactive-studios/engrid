@@ -7,6 +7,12 @@
 }
 
 // Depends on click-to-expand.ts
+body:not(#en__pagebuilder)
+  .click-to-expand
+  .click-to-expand-text-wrapper
+  > :first-child {
+  margin-top: 0;
+}
 body:not(#en__pagebuilder) .click-to-expand:not(.expanded) {
   overflow: hidden; // Prevents content from extending beyond the visible area of the unexpanded click-to-expand section https://d.pr/v/4tc9u2
   cursor: pointer;
@@ -26,9 +32,6 @@ body:not(#en__pagebuilder) .click-to-expand:not(.expanded) {
       rgba(255, 255, 255, 0)
         calc(100% - var(--click-to-expand__cta-image_height))
     );
-    & > :first-child {
-      margin-top: 0;
-    }
   }
 
   .click-to-expand-cta {

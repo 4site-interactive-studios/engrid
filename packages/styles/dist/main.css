@@ -3025,6 +3025,12 @@ button[disabled],
   --click-to-expand__cta-image_width: 16px;
   --click-to-expand__cta-image_height: 16px; }
 
+body:not(#en__pagebuilder)
+.click-to-expand
+.click-to-expand-text-wrapper
+> :first-child {
+  margin-top: 0; }
+
 body:not(#en__pagebuilder) .click-to-expand:not(.expanded) {
   overflow: hidden;
   cursor: pointer;
@@ -3032,8 +3038,6 @@ body:not(#en__pagebuilder) .click-to-expand:not(.expanded) {
   body:not(#en__pagebuilder) .click-to-expand:not(.expanded) .click-to-expand-text-wrapper {
     max-height: calc( var(--click-to-expand__copy-area_height) - var(--click-to-expand__cta-image_height) - 35px);
     mask-image: linear-gradient(to bottom, black 50%, rgba(255, 255, 255, 0) calc(100% - var(--click-to-expand__cta-image_height))); }
-    body:not(#en__pagebuilder) .click-to-expand:not(.expanded) .click-to-expand-text-wrapper > :first-child {
-      margin-top: 0; }
   body:not(#en__pagebuilder) .click-to-expand:not(.expanded) .click-to-expand-cta {
     background: var(--click-to-expand__cta-image_url);
     background-position: center bottom;
