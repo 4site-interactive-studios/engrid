@@ -4114,6 +4114,10 @@ body:not([data-engrid-transaction-recurring="y"][data-engrid-transaction-recurri
 body:not([data-engrid-transaction-recurring="y"][data-engrid-transaction-recurring-frequency="annual"]) .recurring-frequency-annual-show {
   display: none; }
 
+[data-engrid-theme] {
+  --ecard_thumnail-row_count: 3;
+  --ecard_thumnail-row_height: auto; }
+
 .en__ecarditems__thumb {
   height: auto !important; }
 
@@ -4165,8 +4169,13 @@ button.en__ecarditems__addrecipient {
   position: relative;
   right: 2px; }
 
+.en__ecarditems__thumb {
+  width: calc((100% - var(--fields_spacing-inline) * (var(--ecard_thumnail-row_count) * 2)) / var(--ecard_thumnail-row_count));
+  margin-left: var(--fields_spacing-inline);
+  margin-right: var(--fields_spacing-inline); }
+
 .en__ecarditems__thumb img {
-  height: 150px !important;
+  height: var(--ecard_thumnail-row_height);
   width: auto;
   border: 2px solid var(--color_primary);
   -webkit-filter: brightness(75%);

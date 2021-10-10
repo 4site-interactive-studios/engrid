@@ -1,3 +1,8 @@
+[data-engrid-theme] {
+    --ecard_thumnail-row_count: 3;
+    --ecard_thumnail-row_height: auto;
+}
+
 // @TODO Update with ENGRID CSS Properties
 .en__ecarditems__thumb {
   height: auto !important;
@@ -59,8 +64,19 @@ button.en__ecarditems__addrecipient {
   right: 2px;
 }
 
+.en__ecarditems__list{
+  margin-left: calc(var(--fields_spacing-inline) * -1);
+  margin-right: calc(var(--fields_spacing-inline) * -1);
+}
+
+.en__ecarditems__thumb{
+  width: calc((100% - var(--fields_spacing-inline) * (var(--ecard_thumnail-row_count) * 2)) / var(--ecard_thumnail-row_count));
+  margin-left: var(--fields_spacing-inline);
+  margin-right: var(--fields_spacing-inline);
+}
+
 .en__ecarditems__thumb img {
-  height: 150px !important;
+  height: var(--ecard_thumnail-row_height);
   width: auto;
   border: 2px solid var(--color_primary);
   -webkit-filter: brightness(75%);
@@ -76,14 +92,6 @@ button.en__ecarditems__addrecipient {
 .en__ecarditems__thumb.thumb--active img {
   -webkit-filter: brightness(100%);
   filter: brightness(100%);
-}
-
-.en__ecarditems__thumb {
-  width: auto !important;
-}
-
-.en__ecarditems__thumb:last-child {
-  margin-right: 0px;
 }
 
 .en__ecardmessage__default {
