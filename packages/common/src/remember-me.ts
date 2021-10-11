@@ -191,7 +191,7 @@ export class RememberMe {
 		this.saveCookieToRemote();
 	}
 	private saveCookieToRemote() {
-		this.iframe.contentWindow.postMessage({ key: this.cookieName, value: JSON.stringify(this.fieldData), operation: 'write' }, '*');
+		this.iframe.contentWindow.postMessage({ key: this.cookieName, value: JSON.stringify(this.fieldData), operation: 'write', expires: this.cookieExpirationDays }, '*');
 	}
 	private readCookie() {
 		this.updateFieldData(cookie.get(this.cookieName) || '');
