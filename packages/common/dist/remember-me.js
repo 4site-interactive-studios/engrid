@@ -20,7 +20,7 @@ export class RememberMe {
         this.fieldData = {};
         if (this.useRemote()) {
             this.createIframe(() => {
-                this.iframe.contentWindow.postMessage({ key: this.cookieName, operation: 'read' });
+                this.iframe.contentWindow.postMessage({ key: this.cookieName, operation: 'read' }, '*');
                 this._form.onSubmit.subscribe(() => {
                     if (this.rememberMeOptIn) {
                         this.readFields();
@@ -167,7 +167,7 @@ export class RememberMe {
         this.saveCookieToRemote();
     }
     saveCookieToRemote() {
-        this.iframe.contentWindow.postMessage({ key: this.cookieName, value: JSON.stringify(this.fieldData), operation: 'write' });
+        this.iframe.contentWindow.postMessage({ key: this.cookieName, value: JSON.stringify(this.fieldData), operation: 'write' }, '*');
     }
     readCookie() {
         this.updateFieldData(cookie.get(this.cookieName) || '');
