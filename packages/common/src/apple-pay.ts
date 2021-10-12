@@ -31,6 +31,10 @@ export class ApplePay {
       "form.en__component--page"
     ) as HTMLFormElement;
     if (!this.applePay || !window.hasOwnProperty("ApplePaySession")) {
+      const applePayContainer = document.querySelector(
+        ".en__field__item.applepay"
+      );
+      if (applePayContainer) applePayContainer.remove();
       if (ENGrid.debug) console.log("Apple Pay DISABLED");
       return false;
     }
