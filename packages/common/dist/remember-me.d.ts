@@ -16,12 +16,25 @@ export declare class RememberMe {
     private fieldOptInSelectorTargetLocation;
     private fieldClearSelectorTarget;
     private fieldClearSelectorTargetLocation;
-    constructor(options: any);
+    constructor(options: {
+        remoteUrl: string;
+        cookieName: string;
+        cookieExpirationDays: number;
+        fieldNames: string[];
+        fieldDonationAmountRadioName: string;
+        fieldDonationAmountOtherName: string;
+        fieldDonationRecurrPayRadioName: string;
+        fieldDonationAmountOtherCheckboxID: string;
+        fieldOptInSelectorTarget: string;
+        fieldOptInSelectorTargetLocation: string;
+        fieldClearSelectorTarget: string;
+        fieldClearSelectorTargetLocation: string;
+    });
     private updateFieldData;
     private insertClearRememberMeLink;
     private insertRememberMeOptin;
     private useRemote;
-    private createIframe;
+    private clearIframe;
     private clearCookie;
     private clearCookieOnRemote;
     private saveCookieToRemote;

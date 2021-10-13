@@ -2,15 +2,19 @@ import * as cookie from "./cookie";
 import { EnForm } from "./events";
 const tippy = require('tippy.js').default;
 
+interface DataObj {
+	[key: string]: string
+}
+
 export class RememberMe {
 	public _form: EnForm = EnForm.getInstance();
 
-	private remoteUrl: string;
+	private remoteUrl: string | null;
 	private cookieName: string;
 	private fieldNames: string[];
-	private fieldData: any;
+	private fieldData: DataObj;
 	private cookieExpirationDays: number;
-	private iframe: any;
+	private iframe: HTMLIFrameElement | null;
 	private rememberMeOptIn: boolean;
 
 	private fieldDonationAmountRadioName: string;
@@ -23,7 +27,22 @@ export class RememberMe {
 	private fieldClearSelectorTarget: string;
 	private fieldClearSelectorTargetLocation: string;
 
-	constructor(options: any) {
+	constructor(options: {
+		remoteUrl: string, 
+		cookieName: string, 
+		cookieExpirationDays: number, 
+		fieldNames: string[],
+		fieldDonationAmountRadioName: string,
+		fieldDonationAmountOtherName: string,
+		fieldDonationRecurrPayRadioName: string,
+		fieldDonationAmountOtherCheckboxID: string,
+		fieldOptInSelectorTarget: string,
+		fieldOptInSelectorTargetLocation: string,
+		fieldClearSelectorTarget: string,
+		fieldClearSelectorTargetLocation: string }) {
+
+		this.iframe = null;
+
 		this.remoteUrl  = ('remoteUrl' in options) ? options.remoteUrl : null;
 		this.rememberMeOptIn = false;
 		this.cookieName = ('cookieName' in options) ? options.cookieName : 'engrid-autofill';
@@ -43,19 +62,21 @@ export class RememberMe {
 
 		this.fieldData  = {};
 		if(this.useRemote()) {
-			this.createIframe(() => {
-				this.iframe.contentWindow.postMessage({ key: this.cookieName, operation: 'read' }, '*');
-				this._form.onSubmit.subscribe(() => {
-					if(this.rememberMeOptIn) {
-						this.readFields();
-						this.saveCookieToRemote();
-					}
-				});
+			this.clearIframe(() => {
+				if(this.iframe && this.iframe.contentWindow) {
+					this.iframe.contentWindow.postMessage({ key: this.cookieName, operation: 'read' }, '*');
+					this._form.onSubmit.subscribe(() => {
+						if(this.rememberMeOptIn) {
+							this.readFields();
+							this.saveCookieToRemote();
+						}
+					});					
+				}
 			}, (event) => {
-				if(event.data.hasOwnProperty('key') && event.data.key === this.cookieName) {
+				if(event.data && event.data.key && event.data.value && event.data.key === this.cookieName) {
 					this.updateFieldData(event.data.value);
 					this.writeFields();
-					var hasFieldData = Object.keys(this.fieldData).length > 0;
+					let hasFieldData = Object.keys(this.fieldData).length > 0;
 					if(!hasFieldData) {
 						this.insertRememberMeOptin();
 						this.rememberMeOptIn = false;
@@ -67,7 +88,7 @@ export class RememberMe {
 			});
 		} else {
 			this.readCookie();
-			var hasFieldData = Object.keys(this.fieldData).length > 0;
+			let hasFieldData = Object.keys(this.fieldData).length > 0;
 			if(!hasFieldData) {
 				this.insertRememberMeOptin();
 				this.rememberMeOptIn = false;
@@ -86,8 +107,8 @@ export class RememberMe {
 	}
 	private updateFieldData(jsonData: string) {
 		if(jsonData) {
-			var data = JSON.parse(jsonData);
-			for(var i = 0; i < this.fieldNames.length; i++) {
+			let data = JSON.parse(jsonData);
+			for(let i = 0; i < this.fieldNames.length; i++) {
 				if(data[this.fieldNames[i]] !== undefined) {
 					this.fieldData[this.fieldNames[i]] = decodeURIComponent(data[this.fieldNames[i]]);
 				}
@@ -119,7 +140,7 @@ export class RememberMe {
 						this.clearCookie();
 					}
 					this.clearFields(['supporter.emailAddress']);
-					var clearAutofillLink = document.getElementById('clear-autofill-data');
+					let clearAutofillLink = document.getElementById('clear-autofill-data');
 					if(clearAutofillLink) {
 						clearAutofillLink.style.display = 'none';
 					}
@@ -173,14 +194,17 @@ export class RememberMe {
 	private useRemote() {
 		return (this.remoteUrl && window.postMessage && window.JSON && window.localStorage);
 	}
-	private createIframe(iframeLoaded: () => void, messageReceived: (event: any) => void) {
-		this.iframe = document.createElement('iframe');
-		this.iframe.style.cssText = 'position:absolute;width:1px;height:1px;left:-9999px;';
-		this.iframe.src = this.remoteUrl;
-		this.iframe.sandbox = 'allow-same-origin allow-scripts';
-		document.body.appendChild(this.iframe);
-		this.iframe.addEventListener('load', () => iframeLoaded(), false);
-		window.addEventListener('message', (event) => messageReceived(event), false);
+	private clearIframe(iframeLoaded: () => void, messageReceived: (event: { data?: { key?: string, value?: string }}) => void) {
+		if(this.remoteUrl) {
+			let iframe = document.createElement('iframe');
+			iframe.style.cssText = 'position:absolute;width:1px;height:1px;left:-9999px;';
+			iframe.src = this.remoteUrl;
+			iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts');
+			this.iframe = iframe;
+			document.body.appendChild(this.iframe);
+			this.iframe.addEventListener('load', () => iframeLoaded(), false);
+			window.addEventListener('message', (event) => messageReceived(event), false);			
+		}
 	}
 	private clearCookie() {
 		this.fieldData = {};
@@ -191,7 +215,9 @@ export class RememberMe {
 		this.saveCookieToRemote();
 	}
 	private saveCookieToRemote() {
-		this.iframe.contentWindow.postMessage({ key: this.cookieName, value: JSON.stringify(this.fieldData), operation: 'write', expires: this.cookieExpirationDays }, '*');
+		if(this.iframe && this.iframe.contentWindow) {			
+			this.iframe.contentWindow.postMessage({ key: this.cookieName, value: JSON.stringify(this.fieldData), operation: 'write', expires: this.cookieExpirationDays }, '*');
+		}		
 	}
 	private readCookie() {
 		this.updateFieldData(cookie.get(this.cookieName) || '');
@@ -200,12 +226,12 @@ export class RememberMe {
 		cookie.set(this.cookieName, JSON.stringify(this.fieldData), { expires: this.cookieExpirationDays });
 	}
 	private readFields() {
-		for(var i = 0; i < this.fieldNames.length; i++) {
-			var fieldSelector = "[name='" + this.fieldNames[i] + "']";
-			var field = document.querySelector(fieldSelector) as HTMLInputElement;
+		for(let i = 0; i < this.fieldNames.length; i++) {
+			let fieldSelector = "[name='" + this.fieldNames[i] + "']";
+			let field = document.querySelector(fieldSelector) as HTMLInputElement;
 			if(field) {
 				if(field.tagName === 'INPUT') {
-					var type = field.getAttribute('type');
+					let type = field.getAttribute('type');
 					if(type === 'radio' || type === 'checkbox') {
 						field = document.querySelector(fieldSelector + ":checked") as HTMLInputElement;
 					}
@@ -216,7 +242,7 @@ export class RememberMe {
 			}
 		}
 	}
-	private setFieldValue(field: HTMLInputElement, value: any, overwrite: boolean = false) {
+	private setFieldValue(field: HTMLInputElement, value: string | undefined, overwrite: boolean = false) {
 		if(field && value !== undefined) {
 			if(field.value && overwrite || !field.value) {
 				field.value = value;
@@ -224,7 +250,7 @@ export class RememberMe {
 		}
 	}
 	private clearFields(skipFields: string[]) {
-		for(var key in this.fieldData) {
+		for(let key in this.fieldData) {
 			if(skipFields.includes(key)) {
 				delete this.fieldData[key];
 			} else {
@@ -234,9 +260,9 @@ export class RememberMe {
 		}
 	}
 	private writeFields(overwrite: boolean = false) {
-		for(var i = 0; i < this.fieldNames.length; i++) {
-			var fieldSelector = "[name='" + this.fieldNames[i] + "']";
-			var field = document.querySelector(fieldSelector) as HTMLInputElement;
+		for(let i = 0; i < this.fieldNames.length; i++) {
+			let fieldSelector = "[name='" + this.fieldNames[i] + "']";
+			let field = document.querySelector(fieldSelector) as HTMLInputElement;
 			if(field) {
 				if(field.tagName === 'INPUT') {
 					if(this.fieldNames[i] === this.fieldDonationRecurrPayRadioName) {
