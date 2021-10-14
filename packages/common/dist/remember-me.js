@@ -6,9 +6,9 @@ export class RememberMe {
         this._form = EnForm.getInstance();
         this.iframe = null;
         this.remoteUrl = ('remoteUrl' in options) ? options.remoteUrl : null;
-        this.rememberMeOptIn = false;
         this.cookieName = ('cookieName' in options) ? options.cookieName : 'engrid-autofill';
         this.cookieExpirationDays = ('cookieExpirationDays' in options) ? options.cookieExpirationDays : 365;
+        this.rememberMeOptIn = ('checked' in options) ? options.checked : false;
         this.fieldNames = ('fieldNames' in options) ? options.fieldNames : [];
         this.fieldDonationAmountRadioName = ('fieldDonationAmountRadioName' in options) ? options.fieldDonationAmountRadioName : 'transaction.donationAmt';
         this.fieldDonationAmountOtherName = ('fieldDonationAmountOtherName' in options) ? options.fieldDonationAmountOtherName : 'transaction.donationAmt.other';
@@ -20,7 +20,7 @@ export class RememberMe {
         this.fieldClearSelectorTargetLocation = ('fieldClearSelectorTargetLocation' in options) ? options.fieldClearSelectorTargetLocation : 'before';
         this.fieldData = {};
         if (this.useRemote()) {
-            this.clearIframe(() => {
+            this.createIframe(() => {
                 if (this.iframe && this.iframe.contentWindow) {
                     this.iframe.contentWindow.postMessage({ key: this.cookieName, operation: 'read' }, '*');
                     this._form.onSubmit.subscribe(() => {
@@ -37,11 +37,9 @@ export class RememberMe {
                     let hasFieldData = Object.keys(this.fieldData).length > 0;
                     if (!hasFieldData) {
                         this.insertRememberMeOptin();
-                        this.rememberMeOptIn = false;
                     }
                     else {
                         this.insertClearRememberMeLink();
-                        this.rememberMeOptIn = true;
                     }
                 }
             });
@@ -84,7 +82,7 @@ export class RememberMe {
             clearRememberMeField.classList.add('label-tooltip');
             clearRememberMeField.setAttribute('style', 'cursor: pointer;');
             clearRememberMeField.innerHTML = `(${clearAutofillLabel})`;
-            const targetField = document.querySelector(this.fieldClearSelectorTarget);
+            const targetField = this.getElementByFirstSelector(this.fieldClearSelectorTarget);
             if (targetField) {
                 if (this.fieldClearSelectorTargetLocation === 'after') {
                     targetField.appendChild(clearRememberMeField);
@@ -110,6 +108,18 @@ export class RememberMe {
             }
         }
     }
+    getElementByFirstSelector(selectorsString) {
+        // iterate through the selectors until we find one that exists
+        let targetField = null;
+        const selectorTargets = selectorsString.split(',');
+        for (let i = 0; i < selectorTargets.length; i++) {
+            targetField = document.querySelector(selectorTargets[i]);
+            if (targetField) {
+                break;
+            }
+        }
+        return targetField;
+    }
     insertRememberMeOptin() {
         if (!document.getElementById('remember-me-opt-in')) {
             const rememberMeLabel = 'Remember Me';
@@ -118,20 +128,21 @@ export class RememberMe {
 				While your financial information won’t be stored, you should only check this box from a personal device. 
 				Click “Clear autofill” to remove the information from your device at any time.
 			`;
+            const rememberMeOptInFieldChecked = (this.rememberMeOptIn) ? 'checked' : '';
             const rememberMeOptInField = document.createElement('div');
             rememberMeOptInField.classList.add('en__field', 'en__field--checkbox');
             rememberMeOptInField.setAttribute('id', 'remember-me-opt-in');
             rememberMeOptInField.setAttribute('style', 'overflow-x: hidden;');
             rememberMeOptInField.innerHTML = `
 				<div class="en__field__item rememberme-wrapper">
-					<input id="remember-me-checkbox" type="checkbox" class="en__field__input en__field__input--checkbox" />
+					<input id="remember-me-checkbox" type="checkbox" class="en__field__input en__field__input--checkbox" ${rememberMeOptInFieldChecked} />
 					<label for="remember-me-checkbox" class="en__field__label en__field__label--item" style="white-space: nowrap;"><div class="rememberme-content" style="display: inline-flex; align-items: center;">
 						${rememberMeLabel}						
 					</div></label>
 					<a id="rememberme-learn-more-toggle" style="display: inline-block; display: inline-flex; align-items: center; cursor: pointer;"><svg style="height: 14px; width: auto; z-index: 1;" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 7H9V5H11V7ZM11 9H9V15H11V9ZM10 2C5.59 2 2 5.59 2 10C2 14.41 5.59 18 10 18C14.41 18 18 14.41 18 10C18 5.59 14.41 2 10 2ZM10 0C15.523 0 20 4.477 20 10C20 15.523 15.523 20 10 20C4.477 20 0 15.523 0 10C0 4.477 4.477 0 10 0Z" fill="currentColor"/></svg></a>
 				</div>
 			`;
-            const targetField = document.querySelector(this.fieldOptInSelectorTarget);
+            const targetField = this.getElementByFirstSelector(this.fieldOptInSelectorTarget);
             if (targetField && targetField.parentNode) {
                 targetField.parentNode.insertBefore(rememberMeOptInField, (this.fieldOptInSelectorTargetLocation == 'before') ? targetField : targetField.nextSibling);
                 const rememberMeCheckbox = document.getElementById('remember-me-checkbox');
@@ -152,7 +163,7 @@ export class RememberMe {
     useRemote() {
         return (this.remoteUrl && window.postMessage && window.JSON && window.localStorage);
     }
-    clearIframe(iframeLoaded, messageReceived) {
+    createIframe(iframeLoaded, messageReceived) {
         if (this.remoteUrl) {
             let iframe = document.createElement('iframe');
             iframe.style.cssText = 'position:absolute;width:1px;height:1px;left:-9999px;';

@@ -29,12 +29,14 @@ export declare class RememberMe {
         fieldOptInSelectorTargetLocation: string;
         fieldClearSelectorTarget: string;
         fieldClearSelectorTargetLocation: string;
+        checked: boolean;
     });
     private updateFieldData;
     private insertClearRememberMeLink;
+    private getElementByFirstSelector;
     private insertRememberMeOptin;
     private useRemote;
-    private clearIframe;
+    private createIframe;
     private clearCookie;
     private clearCookieOnRemote;
     private saveCookieToRemote;
