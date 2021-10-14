@@ -2871,6 +2871,9 @@ body .page-backgroundImage video.crop-on-right {
   transform: translate(0%, -50%);
   /* % of current element */ }
 
+.body-banner > .en__component--copyblock > p:only-child {
+  margin: 0; }
+
 .body-banner img {
   min-width: 100%; }
   .body-banner img[data-src] {
