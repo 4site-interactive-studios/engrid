@@ -86,6 +86,11 @@
       outline-color: #0000ff !important;
       z-index: 1;
     }
+
+    // In the event a conditionally displayed field is marked mandatory, highlight it as this can cause problems
+    .en__mandatory{
+      outline: 5px solid #f12222;
+    }
   }
 
   .live-giving-amount,

@@ -7453,6 +7453,17 @@ body:not([data-engrid-debug]) #debug-bar {
     #en__pagebuilder .giveBySelect-Paypal.pboAdvancedRow__preview .en__component--column {
       outline-color: #0000ff !important;
       z-index: 1; }
+    #en__pagebuilder .inmem-y .en__mandatory,
+    #en__pagebuilder .inmem-n .en__mandatory,
+    #en__pagebuilder .giveBySelect-card .en__mandatory,
+    #en__pagebuilder .giveBySelect-ach .en__mandatory,
+    #en__pagebuilder .giveBySelect-paypal .en__mandatory,
+    #en__pagebuilder .inmem-Y .en__mandatory,
+    #en__pagebuilder .inmem-N .en__mandatory,
+    #en__pagebuilder .giveBySelect-Card .en__mandatory,
+    #en__pagebuilder .giveBySelect-ACH .en__mandatory,
+    #en__pagebuilder .giveBySelect-Paypal .en__mandatory {
+      outline: 5px solid #f12222; }
   #en__pagebuilder .live-giving-amount,
   #en__pagebuilder .live-giving-upsell-amount,
   #en__pagebuilder .live-giving-upsell-amount-raw,
