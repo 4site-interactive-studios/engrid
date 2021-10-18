@@ -196,8 +196,11 @@
   align-items: center;
 }
 
-// Hide fields and their labels
-#en__pagebuilder {
+// When inside page builder or debugging
+#en__pagebuilder,
+[data-engrid-debug] {
+
+  // Color Hidden Fields
   .hide,
   .i1-hide .en__field:nth-of-type(1),
   .i2-hide .en__field:nth-of-type(2),
@@ -212,26 +215,8 @@
   .i11-hide .en__field:nth-of-type(11) {
     background-color: #ff00001a !important;
   }
-}
 
-body:not(#en__pagebuilder) {
-  .hide,
-  .i1-hide .en__field:nth-of-type(1),
-  .i2-hide .en__field:nth-of-type(2),
-  .i3-hide .en__field:nth-of-type(3),
-  .i4-hide .en__field:nth-of-type(4),
-  .i5-hide .en__field:nth-of-type(5),
-  .i6-hide .en__field:nth-of-type(6),
-  .i7-hide .en__field:nth-of-type(7),
-  .i8-hide .en__field:nth-of-type(8),
-  .i9-hide .en__field:nth-of-type(9),
-  .i10-hide .en__field:nth-of-type(10),
-  .i11-hide .en__field:nth-of-type(11) {
-    display: none;
-  }
-}
-
-#en__pagebuilder {
+  // Color Hidden Labels
   .i1-hide-label .en__field:nth-of-type(1) > label,
   .i2-hide-label .en__field:nth-of-type(2) > label,
   .i3-hide-label .en__field:nth-of-type(3) > label,
@@ -247,9 +232,27 @@ body:not(#en__pagebuilder) {
   }
 }
 
-// Hide labels for sited visitors but keep them accessible for assistive technologies like screen readers
-// REFL https://stackoverflow.com/a/26032207
-body:not(#en__pagebuilder) {
+// When outside page builder and not debugging, 
+body:not(#en__pagebuilder):not([data-engrid-debug]) {
+
+  // Hide Hidden Fields
+  .hide,
+  .i1-hide .en__field:nth-of-type(1),
+  .i2-hide .en__field:nth-of-type(2),
+  .i3-hide .en__field:nth-of-type(3),
+  .i4-hide .en__field:nth-of-type(4),
+  .i5-hide .en__field:nth-of-type(5),
+  .i6-hide .en__field:nth-of-type(6),
+  .i7-hide .en__field:nth-of-type(7),
+  .i8-hide .en__field:nth-of-type(8),
+  .i9-hide .en__field:nth-of-type(9),
+  .i10-hide .en__field:nth-of-type(10),
+  .i11-hide .en__field:nth-of-type(11) {
+    display: none;
+  }
+
+  // Hide Hidden Labels for sited visitors but keep them accessible for assistive technologies like screen readers
+  // REF: https://stackoverflow.com/a/26032207
   .i1-hide-label .en__field:nth-of-type(1) > label,
   .i2-hide-label .en__field:nth-of-type(2) > label,
   .i3-hide-label .en__field:nth-of-type(3) > label,
