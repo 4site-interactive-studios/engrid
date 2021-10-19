@@ -17,7 +17,21 @@ export interface Options {
   ProgressBar?: boolean | null;
   AutoYear?: boolean;
   Debug?: boolean;
-  RememberMe?: any;
+  RememberMe: boolean | {
+    remoteUrl?: string,
+    cookieName?: string,
+    cookieExpirationDays?: number,
+    fieldNames?: string[],
+    fieldDonationAmountRadioName?: string,
+    fieldDonationAmountOtherName?: string,
+    fieldDonationRecurrPayRadioName?: string,
+    fieldDonationAmountOtherCheckboxID?: string,
+    fieldOptInSelectorTarget?: string,
+    fieldOptInSelectorTargetLocation?: string,
+    fieldClearSelectorTarget?: string,
+    fieldClearSelectorTargetLocation?: string,
+    checked?: boolean
+  };
   onLoad?: () => void;
   onResize?: () => void;
   onSubmit?: () => void;

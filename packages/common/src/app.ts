@@ -190,7 +190,7 @@ export class App extends ENGrid {
     if (this.options.ProgressBar) new ProgressBar();
 
     // RememberMe
-    if (this.options.RememberMe) new RememberMe(this.options.RememberMe);
+    if (this.options.RememberMe && typeof this.options.RememberMe === 'object') new RememberMe(this.options.RememberMe);
 
     if (this.options.NeverBounceAPI)
       new NeverBounce(

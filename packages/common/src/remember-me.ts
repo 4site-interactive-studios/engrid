@@ -28,38 +28,38 @@ export class RememberMe {
 	private fieldClearSelectorTargetLocation: string;
 
 	constructor(options: {
-		remoteUrl: string, 
-		cookieName: string, 
-		cookieExpirationDays: number, 
-		fieldNames: string[],
-		fieldDonationAmountRadioName: string,
-		fieldDonationAmountOtherName: string,
-		fieldDonationRecurrPayRadioName: string,
-		fieldDonationAmountOtherCheckboxID: string,
-		fieldOptInSelectorTarget: string,
-		fieldOptInSelectorTargetLocation: string,
-		fieldClearSelectorTarget: string,
-		fieldClearSelectorTargetLocation: string,
-		checked: boolean }) {
+		remoteUrl?: string, 
+		cookieName?: string, 
+		cookieExpirationDays?: number, 
+		fieldNames?: string[],
+		fieldDonationAmountRadioName?: string,
+		fieldDonationAmountOtherName?: string,
+		fieldDonationRecurrPayRadioName?: string,
+		fieldDonationAmountOtherCheckboxID?: string,
+		fieldOptInSelectorTarget?: string,
+		fieldOptInSelectorTargetLocation?: string,
+		fieldClearSelectorTarget?: string,
+		fieldClearSelectorTargetLocation?: string,
+		checked?: boolean }) {
 
 		this.iframe = null;
 
-		this.remoteUrl  = ('remoteUrl' in options) ? options.remoteUrl : null;
-		this.cookieName = ('cookieName' in options) ? options.cookieName : 'engrid-autofill';
-		this.cookieExpirationDays = ('cookieExpirationDays' in options) ? options.cookieExpirationDays : 365;
-		this.rememberMeOptIn = ('checked' in options) ? options.checked : false;
+		this.remoteUrl = (options.remoteUrl) ? options.remoteUrl : null;
+		this.cookieName = (options.cookieName) ? options.cookieName : 'engrid-autofill';
+		this.cookieExpirationDays = (options.cookieExpirationDays) ? options.cookieExpirationDays : 365;
+		this.rememberMeOptIn = (options.checked) ? options.checked : false;
 
-		this.fieldNames = ('fieldNames' in options) ? options.fieldNames : [];
-		this.fieldDonationAmountRadioName = ('fieldDonationAmountRadioName' in options) ? options.fieldDonationAmountRadioName : 'transaction.donationAmt';
-		this.fieldDonationAmountOtherName = ('fieldDonationAmountOtherName' in options) ? options.fieldDonationAmountOtherName : 'transaction.donationAmt.other';
-		this.fieldDonationRecurrPayRadioName = ('fieldDonationRecurrPayRadioName' in options) ? options.fieldDonationRecurrPayRadioName : 'transaction.recurrpay';
-		this.fieldDonationAmountOtherCheckboxID = ('fieldDonationAmountOtherCheckboxID' in options) ? options.fieldDonationAmountOtherCheckboxID : '#en__field_transaction_donationAmt4';
+		this.fieldNames = (options.fieldNames) ? options.fieldNames : [];
+		this.fieldDonationAmountRadioName = (options.fieldDonationAmountRadioName) ? options.fieldDonationAmountRadioName : 'transaction.donationAmt';
+		this.fieldDonationAmountOtherName = (options.fieldDonationAmountOtherName) ? options.fieldDonationAmountOtherName : 'transaction.donationAmt.other';
+		this.fieldDonationRecurrPayRadioName = (options.fieldDonationRecurrPayRadioName) ? options.fieldDonationRecurrPayRadioName : 'transaction.recurrpay';
+		this.fieldDonationAmountOtherCheckboxID = (options.fieldDonationAmountOtherCheckboxID) ? options.fieldDonationAmountOtherCheckboxID : '#en__field_transaction_donationAmt4';
 		
-		this.fieldOptInSelectorTarget = ('fieldOptInSelectorTarget' in options) ? options.fieldOptInSelectorTarget : '.en__field--emailAddress.en__field';
-		this.fieldOptInSelectorTargetLocation = ('fieldOptInSelectorTargetLocation' in options) ? options.fieldOptInSelectorTargetLocation : 'after';
+		this.fieldOptInSelectorTarget = (options.fieldOptInSelectorTarget) ? options.fieldOptInSelectorTarget : '.en__field--emailAddress.en__field';
+		this.fieldOptInSelectorTargetLocation = (options.fieldOptInSelectorTargetLocation) ? options.fieldOptInSelectorTargetLocation : 'after';
 		
-		this.fieldClearSelectorTarget = ('fieldClearSelectorTarget' in options) ? options.fieldClearSelectorTarget : 'label[for="en__field_supporter_firstName"]';
-		this.fieldClearSelectorTargetLocation = ('fieldClearSelectorTargetLocation' in options) ? options.fieldClearSelectorTargetLocation : 'before';
+		this.fieldClearSelectorTarget = (options.fieldClearSelectorTarget) ? options.fieldClearSelectorTarget : 'label[for="en__field_supporter_firstName"]';
+		this.fieldClearSelectorTargetLocation = (options.fieldClearSelectorTargetLocation) ? options.fieldClearSelectorTargetLocation : 'before';
 
 		this.fieldData  = {};
 		if(this.useRemote()) {
