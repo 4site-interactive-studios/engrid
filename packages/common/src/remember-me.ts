@@ -133,12 +133,12 @@ export class RememberMe {
 
 				clearRememberMeField.addEventListener('click', (e) => {
 					e.preventDefault();
+					this.clearFields(['supporter.country'/*, 'supporter.emailAddress'*/]);
 					if(this.useRemote()) {
 						this.clearCookieOnRemote();
 					} else {
 						this.clearCookie();
 					}
-					this.clearFields(['supporter.emailAddress']);
 					let clearAutofillLink = document.getElementById('clear-autofill-data');
 					if(clearAutofillLink) {
 						clearAutofillLink.style.display = 'none';
@@ -161,7 +161,8 @@ export class RememberMe {
 		return targetField;
 	}
 	private insertRememberMeOptin() {
-		if(!document.getElementById('remember-me-opt-in')) {
+		let rememberMeOptInField = document.getElementById('remember-me-opt-in') as HTMLInputElement;
+		if(!rememberMeOptInField) {
 			const rememberMeLabel = 'Remember Me';
 			const rememberMeInfo = `
 				Check “Remember me” to complete forms on this device faster. 
@@ -201,6 +202,9 @@ export class RememberMe {
 
 				tippy('#rememberme-learn-more-toggle', { content: rememberMeInfo });
 			}
+
+		} else if(this.rememberMeOptIn) {
+			rememberMeOptInField.checked = true;
 		}
 	}
 	private useRemote() {
@@ -261,15 +265,17 @@ export class RememberMe {
 			}
 		}
 	}
-	private clearFields(skipFields: string[]) {
+	private clearFields(skipFields: string[]) {		
 		for(let key in this.fieldData) {
 			if(skipFields.includes(key)) {
+				delete this.fieldData[key];
+			} else if(this.fieldData[key] === '') {
 				delete this.fieldData[key];
 			} else {
 				this.fieldData[key] = '';
 			}
-			this.writeFields(true);
-		}
+		}		
+		this.writeFields(true);
 	}
 	private writeFields(overwrite: boolean = false) {
 		for(let i = 0; i < this.fieldNames.length; i++) {

@@ -92,13 +92,13 @@ export class RememberMe {
                 }
                 clearRememberMeField.addEventListener('click', (e) => {
                     e.preventDefault();
+                    this.clearFields(['supporter.country' /*, 'supporter.emailAddress'*/]);
                     if (this.useRemote()) {
                         this.clearCookieOnRemote();
                     }
                     else {
                         this.clearCookie();
                     }
-                    this.clearFields(['supporter.emailAddress']);
                     let clearAutofillLink = document.getElementById('clear-autofill-data');
                     if (clearAutofillLink) {
                         clearAutofillLink.style.display = 'none';
@@ -121,7 +121,8 @@ export class RememberMe {
         return targetField;
     }
     insertRememberMeOptin() {
-        if (!document.getElementById('remember-me-opt-in')) {
+        let rememberMeOptInField = document.getElementById('remember-me-opt-in');
+        if (!rememberMeOptInField) {
             const rememberMeLabel = 'Remember Me';
             const rememberMeInfo = `
 				Check “Remember me” to complete forms on this device faster. 
@@ -158,6 +159,9 @@ export class RememberMe {
                 }
                 tippy('#rememberme-learn-more-toggle', { content: rememberMeInfo });
             }
+        }
+        else if (this.rememberMeOptIn) {
+            rememberMeOptInField.checked = true;
         }
     }
     useRemote() {
@@ -224,11 +228,14 @@ export class RememberMe {
             if (skipFields.includes(key)) {
                 delete this.fieldData[key];
             }
+            else if (this.fieldData[key] === '') {
+                delete this.fieldData[key];
+            }
             else {
                 this.fieldData[key] = '';
             }
-            this.writeFields(true);
         }
+        this.writeFields(true);
     }
     writeFields(overwrite = false) {
         for (let i = 0; i < this.fieldNames.length; i++) {
