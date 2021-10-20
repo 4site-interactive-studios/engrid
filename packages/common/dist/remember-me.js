@@ -31,7 +31,7 @@ export class RememberMe {
                     });
                 }
             }, (event) => {
-                if (event.data && event.data.key && event.data.value && event.data.key === this.cookieName) {
+                if (event.data && event.data.key && event.data.value !== undefined && event.data.key === this.cookieName) {
                     this.updateFieldData(event.data.value);
                     this.writeFields();
                     let hasFieldData = Object.keys(this.fieldData).length > 0;
