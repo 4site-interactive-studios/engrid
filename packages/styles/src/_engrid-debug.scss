@@ -4,6 +4,10 @@
 * ##########################################################
 */
 
+[data-engrid-layout="debug"]{
+  border: 5px solid red;
+}
+
 [data-engrid-debug="accessability"] {
   // To help page editors identify images missing alt attributes which improve accesability
   img:not([alt]) {
