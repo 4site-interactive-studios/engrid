@@ -67,7 +67,7 @@ export class DonationAmount {
         // Set dispatch to be checked by the SET method
         this._dispatch = dispatch;
         // Search for the current amount on radio boxes
-        let found = Array.from(document.querySelectorAll('input[name="' + this._radios + '"]')).filter(el => el instanceof HTMLInputElement && parseInt(el.value) == amount);
+        let found = Array.from(document.querySelectorAll('input[name="' + this._radios + '"]')).filter((el) => el instanceof HTMLInputElement && parseInt(el.value) == amount);
         // We found the amount on the radio boxes, so check it
         if (found.length) {
             const amountField = found[0];
@@ -95,13 +95,13 @@ export class DonationAmount {
     // Remove commas
     removeCommas(v) {
         // replace 5,00 with 5.00
-        if (v.length > 3 && v.charAt(v.length - 3) == ',') {
+        if (v.length > 3 && v.charAt(v.length - 3) == ",") {
             v = v.substr(0, v.length - 3) + "." + v.substr(v.length - 2, 2);
         }
-        else if (v.length > 2 && v.charAt(v.length - 2) == ',') {
+        else if (v.length > 2 && v.charAt(v.length - 2) == ",") {
             v = v.substr(0, v.length - 2) + "." + v.substr(v.length - 1, 1);
         }
         // replace any remaining commas
-        return v.replace(/,/g, '');
+        return v.replace(/,/g, "");
     }
 }

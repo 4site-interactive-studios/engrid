@@ -1,7 +1,8 @@
-import { DonationAmount, EnForm } from "./events";
+import { EnForm, DonationAmount, ProcessingFees } from "./";
 export declare class ApplePay {
     applePay: HTMLInputElement;
     _amount: DonationAmount;
+    _fees: ProcessingFees;
     _form: EnForm;
     constructor();
     private checkApplePay;

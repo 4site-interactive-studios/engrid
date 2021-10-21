@@ -29,7 +29,8 @@ import {
   NeverBounce,
   AutoYear,
   Autocomplete,
-  RememberMe
+  RememberMe,
+  TranslateFields
 } from "./";
 
 export class App extends ENGrid {
@@ -168,6 +169,9 @@ export class App extends ENGrid {
     this._amount.load();
     this._frequency.load();
 
+    // Translate Fields
+    if (this.options.TranslateFields) new TranslateFields();
+
     // Simple Country Select
     new SimpleCountrySelect();
     // Add Image Attribution
@@ -196,7 +200,8 @@ export class App extends ENGrid {
       new NeverBounce(
         this.options.NeverBounceAPI,
         this.options.NeverBounceDateField,
-        this.options.NeverBounceStatusField
+        this.options.NeverBounceStatusField,
+        this.options.NeverBounceDateFormat
       );
 
     this.setDataAttributes();

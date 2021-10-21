@@ -128,9 +128,14 @@ export abstract class ENGrid {
   }
 
   // Set body engrid data attributes
-  static setBodyData(dataName: string, value: string) {
+  static setBodyData(dataName: string, value: string | boolean) {
     const body = <HTMLBodyElement>document.querySelector("body");
-    body.setAttribute(`data-engrid-${dataName}`, value);
+    // If value is boolean
+    if (typeof value === "boolean" && value === false) {
+      body.removeAttribute(`data-engrid-${dataName}`);
+      return;
+    }
+    body.setAttribute(`data-engrid-${dataName}`, value.toString());
   }
 
   // Get body engrid data attributes
@@ -214,5 +219,20 @@ export abstract class ENGrid {
       return true;
     }
     return false;
+  }
+  static formatDate(date: Date, format: string = "MM/DD/YYYY") {
+    const dateAray = date
+      .toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      })
+      .split("/");
+    const dateString = format
+      .replace(/YYYY/g, dateAray[2])
+      .replace(/MM/g, dateAray[0])
+      .replace(/DD/g, dateAray[1])
+      .replace(/YY/g, dateAray[2].substr(2, 2));
+    return dateString;
   }
 }

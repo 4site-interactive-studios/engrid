@@ -20,12 +20,12 @@
   width: initial;
 }
 
-.en__twitterTarget__select{
+.en__twitterTarget__select {
   // width: initial; // Required for flexbox sizing or will be set to 100% width
 }
 
 .en__twitterTarget__image,
-.en__twitterTarget__image:not([width]){
+.en__twitterTarget__image:not([width]) {
   margin-left: 0;
   margin-right: 1rem;
   width: initial; // Required for flexbox sizing because the image doesn't have a width and will be set to 100% width
@@ -61,28 +61,28 @@
 
 .en__twitterTarget,
 .en__tweet,
-.en__tweetButton{
-    padding-left: 0;
-    padding-right: 0;
+.en__tweetButton {
+  padding-left: 0;
+  padding-right: 0;
 }
 
-.en__tweetButton a{
-    font-family: var(--button_font-family);
-    color: var(--button_color);
-    font-size: var(--button_font-size);
-    font-weight: var(--button_font-weight);
-    line-height: var(--button_line-height);
-    background-color: var(--button_background-color);
-    border-width: var(--button_border-width);
-    border-color: var(--button_border-color);
-    border-radius: var(--button_border-radius);   
-    padding: var(--button_padding); 
-    cursor: pointer;
+.en__tweetButton a {
+  font-family: var(--button_font-family);
+  color: var(--button_color);
+  font-size: var(--button_font-size);
+  font-weight: var(--button_font-weight);
+  line-height: var(--button_line-height);
+  background-color: var(--button_background-color);
+  border-width: var(--button_border-width);
+  border-color: var(--button_border-color);
+  border-radius: var(--button_border-radius);
+  padding: var(--button_padding);
+  cursor: pointer;
 }
 
 .en__tweetButton a:focus,
-.en__tweetButton a:hover{
-    color: var(--button_color_hover);
-    background-color: var(--button_background-color_hover);
-    border-color: var(--button_border-color_hover);
+.en__tweetButton a:hover {
+  color: var(--button_color_hover);
+  background-color: var(--button_background-color_hover);
+  border-color: var(--button_border-color_hover);
 }

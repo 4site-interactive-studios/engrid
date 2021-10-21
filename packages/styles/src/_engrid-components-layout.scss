@@ -196,8 +196,11 @@
   align-items: center;
 }
 
-// Hide fields and their labels
-#en__pagebuilder {
+// When inside page builder or debugging
+#en__pagebuilder,
+[data-engrid-debug] {
+
+  // Color Hidden Fields
   .hide,
   .i1-hide .en__field:nth-of-type(1),
   .i2-hide .en__field:nth-of-type(2),
@@ -212,9 +215,27 @@
   .i11-hide .en__field:nth-of-type(11) {
     background-color: #ff00001a !important;
   }
+
+  // Color Hidden Labels
+  .i1-hide-label .en__field:nth-of-type(1) > label,
+  .i2-hide-label .en__field:nth-of-type(2) > label,
+  .i3-hide-label .en__field:nth-of-type(3) > label,
+  .i4-hide-label .en__field:nth-of-type(4) > label,
+  .i5-hide-label .en__field:nth-of-type(5) > label,
+  .i6-hide-label .en__field:nth-of-type(6) > label,
+  .i7-hide-label .en__field:nth-of-type(7) > label,
+  .i8-hide-label .en__field:nth-of-type(8) > label,
+  .i9-hide-label .en__field:nth-of-type(9) > label,
+  .i10-hide-label .en__field:nth-of-type(10) > label,
+  .i11-hide-label .en__field:nth-of-type(11) > label {
+    background-color: #ff00001a !important;
+  }
 }
 
-body:not(#en__pagebuilder){
+// When outside page builder and not debugging, 
+body:not(#en__pagebuilder):not([data-engrid-debug]) {
+
+  // Hide Hidden Fields
   .hide,
   .i1-hide .en__field:nth-of-type(1),
   .i2-hide .en__field:nth-of-type(2),
@@ -229,27 +250,9 @@ body:not(#en__pagebuilder){
   .i11-hide .en__field:nth-of-type(11) {
     display: none;
   }
-}
 
-#en__pagebuilder {
-  .i1-hide-label .en__field:nth-of-type(1) > label,
-  .i2-hide-label .en__field:nth-of-type(2) > label,
-  .i3-hide-label .en__field:nth-of-type(3) > label,
-  .i4-hide-label .en__field:nth-of-type(4) > label,
-  .i5-hide-label .en__field:nth-of-type(5) > label,
-  .i6-hide-label .en__field:nth-of-type(6) > label,
-  .i7-hide-label .en__field:nth-of-type(7) > label,
-  .i8-hide-label .en__field:nth-of-type(8) > label,
-  .i9-hide-label .en__field:nth-of-type(9) > label,
-  .i10-hide-label .en__field:nth-of-type(10) > label,
-  .i11-hide-label .en__field:nth-of-type(11) > label {
-    background-color: #ff00001a !important;
-  }
-}
-
-// Hide labels for sited visitors but keep them accessible for assistive technologies like screen readers
-// REFL https://stackoverflow.com/a/26032207
-body:not(#en__pagebuilder){
+  // Hide Hidden Labels for sited visitors but keep them accessible for assistive technologies like screen readers
+  // REF: https://stackoverflow.com/a/26032207
   .i1-hide-label .en__field:nth-of-type(1) > label,
   .i2-hide-label .en__field:nth-of-type(2) > label,
   .i3-hide-label .en__field:nth-of-type(3) > label,
@@ -262,7 +265,8 @@ body:not(#en__pagebuilder){
   .i10-hide-label .en__field:nth-of-type(10) > label,
   .i11-hide-label .en__field:nth-of-type(11) > label {
     position: absolute !important; /* Outside the DOM flow */
-    height: 1px; width: 1px; /* Nearly collapsed */
+    height: 1px;
+    width: 1px; /* Nearly collapsed */
     overflow: hidden;
     clip: rect(1px 1px 1px 1px); /* IE 7+ only support clip without commas */
     clip: rect(1px, 1px, 1px, 1px); /* All other browsers */
@@ -273,36 +277,102 @@ body:not(#en__pagebuilder){
 /* Still needs JS to auto select last radio on input */
 /* @TODO EN now adds "en__field__item--hidden" to the "en__field__item--other" field when "other" is not selected
 /* prettier-ignore */
-.i1-show-hidden-radio-input .en__field:nth-of-type(1) .en__field__element--radio .en__field__item:nth-last-child(1),
-  .i2-show-hidden-radio-input .en__field:nth-of-type(2) .en__field__element--radio .en__field__item:nth-last-child(1),
-  .i3-show-hidden-radio-input .en__field:nth-of-type(3) .en__field__element--radio .en__field__item:nth-last-child(1),
-  .i4-show-hidden-radio-input .en__field:nth-of-type(4) .en__field__element--radio .en__field__item:nth-last-child(1),
-  .i5-show-hidden-radio-input .en__field:nth-of-type(5) .en__field__element--radio .en__field__item:nth-last-child(1),
-  .i6-show-hidden-radio-input .en__field:nth-of-type(6) .en__field__element--radio .en__field__item:nth-last-child(1),
-  .i7-show-hidden-radio-input .en__field:nth-of-type(7) .en__field__element--radio .en__field__item:nth-last-child(1),
-  .i8-show-hidden-radio-input .en__field:nth-of-type(8) .en__field__element--radio .en__field__item:nth-last-child(1),
-  .i9-show-hidden-radio-input .en__field:nth-of-type(9) .en__field__element--radio .en__field__item:nth-last-child(1),
-  .i10-show-hidden-radio-input .en__field:nth-of-type(10) .en__field__element--radio .en__field__item:nth-last-child(1),
-  .i11-show-hidden-radio-input .en__field:nth-of-type(11) .en__field__element--radio .en__field__item:nth-last-child(1) {
-    display: flex !important;
-  }
+.i1-show-hidden-radio-input
+  .en__field:nth-of-type(1)
+  .en__field__element--radio
+  .en__field__item:nth-last-child(1),
+.i2-show-hidden-radio-input
+  .en__field:nth-of-type(2)
+  .en__field__element--radio
+  .en__field__item:nth-last-child(1),
+.i3-show-hidden-radio-input
+  .en__field:nth-of-type(3)
+  .en__field__element--radio
+  .en__field__item:nth-last-child(1),
+.i4-show-hidden-radio-input
+  .en__field:nth-of-type(4)
+  .en__field__element--radio
+  .en__field__item:nth-last-child(1),
+.i5-show-hidden-radio-input
+  .en__field:nth-of-type(5)
+  .en__field__element--radio
+  .en__field__item:nth-last-child(1),
+.i6-show-hidden-radio-input
+  .en__field:nth-of-type(6)
+  .en__field__element--radio
+  .en__field__item:nth-last-child(1),
+.i7-show-hidden-radio-input
+  .en__field:nth-of-type(7)
+  .en__field__element--radio
+  .en__field__item:nth-last-child(1),
+.i8-show-hidden-radio-input
+  .en__field:nth-of-type(8)
+  .en__field__element--radio
+  .en__field__item:nth-last-child(1),
+.i9-show-hidden-radio-input
+  .en__field:nth-of-type(9)
+  .en__field__element--radio
+  .en__field__item:nth-last-child(1),
+.i10-show-hidden-radio-input
+  .en__field:nth-of-type(10)
+  .en__field__element--radio
+  .en__field__item:nth-last-child(1),
+.i11-show-hidden-radio-input
+  .en__field:nth-of-type(11)
+  .en__field__element--radio
+  .en__field__item:nth-last-child(1) {
+  display: flex !important;
+}
 
 /* Hide Other Input Radio Value because it is auto-selected with JS when a value is entered in the Other Input Text field. */
 /* @TODO EN now adds "en__field__item--hidden" to the "en__field__item--other" field when "other" is not selected
 /* prettier-ignore */
-.i1-show-hidden-radio-input .en__field:nth-of-type(1) .en__field__element--radio .en__field__item:nth-last-child(2),
-  .i2-show-hidden-radio-input .en__field:nth-of-type(2) .en__field__element--radio .en__field__item:nth-last-child(2),
-  .i3-show-hidden-radio-input .en__field:nth-of-type(3) .en__field__element--radio .en__field__item:nth-last-child(2),
-  .i4-show-hidden-radio-input .en__field:nth-of-type(4) .en__field__element--radio .en__field__item:nth-last-child(2),
-  .i5-show-hidden-radio-input .en__field:nth-of-type(5) .en__field__element--radio .en__field__item:nth-last-child(2),
-  .i6-show-hidden-radio-input .en__field:nth-of-type(6) .en__field__element--radio .en__field__item:nth-last-child(2),
-  .i7-show-hidden-radio-input .en__field:nth-of-type(7) .en__field__element--radio .en__field__item:nth-last-child(2),
-  .i8-show-hidden-radio-input .en__field:nth-of-type(8) .en__field__element--radio .en__field__item:nth-last-child(2),
-  .i9-show-hidden-radio-input .en__field:nth-of-type(9) .en__field__element--radio .en__field__item:nth-last-child(2),
-  .i10-show-hidden-radio-input .en__field:nth-of-type(10) .en__field__element--radio .en__field__item:nth-last-child(2),
-  .i11-show-hidden-radio-input .en__field:nth-of-type(11) .en__field__element--radio .en__field__item:nth-last-child(2) {
-    display: none !important;
-  }
+.i1-show-hidden-radio-input
+  .en__field:nth-of-type(1)
+  .en__field__element--radio
+  .en__field__item:nth-last-child(2),
+.i2-show-hidden-radio-input
+  .en__field:nth-of-type(2)
+  .en__field__element--radio
+  .en__field__item:nth-last-child(2),
+.i3-show-hidden-radio-input
+  .en__field:nth-of-type(3)
+  .en__field__element--radio
+  .en__field__item:nth-last-child(2),
+.i4-show-hidden-radio-input
+  .en__field:nth-of-type(4)
+  .en__field__element--radio
+  .en__field__item:nth-last-child(2),
+.i5-show-hidden-radio-input
+  .en__field:nth-of-type(5)
+  .en__field__element--radio
+  .en__field__item:nth-last-child(2),
+.i6-show-hidden-radio-input
+  .en__field:nth-of-type(6)
+  .en__field__element--radio
+  .en__field__item:nth-last-child(2),
+.i7-show-hidden-radio-input
+  .en__field:nth-of-type(7)
+  .en__field__element--radio
+  .en__field__item:nth-last-child(2),
+.i8-show-hidden-radio-input
+  .en__field:nth-of-type(8)
+  .en__field__element--radio
+  .en__field__item:nth-last-child(2),
+.i9-show-hidden-radio-input
+  .en__field:nth-of-type(9)
+  .en__field__element--radio
+  .en__field__item:nth-last-child(2),
+.i10-show-hidden-radio-input
+  .en__field:nth-of-type(10)
+  .en__field__element--radio
+  .en__field__item:nth-last-child(2),
+.i11-show-hidden-radio-input
+  .en__field:nth-of-type(11)
+  .en__field__element--radio
+  .en__field__item:nth-last-child(2) {
+  display: none !important;
+}
 
 /* On error, restyle if the field is also centered */
 /* prettier-ignore */

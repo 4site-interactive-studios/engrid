@@ -5,6 +5,10 @@ export {
   UpsellOptions,
   UpsellOptionsDefaults,
 } from "./interfaces/upsell-options";
+export {
+  TranslateOptions,
+  TranslateOptionsDefaults,
+} from "./interfaces/translate-options";
 
 export * from "./app";
 export * from "./engrid";
@@ -21,6 +25,7 @@ export * from "./media-attribution";
 export * from "./live-variables";
 export * from "./upsell-lightbox";
 export * from "./show-hide-radio-checkboxes";
+export * from "./translate-fields";
 export * from "./simple-country-select";
 export * from "./skip-link";
 export * from "./src-defer";

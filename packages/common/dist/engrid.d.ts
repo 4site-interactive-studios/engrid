@@ -12,11 +12,12 @@ export declare abstract class ENGrid {
     static getPageNumber(): any;
     static getPageID(): any;
     static getPageType(): "ECARD" | "SURVEY" | "ADVOCACY" | "SUBSCRIBEFORM" | "DONATION";
-    static setBodyData(dataName: string, value: string): void;
+    static setBodyData(dataName: string, value: string | boolean): void;
     static getBodyData(dataName: string): string | null;
     static getOption<K extends keyof Options>(key: K): Options[K] | null;
     static loadJS(url: string, onload?: (() => void) | null, head?: boolean): void;
     static formatNumber(number: string | number, decimals?: number, dec_point?: string, thousands_sep?: string): string;
     static disableSubmit(label?: string): boolean;
     static enableSubmit(): boolean;
+    static formatDate(date: Date, format?: string): string;
 }

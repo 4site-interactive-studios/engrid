@@ -5,9 +5,8 @@
 */
 
 [data-engrid-errors="fancy"] {
-
   .en__component--formblock .en__field.en__field--validationFailed,
-  .en__component--svblock .en__field.en__field--validationFailed{
+  .en__component--svblock .en__field.en__field--validationFailed {
     // margin-bottom: calc(var(--fields_spacing-block) * 2);
   }
 
@@ -32,7 +31,7 @@
   //     margin-bottom: 0 !important;
   //   }
   // }
-    
+
   .en__field--select.en__field--withOther,
   .en__field--radio,
   .en__field--checkbox,
@@ -42,8 +41,8 @@
   .en__field--tripleselec,
   .en__field--calendar,
   .en__field--imgselect,
-  .en__field--rating{
-    .en__field--validationFailed.has-value{
+  .en__field--rating {
+    .en__field--validationFailed.has-value {
       border-color: var(--error__color_grayscale);
       background-color: var(--error__color_grayscale);
       color: var(--color_white);

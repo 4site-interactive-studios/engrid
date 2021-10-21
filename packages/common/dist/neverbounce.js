@@ -1,10 +1,11 @@
 import { ENGrid } from "./";
 import { EnForm } from "./events";
 export class NeverBounce {
-    constructor(apiKey, dateField = null, statusField = null) {
+    constructor(apiKey, dateField = null, statusField = null, dateFormat) {
         this.apiKey = apiKey;
         this.dateField = dateField;
         this.statusField = statusField;
+        this.dateFormat = dateFormat;
         this.form = EnForm.getInstance();
         this.emailField = null;
         this.emailWrapper = document.querySelector(".en__field--emailAddress");
@@ -82,11 +83,7 @@ export class NeverBounce {
                     if (e.detail.result.is(window._nb.settings.getAcceptedStatusCodes())) {
                         NBClass.setEmailStatus("valid");
                         if (NBClass.nbDate)
-                            NBClass.nbDate.value = new Date().toLocaleDateString("en-US", {
-                                year: "numeric",
-                                month: "2-digit",
-                                day: "2-digit",
-                            });
+                            NBClass.nbDate.value = ENGrid.formatDate(new Date(), NBClass.dateFormat);
                         if (NBClass.nbStatus)
                             NBClass.nbStatus.value = (e).detail.result.response.result;
                     }

@@ -1,4 +1,4 @@
-[data-engrid-theme]{  
+[data-engrid-theme] {
   // TYPOGRAPHY BUTTON
   --button_font-family: var(--default_font-family);
   // --button_color: var(--color_primary_overlay);
@@ -31,7 +31,7 @@
   --submit__button_padding-bottom: 1ch;
   --submit__button_font-size: var(--button_font-size);
   --submit__button_text-transform: var(--button_text-transform);
-  
+
   // TYPOGRAPHY SUBMIT BUTTON:HOVER
   // --submit__button_color_hover: var(--button_color);
   // --submit__button_background-color_hover: var(--button_background-color_hover);
@@ -62,7 +62,7 @@ button.en__eventOccurrence__select {
   background-color: var(--button_background-color);
   border-width: var(--button_border-width);
   border-color: var(--button_border-color);
-  border-radius: var(--button_border-radius);    
+  border-radius: var(--button_border-radius);
   cursor: pointer;
   border-style: solid;
   display: block;
@@ -70,33 +70,35 @@ button.en__eventOccurrence__select {
   padding: var(--button_padding);
   text-transform: var(--button_text-transform);
   -webkit-appearance: none;
-  -webkit-transition: background-color 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out;
-  transition: background-color 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out;
+  -webkit-transition: background-color 0.2s ease-out, color 0.2s ease-out,
+    border-color 0.2s ease-out;
+  transition: background-color 0.2s ease-out, color 0.2s ease-out,
+    border-color 0.2s ease-out;
   text-align: center;
   cursor: pointer;
 
   &:focus,
-  &:hover{
-      color: var(--button_color_hover);
-      background-color: var(--button_background-color_hover);
-      border-color: var(--button_border-color_hover);
+  &:hover {
+    color: var(--button_color_hover);
+    background-color: var(--button_background-color_hover);
+    border-color: var(--button_border-color_hover);
   }
 
-  &:active{
-      color: var(--button_color_checked);
-      background-color: var(--button_background-color_checked);
-      border-color: var(--button_border-color_checked);
-  }  
+  &:active {
+    color: var(--button_color_checked);
+    background-color: var(--button_background-color_checked);
+    border-color: var(--button_border-color_checked);
+  }
 }
 
 // The submit button container should span the full width of its parent
-.en__submit{
+.en__submit {
   width: 100%;
 }
 
 .en__submit button,
 .en__submit .button,
-.pseduo__en__submit_button{
+.pseduo__en__submit_button {
   color: var(--submit__button_color);
   background-color: var(--submit__button_background-color);
   border-color: var(--submit__button_border-color);
@@ -109,24 +111,24 @@ button.en__eventOccurrence__select {
   max-width: var(--submit__button_max-width);
 
   &:focus,
-  &:hover{
-      color: var(--submit__button_color_hover);
-      background-color: var(--submit__button_background-color_hover);
-      border-color: var(--submit__button_border-color_hover);
+  &:hover {
+    color: var(--submit__button_color_hover);
+    background-color: var(--submit__button_background-color_hover);
+    border-color: var(--submit__button_border-color_hover);
   }
 
-  &:active{
-      color: var(--submit__button_color_checked);
-      background-color: var(--submit__button_background-color_checked);
-      border-color: var(--submit__button_border-color_checked);
-  } 
+  &:active {
+    color: var(--submit__button_color_checked);
+    background-color: var(--submit__button_background-color_checked);
+    border-color: var(--submit__button_border-color_checked);
+  }
 }
 
 // @TODO The "primary" styling might no longer be needed
 button.primary:hover,
 button.primary:focus,
 .button.primary:hover,
-.button.primary:focus  {
+.button.primary:focus {
   color: var(--button_color_checked);
   background-color: var(--button_background-color_checked);
   border-color: var(--button_border-color_checked);
@@ -153,8 +155,7 @@ button.primary:focus,
 
 button[disabled],
 button[disabled]:hover,
-button[disabled]:focus
-.button[disabled],
+button[disabled]:focus .button[disabled],
 .button[disabled]:hover,
 .button[disabled]:focus {
   content: "Processing...";

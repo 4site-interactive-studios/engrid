@@ -1,5 +1,10 @@
 import * as cookie from "./cookie";
-import { ENGrid, UpsellOptions, UpsellOptionsDefaults } from "./";
+import {
+  ENGrid,
+  ProcessingFees,
+  UpsellOptions,
+  UpsellOptionsDefaults,
+} from "./";
 import { DonationAmount, DonationFrequency, EnForm } from "./events";
 
 export class UpsellLightbox {
@@ -7,7 +12,9 @@ export class UpsellLightbox {
   private overlay: HTMLDivElement = document.createElement("div");
   private _form: EnForm = EnForm.getInstance();
   public _amount: DonationAmount = DonationAmount.getInstance();
+  public _fees: ProcessingFees = ProcessingFees.getInstance();
   private _frequency: DonationFrequency = DonationFrequency.getInstance();
+
   constructor() {
     let options = "EngridUpsell" in window ? window.EngridUpsell : {};
     this.options = { ...UpsellOptionsDefaults, ...options };
@@ -38,23 +45,35 @@ export class UpsellLightbox {
     const markup = `
             <div class="upsellLightboxContainer" id="goMonthly">
               <!-- ideal image size is 480x650 pixels -->
-              <div class="background" style="background-image: url('${this.options.image
-      }');"></div>
+              <div class="background" style="background-image: url('${
+                this.options.image
+              }');"></div>
               <div class="upsellLightboxContent">
-              ${this.options.canClose ? `<span id="goMonthlyClose"></span>` : ``
-      }
+              ${
+                this.options.canClose ? `<span id="goMonthlyClose"></span>` : ``
+              }
                 <h1>
                   ${title}
                 </h1>
-                ${this.options.otherAmount
-        ? `
-                <p>
-                  <span>${this.options.otherLabel}</span>
-                  <input href="#" id="secondOtherField" name="secondOtherField" size="12" type="number" inputmode="numeric" step="1" value="">
-                </p>
+                ${
+                  this.options.otherAmount
+                    ? `
+                <div class="upsellOtherAmount">
+                  <div class="upsellOtherAmountLabel">
+                    <p>
+                      ${this.options.otherLabel}
+                    </p>
+                  </div>
+                  <div class="upsellOtherAmountInput">
+                    <input href="#" id="secondOtherField" name="secondOtherField" size="12" type="number" inputmode="numeric" step="1" value="" autocomplete="off">
+                    <small>Minimum ${this.getAmountTxt(
+                      this.options.minAmount
+                    )}</small>
+                  </div>
+                </div>
                 `
-        : ``
-      }
+                    : ``
+                }
 
                 <p>
                   ${paragraph}
@@ -82,15 +101,25 @@ export class UpsellLightbox {
             `;
 
     this.overlay.innerHTML = markup;
-    const closeButton = this.overlay.querySelector("#goMonthlyClose") as HTMLElement;
-    const yesButton = this.overlay.querySelector("#upsellYesButton a") as HTMLLinkElement;
-    const noButton = this.overlay.querySelector("#upsellNoButton button") as HTMLButtonElement;
+    const closeButton = this.overlay.querySelector(
+      "#goMonthlyClose"
+    ) as HTMLElement;
+    const yesButton = this.overlay.querySelector(
+      "#upsellYesButton a"
+    ) as HTMLLinkElement;
+    const noButton = this.overlay.querySelector(
+      "#upsellNoButton button"
+    ) as HTMLButtonElement;
     yesButton.addEventListener("click", this.continue.bind(this));
     noButton.addEventListener("click", this.continue.bind(this));
     if (closeButton)
       closeButton.addEventListener("click", this.close.bind(this));
     this.overlay.addEventListener("click", (e: Event) => {
-      if (e.target instanceof Element && e.target.id == this.overlay.id && this.options.canClose) {
+      if (
+        e.target instanceof Element &&
+        e.target.id == this.overlay.id &&
+        this.options.canClose
+      ) {
         this.close(e);
       }
     });
@@ -112,49 +141,65 @@ export class UpsellLightbox {
     // if it's a first page of a Donation page
     return (
       // !hideModal &&
-      'EngridUpsell' in window &&
+      "EngridUpsell" in window &&
       !!window.pageJson &&
       window.pageJson.pageNumber == 1 &&
-      ['donation', 'premiumgift'].includes(window.pageJson.pageType)
+      ["donation", "premiumgift"].includes(window.pageJson.pageType)
     );
   }
 
   private popupOtherField() {
-    const value = parseFloat(this.overlay.querySelector<HTMLInputElement>("#secondOtherField")?.value ?? "");
+    const value = parseFloat(
+      this.overlay.querySelector<HTMLInputElement>("#secondOtherField")
+        ?.value ?? ""
+    );
     const live_upsell_amount = document.querySelectorAll(
       "#upsellYesButton .upsell_suggestion"
     );
+    const upsellAmount = this.getUpsellAmount();
 
     if (!isNaN(value) && value > 0) {
-      live_upsell_amount.forEach(
-        (elem) => (elem.innerHTML = "$" + value.toFixed(2))
-      );
+      this.checkOtherAmount(value);
     } else {
-      live_upsell_amount.forEach(
-        (elem) => (elem.innerHTML = "$" + this.getUpsellAmount().toFixed(2))
-      );
+      this.checkOtherAmount(upsellAmount);
     }
+    live_upsell_amount.forEach(
+      (elem) =>
+        (elem.innerHTML = this.getAmountTxt(
+          upsellAmount + this._fees.calculateFees(upsellAmount)
+        ))
+    );
   }
 
   private liveAmounts() {
     const live_upsell_amount = document.querySelectorAll(".upsell_suggestion");
     const live_amount = document.querySelectorAll(".upsell_amount");
-    const suggestedAmount = this.getUpsellAmount();
+    const upsellAmount = this.getUpsellAmount();
+    const suggestedAmount =
+      upsellAmount + this._fees.calculateFees(upsellAmount);
 
     live_upsell_amount.forEach(
-      (elem) => (elem.innerHTML = "$" + suggestedAmount.toFixed(2))
+      (elem) => (elem.innerHTML = this.getAmountTxt(suggestedAmount))
     );
     live_amount.forEach(
-      (elem) => (elem.innerHTML = "$" + this._amount.amount.toFixed(2))
+      (elem) =>
+        (elem.innerHTML = this.getAmountTxt(
+          this._amount.amount + this._fees.fee
+        ))
     );
   }
 
   // Return the Suggested Upsell Amount
   private getUpsellAmount(): number {
     const amount = this._amount.amount;
-    const otherAmount = parseFloat(this.overlay.querySelector<HTMLInputElement>("#secondOtherField")?.value ?? "");
+    const otherAmount = parseFloat(
+      this.overlay.querySelector<HTMLInputElement>("#secondOtherField")
+        ?.value ?? ""
+    );
     if (otherAmount > 0) {
-      return otherAmount;
+      return otherAmount > this.options.minAmount
+        ? otherAmount
+        : this.options.minAmount;
     }
     let upsellAmount: string | number = 0;
 
@@ -162,14 +207,21 @@ export class UpsellLightbox {
       let val = this.options.amountRange[i];
       if (upsellAmount == 0 && amount <= val.max) {
         upsellAmount = val.suggestion;
-        if (typeof upsellAmount !== 'number') {
-          const suggestionMath = upsellAmount.replace("amount", amount.toFixed(2));
-          upsellAmount = parseFloat(Function('"use strict";return (' + suggestionMath + ')')());
+        if (typeof upsellAmount !== "number") {
+          const suggestionMath = upsellAmount.replace(
+            "amount",
+            amount.toFixed(2)
+          );
+          upsellAmount = parseFloat(
+            Function('"use strict";return (' + suggestionMath + ")")()
+          );
         }
         break;
       }
     }
-    return upsellAmount;
+    return upsellAmount > this.options.minAmount
+      ? upsellAmount
+      : this.options.minAmount;
   }
   private shouldOpen() {
     const freq = this._frequency.frequency;
@@ -198,8 +250,11 @@ export class UpsellLightbox {
     if (!this.shouldOpen()) {
       // In the circumstance when the form fails to validate via server-side validation, the page will reload
       // When that happens, we should place the original amount saved in sessionStorage into the upsell original amount field
-      let original = window.sessionStorage.getItem('original');
-      if (original && document.querySelectorAll('.en__errorList .en__error').length > 0) {
+      let original = window.sessionStorage.getItem("original");
+      if (
+        original &&
+        document.querySelectorAll(".en__errorList .en__error").length > 0
+      ) {
         this.setOriginalAmount(original);
       }
 
@@ -210,27 +265,39 @@ export class UpsellLightbox {
     this.liveAmounts();
     this.overlay.classList.remove("is-hidden");
     this._form.submit = false;
+    ENGrid.setBodyData("has-lightbox", "");
     return false;
   }
 
   // Set the original amount into a hidden field using the upsellOriginalGiftAmountFieldName, if provided
   private setOriginalAmount(original: string) {
     if (this.options.upsellOriginalGiftAmountFieldName) {
-      let enFieldUpsellOriginalAmount = document.querySelector(".en__field__input.en__field__input--hidden[name='" + this.options.upsellOriginalGiftAmountFieldName + "']");
+      let enFieldUpsellOriginalAmount = document.querySelector(
+        ".en__field__input.en__field__input--hidden[name='" +
+          this.options.upsellOriginalGiftAmountFieldName +
+          "']"
+      );
       if (!enFieldUpsellOriginalAmount) {
         let pageform = document.querySelector("form.en__component--page");
         if (pageform) {
           let input = document.createElement("input");
           input.setAttribute("type", "hidden");
-          input.setAttribute("name", this.options.upsellOriginalGiftAmountFieldName);
-          input.classList.add('en__field__input', 'en__field__input--hidden');
+          input.setAttribute(
+            "name",
+            this.options.upsellOriginalGiftAmountFieldName
+          );
+          input.classList.add("en__field__input", "en__field__input--hidden");
           pageform.appendChild(input);
-          enFieldUpsellOriginalAmount = document.querySelector('.en__field__input.en__field__input--hidden[name="' + this.options.upsellOriginalGiftAmountFieldName + '"]');
+          enFieldUpsellOriginalAmount = document.querySelector(
+            '.en__field__input.en__field__input--hidden[name="' +
+              this.options.upsellOriginalGiftAmountFieldName +
+              '"]'
+          );
         }
       }
       if (enFieldUpsellOriginalAmount) {
         // save it to a session variable just in case this page reloaded due to server-side validation error
-        window.sessionStorage.setItem('original', original);
+        window.sessionStorage.setItem("original", original);
         enFieldUpsellOriginalAmount.setAttribute("value", original);
       }
     }
@@ -239,15 +306,18 @@ export class UpsellLightbox {
   // Proceed to the next page (upsold or not)
   private continue(e: Event) {
     e.preventDefault();
-    if (e.target instanceof Element && document.querySelector("#upsellYesButton")?.contains(e.target)) {
+    if (
+      e.target instanceof Element &&
+      document.querySelector("#upsellYesButton")?.contains(e.target)
+    ) {
       if (ENGrid.debug) console.log("Upsold");
       this.setOriginalAmount(this._amount.amount.toString());
       const upsoldAmount = this.getUpsellAmount();
       this._frequency.setFrequency("monthly");
       this._amount.setAmount(upsoldAmount);
     } else {
-      this.setOriginalAmount('');
-      window.sessionStorage.removeItem('original');
+      this.setOriginalAmount("");
+      window.sessionStorage.removeItem("original");
     }
     this._form.submitForm();
   }
@@ -256,10 +326,35 @@ export class UpsellLightbox {
     e.preventDefault();
     // cookie.set("hideUpsell", "1", { expires: 1 }); // Create one day cookie
     this.overlay.classList.add("is-hidden");
+    ENGrid.setBodyData("has-lightbox", false);
     if (this.options.submitOnClose) {
       this._form.submitForm();
     } else {
       this._form.dispatchError();
+    }
+  }
+  private getAmountTxt(amount: number = 0) {
+    const symbol = ENGrid.getOption("CurrencySymbol") ?? "$";
+    const dec_separator = ENGrid.getOption("DecimalSeparator") ?? ".";
+    const thousands_separator = ENGrid.getOption("ThousandsSeparator") ?? "";
+    const dec_places =
+      amount % 1 == 0 ? 0 : ENGrid.getOption("DecimalPlaces") ?? 2;
+    const amountTxt = ENGrid.formatNumber(
+      amount,
+      dec_places,
+      dec_separator,
+      thousands_separator
+    );
+    return amount > 0 ? <string>symbol + amountTxt : "";
+  }
+  private checkOtherAmount(value: number) {
+    const otherInput = document.querySelector(".upsellOtherAmountInput");
+    if (otherInput) {
+      if (value >= this.options.minAmount) {
+        otherInput.classList.remove("is-invalid");
+      } else {
+        otherInput.classList.add("is-invalid");
+      }
     }
   }
 }

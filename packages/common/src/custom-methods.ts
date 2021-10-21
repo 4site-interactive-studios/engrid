@@ -13,7 +13,7 @@ export const enInput = (() => {
       ".en__field--text, .en__field--email:not(.en__field--checkbox), .en__field--telephone, .en__field--number, .en__field--textarea, .en__field--select, .en__field--checkbox"
     );
     const otherInputs = document.querySelectorAll(".en__field__input--other");
-    Array.from(formInput).forEach(e => {
+    Array.from(formInput).forEach((e) => {
       // @TODO Currently checkboxes always return as having a value, since they do but they're just not checked. Need to update and account for that, should also do Radio's while we're at it
       let element = e.querySelector("input, textarea, select") as
         | HTMLInputElement
@@ -29,11 +29,11 @@ export const enInput = (() => {
     /************************************
      * Automatically select other radio input when an amount is entered into it.
      ***********************************/
-    Array.from(otherInputs).forEach(e => {
-      ["focus", "input"].forEach(evt => {
+    Array.from(otherInputs).forEach((e) => {
+      ["focus", "input"].forEach((evt) => {
         e.addEventListener(
           evt,
-          ev => {
+          (ev) => {
             const target = ev.target as HTMLInputElement;
             if (target && target.parentNode && target.parentNode.parentNode) {
               const targetWrapper = target.parentNode as HTMLElement;
@@ -53,7 +53,7 @@ export const enInput = (() => {
   };
 
   return {
-    init: init
+    init: init,
   };
 })();
 
@@ -158,13 +158,13 @@ export const debugBar = () => {
       enGrid.insertAdjacentHTML(
         "beforebegin",
         '<span id="debug-bar">' +
-        '<span id="info-wrapper">' +
-        "<span>DEBUG BAR</span>" +
-        "</span>" +
-        '<span id="buttons-wrapper">' +
-        '<span id="debug-close">X</span>' +
-        "</span>" +
-        "</span>"
+          '<span id="info-wrapper">' +
+          "<span>DEBUG BAR</span>" +
+          "</span>" +
+          '<span id="buttons-wrapper">' +
+          '<span id="debug-close">X</span>' +
+          "</span>" +
+          "</span>"
       );
     }
 
@@ -183,18 +183,18 @@ export const debugBar = () => {
         infoWrapper.insertAdjacentHTML(
           "beforeend",
           "<span>Initial Load: " +
-          initialPageLoad +
-          "s</span>" +
-          "<span>DOM Interactive: " +
-          domInteractive +
-          "s</span>"
+            initialPageLoad +
+            "s</span>" +
+            "<span>DOM Interactive: " +
+            domInteractive +
+            "s</span>"
         );
 
         if (buttonsWrapper) {
           buttonsWrapper.insertAdjacentHTML(
             "afterbegin",
             '<button id="layout-toggle" type="button">Layout Toggle</button>' +
-            '<button id="page-edit" type="button">Edit in PageBuilder (BETA)</button>'
+              '<button id="page-edit" type="button">Edit in PageBuilder (BETA)</button>'
           );
         }
       }
@@ -210,7 +210,8 @@ export const debugBar = () => {
         buttonsWrapper.insertAdjacentHTML(
           "afterbegin",
           '<button id="layout-toggle" type="button">Layout Toggle</button>' +
-          '<button id="fancy-errors-toggle" type="button">Toggle Fancy Errors</button>');
+            '<button id="fancy-errors-toggle" type="button">Toggle Fancy Errors</button>'
+        );
       }
     }
 
@@ -312,72 +313,182 @@ export const debugBar = () => {
 
 export const inputPlaceholder = () => {
   // FIND ALL COMMON INPUT FIELDS
-  let enFieldDonationAmt = document.querySelector(".en__field--donationAmt.en__field--withOther .en__field__input--other") as HTMLInputElement;
-  let enFieldFirstName = document.querySelector("input#en__field_supporter_firstName") as HTMLInputElement;
-  let enFieldLastName = document.querySelector("input#en__field_supporter_lastName") as HTMLInputElement;
-  let enFieldEmailAddress = document.querySelector("input#en__field_supporter_emailAddress") as HTMLInputElement;
-  let enFieldPhoneNumber = document.querySelector("#inputen__field_supporter_phoneNumber") as HTMLInputElement;
-  let enFieldPhoneNumber2 = document.querySelector("input#en__field_supporter_phoneNumber2") as HTMLInputElement;
-  let enFieldCountry = document.querySelector("input#en__field_supporter_country") as HTMLInputElement;
-  let enFieldAddress1 = document.querySelector("input#en__field_supporter_address1") as HTMLInputElement;
-  let enFieldAddress2 = document.querySelector("input#en__field_supporter_address2") as HTMLInputElement;
-  let enFieldCity = document.querySelector("input#en__field_supporter_city") as HTMLInputElement;
+  let enFieldDonationAmt = document.querySelector(
+    ".en__field--donationAmt.en__field--withOther .en__field__input--other"
+  ) as HTMLInputElement;
+  let enFieldFirstName = document.querySelector(
+    "input#en__field_supporter_firstName"
+  ) as HTMLInputElement;
+  let enFieldLastName = document.querySelector(
+    "input#en__field_supporter_lastName"
+  ) as HTMLInputElement;
+  let enFieldEmailAddress = document.querySelector(
+    "input#en__field_supporter_emailAddress"
+  ) as HTMLInputElement;
+  let enFieldPhoneNumber = document.querySelector(
+    "#inputen__field_supporter_phoneNumber"
+  ) as HTMLInputElement;
+  let enFieldPhoneNumber2 = document.querySelector(
+    "input#en__field_supporter_phoneNumber2"
+  ) as HTMLInputElement;
+  let enFieldCountry = document.querySelector(
+    "input#en__field_supporter_country"
+  ) as HTMLInputElement;
+  let enFieldAddress1 = document.querySelector(
+    "input#en__field_supporter_address1"
+  ) as HTMLInputElement;
+  let enFieldAddress2 = document.querySelector(
+    "input#en__field_supporter_address2"
+  ) as HTMLInputElement;
+  let enFieldCity = document.querySelector(
+    "input#en__field_supporter_city"
+  ) as HTMLInputElement;
   // let enFieldRegion = document.querySelector("input#en__field_supporter_region") as HTMLInputElement
-  let enFieldPostcode = document.querySelector("input#en__field_supporter_postcode") as HTMLInputElement;
-  let enFieldHonname = document.querySelector("input#en__field_transaction_honname") as HTMLInputElement;
-  let enFieldInfname = document.querySelector("input#en__field_transaction_infname") as HTMLInputElement;
-  let enFieldInfemail = document.querySelector("input#en__field_transaction_infemail") as HTMLInputElement;
-  let enFieldInfcountry = document.querySelector("input#en__field_transaction_infcountry") as HTMLInputElement;
-  let enFieldInfadd1 = document.querySelector("input#en__field_transaction_infadd1") as HTMLInputElement;
-  let enFieldInfadd2 = document.querySelector("input#en__field_transaction_infadd2") as HTMLInputElement;
-  let enFieldInfcity = document.querySelector("input#en__field_transaction_infcity") as HTMLInputElement;
-  let enFieldInfpostcd = document.querySelector("input#en__field_transaction_infpostcd") as HTMLInputElement;
-  let enFieldGftrsn = document.querySelector("input#en__field_transaction_gftrsn") as HTMLInputElement;
-  let enFieldCcnumber = document.querySelector("input#en__field_transaction_ccnumber") as HTMLInputElement;
-  let enFieldCcexpire = document.querySelector("input#en__field_transaction_ccexpire") as HTMLInputElement;
-  let enFieldCcvv = document.querySelector("input#en__field_transaction_ccvv") as HTMLInputElement;
-  let enFieldBankAccountNumber = document.querySelector("input#en__field_supporter_bankAccountNumber") as HTMLInputElement;
-  let enFieldBankRoutingNumber = document.querySelector("input#en__field_supporter_bankRoutingNumber") as HTMLInputElement;
+  let enFieldPostcode = document.querySelector(
+    "input#en__field_supporter_postcode"
+  ) as HTMLInputElement;
+  let enFieldHonname = document.querySelector(
+    "input#en__field_transaction_honname"
+  ) as HTMLInputElement;
+  let enFieldInfname = document.querySelector(
+    "input#en__field_transaction_infname"
+  ) as HTMLInputElement;
+  let enFieldInfemail = document.querySelector(
+    "input#en__field_transaction_infemail"
+  ) as HTMLInputElement;
+  let enFieldInfcountry = document.querySelector(
+    "input#en__field_transaction_infcountry"
+  ) as HTMLInputElement;
+  let enFieldInfadd1 = document.querySelector(
+    "input#en__field_transaction_infadd1"
+  ) as HTMLInputElement;
+  let enFieldInfadd2 = document.querySelector(
+    "input#en__field_transaction_infadd2"
+  ) as HTMLInputElement;
+  let enFieldInfcity = document.querySelector(
+    "input#en__field_transaction_infcity"
+  ) as HTMLInputElement;
+  let enFieldInfpostcd = document.querySelector(
+    "input#en__field_transaction_infpostcd"
+  ) as HTMLInputElement;
+  let enFieldGftrsn = document.querySelector(
+    "input#en__field_transaction_gftrsn"
+  ) as HTMLInputElement;
+  let enFieldCcnumber = document.querySelector(
+    "input#en__field_transaction_ccnumber"
+  ) as HTMLInputElement;
+  let enFieldCcexpire = document.querySelector(
+    "input#en__field_transaction_ccexpire"
+  ) as HTMLInputElement;
+  let enFieldCcvv = document.querySelector(
+    "input#en__field_transaction_ccvv"
+  ) as HTMLInputElement;
+  let enFieldBankAccountNumber = document.querySelector(
+    "input#en__field_supporter_bankAccountNumber"
+  ) as HTMLInputElement;
+  let enFieldBankRoutingNumber = document.querySelector(
+    "input#en__field_supporter_bankRoutingNumber"
+  ) as HTMLInputElement;
 
   // CHANGE FIELD INPUT TYPES
-  if (enFieldDonationAmt) { enFieldDonationAmt.setAttribute("inputmode", "numeric"); }
+  if (enFieldDonationAmt) {
+    enFieldDonationAmt.setAttribute("inputmode", "numeric");
+  }
 
   // ADD FIELD PLACEHOLDERS
-  const enAddInputPlaceholder = document.querySelector("[data-engrid-add-input-placeholders]") as HTMLDataElement;
+  const enAddInputPlaceholder = document.querySelector(
+    "[data-engrid-add-input-placeholders]"
+  ) as HTMLDataElement;
 
-  if (enAddInputPlaceholder && enFieldDonationAmt) { enFieldDonationAmt.placeholder = "Other Amount"; }
-  if (enAddInputPlaceholder && enFieldFirstName) { enFieldFirstName.placeholder = "First Name"; }
-  if (enAddInputPlaceholder && enFieldLastName) { enFieldLastName.placeholder = "Last Name"; }
-  if (enAddInputPlaceholder && enFieldEmailAddress) { enFieldEmailAddress.placeholder = "Email Address"; }
-  if (enAddInputPlaceholder && enFieldPhoneNumber) { enFieldPhoneNumber.placeholder = "Phone Number"; }
-  if (enAddInputPlaceholder && enFieldPhoneNumber2) { enFieldPhoneNumber2.placeholder = "000-000-0000 (Optional)"; }
-  if (enAddInputPlaceholder && enFieldCountry) { enFieldCountry.placeholder = "Country"; }
-  if (enAddInputPlaceholder && enFieldAddress1) { enFieldAddress1.placeholder = "Street Address"; }
-  if (enAddInputPlaceholder && enFieldAddress2) { enFieldAddress2.placeholder = "Apt., ste., bldg."; }
-  if (enAddInputPlaceholder && enFieldCity) { enFieldCity.placeholder = "City"; }
+  if (enAddInputPlaceholder && enFieldDonationAmt) {
+    enFieldDonationAmt.placeholder = "Other Amount";
+  }
+  if (enAddInputPlaceholder && enFieldFirstName) {
+    enFieldFirstName.placeholder = "First Name";
+  }
+  if (enAddInputPlaceholder && enFieldLastName) {
+    enFieldLastName.placeholder = "Last Name";
+  }
+  if (enAddInputPlaceholder && enFieldEmailAddress) {
+    enFieldEmailAddress.placeholder = "Email Address";
+  }
+  if (enAddInputPlaceholder && enFieldPhoneNumber) {
+    enFieldPhoneNumber.placeholder = "Phone Number";
+  }
+  if (enAddInputPlaceholder && enFieldPhoneNumber2) {
+    enFieldPhoneNumber2.placeholder = "000-000-0000 (Optional)";
+  }
+  if (enAddInputPlaceholder && enFieldCountry) {
+    enFieldCountry.placeholder = "Country";
+  }
+  if (enAddInputPlaceholder && enFieldAddress1) {
+    enFieldAddress1.placeholder = "Street Address";
+  }
+  if (enAddInputPlaceholder && enFieldAddress2) {
+    enFieldAddress2.placeholder = "Apt., ste., bldg.";
+  }
+  if (enAddInputPlaceholder && enFieldCity) {
+    enFieldCity.placeholder = "City";
+  }
   // if (enAddInputPlaceholder && enFieldRegion){enFieldRegion.placeholder = "TBD";}
-  if (enAddInputPlaceholder && enFieldPostcode) { enFieldPostcode.placeholder = "Postal Code"; }
-  if (enAddInputPlaceholder && enFieldHonname) { enFieldHonname.placeholder = "Honoree Name"; }
-  if (enAddInputPlaceholder && enFieldInfname) { enFieldInfname.placeholder = "Recipient Name"; }
-  if (enAddInputPlaceholder && enFieldInfemail) { enFieldInfemail.placeholder = "Recipient Email Address"; }
-  if (enAddInputPlaceholder && enFieldInfcountry) { enFieldInfcountry.placeholder = "TBD"; }
-  if (enAddInputPlaceholder && enFieldInfadd1) { enFieldInfadd1.placeholder = "Recipient Street Address"; }
-  if (enAddInputPlaceholder && enFieldInfadd2) { enFieldInfadd2.placeholder = "Recipient Apt., ste., bldg."; }
-  if (enAddInputPlaceholder && enFieldInfcity) { enFieldInfcity.placeholder = "Recipient City"; }
-  if (enAddInputPlaceholder && enFieldInfpostcd) { enFieldInfpostcd.placeholder = "Recipient Postal Code"; }
-  if (enAddInputPlaceholder && enFieldGftrsn) { enFieldGftrsn.placeholder = "Reason for your gift"; }
-  if (enAddInputPlaceholder && enFieldCcnumber) { enFieldCcnumber.placeholder = "•••• •••• •••• ••••"; }
-  if (enAddInputPlaceholder && enFieldCcexpire) { enFieldCcexpire.placeholder = "MM / YY"; }
-  if (enAddInputPlaceholder && enFieldCcvv) { enFieldCcvv.placeholder = "CVV"; }
-  if (enAddInputPlaceholder && enFieldBankAccountNumber) { enFieldBankAccountNumber.placeholder = "Bank Account Number"; }
-  if (enAddInputPlaceholder && enFieldBankRoutingNumber) { enFieldBankRoutingNumber.placeholder = "Bank Routing Number"; }
+  if (enAddInputPlaceholder && enFieldPostcode) {
+    enFieldPostcode.placeholder = "Postal Code";
+  }
+  if (enAddInputPlaceholder && enFieldHonname) {
+    enFieldHonname.placeholder = "Honoree Name";
+  }
+  if (enAddInputPlaceholder && enFieldInfname) {
+    enFieldInfname.placeholder = "Recipient Name";
+  }
+  if (enAddInputPlaceholder && enFieldInfemail) {
+    enFieldInfemail.placeholder = "Recipient Email Address";
+  }
+  if (enAddInputPlaceholder && enFieldInfcountry) {
+    enFieldInfcountry.placeholder = "TBD";
+  }
+  if (enAddInputPlaceholder && enFieldInfadd1) {
+    enFieldInfadd1.placeholder = "Recipient Street Address";
+  }
+  if (enAddInputPlaceholder && enFieldInfadd2) {
+    enFieldInfadd2.placeholder = "Recipient Apt., ste., bldg.";
+  }
+  if (enAddInputPlaceholder && enFieldInfcity) {
+    enFieldInfcity.placeholder = "Recipient City";
+  }
+  if (enAddInputPlaceholder && enFieldInfpostcd) {
+    enFieldInfpostcd.placeholder = "Recipient Postal Code";
+  }
+  if (enAddInputPlaceholder && enFieldGftrsn) {
+    enFieldGftrsn.placeholder = "Reason for your gift";
+  }
+  if (enAddInputPlaceholder && enFieldCcnumber) {
+    enFieldCcnumber.placeholder = "•••• •••• •••• ••••";
+  }
+  if (enAddInputPlaceholder && enFieldCcexpire) {
+    enFieldCcexpire.placeholder = "MM / YY";
+  }
+  if (enAddInputPlaceholder && enFieldCcvv) {
+    enFieldCcvv.placeholder = "CVV";
+  }
+  if (enAddInputPlaceholder && enFieldBankAccountNumber) {
+    enFieldBankAccountNumber.placeholder = "Bank Account Number";
+  }
+  if (enAddInputPlaceholder && enFieldBankRoutingNumber) {
+    enFieldBankRoutingNumber.placeholder = "Bank Routing Number";
+  }
 };
 
 export const preventAutocomplete = () => {
-  let enFieldDonationAmt = document.querySelector(".en__field--donationAmt.en__field--withOther .en__field__input--other") as HTMLInputElement;
-  if (enFieldDonationAmt) { enFieldDonationAmt.setAttribute("autocomplete", "off"); }
-  if (enFieldDonationAmt) { enFieldDonationAmt.setAttribute("data-lpignore", "true"); }
-}
+  let enFieldDonationAmt = document.querySelector(
+    ".en__field--donationAmt.en__field--withOther .en__field__input--other"
+  ) as HTMLInputElement;
+  if (enFieldDonationAmt) {
+    enFieldDonationAmt.setAttribute("autocomplete", "off");
+  }
+  if (enFieldDonationAmt) {
+    enFieldDonationAmt.setAttribute("data-lpignore", "true");
+  }
+};
 
 export const watchInmemField = () => {
   const enFieldTransactionInmem = document.getElementById(
@@ -464,8 +575,7 @@ export const watchGiveBySelectField = () => {
         enGrid.classList.add("has-give-by-paypal");
       }
       enFieldPaymentType.value = "paypal";
-    }
-    else if (
+    } else if (
       enFieldGiveBySelectCurrentValue &&
       enFieldGiveBySelectCurrentValue.value.toLowerCase() == "applepay"
     ) {
@@ -522,12 +632,11 @@ export const watchGiveBySelectField = () => {
       }
       enFieldPaymentType.value = "applepay";
     }
-
   }
 
   // Watch each Giving Frequency radio input for a change
   if (transactionGiveBySelect) {
-    Array.from(transactionGiveBySelect).forEach(e => {
+    Array.from(transactionGiveBySelect).forEach((e) => {
       let element = e as HTMLInputElement;
       element.addEventListener("change", handleEnFieldGiveBySelect);
     });
@@ -583,7 +692,7 @@ const getCardType = (cc_partial: string) => {
   const prefix = "live-card-type-";
   const field_credit_card_classes = field_credit_card.className
     .split(" ")
-    .filter(c => !c.startsWith(prefix));
+    .filter((c) => !c.startsWith(prefix));
 
   switch (key_character) {
     case "0":
@@ -639,17 +748,17 @@ const getCardType = (cc_partial: string) => {
 const handleCCUpdate = () => {
   const card_type = getCardType(field_credit_card.value);
   const card_values = {
-    amex: ['amex', 'american express', 'americanexpress', 'amx', 'ax'],
-    visa: ['visa', 'vi'],
-    mastercard: ['mastercard', 'master card', 'mc'],
-    discover: ['discover', 'di']
-  }
+    amex: ["amex", "american express", "americanexpress", "amx", "ax"],
+    visa: ["visa", "vi"],
+    mastercard: ["mastercard", "master card", "mc"],
+    discover: ["discover", "di"],
+  };
   const payment_text =
     field_payment_type.options[field_payment_type.selectedIndex].text;
 
   if (card_type && payment_text != card_type) {
     field_payment_type.value = Array.from(field_payment_type.options).filter(
-      d => card_values[card_type].includes(d.value.toLowerCase())
+      (d) => card_values[card_type].includes(d.value.toLowerCase())
     )[0].value;
   }
 };
@@ -758,7 +867,7 @@ export const contactDetailLabels = () => {
   };
 
   if (contact) {
-    Array.from(contact).forEach(e => {
+    Array.from(contact).forEach((e) => {
       let element = e as HTMLDivElement;
       element.addEventListener("click", recipientChange);
     });
@@ -803,7 +912,7 @@ export const simpleUnsubscribe = () => {
       // console.log("Found forceUnchecl dom elements", forceUncheck);
 
       // Step through each DOM element with forceUncheck looking for checkboxes
-      Array.from(forceUncheck).forEach(e => {
+      Array.from(forceUncheck).forEach((e) => {
         let element = e as HTMLElement;
         // console.log("Checking this formComponent for checkboxes", element);
 
@@ -813,7 +922,7 @@ export const simpleUnsubscribe = () => {
         );
         if (uncheckCheckbox) {
           // Step through each Checkbox in the forceUncheck form component
-          Array.from(uncheckCheckbox).forEach(f => {
+          Array.from(uncheckCheckbox).forEach((f) => {
             let checkbox = f as HTMLInputElement;
             // console.log("Unchecking this checkbox", checkbox);
             // Uncheck the checbox
@@ -858,15 +967,19 @@ const isInViewport = (e: any) => {
     distance.top >= 0 &&
     distance.left >= 0 &&
     distance.bottom <=
-    (window.innerHeight || document.documentElement.clientHeight) &&
+      (window.innerHeight || document.documentElement.clientHeight) &&
     distance.right <=
-    (window.innerWidth || document.documentElement.clientWidth)
+      (window.innerWidth || document.documentElement.clientWidth)
   );
 };
 
 // Checks to see if the page is so short, the footer is above the fold. If the footer is above the folde we'll use this class to ensure at a minimum the page fills the full viewport height.
 if (contentFooter && isInViewport(contentFooter)) {
-  document.getElementsByTagName("BODY")[0].setAttribute("data-engrid-footer-above-fold", "");
+  document
+    .getElementsByTagName("BODY")[0]
+    .setAttribute("data-engrid-footer-above-fold", "");
 } else {
-  document.getElementsByTagName("BODY")[0].setAttribute("data-engrid-footer-below-fold", "");
+  document
+    .getElementsByTagName("BODY")[0]
+    .setAttribute("data-engrid-footer-below-fold", "");
 }

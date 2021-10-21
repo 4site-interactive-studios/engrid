@@ -1,4 +1,4 @@
-import { ENGrid } from './';
+import { ENGrid } from "./";
 
 export const sendIframeHeight = () => {
   let height = document.body.offsetHeight;
@@ -8,7 +8,7 @@ export const sendIframeHeight = () => {
       frameHeight: height,
       pageNumber: ENGrid.getPageNumber(),
       pageCount: ENGrid.getPageCount(),
-      giftProcess: ENGrid.getGiftProcess()
+      giftProcess: ENGrid.getGiftProcess(),
     },
     "*"
   );
@@ -20,7 +20,7 @@ export const sendIframeFormStatus = (status: string) => {
       status: status,
       pageNumber: ENGrid.getPageNumber(),
       pageCount: ENGrid.getPageCount(),
-      giftProcess: ENGrid.getGiftProcess()
+      giftProcess: ENGrid.getGiftProcess(),
     },
     "*"
   );

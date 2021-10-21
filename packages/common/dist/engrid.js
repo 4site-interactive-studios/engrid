@@ -117,7 +117,12 @@ export class ENGrid {
     // Set body engrid data attributes
     static setBodyData(dataName, value) {
         const body = document.querySelector("body");
-        body.setAttribute(`data-engrid-${dataName}`, value);
+        // If value is boolean
+        if (typeof value === "boolean" && value === false) {
+            body.removeAttribute(`data-engrid-${dataName}`);
+            return;
+        }
+        body.setAttribute(`data-engrid-${dataName}`, value.toString());
     }
     // Get body engrid data attributes
     static getBodyData(dataName) {
@@ -186,5 +191,20 @@ export class ENGrid {
             return true;
         }
         return false;
+    }
+    static formatDate(date, format = "MM/DD/YYYY") {
+        const dateAray = date
+            .toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+        })
+            .split("/");
+        const dateString = format
+            .replace(/YYYY/g, dateAray[2])
+            .replace(/MM/g, dateAray[0])
+            .replace(/DD/g, dateAray[1])
+            .replace(/YY/g, dateAray[2].substr(2, 2));
+        return dateString;
     }
 }

@@ -4,41 +4,50 @@
 import { ENGrid } from "./";
 
 export class Deprecated {
+  constructor() {
+    let deprecated;
+    let replacement;
 
-    constructor() {
-        let deprecated;
-        let replacement;
-
-        // Checks for body-side class
-        deprecated = document.querySelector(".body-side") as HTMLDivElement;
-        if (deprecated) {
-            this.warning(deprecated);
-        }
-
-        // Checks for backgroundImage class
-        deprecated = document.querySelector(".backgroundImage") as HTMLDivElement;
-        if (deprecated) {
-            replacement = "background-image"
-            this.replace(deprecated, replacement);
-        }
-
-        // Checks for backgroundImageOverlay class
-        deprecated = document.querySelector(".backgroundImageOverlay") as HTMLDivElement;
-        if (deprecated) {
-            replacement = "background-image-overlay"
-            this.replace(deprecated, replacement);
-        }
+    // Checks for body-side class
+    deprecated = document.querySelector(".body-side") as HTMLDivElement;
+    if (deprecated) {
+      this.warning(deprecated);
     }
 
-    private warning(deprecated: any) {
-        if (ENGrid.debug) console.log("Deprecated: '" + deprecated + "' was detected and nothing was done.");
-    }    
-    
-    private replace(deprecated: any, replacement: any) {
-        if (ENGrid.debug) console.log("Deprecated: '" + deprecated + "' was detected and replaced with '" + replacement + "'.");
-        deprecated.classList.add(replacement);
-        deprecated.classList.remove(deprecated);
+    // Checks for backgroundImage class
+    deprecated = document.querySelector(".backgroundImage") as HTMLDivElement;
+    if (deprecated) {
+      replacement = "background-image";
+      this.replace(deprecated, replacement);
     }
 
+    // Checks for backgroundImageOverlay class
+    deprecated = document.querySelector(
+      ".backgroundImageOverlay"
+    ) as HTMLDivElement;
+    if (deprecated) {
+      replacement = "background-image-overlay";
+      this.replace(deprecated, replacement);
+    }
+  }
+
+  private warning(deprecated: any) {
+    if (ENGrid.debug)
+      console.log(
+        "Deprecated: '" + deprecated + "' was detected and nothing was done."
+      );
+  }
+
+  private replace(deprecated: any, replacement: any) {
+    if (ENGrid.debug)
+      console.log(
+        "Deprecated: '" +
+          deprecated +
+          "' was detected and replaced with '" +
+          replacement +
+          "'."
+      );
+    deprecated.classList.add(replacement);
+    deprecated.classList.remove(deprecated);
+  }
 }
-

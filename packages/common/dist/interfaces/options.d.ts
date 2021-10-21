@@ -13,9 +13,11 @@ export interface Options {
     SrcDefer?: boolean;
     NeverBounceAPI?: string | null;
     NeverBounceDateField?: string | null;
+    NeverBounceDateFormat?: string;
     NeverBounceStatusField?: string | null;
     ProgressBar?: boolean | null;
     AutoYear?: boolean;
+    TranslateFields?: boolean;
     Debug?: boolean;
     RememberMe: boolean | {
         remoteUrl?: string;

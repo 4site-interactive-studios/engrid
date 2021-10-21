@@ -344,7 +344,7 @@ input[type="text"],
 :not(#EN__RootElement) input[type="email"],
 :not(#EN__RootElement) input[type="number"],
 :not(#EN__RootElement) input[type="tel"] {
-  appearance: none;
+  appearance: textfield;
 }
 
 /************************************

@@ -29,7 +29,11 @@ export class Deprecated {
     }
     replace(deprecated, replacement) {
         if (ENGrid.debug)
-            console.log("Deprecated: '" + deprecated + "' was detected and replaced with '" + replacement + "'.");
+            console.log("Deprecated: '" +
+                deprecated +
+                "' was detected and replaced with '" +
+                replacement +
+                "'.");
         deprecated.classList.add(replacement);
         deprecated.classList.remove(deprecated);
     }
