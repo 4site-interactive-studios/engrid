@@ -13,6 +13,7 @@ export interface Options {
   SrcDefer?: boolean;
   NeverBounceAPI?: string | null;
   NeverBounceDateField?: string | null;
+  NeverBounceDateFormat?: string;
   NeverBounceStatusField?: string | null;
   ProgressBar?: boolean | null;
   AutoYear?: boolean;
@@ -40,6 +41,7 @@ export const OptionsDefaults: Options = {
   NeverBounceAPI: null,
   NeverBounceDateField: null,
   NeverBounceStatusField: null,
+  NeverBounceDateFormat: "MM/DD/YYYY",
   ProgressBar: false,
   AutoYear: false,
   TranslateFields: true,

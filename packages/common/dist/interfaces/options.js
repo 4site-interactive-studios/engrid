@@ -13,6 +13,7 @@ export const OptionsDefaults = {
     NeverBounceAPI: null,
     NeverBounceDateField: null,
     NeverBounceStatusField: null,
+    NeverBounceDateFormat: "MM/DD/YYYY",
     ProgressBar: false,
     AutoYear: false,
     TranslateFields: true,

@@ -196,7 +196,8 @@ export class App extends ENGrid {
       new NeverBounce(
         this.options.NeverBounceAPI,
         this.options.NeverBounceDateField,
-        this.options.NeverBounceStatusField
+        this.options.NeverBounceStatusField,
+        this.options.NeverBounceDateFormat
       );
 
     this.setDataAttributes();

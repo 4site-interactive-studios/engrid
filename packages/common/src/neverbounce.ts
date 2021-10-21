@@ -12,7 +12,8 @@ export class NeverBounce {
   constructor(
     private apiKey: string,
     public dateField: string | null = null,
-    public statusField: string | null = null
+    public statusField: string | null = null,
+    public dateFormat: string = "MM/DD/YYYY"
   ) {
     window._NBSettings = {
       apiKey: this.apiKey,
@@ -105,11 +106,10 @@ export class NeverBounce {
             ) {
               NBClass.setEmailStatus("valid");
               if (NBClass.nbDate)
-                NBClass.nbDate.value = new Date().toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "2-digit",
-                  day: "2-digit",
-                });
+                NBClass.nbDate.value = ENGrid.formatDate(
+                  new Date(),
+                  NBClass.dateFormat
+                );
               if (NBClass.nbStatus)
                 NBClass.nbStatus.value = (<CustomEvent>(
                   e

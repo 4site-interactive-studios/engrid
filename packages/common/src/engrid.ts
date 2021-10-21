@@ -220,4 +220,19 @@ export abstract class ENGrid {
     }
     return false;
   }
+  static formatDate(date: Date, format: string = "MM/DD/YYYY") {
+    const dateAray = date
+      .toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      })
+      .split("/");
+    const dateString = format
+      .replace(/YYYY/g, dateAray[2])
+      .replace(/MM/g, dateAray[0])
+      .replace(/DD/g, dateAray[1])
+      .replace(/YY/g, dateAray[2].substr(2, 2));
+    return dateString;
+  }
 }

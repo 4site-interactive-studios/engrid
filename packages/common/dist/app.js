@@ -144,7 +144,7 @@ export class App extends ENGrid {
         if (this.options.ProgressBar)
             new ProgressBar();
         if (this.options.NeverBounceAPI)
-            new NeverBounce(this.options.NeverBounceAPI, this.options.NeverBounceDateField, this.options.NeverBounceStatusField);
+            new NeverBounce(this.options.NeverBounceAPI, this.options.NeverBounceDateField, this.options.NeverBounceStatusField, this.options.NeverBounceDateFormat);
         this.setDataAttributes();
     }
     onLoad() {
