@@ -267,7 +267,7 @@ export class RememberMe {
                     }
                 }
                 else if (field.tagName === 'SELECT') {
-                    this.setFieldValue(field, this.fieldData[this.fieldNames[i]], overwrite);
+                    this.setFieldValue(field, this.fieldData[this.fieldNames[i]], true);
                 }
             }
         }
