@@ -18,5 +18,5 @@ export const OptionsDefaults = {
     AutoYear: false,
     TranslateFields: true,
     Debug: false,
-    RememberMe: false
+    RememberMe: false,
 };

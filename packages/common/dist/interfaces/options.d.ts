@@ -19,7 +19,7 @@ export interface Options {
     AutoYear?: boolean;
     TranslateFields?: boolean;
     Debug?: boolean;
-    RememberMe: boolean | {
+    RememberMe?: boolean | {
         remoteUrl?: string;
         cookieName?: string;
         cookieExpirationDays?: number;
