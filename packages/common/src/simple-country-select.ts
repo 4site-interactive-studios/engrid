@@ -1,4 +1,5 @@
 // This class works when the user has added ".simple_country_select" as a class in page builder for the Country select
+import * as cookie from "./cookie";
 export class SimpleCountrySelect {
   public countryWrapper: HTMLDivElement = document.querySelector(
     ".simple_country_select"
@@ -11,16 +12,20 @@ export class SimpleCountrySelect {
   });
   private country = null;
   constructor() {
-    fetch("https://www.cloudflare.com/cdn-cgi/trace")
-      .then((res) => res.text())
-      .then((t) => {
-        let data = t.replace(/[\r\n]+/g, '","').replace(/\=+/g, '":"');
-        data = '{"' + data.slice(0, data.lastIndexOf('","')) + '"}';
-        const jsondata = JSON.parse(data);
-        this.country = jsondata.loc;
-        this.init();
-        // console.log("Country:", this.country);
-      });
+    const engridAutofill = cookie.get("engrid-autofill");
+    // Only run if there's no engrid-autofill cookie
+    if (!engridAutofill) {
+      fetch("https://www.cloudflare.com/cdn-cgi/trace")
+        .then((res) => res.text())
+        .then((t) => {
+          let data = t.replace(/[\r\n]+/g, '","').replace(/\=+/g, '":"');
+          data = '{"' + data.slice(0, data.lastIndexOf('","')) + '"}';
+          const jsondata = JSON.parse(data);
+          this.country = jsondata.loc;
+          this.init();
+          // console.log("Country:", this.country);
+        });
+    }
   }
 
   private init() {
