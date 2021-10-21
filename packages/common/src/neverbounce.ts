@@ -13,7 +13,7 @@ export class NeverBounce {
     private apiKey: string,
     public dateField: string | null = null,
     public statusField: string | null = null,
-    public dateFormat: string = "MM/DD/YYYY"
+    public dateFormat: string
   ) {
     window._NBSettings = {
       apiKey: this.apiKey,

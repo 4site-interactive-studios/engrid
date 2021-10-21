@@ -1,7 +1,7 @@
 import { ENGrid } from "./";
 import { EnForm } from "./events";
 export class NeverBounce {
-    constructor(apiKey, dateField = null, statusField = null, dateFormat = "MM/DD/YYYY") {
+    constructor(apiKey, dateField = null, statusField = null, dateFormat) {
         this.apiKey = apiKey;
         this.dateField = dateField;
         this.statusField = statusField;
