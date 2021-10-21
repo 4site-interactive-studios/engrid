@@ -19,6 +19,21 @@ export interface Options {
   AutoYear?: boolean;
   TranslateFields?: boolean;
   Debug?: boolean;
+  RememberMe: boolean | {
+    remoteUrl?: string,
+    cookieName?: string,
+    cookieExpirationDays?: number,
+    fieldNames?: string[],
+    fieldDonationAmountRadioName?: string,
+    fieldDonationAmountOtherName?: string,
+    fieldDonationRecurrPayRadioName?: string,
+    fieldDonationAmountOtherCheckboxID?: string,
+    fieldOptInSelectorTarget?: string,
+    fieldOptInSelectorTargetLocation?: string,
+    fieldClearSelectorTarget?: string,
+    fieldClearSelectorTargetLocation?: string,
+    checked?: boolean
+  };
   onLoad?: () => void;
   onResize?: () => void;
   onSubmit?: () => void;
@@ -46,4 +61,5 @@ export const OptionsDefaults: Options = {
   AutoYear: false,
   TranslateFields: true,
   Debug: false,
+  RememberMe: false
 };
