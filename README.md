@@ -1,12 +1,12 @@
 ![#](https://raw.githubusercontent.com/4site-interactive-studios/engrid/master/hero.jpg)
 
-# 4Site's ENGrid Page Template Framework
+# 4Site's ENgrid Page Template Framework
 
 <img align="right" width="200" height="200" src="https://engagingnetworks.academy/wp-content/uploads/2019/09/D-D-Partner.png">
 
 This project started as a labor of love for our clients and ourselves. Originating in 2017 as a partnership between Engaging Networks and 4Site Studios to create the first freely available page templates for their platform; we created [Engaging Networks Page Template](https://github.com/4site-interactive-studios/Engaging-Networks-Page-Template). That project was incredibly successful, and those templates are still used today for all new Engaging Networks clients. They're easy for junior developers and code dabblers to ease into, and they include Internet Explorer 11 support.
 
-Since then, we've continued to enhance and refine our work, culminating in a complete re-write in late 2019 that was named "ENGrid". Making use of today's latest web technologies Webpack, Typescript, ES6, SCSS, CSS Grids, we've created a new framework for marketers, fundraisers, and everyone in between that will ensure your pages stand out and deliver the performance you're looking for.
+Since then, we've continued to enhance and refine our work, culminating in a complete re-write in late 2019 that was named "ENgrid". Making use of today's latest web technologies Webpack, Typescript, ES6, SCSS, CSS Grids, we've created a new framework for marketers, fundraisers, and everyone in between that will ensure your pages stand out and deliver the performance you're looking for.
 
 Designed and Developed by [4Site Studios](http://4sitestudios.com/en?ms=github) while working with:
 
@@ -28,7 +28,7 @@ Designed and Developed by [4Site Studios](http://4sitestudios.com/en?ms=github) 
 - Saint Anthony's Guild (Friar Works)
 - Save Tibet via Schultz and Williams
 
-## ENGrid Features
+## ENgrid Features
 
 - Works with all page types (e.g. Donation, e-Card, Email to Target, Event, etc..)
 - Auto Credit Card Type selection based on Credit Card Number
@@ -61,11 +61,11 @@ Designed and Developed by [4Site Studios](http://4sitestudios.com/en?ms=github) 
 - All pages using our page template can be seamlessly embedded in your website with Shortcodes using our WordPress iFrame embed plugin\
 - Developer and Editor documentation
 
-## ENGrid Resources
+## ENgrid Resources
 
-- [ENGrid Github Repository](https://github.com/4site-interactive-studios/engrid/)
-- [ENGrid Documentation](https://docs.google.com/document/d/1Vhiudjm9pcDIgxirsiS7VWhqgqU_a6taVu2VTMOPbHI/edit)
-- [ENGrid Installation Instructions](https://github.com/4site-interactive-studios/engrid/wiki/ENGrid-Installation-Instructions)
+- [ENgrid Github Repository](https://github.com/4site-interactive-studios/engrid/)
+- [ENgrid Documentation](https://docs.google.com/document/d/1Vhiudjm9pcDIgxirsiS7VWhqgqU_a6taVu2VTMOPbHI/edit)
+- [ENgrid Installation Instructions](https://github.com/4site-interactive-studios/engrid/wiki/ENgrid-Installation-Instructions)
 - [Engaging Networks Email Template](https://github.com/4site-interactive-studios/Engaging-Networks-Email-Template)
 - [Community Run EN Slack Channel](https://join.slack.com/t/endevelopers/shared_invite/enQtNTgyMDU5NDEzOTQxLWM1YjkwYmM2NjcxODdhNjI4MmRhMjI1ZTJlNzZlYTM5MmI4OTg3NTlhZTljMDMyMjczZmYyNTBjZmM4ZDY4MTA)
 
