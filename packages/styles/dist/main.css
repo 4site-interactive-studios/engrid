@@ -1110,7 +1110,7 @@ body[data-engrid-debug]:before {
 
 .en__contactMessage,
 .en__contactSubject {
-  padding-top: 0.625rem; }
+  margin-top: 0.625rem; }
 
 .en__contactMessage__htmlDisplay {
   background: var(--color_white); }
