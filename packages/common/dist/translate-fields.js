@@ -1,8 +1,10 @@
 import { TranslateOptionsDefaults } from ".";
+import * as cookie from "./cookie";
 // This class works when the user has added ".simple_country_select" as a class in page builder for the Country select
 export class TranslateFields {
     constructor() {
         this.countrySelect = document.querySelector("#en__field_supporter_country");
+        this.stateField = document.querySelector("#en__field_supporter_region");
         let options = "EngridTranslate" in window ? window.EngridTranslate : {};
         this.options = TranslateOptionsDefaults;
         if (options) {
@@ -12,6 +14,9 @@ export class TranslateFields {
         }
         if (this.countrySelect) {
             this.countrySelect.addEventListener("change", this.translateFields.bind(this));
+        }
+        if (this.stateField) {
+            this.stateField.addEventListener("change", this.rememberState.bind(this));
         }
     }
     translateFields() {
@@ -287,6 +292,79 @@ export class TranslateFields {
                     { label: "Yukon", value: "Yukon" },
                 ]);
                 break;
+            case "MX":
+            case "MEX":
+                this.setStateValues("Province", [
+                    { label: "Select Province", value: "" },
+                    { label: "Aguascalientes", value: "AGU" },
+                    { label: "Baja California", value: "BCN" },
+                    { label: "Baja California Sur", value: "BCS" },
+                    { label: "Campeche", value: "CAM" },
+                    { label: "Chiapas", value: "CHP" },
+                    { label: "Ciudad de Mexico", value: "CMX" },
+                    { label: "Chihuahua", value: "CHH" },
+                    { label: "Coahuila", value: "COA" },
+                    { label: "Colima", value: "COL" },
+                    { label: "Durango", value: "DUR" },
+                    { label: "Guanajuato", value: "GUA" },
+                    { label: "Guerrero", value: "GRO" },
+                    { label: "Hidalgo", value: "HID" },
+                    { label: "Jalisco", value: "JAL" },
+                    { label: "Michoacan", value: "MIC" },
+                    { label: "Morelos", value: "MOR" },
+                    { label: "Nayarit", value: "NAY" },
+                    { label: "Nuevo Leon", value: "NLE" },
+                    { label: "Oaxaca", value: "OAX" },
+                    { label: "Puebla", value: "PUE" },
+                    { label: "Queretaro", value: "QUE" },
+                    { label: "Quintana Roo", value: "ROO" },
+                    { label: "San Luis Potosi", value: "SLP" },
+                    { label: "Sinaloa", value: "SIN" },
+                    { label: "Sonora", value: "SON" },
+                    { label: "Tabasco", value: "TAB" },
+                    { label: "Tamaulipas", value: "TAM" },
+                    { label: "Tlaxcala", value: "TLA" },
+                    { label: "Veracruz", value: "VER" },
+                    { label: "Yucatan", value: "YUC" },
+                    { label: "Zacatecas", value: "ZAC" },
+                ]);
+                break;
+            case "Mexico":
+                this.setStateValues("Province", [
+                    { label: "Select Province", value: "" },
+                    { label: "Aguascalientes", value: "Aguascalientes" },
+                    { label: "Baja California", value: "Baja California" },
+                    { label: "Baja California Sur", value: "Baja California Sur" },
+                    { label: "Campeche", value: "Campeche" },
+                    { label: "Chiapas", value: "Chiapas" },
+                    { label: "Ciudad de Mexico", value: "Ciudad de Mexico" },
+                    { label: "Chihuahua", value: "Chihuahua" },
+                    { label: "Coahuila", value: "Coahuila" },
+                    { label: "Colima", value: "Colima" },
+                    { label: "Durango", value: "Durango" },
+                    { label: "Guanajuato", value: "Guanajuato" },
+                    { label: "Guerrero", value: "Guerrero" },
+                    { label: "Hidalgo", value: "Hidalgo" },
+                    { label: "Jalisco", value: "Jalisco" },
+                    { label: "Michoacan", value: "Michoacan" },
+                    { label: "Morelos", value: "Morelos" },
+                    { label: "Nayarit", value: "Nayarit" },
+                    { label: "Nuevo Leon", value: "Nuevo Leon" },
+                    { label: "Oaxaca", value: "Oaxaca" },
+                    { label: "Puebla", value: "Puebla" },
+                    { label: "Queretaro", value: "Queretaro" },
+                    { label: "Quintana Roo", value: "Quintana Roo" },
+                    { label: "San Luis Potosi", value: "San Luis Potosi" },
+                    { label: "Sinaloa", value: "Sinaloa" },
+                    { label: "Sonora", value: "Sonora" },
+                    { label: "Tabasco", value: "Tabasco" },
+                    { label: "Tamaulipas", value: "Tamaulipas" },
+                    { label: "Tlaxcala", value: "Tlaxcala" },
+                    { label: "Veracruz", value: "Veracruz" },
+                    { label: "Yucatan", value: "Yucatan" },
+                    { label: "Zacatecas", value: "Zacatecas" },
+                ]);
+                break;
             default:
                 this.setStateValues("Province/State", null);
                 break;
@@ -302,6 +380,7 @@ export class TranslateFields {
                 stateLabel.innerHTML = label;
             }
             if (elementWrapper) {
+                const selectedState = cookie.get("engrid-state");
                 if (values === null || values === void 0 ? void 0 : values.length) {
                     const select = document.createElement("select");
                     select.name = "supporter.region";
@@ -313,10 +392,14 @@ export class TranslateFields {
                         const option = document.createElement("option");
                         option.value = value.value;
                         option.innerHTML = value.label;
+                        if (selectedState === value.value) {
+                            option.selected = true;
+                        }
                         select.appendChild(option);
                     });
                     elementWrapper.innerHTML = "";
                     elementWrapper.appendChild(select);
+                    select.addEventListener("change", this.rememberState.bind(this));
                 }
                 else {
                     elementWrapper.innerHTML = "";
@@ -328,9 +411,21 @@ export class TranslateFields {
                     input.classList.add("en__field__input");
                     input.classList.add("en__field__input--text");
                     input.autocomplete = "address-level1";
+                    if (selectedState) {
+                        input.value = selectedState;
+                    }
                     elementWrapper.appendChild(input);
+                    input.addEventListener("change", this.rememberState.bind(this));
                 }
             }
+        }
+    }
+    rememberState() {
+        const stateField = document.querySelector("#en__field_supporter_region");
+        if (stateField) {
+            cookie.set("engrid-state", stateField.value, {
+                expires: 1,
+            });
         }
     }
 }

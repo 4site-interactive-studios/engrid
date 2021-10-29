@@ -30,7 +30,7 @@ import {
   AutoYear,
   Autocomplete,
   RememberMe,
-  TranslateFields
+  TranslateFields,
 } from "./";
 
 export class App extends ENGrid {
@@ -194,7 +194,8 @@ export class App extends ENGrid {
     if (this.options.ProgressBar) new ProgressBar();
 
     // RememberMe
-    if (this.options.RememberMe && typeof this.options.RememberMe === 'object') new RememberMe(this.options.RememberMe);
+    if (this.options.RememberMe && typeof this.options.RememberMe === "object")
+      new RememberMe(this.options.RememberMe);
 
     if (this.options.NeverBounceAPI)
       new NeverBounce(
@@ -391,6 +392,18 @@ export class App extends ENGrid {
     // Add a page-customCode data attribute if it is empty
     if (!document.querySelector(".page-customCode *")) {
       App.setBodyData("no-page-customCode", "");
+    }
+
+    // Add a country data attribute
+    const countrySelect: HTMLSelectElement = document.querySelector(
+      "#en__field_supporter_country"
+    ) as HTMLSelectElement;
+
+    if (countrySelect) {
+      App.setBodyData("country", countrySelect.value);
+      countrySelect.addEventListener("change", () => {
+        App.setBodyData("country", countrySelect.value);
+      });
     }
   }
 }

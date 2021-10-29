@@ -1,5 +1,6 @@
 export declare class TranslateFields {
     countrySelect: HTMLSelectElement;
+    stateField: HTMLInputElement;
     private options;
     constructor();
     private translateFields;
@@ -7,4 +8,5 @@ export declare class TranslateFields {
     private resetTranslatedFields;
     private setStateField;
     private setStateValues;
+    private rememberState;
 }
