@@ -10,7 +10,8 @@ export class SimpleCountrySelect {
         this.country = null;
         const engridAutofill = cookie.get("engrid-autofill");
         // Only run if there's no engrid-autofill cookie
-        if (!engridAutofill) {
+        if (!engridAutofill &&
+            !window.EngagingNetworks.require._defined.enjs.checkSubmissionFailed()) {
             fetch("https://www.cloudflare.com/cdn-cgi/trace")
                 .then((res) => res.text())
                 .then((t) => {
