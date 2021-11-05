@@ -1,5 +1,6 @@
 // This class works when the user has added ".simple_country_select" as a class in page builder for the Country select
 import * as cookie from "./cookie";
+import { ENGrid } from ".";
 export class SimpleCountrySelect {
     constructor() {
         this.countryWrapper = document.querySelector(".simple_country_select");
@@ -9,10 +10,10 @@ export class SimpleCountrySelect {
         });
         this.country = null;
         const engridAutofill = cookie.get("engrid-autofill");
+        const submissionFailed = !!(ENGrid.checkNested(window.EngagingNetworks, "require", "_defined", "enjs", "checkSubmissionFailed") && window.EngagingNetworks.require._defined.enjs.checkSubmissionFailed());
         // Only run if there's no engrid-autofill cookie
-        if (!engridAutofill &&
-            !window.EngagingNetworks.require._defined.enjs.checkSubmissionFailed()) {
-            fetch("https://www.cloudflare.com/cdn-cgi/trace")
+        if (!engridAutofill && !submissionFailed) {
+            fetch(`https://${window.location.hostname}/cdn-cgi/trace`)
                 .then((res) => res.text())
                 .then((t) => {
                 let data = t.replace(/[\r\n]+/g, '","').replace(/\=+/g, '":"');

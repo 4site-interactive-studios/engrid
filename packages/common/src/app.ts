@@ -59,8 +59,12 @@ export class App extends ENGrid {
       });
     }
     // Window Load
-    window.onload = () => {
+    let onLoad = typeof window.onload === "function" ? window.onload : null;
+    window.onload = (e: Event) => {
       this.onLoad();
+      if (onLoad) {
+        onLoad.bind(window, e);
+      }
     };
     // Window Resize
     window.onresize = () => {

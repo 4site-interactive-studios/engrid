@@ -20,4 +20,10 @@ export declare abstract class ENGrid {
     static disableSubmit(label?: string): boolean;
     static enableSubmit(): boolean;
     static formatDate(date: Date, format?: string): string;
+    /**
+     * Check if the provided object has ALL the provided properties
+     * Example: checkNested(EngagingNetworks, 'require', '_defined', 'enjs', 'checkSubmissionFailed')
+     * will return true if EngagingNetworks.require._defined.enjs.checkSubmissionFailed is defined
+     */
+    static checkNested(obj: any, ...args: string[]): boolean;
 }

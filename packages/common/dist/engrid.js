@@ -207,4 +207,18 @@ export class ENGrid {
             .replace(/YY/g, dateAray[2].substr(2, 2));
         return dateString;
     }
+    /**
+     * Check if the provided object has ALL the provided properties
+     * Example: checkNested(EngagingNetworks, 'require', '_defined', 'enjs', 'checkSubmissionFailed')
+     * will return true if EngagingNetworks.require._defined.enjs.checkSubmissionFailed is defined
+     */
+    static checkNested(obj, ...args) {
+        for (let i = 0; i < args.length; i++) {
+            if (!obj || !obj.hasOwnProperty(args[i])) {
+                return false;
+            }
+            obj = obj[args[i]];
+        }
+        return true;
+    }
 }
