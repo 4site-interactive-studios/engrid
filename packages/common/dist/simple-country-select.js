@@ -38,7 +38,7 @@ export class SimpleCountrySelect {
                 countrySelectValue.toUpperCase() == "USA") {
                 countrySelectValue = " US";
             }
-            if (countrySelectValue.toUpperCase() == "United States") {
+            if (countrySelectValue.toUpperCase() == "UNITED STATES") {
                 countrySelectLabel = "the US";
             }
             let countryWrapper = document.querySelector(".simple_country_select");
