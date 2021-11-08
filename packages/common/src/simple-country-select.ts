@@ -57,7 +57,7 @@ export class SimpleCountrySelect {
         countrySelectValue = " US";
       }
 
-      if (countrySelectValue.toUpperCase() == "United States") {
+      if (countrySelectValue.toUpperCase() == "UNITED STATES") {
         countrySelectLabel = "the US";
       }
 
