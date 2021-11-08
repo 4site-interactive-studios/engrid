@@ -50,12 +50,12 @@ export class SimpleCountrySelect {
         this.countrySelect.options[this.countrySelect.selectedIndex].value;
 
       // @TODO Update so that it reads "(Outside X?)" where X is the Value of the Country Select. No need for long form version of it.
-      if (countrySelectValue == "US") {
+      if (countrySelectValue == "US" || "us" || "USA" || "usa") {
         countrySelectValue = " US";
       }
 
-      if (countrySelectLabel == "United States") {
-        countrySelectLabel = "the United States";
+      if (countrySelectLabel == "United States" || "united states") {
+        countrySelectLabel = "the US";
       }
 
       let countryWrapper = document.querySelector(".simple_country_select");
