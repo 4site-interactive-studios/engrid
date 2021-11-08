@@ -4,6 +4,13 @@
    * .simple_country_select
    ***********************************/
 
+// Hide the Country field until it's marked for visibility
+body:not(#en__pagebuilder)
+  .simple_country_select:not(.country-select-visible)
+  .en__field--country {
+  display: none;
+}
+
 .simple_country_select .en__field--address1 label {
   flex-wrap: wrap;
 
@@ -15,18 +22,6 @@
     &:focus,
     &:hover {
       color: var(--a_color_hover);
-    }
-  }
-}
-
-body:not(#en__pagebuilder) .simple_country_select {
-  .en__field--country {
-    display: none;
-  }
-
-  &.country-select-visible {
-    .en__field--country {
-      display: flex;
     }
   }
 }
