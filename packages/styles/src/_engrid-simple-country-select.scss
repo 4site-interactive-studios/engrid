@@ -3,12 +3,30 @@
    * // Depends on corresponding JS library
    * .simple_country_select
    ***********************************/
-.simple_country_select .en__field--address1 label a {
-  cursor: pointer;
-  color: var(--a_color);
+
+.simple_country_select .en__field--address1 label {
+  flex-wrap: wrap;
+
+  a {
+    cursor: pointer;
+    color: var(--a_color);
+    text-align: right;
+
+    &:focus,
+    &:hover {
+      color: var(--a_color_hover);
+    }
+  }
 }
 
-.simple_country_select .en__field--address1 label a:focus,
-.simple_country_select .en__field--address1 label a:hover {
-  color: var(--a_color_hover);
+body:not(#en__pagebuilder) .simple_country_select {
+  .en__field--country {
+    display: none;
+  }
+
+  &.country-select-visible {
+    .en__field--country {
+      display: flex;
+    }
+  }
 }
