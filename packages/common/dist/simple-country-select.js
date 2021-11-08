@@ -34,10 +34,11 @@ export class SimpleCountrySelect {
             let countrySelectLabel = this.countrySelect.options[this.countrySelect.selectedIndex].innerHTML;
             let countrySelectValue = this.countrySelect.options[this.countrySelect.selectedIndex].value;
             // @TODO Update so that it reads "(Outside X?)" where X is the Value of the Country Select. No need for long form version of it.
-            if (countrySelectValue == "US" || "us" || "USA" || "usa") {
+            if (countrySelectValue.toUpperCase() == "US" ||
+                countrySelectValue.toUpperCase() == "USA") {
                 countrySelectValue = " US";
             }
-            if (countrySelectLabel == "United States" || "united states") {
+            if (countrySelectValue.toUpperCase() == "United States") {
                 countrySelectLabel = "the US";
             }
             let countryWrapper = document.querySelector(".simple_country_select");
