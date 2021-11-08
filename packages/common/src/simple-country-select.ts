@@ -78,7 +78,7 @@ export class SimpleCountrySelect {
           let newEl = document.createElement("span");
           newEl.innerHTML =
             '<label><a href="javascript:void(0)">(Outside ' +
-            countrySelectLabel +
+            countrySelectValue +
             "?)</a>";
           addressLabel.innerHTML = `${labelText}${newEl.innerHTML}`;
           addressLabel.querySelectorAll("a").forEach((el) => {
