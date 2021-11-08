@@ -115,6 +115,25 @@ $centercenter2col_body-column_offset-width-remaining: $centercenter2col_content-
       }
     }
 
+    // Let the Banner Span the full width of the two body content columns
+    &[data-engrid-layout_banner="grid-column_bc"] {
+      form > .en__component--advrow {
+        .body-banner,
+        .body-bannerOverlay {
+          grid-column: bc;
+        }
+
+        .body-title,
+        .body-main {
+          grid-row-start: body-bannerOverlay-end;
+        }
+
+        .body-top {
+          grid-row-start: body-title-end;
+        }
+      }
+    }
+
     // The Free and Flexible Template has no need for a right margin on the second column when displayed on desktop
     #engrid > .en__component--advrow .en__component--column--2 {
       .en__component--formblock,
