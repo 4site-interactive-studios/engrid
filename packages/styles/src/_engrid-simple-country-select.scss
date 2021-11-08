@@ -11,6 +11,7 @@ body:not(#en__pagebuilder)
   display: none;
 }
 
+// Show and style the Simple Country Select label
 .simple_country_select .en__field--address1 label {
   flex-wrap: wrap;
 
@@ -24,4 +25,9 @@ body:not(#en__pagebuilder)
       color: var(--a_color_hover);
     }
   }
+}
+
+// Hide the Simple Country Select label once the Country field is visible
+.simple_country_select.country-select-visible .en__field--address1 label label {
+  display: none;
 }

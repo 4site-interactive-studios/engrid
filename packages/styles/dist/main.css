@@ -5107,6 +5107,9 @@ body:not(#en__pagebuilder)
     .simple_country_select .en__field--address1 label a:focus, .simple_country_select .en__field--address1 label a:hover {
       color: var(--a_color_hover); }
 
+.simple_country_select.country-select-visible .en__field--address1 label label {
+  display: none; }
+
 .en__component--socialshareblock {
   display: flex;
   align-items: center;
