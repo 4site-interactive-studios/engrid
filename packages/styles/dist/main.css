@@ -5891,6 +5891,14 @@ body:not(#en__pagebuilder)[data-engrid-no-page-customCode]
       grid-row: body-top-start / body-footer-start; }
     [data-engrid-layout="centercenter2col"] form > .en__component--advrow .body-main {
       grid-row: body-header-end / body-main-end; }
+    [data-engrid-layout="centercenter2col"][data-engrid-layout_banner="grid-column_bc"] form > .en__component--advrow .body-banner,
+    [data-engrid-layout="centercenter2col"][data-engrid-layout_banner="grid-column_bc"] form > .en__component--advrow .body-bannerOverlay {
+      grid-column: bc; }
+    [data-engrid-layout="centercenter2col"][data-engrid-layout_banner="grid-column_bc"] form > .en__component--advrow .body-title,
+    [data-engrid-layout="centercenter2col"][data-engrid-layout_banner="grid-column_bc"] form > .en__component--advrow .body-main {
+      grid-row-start: body-bannerOverlay-end; }
+    [data-engrid-layout="centercenter2col"][data-engrid-layout_banner="grid-column_bc"] form > .en__component--advrow .body-top {
+      grid-row-start: body-title-end; }
     [data-engrid-layout="centercenter2col"] #engrid > .en__component--advrow .en__component--column--2 .en__component--formblock,
     [data-engrid-layout="centercenter2col"] #engrid > .en__component--advrow .en__component--column--2 .en__component--svblock {
       margin-right: 0; }
