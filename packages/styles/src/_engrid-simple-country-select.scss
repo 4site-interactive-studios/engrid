@@ -3,37 +3,31 @@
    * // Depends on corresponding JS library
    * .simple_country_select
    ***********************************/
-#en_custom_field_simple_country_select_long a,
-#en_custom_field_simple_country_select_short a {
-  cursor: pointer;
-}
 
-#en_custom_field_simple_country_select_short {
-  display: none;
-  @media (max-width: 600px) {
-    display: initial;
-  }
-}
-
-.en__component--formblock.country-select-visible .en__field--address1 span {
-  display: none;
-}
-body:not(#en__pagebuilder) .simple_country_select {
+// Hide the Country field until it's marked for visibility
+body:not(#en__pagebuilder)
+  .simple_country_select:not(.country-select-visible)
   .en__field--country {
-    display: none;
-  }
-
-  &.country-select-visible .en__field--country {
-    display: flex;
-  }
-}
-.country-select-visible #en_custom_field_simple_country_select_short,
-.country-select-visible #en_custom_field_simple_country_select_long {
   display: none;
 }
-@media (max-width: 600px) {
-  /* Hides long form country select */
-  #en_custom_field_simple_country_select_long {
-    display: none;
+
+// Show and style the Simple Country Select label
+.simple_country_select .en__field--address1 label {
+  flex-wrap: wrap;
+
+  a {
+    cursor: pointer;
+    color: var(--a_color);
+    text-align: right;
+
+    &:focus,
+    &:hover {
+      color: var(--a_color_hover);
+    }
   }
+}
+
+// Hide the Simple Country Select label once the Country field is visible
+.simple_country_select.country-select-visible .en__field--address1 label label {
+  display: none;
 }

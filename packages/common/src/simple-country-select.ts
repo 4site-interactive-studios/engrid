@@ -50,12 +50,12 @@ export class SimpleCountrySelect {
         this.countrySelect.options[this.countrySelect.selectedIndex].value;
 
       // @TODO Update so that it reads "(Outside X?)" where X is the Value of the Country Select. No need for long form version of it.
-      if (countrySelectValue == "US") {
-        countrySelectValue = " US";
-      }
-
-      if (countrySelectLabel == "United States") {
-        countrySelectLabel = "the United States";
+      if (
+        countrySelectValue.toUpperCase() == "US" ||
+        countrySelectValue.toUpperCase() == "USA" ||
+        countrySelectValue.toUpperCase() == "UNITED STATES"
+      ) {
+        countrySelectValue = "the US";
       }
 
       let countryWrapper = document.querySelector(".simple_country_select");
@@ -74,23 +74,16 @@ export class SimpleCountrySelect {
         if (addressLabel) {
           let labelText = addressLabel.innerHTML;
 
-          // Wrap the address label in a div to break out of the flexbox
-          this.wrap(addressLabel, document.createElement("div"));
-
           // Add our link INSIDE the address label
-          // Includes both long form and short form variants
           let newEl = document.createElement("span");
           newEl.innerHTML =
-            ' <label id="en_custom_field_simple_country_select_long" class="en__field__label"><a href="javascript:void(0)">(Outside ' +
-            countrySelectLabel +
-            '?)</a></label><label id="en_custom_field_simple_country_select_short" class="en__field__label"><a href="javascript:void(0)">(Outside ' +
+            '<label><a href="javascript:void(0)">(Outside ' +
             countrySelectValue +
             "?)</a></label>";
           addressLabel.innerHTML = `${labelText}${newEl.innerHTML}`;
           addressLabel.querySelectorAll("a").forEach((el) => {
             el.addEventListener("click", this.showCountrySelect.bind(this));
           });
-          //this.insertAfter(newEl, addressLabel);
         }
       }
     }
