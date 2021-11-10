@@ -6924,6 +6924,7 @@ body:not(#en__pagebuilder)[data-engrid-no-page-customCode]
   border-radius: 4px;
   font-size: 14px;
   line-height: 1.4;
+  white-space: normal;
   outline: 0;
   transition-property: transform,visibility,opacity; }
 
