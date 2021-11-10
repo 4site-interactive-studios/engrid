@@ -54,7 +54,7 @@ export class SimpleCountrySelect {
                     newEl.innerHTML =
                         '<label><a href="javascript:void(0)">(Outside ' +
                             countrySelectValue +
-                            "?)</a>";
+                            "?)</a></label>";
                     addressLabel.innerHTML = `${labelText}${newEl.innerHTML}`;
                     addressLabel.querySelectorAll("a").forEach((el) => {
                         el.addEventListener("click", this.showCountrySelect.bind(this));
