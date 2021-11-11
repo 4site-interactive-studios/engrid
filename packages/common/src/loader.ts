@@ -65,26 +65,9 @@ export class Loader {
           assets +
           "/dist/engrid.css";
     }
-    if (!engrid_js_url) {
-      engrid_js_url = engrid_en_assets_url
-        ? engrid_en_assets_url + "/engrid.min.js"
-        : "https://cdn.jsdelivr.net/gh/" +
-          engrid_repo_owner +
-          "/" +
-          engrid_repo +
-          "@main/dist/engrid.js";
-    }
-    if (!engrid_css_url) {
-      engrid_css_url = engrid_en_assets_url
-        ? engrid_en_assets_url + "/engrid.min.css"
-        : "https://cdn.jsdelivr.net/gh/" +
-          engrid_repo_owner +
-          "/" +
-          engrid_repo +
-          "@main/dist/engrid.css";
-    }
     this.setCssFile(engrid_css_url);
     this.setJsFile(engrid_js_url);
+    this.jsElement?.remove();
     return true;
   }
   private getOption(key: keyof Window["EngridLoader"]) {

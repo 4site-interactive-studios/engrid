@@ -8,7 +8,7 @@ export class Loader {
     // Returns true if ENgrid should reload (that means the current ENgrid is not the right one)
     // Returns false if ENgrid should not reload (that means the current ENgrid is the right one)
     reload() {
-        var _a, _b;
+        var _a, _b, _c;
         const isLoaded = ENGrid.getBodyData("loaded");
         const assets = this.getOption("assets");
         if (!assets || isLoaded) {
@@ -72,26 +72,9 @@ export class Loader {
                         assets +
                         "/dist/engrid.css";
         }
-        if (!engrid_js_url) {
-            engrid_js_url = engrid_en_assets_url
-                ? engrid_en_assets_url + "/engrid.min.js"
-                : "https://cdn.jsdelivr.net/gh/" +
-                    engrid_repo_owner +
-                    "/" +
-                    engrid_repo +
-                    "@main/dist/engrid.js";
-        }
-        if (!engrid_css_url) {
-            engrid_css_url = engrid_en_assets_url
-                ? engrid_en_assets_url + "/engrid.min.css"
-                : "https://cdn.jsdelivr.net/gh/" +
-                    engrid_repo_owner +
-                    "/" +
-                    engrid_repo +
-                    "@main/dist/engrid.css";
-        }
         this.setCssFile(engrid_css_url);
         this.setJsFile(engrid_js_url);
+        (_c = this.jsElement) === null || _c === void 0 ? void 0 : _c.remove();
         return true;
     }
     getOption(key) {
