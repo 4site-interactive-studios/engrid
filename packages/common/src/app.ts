@@ -5,6 +5,7 @@ import {
   ProcessingFees,
 } from "./events";
 import {
+  Loader,
   ProgressBar,
   UpsellLightbox,
   ENGrid,
@@ -47,9 +48,12 @@ export class App extends ENGrid {
 
   constructor(options: Options) {
     super();
+    const loader = new Loader();
     this.options = { ...OptionsDefaults, ...options };
     // Add Options to window
     window.EngridOptions = this.options;
+    if (loader.reload()) return;
+
     // Document Load
     if (document.readyState !== "loading") {
       this.run();

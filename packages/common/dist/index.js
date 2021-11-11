@@ -2,6 +2,7 @@ export * from "./deprecated"; // Runs first so it can change the DOM markup befo
 export { OptionsDefaults } from "./interfaces/options";
 export { UpsellOptionsDefaults, } from "./interfaces/upsell-options";
 export { TranslateOptionsDefaults, } from "./interfaces/translate-options";
+export * from "./loader";
 export * from "./app";
 export * from "./engrid";
 export * from "./apple-pay";

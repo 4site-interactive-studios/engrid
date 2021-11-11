@@ -14,6 +14,12 @@ declare global {
     EngridOptions: Options;
     EngridUpsell: UpsellOptions;
     EngridTranslate: TranslateOptions;
+    EngridLoader: {
+      "repo-name"?: string;
+      "repo-owner"?: string;
+      assets?: string;
+      "en-assets-url"?: string;
+    };
     _NBSettings: object;
     _nb: any;
   }
