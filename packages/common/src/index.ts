@@ -10,6 +10,7 @@ export {
   TranslateOptionsDefaults,
 } from "./interfaces/translate-options";
 
+export * from "./loader";
 export * from "./app";
 export * from "./engrid";
 export * from "./apple-pay";

@@ -2,6 +2,7 @@ export * from "./deprecated";
 export { Options, OptionsDefaults } from "./interfaces/options";
 export { UpsellOptions, UpsellOptionsDefaults, } from "./interfaces/upsell-options";
 export { TranslateOptions, TranslateOptionsDefaults, } from "./interfaces/translate-options";
+export * from "./loader";
 export * from "./app";
 export * from "./engrid";
 export * from "./apple-pay";
