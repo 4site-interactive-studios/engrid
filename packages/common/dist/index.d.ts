@@ -12,7 +12,6 @@ export * from "./autocomplete";
 export * from "./ecard";
 export * from "./click-to-expand";
 export * as legacy from "./custom-methods";
-export * from "./ie";
 export * from "./iframe";
 export * from "./media-attribution";
 export * from "./live-variables";

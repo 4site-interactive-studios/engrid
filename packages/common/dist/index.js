@@ -13,7 +13,6 @@ export * from "./ecard";
 export * from "./click-to-expand";
 import * as legacy_1 from "./custom-methods";
 export { legacy_1 as legacy };
-export * from "./ie";
 export * from "./iframe";
 export * from "./media-attribution";
 export * from "./live-variables";

@@ -19,7 +19,6 @@ import {
   Ecard,
   ClickToExpand,
   legacy,
-  IE,
   LiveVariables,
   sendIframeHeight,
   sendIframeFormStatus,
@@ -80,9 +79,6 @@ export class App extends ENGrid {
     // Enable debug if available is the first thing
     if (this.options.Debug || App.getUrlParameter("debug") == "true")
       App.setBodyData("debug", "");
-
-    // IE Warning
-    new IE();
 
     // Page Background
     new PageBackground();
