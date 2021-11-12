@@ -1,4 +1,4 @@
-// This class is a basic TS implementation of Engrid Loader
+// Ref: https://app.getguru.com/card/iMgx968T/ENgrid-Loader
 import { ENGrid } from ".";
 export class Loader {
     constructor() {
@@ -25,10 +25,6 @@ export class Loader {
         const engrid_repo_owner = this.getOption("repo-owner");
         let engrid_js_url = "";
         let engrid_css_url = "";
-        let engrid_en_assets_url = this.getOption("en-assets-url");
-        if ((engrid_en_assets_url === null || engrid_en_assets_url === void 0 ? void 0 : engrid_en_assets_url.substr(-1)) === "/") {
-            engrid_en_assets_url = engrid_en_assets_url.slice(0, -1);
-        }
         switch (assets) {
             case "local":
                 if (ENGrid.debug)

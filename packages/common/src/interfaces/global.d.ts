@@ -18,7 +18,6 @@ declare global {
       "repo-name"?: string;
       "repo-owner"?: string;
       assets?: string;
-      "en-assets-url"?: string;
     };
     _NBSettings: object;
     _nb: any;
