@@ -5,6 +5,7 @@ import {
   ProcessingFees,
 } from "./events";
 import {
+  AmountLabel,
   Loader,
   ProgressBar,
   UpsellLightbox,
@@ -168,6 +169,9 @@ export class App extends ENGrid {
 
     // Upsell Lightbox
     new UpsellLightbox();
+
+    // Amount Labels
+    new AmountLabel();
 
     // On the end of the script, after all subscribers defined, let's load the current value
     this._amount.load();

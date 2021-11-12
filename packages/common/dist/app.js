@@ -1,5 +1,5 @@
 import { DonationAmount, DonationFrequency, EnForm, ProcessingFees, } from "./events";
-import { Loader, ProgressBar, UpsellLightbox, ENGrid, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, CapitalizeFields, Ecard, ClickToExpand, legacy, LiveVariables, sendIframeHeight, sendIframeFormStatus, ShowHideRadioCheckboxes, SimpleCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce, AutoYear, Autocomplete, RememberMe, TranslateFields, } from "./";
+import { AmountLabel, Loader, ProgressBar, UpsellLightbox, ENGrid, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, CapitalizeFields, Ecard, ClickToExpand, legacy, LiveVariables, sendIframeHeight, sendIframeFormStatus, ShowHideRadioCheckboxes, SimpleCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce, AutoYear, Autocomplete, RememberMe, TranslateFields, } from "./";
 export class App extends ENGrid {
     constructor(options) {
         super();
@@ -114,6 +114,8 @@ export class App extends ENGrid {
         new setRecurrFreq();
         // Upsell Lightbox
         new UpsellLightbox();
+        // Amount Labels
+        new AmountLabel();
         // On the end of the script, after all subscribers defined, let's load the current value
         this._amount.load();
         this._frequency.load();

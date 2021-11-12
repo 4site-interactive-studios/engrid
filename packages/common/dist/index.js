@@ -4,6 +4,7 @@ export { UpsellOptionsDefaults, } from "./interfaces/upsell-options";
 export { TranslateOptionsDefaults, } from "./interfaces/translate-options";
 export * from "./loader";
 export * from "./app";
+export * from "./amount-label";
 export * from "./engrid";
 export * from "./apple-pay";
 export * from "./capitalize-fields";
