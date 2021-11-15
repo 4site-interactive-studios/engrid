@@ -8,9 +8,7 @@ export class SimpleCountrySelect {
   public countrySelect: HTMLSelectElement = document.querySelector(
     "#en__field_supporter_country"
   ) as HTMLSelectElement;
-  private countriesNames = new (Intl as any).DisplayNames(["en"], {
-    type: "region",
-  });
+
   private country = null;
   constructor() {
     const engridAutofill = cookie.get("engrid-autofill");
@@ -23,8 +21,9 @@ export class SimpleCountrySelect {
         "checkSubmissionFailed"
       ) && window.EngagingNetworks.require._defined.enjs.checkSubmissionFailed()
     );
-    // Only run if there's no engrid-autofill cookie
-    if (!engridAutofill && !submissionFailed) {
+    const hasIntlSupport = !!ENGrid.checkNested(window.Intl, "DisplayNames");
+    // Only run if there's no engrid-autofill cookie && if it has Intl support
+    if (!engridAutofill && !submissionFailed && hasIntlSupport) {
       fetch(`https://${window.location.hostname}/cdn-cgi/trace`)
         .then((res) => res.text())
         .then((t) => {
@@ -41,8 +40,11 @@ export class SimpleCountrySelect {
   private init() {
     if (this.countrySelect) {
       if (this.country) {
+        const countriesNames = new (Intl as any).DisplayNames(["en"], {
+          type: "region",
+        });
         // We are setting the country by Name because the ISO code is not always the same. They have 2 and 3 letter codes.
-        this.setCountryByName(this.countriesNames.of(this.country));
+        this.setCountryByName(countriesNames.of(this.country));
       }
       let countrySelectLabel =
         this.countrySelect.options[this.countrySelect.selectedIndex].innerHTML;
