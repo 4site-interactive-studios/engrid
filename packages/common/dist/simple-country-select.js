@@ -9,7 +9,7 @@ export class SimpleCountrySelect {
         const engridAutofill = cookie.get("engrid-autofill");
         const submissionFailed = !!(ENGrid.checkNested(window.EngagingNetworks, "require", "_defined", "enjs", "checkSubmissionFailed") && window.EngagingNetworks.require._defined.enjs.checkSubmissionFailed());
         const hasIntlSupport = !!ENGrid.checkNested(window.Intl, "DisplayNames");
-        // Only run if there's no engrid-autofill cookie
+        // Only run if there's no engrid-autofill cookie && if it has Intl support
         if (!engridAutofill && !submissionFailed && hasIntlSupport) {
             fetch(`https://${window.location.hostname}/cdn-cgi/trace`)
                 .then((res) => res.text())
