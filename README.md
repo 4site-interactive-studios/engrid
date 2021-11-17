@@ -1,8 +1,8 @@
-![#](https://raw.githubusercontent.com/4site-interactive-studios/engrid/master/hero.jpg)
+<!--- ![#](https://raw.githubusercontent.com/4site-interactive-studios/engrid/master/hero.jpg) -->
 
 # 4Site's ENgrid Page Template Framework
 
-<img align="right" width="200" height="200" src="https://engagingnetworks.academy/wp-content/uploads/2019/09/D-D-Partner.png">
+<!--- <img align="right" width="200" height="200" src="https://engagingnetworks.academy/wp-content/uploads/2019/09/D-D-Partner.png"> -->
 
 This project started as a labor of love for our clients and ourselves. Originating in 2017 as a partnership between Engaging Networks and 4Site Studios to create the first freely available page templates for their platform; we created [Engaging Networks Page Template](https://github.com/4site-interactive-studios/Engaging-Networks-Page-Template). That project was incredibly successful, and those templates are still used today for all new Engaging Networks clients. They're easy for junior developers and code dabblers to ease into, and they include Internet Explorer 11 support.
 
