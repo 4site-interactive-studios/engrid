@@ -18,6 +18,7 @@ Designed and Developed by [4Site Studios](http://4sitestudios.com/en?ms=github) 
 - Mercy for Animals
 - National Trust for Historic Preservation
 - National Wildlife Federation
+- Oceana
 - Ocean Conservancy
 - Organic Consumers
 - Oxfam America
