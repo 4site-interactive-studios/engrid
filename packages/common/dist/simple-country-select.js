@@ -22,6 +22,9 @@ export class SimpleCountrySelect {
                 // console.log("Country:", this.country);
             });
         }
+        else {
+            this.init();
+        }
     }
     init() {
         if (this.countrySelect) {
@@ -32,7 +35,6 @@ export class SimpleCountrySelect {
                 // We are setting the country by Name because the ISO code is not always the same. They have 2 and 3 letter codes.
                 this.setCountryByName(countriesNames.of(this.country));
             }
-            let countrySelectLabel = this.countrySelect.options[this.countrySelect.selectedIndex].innerHTML;
             let countrySelectValue = this.countrySelect.options[this.countrySelect.selectedIndex].value;
             // @TODO Update so that it reads "(Outside X?)" where X is the Value of the Country Select. No need for long form version of it.
             if (countrySelectValue.toUpperCase() == "US" ||
@@ -53,27 +55,22 @@ export class SimpleCountrySelect {
                     // Add our link INSIDE the address label
                     let newEl = document.createElement("span");
                     newEl.innerHTML =
-                        '<label><a href="javascript:void(0)">(Outside ' +
+                        '<label class="engrid-simple-country"><a href="javascript:void(0)">(Outside ' +
                             countrySelectValue +
                             "?)</a></label>";
                     addressLabel.innerHTML = `${labelText}${newEl.innerHTML}`;
-                    addressLabel.querySelectorAll("a").forEach((el) => {
-                        el.addEventListener("click", this.showCountrySelect.bind(this));
+                    addressLabel.addEventListener("click", (ev) => {
+                        var _a;
+                        ev.preventDefault();
+                        if (((_a = ev.target) === null || _a === void 0 ? void 0 : _a.tagName) === "A") {
+                            this.showCountrySelect(ev);
+                        }
                     });
                 }
             }
+            // Deal with the auto-fill for the country
+            this.countrySelect.addEventListener("change", this.writeLink.bind(this));
         }
-    }
-    // Helper function to insert HTML after a node
-    insertAfter(el, referenceNode) {
-        const parentElement = referenceNode.parentNode;
-        parentElement.insertBefore(el, referenceNode.nextSibling);
-    }
-    // Helper function to wrap a target in a new element
-    wrap(el, wrapper) {
-        const parentElement = el.parentNode;
-        parentElement.insertBefore(wrapper, el);
-        wrapper.appendChild(el);
     }
     showCountrySelect(e) {
         var _a;
@@ -85,6 +82,14 @@ export class SimpleCountrySelect {
         this.countrySelect.focus();
         // Reinstate Country Select tab index
         this.countrySelect.removeAttribute("tabIndex");
+    }
+    writeLink() {
+        let countryName = this.countrySelect.options[this.countrySelect.selectedIndex].value;
+        let addressLabel = document.querySelector(".engrid-simple-country");
+        if (addressLabel) {
+            let labelLink = `<a href="javascript:void(0)">(Outside ${countryName}?)</a>`;
+            addressLabel.innerHTML = labelLink;
+        }
     }
     setCountryByName(countryName) {
         if (this.countrySelect) {

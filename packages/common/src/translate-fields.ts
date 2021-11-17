@@ -70,6 +70,13 @@ export class TranslateFields {
         const fieldLabel = fieldWrapper.querySelector(
           ".en__field__label"
         ) as HTMLElement;
+        // Check if there's the simple country select class
+        const simpleCountrySelect = fieldLabel.querySelector(
+          ".engrid-simple-country"
+        );
+        let simpleCountrySelectClone = simpleCountrySelect
+          ? (simpleCountrySelect as HTMLElement).cloneNode(true)
+          : null;
         if (field instanceof HTMLInputElement && field.placeholder != "") {
           if (!fieldLabel || fieldLabel.innerHTML == field.placeholder) {
             field.dataset.original = field.placeholder;
@@ -79,6 +86,9 @@ export class TranslateFields {
         if (fieldLabel) {
           fieldLabel.dataset.original = fieldLabel.innerHTML;
           fieldLabel.innerHTML = translation;
+          if (simpleCountrySelectClone) {
+            fieldLabel.appendChild(simpleCountrySelectClone);
+          }
         }
       }
     }
@@ -91,7 +101,17 @@ export class TranslateFields {
       if (field instanceof HTMLInputElement && field.dataset.original) {
         field.placeholder = field.dataset.original;
       } else {
+        // Check if there's the simple country select class
+        const simpleCountrySelect = field.querySelector(
+          ".engrid-simple-country"
+        );
+        let simpleCountrySelectClone = simpleCountrySelect
+          ? (simpleCountrySelect as HTMLElement).cloneNode(true)
+          : null;
         field.innerHTML = <string>field.dataset.original;
+        if (simpleCountrySelectClone) {
+          field.appendChild(simpleCountrySelectClone);
+        }
       }
       field.removeAttribute("data-original");
     });

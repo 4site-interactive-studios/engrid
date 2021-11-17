@@ -34,6 +34,8 @@ export class SimpleCountrySelect {
           this.init();
           // console.log("Country:", this.country);
         });
+    } else {
+      this.init();
     }
   }
 
@@ -46,8 +48,6 @@ export class SimpleCountrySelect {
         // We are setting the country by Name because the ISO code is not always the same. They have 2 and 3 letter codes.
         this.setCountryByName(countriesNames.of(this.country));
       }
-      let countrySelectLabel =
-        this.countrySelect.options[this.countrySelect.selectedIndex].innerHTML;
       let countrySelectValue =
         this.countrySelect.options[this.countrySelect.selectedIndex].value;
 
@@ -79,29 +79,21 @@ export class SimpleCountrySelect {
           // Add our link INSIDE the address label
           let newEl = document.createElement("span");
           newEl.innerHTML =
-            '<label><a href="javascript:void(0)">(Outside ' +
+            '<label class="engrid-simple-country"><a href="javascript:void(0)">(Outside ' +
             countrySelectValue +
             "?)</a></label>";
           addressLabel.innerHTML = `${labelText}${newEl.innerHTML}`;
-          addressLabel.querySelectorAll("a").forEach((el) => {
-            el.addEventListener("click", this.showCountrySelect.bind(this));
+          addressLabel.addEventListener("click", (ev) => {
+            ev.preventDefault();
+            if ((ev.target as HTMLElement)?.tagName === "A") {
+              this.showCountrySelect(ev);
+            }
           });
         }
       }
+      // Deal with the auto-fill for the country
+      this.countrySelect.addEventListener("change", this.writeLink.bind(this));
     }
-  }
-
-  // Helper function to insert HTML after a node
-  private insertAfter(el: any, referenceNode: any) {
-    const parentElement = referenceNode.parentNode as HTMLDivElement;
-    parentElement.insertBefore(el, referenceNode.nextSibling);
-  }
-
-  // Helper function to wrap a target in a new element
-  private wrap(el: HTMLLabelElement, wrapper: HTMLDivElement) {
-    const parentElement = el.parentNode as HTMLDivElement;
-    parentElement.insertBefore(wrapper, el);
-    wrapper.appendChild(el);
   }
 
   public showCountrySelect(e: Event) {
@@ -118,6 +110,18 @@ export class SimpleCountrySelect {
     // Reinstate Country Select tab index
     this.countrySelect.removeAttribute("tabIndex");
   }
+  private writeLink() {
+    let countryName =
+      this.countrySelect.options[this.countrySelect.selectedIndex].value;
+    let addressLabel: HTMLLabelElement = document.querySelector(
+      ".engrid-simple-country"
+    ) as HTMLLabelElement;
+    if (addressLabel) {
+      let labelLink = `<a href="javascript:void(0)">(Outside ${countryName}?)</a>`;
+      addressLabel.innerHTML = labelLink;
+    }
+  }
+
   private setCountryByName(countryName: string) {
     if (this.countrySelect) {
       let countrySelectOptions = this.countrySelect.options;
