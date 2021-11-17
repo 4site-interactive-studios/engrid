@@ -1942,26 +1942,32 @@ body[data-engrid-debug]:before {
   --h1_font-size: calc(var(--default_font-size) * var(--scale-up_160pct));
   --h1_font-weight: initial;
   --h1_line-height: initial;
+  --h1_text-transform: initial;
   --h2_font-family: var(--h1_font-family);
   --h2_font-size: calc(var(--default_font-size) * var(--scale-up_80pct));
   --h2_font-weight: initial;
   --h2_line-height: initial;
+  --h2_text-transform: initial;
   --h3_font-family: var(--h1_font-family);
   --h3_font-size: calc(var(--default_font-size) * var(--scale-up_40pct));
   --h3_font-weight: initial;
   --h3_line-height: initial;
+  --h3_text-transform: initial;
   --h4_font-family: var(--h1_font-family);
   --h4_font-size: calc(var(--default_font-size) * var(--scale-up_40pct));
   --h4_font-weight: initial;
   --h4_line-height: initial;
+  --h4_text-transform: initial;
   --h5_font-family: var(--h1_font-family);
   --h5_font-size: calc(var(--default_font-size) * var(--scale-up_40pct));
   --h5_font-weight: initial;
   --h5_line-height: initial;
+  --h5_text-transform: initial;
   --h6_font-family: var(--h1_font-family);
   --h6_font-size: calc(var(--default_font-size) * var(--scale-up_40pct));
   --h6_font-weight: initial;
   --h6_line-height: initial;
+  --h6_text-transform: initial;
   --p_font-family: var(--default_font-family);
   --p_font-size: var(--default_font-size);
   --p_font-weight: initial;
@@ -1984,7 +1990,8 @@ h1 {
   font-weight: var(--h1_font-weight);
   line-height: var(--h1_line-height);
   margin-top: 2rem;
-  margin-bottom: 1rem; }
+  margin-bottom: 1rem;
+  text-transform: var(--h1_text-transform); }
 
 h2 {
   font-family: var(--h2_font-family);
@@ -1993,7 +2000,8 @@ h2 {
   font-weight: var(--h2_font-weight);
   line-height: var(--h2_line-height);
   margin-top: calc(2rem * var(--scale-down_20pct));
-  margin-bottom: calc(1rem * var(--scale-down_20pct)); }
+  margin-bottom: calc(1rem * var(--scale-down_20pct));
+  text-transform: var(--h2_text-transform); }
 
 h3 {
   font-family: var(--h3_font-family);
@@ -2002,7 +2010,8 @@ h3 {
   font-weight: var(--h3_font-weight);
   line-height: var(--h3_line-height);
   margin-top: calc(2rem * var(--scale-down_40pct));
-  margin-bottom: calc(1rem * var(--scale-down_40pct)); }
+  margin-bottom: calc(1rem * var(--scale-down_40pct));
+  text-transform: var(--h3_text-transform); }
 
 h4,
 h5,
@@ -2013,7 +2022,8 @@ h6 {
   font-weight: var(--h3_font-weight);
   line-height: var(--h3_line-height);
   margin-top: calc(2rem * var(--scale-down_80pct));
-  margin-bottom: calc(1rem * var(--scale-down_80pct)); }
+  margin-bottom: calc(1rem * var(--scale-down_80pct));
+  text-transform: var(--h4_text-transform); }
 
 p {
   font-family: var(--p_font-family);
