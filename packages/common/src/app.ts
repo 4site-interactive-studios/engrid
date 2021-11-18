@@ -17,6 +17,7 @@ import {
   MediaAttribution,
   ApplePay,
   CapitalizeFields,
+  CreditCardNumbers,
   Ecard,
   ClickToExpand,
   legacy,
@@ -190,6 +191,8 @@ export class App extends ENGrid {
     if (this.options.CapitalizeFields) new CapitalizeFields();
     // Auto Year Class
     if (this.options.AutoYear) new AutoYear();
+    // Credit Card Numbers Only
+    new CreditCardNumbers();
     // Autocomplete Class
     new Autocomplete();
     // Ecard Class
