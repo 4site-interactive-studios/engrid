@@ -33,6 +33,7 @@ import {
   Autocomplete,
   RememberMe,
   TranslateFields,
+  ShowIfAmount,
 } from "./";
 
 export class App extends ENGrid {
@@ -215,6 +216,8 @@ export class App extends ENGrid {
         this.options.NeverBounceStatusField,
         this.options.NeverBounceDateFormat
       );
+
+    new ShowIfAmount();
 
     this.setDataAttributes();
   }

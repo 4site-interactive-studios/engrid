@@ -1,0 +1,8 @@
+[class*="showifamount"] {
+  max-height: 0;
+  overflow: hidden;
+  transition: 0.3s max-height ease-in-out;
+  &.engrid-open {
+    max-height: 100%;
+  }
+}

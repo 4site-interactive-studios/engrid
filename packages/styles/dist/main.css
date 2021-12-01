@@ -5295,6 +5295,13 @@ header .indicator__percentage {
     header .indicator__percentage {
       color: #ffffff; } }
 
+[class*="showifamount"] {
+  max-height: 0;
+  overflow: hidden;
+  transition: 0.3s max-height ease-in-out; }
+  [class*="showifamount"].engrid-open {
+    max-height: 100%; }
+
 /* ENGRID LAYOUTS */
 /* MUST COME AFTER OTHER ENGRID STYLES WHICH MIGHT DEFINE MIXINS REFERENCED IN THE LAYOUTS */
 [data-engrid-theme] {
