@@ -14,6 +14,7 @@ export class TranslateFields {
         }
         if (this.countrySelect) {
             this.countrySelect.addEventListener("change", this.translateFields.bind(this));
+            this.translateFields();
         }
         if (this.stateField) {
             this.stateField.addEventListener("change", this.rememberState.bind(this));
