@@ -1,8 +1,15 @@
 [class*="showifamount"] {
   max-height: 0;
   overflow: hidden;
-  transition: 0.3s max-height ease-in-out;
+  transition: 0.15s max-height ease-in-out;
   &.engrid-open {
     max-height: 100%;
+  }
+}
+#en__pagebuilder,
+[data-engrid-debug] {
+  [class*="showifamount"] {
+    max-height: 100%;
+    background-color: #0000ff1a !important;
   }
 }

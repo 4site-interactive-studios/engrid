@@ -123,8 +123,8 @@ export class ShowIfAmount {
       let amountCheckMin = showifamountClass.split("-").slice(-2, -1)[0];
       let amountCheckMax = showifamountClass.split("-").slice(-1)[0];
       if (
-        amount >= Number(amountCheckMin) &&
-        amount <= Number(amountCheckMax)
+        amount > Number(amountCheckMin) &&
+        amount < Number(amountCheckMax)
       ) {
         if (ENGrid.debug) console.log("Show If Amount (between):", element);
         element.classList.add("engrid-open");
