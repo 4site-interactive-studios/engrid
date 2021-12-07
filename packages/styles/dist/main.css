@@ -5296,14 +5296,39 @@ header .indicator__percentage {
       color: #ffffff; } }
 
 [class*="showifamount"] {
-  max-height: 0;
-  overflow: hidden;
-  transition: 0.15s max-height ease-in-out; }
+  display: none; }
+  [class*="showifamount"].animate-replace {
+    display: initial;
+    max-height: 0;
+    overflow: hidden;
+    transition: transform 0.3s cubic-bezier(1, 0, 0, 1);
+    transform: scaleY(0);
+    transform-origin: top; }
+    [class*="showifamount"].animate-replace.engrid-open {
+      max-height: 100%;
+      transform: scaleY(1); }
+  [class*="showifamount"].animate-vertical-slide {
+    display: initial;
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.3s max-height ease-in-out; }
+    [class*="showifamount"].animate-vertical-slide.engrid-open {
+      max-height: 100%; }
+  [class*="showifamount"] img,
+  [class*="showifamount"] picture,
+  [class*="showifamount"] video {
+    opacity: 0;
+    transition: opacity 0.15s cubic-bezier(1, 0, 0, 1) ease-in; }
   [class*="showifamount"].engrid-open {
-    max-height: 100%; }
+    display: initial; }
+    [class*="showifamount"].engrid-open img,
+    [class*="showifamount"].engrid-open picture,
+    [class*="showifamount"].engrid-open video {
+      opacity: 1; }
 
 #en__pagebuilder [class*="showifamount"],
 [data-engrid-debug] [class*="showifamount"] {
+  display: initial;
   max-height: 100%;
   background-color: #0000ff1a !important; }
 
