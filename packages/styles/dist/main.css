@@ -5295,42 +5295,40 @@ header .indicator__percentage {
     header .indicator__percentage {
       color: #ffffff; } }
 
-[class*="showifamount"] {
+body:not(#en__pagebuilder):not([data-engrid-debug]) [class*="showifamount"]:not(.engrid-open):not([class*="animate-"]) {
   display: none; }
-  [class*="showifamount"].animate-replace {
-    display: initial;
-    max-height: 0;
-    overflow: hidden;
-    transition: transform 0.3s cubic-bezier(1, 0, 0, 1);
-    transform: scaleY(0);
-    transform-origin: top; }
-    [class*="showifamount"].animate-replace.engrid-open {
-      max-height: 100%;
-      transform: scaleY(1); }
-  [class*="showifamount"].animate-vertical-slide {
-    display: initial;
-    max-height: 0;
-    overflow: hidden;
-    transition: 0.3s max-height ease-in-out; }
-    [class*="showifamount"].animate-vertical-slide.engrid-open {
-      max-height: 100%; }
-  [class*="showifamount"] img,
-  [class*="showifamount"] picture,
-  [class*="showifamount"] video {
-    opacity: 0;
-    transition: opacity 0.15s cubic-bezier(1, 0, 0, 1) ease-in; }
-  [class*="showifamount"].engrid-open {
-    display: initial; }
-    [class*="showifamount"].engrid-open img,
-    [class*="showifamount"].engrid-open picture,
-    [class*="showifamount"].engrid-open video {
-      opacity: 1; }
 
-#en__pagebuilder [class*="showifamount"],
-[data-engrid-debug] [class*="showifamount"] {
-  display: initial;
-  max-height: 100%;
-  background-color: #0000ff1a !important; }
+body:not(#en__pagebuilder):not([data-engrid-debug]) [class*="showifamount"].animate-replace {
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 1, 1), transform 0.3s cubic-bezier(1, 0, 0, 1); }
+  body:not(#en__pagebuilder):not([data-engrid-debug]) [class*="showifamount"].animate-replace img,
+  body:not(#en__pagebuilder):not([data-engrid-debug]) [class*="showifamount"].animate-replace picture,
+  body:not(#en__pagebuilder):not([data-engrid-debug]) [class*="showifamount"].animate-replace video,
+  body:not(#en__pagebuilder):not([data-engrid-debug]) [class*="showifamount"].animate-replace audio,
+  body:not(#en__pagebuilder):not([data-engrid-debug]) [class*="showifamount"].animate-replace iframe {
+    transition: opacity 0.15s cubic-bezier(0.4, 0, 1, 1) 0.2s; }
+  body:not(#en__pagebuilder):not([data-engrid-debug]) [class*="showifamount"].animate-replace:not(.engrid-open) {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transform: scaleY(0); }
+    body:not(#en__pagebuilder):not([data-engrid-debug]) [class*="showifamount"].animate-replace:not(.engrid-open) img,
+    body:not(#en__pagebuilder):not([data-engrid-debug]) [class*="showifamount"].animate-replace:not(.engrid-open) picture,
+    body:not(#en__pagebuilder):not([data-engrid-debug]) [class*="showifamount"].animate-replace:not(.engrid-open) video,
+    body:not(#en__pagebuilder):not([data-engrid-debug]) [class*="showifamount"].animate-replace:not(.engrid-open) audio,
+    body:not(#en__pagebuilder):not([data-engrid-debug]) [class*="showifamount"].animate-replace:not(.engrid-open) iframe {
+      opacity: 0; }
+  body:not(#en__pagebuilder):not([data-engrid-debug]) [class*="showifamount"].animate-replace.engrid-open {
+    max-height: 100%;
+    transform: scaleY(1);
+    transform-origin: top; }
+
+body:not(#en__pagebuilder):not([data-engrid-debug]) [class*="showifamount"].animate-vertical-slide {
+  transition: max-height 0.3s ease-in-out; }
+  body:not(#en__pagebuilder):not([data-engrid-debug]) [class*="showifamount"].animate-vertical-slide:not(.engrid-open) {
+    max-height: 0;
+    overflow: hidden; }
+  body:not(#en__pagebuilder):not([data-engrid-debug]) [class*="showifamount"].animate-vertical-slide.engrid-open {
+    max-height: 100%; }
 
 /* ENGRID LAYOUTS */
 /* MUST COME AFTER OTHER ENGRID STYLES WHICH MIGHT DEFINE MIXINS REFERENCED IN THE LAYOUTS */
@@ -7666,6 +7664,10 @@ body:not([data-engrid-debug]) #debug-bar {
 #EN__RootElement div:not(.pboAdvancedRow__preview) > .en__component--advrow > .page-backgroundImage,
 #EN__RootElement div:not(.pboAdvancedRow__preview) > .en__component--advrow > .page-customCode {
   background-color: var(--color_transparent) !important; }
+
+#en__pagebuilder [class*="showifamount"],
+[data-engrid-debug] [class*="showifamount"] {
+  background-color: #0000ff1a !important; }
 
 /*
 * ##########################################################

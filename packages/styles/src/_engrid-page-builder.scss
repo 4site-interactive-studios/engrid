@@ -88,7 +88,7 @@
     }
 
     // In the event a visually conditional field is marked mandatory, highlight it as this can cause problems
-    .en__mandatory{
+    .en__mandatory {
       outline: 5px solid #f12222;
     }
   }
@@ -343,6 +343,14 @@
     .page-customCode {
       background-color: var(--color_transparent) !important;
     }
+  }
+}
+
+// See _engrid-show-if-amounts.scss for corresponding styles
+#en__pagebuilder,
+[data-engrid-debug] {
+  [class*="showifamount"] {
+    background-color: #0000ff1a !important;
   }
 }
 
