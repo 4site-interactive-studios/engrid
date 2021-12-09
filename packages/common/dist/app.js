@@ -92,7 +92,12 @@ export class App extends ENGrid {
         this._form.onValidate.subscribe(() => this.onValidate());
         // Event Listener Examples
         this._amount.onAmountChange.subscribe((s) => console.log(`Live Amount: ${s}`));
-        this._frequency.onFrequencyChange.subscribe((s) => console.log(`Live Frequency: ${s}`));
+        this._frequency.onFrequencyChange.subscribe((s) => {
+            console.log(`Live Frequency: ${s}`);
+            setTimeout(() => {
+                this._amount.load();
+            }, 150);
+        });
         this._form.onSubmit.subscribe((s) => console.log("Submit: ", s));
         this._form.onError.subscribe((s) => console.log("Error:", s));
         window.enOnSubmit = () => {
