@@ -1,6 +1,6 @@
 {
   "name": "@4site/engrid-common",
-  "version": "0.6.11",
+  "version": "0.6.12",
   "description": "Common scripts for the ENGRID Project",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
