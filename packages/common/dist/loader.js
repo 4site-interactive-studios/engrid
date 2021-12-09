@@ -10,8 +10,14 @@ export class Loader {
     reload() {
         var _a, _b, _c;
         const isLoaded = ENGrid.getBodyData("loaded");
-        const assets = this.getOption("assets");
-        if (!assets || isLoaded) {
+        let assets = this.getOption("assets");
+        const enIsLoaded = ENGrid.checkNested(window.EngagingNetworks, "require", "_defined", "enjs");
+        if (!enIsLoaded) {
+            if (ENGrid.debug)
+                console.log("ENgrid Loader: EngagingNetworks Script NOT LOADED");
+            assets = "flush";
+        }
+        else if (!assets || isLoaded) {
             if (ENGrid.debug)
                 console.log("ENgrid Loader: LOADED");
             return false;
