@@ -2460,6 +2460,13 @@ input[type="checkbox"]:checked + label:before {
     border-color: var(--radio_border-color_selected);
     box-shadow: var(--radio_box-shadow_selected); }
 
+@-moz-document url-prefix() {
+  .en__pg__select input[type="radio"] {
+    visibility: visible !important;
+    width: var(--radio_height);
+    accent-color: var(--radio_color_selected);
+    transform: scale(1.4); } }
+
 /************************************
 * Radio Select, Checkbox, and Email to Target Contact Fields
 ***********************************/

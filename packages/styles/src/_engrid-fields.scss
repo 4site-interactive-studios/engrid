@@ -585,6 +585,15 @@ input[type="checkbox"] {
     box-shadow: var(--radio_box-shadow_selected);
   }
 }
+// Firefox Hack for Radio INPUT
+@-moz-document url-prefix() {
+  .en__pg__select input[type="radio"] {
+    visibility: visible !important;
+    width: var(--radio_height);
+    accent-color: var(--radio_color_selected);
+    transform: scale(1.4);
+  }
+}
 
 /************************************
 * Radio Select, Checkbox, and Email to Target Contact Fields
