@@ -22,10 +22,15 @@ export class Loader {
       return false;
     }
 
-    if (!assets && !enIsLoaded) {
-      if (ENGrid.debug)
-        console.log("ENgrid Loader: EngagingNetworks Script NOT LOADED");
-      assets = "flush";
+    if (!assets) {
+      if (!enIsLoaded) {
+        if (ENGrid.debug)
+          console.log("ENgrid Loader: EngagingNetworks Script NOT LOADED");
+        assets = "flush";
+      } else {
+        if (ENGrid.debug) console.log("ENgrid Loader: LOADED");
+        return false;
+      }
     }
 
     // Load the right ENgrid
