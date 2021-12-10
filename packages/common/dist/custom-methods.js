@@ -406,7 +406,6 @@ export const watchGiveBySelectField = () => {
                 removeClassesByPrefix(enGrid, prefix);
                 enGrid.classList.add("has-give-by-ach");
             }
-            enFieldPaymentType.value = "ach";
             enFieldPaymentType.value = "ACH";
         }
         else if (enFieldGiveBySelectCurrentValue &&
@@ -444,7 +443,6 @@ export const watchGiveBySelectField = () => {
                 removeClassesByPrefix(enGrid, prefix);
                 enGrid.classList.add("has-give-by-check");
             }
-            enFieldPaymentType.value = "ach";
             enFieldPaymentType.value = "ACH";
         }
         else if (enFieldGiveBySelectCurrentValue &&
@@ -454,7 +452,6 @@ export const watchGiveBySelectField = () => {
                 enGrid.classList.add("has-give-by-paypal");
             }
             enFieldPaymentType.value = "paypal";
-            enFieldPaymentType.value = "Paypal";
         }
         else if (enFieldGiveBySelectCurrentValue &&
             enFieldGiveBySelectCurrentValue.value.toLowerCase() == "applepay") {
@@ -567,9 +564,13 @@ const handleCCUpdate = () => {
         mastercard: ["mastercard", "master card", "mc"],
         discover: ["discover", "di"],
     };
-    const payment_text = field_payment_type.options[field_payment_type.selectedIndex].text;
-    if (card_type && payment_text != card_type) {
-        field_payment_type.value = Array.from(field_payment_type.options).filter((d) => card_values[card_type].includes(d.value.toLowerCase()))[0].value;
+    const selected_card_value = card_type
+        ? Array.from(field_payment_type.options).filter((d) => card_values[card_type].includes(d.value.toLowerCase()))[0].value
+        : "";
+    if (field_payment_type.value != selected_card_value) {
+        field_payment_type.value = selected_card_value;
+        const paymentTypeChangeEvent = new Event("change", { bubbles: true });
+        field_payment_type.dispatchEvent(paymentTypeChangeEvent);
     }
 };
 const handleExpUpdate = (e) => {
