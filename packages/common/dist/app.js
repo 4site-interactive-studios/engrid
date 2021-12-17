@@ -1,5 +1,5 @@
 import { DonationAmount, DonationFrequency, EnForm, ProcessingFees, } from "./events";
-import { AmountLabel, Loader, ProgressBar, UpsellLightbox, ENGrid, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, CapitalizeFields, CreditCardNumbers, Ecard, ClickToExpand, legacy, LiveVariables, sendIframeHeight, sendIframeFormStatus, ShowHideRadioCheckboxes, SimpleCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce, AutoYear, Autocomplete, RememberMe, TranslateFields, ShowIfAmount, } from "./";
+import { AmountLabel, Loader, ProgressBar, UpsellLightbox, ENGrid, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, CapitalizeFields, CreditCardNumbers, Ecard, ClickToExpand, legacy, LiveVariables, sendIframeHeight, sendIframeFormStatus, ShowHideRadioCheckboxes, SimpleCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce, AutoYear, Autocomplete, RememberMe, TranslateFields, ShowIfAmount, EngridLogger, } from "./";
 export class App extends ENGrid {
     constructor(options) {
         super();
@@ -8,6 +8,7 @@ export class App extends ENGrid {
         this._fees = ProcessingFees.getInstance();
         this._amount = DonationAmount.getInstance("transaction.donationAmt", "transaction.donationAmt.other");
         this._frequency = DonationFrequency.getInstance();
+        this.logger = new EngridLogger("App", "black", "white", "🍏");
         this.shouldScroll = () => {
             // If you find a error, scroll
             if (document.querySelector(".en__errorHeader")) {
@@ -48,8 +49,15 @@ export class App extends ENGrid {
         };
     }
     run() {
-        // Enable debug if available is the first thing
+        if (!ENGrid.checkNested(window.EngagingNetworks, "require", "_defined", "enjs")) {
+            this.logger.danger("Engaging Networks JS Framework NOT FOUND");
+            setTimeout(() => {
+                this.run();
+            }, 10);
+            return;
+        }
         if (this.options.Debug || App.getUrlParameter("debug") == "true")
+            // Enable debug if available is the first thing
             App.setBodyData("debug", "");
         // Page Background
         new PageBackground();
@@ -91,15 +99,15 @@ export class App extends ENGrid {
         this._form.onError.subscribe(() => this.onError());
         this._form.onValidate.subscribe(() => this.onValidate());
         // Event Listener Examples
-        this._amount.onAmountChange.subscribe((s) => console.log(`Live Amount: ${s}`));
+        this._amount.onAmountChange.subscribe((s) => this.logger.success(`Live Amount: ${s}`));
         this._frequency.onFrequencyChange.subscribe((s) => {
-            console.log(`Live Frequency: ${s}`);
+            this.logger.success(`Live Frequency: ${s}`);
             setTimeout(() => {
                 this._amount.load();
             }, 150);
         });
-        this._form.onSubmit.subscribe((s) => console.log("Submit: ", s));
-        this._form.onError.subscribe((s) => console.log("Error:", s));
+        this._form.onSubmit.subscribe((s) => this.logger.success("Submit: " + s));
+        this._form.onError.subscribe((s) => this.logger.danger("Error: " + s));
         window.enOnSubmit = () => {
             this._form.dispatchSubmit();
             return this._form.submit;
@@ -171,16 +179,14 @@ export class App extends ENGrid {
         }
         if (this.inIframe()) {
             // Scroll to top of iFrame
-            if (App.debug)
-                console.log("iFrame Event - window.onload");
+            this.logger.log("iFrame Event - window.onload");
             sendIframeHeight();
             window.parent.postMessage({
                 scroll: this.shouldScroll(),
             }, "*");
             // On click fire the resize event
             document.addEventListener("click", (e) => {
-                if (App.debug)
-                    console.log("iFrame Event - click");
+                this.logger.log("iFrame Event - click");
                 setTimeout(() => {
                     sendIframeHeight();
                 }, 100);
@@ -192,22 +198,19 @@ export class App extends ENGrid {
             this.options.onResize();
         }
         if (this.inIframe()) {
-            if (App.debug)
-                console.log("iFrame Event - window.onload");
+            this.logger.log("iFrame Event - window.onload");
             sendIframeHeight();
         }
     }
     onValidate() {
         if (this.options.onValidate) {
-            if (App.debug)
-                console.log("Client onValidate Triggered");
+            this.logger.log("Client onValidate Triggered");
             this.options.onValidate();
         }
     }
     onSubmit() {
         if (this.options.onSubmit) {
-            if (App.debug)
-                console.log("Client onSubmit Triggered");
+            this.logger.log("Client onSubmit Triggered");
             this.options.onSubmit();
         }
         if (this.inIframe()) {
@@ -216,8 +219,7 @@ export class App extends ENGrid {
     }
     onError() {
         if (this.options.onError) {
-            if (App.debug)
-                console.log("Client onError Triggered");
+            this.logger.danger("Client onError Triggered");
             this.options.onError();
         }
     }
@@ -234,8 +236,7 @@ export class App extends ENGrid {
             // Add the data-engrid-embedded attribute when inside an iFrame if it wasn't already added by a script in the Page Template
             App.setBodyData("embedded", "");
             // Fire the resize event
-            if (App.debug)
-                console.log("iFrame Event - First Resize");
+            this.logger.log("iFrame Event - First Resize");
             sendIframeHeight();
         }
     }
