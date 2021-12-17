@@ -1,4 +1,5 @@
 export declare class EnForm {
+    private logger;
     private _onSubmit;
     private _onValidate;
     private _onError;

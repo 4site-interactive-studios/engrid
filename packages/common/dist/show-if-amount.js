@@ -1,16 +1,16 @@
-import { ENGrid } from ".";
+import { EngridLogger } from ".";
 import { DonationAmount } from "./events";
 export class ShowIfAmount {
     constructor() {
         this._amount = DonationAmount.getInstance();
+        this.logger = new EngridLogger("ShowIfAmount", "yellow", "black", "👀");
         this._elements = document.querySelectorAll('[class*="showifamount"]');
         if (this._elements.length > 0) {
             this._amount.onAmountChange.subscribe(() => this.init());
             this.init();
             return;
         }
-        if (ENGrid.debug)
-            console.log("Show If Amount: NO ELEMENTS FOUND");
+        this.logger.log("Show If Amount: NO ELEMENTS FOUND");
     }
     init() {
         const amount = this._amount.amount;
@@ -37,8 +37,7 @@ export class ShowIfAmount {
         if (showifamountClass) {
             let amountCheck = showifamountClass.split("-").slice(-1)[0];
             if (amount < Number(amountCheck)) {
-                if (ENGrid.debug)
-                    console.log("Show If Amount (lessthan):", element);
+                this.logger.log("(lessthan):", element);
                 element.classList.add("engrid-open");
             }
             else {
@@ -51,8 +50,7 @@ export class ShowIfAmount {
         if (showifamountClass) {
             let amountCheck = showifamountClass.split("-").slice(-1)[0];
             if (amount <= Number(amountCheck)) {
-                if (ENGrid.debug)
-                    console.log("Show If Amount (lessthanorequalto):", element);
+                this.logger.log("(lessthanorequalto):", element);
                 element.classList.add("engrid-open");
             }
             else {
@@ -65,8 +63,7 @@ export class ShowIfAmount {
         if (showifamountClass) {
             let amountCheck = showifamountClass.split("-").slice(-1)[0];
             if (amount == Number(amountCheck)) {
-                if (ENGrid.debug)
-                    console.log("Show If Amount (equalto):", element);
+                this.logger.log("(equalto):", element);
                 element.classList.add("engrid-open");
             }
             else {
@@ -79,8 +76,7 @@ export class ShowIfAmount {
         if (showifamountClass) {
             let amountCheck = showifamountClass.split("-").slice(-1)[0];
             if (amount >= Number(amountCheck)) {
-                if (ENGrid.debug)
-                    console.log("Show If Amount (greaterthanorequalto):", element);
+                this.logger.log("(greaterthanorequalto):", element);
                 element.classList.add("engrid-open");
             }
             else {
@@ -93,8 +89,7 @@ export class ShowIfAmount {
         if (showifamountClass) {
             let amountCheck = showifamountClass.split("-").slice(-1)[0];
             if (amount > Number(amountCheck)) {
-                if (ENGrid.debug)
-                    console.log("Show If Amount (greaterthan):", element);
+                this.logger.log("(greaterthan):", element);
                 element.classList.add("engrid-open");
             }
             else {
@@ -107,10 +102,8 @@ export class ShowIfAmount {
         if (showifamountClass) {
             let amountCheckMin = showifamountClass.split("-").slice(-2, -1)[0];
             let amountCheckMax = showifamountClass.split("-").slice(-1)[0];
-            if (amount > Number(amountCheckMin) &&
-                amount < Number(amountCheckMax)) {
-                if (ENGrid.debug)
-                    console.log("Show If Amount (between):", element);
+            if (amount > Number(amountCheckMin) && amount < Number(amountCheckMax)) {
+                this.logger.log("(between):", element);
                 element.classList.add("engrid-open");
             }
             else {

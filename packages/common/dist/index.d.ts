@@ -29,4 +29,5 @@ export * from "./neverbounce";
 export * from "./progress-bar";
 export * from "./remember-me";
 export * from "./show-if-amount";
+export * from "./logger";
 export * from "./events";

@@ -5,6 +5,7 @@ export declare class App extends ENGrid {
     private _amount;
     private _frequency;
     private options;
+    private logger;
     constructor(options: Options);
     private run;
     private onLoad;

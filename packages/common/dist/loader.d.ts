@@ -1,4 +1,5 @@
 export declare class Loader {
+    private logger;
     private cssElement;
     private jsElement;
     reload(): boolean;
