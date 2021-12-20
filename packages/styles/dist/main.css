@@ -2390,7 +2390,7 @@ input[type="checkbox"] + label {
     height: var(--checkbox_height);
     width: var(--checkbox_width);
     display: flex;
-    flex: 1 0 auto;
+    flex: 0 0 auto;
     position: relative;
     top: var(--checkbox_top);
     padding-top: var(--checkbox_padding-top);
