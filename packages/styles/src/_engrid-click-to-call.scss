@@ -1,0 +1,20 @@
+[data-engrid-theme] {
+  .en__component--callcontactblock {
+    .en__contacts {
+      padding: 0;
+      background-color: initial;
+    }
+
+    .en__contact__main {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+  }
+
+  .en__component--callsurveyblock {
+    .en__c2c__survey__rate .en__button {
+      opacity: 1;
+    }
+  }
+}

@@ -2954,6 +2954,7 @@ body {
 /* Buttons */
 button,
 .button,
+.en__button,
 .pseduo__en__submit_button,
 button.en__ticketRecurring__select,
 button.en__ticketSummary__checkout,
@@ -2981,6 +2982,8 @@ button.en__eventOccurrence__select {
   button:focus, button:hover,
   .button:focus,
   .button:hover,
+  .en__button:focus,
+  .en__button:hover,
   .pseduo__en__submit_button:focus,
   .pseduo__en__submit_button:hover,
   button.en__ticketRecurring__select:focus,
@@ -2992,12 +2995,19 @@ button.en__eventOccurrence__select {
     color: var(--button_color_hover);
     background-color: var(--button_background-color_hover);
     border-color: var(--button_border-color_hover); }
-  button:active,
+  button:active, button.active,
   .button:active,
+  .button.active,
+  .en__button:active,
+  .en__button.active,
   .pseduo__en__submit_button:active,
+  .pseduo__en__submit_button.active,
   button.en__ticketRecurring__select:active,
+  button.en__ticketRecurring__select.active,
   button.en__ticketSummary__checkout:active,
-  button.en__eventOccurrence__select:active {
+  button.en__ticketSummary__checkout.active,
+  button.en__eventOccurrence__select:active,
+  button.en__eventOccurrence__select.active {
     color: var(--button_color_checked);
     background-color: var(--button_background-color_checked);
     border-color: var(--button_border-color_checked); }
@@ -3069,6 +3079,18 @@ button[disabled],
   opacity: 0.5;
   cursor: not-allowed;
   filter: grayscale(1); }
+
+[data-engrid-theme] .en__component--callcontactblock .en__contacts {
+  padding: 0;
+  background-color: initial; }
+
+[data-engrid-theme] .en__component--callcontactblock .en__contact__main {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; }
+
+[data-engrid-theme] .en__component--callsurveyblock .en__c2c__survey__rate .en__button {
+  opacity: 1; }
 
 [data-engrid-theme] {
   --click-to-expand__copy-area_height: 450px;

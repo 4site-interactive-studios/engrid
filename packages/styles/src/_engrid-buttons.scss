@@ -50,6 +50,7 @@
 /* Buttons */
 button,
 .button,
+.en__button,
 .pseduo__en__submit_button,
 button.en__ticketRecurring__select,
 button.en__ticketSummary__checkout,
@@ -84,7 +85,8 @@ button.en__eventOccurrence__select {
     border-color: var(--button_border-color_hover);
   }
 
-  &:active {
+  &:active,
+  &.active {
     color: var(--button_color_checked);
     background-color: var(--button_background-color_checked);
     border-color: var(--button_border-color_checked);
