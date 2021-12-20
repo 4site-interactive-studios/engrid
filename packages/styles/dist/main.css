@@ -2110,18 +2110,21 @@ a {
  * Why 20 pre-defined options? To cover a single form component with all of the following: * 1. First Name (50%) | 2. Last Name (50%) * 3. Email (100%) * 4. Email Opt-in (100%) * 5. Phone (100%) * 6. Phone Opt-in (100%) * 7. Street (100%) * 8. Street 2 (100%) * 9. City (33%) | 10. State (33%) | 11. Zip (33%) * 12. Country (100%) * 13. Giving Frequency (100%) * 14. Giving Amount (100%) * 15. Gift Type (100%) * 16. Credit Card Number (100%) * 17. Credit Card Expiration (50%) | 18. Credit Card CVV (50%) * 19. Custom Field (100%) * 20. Custom Field (100%)
  ***********************************/
 .en__component--formblock,
-.en__component--svblock {
+.en__component--svblock,
+.en__registrants__registrantDetails {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
   margin-left: calc(var(--fields_spacing-inline) * -1);
   margin-right: calc(var(--fields_spacing-inline) * -1); }
   .en__component--formblock > *,
-  .en__component--svblock > * {
+  .en__component--svblock > *,
+  .en__registrants__registrantDetails > * {
     padding-left: var(--fields_spacing-inline);
     padding-right: var(--fields_spacing-inline); }
   .en__component--formblock .en__field,
-  .en__component--svblock .en__field {
+  .en__component--svblock .en__field,
+  .en__registrants__registrantDetails .en__field {
     display: flex;
     flex-direction: column;
     flex-basis: 100%;
@@ -2130,22 +2133,27 @@ a {
     .en__component--formblock .en__field .en__field__label:not(.en__field__label--item),
     .en__component--formblock .en__field .en__field__helpText,
     .en__component--svblock .en__field .en__field__label:not(.en__field__label--item),
-    .en__component--svblock .en__field .en__field__helpText {
+    .en__component--svblock .en__field .en__field__helpText,
+    .en__registrants__registrantDetails .en__field .en__field__label:not(.en__field__label--item),
+    .en__registrants__registrantDetails .en__field .en__field__helpText {
       position: relative;
       display: flex;
       justify-content: space-between;
       align-items: center; }
     .en__component--formblock .en__field .en__field__element,
-    .en__component--svblock .en__field .en__field__element {
+    .en__component--svblock .en__field .en__field__element,
+    .en__registrants__registrantDetails .en__field .en__field__element {
       display: flex;
       flex-wrap: wrap;
       align-items: center; }
       .en__component--formblock .en__field .en__field__element .en__submit,
-      .en__component--svblock .en__field .en__field__element .en__submit {
+      .en__component--svblock .en__field .en__field__element .en__submit,
+      .en__registrants__registrantDetails .en__field .en__field__element .en__submit {
         padding-left: var(--fields_spacing-inline);
         padding-right: var(--fields_spacing-inline); }
         .en__component--formblock .en__field .en__field__element .en__submit.en__rangeFieldLabels,
-        .en__component--svblock .en__field .en__field__element .en__submit.en__rangeFieldLabels {
+        .en__component--svblock .en__field .en__field__element .en__submit.en__rangeFieldLabels,
+        .en__registrants__registrantDetails .en__field .en__field__element .en__submit.en__rangeFieldLabels {
           padding-left: 0;
           padding-right: 0;
           margin-bottom: var(--fields_spacing-block); }
@@ -2158,7 +2166,16 @@ a {
       .en__component--svblock .en__field .en__field__element.en__field__element--tripletext,
       .en__component--svblock .en__field .en__field__element.en__field__element--splitselect,
       .en__component--svblock .en__field .en__field__element.en__field__element--tripleselect,
-      .en__component--svblock .en__field .en__field__element.en__field__element--withOther {
+      .en__component--svblock .en__field .en__field__element.en__field__element--withOther,
+      .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--checkbox,
+      .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--radio,
+      .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--rating,
+      .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--imgselect,
+      .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--splittext,
+      .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--tripletext,
+      .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--splitselect,
+      .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--tripleselect,
+      .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--withOther {
         margin-left: calc(var(--fields_spacing-inline) * -1);
         margin-right: calc(var(--fields_spacing-inline) * -1); }
         .en__component--formblock .en__field .en__field__element.en__field__element--checkbox .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--radio .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--rating .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--imgselect .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--splittext .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--tripletext .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--splitselect .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--tripleselect .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--withOther .en__field__item,
@@ -2170,7 +2187,16 @@ a {
         .en__component--svblock .en__field .en__field__element.en__field__element--tripletext .en__field__item,
         .en__component--svblock .en__field .en__field__element.en__field__element--splitselect .en__field__item,
         .en__component--svblock .en__field .en__field__element.en__field__element--tripleselect .en__field__item,
-        .en__component--svblock .en__field .en__field__element.en__field__element--withOther .en__field__item {
+        .en__component--svblock .en__field .en__field__element.en__field__element--withOther .en__field__item,
+        .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--checkbox .en__field__item,
+        .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--radio .en__field__item,
+        .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--rating .en__field__item,
+        .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--imgselect .en__field__item,
+        .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--splittext .en__field__item,
+        .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--tripletext .en__field__item,
+        .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--splitselect .en__field__item,
+        .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--tripleselect .en__field__item,
+        .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--withOther .en__field__item {
           padding-left: var(--fields_spacing-inline);
           padding-right: var(--fields_spacing-inline);
           padding-top: calc(var(--fields_spacing-block) * 0.5);
@@ -2180,15 +2206,20 @@ a {
     .en__component--formblock .en__field .en__field__element > textarea,
     .en__component--svblock .en__field .en__field__element > input,
     .en__component--svblock .en__field .en__field__element > select,
-    .en__component--svblock .en__field .en__field__element > textarea {
+    .en__component--svblock .en__field .en__field__element > textarea,
+    .en__registrants__registrantDetails .en__field .en__field__element > input,
+    .en__registrants__registrantDetails .en__field .en__field__element > select,
+    .en__registrants__registrantDetails .en__field .en__field__element > textarea {
       margin-top: calc(var(--fields_spacing-inline) * 0.5);
       margin-bottom: var(--fields_spacing-block); }
     .en__component--formblock .en__field.en__field--withOther .en__field__element,
-    .en__component--svblock .en__field.en__field--withOther .en__field__element {
+    .en__component--svblock .en__field.en__field--withOther .en__field__element,
+    .en__registrants__registrantDetails .en__field.en__field--withOther .en__field__element {
       margin-left: calc(var(--fields_spacing-inline) * -1);
       margin-right: calc(var(--fields_spacing-inline) * -1); }
       .en__component--formblock .en__field.en__field--withOther .en__field__element .en__field__item,
-      .en__component--svblock .en__field.en__field--withOther .en__field__element .en__field__item {
+      .en__component--svblock .en__field.en__field--withOther .en__field__element .en__field__item,
+      .en__registrants__registrantDetails .en__field.en__field--withOther .en__field__element .en__field__item {
         padding-left: var(--fields_spacing-inline);
         padding-right: var(--fields_spacing-inline); }
 
@@ -4447,28 +4478,9 @@ input[type="text"].en__ticket__quantity {
   padding-right: 0;
   flex-basis: auto; }
 
-.en__registrants {
-  padding-left: 0;
-  padding-right: 0; }
-
-.en__registrants__registrantDetails {
-  display: flex;
-  flex-wrap: wrap; }
-
+.en__registrants,
 .en__registrants__registrant {
   padding-left: 0;
-  padding-right: 0;
-  width: 100%; }
-
-.en__registrants__registrantDetails .en__field.en__field--text {
-  flex-basis: calc(100% / 3);
-  padding-left: 0.5rem;
-  padding-right: 0.5rem; }
-
-.en__registrants__registrantDetails .en__field.en__field--text:first-of-type {
-  padding-left: 0; }
-
-.en__registrants__registrantDetails .en__field.en__field--text:last-of-type {
   padding-right: 0; }
 
 .en__ticketSummary {
@@ -4504,12 +4516,6 @@ button.en__eventOccurrence__select {
 
 button.en__eventOccurrence__select > label {
   font-family: var(--button_font-family); }
-
-@media screen and (max-width: 599px) {
-  .en__registrants__registrantDetails .en__field.en__field--text.en__field {
-    flex-basis: 100%;
-    padding-left: 0;
-    padding-right: 0; } }
 
 /*
 * ##########################################################

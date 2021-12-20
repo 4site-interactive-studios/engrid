@@ -148,7 +148,8 @@
 
 // Form Blocks and Survey Blocks need a negative horizontal margin so the contents inside it can have a horizontal padding applied.
 .en__component--formblock,
-.en__component--svblock {
+.en__component--svblock,
+.en__registrants__registrantDetails {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
