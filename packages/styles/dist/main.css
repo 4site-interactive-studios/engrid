@@ -586,7 +586,7 @@ body[data-engrid-debug]:before {
   margin-top: 0.75rem; }
 
 .en__component--hubgadget > img {
-  height: 3.5rem; }
+  height: auto; }
 
 .en-noselect {
   -moz-user-select: none;

@@ -329,8 +329,17 @@ export class App extends ENGrid {
       sendIframeHeight();
     }
   }
+
   // Use this function to add any Data Attributes to the Body tag
   setDataAttributes() {
+    // Add the Page Type as a Data Attribute on the video
+    if (window.pageJson && window.pageJson.pageType) {
+      App.setBodyData("page-type", window.pageJson.pageType);
+      this.logger.log("Page Type: " + window.pageJson.pageType);
+    } else {
+      this.logger.log("Page Type: Not Found");
+    }
+
     // Add a body banner data attribute if the banner contains no image
     // @TODO Should this account for video?
     // @TODO Should we merge this with the script that checks the background image?
