@@ -333,7 +333,7 @@ export class App extends ENGrid {
   // Use this function to add any Data Attributes to the Body tag
   setDataAttributes() {
     // Add the Page Type as a Data Attribute on the video
-    if (window.pageJson && window.pageJson.pageType) {
+    if (ENGrid.checkNested(window, "pageJson", "pageType")) {
       App.setBodyData("page-type", window.pageJson.pageType);
       this.logger.log("Page Type: " + window.pageJson.pageType);
     } else {

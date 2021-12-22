@@ -106,6 +106,9 @@ export class ENGrid {
                 case "emailsubscribeform":
                     return "SUBSCRIBEFORM";
                     break;
+                case "supporterhub":
+                    return "SUPPORTERHUB";
+                    break;
                 default:
                     return "DONATION";
             }
