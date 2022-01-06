@@ -4,7 +4,7 @@
   "description": "Main SASS Styles for the ENGRID Project",
   "main": "./src/main.scss",
   "scripts": {
-    "build": "sass src:dist",
+    "build": "sass src:dist --load-path=node_modules",
     "postpublish": "git push origin --tags"
   },
   "keywords": [
