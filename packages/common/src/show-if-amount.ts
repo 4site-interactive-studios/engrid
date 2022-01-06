@@ -1,4 +1,4 @@
-import { ENGrid, EngridLogger } from ".";
+import { EngridLogger } from ".";
 import { DonationAmount } from "./events";
 
 export class ShowIfAmount {

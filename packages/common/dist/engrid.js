@@ -55,6 +55,18 @@ export class ENGrid {
         this.enParseDependencies();
         return;
     }
+    // Create a hidden input field
+    static createHiddenInput(name, value = "") {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = name;
+        input.classList.add("en__field__input");
+        input.classList.add("en__field__input--text");
+        input.classList.add("engrid-added-input");
+        input.value = value;
+        ENGrid.enForm.appendChild(input);
+        return input;
+    }
     // Trigger EN Dependencies
     static enParseDependencies() {
         var _a, _b, _c, _d, _e;

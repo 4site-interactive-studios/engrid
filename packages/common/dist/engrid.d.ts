@@ -6,6 +6,7 @@ export declare abstract class ENGrid {
     static getUrlParameter(name: string): string;
     static getFieldValue(name: string): string;
     static setFieldValue(name: string, value: unknown): void;
+    static createHiddenInput(name: string, value?: string): HTMLInputElement;
     static enParseDependencies(): void;
     static getGiftProcess(): any;
     static getPageCount(): any;

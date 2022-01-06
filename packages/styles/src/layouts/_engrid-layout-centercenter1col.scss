@@ -8,10 +8,12 @@ $centercenter1col_content-column_max-width: $one_col_content-column_max-width !d
 $centercenter1col_content-column_min-width: $one_col_content-column_min-width !default; // Overridable in client theme
 $centercenter1col_body-column_max-width: $one_col_body-column_max-width !default; // Overridable in client theme
 $centercenter1col_body-column_min-width: $one_col_body-column_min-width !default; // Overridable in client theme
-$centercenter1col_body-column_offset-width: (
-    $centercenter1col_content-column_max-width -
-      $centercenter1col_body-column_max-width
-  ) / 2;
+$centercenter1col_body-column_offset-width: calc(
+  (
+      $centercenter1col_content-column_max-width -
+        $centercenter1col_body-column_max-width
+    ) / 2
+);
 $centercenter1col_body-column_offset-width-remaining: $centercenter1col_content-column_max-width -
   $centercenter1col_body-column_max-width -
   $centercenter1col_body-column_offset-width;
@@ -25,8 +27,8 @@ $centercenter1col_body-column_offset-width-remaining: $centercenter1col_content-
       [
         pc-start lpc-start]  minmax(0px, 1fr)                                                                                  [lpc-end
         cc-start lcc-start]  minmax(0px, $centercenter1col_body-column_offset-width)                                           [lcc-end
-        bc-start lbc-start]  minmax($centercenter1col_body-column_min-width / 2, $centercenter1col_body-column_max-width / 2)  [lbc-end
-        rbc-start]           minmax($centercenter1col_body-column_min-width / 2, $centercenter1col_body-column_max-width / 2)  [rbc-end bc-end
+        bc-start lbc-start]  minmax(calc($centercenter1col_body-column_min-width / 2), calc($centercenter1col_body-column_max-width / 2))  [lbc-end
+        rbc-start]           minmax(calc($centercenter1col_body-column_min-width / 2), calc($centercenter1col_body-column_max-width / 2))  [rbc-end bc-end
         rcc-start]           minmax(0px, $centercenter1col_body-column_offset-width-remaining)                                 [rcc-end cc-end
         rpc-start]           minmax(0px, 1fr)                                                                                  [rpc-end pc-end                 
       ]; 
@@ -43,10 +45,13 @@ $centercenter1col_body-column_offset-width-remaining: $centercenter1col_content-
         [lcc-end
         bc-start lbc-start] minmax(
           0px,
-          $centercenter1col_body-column_max-width / 2
+          calc($centercenter1col_body-column_max-width / 2)
         )
         [lbc-end
-        rbc-start] minmax(0px, $centercenter1col_body-column_max-width / 2)
+        rbc-start] minmax(
+          0px,
+          calc($centercenter1col_body-column_max-width / 2)
+        )
         [rbc-end bc-end
         rcc-start] minmax(
           0px,

@@ -12,7 +12,6 @@ export const enInput = (() => {
     const formInput = document.querySelectorAll(
       ".en__field--text, .en__field--email:not(.en__field--checkbox), .en__field--telephone, .en__field--number, .en__field--textarea, .en__field--select, .en__field--checkbox"
     );
-    const otherInputs = document.querySelectorAll(".en__field__input--other");
     Array.from(formInput).forEach((e) => {
       // @TODO Currently checkboxes always return as having a value, since they do but they're just not checked. Need to update and account for that, should also do Radio's while we're at it
       let element = e.querySelector("input, textarea, select") as
@@ -23,32 +22,6 @@ export const enInput = (() => {
         e.classList.add("has-value");
       }
       bindEvents(e);
-    });
-
-    /* @TODO Review Engaging Networks to see if this is still needed */
-    /************************************
-     * Automatically select other radio input when an amount is entered into it.
-     ***********************************/
-    Array.from(otherInputs).forEach((e) => {
-      ["focus", "input"].forEach((evt) => {
-        e.addEventListener(
-          evt,
-          (ev) => {
-            const target = ev.target as HTMLInputElement;
-            if (target && target.parentNode && target.parentNode.parentNode) {
-              const targetWrapper = target.parentNode as HTMLElement;
-              targetWrapper.classList.remove("en__field__item--hidden");
-              if (targetWrapper.parentNode) {
-                const lastRadioInput = targetWrapper.parentNode.querySelector(
-                  ".en__field__item:nth-last-child(2) input"
-                ) as HTMLInputElement;
-                lastRadioInput.checked = !0;
-              }
-            }
-          },
-          false
-        );
-      });
     });
   };
 

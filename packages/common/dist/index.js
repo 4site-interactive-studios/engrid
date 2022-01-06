@@ -30,6 +30,7 @@ export * from "./neverbounce";
 export * from "./progress-bar";
 export * from "./remember-me";
 export * from "./show-if-amount";
+export * from "./other-amount";
 export * from "./logger";
 // Events
 export * from "./events";

@@ -22,8 +22,8 @@ $centerleft1col_body-column_offset-width-remaining: $centerleft1col_content-colu
       [
         pc-start lpc-start]  minmax(0px, 1fr)                                                                              [lpc-end
         cc-start lcc-start]  minmax(0px, $centerleft1col_body-column_offset-width)                                         [lcc-end
-        bc-start lbc-start]  minmax($centerleft1col_body-column_min-width / 2, $centerleft1col_body-column_max-width / 2)  [lbc-end
-        rbc-start]           minmax($centerleft1col_body-column_min-width / 2, $centerleft1col_body-column_max-width / 2)  [rbc-end bc-end
+        bc-start lbc-start]  minmax(calc($centerleft1col_body-column_min-width / 2), calc($centerleft1col_body-column_max-width / 2))  [lbc-end
+        rbc-start]           minmax(calc($centerleft1col_body-column_min-width / 2), calc($centerleft1col_body-column_max-width / 2))  [rbc-end bc-end
         rcc-start]           minmax(0px, $centerleft1col_body-column_offset-width-remaining)                               [rcc-end cc-end
         rpc-start]           minmax(0px, 1fr)                                                                              [rpc-end pc-end            
       ]; 
@@ -40,10 +40,10 @@ $centerleft1col_body-column_offset-width-remaining: $centerleft1col_content-colu
         [lcc-end
         bc-start lbc-start] minmax(
           0px,
-          $centerleft1col_body-column_max-width / 2
+          calc($centerleft1col_body-column_max-width / 2)
         )
         [lbc-end
-        rbc-start] minmax(0px, $centerleft1col_body-column_max-width / 2)
+        rbc-start] minmax(0px, calc($centerleft1col_body-column_max-width / 2))
         [rbc-end bc-end
         rcc-start] minmax(
           0px,

@@ -35,6 +35,7 @@ import {
   TranslateFields,
   ShowIfAmount,
   EngridLogger,
+  OtherAmount,
 } from "./";
 
 export class App extends ENGrid {
@@ -238,6 +239,8 @@ export class App extends ENGrid {
       );
 
     new ShowIfAmount();
+
+    new OtherAmount();
 
     this.setDataAttributes();
   }

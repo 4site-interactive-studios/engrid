@@ -1,5 +1,11 @@
 [data-engrid-theme] {
   .en__component--callcontactblock {
+    .en__contact__detail {
+      flex-wrap: wrap;
+      .en__overlay {
+        position: initial;
+      }
+    }
     .en__contacts {
       padding: 0;
       background-color: initial;
