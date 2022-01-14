@@ -82,6 +82,10 @@ export class LiveVariables {
     }
     loadingSubmitButton() {
         const submit = document.querySelector(".en__submit button");
+        // Don't add the Loading element if the button is from an Ajax form (like the supporter hub)
+        if (submit.hasAttribute("data-action")) {
+            return true;
+        }
         let submitButtonOriginalHTML = submit.innerHTML;
         let submitButtonProcessingHTML = "<span class='loader-wrapper'><span class='loader loader-quart'></span><span class='submit-button-text-wrapper'>" +
             submitButtonOriginalHTML +
