@@ -6043,6 +6043,20 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) [class*=showifamount].animat
   max-height: 100%;
 }
 
+[data-engrid-theme][data-engrid-page-type=supporterhub] .en__hubPledge__column {
+  width: 100%;
+}
+[data-engrid-theme][data-engrid-page-type=supporterhub] .en__hubPledge__buttons .en__submit:first-child {
+  margin-right: 1rem;
+}
+[data-engrid-theme][data-engrid-page-type=supporterhub] .en__hubPledge__buttons .en__submit:last-child {
+  margin-left: 1rem;
+}
+[data-engrid-theme][data-engrid-page-type=supporterhub] .en__hubPledge__buttons .en__submit:first-child:last-child {
+  margin-left: 0;
+  margin-right: 0;
+}
+
 /* ENGRID LAYOUTS */
 /* MUST COME AFTER OTHER ENGRID STYLES WHICH MIGHT DEFINE MIXINS REFERENCED IN THE LAYOUTS */
 [data-engrid-theme] {

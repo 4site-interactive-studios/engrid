@@ -1,4 +1,22 @@
 [data-engrid-theme] {
   &[data-engrid-page-type="supporterhub"] {
+    // Force the Supporter Hubs columns to span the full width of their contents
+    .en__hubPledge__column {
+      width: 100%;
+    }
+
+    // In the event there are two submit buttons in a row
+    .en__hubPledge__buttons .en__submit:first-child {
+      margin-right: 1rem;
+    }
+
+    .en__hubPledge__buttons .en__submit:last-child {
+      margin-left: 1rem;
+    }
+
+    .en__hubPledge__buttons .en__submit:first-child:last-child {
+      margin-left: 0;
+      margin-right: 0;
+    }
   }
 }
