@@ -4111,34 +4111,34 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) .i11-hide-label .en__field:n
 
 /* On error, restyle if the field is also centered */
 /* prettier-ignore */
-.i1-show-hidden-radio-input.i1-center .en__field:nth-of-type(1).en__field--validationFailed .en__field__element--radio,
-.i2-show-hidden-radio-input.i2-center .en__field:nth-of-type(2).en__field--validationFailed .en__field__element--radio,
-.i3-show-hidden-radio-input.i3-center .en__field:nth-of-type(3).en__field--validationFailed .en__field__element--radio,
-.i4-show-hidden-radio-input.i4-center .en__field:nth-of-type(4).en__field--validationFailed .en__field__element--radio,
-.i5-show-hidden-radio-input.i5-center .en__field:nth-of-type(5).en__field--validationFailed .en__field__element--radio,
-.i6-show-hidden-radio-input.i6-center .en__field:nth-of-type(6).en__field--validationFailed .en__field__element--radio,
-.i7-show-hidden-radio-input.i7-center .en__field:nth-of-type(7).en__field--validationFailed .en__field__element--radio,
-.i8-show-hidden-radio-input.i8-center .en__field:nth-of-type(8).en__field--validationFailed .en__field__element--radio,
-.i9-show-hidden-radio-input.i9-center .en__field:nth-of-type(9).en__field--validationFailed .en__field__element--radio,
-.i10-show-hidden-radio-input.i10-center .en__field:nth-of-type(10).en__field--validationFailed .en__field__element--radio,
-.i11-show-hidden-radio-input.i11-center .en__field:nth-of-type(11).en__field--validationFailed .en__field__element--radio {
+.i1-show-hidden-radio-input.i1-center .en__field:nth-of-type(1)[class*=validationFail] .en__field__element--radio,
+.i2-show-hidden-radio-input.i2-center .en__field:nth-of-type(2)[class*=validationFail] .en__field__element--radio,
+.i3-show-hidden-radio-input.i3-center .en__field:nth-of-type(3)[class*=validationFail] .en__field__element--radio,
+.i4-show-hidden-radio-input.i4-center .en__field:nth-of-type(4)[class*=validationFail] .en__field__element--radio,
+.i5-show-hidden-radio-input.i5-center .en__field:nth-of-type(5)[class*=validationFail] .en__field__element--radio,
+.i6-show-hidden-radio-input.i6-center .en__field:nth-of-type(6)[class*=validationFail] .en__field__element--radio,
+.i7-show-hidden-radio-input.i7-center .en__field:nth-of-type(7)[class*=validationFail] .en__field__element--radio,
+.i8-show-hidden-radio-input.i8-center .en__field:nth-of-type(8)[class*=validationFail] .en__field__element--radio,
+.i9-show-hidden-radio-input.i9-center .en__field:nth-of-type(9)[class*=validationFail] .en__field__element--radio,
+.i10-show-hidden-radio-input.i10-center .en__field:nth-of-type(10)[class*=validationFail] .en__field__element--radio,
+.i11-show-hidden-radio-input.i11-center .en__field:nth-of-type(11)[class*=validationFail] .en__field__element--radio {
   border-radius: 0.3rem !important;
   margin-bottom: 0.5rem;
 }
 
 /* On error, restyle if the field is also centered */
 /* prettier-ignore */
-.i1-show-hidden-radio-input.i1-center .en__field:nth-of-type(1).en__field--validationFailed .en__field__error,
-.i2-show-hidden-radio-input.i2-center .en__field:nth-of-type(2).en__field--validationFailed .en__field__error,
-.i3-show-hidden-radio-input.i3-center .en__field:nth-of-type(3).en__field--validationFailed .en__field__error,
-.i4-show-hidden-radio-input.i4-center .en__field:nth-of-type(4).en__field--validationFailed .en__field__error,
-.i5-show-hidden-radio-input.i5-center .en__field:nth-of-type(5).en__field--validationFailed .en__field__error,
-.i6-show-hidden-radio-input.i6-center .en__field:nth-of-type(6).en__field--validationFailed .en__field__error,
-.i7-show-hidden-radio-input.i7-center .en__field:nth-of-type(7).en__field--validationFailed .en__field__error,
-.i8-show-hidden-radio-input.i8-center .en__field:nth-of-type(8).en__field--validationFailed .en__field__error,
-.i9-show-hidden-radio-input.i9-center .en__field:nth-of-type(9).en__field--validationFailed .en__field__error,
-.i10-show-hidden-radio-input.i9-center .en__field:nth-of-type(10).en__field--validationFailed .en__field__error,
-.i11-show-hidden-radio-input.i9-center .en__field:nth-of-type(11).en__field--validationFailed .en__field__error {
+.i1-show-hidden-radio-input.i1-center .en__field:nth-of-type(1)[class*=validationFail] .en__field__error,
+.i2-show-hidden-radio-input.i2-center .en__field:nth-of-type(2)[class*=validationFail] .en__field__error,
+.i3-show-hidden-radio-input.i3-center .en__field:nth-of-type(3)[class*=validationFail] .en__field__error,
+.i4-show-hidden-radio-input.i4-center .en__field:nth-of-type(4)[class*=validationFail] .en__field__error,
+.i5-show-hidden-radio-input.i5-center .en__field:nth-of-type(5)[class*=validationFail] .en__field__error,
+.i6-show-hidden-radio-input.i6-center .en__field:nth-of-type(6)[class*=validationFail] .en__field__error,
+.i7-show-hidden-radio-input.i7-center .en__field:nth-of-type(7)[class*=validationFail] .en__field__error,
+.i8-show-hidden-radio-input.i8-center .en__field:nth-of-type(8)[class*=validationFail] .en__field__error,
+.i9-show-hidden-radio-input.i9-center .en__field:nth-of-type(9)[class*=validationFail] .en__field__error,
+.i10-show-hidden-radio-input.i9-center .en__field:nth-of-type(10)[class*=validationFail] .en__field__error,
+.i11-show-hidden-radio-input.i9-center .en__field:nth-of-type(11)[class*=validationFail] .en__field__error {
   border-radius: 0.3rem !important;
 }
 
@@ -4885,7 +4885,7 @@ body:not[data-engrid-show-ecard-options] .show-if-ecard {
  * Field Placeholder Styling
  * @TODO Can this be simplified because we use Autoprefixer?
  ***********************************/
-.en__field--validationFailed:not(.has-focus):not(.has-value) {
+[class*=validationFail]:not(.has-focus):not(.has-value) {
   --input_placeholder-color: var(--error__color);
 }
 
@@ -4896,27 +4896,27 @@ body.error-jump-assist .en__component .en__field__error {
   order: 1;
 }
 
-.en__field--validationFailed label {
+[class*=validationFail] label {
   color: var(--error__color);
 }
 
-.en__field--validationFailed:not(.has-value):not(.has-focus) [type],
-.en__field--validationFailed:not(.has-value):not(.has-focus) textarea,
-.en__field--validationFailed:not(.has-value):not(.has-focus) select {
+[class*=validationFail]:not(.has-value):not(.has-focus) [type],
+[class*=validationFail]:not(.has-value):not(.has-focus) textarea,
+[class*=validationFail]:not(.has-value):not(.has-focus) select {
   border-color: var(--error__color);
   background-color: var(--error__color_faded);
 }
 
-.en__field--radio.en__field--validationFailed .en__field--checkbox.en__field--validationFailed {
+.en__field--radio[class*=validationFail] .en__field--checkbox[class*=validationFail] {
   border-color: var(--error__color);
 }
 
-.radio-to-buttons_donationAmt .en__field--donationAmt.en__field--withOther.en__field--validationFailed .en__field__element--radio {
+.radio-to-buttons_donationAmt .en__field--donationAmt.en__field--withOther[class*=validationFail] .en__field__element--radio {
   border-radius: var(--donation-amount__button_border-radius);
   margin-bottom: 0.5rem;
 }
 
-.radio-to-buttons_donationAmt .en__field--donationAmt.en__field--withOther.en__field--validationFailed .en__field__error {
+.radio-to-buttons_donationAmt .en__field--donationAmt.en__field--withOther[class*=validationFail] .en__field__error {
   border-radius: var(--donation-amount__button_border-radius);
 }
 
@@ -5084,16 +5084,16 @@ button.en__eventOccurrence__select > label {
   background-color: var(--error__color);
   order: 3;
 }
-[data-engrid-errors=fancy] .en__field--select.en__field--withOther .en__field--validationFailed.has-value,
-[data-engrid-errors=fancy] .en__field--radio .en__field--validationFailed.has-value,
-[data-engrid-errors=fancy] .en__field--checkbox .en__field--validationFailed.has-value,
-[data-engrid-errors=fancy] .en__field--splittext .en__field--validationFailed.has-value,
-[data-engrid-errors=fancy] .en__field--tripletext .en__field--validationFailed.has-value,
-[data-engrid-errors=fancy] .en__field--splitselect .en__field--validationFailed.has-value,
-[data-engrid-errors=fancy] .en__field--tripleselec .en__field--validationFailed.has-value,
-[data-engrid-errors=fancy] .en__field--calendar .en__field--validationFailed.has-value,
-[data-engrid-errors=fancy] .en__field--imgselect .en__field--validationFailed.has-value,
-[data-engrid-errors=fancy] .en__field--rating .en__field--validationFailed.has-value {
+[data-engrid-errors=fancy] .en__field--select.en__field--withOther [class*=validationFail].has-value,
+[data-engrid-errors=fancy] .en__field--radio [class*=validationFail].has-value,
+[data-engrid-errors=fancy] .en__field--checkbox [class*=validationFail].has-value,
+[data-engrid-errors=fancy] .en__field--splittext [class*=validationFail].has-value,
+[data-engrid-errors=fancy] .en__field--tripletext [class*=validationFail].has-value,
+[data-engrid-errors=fancy] .en__field--splitselect [class*=validationFail].has-value,
+[data-engrid-errors=fancy] .en__field--tripleselec [class*=validationFail].has-value,
+[data-engrid-errors=fancy] .en__field--calendar [class*=validationFail].has-value,
+[data-engrid-errors=fancy] .en__field--imgselect [class*=validationFail].has-value,
+[data-engrid-errors=fancy] .en__field--rating [class*=validationFail].has-value {
   border-color: var(--error__color_grayscale);
   background-color: var(--error__color_grayscale);
   color: var(--color_white);

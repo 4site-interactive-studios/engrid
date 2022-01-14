@@ -2727,7 +2727,7 @@
 .en__component--svblock--displayInOrder .en__field--survey--surveyActive,
 .en__component--svblock--displayInOrder .en__field--survey--surveyDone,
 .en__component--svblock--displayInOrder
-  .en__field--survey.en__field--validationFailed,
+  .en__field--survey[class*="validationFail"],
 .en__component--svblock--displayInOrder .en__field--survey:first-child {
   // display: block
 }
