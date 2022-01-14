@@ -18,5 +18,10 @@
       margin-left: 0;
       margin-right: 0;
     }
+
+    // Removes a red border that appears only on errored fields within the support hub
+    .en__hubPledge__validationFail .en__field__element {
+      border: none;
+    }
   }
 }

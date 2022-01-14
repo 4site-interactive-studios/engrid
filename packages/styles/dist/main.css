@@ -6056,6 +6056,9 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) [class*=showifamount].animat
   margin-left: 0;
   margin-right: 0;
 }
+[data-engrid-theme][data-engrid-page-type=supporterhub] .en__hubPledge__validationFail .en__field__element {
+  border: none;
+}
 
 /* ENGRID LAYOUTS */
 /* MUST COME AFTER OTHER ENGRID STYLES WHICH MIGHT DEFINE MIXINS REFERENCED IN THE LAYOUTS */
