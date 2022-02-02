@@ -2,7 +2,7 @@
 
 export class OtherAmount {
   constructor() {
-    "focus input".split(" ").forEach((e) => {
+    "focusin input".split(" ").forEach((e) => {
       // We're attaching this event to the body because sometimes the other amount input is not in the DOM yet and comes via AJAX.
       document.querySelector("body")?.addEventListener(e, (event) => {
         const target = event.target as HTMLInputElement;
@@ -16,7 +16,7 @@ export class OtherAmount {
 
   private setRadioInput() {
     const target = document.querySelector(
-      ".en__field__input--other"
+      ".en__field--donationAmt .en__field__input--other"
     ) as HTMLInputElement;
     if (target && target.parentNode && target.parentNode.parentNode) {
       const targetWrapper = target.parentNode as HTMLElement;
