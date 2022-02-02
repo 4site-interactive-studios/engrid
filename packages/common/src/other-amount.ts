@@ -1,13 +1,21 @@
 // This class automatically select other radio input when an amount is entered into it.
 
+import { EngridLogger } from ".";
+
 export class OtherAmount {
+  private logger: EngridLogger = new EngridLogger(
+    "OtherAmount",
+    "green",
+    "black",
+    "💰"
+  );
   constructor() {
     "focusin input".split(" ").forEach((e) => {
       // We're attaching this event to the body because sometimes the other amount input is not in the DOM yet and comes via AJAX.
       document.querySelector("body")?.addEventListener(e, (event) => {
         const target = event.target as HTMLInputElement;
         if (target.classList.contains("en__field__input--other")) {
-          console.log("Other Amount Field Focused");
+          this.logger.log("Other Amount Field Focused");
           this.setRadioInput();
         }
       });
