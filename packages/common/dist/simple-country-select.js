@@ -4,7 +4,7 @@ import { ENGrid } from ".";
 export class SimpleCountrySelect {
     constructor() {
         this.countryWrapper = document.querySelector(".simple_country_select");
-        this.countrySelect = document.querySelector("#en__field_supporter_country");
+        this.countrySelect = document.querySelector("select#en__field_supporter_country");
         this.country = null;
         const engridAutofill = cookie.get("engrid-autofill");
         const submissionFailed = !!(ENGrid.checkNested(window.EngagingNetworks, "require", "_defined", "enjs", "checkSubmissionFailed") && window.EngagingNetworks.require._defined.enjs.checkSubmissionFailed());

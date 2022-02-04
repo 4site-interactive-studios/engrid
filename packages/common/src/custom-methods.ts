@@ -285,10 +285,7 @@ export const debugBar = () => {
 };
 
 export const inputPlaceholder = () => {
-  // FIND ALL COMMON INPUT FIELDS
-  let enFieldDonationAmt = document.querySelector(
-    ".en__field--donationAmt.en__field--withOther .en__field__input--other"
-  ) as HTMLInputElement;
+  // Personal Information
   let enFieldFirstName = document.querySelector(
     "input#en__field_supporter_firstName"
   ) as HTMLInputElement;
@@ -299,11 +296,19 @@ export const inputPlaceholder = () => {
     "input#en__field_supporter_emailAddress"
   ) as HTMLInputElement;
   let enFieldPhoneNumber = document.querySelector(
-    "#inputen__field_supporter_phoneNumber"
+    "input#en__field_supporter_phoneNumber"
+  ) as HTMLInputElement;
+  let enFieldPhoneNumberRequired = document.querySelector(
+    ".en__mandatory > * > input#en__field_supporter_phoneNumber"
   ) as HTMLInputElement;
   let enFieldPhoneNumber2 = document.querySelector(
     "input#en__field_supporter_phoneNumber2"
   ) as HTMLInputElement;
+  let enFieldPhoneNumber2Required = document.querySelector(
+    ".en__mandatory > * > input#en__field_supporter_phoneNumber2"
+  ) as HTMLInputElement;
+
+  // Address
   let enFieldCountry = document.querySelector(
     "input#en__field_supporter_country"
   ) as HTMLInputElement;
@@ -316,10 +321,34 @@ export const inputPlaceholder = () => {
   let enFieldCity = document.querySelector(
     "input#en__field_supporter_city"
   ) as HTMLInputElement;
-  // let enFieldRegion = document.querySelector("input#en__field_supporter_region") as HTMLInputElement
+  let enFieldRegion = document.querySelector(
+    "input#en__field_supporter_region"
+  ) as HTMLInputElement;
   let enFieldPostcode = document.querySelector(
     "input#en__field_supporter_postcode"
   ) as HTMLInputElement;
+
+  // Donation
+  let enFieldDonationAmt = document.querySelector(
+    ".en__field--donationAmt.en__field--withOther .en__field__input--other"
+  ) as HTMLInputElement;
+  let enFieldCcnumber = document.querySelector(
+    "input#en__field_transaction_ccnumber"
+  ) as HTMLInputElement;
+  let enFieldCcexpire = document.querySelector(
+    "input#en__field_transaction_ccexpire"
+  ) as HTMLInputElement;
+  let enFieldCcvv = document.querySelector(
+    "input#en__field_transaction_ccvv"
+  ) as HTMLInputElement;
+  let enFieldBankAccountNumber = document.querySelector(
+    "input#en__field_supporter_bankAccountNumber"
+  ) as HTMLInputElement;
+  let enFieldBankRoutingNumber = document.querySelector(
+    "input#en__field_supporter_bankRoutingNumber"
+  ) as HTMLInputElement;
+
+  // In Honor
   let enFieldHonname = document.querySelector(
     "input#en__field_transaction_honname"
   ) as HTMLInputElement;
@@ -344,23 +373,59 @@ export const inputPlaceholder = () => {
   let enFieldInfpostcd = document.querySelector(
     "input#en__field_transaction_infpostcd"
   ) as HTMLInputElement;
+
+  // Miscillaneous
   let enFieldGftrsn = document.querySelector(
     "input#en__field_transaction_gftrsn"
   ) as HTMLInputElement;
-  let enFieldCcnumber = document.querySelector(
-    "input#en__field_transaction_ccnumber"
+
+  // Shipping Infromation
+  let enFieldShippingFirstName = document.querySelector(
+    "input#en__field_transaction_shipfname"
   ) as HTMLInputElement;
-  let enFieldCcexpire = document.querySelector(
-    "input#en__field_transaction_ccexpire"
+  let enFieldShippingLastName = document.querySelector(
+    "input#en__field_transaction_shiplname"
   ) as HTMLInputElement;
-  let enFieldCcvv = document.querySelector(
-    "input#en__field_transaction_ccvv"
+  let enFieldShippingEmailAddress = document.querySelector(
+    "input#en__field_transaction_shipemail"
   ) as HTMLInputElement;
-  let enFieldBankAccountNumber = document.querySelector(
-    "input#en__field_supporter_bankAccountNumber"
+  let enFieldShippingCountry = document.querySelector(
+    "input#en__field_transaction_shipcountry"
   ) as HTMLInputElement;
-  let enFieldBankRoutingNumber = document.querySelector(
-    "input#en__field_supporter_bankRoutingNumber"
+  let enFieldShippingAddress1 = document.querySelector(
+    "input#en__field_transaction_shipadd1"
+  ) as HTMLInputElement;
+  let enFieldShippingAddress2 = document.querySelector(
+    "input#en__field_transaction_shipadd2"
+  ) as HTMLInputElement;
+  let enFieldShippingCity = document.querySelector(
+    "input#en__field_transaction_shipcity"
+  ) as HTMLInputElement;
+  let enFieldShippingRegion = document.querySelector(
+    "input#en__field_transaction_shipregion"
+  ) as HTMLInputElement;
+  let enFieldShippingPostcode = document.querySelector(
+    "input#en__field_transaction_shippostcode"
+  ) as HTMLInputElement;
+
+  // Billing Infromation
+  let enFieldBillingCountry = document.querySelector(
+    "input#en__field_supporter_billingCountry"
+  ) as HTMLInputElement;
+  let enFieldBillingAddress1 = document.querySelector(
+    "input#en__field_supporter_billingAddress1"
+  ) as HTMLInputElement;
+  let enFieldBillingAddress2 = document.querySelector(
+    "input#en__field_supporter_billingAddress2"
+  ) as HTMLInputElement;
+  let enFieldBillingCity = document.querySelector(
+    "input#en__field_supporter_billingCity"
+  ) as HTMLInputElement;
+  let enFieldBillingRegion = document.querySelector(
+    "input#en__field_supporter_billingRegion"
+  ) as HTMLInputElement;
+  let enFieldBillingPostcode = document.querySelector(
+    "input#en__field_supporter_billingPostcode"
   ) as HTMLInputElement;
 
   // CHANGE FIELD INPUT TYPES
@@ -373,9 +438,7 @@ export const inputPlaceholder = () => {
     "[data-engrid-add-input-placeholders]"
   ) as HTMLDataElement;
 
-  if (enAddInputPlaceholder && enFieldDonationAmt) {
-    enFieldDonationAmt.placeholder = "Other Amount";
-  }
+  // Personal Information
   if (enAddInputPlaceholder && enFieldFirstName) {
     enFieldFirstName.placeholder = "First Name";
   }
@@ -385,12 +448,34 @@ export const inputPlaceholder = () => {
   if (enAddInputPlaceholder && enFieldEmailAddress) {
     enFieldEmailAddress.placeholder = "Email Address";
   }
-  if (enAddInputPlaceholder && enFieldPhoneNumber) {
+  if (
+    enAddInputPlaceholder &&
+    enFieldPhoneNumber &&
+    enFieldPhoneNumberRequired
+  ) {
     enFieldPhoneNumber.placeholder = "Phone Number";
+  } else if (
+    enAddInputPlaceholder &&
+    enFieldPhoneNumber &&
+    !enFieldPhoneNumberRequired
+  ) {
+    enFieldPhoneNumber.placeholder = "Phone Number (Optional)";
   }
-  if (enAddInputPlaceholder && enFieldPhoneNumber2) {
+  if (
+    enAddInputPlaceholder &&
+    enFieldPhoneNumber2 &&
+    enFieldPhoneNumber2Required
+  ) {
+    enFieldPhoneNumber2.placeholder = "000-000-0000";
+  } else if (
+    enAddInputPlaceholder &&
+    enFieldPhoneNumber2 &&
+    !enFieldPhoneNumber2Required
+  ) {
     enFieldPhoneNumber2.placeholder = "000-000-0000 (Optional)";
   }
+
+  // Address
   if (enAddInputPlaceholder && enFieldCountry) {
     enFieldCountry.placeholder = "Country";
   }
@@ -403,36 +488,16 @@ export const inputPlaceholder = () => {
   if (enAddInputPlaceholder && enFieldCity) {
     enFieldCity.placeholder = "City";
   }
-  // if (enAddInputPlaceholder && enFieldRegion){enFieldRegion.placeholder = "TBD";}
+  if (enAddInputPlaceholder && enFieldRegion) {
+    enFieldRegion.placeholder = "Region";
+  }
   if (enAddInputPlaceholder && enFieldPostcode) {
     enFieldPostcode.placeholder = "Postal Code";
   }
-  if (enAddInputPlaceholder && enFieldHonname) {
-    enFieldHonname.placeholder = "Honoree Name";
-  }
-  if (enAddInputPlaceholder && enFieldInfname) {
-    enFieldInfname.placeholder = "Recipient Name";
-  }
-  if (enAddInputPlaceholder && enFieldInfemail) {
-    enFieldInfemail.placeholder = "Recipient Email Address";
-  }
-  if (enAddInputPlaceholder && enFieldInfcountry) {
-    enFieldInfcountry.placeholder = "TBD";
-  }
-  if (enAddInputPlaceholder && enFieldInfadd1) {
-    enFieldInfadd1.placeholder = "Recipient Street Address";
-  }
-  if (enAddInputPlaceholder && enFieldInfadd2) {
-    enFieldInfadd2.placeholder = "Recipient Apt., ste., bldg.";
-  }
-  if (enAddInputPlaceholder && enFieldInfcity) {
-    enFieldInfcity.placeholder = "Recipient City";
-  }
-  if (enAddInputPlaceholder && enFieldInfpostcd) {
-    enFieldInfpostcd.placeholder = "Recipient Postal Code";
-  }
-  if (enAddInputPlaceholder && enFieldGftrsn) {
-    enFieldGftrsn.placeholder = "Reason for your gift";
+
+  // Donation
+  if (enAddInputPlaceholder && enFieldDonationAmt) {
+    enFieldDonationAmt.placeholder = "Other";
   }
   if (enAddInputPlaceholder && enFieldCcnumber) {
     enFieldCcnumber.placeholder = "•••• •••• •••• ••••";
@@ -448,6 +513,86 @@ export const inputPlaceholder = () => {
   }
   if (enAddInputPlaceholder && enFieldBankRoutingNumber) {
     enFieldBankRoutingNumber.placeholder = "Bank Routing Number";
+  }
+
+  // In Honor
+  if (enAddInputPlaceholder && enFieldHonname) {
+    enFieldHonname.placeholder = "Honoree Name";
+  }
+  if (enAddInputPlaceholder && enFieldInfname) {
+    enFieldInfname.placeholder = "Recipient Name";
+  }
+  if (enAddInputPlaceholder && enFieldInfemail) {
+    enFieldInfemail.placeholder = "Recipient Email Address";
+  }
+  if (enAddInputPlaceholder && enFieldInfcountry) {
+    enFieldInfcountry.placeholder = "Country";
+  }
+  if (enAddInputPlaceholder && enFieldInfadd1) {
+    enFieldInfadd1.placeholder = "Recipient Street Address";
+  }
+  if (enAddInputPlaceholder && enFieldInfadd2) {
+    enFieldInfadd2.placeholder = "Recipient Apt., ste., bldg.";
+  }
+  if (enAddInputPlaceholder && enFieldInfcity) {
+    enFieldInfcity.placeholder = "Recipient City";
+  }
+  if (enAddInputPlaceholder && enFieldInfpostcd) {
+    enFieldInfpostcd.placeholder = "Recipient Postal Code";
+  }
+
+  // Miscillaneous
+  if (enAddInputPlaceholder && enFieldGftrsn) {
+    enFieldGftrsn.placeholder = "Reason for your gift";
+  }
+
+  // Shipping Infromation
+  if (enAddInputPlaceholder && enFieldShippingFirstName) {
+    enFieldShippingFirstName.placeholder = "Shipping First Name";
+  }
+  if (enAddInputPlaceholder && enFieldShippingLastName) {
+    enFieldShippingLastName.placeholder = "Shipping Last Name";
+  }
+  if (enAddInputPlaceholder && enFieldShippingEmailAddress) {
+    enFieldShippingEmailAddress.placeholder = "Shipping Email Address";
+  }
+  if (enAddInputPlaceholder && enFieldShippingCountry) {
+    enFieldShippingCountry.placeholder = "Shipping Country";
+  }
+  if (enAddInputPlaceholder && enFieldShippingAddress1) {
+    enFieldShippingAddress1.placeholder = "Shipping Street Address";
+  }
+  if (enAddInputPlaceholder && enFieldShippingAddress2) {
+    enFieldShippingAddress2.placeholder = "Shipping Apt., ste., bldg.";
+  }
+  if (enAddInputPlaceholder && enFieldShippingCity) {
+    enFieldShippingCity.placeholder = "Shipping City";
+  }
+  if (enAddInputPlaceholder && enFieldShippingRegion) {
+    enFieldShippingRegion.placeholder = "Shipping Region";
+  }
+  if (enAddInputPlaceholder && enFieldShippingPostcode) {
+    enFieldShippingPostcode.placeholder = "Shipping Postal Code";
+  }
+
+  // Billing Information
+  if (enAddInputPlaceholder && enFieldBillingCountry) {
+    enFieldBillingCountry.placeholder = "Billing Country";
+  }
+  if (enAddInputPlaceholder && enFieldBillingAddress1) {
+    enFieldBillingAddress1.placeholder = "Billing Street Address";
+  }
+  if (enAddInputPlaceholder && enFieldBillingAddress2) {
+    enFieldBillingAddress2.placeholder = "Billing Apt., ste., bldg.";
+  }
+  if (enAddInputPlaceholder && enFieldBillingCity) {
+    enFieldBillingCity.placeholder = "Billing City";
+  }
+  if (enAddInputPlaceholder && enFieldBillingRegion) {
+    enFieldBillingRegion.placeholder = "Billing Region";
+  }
+  if (enAddInputPlaceholder && enFieldBillingPostcode) {
+    enFieldBillingPostcode.placeholder = "Billing Postal Code";
   }
 };
 

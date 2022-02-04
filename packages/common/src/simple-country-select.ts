@@ -6,7 +6,7 @@ export class SimpleCountrySelect {
     ".simple_country_select"
   ) as HTMLDivElement;
   public countrySelect: HTMLSelectElement = document.querySelector(
-    "#en__field_supporter_country"
+    "select#en__field_supporter_country"
   ) as HTMLSelectElement;
 
   private country = null;
