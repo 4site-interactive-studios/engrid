@@ -3586,6 +3586,11 @@ button[disabled],
   filter: grayscale(1);
 }
 
+[data-engrid-theme] .en__component--callcontactblock {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
 [data-engrid-theme] .en__component--callcontactblock .en__contact__detail {
   flex-wrap: wrap;
 }
@@ -3600,6 +3605,9 @@ button[disabled],
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+}
+[data-engrid-theme] .en__component--callcontactblock .en__overlay--callcontact {
+  width: 100%;
 }
 [data-engrid-theme] .en__component--callsurveyblock .en__c2c__survey__rate .en__button {
   opacity: 1;

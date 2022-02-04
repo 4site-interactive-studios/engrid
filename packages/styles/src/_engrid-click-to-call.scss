@@ -1,5 +1,9 @@
 [data-engrid-theme] {
   .en__component--callcontactblock {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+
     .en__contact__detail {
       flex-wrap: wrap;
       .en__overlay {
@@ -15,6 +19,11 @@
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
+    }
+
+    // Because we use flexbox for the parent, we need the overlay to be 100% width or it will only occupy the minimal horizontal space it needs and visually look broken
+    .en__overlay--callcontact {
+      width: 100%;
     }
   }
 
