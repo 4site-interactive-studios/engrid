@@ -32,3 +32,15 @@
     }
   }
 }
+
+.en__shares {
+  gap: calc(var(--fields_spacing-inline) * 2);
+
+  .en__share.en__share--twitter {
+    flex-basis: 50px;
+  }
+
+  .en__share.en__share--facebook {
+    flex-basis: 50px;
+  }
+}
