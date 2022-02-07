@@ -5841,20 +5841,11 @@ body:not(#en__pagebuilder) .simple_country_select:not(.country-select-visible) .
 .en__shares {
   gap: calc(var(--fields_spacing-inline) * 2);
 }
-.en__shares .en__share__button--twitter {
+.en__shares .en__share.en__share--twitter {
   flex-basis: 50px;
 }
-.en__shares .en__share__button--facebook {
+.en__shares .en__share.en__share--facebook {
   flex-basis: 50px;
-}
-.en__shares .en__share__button--gplus {
-  flex-basis: 50px;
-}
-.en__shares .en__share__button--small.en__share__button--twitter {
-  flex-basis: 65px;
-}
-.en__shares .en__share__button--large.en__share__button--twitter {
-  flex-basis: 51px;
 }
 
 .enWidget__bar .enWidget__progress {
