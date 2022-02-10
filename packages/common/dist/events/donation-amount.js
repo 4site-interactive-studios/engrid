@@ -12,7 +12,6 @@ export class DonationAmount {
         document.addEventListener("change", (e) => {
             const element = e.target;
             if (element && element.name == radios) {
-                element.value = this.removeCommas(element.value);
                 this.amount = parseFloat(element.value);
             }
         });
@@ -20,7 +19,6 @@ export class DonationAmount {
         const otherField = document.querySelector(`[name='${this._other}']`);
         if (otherField) {
             otherField.addEventListener("keyup", (e) => {
-                otherField.value = this.removeCommas(otherField.value);
                 this.amount = parseFloat(otherField.value);
             });
         }
@@ -91,17 +89,5 @@ export class DonationAmount {
         otherField.value = "";
         const otherWrapper = otherField.parentNode;
         otherWrapper.classList.add("en__field__item--hidden");
-    }
-    // Remove commas
-    removeCommas(v) {
-        // replace 5,00 with 5.00
-        if (v.length > 3 && v.charAt(v.length - 3) == ",") {
-            v = v.substr(0, v.length - 3) + "." + v.substr(v.length - 2, 2);
-        }
-        else if (v.length > 2 && v.charAt(v.length - 2) == ",") {
-            v = v.substr(0, v.length - 2) + "." + v.substr(v.length - 1, 1);
-        }
-        // replace any remaining commas
-        return v.replace(/,/g, "");
     }
 }
