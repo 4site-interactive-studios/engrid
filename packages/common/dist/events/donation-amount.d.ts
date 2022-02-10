@@ -13,4 +13,5 @@ export declare class DonationAmount {
     load(): void;
     setAmount(amount: number, dispatch?: boolean): void;
     clearOther(): void;
+    preformatFloat(float: string): string;
 }

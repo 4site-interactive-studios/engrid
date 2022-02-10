@@ -17,8 +17,13 @@ export class DonationAmount {
     // Watch Radios Inputs for Changes
     document.addEventListener("change", (e: Event) => {
       const element = e.target as HTMLInputElement;
-      if (element && element.name == radios) {
-        this.amount = parseFloat(element.value);
+      if (element) {
+        if (element.name == radios) {
+          this.amount = parseFloat(element.value);
+        } else if (element.name == other) {
+          element.value = this.preformatFloat(element.value);
+          this.amount = parseFloat(element.value);
+        }
       }
     });
     // Watch Other Amount Field
@@ -116,5 +121,31 @@ export class DonationAmount {
     otherField.value = "";
     const otherWrapper = otherField.parentNode as HTMLElement;
     otherWrapper.classList.add("en__field__item--hidden");
+  }
+  public preformatFloat(float: string) {
+    if (!float) {
+      return "";
+    }
+
+    //Index of first comma
+    const posC = float.indexOf(",");
+
+    if (posC === -1) {
+      //No commas found, treat as float
+      return float;
+    }
+
+    //Index of first full stop
+    const posFS = float.indexOf(".");
+
+    if (posFS === -1) {
+      //Uses commas and not full stops - swap them (e.g. 1,23 --> 1.23)
+      return float.replace(/\,/g, ".");
+    }
+
+    //Uses both commas and full stops - ensure correct order and remove 1000s separators
+    return posC < posFS
+      ? float.replace(/\,/g, "")
+      : float.replace(/\./g, "").replace(",", ".");
   }
 }
