@@ -7,6 +7,7 @@ export declare class UpsellLightbox {
     _amount: DonationAmount;
     _fees: ProcessingFees;
     private _frequency;
+    private logger;
     constructor();
     private renderLightbox;
     private shouldRun;

@@ -1,4 +1,4 @@
-import { ENGrid, ProcessingFees, UpsellOptionsDefaults, } from "./";
+import { ENGrid, EngridLogger, ProcessingFees, UpsellOptionsDefaults, } from "./";
 import { DonationAmount, DonationFrequency, EnForm } from "./events";
 export class UpsellLightbox {
     constructor() {
@@ -7,11 +7,11 @@ export class UpsellLightbox {
         this._amount = DonationAmount.getInstance();
         this._fees = ProcessingFees.getInstance();
         this._frequency = DonationFrequency.getInstance();
+        this.logger = new EngridLogger("UpsellLightbox", "black", "pink", "🪟");
         let options = "EngridUpsell" in window ? window.EngridUpsell : {};
         this.options = Object.assign(Object.assign({}, UpsellOptionsDefaults), options);
         if (!this.shouldRun()) {
-            if (ENGrid.debug)
-                console.log("Upsell script should NOT run");
+            this.logger.log("Upsell script should NOT run");
             // If we're not on a Donation Page, get out
             return;
         }
@@ -108,8 +108,7 @@ export class UpsellLightbox {
         if (otherField) {
             otherField.addEventListener("keyup", this.popupOtherField.bind(this));
         }
-        if (ENGrid.debug)
-            console.log("Upsell script rendered");
+        this.logger.log("Upsell script rendered");
     }
     // Should we run the script?
     shouldRun() {
@@ -158,6 +157,8 @@ export class UpsellLightbox {
             let val = this.options.amountRange[i];
             if (upsellAmount == 0 && amount <= val.max) {
                 upsellAmount = val.suggestion;
+                if (upsellAmount === 0)
+                    return 0;
                 if (typeof upsellAmount !== "number") {
                     const suggestionMath = upsellAmount.replace("amount", amount.toFixed(2));
                     upsellAmount = parseFloat(Function('"use strict";return (' + suggestionMath + ")")());
@@ -179,18 +180,15 @@ export class UpsellLightbox {
         if (freq == "onetime" &&
             !this.overlay.classList.contains("is-submitting") &&
             upsellAmount > 0) {
-            if (ENGrid.debug) {
-                console.log("Upsell Frequency", this._frequency.frequency);
-                console.log("Upsell Amount", this._amount.amount);
-                console.log("Upsell Suggested Amount", upsellAmount);
-            }
+            this.logger.log("Upsell Frequency " + this._frequency.frequency);
+            this.logger.log("Upsell Amount " + this._amount.amount);
+            this.logger.log("Upsell Suggested Amount " + upsellAmount);
             return true;
         }
         return false;
     }
     open() {
-        if (ENGrid.debug)
-            console.log("Upsell Script Triggered");
+        this.logger.log("Upsell script opened");
         if (!this.shouldOpen()) {
             // In the circumstance when the form fails to validate via server-side validation, the page will reload
             // When that happens, we should place the original amount saved in sessionStorage into the upsell original amount field
@@ -241,8 +239,7 @@ export class UpsellLightbox {
         e.preventDefault();
         if (e.target instanceof Element &&
             ((_a = document.querySelector("#upsellYesButton")) === null || _a === void 0 ? void 0 : _a.contains(e.target))) {
-            if (ENGrid.debug)
-                console.log("Upsold");
+            this.logger.success("Upsold");
             this.setOriginalAmount(this._amount.amount.toString());
             const upsoldAmount = this.getUpsellAmount();
             this._frequency.setFrequency("monthly");

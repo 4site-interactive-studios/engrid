@@ -1,6 +1,7 @@
 import * as cookie from "./cookie";
 import {
   ENGrid,
+  EngridLogger,
   ProcessingFees,
   UpsellOptions,
   UpsellOptionsDefaults,
@@ -15,11 +16,18 @@ export class UpsellLightbox {
   public _fees: ProcessingFees = ProcessingFees.getInstance();
   private _frequency: DonationFrequency = DonationFrequency.getInstance();
 
+  private logger: EngridLogger = new EngridLogger(
+    "UpsellLightbox",
+    "black",
+    "pink",
+    "🪟"
+  );
+
   constructor() {
     let options = "EngridUpsell" in window ? window.EngridUpsell : {};
     this.options = { ...UpsellOptionsDefaults, ...options };
     if (!this.shouldRun()) {
-      if (ENGrid.debug) console.log("Upsell script should NOT run");
+      this.logger.log("Upsell script should NOT run");
       // If we're not on a Donation Page, get out
       return;
     }
@@ -133,7 +141,7 @@ export class UpsellLightbox {
     if (otherField) {
       otherField.addEventListener("keyup", this.popupOtherField.bind(this));
     }
-    if (ENGrid.debug) console.log("Upsell script rendered");
+    this.logger.log("Upsell script rendered");
   }
   // Should we run the script?
   private shouldRun() {
@@ -207,6 +215,7 @@ export class UpsellLightbox {
       let val = this.options.amountRange[i];
       if (upsellAmount == 0 && amount <= val.max) {
         upsellAmount = val.suggestion;
+        if (upsellAmount === 0) return 0;
         if (typeof upsellAmount !== "number") {
           const suggestionMath = upsellAmount.replace(
             "amount",
@@ -235,18 +244,17 @@ export class UpsellLightbox {
       !this.overlay.classList.contains("is-submitting") &&
       upsellAmount > 0
     ) {
-      if (ENGrid.debug) {
-        console.log("Upsell Frequency", this._frequency.frequency);
-        console.log("Upsell Amount", this._amount.amount);
-        console.log("Upsell Suggested Amount", upsellAmount);
-      }
+      this.logger.log("Upsell Frequency " + this._frequency.frequency);
+      this.logger.log("Upsell Amount " + this._amount.amount);
+      this.logger.log("Upsell Suggested Amount " + upsellAmount);
+
       return true;
     }
     return false;
   }
 
   private open() {
-    if (ENGrid.debug) console.log("Upsell Script Triggered");
+    this.logger.log("Upsell script opened");
     if (!this.shouldOpen()) {
       // In the circumstance when the form fails to validate via server-side validation, the page will reload
       // When that happens, we should place the original amount saved in sessionStorage into the upsell original amount field
@@ -310,7 +318,7 @@ export class UpsellLightbox {
       e.target instanceof Element &&
       document.querySelector("#upsellYesButton")?.contains(e.target)
     ) {
-      if (ENGrid.debug) console.log("Upsold");
+      this.logger.success("Upsold");
       this.setOriginalAmount(this._amount.amount.toString());
       const upsoldAmount = this.getUpsellAmount();
       this._frequency.setFrequency("monthly");
