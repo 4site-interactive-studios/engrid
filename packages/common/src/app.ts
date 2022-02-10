@@ -109,7 +109,6 @@ export class App extends ENGrid {
     legacy.preventAutocomplete();
     legacy.watchInmemField();
     legacy.watchGiveBySelectField();
-    legacy.SetEnFieldOtherAmountRadioStepValue();
     legacy.simpleUnsubscribe();
 
     legacy.contactDetailLabels();
