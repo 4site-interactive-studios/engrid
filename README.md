@@ -31,36 +31,57 @@ Designed and Developed by [4Site Studios](http://4sitestudios.com/en?ms=github) 
 
 ## ENgrid Features
 
-- Works with all page types (e.g. Donation, e-Card, Email to Target, Event, etc..)
-- Auto Credit Card Type selection based on Credit Card Number
-- Processing Fee Checkbox
-- Donation Upsell Lightbox
+### Giving Pages
 - Comma handling in Other Donation Amount input field
+- Auto Credit Card Type selection based on Credit Card Number
+- Tip Jar / Additional Gift Checkbox
+- Donation Upsell Lightbox
 - Conditional Hide/Show fields (e.g. In Honor of Giving Fields)
 - Give by Check, Card, Paypal
 - Auto update CC Expiration Date fields
-- Live giving variables to insert actively selected gift frequency or gift amount in page copy or in buttons
+- Insert the currently select giving amount and/or frequency anywhere on page with our "Live giving variables" that act like live merge tags
+- CVV "What's this" tooltip
+
+### Advocacy Pages
 - Advocacy "Opt-in Upsell" Lightbox
+- Title field "Why is this required?" tooltip for Email to Senate target actions
+
+### e-Card Pages
 - Tweaked UI / UX for an improved e-card "add recipient" experience
-- Per Page Background Images and Videos!
-- Per Page Layouts (Six Built In)
-- Click-to-expand content sections activate with a click, touch. Or opened with enter or spacebar when focused with a keyboard.
-- Optional placeholder values in input fields
-- Add an attribution overlay to images and videos to include the photographers name, no more editing in Photoshop and hard coding it in. You can also optionally add a link
+
+### Accessability Enhancements
 - Skip content link accessability enhancement
 - Optional accessible outlines around fields when you navigate to them with your keyboard
 - Optional accessible drop-down menu
-- Easy to add tooltips, for CVV "What's this" links and other enhancements
+
+### Improvements for Content Editors
+- All on page contnet is editable, nothing hard coded into the page template
+- Per Page Background Images and Videos!
+- Per Page Layouts (Six Built In)
+- Click-to-expand content sections activate with a click, touch. Or opened with enter or spacebar when focused with a keyboard.
+- Add an attribution overlay to images and videos to include the photographers name, no more editing in Photoshop and hard coding it in. You can also optionally add a link
+- All pages using our page template can be seamlessly embedded in your website with Shortcodes using our WordPress iFrame embed plugin
+- ENgrid content editor documentation
+
+### Improvements for Developers
+- Each client project gets its own GitHub repo containing all source code and assets
+- Works with all page types (e.g. Donation, Premium, e-Card, Email to Target, Event, etc..). We add coverage as any new page types or display scenarios come up.
 - Supports themes "Sub-Brand" theming and altneritive brand theming for the ultimate set up and A/B testing scenario
+- Optional placeholder values in input fields
 - Address Form Field Internationalization - If the user is on a US / English page and selects "France" as their country the Address Form fields will update their labels, change their ordering, and hide/show relevant fields for French Address formatting. Current address formatting support for (United States, Canada, United Kingdom, France, Germany, Netherlands, Australia).
-- Update inputs with improved form field meta info for better auto-fill completion
-- "Remember Me" (Coming Soon)
-- Capitalize first letter of First Name, Last Name, Address 1, City, Region fields on form submit (Coming Soon)
-- Lazy Load all image assets and moves them to their own CPU thread to prevent slow downs in rendering the page when loading high resoltion imagery
+- ENgrid developer documentation
+
+### Other Quality of Life Improvements
+- Added data attributes to form fields to help improve browser / password manager auto-fill completions
+- Capitalize first letter of First Name, Last Name, Address 1, City, Region fields on form submit 
+- Lazy Load all image assets and moves them to their own CPU thread to prevent slow downs in rendering the page when they include high resoltion imagery
 - Fastest page load times possible on Engaging Networks. All render critical assets are prefetched and there is only a single CSS and JS file
-- IE11 pop-up encouraging users to upgrade their browsers
-- All pages using our page template can be seamlessly embedded in your website with Shortcodes using our WordPress iFrame embed plugin\
-- Developer and Editor documentation
+- Optional IE11 pop-up encouraging users to upgrade their browsers
+
+### Additional 4Site ENdrid Services
+- "Remember Me" to save and pre-fill supporter info. Works cross domain/sub-domain
+- Format mobile numbers to the Twilio E.164 format, in real-time on form submission (coming soon)
+- Format all US addresses to the CASSI address standard, in real-time on form submission (coming soon)
 
 ## ENgrid Resources
 
