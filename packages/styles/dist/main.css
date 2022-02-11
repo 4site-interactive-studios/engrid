@@ -1231,7 +1231,7 @@ body[data-engrid-debug]:before {
 }
 
 .en__share {
-  margin-right: 1.125rem;
+  margin-right: 0px;
 }
 
 .en__share--facebook.en__share--small {
