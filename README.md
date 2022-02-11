@@ -77,7 +77,7 @@ Designed and Developed by [4Site Studios](http://4sitestudios.com/en?ms=github) 
 - Address Form Field Internationalization - If the user is on a US / English page and selects "France" as their country the Address Form fields will update their labels, change their ordering, and hide/show relevant fields for French Address formatting. Current address formatting support for (United States, Canada, United Kingdom, France, Germany, Netherlands, Australia).
 - ENgrid developer documentation
 
-### Other Quality of Life Improvements
+### General Quality of Life Improvements
 - Added data attributes to form fields to help improve browser / password manager auto-fill completions
 - Capitalize first letter of First Name, Last Name, Address 1, City, Region fields on form submit 
 - Lazy Load all image assets and moves them to their own CPU thread to prevent slow downs in rendering the page when they include high resoltion imagery
