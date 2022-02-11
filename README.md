@@ -34,13 +34,16 @@ Designed and Developed by [4Site Studios](http://4sitestudios.com/en?ms=github) 
 ### Giving Pages
 - Comma handling in Other Donation Amount input field
 - Auto Credit Card Type selection based on Credit Card Number
-- Tip Jar / Additional Gift Checkbox
+- Tip Jar / Additional Gift Checkbox, works in addition to ENs native processing fee checkbox
 - Donation Upsell Lightbox
 - Conditional Hide/Show fields (e.g. In Honor of Giving Fields)
 - Give by Check, Card, Paypal
 - Auto update CC Expiration Date fields
 - Insert the currently select giving amount and/or frequency anywhere on page with our "Live giving variables" that act like live merge tags
 - CVV "What's this" tooltip
+- Conditionally hide/show content based on giving amount
+- Conditionally hide/show content based on giving frequency
+
 
 ### Advocacy Pages
 - Advocacy "Opt-in Upsell" Lightbox
@@ -61,6 +64,9 @@ Designed and Developed by [4Site Studios](http://4sitestudios.com/en?ms=github) 
 - Click-to-expand content sections activate with a click, touch. Or opened with enter or spacebar when focused with a keyboard.
 - Add an attribution overlay to images and videos to include the photographers name, no more editing in Photoshop and hard coding it in. You can also optionally add a link
 - All pages using our page template can be seamlessly embedded in your website with Shortcodes using our WordPress iFrame embed plugin
+- In page builder, conditional content is visually color coded
+- Easy to add classes for visually hiding labels / fields, but keeping in line with accessability best practices
+- Easy to add classes for conditionally showing / hiding content based on gift amount (e.g. .showifamount-greaterthanorequalto-15)
 - ENgrid content editor documentation
 
 ### Improvements for Developers
