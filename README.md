@@ -78,7 +78,7 @@ Designed and Developed by [4Site Studios](http://4sitestudios.com/en?ms=github) 
 - Fastest page load times possible on Engaging Networks. All render critical assets are prefetched and there is only a single CSS and JS file
 - Optional IE11 pop-up encouraging users to upgrade their browsers
 
-### Additional 4Site ENdrid Services
+### Additional 4Site ENgrid Services
 - "Remember Me" to save and pre-fill supporter info. Works cross domain/sub-domain
 - Format mobile numbers to the Twilio E.164 format, in real-time on form submission (coming soon)
 - Format all US addresses to the CASSI address standard, in real-time on form submission (coming soon)
