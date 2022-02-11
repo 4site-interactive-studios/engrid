@@ -80,6 +80,7 @@ Designed and Developed by [4Site Studios](http://4sitestudios.com/en?ms=github) 
 
 ### General Quality of Life Improvements
 - Added data attributes to form fields to help improve browser / password manager auto-fill completions
+- On pageload auto select users country based on IP address
 - Capitalize first letter of First Name, Last Name, Address 1, City, Region fields on form submit 
 - Lazy Load all image assets and moves them to their own CPU thread to prevent slow downs in rendering the page when they include high resoltion imagery
 - Fastest page load times possible on Engaging Networks. All render critical assets are prefetched and there is only a single CSS and JS file
