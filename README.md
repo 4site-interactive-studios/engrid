@@ -67,6 +67,7 @@ Designed and Developed by [4Site Studios](http://4sitestudios.com/en?ms=github) 
 - In page builder, conditional content is visually color coded
 - Easy to add classes for visually hiding labels / fields, but keeping in line with accessability best practices
 - Easy to add classes for conditionally showing / hiding content based on gift amount (e.g. .showifamount-greaterthanorequalto-15)
+- Page template allows for default Facebook / Twitter social sharing meta tags with support for EN's per-page social sharing widget to override them
 - ENgrid content editor documentation
 
 ### Improvements for Developers
