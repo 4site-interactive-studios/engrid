@@ -271,8 +271,8 @@ export class TranslateFields {
                 break;
             case "CA":
             case "CAN":
-                this.setStateValues("Province/State", [
-                    { label: "Select Province/State", value: "" },
+                this.setStateValues("Province", [
+                    { label: "Select Province", value: "" },
                     { label: "Alberta", value: "AB" },
                     { label: "British Columbia", value: "BC" },
                     { label: "Manitoba", value: "MB" },
@@ -289,8 +289,8 @@ export class TranslateFields {
                 ]);
                 break;
             case "Canada":
-                this.setStateValues("Province/State", [
-                    { label: "Select Province/State", value: "" },
+                this.setStateValues("Province", [
+                    { label: "Select Province", value: "" },
                     { label: "Alberta", value: "Alberta" },
                     { label: "British Columbia", value: "British Columbia" },
                     { label: "Manitoba", value: "Manitoba" },
