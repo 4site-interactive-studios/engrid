@@ -104,7 +104,7 @@ body {
   }
 }
 
-@mixin engrid_replace-banner-with-background {
+@mixin engrid_replace-banner-with-background($layout) {
   // Hide the background media
   .page-backgroundImage,
   .page-backgroundImage:before {
@@ -113,46 +113,48 @@ body {
 
   // Depends on page-background.ts
   // Documentation: https://docs.google.com/document/d/1zF-86Iq8tCRk4HCv-JaJYZulkC273x-_QODUed9F0Pw/edit#heading=h.72pw1gcv9zk7
-  [data-replace-banner-with-background="if-background-exists"][data-engrid-page-background="image"],
-  [data-replace-banner-with-background="if-background-exists"][data-engrid-page-background="video"],
-  [data-replace-banner-with-background="if-background-image"][data-engrid-page-background="image"],
-  [data-replace-banner-with-background="if-background-video"][data-engrid-page-background="video"],
-  [data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="image"],
-  [data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="video"],
-  [data-replace-banner-with-background="if-banner-empty-or-background-video"][data-engrid-body-banner="empty"],
-  [data-replace-banner-with-background="if-banner-empty-or-background-video"][data-engrid-page-background="video"] {
-    .body-banner,
-    .body-bannerOverlay {
-      display: none;
-    }
-
-    .page-backgroundImage,
-    .page-backgroundImageOverlay {
-      grid-column: pc;
-      grid-row: body-banner;
-
-      video,
-      figure {
-        position: absolute !important;
-        top: 0 !important;
-        left: 0 !important;
-        transform: none !important;
-        width: 100vw !important;
-        height: 100% !important;
-        aspect-ratio: 16/9;
+  @at-root {
+    [data-engrid-layout="#{$layout}"][data-replace-banner-with-background="if-background-exists"][data-engrid-page-background="image"],
+    [data-engrid-layout="#{$layout}"][data-replace-banner-with-background="if-background-exists"][data-engrid-page-background="video"],
+    [data-engrid-layout="#{$layout}"][data-replace-banner-with-background="if-background-image"][data-engrid-page-background="image"],
+    [data-engrid-layout="#{$layout}"][data-replace-banner-with-background="if-background-video"][data-engrid-page-background="video"],
+    [data-engrid-layout="#{$layout}"][data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="image"],
+    [data-engrid-layout="#{$layout}"][data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="video"],
+    [data-engrid-layout="#{$layout}"][data-replace-banner-with-background="if-banner-empty-or-background-video"][data-engrid-body-banner="empty"],
+    [data-engrid-layout="#{$layout}"][data-replace-banner-with-background="if-banner-empty-or-background-video"][data-engrid-page-background="video"] {
+      .body-banner,
+      .body-bannerOverlay {
+        display: none;
       }
 
-      img {
-        display: block !important;
+      .page-backgroundImage,
+      .page-backgroundImageOverlay {
+        grid-column: pc;
+        grid-row: body-banner;
 
-        // If the background image has a height set using the Style attribute, force it to have a height of auto
-        &[style] {
-          height: auto !important;
+        video,
+        figure {
+          position: absolute !important;
+          top: 0 !important;
+          left: 0 !important;
+          transform: none !important;
+          width: 100vw !important;
+          height: 100% !important;
+          aspect-ratio: 16/9;
         }
-      }
 
-      &::before {
-        content: none !important;
+        img {
+          display: block !important;
+
+          // If the background image has a height set using the Style attribute, force it to have a height of auto
+          &[style] {
+            height: auto !important;
+          }
+        }
+
+        &::before {
+          content: none !important;
+        }
       }
     }
   }

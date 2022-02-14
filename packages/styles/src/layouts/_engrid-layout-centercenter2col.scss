@@ -153,7 +153,7 @@ $centercenter2col_body-column_offset-width-remaining: $centercenter2col_content-
   }
 
   @media screen and (max-width: $centercenter2col_content-column_min-width - 1px) {
-    @include engrid_replace-banner-with-background;
+    @include engrid_replace-banner-with-background("centercenter2col");
     @include engrid_mobile-banner;
     @include engrid_embedded-mobile-body;
   }
