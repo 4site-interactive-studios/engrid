@@ -36,6 +36,7 @@ import {
   ShowIfAmount,
   EngridLogger,
   OtherAmount,
+  MinMaxAmount,
 } from "./";
 
 export class App extends ENGrid {
@@ -240,6 +241,8 @@ export class App extends ENGrid {
     new ShowIfAmount();
 
     new OtherAmount();
+
+    new MinMaxAmount();
 
     this.setDataAttributes();
   }

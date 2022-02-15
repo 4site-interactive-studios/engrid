@@ -32,5 +32,6 @@ export * from "./remember-me";
 export * from "./show-if-amount";
 export * from "./other-amount";
 export * from "./logger";
+export * from "./min-max-amount";
 // Events
 export * from "./events";

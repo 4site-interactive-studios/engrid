@@ -9,6 +9,10 @@ export interface Options {
     ThousandsSeparator?: string;
     DecimalSeparator?: string;
     DecimalPlaces?: number;
+    MinAmount?: number;
+    MaxAmount?: number;
+    MinAmountMessage?: string;
+    MaxAmountMessage?: string;
     SkipToMainContentLink?: boolean;
     SrcDefer?: boolean;
     NeverBounceAPI?: string | null;

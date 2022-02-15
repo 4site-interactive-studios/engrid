@@ -9,6 +9,10 @@ export interface Options {
   ThousandsSeparator?: string;
   DecimalSeparator?: string;
   DecimalPlaces?: number;
+  MinAmount?: number;
+  MaxAmount?: number;
+  MinAmountMessage?: string;
+  MaxAmountMessage?: string;
   SkipToMainContentLink?: boolean;
   SrcDefer?: boolean;
   NeverBounceAPI?: string | null;
@@ -53,6 +57,10 @@ export const OptionsDefaults: Options = {
   ThousandsSeparator: "",
   DecimalSeparator: ".",
   DecimalPlaces: 2,
+  MinAmount: 1,
+  MaxAmount: 100000,
+  MinAmountMessage: "Amount must be at least $1",
+  MaxAmountMessage: "Amount must be less than $100,000",
   SkipToMainContentLink: true,
   SrcDefer: true,
   NeverBounceAPI: null,
