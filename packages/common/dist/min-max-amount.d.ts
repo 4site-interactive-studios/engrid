@@ -10,5 +10,4 @@ export declare class MinMaxAmount {
     shouldRun(): boolean;
     enOnValidate(): boolean;
     disableSubmitButton(): void;
-    fixAmountLabels(): void;
 }
