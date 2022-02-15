@@ -27,4 +27,6 @@ export declare abstract class ENGrid {
      * will return true if EngagingNetworks.require._defined.enjs.checkSubmissionFailed is defined
      */
     static checkNested(obj: any, ...args: string[]): boolean;
+    static setError(querySelector: string, errorMessage: string): void;
+    static removeError(querySelector: string): void;
 }

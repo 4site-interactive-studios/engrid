@@ -9,5 +9,5 @@ export declare class MinMaxAmount {
     constructor();
     shouldRun(): boolean;
     enOnValidate(): boolean;
-    disableSubmitButton(): void;
+    liveValidate(): void;
 }

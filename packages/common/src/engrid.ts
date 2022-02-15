@@ -265,4 +265,30 @@ export abstract class ENGrid {
     }
     return true;
   }
+  static setError(querySelector: string, errorMessage: string) {
+    const errorElement = document.querySelector(querySelector);
+    if (errorElement) {
+      errorElement.classList.add("en__field--validationFailed");
+      let errorMessageElement = errorElement.querySelector(".en__field__error");
+      if (!errorMessageElement) {
+        errorMessageElement = document.createElement("div");
+        errorMessageElement.classList.add("en__field__error");
+        errorMessageElement.innerHTML = errorMessage;
+        errorElement.insertBefore(errorMessageElement, errorElement.firstChild);
+      } else {
+        errorMessageElement.innerHTML = errorMessage;
+      }
+    }
+  }
+  static removeError(querySelector: string) {
+    const errorElement = document.querySelector(querySelector);
+    if (errorElement) {
+      errorElement.classList.remove("en__field--validationFailed");
+      const errorMessageElement =
+        errorElement.querySelector(".en__field__error");
+      if (errorMessageElement) {
+        errorElement.removeChild(errorMessageElement);
+      }
+    }
+  }
 }
