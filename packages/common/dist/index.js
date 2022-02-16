@@ -1,3 +1,9 @@
+document
+    .getElementsByTagName("body")[0]
+    .setAttribute("data-engrid-scripts-js-loading", "started");
+document
+    .getElementsByTagName("body")[0]
+    .setAttribute("data-engrid-client-js-loading", "waiting");
 export * from "./deprecated"; // Runs first so it can change the DOM markup before any markup dependent code fires
 export { OptionsDefaults } from "./interfaces/options";
 export { UpsellOptionsDefaults, } from "./interfaces/upsell-options";
@@ -35,3 +41,6 @@ export * from "./logger";
 export * from "./min-max-amount";
 // Events
 export * from "./events";
+document
+    .getElementsByTagName("body")[0]
+    .setAttribute("data-engrid-scripts-js-loading", "finished");
