@@ -2761,6 +2761,7 @@ input[type=radio] + label:before {
   border-radius: var(--radio_border-radius);
   height: var(--radio_height);
   width: var(--radio_width);
+  min-width: var(--radio_width);
   box-shadow: var(--radio_box-shadow);
   display: flex;
   position: relative;
@@ -2810,6 +2811,7 @@ input[type=checkbox] + label:before {
   border-radius: var(--checkbox_border-radius);
   height: var(--checkbox_height);
   width: var(--checkbox_width);
+  min-width: var(--checkbox_width);
   display: flex;
   flex: 0 0 auto;
   position: relative;
@@ -2904,6 +2906,7 @@ input[type=checkbox]:checked + label:before {
   border-radius: var(--radio_border-radius);
   height: var(--radio_height);
   width: var(--radio_width);
+  min-width: var(--radio_width);
   box-shadow: var(--radio_box-shadow);
   display: flex;
 }
@@ -3112,6 +3115,7 @@ textarea:focus, textarea:hover,
   position: absolute;
   height: var(--checkbox_height);
   width: var(--checkbox_width);
+  min-width: var(--checkbox_width);
   display: inline-block;
   vertical-align: middle;
   border: 1px solid var(--color_black);

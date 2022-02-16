@@ -383,6 +383,9 @@ input[type="radio"] {
       border-radius: var(--radio_border-radius);
       height: var(--radio_height);
       width: var(--radio_width);
+      min-width: var(
+        --radio_width
+      ); // Prevent radios getting squished https://d.pr/i/87br13
       box-shadow: var(--radio_box-shadow);
       display: flex;
       position: relative;
@@ -446,6 +449,9 @@ input[type="checkbox"] {
       border-radius: var(--checkbox_border-radius);
       height: var(--checkbox_height);
       width: var(--checkbox_width);
+      min-width: var(
+        --checkbox_width
+      ); // Prevent checkboxes getting squished https://d.pr/i/87br13
       display: flex;
       flex: 0 0 auto;
       position: relative;
@@ -507,7 +513,7 @@ input[type="checkbox"] {
     width: var(--checkbox_width);
     min-width: var(
       --checkbox_width
-    ); // Prevent radios getting squished https://d.pr/i/87br13
+    ); // Prevent checkboxes getting squished https://d.pr/i/87br13
     display: flex;
     position: relative;
     top: var(--checkbox_top);
@@ -564,6 +570,9 @@ input[type="checkbox"] {
     border-radius: var(--radio_border-radius);
     height: var(--radio_height);
     width: var(--radio_width);
+    min-width: var(
+      --radio_width
+    ); // Prevent radios getting squished https://d.pr/i/87br13
     box-shadow: var(--radio_box-shadow);
     display: flex; // Changed from inline-flex to flex
     // position: relative;
@@ -788,6 +797,9 @@ textarea,
   position: absolute;
   height: var(--checkbox_height);
   width: var(--checkbox_width);
+  min-width: var(
+    --checkbox_width
+  ); // Prevent checkboxes getting squished https://d.pr/i/87br13
   // left: -2rem;
   display: inline-block;
   vertical-align: middle;
