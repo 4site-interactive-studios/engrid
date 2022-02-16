@@ -2857,6 +2857,7 @@ input[type=checkbox]:checked + label:before {
   border-radius: var(--checkbox_border-radius);
   height: var(--checkbox_height);
   width: var(--checkbox_width);
+  min-width: var(--checkbox_width);
   display: flex;
   position: relative;
   top: var(--checkbox_top);
