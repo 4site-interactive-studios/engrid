@@ -8,6 +8,6 @@ export declare class MinMaxAmount {
     private logger;
     constructor();
     shouldRun(): boolean;
-    enOnValidate(): boolean;
+    enOnValidate(): void;
     liveValidate(): void;
 }

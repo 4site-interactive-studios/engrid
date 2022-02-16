@@ -38,25 +38,31 @@ export class MinMaxAmount {
       if (otherAmount) {
         otherAmount.focus();
       }
-      return false;
+      this._form.validate = false;
     } else if (this._amount.amount > this.maxAmount) {
       this.logger.log("Amount is greater than max amount: " + this.maxAmount);
       if (otherAmount) {
         otherAmount.focus();
       }
-      return false;
+      this._form.validate = false;
     }
-    return true;
+    window.setTimeout(this.liveValidate.bind(this), 300);
   }
 
   // Disable Submit Button if the amount is not valid
   liveValidate() {
     if (this._amount.amount < this.minAmount) {
       this.logger.log("Amount is less than min amount: " + this.minAmount);
-      ENGrid.setError(".en__field--withOther", this.minAmountMessage || "");
+      ENGrid.setError(
+        ".en__field--withOther",
+        this.minAmountMessage || "Invalid Amount"
+      );
     } else if (this._amount.amount > this.maxAmount) {
       this.logger.log("Amount is greater than max amount: " + this.maxAmount);
-      ENGrid.setError(".en__field--withOther", this.maxAmountMessage || "");
+      ENGrid.setError(
+        ".en__field--withOther",
+        this.maxAmountMessage || "Invalid Amount"
+      );
     } else {
       ENGrid.removeError(".en__field--withOther");
     }

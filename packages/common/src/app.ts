@@ -170,6 +170,7 @@ export class App extends ENGrid {
     this._form.onError.subscribe((s) => this.logger.danger("Error: " + s));
 
     window.enOnSubmit = () => {
+      this._form.submit = true;
       this._form.dispatchSubmit();
       return this._form.submit;
     };
@@ -177,6 +178,7 @@ export class App extends ENGrid {
       this._form.dispatchError();
     };
     window.enOnValidate = () => {
+      this._form.validate = true;
       this._form.dispatchValidate();
       return this._form.validate;
     };
