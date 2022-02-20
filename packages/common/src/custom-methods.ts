@@ -433,6 +433,14 @@ export const inputPlaceholder = () => {
     enFieldDonationAmt.setAttribute("inputmode", "decimal");
   }
 
+  // ADD THE MISSING LABEL FOR IMPROVED ACCESSABILITY
+  if (enFieldDonationAmt) {
+    enFieldDonationAmt.setAttribute(
+      "aria-label",
+      "Enter your custom donation amount"
+    );
+  }
+
   // ADD FIELD PLACEHOLDERS
   const enAddInputPlaceholder = document.querySelector(
     "[data-engrid-add-input-placeholders]"
