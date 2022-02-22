@@ -271,7 +271,7 @@ export class TranslateFields {
                 break;
             case "CA":
             case "CAN":
-                this.setStateValues("Provinc / Territory", [
+                this.setStateValues("Province / Territory", [
                     { label: "Select", value: "" },
                     { label: "Alberta", value: "AB" },
                     { label: "British Columbia", value: "BC" },
