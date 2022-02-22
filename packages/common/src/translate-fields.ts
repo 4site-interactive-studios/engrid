@@ -146,8 +146,8 @@ export class TranslateFields {
         break;
       case "AU":
       case "AUS":
-        this.setStateValues("Province/State", [
-          { label: "Select Province/State", value: "" },
+        this.setStateValues("Province / State", [
+          { label: "Select", value: "" },
           { label: "New South Wales", value: "NSW" },
           { label: "Victoria", value: "VIC" },
           { label: "Queensland", value: "QLD" },
@@ -159,8 +159,8 @@ export class TranslateFields {
         ]);
         break;
       case "Australia":
-        this.setStateValues("Province/State", [
-          { label: "Select Province/State", value: "" },
+        this.setStateValues("Province / State", [
+          { label: "Select", value: "" },
           { label: "New South Wales", value: "New South Wales" },
           { label: "Victoria", value: "Victoria" },
           { label: "Queensland", value: "Queensland" },
@@ -289,8 +289,8 @@ export class TranslateFields {
         break;
       case "CA":
       case "CAN":
-        this.setStateValues("Province", [
-          { label: "Select Province", value: "" },
+        this.setStateValues("Provinc / Territory", [
+          { label: "Select", value: "" },
           { label: "Alberta", value: "AB" },
           { label: "British Columbia", value: "BC" },
           { label: "Manitoba", value: "MB" },
@@ -307,8 +307,8 @@ export class TranslateFields {
         ]);
         break;
       case "Canada":
-        this.setStateValues("Province", [
-          { label: "Select Province", value: "" },
+        this.setStateValues("Province / Territory", [
+          { label: "Select", value: "" },
           { label: "Alberta", value: "Alberta" },
           { label: "British Columbia", value: "British Columbia" },
           { label: "Manitoba", value: "Manitoba" },
@@ -401,7 +401,7 @@ export class TranslateFields {
         ]);
         break;
       default:
-        this.setStateValues("Province/State", null);
+        this.setStateValues("Province / State", null);
         break;
     }
   }
