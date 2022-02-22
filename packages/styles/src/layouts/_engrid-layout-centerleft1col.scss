@@ -6,6 +6,8 @@
 
 $centerleft1col_content-column_max-width: $one_col_content-column_max-width !default; // Overridable in client theme
 $centerleft1col_content-column_min-width: $one_col_content-column_min-width !default; // Overridable in client theme
+$centerleft1col_content-column_min-width_minus-1px: $centerleft1col_content-column_min-width -
+  1px;
 $centerleft1col_body-column_max-width: $one_col_body-column_max-width !default; // Overridable in client theme
 $centerleft1col_body-column_min-width: $one_col_body-column_min-width !default; // Overridable in client theme
 $centerleft1col_body-column_offset-width: $one_col_body-column_offset-width !default; // Overridable in client theme
@@ -61,7 +63,7 @@ $centerleft1col_body-column_offset-width-remaining: $centerleft1col_content-colu
     @include engrid_hide-background-on-desktop;
   }
 
-  @media screen and (max-width: #{$centerleft1col_content-column_min-width - 1px}) {
+  @media screen and (max-width: $centerleft1col_content-column_min-width_minus-1px) {
     @include engrid_replace-banner-with-background("centerleft1col");
     @include engrid_mobile-banner;
     @include engrid_embedded-mobile-body;
