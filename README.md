@@ -34,6 +34,7 @@ Designed and Developed by [4Site Studios](http://4sitestudios.com/en?ms=github) 
 ### Giving Pages
 - Comma handling in Other Donation Amount input field
 - Auto Credit Card Type selection based on Credit Card Number
+- Strip all non-number values from Credit Card field on submission
 - Tip Jar / Additional Gift Checkbox, works in addition to ENs native processing fee checkbox
 - Donation Upsell Lightbox
 - Conditional Hide/Show fields (e.g. In Honor of Giving Fields)
