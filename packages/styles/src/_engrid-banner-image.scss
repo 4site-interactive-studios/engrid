@@ -17,23 +17,25 @@
       height: auto !important;
     }
   }
+}
 
-  @mixin engrid_mobile-banner {
-    // If there is content in the body-title, hide the body-bannerOverlay on mobile
-    &[data-engrid-has-body-title] .en__component--advrow .body-bannerOverlay {
-      display: none;
-    }
+@mixin engrid_mobile-banner($layout) {
+  // If there is content in the body-title, hide the body-bannerOverlay on mobile
+  [data-engrid-layout="#{$layout}"][data-engrid-has-body-title]
+    .en__component--advrow
+    .body-bannerOverlay {
+    display: none;
+  }
 
-    // If there is no content in body-title, make the body-bannerOverlay act as the body-title
-    &:not([data-engrid-has-body-title])
-      .en__component--advrow
-      .body-bannerOverlay {
-      grid-row: body-title;
+  // If there is no content in body-title, make the body-bannerOverlay act as the body-title
+  [data-engrid-layout="#{$layout}"]:not([data-engrid-has-body-title])
+    .en__component--advrow
+    .body-bannerOverlay {
+    grid-row: body-title;
 
-      > * {
-        padding: var(--engrid__body-top_padding);
-        width: 100%;
-      }
+    > * {
+      padding: var(--engrid__body-top_padding);
+      width: 100%;
     }
   }
 }

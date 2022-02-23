@@ -343,7 +343,7 @@
   }
 
   // For the breakpoints overlay
-  &body[data-engrid-debug]:before {
+  &[data-engrid-debug]:before {
     z-index: 2147483641;
   }
 
