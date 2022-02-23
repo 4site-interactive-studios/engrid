@@ -175,6 +175,7 @@ export class App extends ENGrid {
         new OtherAmount();
         new MinMaxAmount();
         this.setDataAttributes();
+        ENGrid.setBodyData("data-engrid-scripts-js-loading", "finished");
     }
     onLoad() {
         if (this.options.onLoad) {

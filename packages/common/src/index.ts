@@ -1,9 +1,3 @@
-document
-  .getElementsByTagName("body")[0]
-  .setAttribute("data-engrid-scripts-js-loading", "started");
-document
-  .getElementsByTagName("body")[0]
-  .setAttribute("data-engrid-client-js-loading", "waiting");
 export * from "./deprecated"; // Runs first so it can change the DOM markup before any markup dependent code fires
 
 export { Options, OptionsDefaults } from "./interfaces/options";
@@ -49,6 +43,3 @@ export * from "./min-max-amount";
 
 // Events
 export * from "./events";
-document
-  .getElementsByTagName("body")[0]
-  .setAttribute("data-engrid-scripts-js-loading", "finished");
