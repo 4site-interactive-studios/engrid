@@ -33,6 +33,10 @@
     outline: 1px dashed var(--error__color);
   }
 
+  img[src*=".mp4"] {
+    border: 5px solid var(--error__color); // Highlight the "image" if the src is set with an MP4, this works in Safari but not other browsers at the moment https://bugs.chromium.org/p/chromium/issues/detail?id=791658
+  }
+
   // When in page builder display Overlay sections after their counterparts and not overtop of their target grid row. This way content editors can more easily interact with them
   .body-bannerOverlay {
     grid-row: body-bannerOverlay !important;

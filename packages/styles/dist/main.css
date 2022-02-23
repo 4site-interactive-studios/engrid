@@ -8578,6 +8578,9 @@ body:not([data-engrid-debug]) #debug-bar {
 #en__pagebuilder img:not([alt]) {
   outline: 1px dashed var(--error__color);
 }
+#en__pagebuilder img[src*=".mp4"] {
+  border: 5px solid var(--error__color);
+}
 #en__pagebuilder .body-bannerOverlay {
   grid-row: body-bannerOverlay !important;
   background-color: var(--engrid__body-banner_background-color) !important;
