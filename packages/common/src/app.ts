@@ -22,8 +22,7 @@ import {
   ClickToExpand,
   legacy,
   LiveVariables,
-  sendIframeHeight,
-  sendIframeFormStatus,
+  iFrame,
   ShowHideRadioCheckboxes,
   SimpleCountrySelect,
   SkipToMainContentLink,
@@ -184,7 +183,7 @@ export class App extends ENGrid {
     };
 
     // iFrame Logic
-    this.loadIFrame();
+    new iFrame();
 
     // Live Variables
     new LiveVariables(this.options);
@@ -255,34 +254,11 @@ export class App extends ENGrid {
     if (this.options.onLoad) {
       this.options.onLoad();
     }
-    if (this.inIframe()) {
-      // Scroll to top of iFrame
-      this.logger.log("iFrame Event - window.onload");
-      sendIframeHeight();
-      window.parent.postMessage(
-        {
-          scroll: this.shouldScroll(),
-        },
-        "*"
-      );
-
-      // On click fire the resize event
-      document.addEventListener("click", (e: Event) => {
-        this.logger.log("iFrame Event - click");
-        setTimeout(() => {
-          sendIframeHeight();
-        }, 100);
-      });
-    }
   }
 
   private onResize() {
     if (this.options.onResize) {
       this.options.onResize();
-    }
-    if (this.inIframe()) {
-      this.logger.log("iFrame Event - window.onload");
-      sendIframeHeight();
     }
   }
 
@@ -298,44 +274,12 @@ export class App extends ENGrid {
       this.logger.log("Client onSubmit Triggered");
       this.options.onSubmit();
     }
-    if (this.inIframe()) {
-      sendIframeFormStatus("submit");
-    }
   }
 
   private onError() {
     if (this.options.onError) {
       this.logger.danger("Client onError Triggered");
       this.options.onError();
-    }
-  }
-
-  private inIframe() {
-    try {
-      return window.self !== window.top;
-    } catch (e) {
-      return true;
-    }
-  }
-  private shouldScroll = () => {
-    // If you find a error, scroll
-    if (document.querySelector(".en__errorHeader")) {
-      return true;
-    }
-    // Try to match the iframe referrer URL by testing valid EN Page URLs
-    let referrer = document.referrer;
-    let enURLPattern = new RegExp(/^(.*)\/(page)\/(\d+.*)/);
-
-    // Scroll if the Regex matches, don't scroll otherwise
-    return enURLPattern.test(referrer);
-  };
-  private loadIFrame() {
-    if (this.inIframe()) {
-      // Add the data-engrid-embedded attribute when inside an iFrame if it wasn't already added by a script in the Page Template
-      App.setBodyData("embedded", "");
-      // Fire the resize event
-      this.logger.log("iFrame Event - First Resize");
-      sendIframeHeight();
     }
   }
 

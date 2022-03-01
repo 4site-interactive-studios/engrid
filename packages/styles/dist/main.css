@@ -6567,8 +6567,9 @@ body:not(#en__pagebuilder)[data-engrid-no-page-customCode] .en__component--advro
   box-shadow: none !important;
 }
 [data-engrid-embedded] .page-backgroundImage,
-[data-engrid-embedded] .page-backgroundImageOverlay {
-  display: none;
+[data-engrid-embedded] .page-backgroundImageOverlay,
+[data-engrid-embedded] .hide-iframe {
+  display: none !important;
 }
 
 /*

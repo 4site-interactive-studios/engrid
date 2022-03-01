@@ -12,12 +12,11 @@ export class ENGrid {
     }
     // Return any parameter from the URL
     static getUrlParameter(name) {
-        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
-        var results = regex.exec(location.search);
-        return results === null
-            ? ""
-            : decodeURIComponent(results[1].replace(/\+/g, " "));
+        const searchParams = new URLSearchParams(window.location.search);
+        if (searchParams.has(name)) {
+            return searchParams.get(name) || true;
+        }
+        return null;
     }
     // Return the field value from its name. It works on any field type.
     // Multiple values (from checkboxes or multi-select) are returned as single string

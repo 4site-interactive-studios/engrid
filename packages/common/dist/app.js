@@ -1,5 +1,5 @@
 import { DonationAmount, DonationFrequency, EnForm, ProcessingFees, } from "./events";
-import { AmountLabel, Loader, ProgressBar, UpsellLightbox, ENGrid, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, CapitalizeFields, CreditCardNumbers, Ecard, ClickToExpand, legacy, LiveVariables, sendIframeHeight, sendIframeFormStatus, ShowHideRadioCheckboxes, SimpleCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce, AutoYear, Autocomplete, RememberMe, TranslateFields, ShowIfAmount, EngridLogger, OtherAmount, MinMaxAmount, } from "./";
+import { AmountLabel, Loader, ProgressBar, UpsellLightbox, ENGrid, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, CapitalizeFields, CreditCardNumbers, Ecard, ClickToExpand, legacy, LiveVariables, iFrame, ShowHideRadioCheckboxes, SimpleCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce, AutoYear, Autocomplete, RememberMe, TranslateFields, ShowIfAmount, EngridLogger, OtherAmount, MinMaxAmount, } from "./";
 export class App extends ENGrid {
     constructor(options) {
         super();
@@ -9,17 +9,6 @@ export class App extends ENGrid {
         this._amount = DonationAmount.getInstance("transaction.donationAmt", "transaction.donationAmt.other");
         this._frequency = DonationFrequency.getInstance();
         this.logger = new EngridLogger("App", "black", "white", "🍏");
-        this.shouldScroll = () => {
-            // If you find a error, scroll
-            if (document.querySelector(".en__errorHeader")) {
-                return true;
-            }
-            // Try to match the iframe referrer URL by testing valid EN Page URLs
-            let referrer = document.referrer;
-            let enURLPattern = new RegExp(/^(.*)\/(page)\/(\d+.*)/);
-            // Scroll if the Regex matches, don't scroll otherwise
-            return enURLPattern.test(referrer);
-        };
         const loader = new Loader();
         this.options = Object.assign(Object.assign({}, OptionsDefaults), options);
         // Add Options to window
@@ -121,7 +110,7 @@ export class App extends ENGrid {
             return this._form.validate;
         };
         // iFrame Logic
-        this.loadIFrame();
+        new iFrame();
         // Live Variables
         new LiveVariables(this.options);
         // Dynamically set Recurrency Frequency
@@ -181,29 +170,10 @@ export class App extends ENGrid {
         if (this.options.onLoad) {
             this.options.onLoad();
         }
-        if (this.inIframe()) {
-            // Scroll to top of iFrame
-            this.logger.log("iFrame Event - window.onload");
-            sendIframeHeight();
-            window.parent.postMessage({
-                scroll: this.shouldScroll(),
-            }, "*");
-            // On click fire the resize event
-            document.addEventListener("click", (e) => {
-                this.logger.log("iFrame Event - click");
-                setTimeout(() => {
-                    sendIframeHeight();
-                }, 100);
-            });
-        }
     }
     onResize() {
         if (this.options.onResize) {
             this.options.onResize();
-        }
-        if (this.inIframe()) {
-            this.logger.log("iFrame Event - window.onload");
-            sendIframeHeight();
         }
     }
     onValidate() {
@@ -217,31 +187,11 @@ export class App extends ENGrid {
             this.logger.log("Client onSubmit Triggered");
             this.options.onSubmit();
         }
-        if (this.inIframe()) {
-            sendIframeFormStatus("submit");
-        }
     }
     onError() {
         if (this.options.onError) {
             this.logger.danger("Client onError Triggered");
             this.options.onError();
-        }
-    }
-    inIframe() {
-        try {
-            return window.self !== window.top;
-        }
-        catch (e) {
-            return true;
-        }
-    }
-    loadIFrame() {
-        if (this.inIframe()) {
-            // Add the data-engrid-embedded attribute when inside an iFrame if it wasn't already added by a script in the Page Template
-            App.setBodyData("embedded", "");
-            // Fire the resize event
-            this.logger.log("iFrame Event - First Resize");
-            sendIframeHeight();
         }
     }
     // Use this function to add any Data Attributes to the Body tag

@@ -138,8 +138,9 @@
   }
 
   .page-backgroundImage,
-  .page-backgroundImageOverlay {
-    display: none;
+  .page-backgroundImageOverlay,
+  .hide-iframe {
+    display: none !important;
   }
 }
 

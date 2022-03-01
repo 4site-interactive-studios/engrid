@@ -1,2 +1,16 @@
-export declare const sendIframeHeight: () => void;
-export declare const sendIframeFormStatus: (status: string) => void;
+import { EnForm } from "./events";
+export declare class iFrame {
+    _form: EnForm;
+    private logger;
+    constructor();
+    private sendIframeHeight;
+    private sendIframeFormStatus;
+    private getIFrameByEvent;
+    private shouldScroll;
+    private inIframe;
+    private isChained;
+    private hasPayment;
+    private hideFormComponents;
+    private showFormComponents;
+    private addChainedBanner;
+}
