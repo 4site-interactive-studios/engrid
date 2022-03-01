@@ -4204,10 +4204,10 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) .i11-hide-label .en__field:n
   padding: 0;
   margin-bottom: var(--fields_spacing-block);
 }
-[data-engrid-theme] > div[style]:not([class]) {
+[data-engrid-theme] #en__digitalWallet > div[style]:not([class]) {
   flex-basis: 0 !important;
 }
-[data-engrid-theme] .en__digitalWallet__button {
+[data-engrid-theme] #en__digitalWallet .en__digitalWallet__button {
   display: inline-block;
   width: auto !important;
   padding-left: var(--fields_spacing-inline);
@@ -4218,7 +4218,7 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) .i11-hide-label .en__field:n
   margin-top: calc(var(--fields_spacing-inline) * 0.5);
   height: auto;
 }
-[data-engrid-theme] .en__digitalWallet__button .en__digitalWallet__container {
+[data-engrid-theme] #en__digitalWallet .en__digitalWallet__button .en__digitalWallet__container {
   width: 100%;
   margin-bottom: 0;
 }

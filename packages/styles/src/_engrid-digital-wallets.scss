@@ -3,26 +3,26 @@
     flex-basis: 100%;
     padding: 0;
     margin-bottom: var(--fields_spacing-block);
-  }
 
-  > div[style]:not([class]) {
-    flex-basis: 0 !important;
-  }
+    > div[style]:not([class]) {
+      flex-basis: 0 !important;
+    }
 
-  .en__digitalWallet__button {
-    display: inline-block;
-    width: auto !important;
-    padding-left: var(--fields_spacing-inline);
-    padding-right: var(--fields_spacing-inline);
-    flex-basis: calc(100% / 3);
-    flex-grow: 1;
-    margin-bottom: var(--fields_spacing-block);
-    margin-top: calc(var(--fields_spacing-inline) * 0.5);
-    height: auto;
+    .en__digitalWallet__button {
+      display: inline-block;
+      width: auto !important;
+      padding-left: var(--fields_spacing-inline);
+      padding-right: var(--fields_spacing-inline);
+      flex-basis: calc(100% / 3);
+      flex-grow: 1;
+      margin-bottom: var(--fields_spacing-block);
+      margin-top: calc(var(--fields_spacing-inline) * 0.5);
+      height: auto;
 
-    .en__digitalWallet__container {
-      width: 100%;
-      margin-bottom: 0;
+      .en__digitalWallet__container {
+        width: 100%;
+        margin-bottom: 0;
+      }
     }
   }
 }
