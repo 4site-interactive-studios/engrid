@@ -204,10 +204,8 @@ export class App extends ENGrid {
         else {
             this.logger.log("Page Type: Not Found");
         }
-        // Add a body banner data attribute if the banner contains no image
-        // @TODO Should this account for video?
-        // @TODO Should we merge this with the script that checks the background image?
-        if (!document.querySelector(".body-banner img")) {
+        // Add a body banner data attribute if the banner contains no image or video
+        if (!document.querySelector(".body-banner img, .body-banner video")) {
             App.setBodyData("body-banner", "empty");
         }
         // Add a page-alert data attribute if it is empty
@@ -270,8 +268,8 @@ export class App extends ENGrid {
         if (!document.querySelector(".content-footer *")) {
             App.setBodyData("no-content-footer", "");
         }
-        // Add a page-backgroundImage data attribute if it is empty
-        if (!document.querySelector(".page-backgroundImage *")) {
+        // Add a page-backgroundImage banner data attribute if the page background image contains no image or video
+        if (!document.querySelector(".page-backgroundImage img, .page-backgroundImage video")) {
             App.setBodyData("no-page-backgroundImage", "");
         }
         // Add a page-backgroundImageOverlay data attribute if it is empty
