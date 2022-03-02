@@ -6499,6 +6499,7 @@ body:not(#en__pagebuilder)[data-engrid-no-page-customCode] .en__component--advro
 */
 [data-engrid-embedded] {
   background-image: none;
+  min-height: 0;
   --engrid__embedded_page_background-color: transparent !important;
   --engrid__page_background-color: var(
     --engrid__embedded_page_background-color

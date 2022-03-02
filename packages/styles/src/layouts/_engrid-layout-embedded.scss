@@ -6,6 +6,7 @@
 
 [data-engrid-embedded] {
   background-image: none;
+  min-height: 0;
 
   // Remove each sections background colors
   --engrid__embedded_page_background-color: transparent !important;

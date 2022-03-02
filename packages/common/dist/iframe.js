@@ -132,11 +132,6 @@ export class iFrame {
                 component.classList.add("hide-chained");
             }
         });
-        // Uncheck the transaction fee checkbox
-        const transactionFee = document.querySelector("#en__field_transaction_feeCover");
-        if (transactionFee) {
-            transactionFee.checked = false;
-        }
         this.sendIframeHeight();
     }
     showFormComponents() {
