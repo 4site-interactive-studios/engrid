@@ -4212,7 +4212,7 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) .i11-hide-label .en__field:n
   width: auto !important;
   padding-left: var(--fields_spacing-inline);
   padding-right: var(--fields_spacing-inline);
-  flex-basis: 33.3333333333%;
+  flex-basis: 50%;
   flex-grow: 1;
   margin-bottom: var(--fields_spacing-block);
   margin-top: calc(var(--fields_spacing-inline) * 0.5);
