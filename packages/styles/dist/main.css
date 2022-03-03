@@ -6566,6 +6566,7 @@ body:not(#en__pagebuilder)[data-engrid-no-page-customCode] .en__component--advro
     --engrid__embedded_page_background-color
   );
   --engrid__body_box-shadow: none;
+  --engrid__body_border-radius: none !important;
   --engrid__embedded_body_padding: 0px;
   --engrid__embedded_body_margin: 0px;
   /* prettier-ignore */
