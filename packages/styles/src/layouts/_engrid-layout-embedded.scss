@@ -78,8 +78,7 @@
     --engrid__embedded_page_background-color
   );
 
-  --engrid__body_box-shadow: none !important;
-
+  --engrid__body_box-shadow: none;
   --engrid__embedded_body_padding: 0px;
   --engrid__embedded_body_margin: 0px;
 
@@ -95,47 +94,6 @@
       rcc-start]           minmax(0px, 0px)   [rcc-end cc-end
       rpc-start]           minmax(0px, 0px)   [rpc-end pc-end               
     ] !important;
-  }
-
-  /* prettier-ignore */
-  .en__component--advrow{
-      // When embedded "content-footerSpacer" does not need to be set to 1fr
-    /* autoprefixer grid: off */
-    // grid-template-rows:
-    // [
-    //   page-start page-alert-start]        min-content  [page-alert-end
-    //   content-header-start]               min-content  [content-header-end
-    //   body-headerOutside-start]           min-content  [body-headerOutside-end
-    //   body-header-start]                  min-content  [body-header-end
-    //   body-title-start]                   min-content  [body-title-end
-    //   body-banner-start]                  min-content  [body-banner-end
-    //   body-bannerOverlay-start]           min-content  [body-bannerOverlay-end
-    //   body-top-start]                     min-content  [body-top-end
-    //   body-side-start]                    min-content  [body-side-end  
-    //   body-main-start]                    min-content  [body-main-end  
-    //   body-bottom-start]                  min-content  [body-bottom-end  
-    //   body-footer-start]                  min-content  [body-footer-end
-    //   body-footerOutside-start]           min-content  [body-footerOutside-end  
-    //   content-footerSpacer-start]         min-content  [content-footerSpacer-end
-    //   content-preFooter-start]            min-content  [content-preFooter-end
-    //   content-footer-start]               min-content  [content-footer-end
-    //   page-backgroundImage-start]         min-content  [page-backgroundImage-end
-    //   page-backgroundImageOverlay-start]  min-content  [page-backgroundImageOverlay-end page-end
-    //   page-customCode-start]              min-content  [page-customCode-end        
-    // ] !important;        
-
-    // Remove each sections box shadow
-    .body-bannerOverlay:before,
-    .body-banner:before,
-    .body-bottom:before,
-    .body-footer:before,
-    .body-header:before,
-    .body-main:before,
-    .body-side:before,
-    .body-top:before,
-    .body-title:before {
-      box-shadow: none !important;
-    }
   }
 
   .page-backgroundImage,

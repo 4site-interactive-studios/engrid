@@ -54,5 +54,6 @@ $rightright1col_body-column_max-width: $one_col_body-column_max-width !default; 
     @include engrid_replace-banner-with-background("rightright1col");
     @include engrid_mobile-banner;
     @include engrid_embedded-mobile-body;
+    @include remove-body-drop-shadow("rightright1col");
   }
 }

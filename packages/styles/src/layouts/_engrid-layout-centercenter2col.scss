@@ -158,5 +158,6 @@ $centercenter2col_body-column_offset-width-remaining: $centercenter2col_content-
     @include engrid_replace-banner-with-background("centercenter2col");
     @include engrid_mobile-banner;
     @include engrid_embedded-mobile-body;
+    // @include remove-body-drop-shadow("centercenter2col"); // No box shadow on two column layouts
   }
 }

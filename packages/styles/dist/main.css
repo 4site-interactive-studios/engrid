@@ -6124,8 +6124,7 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) [class*=showifamount].animat
   --engrid__page-alert_margin: var(--engrid__page_margin);
   --engrid__content-header_padding: var(--engrid__content_padding);
   --engrid__content-header_margin: var(--engrid__content_margin);
-  --engrid__body_box-shadow: 0 36px 36px -5px rgba(0, 0, 0, 0.2),
-    0 1px 1px -5px rgba(0, 0, 0, 0.14), 0 2px 1px -5px rgba(0, 0, 0, 0.12);
+  --engrid__body_box-shadow: 0px 3px 3px 0px rgba(0 0 0 / 30%);
   --engrid__body-headerOutside_padding: var(--engrid__body_padding);
   --engrid__body-headerOutside_margin: var(--engrid__body_margin);
   --engrid__body-header_padding: var(--engrid__body_padding);
@@ -6407,21 +6406,20 @@ body:not(#en__pagebuilder) .body-bannerOverlay:empty {
   position: relative;
 }
 
-div:not(.pboAdvancedRow__preview) > .en__component--advrow > .body-header:before,
-div:not(.pboAdvancedRow__preview) > .en__component--advrow > .body-title:before,
-div:not(.pboAdvancedRow__preview) > .en__component--advrow > .body-banner:before,
-div:not(.pboAdvancedRow__preview) > .en__component--advrow > .body-top:before,
-div:not(.pboAdvancedRow__preview) > .en__component--advrow > .body-side:before,
-div:not(.pboAdvancedRow__preview) > .en__component--advrow > .body-main:before,
-div:not(.pboAdvancedRow__preview) > .en__component--advrow > .body-bottom:before,
-div:not(.pboAdvancedRow__preview) > .en__component--advrow > .body-footer:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+[data-engrid-layout*="1col"] div:not(.pboAdvancedRow__preview) .en__component--advcolumn[class*=body- i]:not([class*=outside i]):not([class*=overlay i]) {
   box-shadow: var(--engrid__body_box-shadow);
+}
+[data-engrid-layout*="1col"][data-engrid-no-body-banner] .body-bannerOverlay {
+  box-shadow: var(--engrid__body_box-shadow);
+}
+
+div:not(.pboAdvancedRow__preview) .en__component--advcolumn.body-header {
+  z-index: 2 !important;
+}
+
+div:not(.pboAdvancedRow__preview) .en__component--advcolumn.body-banner,
+div:not(.pboAdvancedRow__preview) .en__component--advcolumn.body-bannerOverlay {
+  z-index: 3 !important;
 }
 
 body:not(#en__pagebuilder) .page-backgroundImageOverlay:empty {
@@ -6567,29 +6565,14 @@ body:not(#en__pagebuilder)[data-engrid-no-page-customCode] .en__component--advro
   --engrid__page-customCode_background-color: var(
     --engrid__embedded_page_background-color
   );
-  --engrid__body_box-shadow: none !important;
+  --engrid__body_box-shadow: none;
   --engrid__embedded_body_padding: 0px;
   --engrid__embedded_body_margin: 0px;
-  /* prettier-ignore */
   /* prettier-ignore */
 }
 [data-engrid-embedded] .en__component--advrow,
 [data-engrid-embedded] .en__component--advrow > * {
   grid-template-columns: [pc-start lpc-start] minmax(0px, 0px) [lpc-end cc-start lcc-start] minmax(0px, 0px) [lcc-end bc-start lbc-start] minmax(0px, 50vw) [lbc-end rbc-start] minmax(0px, 50vw) [rbc-end bc-end rcc-start] minmax(0px, 0px) [rcc-end cc-end rpc-start] minmax(0px, 0px) [rpc-end pc-end] !important;
-}
-[data-engrid-embedded] .en__component--advrow {
-  /* autoprefixer grid: off */
-}
-[data-engrid-embedded] .en__component--advrow .body-bannerOverlay:before,
-[data-engrid-embedded] .en__component--advrow .body-banner:before,
-[data-engrid-embedded] .en__component--advrow .body-bottom:before,
-[data-engrid-embedded] .en__component--advrow .body-footer:before,
-[data-engrid-embedded] .en__component--advrow .body-header:before,
-[data-engrid-embedded] .en__component--advrow .body-main:before,
-[data-engrid-embedded] .en__component--advrow .body-side:before,
-[data-engrid-embedded] .en__component--advrow .body-top:before,
-[data-engrid-embedded] .en__component--advrow .body-title:before {
-  box-shadow: none !important;
 }
 [data-engrid-embedded] .page-backgroundImage,
 [data-engrid-embedded] .page-backgroundImageOverlay,
@@ -6797,6 +6780,9 @@ body:not(#en__pagebuilder)[data-engrid-no-page-customCode] .en__component--advro
     --engrid__body-bottom_margin: var(--engrid__body_margin);
     --engrid__body-footer_margin: var(--engrid__body_margin);
     --engrid__body-footerOutside_margin: var(--engrid__body_margin);
+  }
+  [data-engrid-layout=centercenter1col] {
+    --engrid__body_box-shadow: none;
   }
 }
 
@@ -7232,6 +7218,9 @@ body:not(#en__pagebuilder)[data-engrid-no-page-customCode] .en__component--advro
     --engrid__body-footer_margin: var(--engrid__body_margin);
     --engrid__body-footerOutside_margin: var(--engrid__body_margin);
   }
+  [data-engrid-layout=centerleft1col] {
+    --engrid__body_box-shadow: none;
+  }
 }
 
 /*
@@ -7434,6 +7423,10 @@ body:not(#en__pagebuilder)[data-engrid-no-page-customCode] .en__component--advro
     --engrid__body-footer_margin: var(--engrid__body_margin);
     --engrid__body-footerOutside_margin: var(--engrid__body_margin);
   }
+
+  [data-engrid-layout=centerright1col] {
+    --engrid__body_box-shadow: none;
+  }
 }
 /*
 * ####################################################################################################################
@@ -7631,6 +7624,9 @@ body:not(#en__pagebuilder)[data-engrid-no-page-customCode] .en__component--advro
     --engrid__body-bottom_margin: var(--engrid__body_margin);
     --engrid__body-footer_margin: var(--engrid__body_margin);
     --engrid__body-footerOutside_margin: var(--engrid__body_margin);
+  }
+  [data-engrid-layout=leftleft1col] {
+    --engrid__body_box-shadow: none;
   }
 }
 
@@ -7830,6 +7826,9 @@ body:not(#en__pagebuilder)[data-engrid-no-page-customCode] .en__component--advro
     --engrid__body-bottom_margin: var(--engrid__body_margin);
     --engrid__body-footer_margin: var(--engrid__body_margin);
     --engrid__body-footerOutside_margin: var(--engrid__body_margin);
+  }
+  [data-engrid-layout=rightright1col] {
+    --engrid__body_box-shadow: none;
   }
 }
 
