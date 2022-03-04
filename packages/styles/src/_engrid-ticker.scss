@@ -1,0 +1,52 @@
+#en__pagebuilder div.en__component.engrid-ticker {
+  display: block !important;
+  max-height: 200px;
+  overflow: hidden;
+}
+div.en__component.engrid-ticker {
+  display: none;
+}
+#engrid-ticker {
+  width: 100%;
+  overflow: hidden;
+  height: 5rem;
+  box-sizing: content-box;
+  margin: 0 0 1rem 0;
+  border-radius: 10px;
+  .ticker {
+    display: inline-block;
+    height: 5rem;
+    line-height: 5rem;
+    white-space: nowrap;
+    padding-right: 100%;
+    box-sizing: content-box;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-name: tickerScroll;
+    animation-duration: 250s;
+    &:hover {
+      animation-play-state: paused;
+    }
+  }
+  .ticker__item {
+    display: inline-block;
+    padding: 0 1rem;
+    font-size: 1.125rem;
+    line-height: 1.4;
+    font-weight: 700;
+    &:hover {
+      animation-play-state: paused;
+    }
+  }
+}
+@keyframes tickerScroll {
+  0% {
+    transform: translateX(0);
+  }
+  99% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

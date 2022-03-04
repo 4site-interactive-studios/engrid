@@ -20,6 +20,7 @@
     "url": "https://github.com/4site-interactive-studios/engrid-scripts/issues"
   },
   "dependencies": {
+    "shuffle-seed": "^1.1.6",
     "strongly-typed-events": "^2.0.9"
   },
   "homepage": "https://github.com/4site-interactive-studios/engrid-scripts#readme",

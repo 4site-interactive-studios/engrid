@@ -6110,6 +6110,61 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) [class*=showifamount].animat
   border: none;
 }
 
+#en__pagebuilder div.en__component.engrid-ticker {
+  display: block !important;
+  max-height: 200px;
+  overflow: hidden;
+}
+
+div.en__component.engrid-ticker {
+  display: none;
+}
+
+#engrid-ticker {
+  width: 100%;
+  overflow: hidden;
+  height: 5rem;
+  box-sizing: content-box;
+  margin: 0 0 1rem 0;
+  border-radius: 10px;
+}
+#engrid-ticker .ticker {
+  display: inline-block;
+  height: 5rem;
+  line-height: 5rem;
+  white-space: nowrap;
+  padding-right: 100%;
+  box-sizing: content-box;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-name: tickerScroll;
+  animation-duration: 250s;
+}
+#engrid-ticker .ticker:hover {
+  animation-play-state: paused;
+}
+#engrid-ticker .ticker__item {
+  display: inline-block;
+  padding: 0 1rem;
+  font-size: 1.125rem;
+  line-height: 1.4;
+  font-weight: 700;
+}
+#engrid-ticker .ticker__item:hover {
+  animation-play-state: paused;
+}
+
+@keyframes tickerScroll {
+  0% {
+    transform: translateX(0);
+  }
+  99% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
 /* ENGRID LAYOUTS */
 /* MUST COME AFTER OTHER ENGRID STYLES WHICH MIGHT DEFINE MIXINS REFERENCED IN THE LAYOUTS */
 [data-engrid-theme] {

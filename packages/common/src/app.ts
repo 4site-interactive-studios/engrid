@@ -36,6 +36,7 @@ import {
   EngridLogger,
   OtherAmount,
   MinMaxAmount,
+  Ticker,
 } from "./";
 
 export class App extends ENGrid {
@@ -244,6 +245,8 @@ export class App extends ENGrid {
     new OtherAmount();
 
     new MinMaxAmount();
+
+    new Ticker();
 
     this.setDataAttributes();
 
