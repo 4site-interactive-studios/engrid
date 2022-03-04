@@ -6,20 +6,19 @@
 div.en__component.engrid-ticker {
   display: none;
 }
+div.en__component--ticker {
+  overflow: hidden;
+}
 #engrid-ticker {
   width: 100%;
   overflow: hidden;
   height: 5rem;
-  box-sizing: content-box;
-  margin: 0 0 1rem 0;
-  border-radius: 10px;
+  margin-bottom: 1rem;
   .ticker {
     display: inline-block;
     height: 5rem;
     line-height: 5rem;
     white-space: nowrap;
-    padding-right: 100%;
-    box-sizing: content-box;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
     animation-name: tickerScroll;
