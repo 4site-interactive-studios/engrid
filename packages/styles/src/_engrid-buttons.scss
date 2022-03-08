@@ -92,6 +92,18 @@ button.en__eventOccurrence__select {
   }
 }
 
+// A links styled as buttons should not have a text decoration
+a.button {
+  text-decoration: none;
+
+  &:focus,
+  &:hover,
+  &:active,
+  &.active {
+    text-decoration: none;
+  }
+}
+
 // The submit button container should span the full width of its parent
 .en__submit {
   width: 100%;
