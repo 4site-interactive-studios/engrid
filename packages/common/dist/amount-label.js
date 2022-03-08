@@ -13,7 +13,8 @@ export class AmountLabel {
     }
     // Should we run the script?
     shouldRun() {
-        return ENGrid.getPageType() === "DONATION";
+        return !!(ENGrid.getPageType() === "DONATION" &&
+            ENGrid.getOption("AddCurrencySymbol"));
     }
     // Fix Amount Labels
     fixAmountLabels() {

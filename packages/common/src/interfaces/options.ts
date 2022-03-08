@@ -5,6 +5,7 @@ export interface Options {
   CapitalizeFields?: boolean;
   ClickToExpand?: boolean;
   CurrencySymbol?: string;
+  AddCurrencySymbol?: boolean;
   CurrencySeparator?: string; // Deprecated
   ThousandsSeparator?: string;
   DecimalSeparator?: string;
@@ -54,6 +55,7 @@ export const OptionsDefaults: Options = {
   CapitalizeFields: false,
   ClickToExpand: true,
   CurrencySymbol: "$",
+  AddCurrencySymbol: true,
   ThousandsSeparator: "",
   DecimalSeparator: ".",
   DecimalPlaces: 2,

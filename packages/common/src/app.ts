@@ -98,6 +98,13 @@ export class App extends ENGrid {
       }, 10);
       return;
     }
+    // If there's an option object on the page, override the defaults
+    if (window.hasOwnProperty("EngridPageOptions")) {
+      this.options = { ...this.options, ...window.EngridPageOptions };
+      // Add Options to window
+      window.EngridOptions = this.options;
+    }
+
     if (this.options.Debug || App.getUrlParameter("debug") == "true")
       // Enable debug if available is the first thing
       App.setBodyData("debug", "");

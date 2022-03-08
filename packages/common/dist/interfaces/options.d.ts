@@ -5,6 +5,7 @@ export interface Options {
     CapitalizeFields?: boolean;
     ClickToExpand?: boolean;
     CurrencySymbol?: string;
+    AddCurrencySymbol?: boolean;
     CurrencySeparator?: string;
     ThousandsSeparator?: string;
     DecimalSeparator?: string;
