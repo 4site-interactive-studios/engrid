@@ -8943,6 +8943,13 @@ body:not([data-engrid-debug]) #debug-bar {
   margin-bottom: 0px !important;
   border: none !important;
 }
+#en__pagebuilder .en__component--active {
+  box-shadow: 0 0 0 2px #00b2d9;
+  background: rgba(0, 178, 217, 0.2);
+  z-index: 1000;
+  outline-color: #00b2d9;
+  outline-style: solid;
+}
 #en__pagebuilder .inmem-y,
 #en__pagebuilder .inmem-n,
 #en__pagebuilder .giveBySelect-card,
