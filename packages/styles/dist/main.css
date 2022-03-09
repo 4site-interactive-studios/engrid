@@ -8952,7 +8952,8 @@ body:not([data-engrid-debug]) #debug-bar {
 #en__pagebuilder .inmem-N,
 #en__pagebuilder .giveBySelect-Card,
 #en__pagebuilder .giveBySelect-ACH,
-#en__pagebuilder .giveBySelect-Paypal {
+#en__pagebuilder .giveBySelect-Paypal,
+#en__pagebuilder [class*=engrid__supporter] {
   background-color: #0000ff1a !important;
 }
 #en__pagebuilder .inmem-y.pboAdvancedRow__preview .en__component--column,
@@ -8964,7 +8965,8 @@ body:not([data-engrid-debug]) #debug-bar {
 #en__pagebuilder .inmem-N.pboAdvancedRow__preview .en__component--column,
 #en__pagebuilder .giveBySelect-Card.pboAdvancedRow__preview .en__component--column,
 #en__pagebuilder .giveBySelect-ACH.pboAdvancedRow__preview .en__component--column,
-#en__pagebuilder .giveBySelect-Paypal.pboAdvancedRow__preview .en__component--column {
+#en__pagebuilder .giveBySelect-Paypal.pboAdvancedRow__preview .en__component--column,
+#en__pagebuilder [class*=engrid__supporter].pboAdvancedRow__preview .en__component--column {
   outline-color: #0000ff !important;
   z-index: 1;
 }
@@ -8977,7 +8979,8 @@ body:not([data-engrid-debug]) #debug-bar {
 #en__pagebuilder .inmem-N .en__mandatory,
 #en__pagebuilder .giveBySelect-Card .en__mandatory,
 #en__pagebuilder .giveBySelect-ACH .en__mandatory,
-#en__pagebuilder .giveBySelect-Paypal .en__mandatory {
+#en__pagebuilder .giveBySelect-Paypal .en__mandatory,
+#en__pagebuilder [class*=engrid__supporter] .en__mandatory {
   outline: 5px solid #f12222;
 }
 #en__pagebuilder .live-giving-amount,

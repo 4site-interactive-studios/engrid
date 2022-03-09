@@ -84,8 +84,10 @@
   .inmem-N,
   .giveBySelect-Card,
   .giveBySelect-ACH,
-  .giveBySelect-Paypal {
+  .giveBySelect-Paypal,
+  [class*="engrid__supporter"] {
     background-color: #0000ff1a !important;
+
     &.pboAdvancedRow__preview .en__component--column {
       outline-color: #0000ff !important;
       z-index: 1;
