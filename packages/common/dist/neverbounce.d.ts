@@ -18,7 +18,6 @@ export declare class NeverBounce {
     private deleteENFieldError;
     private setEmailStatus;
     private insertAfter;
-    private insertBefore;
     private wrap;
     private validate;
 }

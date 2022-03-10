@@ -201,11 +201,6 @@ export class NeverBounce {
         var _a;
         (_a = referenceNode === null || referenceNode === void 0 ? void 0 : referenceNode.parentNode) === null || _a === void 0 ? void 0 : _a.insertBefore(el, referenceNode.nextSibling);
     }
-    //  to insert HTML before a DIV
-    insertBefore(el, referenceNode) {
-        var _a;
-        (_a = referenceNode === null || referenceNode === void 0 ? void 0 : referenceNode.parentNode) === null || _a === void 0 ? void 0 : _a.insertBefore(el, referenceNode);
-    }
     //  to Wrap HTML around a DIV
     wrap(el, wrapper) {
         var _a;
@@ -214,7 +209,7 @@ export class NeverBounce {
     }
     validate() {
         var _a;
-        if (!this.emailField || !this.shouldRun) {
+        if (!this.emailField || !this.shouldRun || !this.nbLoaded) {
             this.logger.log("validate(): Should Not Run. Returning true.");
             return true;
         }

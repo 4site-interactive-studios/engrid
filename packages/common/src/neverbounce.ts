@@ -251,18 +251,13 @@ export class NeverBounce {
     referenceNode?.parentNode?.insertBefore(el, referenceNode.nextSibling);
   }
 
-  //  to insert HTML before a DIV
-  private insertBefore(el: HTMLElement, referenceNode: HTMLElement) {
-    referenceNode?.parentNode?.insertBefore(el, referenceNode);
-  }
-
   //  to Wrap HTML around a DIV
   private wrap(el: HTMLElement, wrapper: HTMLElement) {
     el.parentNode?.insertBefore(wrapper, el);
     wrapper.appendChild(el);
   }
   private validate() {
-    if (!this.emailField || !this.shouldRun) {
+    if (!this.emailField || !this.shouldRun || !this.nbLoaded) {
       this.logger.log("validate(): Should Not Run. Returning true.");
       return true;
     }
