@@ -45,7 +45,6 @@ export class NeverBounce {
         this.init();
       });
     }
-    this.init();
     this.form.onValidate.subscribe(
       () => (this.form.validate = this.validate())
     );
