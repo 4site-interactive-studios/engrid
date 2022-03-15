@@ -18,7 +18,7 @@ export class NeverBounce {
         window._NBSettings = {
             apiKey: this.apiKey,
             autoFieldHookup: false,
-            inputLatency: 1000,
+            inputLatency: 1500,
             displayPoweredBy: false,
             loadingMessage: "Validating...",
             softRejectMessage: "Invalid email",
