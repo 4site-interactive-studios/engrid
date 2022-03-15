@@ -30,7 +30,7 @@ export class NeverBounce {
     window._NBSettings = {
       apiKey: this.apiKey,
       autoFieldHookup: false,
-      inputLatency: 2000,
+      inputLatency: 1500,
       displayPoweredBy: false,
       loadingMessage: "Validating...",
       softRejectMessage: "Invalid email",
@@ -40,10 +40,22 @@ export class NeverBounce {
     ENGrid.loadJS("https://cdn.neverbounce.com/widget/dist/NeverBounce.js");
     if (this.emailField) {
       if (this.emailField.value) this.shouldRun = false;
-      this.emailField.addEventListener("keyup", (e) => {
-        this.shouldRun = true;
-        this.init();
+      this.emailField.addEventListener("change", (e) => {
+        if (!this.nbLoaded) {
+          this.shouldRun = true;
+          this.init();
+          if (this.emailField?.value) {
+            setTimeout(function () {
+              window._nb.fields
+                .get(document.querySelector("[data-nb-id]"))[0]
+                .forceUpdate();
+            }, 100);
+          }
+        }
       });
+      window.setTimeout(() => {
+        this.init();
+      }, 1000);
     }
     this.form.onValidate.subscribe(
       () => (this.form.validate = this.validate())
@@ -129,14 +141,6 @@ export class NeverBounce {
           }
           ENGrid.enableSubmit();
         });
-        if (field.value) {
-          NBClass.logger.log(field);
-          setTimeout(function () {
-            window._nb.fields
-              .get(document.querySelector("[data-nb-id]"))[0]
-              .forceUpdate();
-          }, 100);
-        }
       });
 
     // Never Bounce: Register field with the widget and broadcast nb:registration event
