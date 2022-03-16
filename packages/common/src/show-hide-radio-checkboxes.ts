@@ -1,8 +1,16 @@
+import { EngridLogger } from ".";
+
 export class ShowHideRadioCheckboxes {
   // All Affected Elements
   public elements: NodeList;
   // Class used on Show/Hide Divs + Input Value
   public classes: string;
+  private logger: EngridLogger = new EngridLogger(
+    "ShowHideRadioCheckboxes",
+    "black",
+    "lightblue",
+    "👁"
+  );
 
   // Hide All Divs
   hideAll() {
@@ -15,7 +23,10 @@ export class ShowHideRadioCheckboxes {
     let inputValue = item.value.replace(/\s/g, "");
     document.querySelectorAll("." + this.classes + inputValue).forEach((el) => {
       // Consider toggling "hide" class so these fields can be displayed when in a debug state
-      if (el instanceof HTMLElement) el.style.display = "none";
+      if (el instanceof HTMLElement) {
+        el.style.display = "none";
+        this.logger.log("Hiding", el);
+      }
     });
   }
   // Show Single Element Div
@@ -23,7 +34,10 @@ export class ShowHideRadioCheckboxes {
     let inputValue = item.value.replace(/\s/g, "");
     document.querySelectorAll("." + this.classes + inputValue).forEach((el) => {
       // Consider toggling "hide" class so these fields can be displayed when in a debug state
-      if (el instanceof HTMLElement) el.style.display = "";
+      if (el instanceof HTMLElement) {
+        el.style.display = "";
+        this.logger.log("Showing", el);
+      }
     });
     if (item.type == "checkbox" && !item.checked) {
       this.hide(item);
@@ -34,6 +48,7 @@ export class ShowHideRadioCheckboxes {
     this.elements = document.getElementsByName(elements);
     this.classes = classes;
     this.hideAll();
+    this.logger.log("New:", this.classes, this.elements);
     for (let i = 0; i < this.elements.length; i++) {
       let element = <HTMLInputElement>this.elements[i];
       if (element.checked) {
