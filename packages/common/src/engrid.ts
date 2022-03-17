@@ -134,6 +134,9 @@ export abstract class ENGrid {
         case "supporterhub":
           return "SUPPORTERHUB";
           break;
+        case "unsubscribe":
+          return "UNSUBSCRIBE";
+          break;
         default:
           return "DONATION";
       }
