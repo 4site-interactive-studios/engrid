@@ -167,11 +167,10 @@
 // When outside page builder and not debugging,
 body:not(#en__pagebuilder):not([data-engrid-debug]) {
   // Hide Hidden Fields
+  /* prettier-ignore */
   .hide,
-  &:not([data-engrid-scripts-js-loading="finished"])
-    .hide-until-engrid-js-loading-finished,
-  &:not([data-engrid-client-js-loading="finished"])
-    .hide-until-client-js-loading-finished,
+  &:not([data-engrid-scripts-js-loading="finished"]) .hide-until-engrid-js-loading-finished,
+  &:not([data-engrid-client-js-loading="finished"]) .hide-until-client-js-loading-finished,
   .i1-hide .en__field:nth-of-type(1),
   .i2-hide .en__field:nth-of-type(2),
   .i3-hide .en__field:nth-of-type(3),
@@ -312,35 +311,35 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) {
 /* On error, restyle if the field is also centered */
 /* prettier-ignore */
 .i1-show-hidden-radio-input.i1-center .en__field:nth-of-type(1)[class*="validationFail"] .en__field__element--radio,
-  .i2-show-hidden-radio-input.i2-center .en__field:nth-of-type(2)[class*="validationFail"] .en__field__element--radio,
-  .i3-show-hidden-radio-input.i3-center .en__field:nth-of-type(3)[class*="validationFail"] .en__field__element--radio,
-  .i4-show-hidden-radio-input.i4-center .en__field:nth-of-type(4)[class*="validationFail"] .en__field__element--radio,
-  .i5-show-hidden-radio-input.i5-center .en__field:nth-of-type(5)[class*="validationFail"] .en__field__element--radio,
-  .i6-show-hidden-radio-input.i6-center .en__field:nth-of-type(6)[class*="validationFail"] .en__field__element--radio,
-  .i7-show-hidden-radio-input.i7-center .en__field:nth-of-type(7)[class*="validationFail"] .en__field__element--radio,
-  .i8-show-hidden-radio-input.i8-center .en__field:nth-of-type(8)[class*="validationFail"] .en__field__element--radio,
-  .i9-show-hidden-radio-input.i9-center .en__field:nth-of-type(9)[class*="validationFail"] .en__field__element--radio,
-  .i10-show-hidden-radio-input.i10-center .en__field:nth-of-type(10)[class*="validationFail"] .en__field__element--radio,
-  .i11-show-hidden-radio-input.i11-center .en__field:nth-of-type(11)[class*="validationFail"] .en__field__element--radio {
-    border-radius: 0.3rem !important;
-    margin-bottom: 0.5rem;
-  }
+.i2-show-hidden-radio-input.i2-center .en__field:nth-of-type(2)[class*="validationFail"] .en__field__element--radio,
+.i3-show-hidden-radio-input.i3-center .en__field:nth-of-type(3)[class*="validationFail"] .en__field__element--radio,
+.i4-show-hidden-radio-input.i4-center .en__field:nth-of-type(4)[class*="validationFail"] .en__field__element--radio,
+.i5-show-hidden-radio-input.i5-center .en__field:nth-of-type(5)[class*="validationFail"] .en__field__element--radio,
+.i6-show-hidden-radio-input.i6-center .en__field:nth-of-type(6)[class*="validationFail"] .en__field__element--radio,
+.i7-show-hidden-radio-input.i7-center .en__field:nth-of-type(7)[class*="validationFail"] .en__field__element--radio,
+.i8-show-hidden-radio-input.i8-center .en__field:nth-of-type(8)[class*="validationFail"] .en__field__element--radio,
+.i9-show-hidden-radio-input.i9-center .en__field:nth-of-type(9)[class*="validationFail"] .en__field__element--radio,
+.i10-show-hidden-radio-input.i10-center .en__field:nth-of-type(10)[class*="validationFail"] .en__field__element--radio,
+.i11-show-hidden-radio-input.i11-center .en__field:nth-of-type(11)[class*="validationFail"] .en__field__element--radio {
+  border-radius: 0.3rem !important;
+  margin-bottom: 0.5rem;
+}
 
 /* On error, restyle if the field is also centered */
 /* prettier-ignore */
 .i1-show-hidden-radio-input.i1-center .en__field:nth-of-type(1)[class*="validationFail"] .en__field__error,
-  .i2-show-hidden-radio-input.i2-center .en__field:nth-of-type(2)[class*="validationFail"] .en__field__error,
-  .i3-show-hidden-radio-input.i3-center .en__field:nth-of-type(3)[class*="validationFail"] .en__field__error,
-  .i4-show-hidden-radio-input.i4-center .en__field:nth-of-type(4)[class*="validationFail"] .en__field__error,
-  .i5-show-hidden-radio-input.i5-center .en__field:nth-of-type(5)[class*="validationFail"] .en__field__error,
-  .i6-show-hidden-radio-input.i6-center .en__field:nth-of-type(6)[class*="validationFail"] .en__field__error,
-  .i7-show-hidden-radio-input.i7-center .en__field:nth-of-type(7)[class*="validationFail"] .en__field__error,
-  .i8-show-hidden-radio-input.i8-center .en__field:nth-of-type(8)[class*="validationFail"] .en__field__error,
-  .i9-show-hidden-radio-input.i9-center .en__field:nth-of-type(9)[class*="validationFail"] .en__field__error,
-  .i10-show-hidden-radio-input.i9-center .en__field:nth-of-type(10)[class*="validationFail"] .en__field__error,
-  .i11-show-hidden-radio-input.i9-center .en__field:nth-of-type(11)[class*="validationFail"] .en__field__error {
-    border-radius: 0.3rem !important;
-  }
+.i2-show-hidden-radio-input.i2-center .en__field:nth-of-type(2)[class*="validationFail"] .en__field__error,
+.i3-show-hidden-radio-input.i3-center .en__field:nth-of-type(3)[class*="validationFail"] .en__field__error,
+.i4-show-hidden-radio-input.i4-center .en__field:nth-of-type(4)[class*="validationFail"] .en__field__error,
+.i5-show-hidden-radio-input.i5-center .en__field:nth-of-type(5)[class*="validationFail"] .en__field__error,
+.i6-show-hidden-radio-input.i6-center .en__field:nth-of-type(6)[class*="validationFail"] .en__field__error,
+.i7-show-hidden-radio-input.i7-center .en__field:nth-of-type(7)[class*="validationFail"] .en__field__error,
+.i8-show-hidden-radio-input.i8-center .en__field:nth-of-type(8)[class*="validationFail"] .en__field__error,
+.i9-show-hidden-radio-input.i9-center .en__field:nth-of-type(9)[class*="validationFail"] .en__field__error,
+.i10-show-hidden-radio-input.i9-center .en__field:nth-of-type(10)[class*="validationFail"] .en__field__error,
+.i11-show-hidden-radio-input.i9-center .en__field:nth-of-type(11)[class*="validationFail"] .en__field__error {
+  border-radius: 0.3rem !important;
+}
 
 @media screen and (max-width: 40em) {
   .i1-m50 .en__field:nth-of-type(1),
