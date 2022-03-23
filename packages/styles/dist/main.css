@@ -4005,6 +4005,21 @@ body:not(#en__pagebuilder) .en__component--column:last-of-type,
   align-items: center;
 }
 
+.i1-column .en__field:nth-of-type(1) .en__field__element,
+.i2-column .en__field:nth-of-type(2) .en__field__element,
+.i3-column .en__field:nth-of-type(3) .en__field__element,
+.i4-column .en__field:nth-of-type(4) .en__field__element,
+.i5-column .en__field:nth-of-type(5) .en__field__element,
+.i6-column .en__field:nth-of-type(6) .en__field__element,
+.i7-column .en__field:nth-of-type(7) .en__field__element,
+.i8-column .en__field:nth-of-type(8) .en__field__element,
+.i9-column .en__field:nth-of-type(9) .en__field__element,
+.i10-column .en__field:nth-of-type(10) .en__field__element,
+.i11-column .en__field:nth-of-type(11) .en__field__element {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 #en__pagebuilder .hide,
 #en__pagebuilder .hide-until-engrid-js-loading-finished,
 #en__pagebuilder .hide-until-client-js-loading-finished,
