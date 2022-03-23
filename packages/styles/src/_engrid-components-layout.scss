@@ -11,8 +11,6 @@
 .i10-20 .en__field:nth-of-type(10),
 .i11-20 .en__field:nth-of-type(11) {
   flex-basis: 20%;
-  // padding-left: 0.5rem;
-  // padding-right: 0.5rem;
 }
 
 .i1-25 .en__field:nth-of-type(1),
@@ -27,8 +25,6 @@
 .i10-25 .en__field:nth-of-type(10),
 .i11-25 .en__field:nth-of-type(11) {
   flex-basis: 25%;
-  // padding-left: 0.5rem;
-  // padding-right: 0.5rem;
 }
 
 .i1-33 .en__field:nth-of-type(1),
@@ -43,8 +39,6 @@
 .i10-33 .en__field:nth-of-type(10),
 .i11-33 .en__field:nth-of-type(11) {
   flex-basis: 33.33333%;
-  // padding-left: 0.5rem;
-  // padding-right: 0.5rem;
 }
 
 .i1-40 .en__field:nth-of-type(1),
@@ -59,8 +53,6 @@
 .i10-40 .en__field:nth-of-type(10),
 .i11-40 .en__field:nth-of-type(11) {
   flex-basis: 40%;
-  // padding-left: 0.5rem;
-  // padding-right: 0.5rem;
 }
 
 .i1-50 .en__field:nth-of-type(1),
@@ -75,8 +67,6 @@
 .i10-50 .en__field:nth-of-type(10),
 .i11-50 .en__field:nth-of-type(11) {
   flex-basis: 50%;
-  // padding-left: 0.5rem;
-  // padding-right: 0.5rem;
 }
 
 .i1-66 .en__field:nth-of-type(1),
@@ -91,8 +81,6 @@
 .i10-66 .en__field:nth-of-type(10),
 .i11-66 .en__field:nth-of-type(11) {
   flex-basis: 66.66666%;
-  // padding-left: 0.5rem;
-  // padding-right: 0.5rem;
 }
 
 .i1-75 .en__field:nth-of-type(1),
@@ -107,80 +95,7 @@
 .i10-75 .en__field:nth-of-type(10),
 .i11-75 .en__field:nth-of-type(11) {
   flex-basis: 75%;
-  // padding-left: 0.5rem;
-  // padding-right: 0.5rem;
 }
-
-// No longer needed
-// .i1-100 .en__field:nth-of-type(1),
-// .i2-100 .en__field:nth-of-type(2),
-// .i3-100 .en__field:nth-of-type(3),
-// .i4-100 .en__field:nth-of-type(4),
-// .i5-100 .en__field:nth-of-type(5),
-// .i6-100 .en__field:nth-of-type(6),
-// .i7-100 .en__field:nth-of-type(7),
-// .i8-100 .en__field:nth-of-type(8),
-// .i9-100 .en__field:nth-of-type(9),
-// .i10-100 .en__field:nth-of-type(10),
-// .i11-100 .en__field:nth-of-type(11) {
-//   flex-basis: 100%;
-//   padding-left: 0rem;
-//   padding-right: 0rem;
-// }
-
-/* For items at the start of a row, remove left padding */
-// .i1-start .en__field:nth-of-type(1),
-// .i2-start .en__field:nth-of-type(2),
-// .i3-start .en__field:nth-of-type(3),
-// .i4-start .en__field:nth-of-type(4),
-// .i5-start .en__field:nth-of-type(5),
-// .i6-start .en__field:nth-of-type(6),
-// .i7-start .en__field:nth-of-type(7),
-// .i8-start .en__field:nth-of-type(8),
-// .i9-start .en__field:nth-of-type(9),
-// .i10-start .en__field:nth-of-type(10),
-// .i11-start .en__field:nth-of-type(11) {
-//   // padding-left: 0;
-//   // margin-right: 0;
-//   position: relative;
-//   left: -0.5rem;
-
-//   > *{
-//     position: relative;
-//     left: -0.5rem;
-//   }
-
-//   .en__field__element > *{
-//     margin-right: 0;
-//   }
-// }
-
-/* For items at the end of a row, remove right padding */
-// .i1-end .en__field:nth-of-type(1),
-// .i2-end .en__field:nth-of-type(2),
-// .i3-end .en__field:nth-of-type(3),
-// .i4-end .en__field:nth-of-type(4),
-// .i5-end .en__field:nth-of-type(5),
-// .i6-end .en__field:nth-of-type(6),
-// .i7-end .en__field:nth-of-type(7),
-// .i8-end .en__field:nth-of-type(8),
-// .i9-end .en__field:nth-of-type(9),
-// .i10-end .en__field:nth-of-type(10),
-// .i11-end .en__field:nth-of-type(11) {
-//   // padding-right: 0;
-//   // margin-left: 0;
-//   position: relative;
-//   right: -0.5rem;
-
-//   > *{
-//     position: relative;
-//     right: -0.5rem;
-//   }
-
-//   .en__field__element > *{
-//     margin-left: 0;
-//   }
-// }
 
 .i1-center .en__field:nth-of-type(1),
 .i2-center .en__field:nth-of-type(2),
@@ -440,41 +355,7 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) {
   .i10-m50 .en__field:nth-of-type(10),
   .i11-m50 .en__field:nth-of-type(11) {
     flex-basis: 50%;
-    // padding-left: 0.5rem;
-    // padding-right: 0.5rem;
   }
-
-  // /* For items at the start of a row, remove left padding */
-  // .i1-mstart .en__field:nth-of-type(1),
-  // .i2-mstart .en__field:nth-of-type(2),
-  // .i3-mstart .en__field:nth-of-type(3),
-  // .i4-mstart .en__field:nth-of-type(4),
-  // .i5-mstart .en__field:nth-of-type(5),
-  // .i6-mstart .en__field:nth-of-type(6),
-  // .i7-mstart .en__field:nth-of-type(7),
-  // .i8-mstart .en__field:nth-of-type(8),
-  // .i9-mstart .en__field:nth-of-type(9),
-  // .i10-mstart .en__field:nth-of-type(10),
-  // .i11-mstart .en__field:nth-of-type(11) {
-  //   padding-left: 0;
-  //   margin-right: 0;
-  // }
-
-  // /* For items at the end of a row, remove right padding */
-  // .i1-mend .en__field:nth-of-type(1),
-  // .i2-mend .en__field:nth-of-type(2),
-  // .i3-mend .en__field:nth-of-type(3),
-  // .i4-mend .en__field:nth-of-type(4),
-  // .i5-mend .en__field:nth-of-type(5),
-  // .i6-mend .en__field:nth-of-type(6),
-  // .i7-mend .en__field:nth-of-type(7),
-  // .i8-mend .en__field:nth-of-type(8),
-  // .i9-mend .en__field:nth-of-type(9),
-  // .i10-mend .en__field:nth-of-type(10),
-  // .i11-mend .en__field:nth-of-type(11) {
-  //   padding-right: 0;
-  //   margin-left: 0;
-  // }
 
   .i1-m100 .en__field:nth-of-type(1),
   .i2-m100 .en__field:nth-of-type(2),
@@ -488,21 +369,5 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) {
   .i10-m100 .en__field:nth-of-type(10),
   .i11-m100 .en__field:nth-of-type(11) {
     flex-basis: 100%;
-    // left: 0;
-    // margin-left: -0.5rem;
-    // margin-right: -0.5rem;
-    // right: 0;
-
-    // > *{
-    //   left: 0;
-    //   margin-left: -0.5rem;
-    //   margin-right: -0.5rem;
-    //   right: 0;
-    // }
-
-    // .en__field__element > *{
-    //   margin-left: 0.5rem;
-    //   margin-right: 0.5rem;
-    // }
   }
 }
