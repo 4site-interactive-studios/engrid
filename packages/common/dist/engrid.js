@@ -13,6 +13,16 @@ export class ENGrid {
     // Return any parameter from the URL
     static getUrlParameter(name) {
         const searchParams = new URLSearchParams(window.location.search);
+        // Add support for array on the name ending with []
+        if (name.endsWith("[]")) {
+            let values = [];
+            searchParams.forEach((value, key) => {
+                if (key.startsWith(name.replace("[]", ""))) {
+                    values.push(new Object({ [key]: value }));
+                }
+            });
+            return values.length > 0 ? values : null;
+        }
         if (searchParams.has(name)) {
             return searchParams.get(name) || true;
         }

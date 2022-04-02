@@ -33,4 +33,6 @@ export * from "./other-amount";
 export * from "./logger";
 export * from "./min-max-amount";
 export * from "./ticker";
+export * from "./data-replace";
+export * from "./data-hide";
 export * from "./events";
