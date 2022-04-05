@@ -9,7 +9,7 @@ export class Loader {
     // Returns true if ENgrid should reload (that means the current ENgrid is not the right one)
     // Returns false if ENgrid should not reload (that means the current ENgrid is the right one)
     reload() {
-        var _a, _b, _c, _d;
+        var _a, _b, _c, _d, _e;
         const isLoaded = ENGrid.getBodyData("loaded");
         let assets = this.getOption("assets");
         if (isLoaded || !assets) {
@@ -20,31 +20,24 @@ export class Loader {
         this.logger.log("RELOADING");
         ENGrid.setBodyData("loaded", "true"); // Set the loaded flag, so the next time we don't reload
         // Fetch the desired repo, assets location, and override JS/CSS
-        const engrid_repo = this.getOption("repo-name");
-        const engrid_repo_owner = (_a = this.getOption("repo-owner")) !== null && _a !== void 0 ? _a : "4site-interactive-studios";
+        const theme = ENGrid.getBodyData("theme");
+        const engrid_repo = (_a = this.getOption("repo-name")) !== null && _a !== void 0 ? _a : `engrid-${theme}`;
+        const engrid_repo_owner = (_b = this.getOption("repo-owner")) !== null && _b !== void 0 ? _b : "4site-interactive-studios";
         let engrid_js_url = "";
         let engrid_css_url = "";
         switch (assets) {
             case "local":
                 this.logger.log("LOADING LOCAL");
-                // Find a way to guess local URL if there's no engrid_repo
-                if (!engrid_repo) {
-                    const theme = ENGrid.getBodyData("theme");
-                    engrid_js_url = `https://engrid-${theme}.test/dist/engrid.js`;
-                    engrid_css_url = `https://engrid-${theme}.test/dist/engrid.css`;
-                }
-                else {
-                    engrid_js_url = `https://${engrid_repo}.test/dist/engrid.js`;
-                    engrid_css_url = `https://${engrid_repo}.test/dist/engrid.css`;
-                }
+                engrid_js_url = `https://${engrid_repo}.test/dist/engrid.js`;
+                engrid_css_url = `https://${engrid_repo}.test/dist/engrid.css`;
                 break;
             case "flush":
                 this.logger.log("FLUSHING CACHE");
                 const timestamp = Date.now();
-                const jsCurrentURL = new URL(((_b = this.jsElement) === null || _b === void 0 ? void 0 : _b.getAttribute("src")) || "");
+                const jsCurrentURL = new URL(((_c = this.jsElement) === null || _c === void 0 ? void 0 : _c.getAttribute("src")) || "");
                 jsCurrentURL.searchParams.set("v", timestamp.toString());
                 engrid_js_url = jsCurrentURL.toString();
-                const cssCurrentURL = new URL(((_c = this.cssElement) === null || _c === void 0 ? void 0 : _c.getAttribute("href")) || "");
+                const cssCurrentURL = new URL(((_d = this.cssElement) === null || _d === void 0 ? void 0 : _d.getAttribute("href")) || "");
                 cssCurrentURL.searchParams.set("v", timestamp.toString());
                 engrid_css_url = cssCurrentURL.toString();
                 break;
@@ -69,7 +62,7 @@ export class Loader {
         }
         this.setCssFile(engrid_css_url);
         this.setJsFile(engrid_js_url);
-        (_d = this.jsElement) === null || _d === void 0 ? void 0 : _d.remove();
+        (_e = this.jsElement) === null || _e === void 0 ? void 0 : _e.remove();
         return true;
     }
     getOption(key) {
