@@ -27,7 +27,8 @@ export class Loader {
     ENGrid.setBodyData("loaded", "true"); // Set the loaded flag, so the next time we don't reload
     // Fetch the desired repo, assets location, and override JS/CSS
     const engrid_repo = this.getOption("repo-name");
-    const engrid_repo_owner = this.getOption("repo-owner");
+    const engrid_repo_owner =
+      this.getOption("repo-owner") ?? "4site-interactive-studios";
     let engrid_js_url = "";
     let engrid_css_url = "";
     switch (assets) {
@@ -39,8 +40,8 @@ export class Loader {
           engrid_js_url = `https://engrid-${theme}.test/dist/engrid.js`;
           engrid_css_url = `https://engrid-${theme}.test/dist/engrid.css`;
         } else {
-          engrid_js_url = `https://engrid-${engrid_repo}.test/dist/engrid.js`;
-          engrid_css_url = `https://engrid-${engrid_repo}.test/dist/engrid.css`;
+          engrid_js_url = `https://${engrid_repo}.test/dist/engrid.js`;
+          engrid_css_url = `https://${engrid_repo}.test/dist/engrid.css`;
         }
         break;
       case "flush":
