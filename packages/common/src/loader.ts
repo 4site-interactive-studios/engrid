@@ -26,7 +26,8 @@ export class Loader {
     this.logger.log("RELOADING");
     ENGrid.setBodyData("loaded", "true"); // Set the loaded flag, so the next time we don't reload
     // Fetch the desired repo, assets location, and override JS/CSS
-    const engrid_repo = this.getOption("repo-name");
+    const theme = ENGrid.getBodyData("theme");
+    const engrid_repo = this.getOption("repo-name") ?? `engrid-${theme}`;
     const engrid_repo_owner =
       this.getOption("repo-owner") ?? "4site-interactive-studios";
     let engrid_js_url = "";
@@ -34,15 +35,8 @@ export class Loader {
     switch (assets) {
       case "local":
         this.logger.log("LOADING LOCAL");
-        // Find a way to guess local URL if there's no engrid_repo
-        if (!engrid_repo) {
-          const theme = ENGrid.getBodyData("theme");
-          engrid_js_url = `https://engrid-${theme}.test/dist/engrid.js`;
-          engrid_css_url = `https://engrid-${theme}.test/dist/engrid.css`;
-        } else {
-          engrid_js_url = `https://${engrid_repo}.test/dist/engrid.js`;
-          engrid_css_url = `https://${engrid_repo}.test/dist/engrid.css`;
-        }
+        engrid_js_url = `https://${engrid_repo}.test/dist/engrid.js`;
+        engrid_css_url = `https://${engrid_repo}.test/dist/engrid.css`;
         break;
       case "flush":
         this.logger.log("FLUSHING CACHE");
