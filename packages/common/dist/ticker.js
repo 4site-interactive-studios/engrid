@@ -47,10 +47,11 @@ export class Ticker {
         var _a, _b, _c;
         this.logger.log("Rendering");
         const items = this.getItems();
+        const listDuration = items.length * 5;
         let ticker = document.createElement("div");
         ticker.classList.add("en__component");
         ticker.classList.add("en__component--ticker");
-        let str = '<div class="ticker">';
+        let str = `<div class="ticker" style="animation-duration: ${listDuration}s">`;
         for (let i = 0; i < items.length; i++) {
             str += '<div class="ticker__item">' + items[i] + "</div>";
         }
