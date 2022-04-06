@@ -1,4 +1,4 @@
 export declare class nameShortcode {
     constructor();
-    private replaceNameShortcode;
+    replaceNameShortcode(fName: string, lName: string): void;
 }

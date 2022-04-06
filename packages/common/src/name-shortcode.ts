@@ -5,7 +5,7 @@ export class nameShortcode {
         this.replaceNameShortcode("#en__field_supporter_firstName", "#en__field_supporter_lastName");
     }
 
-    private replaceNameShortcode(fName: string, lName: string) {
+    replaceNameShortcode(fName: string, lName: string) {
         let message: HTMLTextAreaElement | null = document.querySelector('[name="contact.message"]');
         let firstName: HTMLInputElement | null = document.querySelector(fName);
         let lastName: HTMLInputElement | null = document.querySelector(lName);
