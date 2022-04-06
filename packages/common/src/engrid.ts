@@ -135,6 +135,8 @@ export abstract class ENGrid {
           return "SURVEY";
           break;
         case "emailtotarget":
+          return "EMAILTOTARGET";
+          break;
         case "advocacypetition":
           return "ADVOCACY";
           break;
