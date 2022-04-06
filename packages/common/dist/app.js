@@ -54,8 +54,6 @@ export class App extends ENGrid {
         if (this.options.Debug || App.getUrlParameter("debug") == "true")
             // Enable debug if available is the first thing
             App.setBodyData("debug", "");
-        // Page Background
-        new PageBackground();
         // TODO: Abstract everything to the App class so we can remove custom-methods
         legacy.inputPlaceholder();
         legacy.preventAutocomplete();
@@ -174,6 +172,8 @@ export class App extends ENGrid {
         new OtherAmount();
         new MinMaxAmount();
         new Ticker();
+        // Page Background
+        new PageBackground();
         this.setDataAttributes();
         ENGrid.setBodyData("data-engrid-scripts-js-loading", "finished");
     }

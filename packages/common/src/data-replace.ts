@@ -19,7 +19,11 @@ export class DataReplace {
   }
   searchElements() {
     const enElements = document.querySelectorAll(
-      ".en__component--copyblock, .en__field"
+      `
+      .en__component--copyblock,
+      .en__component--codeblock,
+      .en__field
+      `
     );
     if (enElements.length > 0) {
       enElements.forEach((item) => {
