@@ -12,7 +12,7 @@ export class nameShortcode {
         let addedFirstName: boolean = false;
         let addedLastName: boolean = false;
         
-        if(ENGrid.getPageType() == "ADVOCACY" && message) {
+        if(ENGrid.getPageType() == "EMAILTOTARGET" && message) {
             if(message.value.includes("{user_data~First Name") || message.value.includes("{user_data~Last Name")) {
                 return;
             } else {

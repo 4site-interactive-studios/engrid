@@ -9,7 +9,7 @@ export class nameShortcode {
         let lastName = document.querySelector(lName);
         let addedFirstName = false;
         let addedLastName = false;
-        if (ENGrid.getPageType() == "ADVOCACY" && message) {
+        if (ENGrid.getPageType() == "EMAILTOTARGET" && message) {
             if (message.value.includes("{user_data~First Name") || message.value.includes("{user_data~Last Name")) {
                 return;
             }
