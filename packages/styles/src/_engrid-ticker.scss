@@ -16,8 +16,7 @@ div.en__component--ticker {
   margin-bottom: 1rem;
   --speed-modifier: 1;
   .ticker {
-    --character-count: 208;
-    --calculated-speed: calc((1s * (var(--character-count) / 5)) * (1 - var(--speed-modifier)));
+    --calculated-speed: calc((1s * (var(--character-count) / 5)) * var(--speed-modifier));
     display: inline-block;
     height: 5rem;
     line-height: 5rem;
