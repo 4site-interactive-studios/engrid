@@ -6404,8 +6404,11 @@ div.en__component--ticker {
   overflow: hidden;
   height: 5rem;
   margin-bottom: 1rem;
+  --speed-modifier: 1;
 }
 #engrid-ticker .ticker {
+  --character-count: 208;
+  --calculated-speed: calc((1s * (var(--character-count) / 5)) * (1 - var(--speed-modifier)));
   display: inline-block;
   height: 5rem;
   line-height: 5rem;
@@ -6413,7 +6416,7 @@ div.en__component--ticker {
   animation-iteration-count: infinite;
   animation-timing-function: linear;
   animation-name: tickerScroll;
-  animation-duration: 250s;
+  animation-duration: var(--calculated-speed);
 }
 #engrid-ticker .ticker:hover {
   animation-play-state: paused;

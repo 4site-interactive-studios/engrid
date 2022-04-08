@@ -56,15 +56,17 @@ export class Ticker {
   render() {
     this.logger.log("Rendering");
     const items = this.getItems();
-    const listDuration = items.length * 5;
     let ticker = document.createElement("div");
+    let charCount = 0;
     ticker.classList.add("en__component");
     ticker.classList.add("en__component--ticker");
-    let str = `<div class="ticker" style="animation-duration: ${listDuration}s">`;
+    let str = `<div class="ticker">`;
     for (let i = 0; i < items.length; i++) {
       str += '<div class="ticker__item">' + items[i] + "</div>";
+      charCount += items[i].length;
     }
     str = '<div id="engrid-ticker">' + str + "</div></div>";
+    ticker.style.setProperty("--character-count", charCount.toString());
     ticker.innerHTML = str;
     this.tickerElement?.parentElement?.insertBefore(ticker, this.tickerElement);
     this.tickerElement?.remove();
