@@ -6407,7 +6407,7 @@ div.en__component--ticker {
   --speed-modifier: 1;
 }
 #engrid-ticker .ticker {
-  --calculated-speed: calc((1s * (var(--character-count) / 5)) * var(--speed-modifier));
+  --calculated-speed: calc((1s * (var(--ticker-size) / 50)) * var(--speed-modifier));
   display: inline-block;
   height: 5rem;
   line-height: 5rem;
