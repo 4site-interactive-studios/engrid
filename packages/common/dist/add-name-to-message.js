@@ -1,12 +1,22 @@
-import { ENGrid } from "./";
-export class nameShortcode {
+/*
+ Adds first and last name when First Name and Last Name fields lose focus if name shortcodes aren't present
+*/
+import { ENGrid } from ".";
+export class addNameToMessage {
     constructor() {
+        if (!this.shouldRun()) {
+            // Don't run the script if the page isn't email to target
+            return;
+        }
         this.replaceNameShortcode("#en__field_supporter_firstName", "#en__field_supporter_lastName");
     }
+    shouldRun() {
+        return ENGrid.getPageType() === "EMAILTOTARGET";
+    }
     replaceNameShortcode(fName, lName) {
+        const firstName = document.querySelector(fName);
+        const lastName = document.querySelector(lName);
         let message = document.querySelector('[name="contact.message"]');
-        let firstName = document.querySelector(fName);
-        let lastName = document.querySelector(lName);
         let addedFirstName = false;
         let addedLastName = false;
         if (ENGrid.getPageType() == "EMAILTOTARGET" && message) {
