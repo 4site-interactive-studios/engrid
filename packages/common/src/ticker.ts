@@ -69,7 +69,7 @@ export class Ticker {
     this.tickerElement?.parentElement?.insertBefore(ticker, this.tickerElement);
     this.tickerElement?.remove();
     
-    let tickerWidth = (document.querySelector(".ticker") as HTMLElement).offsetWidth.toString();
+    const tickerWidth = (document.querySelector(".ticker") as HTMLElement).offsetWidth.toString();
     ticker.style.setProperty("--ticker-size", tickerWidth);
     
     if(ENGrid.debug) {

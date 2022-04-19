@@ -58,7 +58,7 @@ export class Ticker {
         ticker.innerHTML = str;
         (_b = (_a = this.tickerElement) === null || _a === void 0 ? void 0 : _a.parentElement) === null || _b === void 0 ? void 0 : _b.insertBefore(ticker, this.tickerElement);
         (_c = this.tickerElement) === null || _c === void 0 ? void 0 : _c.remove();
-        let tickerWidth = document.querySelector(".ticker").offsetWidth.toString();
+        const tickerWidth = document.querySelector(".ticker").offsetWidth.toString();
         ticker.style.setProperty("--ticker-size", tickerWidth);
         if (ENGrid.debug) {
             this.logger.log("Ticker Size: " + ticker.style.getPropertyValue("--ticker-size"));
