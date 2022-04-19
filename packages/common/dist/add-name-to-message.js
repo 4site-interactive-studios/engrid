@@ -1,8 +1,8 @@
 /*
  Adds first and last name when First Name and Last Name fields lose focus if name shortcodes aren't present
 */
-import { ENGrid } from ".";
-export class addNameToMessage {
+import { ENGrid } from "./";
+export class AddNameToMessage {
     constructor() {
         if (!this.shouldRun()) {
             // Don't run the script if the page isn't email to target
@@ -19,13 +19,13 @@ export class addNameToMessage {
         let message = document.querySelector('[name="contact.message"]');
         let addedFirstName = false;
         let addedLastName = false;
-        if (ENGrid.getPageType() == "EMAILTOTARGET" && message) {
+        if (message) {
             if (message.value.includes("{user_data~First Name") || message.value.includes("{user_data~Last Name")) {
                 return;
             }
             else {
                 if (!message.value.includes("{user_data~First Name") && firstName) {
-                    firstName.addEventListener("blur", function (e) {
+                    firstName.addEventListener("blur", (e) => {
                         const target = e.target;
                         if (message && !addedFirstName) {
                             addedFirstName = true;
@@ -34,7 +34,7 @@ export class addNameToMessage {
                     });
                 }
                 if (!message.value.includes("{user_data~Last Name") && lastName) {
-                    lastName.addEventListener("blur", function (e) {
+                    lastName.addEventListener("blur", (e) => {
                         const target = e.target;
                         if (message && !addedLastName) {
                             addedLastName = true;
