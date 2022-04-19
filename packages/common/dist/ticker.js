@@ -29,7 +29,7 @@ export class Ticker {
     // Get Items
     getItems() {
         const total = this.tickerElement.getAttribute("data-total") || "50";
-        this.logger.log("Getting " + total + "items");
+        this.logger.log("Getting " + total + " items");
         const seed = this.getSeed();
         const items = this.shuffleSeed.shuffle(this.items, seed);
         const now = new Date();
@@ -58,11 +58,11 @@ export class Ticker {
         ticker.innerHTML = str;
         (_b = (_a = this.tickerElement) === null || _a === void 0 ? void 0 : _a.parentElement) === null || _b === void 0 ? void 0 : _b.insertBefore(ticker, this.tickerElement);
         (_c = this.tickerElement) === null || _c === void 0 ? void 0 : _c.remove();
-        let tickerSelect = document.querySelector(".ticker");
-        console.log(tickerSelect);
-        let tickerWidth = (tickerSelect) ? getComputedStyle(tickerSelect).width : '1000';
-        tickerWidth = Math.round(parseInt(tickerWidth)).toString();
-        console.log(tickerWidth);
-        ticker.style.setProperty("--ticker-size", tickerWidth.toString());
+        let tickerWidth = document.querySelector(".ticker").offsetWidth.toString();
+        ticker.style.setProperty("--ticker-size", tickerWidth);
+        if (ENGrid.debug) {
+            this.logger.log("Ticker Size: " + ticker.style.getPropertyValue("--ticker-size"));
+            this.logger.log("Ticker Width: " + tickerWidth);
+        }
     }
 }

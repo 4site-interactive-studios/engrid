@@ -39,7 +39,7 @@ export class Ticker {
   // Get Items
   getItems() {
     const total = this.tickerElement.getAttribute("data-total") || "50";
-    this.logger.log("Getting " + total + "items");
+    this.logger.log("Getting " + total + " items");
     const seed = this.getSeed();
     const items = this.shuffleSeed.shuffle(this.items, seed);
     const now = new Date();
@@ -65,14 +65,17 @@ export class Ticker {
     }
     str = '<div id="engrid-ticker">' + str + "</div></div>";
     ticker.innerHTML = str;
+
     this.tickerElement?.parentElement?.insertBefore(ticker, this.tickerElement);
     this.tickerElement?.remove();
-    let tickerSelect = document.querySelector(".ticker");
-    console.log(tickerSelect);
-    let tickerWidth = (tickerSelect) ? getComputedStyle(tickerSelect).width : '1000';
-    tickerWidth = Math.round(parseInt(tickerWidth)).toString();
-    console.log(tickerWidth);
-    ticker.style.setProperty("--ticker-size", tickerWidth.toString());
+    
+    let tickerWidth = (document.querySelector(".ticker") as HTMLElement).offsetWidth.toString();
+    ticker.style.setProperty("--ticker-size", tickerWidth);
+    
+    if(ENGrid.debug) {
+      this.logger.log("Ticker Size: " + ticker.style.getPropertyValue("--ticker-size"));
+      this.logger.log("Ticker Width: " + tickerWidth);
+    }
 
   }
 }
