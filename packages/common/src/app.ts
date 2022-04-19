@@ -39,6 +39,7 @@ import {
   Ticker,
   DataReplace,
   DataHide,
+  ExpandRegionName,
 } from "./";
 
 export class App extends ENGrid {
@@ -259,6 +260,8 @@ export class App extends ENGrid {
     new MinMaxAmount();
 
     new Ticker();
+
+    new ExpandRegionName();
 
     // Page Background
     new PageBackground();
