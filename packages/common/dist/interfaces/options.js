@@ -24,4 +24,5 @@ export const OptionsDefaults = {
     TranslateFields: true,
     Debug: false,
     RememberMe: false,
+    RegionLongFormat: "",
 };
