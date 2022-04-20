@@ -72,10 +72,8 @@ export class Ticker {
     const tickerWidth = (document.querySelector(".ticker") as HTMLElement).offsetWidth.toString();
     ticker.style.setProperty("--ticker-size", tickerWidth);
     
-    if(ENGrid.debug) {
-      this.logger.log("Ticker Size: " + ticker.style.getPropertyValue("--ticker-size"));
-      this.logger.log("Ticker Width: " + tickerWidth);
-    }
+    this.logger.log("Ticker Size: " + ticker.style.getPropertyValue("--ticker-size"));
+    this.logger.log("Ticker Width: " + tickerWidth);
 
   }
 }
