@@ -12,7 +12,11 @@ export class DataReplace {
         this.replaceAll();
     }
     searchElements() {
-        const enElements = document.querySelectorAll(".en__component--copyblock, .en__field");
+        const enElements = document.querySelectorAll(`
+      .en__component--copyblock,
+      .en__component--codeblock,
+      .en__field
+      `);
         if (enElements.length > 0) {
             enElements.forEach((item) => {
                 if (item instanceof HTMLElement &&

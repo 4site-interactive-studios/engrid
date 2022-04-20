@@ -76,6 +76,7 @@
 
   // LABEL APPENDED TO DONTIONAL GIVING AMOUNTS BASED ON GIVING FREQUENCY
   --give-monthly-donation-amount-appended-label: "/mo";
+  --give-quarterly-donation-amount-appended-label: "/qt";
   --give-annual-donation-amount-appended-label: "/yr";
 
   // TYPOGRAPHY GIVE BY SELECT BUTTON
@@ -678,6 +679,12 @@
 /* prettier-ignore */
 [data-engrid-transaction-recurring-frequency="annual"] .radio-to-buttons_donationAmt .en__field--donationAmt div:not(.en__field__item--other) .en__field__label--item::after {
 	content: var(--give-annual-donation-amount-appended-label);
+}
+
+// Append "/yr" to giving amount labels
+/* prettier-ignore */
+[data-engrid-transaction-recurring-frequency="quarterly"] .radio-to-buttons_donationAmt .en__field--donationAmt div:not(.en__field__item--other) .en__field__label--item::after {
+	content: var(--give-quarterly-donation-amount-appended-label);
 }
 
 /*

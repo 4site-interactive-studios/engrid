@@ -4281,6 +4281,7 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) .i11-hide-label .en__field:n
   --donation-amount__button_count: 4;
   --donation-amount__flex-grow: initial;
   --give-monthly-donation-amount-appended-label: "/mo";
+  --give-quarterly-donation-amount-appended-label: "/qt";
   --give-annual-donation-amount-appended-label: "/yr";
   --give-by-select__button_font-family: var(--button_font-family);
   --give-by-select__button_font-size: var(--button_font-size);
@@ -4741,6 +4742,11 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) .i11-hide-label .en__field:n
 /* prettier-ignore */
 [data-engrid-transaction-recurring-frequency=annual] .radio-to-buttons_donationAmt .en__field--donationAmt div:not(.en__field__item--other) .en__field__label--item::after {
   content: var(--give-annual-donation-amount-appended-label);
+}
+
+/* prettier-ignore */
+[data-engrid-transaction-recurring-frequency=quarterly] .radio-to-buttons_donationAmt .en__field--donationAmt div:not(.en__field__item--other) .en__field__label--item::after {
+  content: var(--give-quarterly-donation-amount-appended-label);
 }
 
 /*
