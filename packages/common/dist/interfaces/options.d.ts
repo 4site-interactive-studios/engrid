@@ -24,6 +24,7 @@ export interface Options {
     AutoYear?: boolean;
     TranslateFields?: boolean;
     Debug?: boolean;
+    RegionLongFormat?: string;
     RememberMe?: boolean | {
         remoteUrl?: string;
         cookieName?: string;

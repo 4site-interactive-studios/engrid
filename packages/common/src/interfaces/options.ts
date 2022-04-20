@@ -24,6 +24,7 @@ export interface Options {
   AutoYear?: boolean;
   TranslateFields?: boolean;
   Debug?: boolean;
+  RegionLongFormat?: string;
   RememberMe?:
     | boolean
     | {
@@ -74,4 +75,5 @@ export const OptionsDefaults: Options = {
   TranslateFields: true,
   Debug: false,
   RememberMe: false,
+  RegionLongFormat: "",
 };

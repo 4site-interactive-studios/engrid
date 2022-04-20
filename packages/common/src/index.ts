@@ -43,6 +43,7 @@ export * from "./min-max-amount";
 export * from "./ticker";
 export * from "./data-replace";
 export * from "./data-hide";
+export * from "./expand-region-name";
 
 // Events
 export * from "./events";
