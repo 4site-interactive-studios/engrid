@@ -12,7 +12,7 @@ export declare abstract class ENGrid {
     static getPageCount(): any;
     static getPageNumber(): any;
     static getPageID(): any;
-    static getPageType(): "DONATION" | "ECARD" | "SURVEY" | "ADVOCACY" | "SUBSCRIBEFORM" | "SUPPORTERHUB" | "UNSUBSCRIBE" | "UNKNOWN";
+    static getPageType(): "DONATION" | "ECARD" | "SURVEY" | "EMAILTOTARGET" | "ADVOCACY" | "SUBSCRIBEFORM" | "SUPPORTERHUB" | "UNSUBSCRIBE" | "UNKNOWN";
     static setBodyData(dataName: string, value: string | boolean): void;
     static getBodyData(dataName: string): string | null;
     static getOption<K extends keyof Options>(key: K): Options[K] | null;
