@@ -39,6 +39,7 @@ import {
   Ticker,
   DataReplace,
   DataHide,
+  AddNameToMessage,
   ExpandRegionName,
 } from "./";
 
@@ -261,6 +262,7 @@ export class App extends ENGrid {
 
     new Ticker();
 
+    new AddNameToMessage();
     new ExpandRegionName();
 
     // Page Background
