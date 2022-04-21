@@ -48,3 +48,6 @@ export * from "./expand-region-name";
 
 // Events
 export * from "./events";
+
+// Version
+export * from "./version";

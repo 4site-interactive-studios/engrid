@@ -15,6 +15,7 @@ declare global {
     EngridPageOptions: Options;
     EngridUpsell: UpsellOptions;
     EngridTranslate: TranslateOptions;
+    EngridVersion: string;
     EngridLoader: {
       "repo-name"?: string;
       "repo-owner"?: string;

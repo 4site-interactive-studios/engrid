@@ -40,3 +40,5 @@ export * from "./add-name-to-message";
 export * from "./expand-region-name";
 // Events
 export * from "./events";
+// Version
+export * from "./version";

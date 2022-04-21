@@ -41,6 +41,7 @@ import {
   DataHide,
   AddNameToMessage,
   ExpandRegionName,
+  AppVersion,
 } from "./";
 
 export class App extends ENGrid {
@@ -271,6 +272,9 @@ export class App extends ENGrid {
     this.setDataAttributes();
 
     ENGrid.setBodyData("data-engrid-scripts-js-loading", "finished");
+
+    window.EngridVersion = AppVersion;
+    this.logger.success(`VERSION ${AppVersion}`);
   }
 
   private onLoad() {
