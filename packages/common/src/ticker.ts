@@ -39,7 +39,7 @@ export class Ticker {
   // Get Items
   getItems() {
     const total = this.tickerElement.getAttribute("data-total") || "50";
-    this.logger.log("Getting " + total + "items");
+    this.logger.log("Getting " + total + " items");
     const seed = this.getSeed();
     const items = this.shuffleSeed.shuffle(this.items, seed);
     const now = new Date();
@@ -59,13 +59,21 @@ export class Ticker {
     let ticker = document.createElement("div");
     ticker.classList.add("en__component");
     ticker.classList.add("en__component--ticker");
-    let str = '<div class="ticker">';
+    let str = `<div class="ticker">`;
     for (let i = 0; i < items.length; i++) {
       str += '<div class="ticker__item">' + items[i] + "</div>";
     }
     str = '<div id="engrid-ticker">' + str + "</div></div>";
     ticker.innerHTML = str;
+
     this.tickerElement?.parentElement?.insertBefore(ticker, this.tickerElement);
     this.tickerElement?.remove();
+    
+    const tickerWidth = (document.querySelector(".ticker") as HTMLElement).offsetWidth.toString();
+    ticker.style.setProperty("--ticker-size", tickerWidth);
+    
+    this.logger.log("Ticker Size: " + ticker.style.getPropertyValue("--ticker-size"));
+    this.logger.log("Ticker Width: " + tickerWidth);
+
   }
 }
