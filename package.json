@@ -13,7 +13,7 @@
     "build": "lerna bootstrap & lerna run build",
     "write-version": "node ./write-version.js",
     "make": "lerna run build && lerna publish --yes --cd-version patch && npm run write-version && git add . && git commit -m Version-bump && git push ",
-    "make-feature": "lerna run build && lerna publish --yes --cd-version minor & npm run write-version & git add . & git commit -m Version-bump & git push "
+    "make-feature": "lerna run build && lerna publish --yes --cd-version minor && npm run write-version && git add . && git commit -m Version-bump && git push "
   },
   "dependencies": {
     "sanitize.css": "^12.0.1",

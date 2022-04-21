@@ -274,7 +274,7 @@ export class App extends ENGrid {
     ENGrid.setBodyData("data-engrid-scripts-js-loading", "finished");
 
     window.EngridVersion = AppVersion;
-    this.logger.success(`VERSION ${AppVersion}`);
+    this.logger.success(`VERSION: ${AppVersion}`);
   }
 
   private onLoad() {
