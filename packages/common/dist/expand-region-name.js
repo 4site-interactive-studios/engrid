@@ -7,6 +7,7 @@ export class ExpandRegionName {
         this.logger = new EngridLogger("ExpandRegionName", "#333333", "#00eb65", "🌍");
         if (this.shouldRun()) {
             const expandedRegionField = ENGrid.getOption("RegionLongFormat");
+            console.log("expandedRegionField", expandedRegionField);
             const hiddenRegion = document.querySelector(`[name="${expandedRegionField}"]`);
             if (!hiddenRegion) {
                 this.logger.log(`CREATED field ${expandedRegionField}`);
@@ -16,7 +17,7 @@ export class ExpandRegionName {
         }
     }
     shouldRun() {
-        return ENGrid.getOption("RegionLongFormat") !== "";
+        return !!ENGrid.getOption("RegionLongFormat");
     }
     expandRegion() {
         const userRegion = document.querySelector('[name="supporter.region"]'); // User entered region on the page

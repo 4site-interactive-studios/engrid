@@ -59,6 +59,7 @@ export class ENGrid {
                     default:
                         field.value = value;
                 }
+                field.setAttribute("engrid-value-changed", "");
             }
         });
         this.enParseDependencies();
@@ -83,7 +84,7 @@ export class ENGrid {
             typeof ((_e = (_d = (_c = (_b = (_a = window.EngagingNetworks) === null || _a === void 0 ? void 0 : _a.require) === null || _b === void 0 ? void 0 : _b._defined) === null || _c === void 0 ? void 0 : _c.enDependencies) === null || _d === void 0 ? void 0 : _d.dependencies) === null || _e === void 0 ? void 0 : _e.parseDependencies) === "function") {
             window.EngagingNetworks.require._defined.enDependencies.dependencies.parseDependencies(window.EngagingNetworks.dependencies);
             if (ENGrid.getOption("Debug"))
-                console.trace("EN Dependencies Triggered");
+                console.log("EN Dependencies Triggered");
         }
     }
     // Return the status of the gift process (true if a donation has been made, otherwise false)

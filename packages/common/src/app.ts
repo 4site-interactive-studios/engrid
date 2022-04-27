@@ -42,6 +42,7 @@ import {
   AddNameToMessage,
   ExpandRegionName,
   AppVersion,
+  UrlToForm,
 } from "./";
 
 export class App extends ENGrid {
@@ -268,6 +269,9 @@ export class App extends ENGrid {
 
     // Page Background
     new PageBackground();
+
+    // Url Params to Form Fields
+    new UrlToForm();
 
     this.setDataAttributes();
 

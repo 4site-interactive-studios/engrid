@@ -66,6 +66,7 @@ export abstract class ENGrid {
             default:
               field.value = value;
           }
+          field.setAttribute("engrid-value-changed", "");
         }
       }
     );
@@ -96,7 +97,7 @@ export abstract class ENGrid {
       window.EngagingNetworks.require._defined.enDependencies.dependencies.parseDependencies(
         window.EngagingNetworks.dependencies
       );
-      if (ENGrid.getOption("Debug")) console.trace("EN Dependencies Triggered");
+      if (ENGrid.getOption("Debug")) console.log("EN Dependencies Triggered");
     }
   }
 

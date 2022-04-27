@@ -9,12 +9,9 @@ export class DataReplace {
   );
   private enElements: Array<HTMLElement> = new Array<HTMLElement>();
   constructor() {
-    this.logger.log("Constructor");
     this.searchElements();
-    if (!this.shouldRun()) {
-      this.logger.error("No Elements Found");
-      return;
-    }
+    if (!this.shouldRun()) return;
+    this.logger.log("Elements Found:", this.enElements);
     this.replaceAll();
   }
   searchElements() {
@@ -37,7 +34,6 @@ export class DataReplace {
     }
   }
   shouldRun() {
-    this.logger.log("Elements Found:", this.enElements);
     return this.enElements.length > 0;
   }
   replaceAll() {

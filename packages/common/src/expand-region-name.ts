@@ -17,6 +17,7 @@ export class ExpandRegionName {
       const expandedRegionField = ENGrid.getOption(
         "RegionLongFormat"
       ) as string;
+      console.log("expandedRegionField", expandedRegionField);
       const hiddenRegion = document.querySelector(
         `[name="${expandedRegionField}"]`
       );
@@ -30,7 +31,7 @@ export class ExpandRegionName {
   }
 
   private shouldRun() {
-    return ENGrid.getOption("RegionLongFormat") !== "";
+    return !!ENGrid.getOption("RegionLongFormat");
   }
 
   private expandRegion() {
