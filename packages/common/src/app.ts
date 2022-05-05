@@ -20,7 +20,8 @@ import {
   CreditCardNumbers,
   Ecard,
   ClickToExpand,
-  legacy,
+  InputPlaceholders,
+  InputClasses,
   LiveVariables,
   iFrame,
   ShowHideRadioCheckboxes,
@@ -114,16 +115,9 @@ export class App extends ENGrid {
       // Enable debug if available is the first thing
       App.setBodyData("debug", "");
 
-    // TODO: Abstract everything to the App class so we can remove custom-methods
-    legacy.inputPlaceholder();
-    legacy.preventAutocomplete();
-    legacy.watchInmemField();
-    legacy.watchGiveBySelectField();
-    legacy.simpleUnsubscribe();
-
-    legacy.contactDetailLabels();
-    legacy.easyEdit();
-    legacy.enInput.init();
+    new InputPlaceholders();
+    new InputClasses();
+    // legacy.enInput.init();
 
     new ShowHideRadioCheckboxes("transaction.giveBySelect", "giveBySelect-");
     new ShowHideRadioCheckboxes("transaction.inmem", "inmem-");

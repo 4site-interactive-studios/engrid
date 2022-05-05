@@ -1,8 +1,17 @@
 // This class automatically select other radio input when an amount is entered into it.
+// It also sets the other amount inputmode to decimal + aria-label
 import { EngridLogger } from ".";
 export class OtherAmount {
     constructor() {
         this.logger = new EngridLogger("OtherAmount", "green", "black", "💰");
+        const otherAmountField = document.querySelector(".en__field--donationAmt.en__field--withOther .en__field__input--other");
+        if (otherAmountField) {
+            otherAmountField.setAttribute("inputmode", "decimal");
+            // ADD THE MISSING LABEL FOR IMPROVED ACCESSABILITY
+            otherAmountField.setAttribute("aria-label", "Enter your custom donation amount");
+            otherAmountField.setAttribute("autocomplete", "off");
+            otherAmountField.setAttribute("data-lpignore", "true");
+        }
         "focusin input".split(" ").forEach((e) => {
             var _a;
             // We're attaching this event to the body because sometimes the other amount input is not in the DOM yet and comes via AJAX.
