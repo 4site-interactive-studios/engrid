@@ -28,6 +28,7 @@ export class Loader {
         switch (assets) {
             case "local":
                 this.logger.log("LOADING LOCAL");
+                ENGrid.setBodyData("assets", "local");
                 engrid_js_url = `https://${engrid_repo}.test/dist/engrid.js`;
                 engrid_css_url = `https://${engrid_repo}.test/dist/engrid.css`;
                 break;

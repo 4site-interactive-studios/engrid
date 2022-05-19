@@ -66,6 +66,10 @@ export class App extends ENGrid {
     // Add Options to window
     window.EngridOptions = this.options;
     if (loader.reload()) return;
+    // Turn Debug ON if you use local assets
+    if (ENGrid.getBodyData("assets") === "local") {
+      window.EngridOptions.Debug = true;
+    }
 
     // Document Load
     if (document.readyState !== "loading") {
