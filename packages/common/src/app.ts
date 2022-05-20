@@ -44,6 +44,7 @@ import {
   AppVersion,
   UrlToForm,
   RequiredIfVisible,
+  TidyContact,
 } from "./";
 
 export class App extends ENGrid {
@@ -226,9 +227,6 @@ export class App extends ENGrid {
     this._amount.load();
     this._frequency.load();
 
-    // Translate Fields
-    if (this.options.TranslateFields) new TranslateFields();
-
     // Simple Country Select
     new SimpleCountrySelect();
     // Add Image Attribution
@@ -283,6 +281,12 @@ export class App extends ENGrid {
 
     // Required if Visible Fields
     new RequiredIfVisible();
+
+    // TidyContact
+    if (this.options.TidyContact) new TidyContact();
+
+    // Translate Fields
+    if (this.options.TranslateFields) new TranslateFields();
 
     this.setDataAttributes();
 

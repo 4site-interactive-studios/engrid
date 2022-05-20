@@ -1,5 +1,5 @@
 import { DonationAmount, DonationFrequency, EnForm, ProcessingFees, } from "./events";
-import { AmountLabel, Loader, ProgressBar, UpsellLightbox, ENGrid, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, CapitalizeFields, CreditCardNumbers, Ecard, ClickToExpand, legacy, LiveVariables, iFrame, ShowHideRadioCheckboxes, SimpleCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce, AutoYear, Autocomplete, RememberMe, TranslateFields, ShowIfAmount, EngridLogger, OtherAmount, MinMaxAmount, Ticker, DataReplace, DataHide, AddNameToMessage, ExpandRegionName, AppVersion, UrlToForm, RequiredIfVisible, } from "./";
+import { AmountLabel, Loader, ProgressBar, UpsellLightbox, ENGrid, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, CapitalizeFields, CreditCardNumbers, Ecard, ClickToExpand, legacy, LiveVariables, iFrame, ShowHideRadioCheckboxes, SimpleCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce, AutoYear, Autocomplete, RememberMe, TranslateFields, ShowIfAmount, EngridLogger, OtherAmount, MinMaxAmount, Ticker, DataReplace, DataHide, AddNameToMessage, ExpandRegionName, AppVersion, UrlToForm, RequiredIfVisible, TidyContact, } from "./";
 export class App extends ENGrid {
     constructor(options) {
         super();
@@ -135,9 +135,6 @@ export class App extends ENGrid {
         // On the end of the script, after all subscribers defined, let's load the current value
         this._amount.load();
         this._frequency.load();
-        // Translate Fields
-        if (this.options.TranslateFields)
-            new TranslateFields();
         // Simple Country Select
         new SimpleCountrySelect();
         // Add Image Attribution
@@ -185,6 +182,12 @@ export class App extends ENGrid {
         new UrlToForm();
         // Required if Visible Fields
         new RequiredIfVisible();
+        // TidyContact
+        if (this.options.TidyContact)
+            new TidyContact();
+        // Translate Fields
+        if (this.options.TranslateFields)
+            new TranslateFields();
         this.setDataAttributes();
         ENGrid.setBodyData("data-engrid-scripts-js-loading", "finished");
         window.EngridVersion = AppVersion;

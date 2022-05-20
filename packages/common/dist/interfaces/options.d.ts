@@ -40,6 +40,22 @@ export interface Options {
         fieldClearSelectorTargetLocation?: string;
         checked?: boolean;
     };
+    TidyContact?: false | {
+        cid?: number;
+        record_field?: string;
+        date_field?: string;
+        status_field?: string;
+        countries?: string[];
+        address_fields?: {
+            address1: string;
+            address2: string;
+            address3: string;
+            city: string;
+            region: string;
+            postalCode: string;
+            country: string;
+        };
+    };
     onLoad?: () => void;
     onResize?: () => void;
     onSubmit?: () => void;

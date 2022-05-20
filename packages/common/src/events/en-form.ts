@@ -6,7 +6,7 @@ export class EnForm {
   private _onSubmit = new SignalDispatcher();
   private _onValidate = new SignalDispatcher();
   private _onError = new SignalDispatcher();
-  public submit: boolean = true;
+  public submit: boolean | Promise<void> = true;
   public validate: boolean = true;
 
   private static instance: EnForm;

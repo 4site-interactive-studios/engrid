@@ -28,6 +28,10 @@ export class ENGrid {
         }
         return null;
     }
+    static getField(name) {
+        // Get the field by name
+        return document.querySelector(`[name="${name}"]`);
+    }
     // Return the field value from its name. It works on any field type.
     // Multiple values (from checkboxes or multi-select) are returned as single string
     // Separated by ,

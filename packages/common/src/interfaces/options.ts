@@ -42,6 +42,24 @@ export interface Options {
         fieldClearSelectorTargetLocation?: string;
         checked?: boolean;
       };
+  TidyContact?:
+    | false
+    | {
+        cid?: number; // Client ID
+        record_field?: string; // TidyContact Record
+        date_field?: string; // TidyContact Date
+        status_field?: string; // TidyContact Status
+        countries?: string[]; // Country that is allowed to use the API, if empty, all countries are allowed. You can use more than one country by separating them with a comma.
+        address_fields?: {
+          address1: string; // Address Field 1
+          address2: string; // Address Field 2
+          address3: string; // Address Field 3 - This is only used for field creation
+          city: string; // City field
+          region: string; // State field
+          postalCode: string; // Zipcode field
+          country: string; // Country field
+        };
+      };
   onLoad?: () => void;
   onResize?: () => void;
   onSubmit?: () => void;
@@ -75,5 +93,6 @@ export const OptionsDefaults: Options = {
   TranslateFields: true,
   Debug: false,
   RememberMe: false,
+  TidyContact: false,
   RegionLongFormat: "",
 };
