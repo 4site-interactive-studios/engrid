@@ -36,6 +36,8 @@ export class ENGrid {
     }
     // Set a value to any field. If it's a dropdown, radio or checkbox, it selects the proper option matching the value
     static setFieldValue(name, value) {
+        if (value === ENGrid.getFieldValue(name))
+            return;
         document.getElementsByName(name).forEach((field) => {
             if ("type" in field) {
                 switch (field.type) {
@@ -256,8 +258,8 @@ export class ENGrid {
         }
         return true;
     }
-    static setError(querySelector, errorMessage) {
-        const errorElement = document.querySelector(querySelector);
+    static setError(element, errorMessage) {
+        const errorElement = typeof element === "string" ? document.querySelector(element) : element;
         if (errorElement) {
             errorElement.classList.add("en__field--validationFailed");
             let errorMessageElement = errorElement.querySelector(".en__field__error");
@@ -272,8 +274,8 @@ export class ENGrid {
             }
         }
     }
-    static removeError(querySelector) {
-        const errorElement = document.querySelector(querySelector);
+    static removeError(element) {
+        const errorElement = typeof element === "string" ? document.querySelector(element) : element;
         if (errorElement) {
             errorElement.classList.remove("en__field--validationFailed");
             const errorMessageElement = errorElement.querySelector(".en__field__error");
@@ -281,5 +283,10 @@ export class ENGrid {
                 errorElement.removeChild(errorMessageElement);
             }
         }
+    }
+    static isVisible(element) {
+        return !!(element.offsetWidth ||
+            element.offsetHeight ||
+            element.getClientRects().length);
     }
 }

@@ -46,6 +46,7 @@ export * from "./data-hide";
 export * from "./add-name-to-message";
 export * from "./expand-region-name";
 export * from "./url-to-form";
+export * from "./required-if-visible";
 
 // Events
 export * from "./events";

@@ -43,6 +43,7 @@ import {
   ExpandRegionName,
   AppVersion,
   UrlToForm,
+  RequiredIfVisible,
 } from "./";
 
 export class App extends ENGrid {
@@ -279,6 +280,9 @@ export class App extends ENGrid {
 
     // Url Params to Form Fields
     new UrlToForm();
+
+    // Required if Visible Fields
+    new RequiredIfVisible();
 
     this.setDataAttributes();
 
