@@ -3,8 +3,10 @@ export declare class EnForm {
     private _onSubmit;
     private _onValidate;
     private _onError;
-    submit: boolean | Promise<void>;
+    submit: boolean;
+    submitPromise: boolean | Promise<void>;
     validate: boolean;
+    validatePromise: boolean | Promise<void>;
     private static instance;
     private constructor();
     static getInstance(): EnForm;

@@ -240,6 +240,10 @@ export class TidyContact {
             return;
         if (!this.isDirty || this.wasCalled)
             return;
+        if (!this._form.submit) {
+            this.logger.log("Form Submission Interrupted by Other Component");
+            return;
+        }
         const recordField = ENGrid.getField(this.options.record_field);
         const dateField = ENGrid.getField(this.options.date_field);
         const statusField = ENGrid.getField(this.options.status_field);
@@ -332,7 +336,7 @@ export class TidyContact {
             // network error or json parsing error
             this.writeError(error);
         });
-        this._form.submit = ret;
+        this._form.submitPromise = ret;
         return ret;
     }
 }

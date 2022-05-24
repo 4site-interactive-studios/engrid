@@ -265,6 +265,10 @@ export class TidyContact {
   private callAPI() {
     if (!this.options) return;
     if (!this.isDirty || this.wasCalled) return;
+    if (!this._form.submit) {
+      this.logger.log("Form Submission Interrupted by Other Component");
+      return;
+    }
     const recordField = ENGrid.getField(
       this.options.record_field as string
     ) as HTMLInputElement;
@@ -374,7 +378,7 @@ export class TidyContact {
         // network error or json parsing error
         this.writeError(error);
       });
-    this._form.submit = ret;
+    this._form.submitPromise = ret;
     return ret;
   }
 }
