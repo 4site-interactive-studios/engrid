@@ -25,7 +25,12 @@ export class RequiredIfVisible {
         return this.requiredIfVisibleElements.length > 0;
     }
     validate() {
-        this.requiredIfVisibleElements.forEach((field) => {
+        // We're converting the NodeListOf<HTMLElement> to an Array<HTMLElement>
+        // because we need to reverse the order of the elements so the last error
+        // is the highest element to get focus()
+        Array.from(this.requiredIfVisibleElements)
+            .reverse()
+            .forEach((field) => {
             ENGrid.removeError(field);
             if (ENGrid.isVisible(field)) {
                 this.logger.log(`${field.getAttribute("class")} is visible`);
@@ -41,6 +46,7 @@ export class RequiredIfVisible {
                         this.logger.log(`${fieldElement.getAttribute("name")} is required`);
                         ENGrid.setError(field, `This field is required`);
                     }
+                    fieldElement.focus();
                     this._form.validate = false;
                 }
             }

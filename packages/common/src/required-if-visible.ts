@@ -33,28 +33,38 @@ export class RequiredIfVisible {
     return this.requiredIfVisibleElements.length > 0;
   }
   private validate() {
-    this.requiredIfVisibleElements.forEach((field) => {
-      ENGrid.removeError(field);
-      if (ENGrid.isVisible(field)) {
-        this.logger.log(`${field.getAttribute("class")} is visible`);
-        const fieldElement = field.querySelector("input, select, textarea");
-        if (
-          fieldElement &&
-          !ENGrid.getFieldValue(fieldElement.getAttribute("name") as string)
-        ) {
-          const fieldLabel = field.querySelector(
-            ".en__field__label"
-          ) as HTMLLabelElement;
-          if (fieldLabel) {
-            this.logger.log(`${fieldLabel.innerText} is required`);
-            ENGrid.setError(field, `${fieldLabel.innerText} is required`);
-          } else {
-            this.logger.log(`${fieldElement.getAttribute("name")} is required`);
-            ENGrid.setError(field, `This field is required`);
+    // We're converting the NodeListOf<HTMLElement> to an Array<HTMLElement>
+    // because we need to reverse the order of the elements so the last error
+    // is the highest element to get focus()
+    Array.from(this.requiredIfVisibleElements)
+      .reverse()
+      .forEach((field) => {
+        ENGrid.removeError(field);
+        if (ENGrid.isVisible(field)) {
+          this.logger.log(`${field.getAttribute("class")} is visible`);
+          const fieldElement = field.querySelector(
+            "input, select, textarea"
+          ) as HTMLElement;
+          if (
+            fieldElement &&
+            !ENGrid.getFieldValue(fieldElement.getAttribute("name") as string)
+          ) {
+            const fieldLabel = field.querySelector(
+              ".en__field__label"
+            ) as HTMLLabelElement;
+            if (fieldLabel) {
+              this.logger.log(`${fieldLabel.innerText} is required`);
+              ENGrid.setError(field, `${fieldLabel.innerText} is required`);
+            } else {
+              this.logger.log(
+                `${fieldElement.getAttribute("name")} is required`
+              );
+              ENGrid.setError(field, `This field is required`);
+            }
+            fieldElement.focus();
+            this._form.validate = false;
           }
-          this._form.validate = false;
         }
-      }
-    });
+      });
   }
 }
