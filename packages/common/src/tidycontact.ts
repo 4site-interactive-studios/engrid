@@ -22,6 +22,10 @@ export class TidyContact {
     this.options = ENGrid.getOption("TidyContact") as Options["TidyContact"];
     if (this.options === false) return;
     this.loadOptions();
+    if (!ENGrid.getField(this.options?.address_fields?.country as string)) {
+      this.logger.log("Country field not found");
+      return;
+    }
     this.createFields();
     this.addEventListeners();
     if (
@@ -365,7 +369,7 @@ export class TidyContact {
             dateField.value = this.todaysDate();
           }
           if (statusField) {
-            statusField.value = data.error;
+            statusField.value = `Error: ` + data.error;
           }
         }
       })

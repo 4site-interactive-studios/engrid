@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import { EnForm, ENGrid, EngridLogger } from "./";
 export class TidyContact {
     constructor() {
-        var _a, _b;
+        var _a, _b, _c, _d;
         this.logger = new EngridLogger("TidyContact", "#FFFFFF", "#4d9068", "📧");
         this.endpoint = "https://api.tidycontact.io";
         this.wasCalled = false; // True if the API endpoint was called
@@ -22,11 +22,15 @@ export class TidyContact {
         if (this.options === false)
             return;
         this.loadOptions();
+        if (!ENGrid.getField((_b = (_a = this.options) === null || _a === void 0 ? void 0 : _a.address_fields) === null || _b === void 0 ? void 0 : _b.country)) {
+            this.logger.log("Country field not found");
+            return;
+        }
         this.createFields();
         this.addEventListeners();
         if (ENGrid.checkNested(window.EngagingNetworks, "require", "_defined", "enjs", "checkSubmissionFailed") &&
             !window.EngagingNetworks.require._defined.enjs.checkSubmissionFailed() &&
-            ENGrid.getFieldValue((_b = (_a = this.options) === null || _a === void 0 ? void 0 : _a.address_fields) === null || _b === void 0 ? void 0 : _b.address1) !=
+            ENGrid.getFieldValue((_d = (_c = this.options) === null || _c === void 0 ? void 0 : _c.address_fields) === null || _d === void 0 ? void 0 : _d.address1) !=
                 "") {
             this.logger.log("Address Field is not empty");
             this.isDirty = true;
@@ -323,7 +327,7 @@ export class TidyContact {
                     dateField.value = this.todaysDate();
                 }
                 if (statusField) {
-                    statusField.value = data.error;
+                    statusField.value = `Error: ` + data.error;
                 }
             }
         }))
