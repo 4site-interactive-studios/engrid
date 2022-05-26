@@ -53,6 +53,17 @@ export class TidyContact {
         var _a, _b, _c, _d, _e, _f;
         if (!this.options)
             return;
+        // Creating Latitude and Longitude fields
+        const latitudeField = ENGrid.getField("supporter.geo.latitude");
+        const longitudeField = ENGrid.getField("supporter.geo.longitude");
+        if (!latitudeField) {
+            ENGrid.createHiddenInput("supporter.geo.latitude", "");
+            this.logger.log("Creating Hidden Field: supporter.geo.latitude");
+        }
+        if (!longitudeField) {
+            ENGrid.createHiddenInput("supporter.geo.longitude", "");
+            this.logger.log("Creating Hidden Field: supporter.geo.longitude");
+        }
         if (this.options.record_field) {
             const recordField = ENGrid.getField(this.options.record_field);
             if (!recordField) {
@@ -251,6 +262,8 @@ export class TidyContact {
         const recordField = ENGrid.getField(this.options.record_field);
         const dateField = ENGrid.getField(this.options.date_field);
         const statusField = ENGrid.getField(this.options.status_field);
+        const latitudeField = ENGrid.getField("supporter.geo.latitude");
+        const longitudeField = ENGrid.getField("supporter.geo.longitude");
         // Call the API
         const address1 = ENGrid.getFieldValue((_a = this.options.address_fields) === null || _a === void 0 ? void 0 : _a.address1);
         const address2 = ENGrid.getFieldValue((_b = this.options.address_fields) === null || _b === void 0 ? void 0 : _b.address2);
@@ -294,14 +307,25 @@ export class TidyContact {
         })
             .then((data) => __awaiter(this, void 0, void 0, function* () {
             this.logger.log("callAPI response", JSON.parse(JSON.stringify(data)));
-            if ("changed" in data && data.valid === true) {
-                let record = this.setFields(data.changed);
+            if (data.valid === true) {
+                let record = {};
+                if ("changed" in data) {
+                    record = this.setFields(data.changed);
+                }
                 record["formData"] = formData;
                 yield this.checkSum(JSON.stringify(record)).then((checksum) => {
                     this.logger.log("Checksum", checksum);
                     record["requestId"] = data.requestId; // We don't want to add the requestId to the checksum
                     record["checksum"] = checksum;
                 });
+                if ("latitude" in data) {
+                    latitudeField.value = data.latitude;
+                    record["latitude"] = data.latitude;
+                }
+                if ("longitude" in data) {
+                    longitudeField.value = data.longitude;
+                    record["longitude"] = data.longitude;
+                }
                 if (recordField) {
                     recordField.value = JSON.stringify(record);
                 }
