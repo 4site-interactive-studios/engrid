@@ -354,7 +354,8 @@ export class TidyContact {
           if (statusField) {
             statusField.value = "Success";
           }
-        } else if ("error" in data) {
+        }
+        if (data.valid === false) {
           let record: { [key: string]: any } = {};
           record["formData"] = formData;
           await this.checkSum(JSON.stringify(record)).then((checksum) => {
@@ -369,7 +370,8 @@ export class TidyContact {
             dateField.value = this.todaysDate();
           }
           if (statusField) {
-            statusField.value = `Error: ` + data.error;
+            statusField.value =
+              "error" in data ? `Error: ` + data.error : "Invalid Address";
           }
         }
       })
