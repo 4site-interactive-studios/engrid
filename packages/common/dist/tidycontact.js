@@ -336,7 +336,7 @@ export class TidyContact {
                     statusField.value = "Success";
                 }
             }
-            if (data.valid === false) {
+            else {
                 let record = {};
                 record["formData"] = formData;
                 yield this.checkSum(JSON.stringify(record)).then((checksum) => {
