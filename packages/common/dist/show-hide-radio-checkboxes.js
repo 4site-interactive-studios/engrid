@@ -4,6 +4,7 @@ export class ShowHideRadioCheckboxes {
         this.logger = new EngridLogger("ShowHideRadioCheckboxes", "black", "lightblue", "👁");
         this.elements = document.getElementsByName(elements);
         this.classes = classes;
+        this.createDataAttributes();
         this.hideAll();
         for (let i = 0; i < this.elements.length; i++) {
             let element = this.elements[i];
@@ -15,6 +16,35 @@ export class ShowHideRadioCheckboxes {
                 this.show(element);
             });
         }
+    }
+    // Create default data attributes on all fields
+    createDataAttributes() {
+        this.elements.forEach((item) => {
+            if (item instanceof HTMLInputElement) {
+                let inputValue = item.value.replace(/\s/g, "");
+                document
+                    .querySelectorAll("." + this.classes + inputValue)
+                    .forEach((el) => {
+                    // Consider toggling "hide" class so these fields can be displayed when in a debug state
+                    if (el instanceof HTMLElement) {
+                        const fields = el.querySelectorAll("input, select, textarea");
+                        if (fields.length > 0) {
+                            fields.forEach((field) => {
+                                if (field instanceof HTMLInputElement ||
+                                    field instanceof HTMLSelectElement) {
+                                    if (!field.hasAttribute("data-original-value")) {
+                                        field.setAttribute("data-original-value", field.value);
+                                    }
+                                    if (!field.hasAttribute("data-value")) {
+                                        field.setAttribute("data-value", field.value);
+                                    }
+                                }
+                            });
+                        }
+                    }
+                });
+            }
+        });
     }
     // Hide All Divs
     hideAll() {
@@ -52,6 +82,9 @@ export class ShowHideRadioCheckboxes {
     }
     // Take the field values and add to a data attribute on the field
     toggleValue(item, type) {
+        if (type == "hide" && !ENGrid.isVisible(item))
+            return;
+        this.logger.log(`toggleValue: ${type}`);
         const fields = item.querySelectorAll("input, select, textarea");
         if (fields.length > 0) {
             fields.forEach((field) => {
@@ -60,17 +93,13 @@ export class ShowHideRadioCheckboxes {
                     field instanceof HTMLSelectElement) {
                     if (field.name) {
                         const fieldValue = ENGrid.getFieldValue(field.name);
-                        if (!field.hasAttribute("data-original-value")) {
-                            field.setAttribute("data-original-value", fieldValue);
-                        }
                         const originalValue = field.getAttribute("data-original-value");
                         const dataValue = (_a = field.getAttribute("data-value")) !== null && _a !== void 0 ? _a : "";
-                        if (type === "hide" && ENGrid.isVisible(field)) {
+                        if (type === "hide") {
                             field.setAttribute("data-value", fieldValue);
                             ENGrid.setFieldValue(field.name, originalValue);
                         }
-                        if (type === "show" && !ENGrid.isVisible(field)) {
-                            field.setAttribute("data-value", "");
+                        else {
                             ENGrid.setFieldValue(field.name, dataValue);
                         }
                     }
