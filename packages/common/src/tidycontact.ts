@@ -232,6 +232,7 @@ export class TidyContact {
     const postalCodeValue = ENGrid.getFieldValue(
       this.options.address_fields?.postalCode as string
     ) as string;
+    const zipDivider = this.options.us_zip_divider ?? "";
     // Check if there's no address2 field
     const address2Field = ENGrid.getField(
       this.options.address_fields?.address2 as string
@@ -250,8 +251,8 @@ export class TidyContact {
     }
     if (
       "postalCode" in data &&
-      postalCodeValue.match(/\d+/g)?.join("") ===
-        data.postalCode.match(/\d+/g)?.join("")
+      postalCodeValue.replace("+", zipDivider) ===
+        data.postalCode.replace("+", zipDivider)
     ) {
       // Postal code is the same
       delete data.postalCode;
@@ -270,7 +271,7 @@ export class TidyContact {
           key === "postalCode" &&
           ["US", "USA", "United States"].includes(countryValue)
         ) {
-          value = value.match(/\d+/g)?.join("") ?? ""; // Remove all non-numeric characters
+          value = value.replace("+", zipDivider) ?? ""; // Replace the "+" with the zip divider
         }
         response[key] = { from: field.value, to: value };
         this.logger.log(`Set ${field.name} to ${value} (${field.value})`);

@@ -201,16 +201,17 @@ export class TidyContact {
         }
     }
     setFields(data) {
-        var _a, _b, _c, _d, _e, _f, _g, _h;
+        var _a, _b, _c, _d, _e, _f;
         if (!this.options)
             return {};
         let response = {};
         const countryValue = ENGrid.getFieldValue((_a = this.options.address_fields) === null || _a === void 0 ? void 0 : _a.country);
         const postalCodeValue = ENGrid.getFieldValue((_b = this.options.address_fields) === null || _b === void 0 ? void 0 : _b.postalCode);
+        const zipDivider = (_c = this.options.us_zip_divider) !== null && _c !== void 0 ? _c : "";
         // Check if there's no address2 field
-        const address2Field = ENGrid.getField((_c = this.options.address_fields) === null || _c === void 0 ? void 0 : _c.address2);
+        const address2Field = ENGrid.getField((_d = this.options.address_fields) === null || _d === void 0 ? void 0 : _d.address2);
         if ("address2" in data && !address2Field) {
-            const address = ENGrid.getFieldValue((_d = this.options.address_fields) === null || _d === void 0 ? void 0 : _d.address1);
+            const address = ENGrid.getFieldValue((_e = this.options.address_fields) === null || _e === void 0 ? void 0 : _e.address1);
             if (address == data.address1 + " " + data.address2) {
                 delete data.address1;
                 delete data.address2;
@@ -221,8 +222,8 @@ export class TidyContact {
             }
         }
         if ("postalCode" in data &&
-            ((_e = postalCodeValue.match(/\d+/g)) === null || _e === void 0 ? void 0 : _e.join("")) ===
-                ((_f = data.postalCode.match(/\d+/g)) === null || _f === void 0 ? void 0 : _f.join(""))) {
+            postalCodeValue.replace("+", zipDivider) ===
+                data.postalCode.replace("+", zipDivider)) {
             // Postal code is the same
             delete data.postalCode;
         }
@@ -237,7 +238,7 @@ export class TidyContact {
                 let value = data[key];
                 if (key === "postalCode" &&
                     ["US", "USA", "United States"].includes(countryValue)) {
-                    value = (_h = (_g = value.match(/\d+/g)) === null || _g === void 0 ? void 0 : _g.join("")) !== null && _h !== void 0 ? _h : ""; // Remove all non-numeric characters
+                    value = (_f = value.replace("+", zipDivider)) !== null && _f !== void 0 ? _f : ""; // Replace the "+" with the zip divider
                 }
                 response[key] = { from: field.value, to: value };
                 this.logger.log(`Set ${field.name} to ${value} (${field.value})`);
