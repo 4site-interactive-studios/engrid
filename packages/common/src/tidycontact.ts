@@ -232,7 +232,7 @@ export class TidyContact {
     const postalCodeValue = ENGrid.getFieldValue(
       this.options.address_fields?.postalCode as string
     ) as string;
-    const zipDivider = this.options.us_zip_divider ?? "";
+    const zipDivider = this.options.us_zip_divider ?? "+";
     // Check if there's no address2 field
     const address2Field = ENGrid.getField(
       this.options.address_fields?.address2 as string

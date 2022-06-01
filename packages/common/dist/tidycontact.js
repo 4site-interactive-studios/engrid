@@ -207,7 +207,7 @@ export class TidyContact {
         let response = {};
         const countryValue = ENGrid.getFieldValue((_a = this.options.address_fields) === null || _a === void 0 ? void 0 : _a.country);
         const postalCodeValue = ENGrid.getFieldValue((_b = this.options.address_fields) === null || _b === void 0 ? void 0 : _b.postalCode);
-        const zipDivider = (_c = this.options.us_zip_divider) !== null && _c !== void 0 ? _c : "";
+        const zipDivider = (_c = this.options.us_zip_divider) !== null && _c !== void 0 ? _c : "+";
         // Check if there's no address2 field
         const address2Field = ENGrid.getField((_d = this.options.address_fields) === null || _d === void 0 ? void 0 : _d.address2);
         if ("address2" in data && !address2Field) {
