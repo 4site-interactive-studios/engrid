@@ -27,7 +27,7 @@ export class ShowHideRadioCheckboxes {
                     .forEach((el) => {
                     // Consider toggling "hide" class so these fields can be displayed when in a debug state
                     if (el instanceof HTMLElement) {
-                        const fields = el.querySelectorAll("input, select, textarea");
+                        const fields = el.querySelectorAll("input[type='text'], input[type='number'], input[type='email'], select, textarea");
                         if (fields.length > 0) {
                             fields.forEach((field) => {
                                 if (field instanceof HTMLInputElement ||
@@ -85,7 +85,7 @@ export class ShowHideRadioCheckboxes {
         if (type == "hide" && !ENGrid.isVisible(item))
             return;
         this.logger.log(`toggleValue: ${type}`);
-        const fields = item.querySelectorAll("input, select, textarea");
+        const fields = item.querySelectorAll("input[type='text'], input[type='number'], input[type='email'], select, textarea");
         if (fields.length > 0) {
             fields.forEach((field) => {
                 var _a;
