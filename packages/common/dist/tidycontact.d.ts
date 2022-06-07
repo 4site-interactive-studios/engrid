@@ -17,5 +17,8 @@ export declare class TidyContact {
     private fetchTimeOut;
     private writeError;
     private setFields;
+    private hasAddressFields;
+    private canUseAPI;
+    private getCountry;
     private callAPI;
 }

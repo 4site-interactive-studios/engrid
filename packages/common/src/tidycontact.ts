@@ -22,8 +22,8 @@ export class TidyContact {
     this.options = ENGrid.getOption("TidyContact") as Options["TidyContact"];
     if (this.options === false) return;
     this.loadOptions();
-    if (!ENGrid.getField(this.options?.address_fields?.country as string)) {
-      this.logger.log("Country field not found");
+    if (!this.hasAddressFields()) {
+      this.logger.log("No address fields found");
       return;
     }
     this.createFields();
@@ -212,7 +212,7 @@ export class TidyContact {
       }
       const errorData = {
         status: this.httpStatus,
-        error: typeof error === "string" ? error : errorType,
+        error: typeof error === "string" ? error : errorType.toUpperCase(),
       };
       recordField.value = JSON.stringify(errorData);
     }
@@ -220,15 +220,13 @@ export class TidyContact {
       dateField.value = this.todaysDate();
     }
     if (statusField) {
-      statusField.value = "API Error";
+      statusField.value = "ERROR-API";
     }
   }
   private setFields(data: { [key: string]: any }) {
     if (!this.options) return {};
     let response: { [key: string]: {} } = {};
-    const countryValue = ENGrid.getFieldValue(
-      this.options.address_fields?.country as string
-    );
+    const country = this.getCountry();
     const postalCodeValue = ENGrid.getFieldValue(
       this.options.address_fields?.postalCode as string
     ) as string;
@@ -269,7 +267,7 @@ export class TidyContact {
         let value = data[key];
         if (
           key === "postalCode" &&
-          ["US", "USA", "United States"].includes(countryValue)
+          ["US", "USA", "United States"].includes(country)
         ) {
           value = value.replace("+", zipDivider) ?? ""; // Replace the "+" with the zip divider
         }
@@ -282,6 +280,55 @@ export class TidyContact {
     }
     return response;
   }
+  private hasAddressFields(): boolean {
+    if (!this.options) return false;
+    const address1 = ENGrid.getField(
+      this.options.address_fields?.address1 as string
+    );
+    const address2 = ENGrid.getField(
+      this.options.address_fields?.address2 as string
+    );
+    const city = ENGrid.getField(this.options.address_fields?.city as string);
+    const region = ENGrid.getField(
+      this.options.address_fields?.region as string
+    );
+    const postalCode = ENGrid.getField(
+      this.options.address_fields?.postalCode as string
+    );
+    const country = ENGrid.getField(
+      this.options.address_fields?.country as string
+    );
+    return !!(address1 || address2 || city || region || postalCode || country);
+  }
+  private canUseAPI(): boolean {
+    if (!this.options) return false;
+    const country = !!this.getCountry();
+    const address1 = !!ENGrid.getFieldValue(
+      this.options.address_fields?.address1 as string
+    );
+    const city = !!ENGrid.getFieldValue(
+      this.options.address_fields?.city as string
+    );
+    const region = !!ENGrid.getFieldValue(
+      this.options.address_fields?.region as string
+    );
+    const postalCode = !!ENGrid.getFieldValue(
+      this.options.address_fields?.postalCode as string
+    );
+    if (country && address1) {
+      return (city && region) || postalCode;
+    }
+    return false;
+  }
+  private getCountry(): string {
+    if (!this.options) return "";
+    const countryFallback = this.options.country_fallback ?? "";
+    const country = ENGrid.getFieldValue(
+      this.options.address_fields?.country as string
+    );
+    return country || countryFallback.toUpperCase();
+  }
+
   private callAPI() {
     if (!this.options) return;
     if (!this.isDirty || this.wasCalled) return;
@@ -304,6 +351,16 @@ export class TidyContact {
     const longitudeField = ENGrid.getField(
       "supporter.geo.longitude"
     ) as HTMLInputElement;
+    if (!this.canUseAPI()) {
+      this.logger.log("Not Enough Data to Call API");
+      if (dateField) {
+        dateField.value = this.todaysDate();
+      }
+      if (statusField) {
+        statusField.value = "PARTIALADDRESS";
+      }
+      return true;
+    }
     // Call the API
     const address1 = ENGrid.getFieldValue(
       this.options.address_fields?.address1 as string
@@ -320,13 +377,16 @@ export class TidyContact {
     const postalCode = ENGrid.getFieldValue(
       this.options.address_fields?.postalCode as string
     );
-    const country = ENGrid.getFieldValue(
-      this.options.address_fields?.country as string
-    );
+    const country = this.getCountry();
     if (!this.countryAllowed(country)) {
       this.logger.log("Country not allowed: " + country);
       if (recordField) {
-        recordField.value = "DISALLOWED";
+        let record: { [key: string]: any } = {};
+        record = Object.assign(
+          { date: this.todaysDate(), status: "DISALLOWED" },
+          record
+        );
+        recordField.value = JSON.stringify(record);
       }
       if (dateField) {
         dateField.value = this.todaysDate();
@@ -379,13 +439,17 @@ export class TidyContact {
             record["longitude"] = data.longitude;
           }
           if (recordField) {
+            record = Object.assign(
+              { date: this.todaysDate(), status: "SUCCESS" },
+              record
+            );
             recordField.value = JSON.stringify(record);
           }
           if (dateField) {
             dateField.value = this.todaysDate();
           }
           if (statusField) {
-            statusField.value = "Success";
+            statusField.value = "SUCCESS";
           }
         } else {
           let record: { [key: string]: any } = {};
@@ -396,6 +460,10 @@ export class TidyContact {
             record["checksum"] = checksum;
           });
           if (recordField) {
+            record = Object.assign(
+              { date: this.todaysDate(), status: "ERROR" },
+              record
+            );
             recordField.value = JSON.stringify(record);
           }
           if (dateField) {
@@ -403,7 +471,7 @@ export class TidyContact {
           }
           if (statusField) {
             statusField.value =
-              "error" in data ? `Error: ` + data.error : "Invalid Address";
+              "error" in data ? `ERROR: ` + data.error : "INVALID ADDRESS";
           }
         }
       })

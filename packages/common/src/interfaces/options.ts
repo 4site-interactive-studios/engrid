@@ -50,6 +50,7 @@ export interface Options {
         date_field?: string; // TidyContact Date
         status_field?: string; // TidyContact Status
         countries?: string[]; // Country that is allowed to use the API, if empty, all countries are allowed. You can use more than one country by separating them with a comma.
+        country_fallback?: string; // Fallback country if the country field is not found.
         us_zip_divider?: string; // The divider used in US zip codes.
         address_fields?: {
           address1: string; // Address Field 1

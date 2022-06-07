@@ -46,6 +46,7 @@ export interface Options {
         date_field?: string;
         status_field?: string;
         countries?: string[];
+        country_fallback?: string;
         us_zip_divider?: string;
         address_fields?: {
             address1: string;
