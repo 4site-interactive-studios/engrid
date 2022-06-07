@@ -471,7 +471,7 @@ export class TidyContact {
           }
           if (statusField) {
             statusField.value =
-              "error" in data ? `ERROR: ` + data.error : "INVALID ADDRESS";
+              "error" in data ? `ERROR: ` + data.error : "INVALIDADDRESS";
           }
         }
       })
