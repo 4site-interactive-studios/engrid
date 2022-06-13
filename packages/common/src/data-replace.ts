@@ -44,6 +44,7 @@ export class DataReplace {
         this.replaceItem(item, match);
       }
     });
+    ENGrid.setBodyData("merge-tags-processed", "");
   }
   replaceItem(where: HTMLElement, [item, key, defaultValue]: RegExpMatchArray) {
     let value = ENGrid.getUrlParameter(`engrid_data[${key}]`) ?? defaultValue;

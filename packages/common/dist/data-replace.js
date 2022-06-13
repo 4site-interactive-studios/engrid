@@ -35,6 +35,7 @@ export class DataReplace {
                 this.replaceItem(item, match);
             }
         });
+        ENGrid.setBodyData("merge-tags-processed", "");
     }
     replaceItem(where, [item, key, defaultValue]) {
         var _a;
