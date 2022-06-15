@@ -1,6 +1,6 @@
 // This class automatically select other radio input when an amount is entered into it.
 
-import { EngridLogger } from ".";
+import { EngridLogger, ENGrid } from ".";
 
 export class OtherAmount {
   private logger: EngridLogger = new EngridLogger(
@@ -20,6 +20,30 @@ export class OtherAmount {
         }
       });
     });
+    const otherAmountField = document.querySelector(
+      "[name='transaction.donationAmt.other'"
+    ) as HTMLInputElement;
+    if (otherAmountField) {
+      otherAmountField.addEventListener("change", (e: Event) => {
+        const target = e.target as HTMLInputElement;
+        const amount = target.value;
+        const cleanAmount = ENGrid.cleanAmount(amount);
+        if (amount !== cleanAmount) {
+          this.logger.log(
+            `Other Amount Field Changed: ${amount} => ${cleanAmount}`
+          );
+          if ("ga" in window) {
+            (window as any).ga(
+              "send",
+              "event",
+              "ENgrid Testing",
+              "Other Amount Changed",
+              `${amount} => ${cleanAmount}`
+            );
+          }
+        }
+      });
+    }
   }
 
   private setRadioInput() {

@@ -233,6 +233,44 @@ export abstract class ENGrid {
     }
     return s.join(dec);
   }
+  // Clean an Amount
+  static cleanAmount(amount: string) {
+    // Split the number
+    const valueArray = amount.replace(/[^0-9,\.]/g, "").split(/[,.]+/);
+    const delimArray = amount.replace(/[^.,]/g, "").split("");
+    // Handle values with no decimal places and non-numeric values
+    if (valueArray.length === 1) {
+      return parseInt(valueArray[0]) || 0;
+    }
+    // Ignore invalid numbers
+    if (
+      valueArray
+        .map((x, index) => {
+          return index > 0 && index + 1 !== valueArray.length && x.length !== 3
+            ? true
+            : false;
+        })
+        .includes(true)
+    ) {
+      return 0;
+    }
+    // Multiple commas is a bad thing? So edgy.
+    if (delimArray.length > 1 && !delimArray.includes(".")) {
+      return 0;
+    }
+    // Handle invalid decimal and comma formatting
+    if ([...new Set(delimArray.slice(0, -1))].length > 1) {
+      return 0;
+    }
+    // If there are cents
+    if (valueArray[valueArray.length - 1].length <= 2) {
+      const cents = valueArray.pop() || "00";
+      return parseInt(cents) > 0
+        ? Number(parseInt(valueArray.join("")) + "." + cents).toFixed(2)
+        : parseInt(valueArray.join(""));
+    }
+    return parseInt(valueArray.join(""));
+  }
   static disableSubmit(label: string = "") {
     const submit = document.querySelector(
       ".en__submit button"
