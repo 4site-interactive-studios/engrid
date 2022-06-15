@@ -22,8 +22,11 @@ export class OtherAmount {
                 const cleanAmount = ENGrid.cleanAmount(amount);
                 if (amount !== cleanAmount) {
                     this.logger.log(`Other Amount Field Changed: ${amount} => ${cleanAmount}`);
-                    if ("ga" in window) {
-                        window.ga("send", "event", "ENgrid Testing", "Other Amount Changed", `${amount} => ${cleanAmount}`);
+                    if ("dataLayer" in window) {
+                        window.dataLayer.push({
+                            event: "otherAmountTransformed",
+                            otherAmountTransformation: `${amount} => ${cleanAmount}`,
+                        });
                     }
                 }
             });

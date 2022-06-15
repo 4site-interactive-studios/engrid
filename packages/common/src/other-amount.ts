@@ -32,14 +32,11 @@ export class OtherAmount {
           this.logger.log(
             `Other Amount Field Changed: ${amount} => ${cleanAmount}`
           );
-          if ("ga" in window) {
-            (window as any).ga(
-              "send",
-              "event",
-              "ENgrid Testing",
-              "Other Amount Changed",
-              `${amount} => ${cleanAmount}`
-            );
+          if ("dataLayer" in window) {
+            (window as any).dataLayer.push({
+              event: "otherAmountTransformed",
+              otherAmountTransformation: `${amount} => ${cleanAmount}`,
+            });
           }
         }
       });
