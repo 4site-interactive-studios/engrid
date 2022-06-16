@@ -273,7 +273,7 @@ export class TidyContact {
         }
         response[key] = { from: field.value, to: value };
         this.logger.log(`Set ${field.name} to ${value} (${field.value})`);
-        ENGrid.setFieldValue(fieldKey, value);
+        ENGrid.setFieldValue(fieldKey, value, false);
       } else {
         this.logger.log(`Field ${key} not found`);
       }

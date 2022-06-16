@@ -45,7 +45,11 @@ export abstract class ENGrid {
   }
 
   // Set a value to any field. If it's a dropdown, radio or checkbox, it selects the proper option matching the value
-  static setFieldValue(name: string, value: unknown) {
+  static setFieldValue(
+    name: string,
+    value: unknown,
+    parseENDependencies: boolean = true
+  ) {
     if (value === ENGrid.getFieldValue(name)) return;
     (document.getElementsByName(name) as NodeListOf<HTMLFormElement>).forEach(
       (field) => {
@@ -75,7 +79,7 @@ export abstract class ENGrid {
         }
       }
     );
-    this.enParseDependencies();
+    if (parseENDependencies) this.enParseDependencies();
     return;
   }
 
