@@ -20,7 +20,7 @@ export class OtherAmount {
                 const target = e.target;
                 const amount = target.value;
                 const cleanAmount = ENGrid.cleanAmount(amount);
-                if (amount !== cleanAmount) {
+                if (amount !== cleanAmount.toString()) {
                     this.logger.log(`Other Amount Field Changed: ${amount} => ${cleanAmount}`);
                     if ("dataLayer" in window) {
                         window.dataLayer.push({
