@@ -103,10 +103,51 @@ export abstract class ENGrid {
       typeof window.EngagingNetworks?.require?._defined?.enDependencies
         ?.dependencies?.parseDependencies === "function"
     ) {
-      window.EngagingNetworks.require._defined.enDependencies.dependencies.parseDependencies(
-        window.EngagingNetworks.dependencies
-      );
-      if (ENGrid.getOption("Debug")) console.log("EN Dependencies Triggered");
+      const customDependencies: object[] = [];
+      if ("dependencies" in window.EngagingNetworks) {
+        const amountContainer = document.querySelector(
+          ".en__field--donationAmt"
+        );
+        if (amountContainer) {
+          let amountID =
+            [...amountContainer.classList.values()]
+              .filter(
+                (v) =>
+                  v.startsWith("en__field--") && Number(v.substring(11)) > 0
+              )
+              .toString()
+              .match(/\d/g)
+              ?.join("") || "";
+          if (amountID) {
+            window.EngagingNetworks.dependencies.forEach(
+              (dependency: {
+                [key: string]: {
+                  [key: string]: string;
+                }[];
+              }) => {
+                if ("actions" in dependency && dependency.actions.length > 0) {
+                  let amountIdFound = false;
+                  dependency.actions.forEach((action) => {
+                    if ("target" in action && action.target === amountID) {
+                      amountIdFound = true;
+                    }
+                  });
+                  if (!amountIdFound) {
+                    customDependencies.push(dependency);
+                  }
+                }
+              }
+            );
+            if (customDependencies.length > 0) {
+              window.EngagingNetworks.require._defined.enDependencies.dependencies.parseDependencies(
+                customDependencies
+              );
+              if (ENGrid.getOption("Debug"))
+                console.log("EN Dependencies Triggered", customDependencies);
+            }
+          }
+        }
+      }
     }
   }
 
