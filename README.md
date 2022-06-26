@@ -62,12 +62,13 @@ Designed and Developed by [4Site Studios](http://4sitestudios.com/en?ms=github) 
 - All on page contnet is editable, nothing hard coded into the page template
 - Per Page Background Images and Videos!
 - Per Page Layouts (Six Built In)
-- Click-to-expand content sections activate with a click, touch. Or opened with enter or spacebar when focused with a keyboard.
+- Click-to-expand content sections activate with a click, touch, or opened with enter or spacebar when focused with a keyboard.
 - Add an attribution overlay to images and videos to include the photographers name, no more editing in Photoshop and hard coding it in. You can also optionally add a link
-- All pages using our page template can be seamlessly embedded in your website with Shortcodes using our WordPress iFrame embed plugin
-- In page builder, conditional content is visually color coded
+- All pages using our page template can be seamlessly embedded in your website with Shortcodes using our WordPress iFrame embed plugin or our custom script
+- Inside page builder, hidden and conditional content is visually color coded
 - Easy to add classes for visually hiding labels / fields, but keeping in line with accessability best practices
 - Easy to add classes for conditionally showing / hiding content based on gift amount (e.g. .showifamount-greaterthanorequalto-15)
+- Easy to add classes for conditionally showing / hiding content based on the selected value of another radio or checkbox inout
 - Page template allows for default Facebook / Twitter social sharing meta tags with support for EN's per-page social sharing widget to override them
 - ENgrid content editor documentation
 
@@ -81,16 +82,17 @@ Designed and Developed by [4Site Studios](http://4sitestudios.com/en?ms=github) 
 
 ### General Quality of Life Improvements
 - Added data attributes to form fields to help improve browser / password manager auto-fill completions
-- On pageload auto select users country based on IP address
+- On pageload auto select the users country based on IP address
 - Capitalize first letter of First Name, Last Name, Address 1, City, Region fields on form submit 
-- Lazy Load all image assets and moves them to their own CPU thread to prevent slow downs in rendering the page when they include high resoltion imagery
+- Lazy Load all image assets and moves them to their own CPU thread to prevent slowdowns in rendering the page when they include high resoltion imagery
 - Fastest page load times possible on Engaging Networks. All render critical assets are prefetched and there is only a single CSS and JS file
 - Optional IE11 pop-up encouraging users to upgrade their browsers
 
-### Additional 4Site ENgrid Services
-- "Remember Me" to save and pre-fill supporter info. Works cross domain/sub-domain
-- Format mobile numbers to the Twilio E.164 format, in real-time on form submission (coming soon)
-- Format all US addresses to the CASSI address standard, in real-time on form submission (coming soon)
+### TidyContct Paid Services integrated with ENgrid
+- TidyContact Address: Format all US addresses to the CASSI address standard, in real-time on form submission
+- TidyContact Phone: Format mobile numbers to the Twilio E.164 format, in real-time on form submission
+- TidyContact Email: Validate email addresses in real-time before the form is submitted 
+- TidyContact QuickFill: "Remember Me" to save and pre-fill supporter info. Works cross domain/sub-domain
 
 ## ENgrid Resources
 
