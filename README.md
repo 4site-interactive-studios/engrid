@@ -32,19 +32,18 @@ Designed and Developed by [4Site Studios](http://4sitestudios.com/en?ms=github) 
 ## ENgrid Features
 
 ### Giving Pages
-- Comma handling in Other Donation Amount input field
+- Comma and non-number handling in Other Donation Amount input field
 - Auto Credit Card Type selection based on Credit Card Number
 - Strip all non-number values from the Credit Card field on form submission
 - Tip Jar / Additional Gift Checkbox that works in addition to ENs native processing fee checkbox
-- Donation Upsell Lightbox
+- Donation Upsell Lightbox, an alternative to EN's native upsell lightbox that can be further customized
 - Conditional Hide/Show fields (e.g., In Honor of Giving Fields)
-- Give by Check, Card, or Paypal
+- Give by Check, Card, Paypal, Apple Pay, Google Pay, and Venmo (Depends on Payment processor support)
 - Auto-update CC Expiration Date fields
 - Insert the currently selected giving amount and frequency anywhere on the page with our "Live giving variables" that act like live merge tags
 - CVV "What's this" tooltip
 - Conditionally hide/show content based on giving amount
 - Conditionally hide/show content based on giving frequency
-
 
 ### Advocacy Pages
 - Advocacy "Opt-in Upsell" Lightbox
