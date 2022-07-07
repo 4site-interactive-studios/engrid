@@ -311,8 +311,8 @@ export class TranslateFields {
                 break;
             case "MX":
             case "MEX":
-                this.setStateValues("Province", [
-                    { label: "Select Province", value: "" },
+                this.setStateValues("Estado", [
+                    { label: "Seleccione Estado", value: "" },
                     { label: "Aguascalientes", value: "AGU" },
                     { label: "Baja California", value: "BCN" },
                     { label: "Baja California Sur", value: "BCS" },
