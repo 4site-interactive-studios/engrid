@@ -56,7 +56,15 @@ export interface Options {
             region: string;
             postalCode: string;
             country: string;
+            phone: string;
         };
+        phone_enable?: boolean;
+        phone_flags?: boolean;
+        phone_country_from_ip?: boolean;
+        phone_preferred_countries?: string[];
+        phone_record_field?: string;
+        phone_date_field?: string;
+        phone_status_field?: string;
     };
     onLoad?: () => void;
     onResize?: () => void;

@@ -60,7 +60,15 @@ export interface Options {
           region: string; // State field
           postalCode: string; // Zipcode field
           country: string; // Country field
+          phone: string; // Phone field
         };
+        phone_enable?: boolean; // Enable phone field
+        phone_flags?: boolean; // Phone flags
+        phone_country_from_ip?: boolean; // Phone country from IP
+        phone_preferred_countries?: string[]; // Prioritize some countries on the list
+        phone_record_field?: string; // TidyContact Record
+        phone_date_field?: string; // TidyContact Date
+        phone_status_field?: string; // TidyContact Status
       };
   onLoad?: () => void;
   onResize?: () => void;

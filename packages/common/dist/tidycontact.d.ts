@@ -7,9 +7,14 @@ export declare class TidyContact {
     private isDirty;
     private options;
     private _form;
+    private countries_list;
+    private countries_dropdown;
+    private country_ip;
     constructor();
     private loadOptions;
     private createFields;
+    createPhoneFields(): void;
+    createPhoneMarginVariable(): void;
     private addEventListeners;
     private checkSum;
     private todaysDate;
@@ -19,6 +24,23 @@ export declare class TidyContact {
     private setFields;
     private hasAddressFields;
     private canUseAPI;
+    private canUsePhoneAPI;
     private getCountry;
+    private getCountryByCode;
+    private phoneEnabled;
+    private countryDropDownEnabled;
+    private getCountryFromIP;
+    private renderFlagsDropDown;
+    private handleUpDownKey;
+    private handleEnterKey;
+    private handlePhoneInputKeydown;
+    private openCountryDropDown;
+    private closeCountryDropDown;
+    private getFlagImage;
+    private appendCountryItems;
+    private setDefaultPhoneCountry;
+    private setPhoneCountry;
+    private highlightCountry;
+    setPhoneDataFromAPI(data: any, id: string): Promise<void>;
     private callAPI;
 }
