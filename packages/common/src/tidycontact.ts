@@ -391,7 +391,7 @@ export class TidyContact {
       );
     }
   }
-  createPhoneFields() {
+  private createPhoneFields() {
     if (!this.options) return;
     ENGrid.createHiddenInput("tc.phone.country", "");
     this.logger.log("Creating hidden field: tc.phone.country");
@@ -423,7 +423,7 @@ export class TidyContact {
       }
     }
   }
-  createPhoneMarginVariable() {
+  private createPhoneMarginVariable() {
     if (!this.options) return;
     const phone = ENGrid.getField(
       this.options.address_fields?.phone as string
@@ -1118,7 +1118,7 @@ export class TidyContact {
       }
     }
   }
-  async setPhoneDataFromAPI(data: any, id: string) {
+  private async setPhoneDataFromAPI(data: any, id: string) {
     if (!this.options) return;
     const phoneField = ENGrid.getField(
       this.options.address_fields?.phone as string

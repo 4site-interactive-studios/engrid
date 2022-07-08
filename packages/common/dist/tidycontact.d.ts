@@ -13,8 +13,8 @@ export declare class TidyContact {
     constructor();
     private loadOptions;
     private createFields;
-    createPhoneFields(): void;
-    createPhoneMarginVariable(): void;
+    private createPhoneFields;
+    private createPhoneMarginVariable;
     private addEventListeners;
     private checkSum;
     private todaysDate;
@@ -41,6 +41,6 @@ export declare class TidyContact {
     private setDefaultPhoneCountry;
     private setPhoneCountry;
     private highlightCountry;
-    setPhoneDataFromAPI(data: any, id: string): Promise<void>;
+    private setPhoneDataFromAPI;
     private callAPI;
 }
