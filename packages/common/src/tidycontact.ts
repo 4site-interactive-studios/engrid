@@ -1133,9 +1133,7 @@ export class TidyContact {
       this.options.phone_status_field as string
     ) as HTMLInputElement;
     let record: any = {};
-    record["formData"] = `{"${this.options.address_fields?.phone as string}": ${
-      phoneField.value
-    }}`;
+    record["formData"] = { [phoneField.name]: phoneField.value };
     record["formatted"] = data.formatted;
     record["number_type"] = data.number_type;
     if (data.valid === true) {

@@ -978,7 +978,7 @@ export class TidyContact {
         }
     }
     setPhoneDataFromAPI(data, id) {
-        var _a, _b;
+        var _a;
         return __awaiter(this, void 0, void 0, function* () {
             if (!this.options)
                 return;
@@ -987,7 +987,7 @@ export class TidyContact {
             const dateField = ENGrid.getField(this.options.phone_date_field);
             const statusField = ENGrid.getField(this.options.phone_status_field);
             let record = {};
-            record["formData"] = `{"${(_b = this.options.address_fields) === null || _b === void 0 ? void 0 : _b.phone}": ${phoneField.value}}`;
+            record["formData"] = { [phoneField.name]: phoneField.value };
             record["formatted"] = data.formatted;
             record["number_type"] = data.number_type;
             if (data.valid === true) {
