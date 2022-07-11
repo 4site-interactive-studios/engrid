@@ -442,6 +442,8 @@ export class TranslateFields {
         if (stateField) {
             cookie.set("engrid-state", stateField.value, {
                 expires: 1,
+                sameSite: "none",
+                secure: true,
             });
         }
     }
