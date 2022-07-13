@@ -16,6 +16,7 @@
 */
 
 import { ENGrid } from "./";
+const tippy = require("tippy.js").default;
 
 export class MediaAttribution {
   // Find all images with attribution but not with the "data-attribution-hide-overlay" attribute
@@ -61,6 +62,19 @@ export class MediaAttribution {
               "afterend",
               "<figattribution>" + attributionSource + "</figure>"
             );
+          }
+          const attributionSourceTooltip =
+            "attributionSourceTooltip" in mediaWithAttributionElement.dataset
+              ? mediaWithAttributionElement.dataset.attributionSourceTooltip
+              : false;
+          if (attributionSourceTooltip) {
+            tippy(".media-with-attribution figattribution", {
+              content: attributionSourceTooltip,
+              arrow: true,
+              arrowType: "round",
+              placement: "left",
+              trigger: "mouseenter focus",
+            });
           }
         }
       }

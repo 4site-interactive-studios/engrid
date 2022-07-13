@@ -15,6 +15,7 @@
   <figure class="media-with-attribution"><img src="https://via.placeholder.com/300x300" data-src="https://via.placeholder.com/300x300" data-attribution-source="Jane Doe 1"><figattribution class="attribution-bottomright">Jane Doe 1</figattribution></figure>
 */
 import { ENGrid } from "./";
+const tippy = require("tippy.js").default;
 export class MediaAttribution {
     constructor() {
         // Find all images with attribution but not with the "data-attribution-hide-overlay" attribute
@@ -44,6 +45,18 @@ export class MediaAttribution {
                     }
                     else {
                         mediaWithAttributionElement.insertAdjacentHTML("afterend", "<figattribution>" + attributionSource + "</figure>");
+                    }
+                    const attributionSourceTooltip = "attributionSourceTooltip" in mediaWithAttributionElement.dataset
+                        ? mediaWithAttributionElement.dataset.attributionSourceTooltip
+                        : false;
+                    if (attributionSourceTooltip) {
+                        tippy(".media-with-attribution figattribution", {
+                            content: attributionSourceTooltip,
+                            arrow: true,
+                            arrowType: "round",
+                            placement: "left",
+                            trigger: "mouseenter focus",
+                        });
                     }
                 }
             }
