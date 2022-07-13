@@ -71,9 +71,10 @@ export class MediaAttribution {
             tippy(".media-with-attribution figattribution", {
               content: attributionSourceTooltip,
               arrow: true,
-              arrowType: "round",
+              arrowType: "default",
               placement: "left",
-              trigger: "mouseenter focus",
+              trigger: "click mouseenter focus",
+              interactive: true,
             });
           }
         }
