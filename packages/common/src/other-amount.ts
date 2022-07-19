@@ -38,6 +38,7 @@ export class OtherAmount {
               otherAmountTransformation: `${amount} => ${cleanAmount}`,
             });
           }
+          target.value = cleanAmount.toString();
         }
       });
     }
