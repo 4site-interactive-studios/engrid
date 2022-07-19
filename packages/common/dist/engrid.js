@@ -269,7 +269,7 @@ export class ENGrid {
         if (valueArray[valueArray.length - 1].length <= 2) {
             const cents = valueArray.pop() || "00";
             return parseInt(cents) > 0
-                ? Number(parseInt(valueArray.join("")) + "." + cents).toFixed(2)
+                ? parseFloat(Number(parseInt(valueArray.join("")) + "." + cents).toFixed(2))
                 : parseInt(valueArray.join(""));
         }
         return parseInt(valueArray.join(""));

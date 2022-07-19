@@ -51,13 +51,15 @@ export class MinMaxAmount {
 
   // Disable Submit Button if the amount is not valid
   liveValidate() {
-    if (this._amount.amount < this.minAmount) {
+    const amount = ENGrid.cleanAmount(this._amount.amount.toString());
+    this.logger.log(`Amount: ${amount}`);
+    if (amount < this.minAmount) {
       this.logger.log("Amount is less than min amount: " + this.minAmount);
       ENGrid.setError(
         ".en__field--withOther",
         this.minAmountMessage || "Invalid Amount"
       );
-    } else if (this._amount.amount > this.maxAmount) {
+    } else if (amount > this.maxAmount) {
       this.logger.log("Amount is greater than max amount: " + this.maxAmount);
       ENGrid.setError(
         ".en__field--withOther",

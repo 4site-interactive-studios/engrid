@@ -19,7 +19,7 @@ export declare abstract class ENGrid {
     static getOption<K extends keyof Options>(key: K): Options[K] | null;
     static loadJS(url: string, onload?: (() => void) | null, head?: boolean): void;
     static formatNumber(number: string | number, decimals?: number, dec_point?: string, thousands_sep?: string): string;
-    static cleanAmount(amount: string): string | number;
+    static cleanAmount(amount: string): number;
     static disableSubmit(label?: string): boolean;
     static enableSubmit(): boolean;
     static formatDate(date: Date, format?: string): string;
