@@ -45,6 +45,7 @@ import {
   UrlToForm,
   RequiredIfVisible,
   TidyContact,
+  DataLayer,
 } from "./";
 
 export class App extends ENGrid {
@@ -293,6 +294,9 @@ export class App extends ENGrid {
 
     // Translate Fields
     if (this.options.TranslateFields) new TranslateFields();
+
+    // Data Layer Events
+    new DataLayer();
 
     this.setDataAttributes();
 
