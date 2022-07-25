@@ -21,7 +21,7 @@ export class ShowHideRadioCheckboxes {
     createDataAttributes() {
         this.elements.forEach((item) => {
             if (item instanceof HTMLInputElement) {
-                let inputValue = item.value.replace(/\s/g, "");
+                let inputValue = item.value.replace(/\W/g, "");
                 document
                     .querySelectorAll("." + this.classes + inputValue)
                     .forEach((el) => {
@@ -55,7 +55,7 @@ export class ShowHideRadioCheckboxes {
     }
     // Hide Single Element Div
     hide(item) {
-        let inputValue = item.value.replace(/\s/g, "");
+        let inputValue = item.value.replace(/\W/g, "");
         document.querySelectorAll("." + this.classes + inputValue).forEach((el) => {
             // Consider toggling "hide" class so these fields can be displayed when in a debug state
             if (el instanceof HTMLElement) {
@@ -67,7 +67,7 @@ export class ShowHideRadioCheckboxes {
     }
     // Show Single Element Div
     show(item) {
-        let inputValue = item.value.replace(/\s/g, "");
+        let inputValue = item.value.replace(/\W/g, "");
         document.querySelectorAll("." + this.classes + inputValue).forEach((el) => {
             // Consider toggling "hide" class so these fields can be displayed when in a debug state
             if (el instanceof HTMLElement) {
