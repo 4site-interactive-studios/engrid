@@ -12,15 +12,8 @@ export class DataLayer {
   private dataLayer = (window as any).dataLayer || [];
   private _form: EnForm = EnForm.getInstance();
   constructor() {
-    if (!this.shouldRun()) {
-      // If we're not on a Donation Page, get out
-      return;
-    }
     this.onLoad();
     this._form.onSubmit.subscribe(() => this.onSubmit());
-  }
-  private shouldRun() {
-    return ENGrid.getPageType() === "DONATION";
   }
   private onLoad() {
     if (ENGrid.getGiftProcess()) {

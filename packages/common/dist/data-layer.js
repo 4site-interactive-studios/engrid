@@ -5,15 +5,8 @@ export class DataLayer {
         this.logger = new EngridLogger("DataLayer", "#f1e5bc", "#009cdc", "📊");
         this.dataLayer = window.dataLayer || [];
         this._form = EnForm.getInstance();
-        if (!this.shouldRun()) {
-            // If we're not on a Donation Page, get out
-            return;
-        }
         this.onLoad();
         this._form.onSubmit.subscribe(() => this.onSubmit());
-    }
-    shouldRun() {
-        return ENGrid.getPageType() === "DONATION";
     }
     onLoad() {
         if (ENGrid.getGiftProcess()) {
