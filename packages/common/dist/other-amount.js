@@ -1,6 +1,6 @@
 // This class automatically select other radio input when an amount is entered into it.
 // It also sets the other amount inputmode to decimal + aria-label
-import { EngridLogger } from ".";
+import { EngridLogger, ENGrid } from ".";
 export class OtherAmount {
     constructor() {
         this.logger = new EngridLogger("OtherAmount", "green", "black", "💰");
@@ -23,6 +23,24 @@ export class OtherAmount {
                 }
             });
         });
+        const otherAmountField = document.querySelector("[name='transaction.donationAmt.other'");
+        if (otherAmountField) {
+            otherAmountField.addEventListener("change", (e) => {
+                const target = e.target;
+                const amount = target.value;
+                const cleanAmount = ENGrid.cleanAmount(amount);
+                if (amount !== cleanAmount.toString()) {
+                    this.logger.log(`Other Amount Field Changed: ${amount} => ${cleanAmount}`);
+                    if ("dataLayer" in window) {
+                        window.dataLayer.push({
+                            event: "otherAmountTransformed",
+                            otherAmountTransformation: `${amount} => ${cleanAmount}`,
+                        });
+                    }
+                    target.value = cleanAmount.toString();
+                }
+            });
+        }
     }
     setRadioInput() {
         const target = document.querySelector(".en__field--donationAmt .en__field__input--other");

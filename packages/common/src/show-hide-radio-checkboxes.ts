@@ -1,4 +1,4 @@
-import { EngridLogger } from ".";
+import { ENGrid, EngridLogger } from ".";
 
 export class ShowHideRadioCheckboxes {
   // All Affected Elements
@@ -12,6 +12,40 @@ export class ShowHideRadioCheckboxes {
     "👁"
   );
 
+  // Create default data attributes on all fields
+  createDataAttributes() {
+    this.elements.forEach((item) => {
+      if (item instanceof HTMLInputElement) {
+        let inputValue = item.value.replace(/\W/g, "");
+        document
+          .querySelectorAll("." + this.classes + inputValue)
+          .forEach((el) => {
+            // Consider toggling "hide" class so these fields can be displayed when in a debug state
+            if (el instanceof HTMLElement) {
+              const fields = el.querySelectorAll(
+                "input[type='text'], input[type='number'], input[type='email'], select, textarea"
+              );
+              if (fields.length > 0) {
+                fields.forEach((field) => {
+                  if (
+                    field instanceof HTMLInputElement ||
+                    field instanceof HTMLSelectElement
+                  ) {
+                    if (!field.hasAttribute("data-original-value")) {
+                      field.setAttribute("data-original-value", field.value);
+                    }
+                    if (!field.hasAttribute("data-value")) {
+                      field.setAttribute("data-value", field.value);
+                    }
+                  }
+                });
+              }
+            }
+          });
+      }
+    });
+  }
+
   // Hide All Divs
   hideAll() {
     this.elements.forEach((item, index) => {
@@ -20,10 +54,11 @@ export class ShowHideRadioCheckboxes {
   }
   // Hide Single Element Div
   hide(item: HTMLInputElement) {
-    let inputValue = item.value.replace(/\s/g, "");
+    let inputValue = item.value.replace(/\W/g, "");
     document.querySelectorAll("." + this.classes + inputValue).forEach((el) => {
       // Consider toggling "hide" class so these fields can be displayed when in a debug state
       if (el instanceof HTMLElement) {
+        this.toggleValue(el, "hide");
         el.style.display = "none";
         this.logger.log("Hiding", el);
       }
@@ -31,10 +66,11 @@ export class ShowHideRadioCheckboxes {
   }
   // Show Single Element Div
   show(item: HTMLInputElement) {
-    let inputValue = item.value.replace(/\s/g, "");
+    let inputValue = item.value.replace(/\W/g, "");
     document.querySelectorAll("." + this.classes + inputValue).forEach((el) => {
       // Consider toggling "hide" class so these fields can be displayed when in a debug state
       if (el instanceof HTMLElement) {
+        this.toggleValue(el, "show");
         el.style.display = "";
         this.logger.log("Showing", el);
       }
@@ -44,11 +80,40 @@ export class ShowHideRadioCheckboxes {
     }
   }
 
+  // Take the field values and add to a data attribute on the field
+  private toggleValue(item: HTMLElement, type: "show" | "hide") {
+    if (type == "hide" && !ENGrid.isVisible(item)) return;
+    this.logger.log(`toggleValue: ${type}`);
+    const fields = item.querySelectorAll(
+      "input[type='text'], input[type='number'], input[type='email'], select, textarea"
+    );
+    if (fields.length > 0) {
+      fields.forEach((field) => {
+        if (
+          field instanceof HTMLInputElement ||
+          field instanceof HTMLSelectElement
+        ) {
+          if (field.name) {
+            const fieldValue = ENGrid.getFieldValue(field.name);
+            const originalValue = field.getAttribute("data-original-value");
+            const dataValue = field.getAttribute("data-value") ?? "";
+            if (type === "hide") {
+              field.setAttribute("data-value", fieldValue);
+              ENGrid.setFieldValue(field.name, originalValue);
+            } else {
+              ENGrid.setFieldValue(field.name, dataValue);
+            }
+          }
+        }
+      });
+    }
+  }
+
   constructor(elements: string, classes: string) {
     this.elements = document.getElementsByName(elements);
     this.classes = classes;
+    this.createDataAttributes();
     this.hideAll();
-    this.logger.log("New:", this.classes, this.elements);
     for (let i = 0; i < this.elements.length; i++) {
       let element = <HTMLInputElement>this.elements[i];
       if (element.checked) {

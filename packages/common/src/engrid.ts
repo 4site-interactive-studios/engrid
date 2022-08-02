@@ -33,6 +33,10 @@ export abstract class ENGrid {
     }
     return null;
   }
+  static getField(name: string) {
+    // Get the field by name
+    return document.querySelector(`[name="${name}"]`);
+  }
   // Return the field value from its name. It works on any field type.
   // Multiple values (from checkboxes or multi-select) are returned as single string
   // Separated by ,
@@ -41,7 +45,12 @@ export abstract class ENGrid {
   }
 
   // Set a value to any field. If it's a dropdown, radio or checkbox, it selects the proper option matching the value
-  static setFieldValue(name: string, value: unknown) {
+  static setFieldValue(
+    name: string,
+    value: unknown,
+    parseENDependencies: boolean = true
+  ) {
+    if (value === ENGrid.getFieldValue(name)) return;
     (document.getElementsByName(name) as NodeListOf<HTMLFormElement>).forEach(
       (field) => {
         if ("type" in field) {
@@ -66,10 +75,11 @@ export abstract class ENGrid {
             default:
               field.value = value;
           }
+          field.setAttribute("engrid-value-changed", "");
         }
       }
     );
-    this.enParseDependencies();
+    if (parseENDependencies) this.enParseDependencies();
     return;
   }
 
@@ -93,10 +103,51 @@ export abstract class ENGrid {
       typeof window.EngagingNetworks?.require?._defined?.enDependencies
         ?.dependencies?.parseDependencies === "function"
     ) {
-      window.EngagingNetworks.require._defined.enDependencies.dependencies.parseDependencies(
-        window.EngagingNetworks.dependencies
-      );
-      if (ENGrid.getOption("Debug")) console.trace("EN Dependencies Triggered");
+      const customDependencies: object[] = [];
+      if ("dependencies" in window.EngagingNetworks) {
+        const amountContainer = document.querySelector(
+          ".en__field--donationAmt"
+        );
+        if (amountContainer) {
+          let amountID =
+            [...amountContainer.classList.values()]
+              .filter(
+                (v) =>
+                  v.startsWith("en__field--") && Number(v.substring(11)) > 0
+              )
+              .toString()
+              .match(/\d/g)
+              ?.join("") || "";
+          if (amountID) {
+            window.EngagingNetworks.dependencies.forEach(
+              (dependency: {
+                [key: string]: {
+                  [key: string]: string;
+                }[];
+              }) => {
+                if ("actions" in dependency && dependency.actions.length > 0) {
+                  let amountIdFound = false;
+                  dependency.actions.forEach((action) => {
+                    if ("target" in action && action.target === amountID) {
+                      amountIdFound = true;
+                    }
+                  });
+                  if (!amountIdFound) {
+                    customDependencies.push(dependency);
+                  }
+                }
+              }
+            );
+            if (customDependencies.length > 0) {
+              window.EngagingNetworks.require._defined.enDependencies.dependencies.parseDependencies(
+                customDependencies
+              );
+              if (ENGrid.getOption("Debug"))
+                console.log("EN Dependencies Triggered", customDependencies);
+            }
+          }
+        }
+      }
     }
   }
 
@@ -233,6 +284,46 @@ export abstract class ENGrid {
     }
     return s.join(dec);
   }
+  // Clean an Amount
+  static cleanAmount(amount: string): number {
+    // Split the number
+    const valueArray = amount.replace(/[^0-9,\.]/g, "").split(/[,.]+/);
+    const delimArray = amount.replace(/[^.,]/g, "").split("");
+    // Handle values with no decimal places and non-numeric values
+    if (valueArray.length === 1) {
+      return parseInt(valueArray[0]) || 0;
+    }
+    // Ignore invalid numbers
+    if (
+      valueArray
+        .map((x, index) => {
+          return index > 0 && index + 1 !== valueArray.length && x.length !== 3
+            ? true
+            : false;
+        })
+        .includes(true)
+    ) {
+      return 0;
+    }
+    // Multiple commas is a bad thing? So edgy.
+    if (delimArray.length > 1 && !delimArray.includes(".")) {
+      return 0;
+    }
+    // Handle invalid decimal and comma formatting
+    if ([...new Set(delimArray.slice(0, -1))].length > 1) {
+      return 0;
+    }
+    // If there are cents
+    if (valueArray[valueArray.length - 1].length <= 2) {
+      const cents = valueArray.pop() || "00";
+      return parseInt(cents) > 0
+        ? parseFloat(
+            Number(parseInt(valueArray.join("")) + "." + cents).toFixed(2)
+          )
+        : parseInt(valueArray.join(""));
+    }
+    return parseInt(valueArray.join(""));
+  }
   static disableSubmit(label: string = "") {
     const submit = document.querySelector(
       ".en__submit button"
@@ -290,8 +381,9 @@ export abstract class ENGrid {
     }
     return true;
   }
-  static setError(querySelector: string, errorMessage: string) {
-    const errorElement = document.querySelector(querySelector);
+  static setError(element: string | HTMLElement, errorMessage: string) {
+    const errorElement =
+      typeof element === "string" ? document.querySelector(element) : element;
     if (errorElement) {
       errorElement.classList.add("en__field--validationFailed");
       let errorMessageElement = errorElement.querySelector(".en__field__error");
@@ -305,8 +397,9 @@ export abstract class ENGrid {
       }
     }
   }
-  static removeError(querySelector: string) {
-    const errorElement = document.querySelector(querySelector);
+  static removeError(element: string | HTMLElement) {
+    const errorElement =
+      typeof element === "string" ? document.querySelector(element) : element;
     if (errorElement) {
       errorElement.classList.remove("en__field--validationFailed");
       const errorMessageElement =
@@ -315,5 +408,12 @@ export abstract class ENGrid {
         errorElement.removeChild(errorMessageElement);
       }
     }
+  }
+  static isVisible(element: HTMLElement): boolean {
+    return !!(
+      element.offsetWidth ||
+      element.offsetHeight ||
+      element.getClientRects().length
+    );
   }
 }

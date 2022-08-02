@@ -28,6 +28,10 @@ export class ENGrid {
         }
         return null;
     }
+    static getField(name) {
+        // Get the field by name
+        return document.querySelector(`[name="${name}"]`);
+    }
     // Return the field value from its name. It works on any field type.
     // Multiple values (from checkboxes or multi-select) are returned as single string
     // Separated by ,
@@ -35,7 +39,9 @@ export class ENGrid {
         return new FormData(this.enForm).getAll(name).join(",");
     }
     // Set a value to any field. If it's a dropdown, radio or checkbox, it selects the proper option matching the value
-    static setFieldValue(name, value) {
+    static setFieldValue(name, value, parseENDependencies = true) {
+        if (value === ENGrid.getFieldValue(name))
+            return;
         document.getElementsByName(name).forEach((field) => {
             if ("type" in field) {
                 switch (field.type) {
@@ -59,9 +65,11 @@ export class ENGrid {
                     default:
                         field.value = value;
                 }
+                field.setAttribute("engrid-value-changed", "");
             }
         });
-        this.enParseDependencies();
+        if (parseENDependencies)
+            this.enParseDependencies();
         return;
     }
     // Create a hidden input field
@@ -78,12 +86,39 @@ export class ENGrid {
     }
     // Trigger EN Dependencies
     static enParseDependencies() {
-        var _a, _b, _c, _d, _e;
+        var _a, _b, _c, _d, _e, _f;
         if (window.EngagingNetworks &&
             typeof ((_e = (_d = (_c = (_b = (_a = window.EngagingNetworks) === null || _a === void 0 ? void 0 : _a.require) === null || _b === void 0 ? void 0 : _b._defined) === null || _c === void 0 ? void 0 : _c.enDependencies) === null || _d === void 0 ? void 0 : _d.dependencies) === null || _e === void 0 ? void 0 : _e.parseDependencies) === "function") {
-            window.EngagingNetworks.require._defined.enDependencies.dependencies.parseDependencies(window.EngagingNetworks.dependencies);
-            if (ENGrid.getOption("Debug"))
-                console.trace("EN Dependencies Triggered");
+            const customDependencies = [];
+            if ("dependencies" in window.EngagingNetworks) {
+                const amountContainer = document.querySelector(".en__field--donationAmt");
+                if (amountContainer) {
+                    let amountID = ((_f = [...amountContainer.classList.values()]
+                        .filter((v) => v.startsWith("en__field--") && Number(v.substring(11)) > 0)
+                        .toString()
+                        .match(/\d/g)) === null || _f === void 0 ? void 0 : _f.join("")) || "";
+                    if (amountID) {
+                        window.EngagingNetworks.dependencies.forEach((dependency) => {
+                            if ("actions" in dependency && dependency.actions.length > 0) {
+                                let amountIdFound = false;
+                                dependency.actions.forEach((action) => {
+                                    if ("target" in action && action.target === amountID) {
+                                        amountIdFound = true;
+                                    }
+                                });
+                                if (!amountIdFound) {
+                                    customDependencies.push(dependency);
+                                }
+                            }
+                        });
+                        if (customDependencies.length > 0) {
+                            window.EngagingNetworks.require._defined.enDependencies.dependencies.parseDependencies(customDependencies);
+                            if (ENGrid.getOption("Debug"))
+                                console.log("EN Dependencies Triggered", customDependencies);
+                        }
+                    }
+                }
+            }
         }
     }
     // Return the status of the gift process (true if a donation has been made, otherwise false)
@@ -208,6 +243,42 @@ export class ENGrid {
         }
         return s.join(dec);
     }
+    // Clean an Amount
+    static cleanAmount(amount) {
+        // Split the number
+        const valueArray = amount.replace(/[^0-9,\.]/g, "").split(/[,.]+/);
+        const delimArray = amount.replace(/[^.,]/g, "").split("");
+        // Handle values with no decimal places and non-numeric values
+        if (valueArray.length === 1) {
+            return parseInt(valueArray[0]) || 0;
+        }
+        // Ignore invalid numbers
+        if (valueArray
+            .map((x, index) => {
+            return index > 0 && index + 1 !== valueArray.length && x.length !== 3
+                ? true
+                : false;
+        })
+            .includes(true)) {
+            return 0;
+        }
+        // Multiple commas is a bad thing? So edgy.
+        if (delimArray.length > 1 && !delimArray.includes(".")) {
+            return 0;
+        }
+        // Handle invalid decimal and comma formatting
+        if ([...new Set(delimArray.slice(0, -1))].length > 1) {
+            return 0;
+        }
+        // If there are cents
+        if (valueArray[valueArray.length - 1].length <= 2) {
+            const cents = valueArray.pop() || "00";
+            return parseInt(cents) > 0
+                ? parseFloat(Number(parseInt(valueArray.join("")) + "." + cents).toFixed(2))
+                : parseInt(valueArray.join(""));
+        }
+        return parseInt(valueArray.join(""));
+    }
     static disableSubmit(label = "") {
         const submit = document.querySelector(".en__submit button");
         submit.dataset.originalText = submit.innerText;
@@ -260,8 +331,8 @@ export class ENGrid {
         }
         return true;
     }
-    static setError(querySelector, errorMessage) {
-        const errorElement = document.querySelector(querySelector);
+    static setError(element, errorMessage) {
+        const errorElement = typeof element === "string" ? document.querySelector(element) : element;
         if (errorElement) {
             errorElement.classList.add("en__field--validationFailed");
             let errorMessageElement = errorElement.querySelector(".en__field__error");
@@ -276,8 +347,8 @@ export class ENGrid {
             }
         }
     }
-    static removeError(querySelector) {
-        const errorElement = document.querySelector(querySelector);
+    static removeError(element) {
+        const errorElement = typeof element === "string" ? document.querySelector(element) : element;
         if (errorElement) {
             errorElement.classList.remove("en__field--validationFailed");
             const errorMessageElement = errorElement.querySelector(".en__field__error");
@@ -285,5 +356,10 @@ export class ENGrid {
                 errorElement.removeChild(errorMessageElement);
             }
         }
+    }
+    static isVisible(element) {
+        return !!(element.offsetWidth ||
+            element.offsetHeight ||
+            element.getClientRects().length);
     }
 }

@@ -34,10 +34,14 @@ export * from "./other-amount";
 export * from "./logger";
 export * from "./min-max-amount";
 export * from "./ticker";
+export * from "./data-layer";
 export * from "./data-replace";
 export * from "./data-hide";
 export * from "./add-name-to-message";
 export * from "./expand-region-name";
+export * from "./url-to-form";
+export * from "./required-if-visible";
+export * from "./tidycontact";
 // Events
 export * from "./events";
 // Version

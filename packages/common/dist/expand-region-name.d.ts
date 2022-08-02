@@ -1,6 +1,6 @@
-import { EnForm } from "./events";
 export declare class ExpandRegionName {
-    _form: EnForm;
+    private _form;
+    private logger;
     constructor();
     private shouldRun;
     private expandRegion;

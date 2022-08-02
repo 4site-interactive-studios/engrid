@@ -3,12 +3,10 @@ export class DataReplace {
     constructor() {
         this.logger = new EngridLogger("DataReplace", "#333333", "#00f3ff", "⤵️");
         this.enElements = new Array();
-        this.logger.log("Constructor");
         this.searchElements();
-        if (!this.shouldRun()) {
-            this.logger.error("No Elements Found");
+        if (!this.shouldRun())
             return;
-        }
+        this.logger.log("Elements Found:", this.enElements);
         this.replaceAll();
     }
     searchElements() {
@@ -27,7 +25,6 @@ export class DataReplace {
         }
     }
     shouldRun() {
-        this.logger.log("Elements Found:", this.enElements);
         return this.enElements.length > 0;
     }
     replaceAll() {
@@ -38,6 +35,7 @@ export class DataReplace {
                 this.replaceItem(item, match);
             }
         });
+        ENGrid.setBodyData("merge-tags-processed", "");
     }
     replaceItem(where, [item, key, defaultValue]) {
         var _a;

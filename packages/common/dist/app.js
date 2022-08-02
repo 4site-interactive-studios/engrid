@@ -1,5 +1,5 @@
 import { DonationAmount, DonationFrequency, EnForm, ProcessingFees, } from "./events";
-import { AmountLabel, Loader, ProgressBar, UpsellLightbox, ENGrid, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, CapitalizeFields, CreditCardNumbers, Ecard, ClickToExpand, InputPlaceholders, InputClasses, LiveVariables, iFrame, ShowHideRadioCheckboxes, SimpleCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce, AutoYear, Autocomplete, RememberMe, TranslateFields, ShowIfAmount, EngridLogger, OtherAmount, MinMaxAmount, Ticker, DataReplace, DataHide, AddNameToMessage, ExpandRegionName, AppVersion, } from "./";
+import { AmountLabel, Loader, ProgressBar, UpsellLightbox, ENGrid, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, CapitalizeFields, CreditCardNumbers, Ecard, ClickToExpand, InputPlaceholders, InputClasses, LiveVariables, iFrame, ShowHideRadioCheckboxes, SimpleCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce, AutoYear, Autocomplete, RememberMe, TranslateFields, ShowIfAmount, EngridLogger, OtherAmount, MinMaxAmount, Ticker, DataReplace, DataHide, AddNameToMessage, ExpandRegionName, AppVersion, UrlToForm, RequiredIfVisible, TidyContact, DataLayer, } from "./";
 export class App extends ENGrid {
     constructor(options) {
         super();
@@ -15,6 +15,11 @@ export class App extends ENGrid {
         window.EngridOptions = this.options;
         if (loader.reload())
             return;
+        // Turn Debug ON if you use local assets
+        if (ENGrid.getBodyData("assets") === "local" &&
+            ENGrid.getUrlParameter("debug") !== "false") {
+            window.EngridOptions.Debug = true;
+        }
         // Document Load
         if (document.readyState !== "loading") {
             this.run();
@@ -96,16 +101,26 @@ export class App extends ENGrid {
         this._form.onError.subscribe((s) => this.logger.danger("Error: " + s));
         window.enOnSubmit = () => {
             this._form.submit = true;
+            this._form.submitPromise = false;
             this._form.dispatchSubmit();
-            return this._form.submit;
+            if (!this._form.submit)
+                return false;
+            if (this._form.submitPromise)
+                return this._form.submitPromise;
+            return true;
         };
         window.enOnError = () => {
             this._form.dispatchError();
         };
         window.enOnValidate = () => {
             this._form.validate = true;
+            this._form.validatePromise = false;
             this._form.dispatchValidate();
-            return this._form.validate;
+            if (!this._form.validate)
+                return false;
+            if (this._form.validatePromise)
+                return this._form.validatePromise;
+            return true;
         };
         // iFrame Logic
         new iFrame();
@@ -124,9 +139,6 @@ export class App extends ENGrid {
         // On the end of the script, after all subscribers defined, let's load the current value
         this._amount.load();
         this._frequency.load();
-        // Translate Fields
-        if (this.options.TranslateFields)
-            new TranslateFields();
         // Simple Country Select
         new SimpleCountrySelect();
         // Add Image Attribution
@@ -170,6 +182,18 @@ export class App extends ENGrid {
         new ExpandRegionName();
         // Page Background
         new PageBackground();
+        // Url Params to Form Fields
+        new UrlToForm();
+        // Required if Visible Fields
+        new RequiredIfVisible();
+        // TidyContact
+        if (this.options.TidyContact)
+            new TidyContact();
+        // Translate Fields
+        if (this.options.TranslateFields)
+            new TranslateFields();
+        // Data Layer Events
+        new DataLayer();
         this.setDataAttributes();
         ENGrid.setBodyData("data-engrid-scripts-js-loading", "finished");
         window.EngridVersion = AppVersion;

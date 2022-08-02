@@ -1,28 +1,52 @@
 import * as cookie from "./cookie";
 import { EnForm } from "./events";
-const tippy = require('tippy.js').default;
+const tippy = require("tippy.js").default;
 export class RememberMe {
     constructor(options) {
         this._form = EnForm.getInstance();
         this.iframe = null;
-        this.remoteUrl = (options.remoteUrl) ? options.remoteUrl : null;
-        this.cookieName = (options.cookieName) ? options.cookieName : 'engrid-autofill';
-        this.cookieExpirationDays = (options.cookieExpirationDays) ? options.cookieExpirationDays : 365;
-        this.rememberMeOptIn = (options.checked) ? options.checked : false;
-        this.fieldNames = (options.fieldNames) ? options.fieldNames : [];
-        this.fieldDonationAmountRadioName = (options.fieldDonationAmountRadioName) ? options.fieldDonationAmountRadioName : 'transaction.donationAmt';
-        this.fieldDonationAmountOtherName = (options.fieldDonationAmountOtherName) ? options.fieldDonationAmountOtherName : 'transaction.donationAmt.other';
-        this.fieldDonationRecurrPayRadioName = (options.fieldDonationRecurrPayRadioName) ? options.fieldDonationRecurrPayRadioName : 'transaction.recurrpay';
-        this.fieldDonationAmountOtherCheckboxID = (options.fieldDonationAmountOtherCheckboxID) ? options.fieldDonationAmountOtherCheckboxID : '#en__field_transaction_donationAmt4';
-        this.fieldOptInSelectorTarget = (options.fieldOptInSelectorTarget) ? options.fieldOptInSelectorTarget : '.en__field--emailAddress.en__field';
-        this.fieldOptInSelectorTargetLocation = (options.fieldOptInSelectorTargetLocation) ? options.fieldOptInSelectorTargetLocation : 'after';
-        this.fieldClearSelectorTarget = (options.fieldClearSelectorTarget) ? options.fieldClearSelectorTarget : 'label[for="en__field_supporter_firstName"]';
-        this.fieldClearSelectorTargetLocation = (options.fieldClearSelectorTargetLocation) ? options.fieldClearSelectorTargetLocation : 'before';
+        this.remoteUrl = options.remoteUrl ? options.remoteUrl : null;
+        this.cookieName = options.cookieName
+            ? options.cookieName
+            : "engrid-autofill";
+        this.cookieExpirationDays = options.cookieExpirationDays
+            ? options.cookieExpirationDays
+            : 365;
+        this.rememberMeOptIn = options.checked ? options.checked : false;
+        this.fieldNames = options.fieldNames ? options.fieldNames : [];
+        this.fieldDonationAmountRadioName = options.fieldDonationAmountRadioName
+            ? options.fieldDonationAmountRadioName
+            : "transaction.donationAmt";
+        this.fieldDonationAmountOtherName = options.fieldDonationAmountOtherName
+            ? options.fieldDonationAmountOtherName
+            : "transaction.donationAmt.other";
+        this.fieldDonationRecurrPayRadioName =
+            options.fieldDonationRecurrPayRadioName
+                ? options.fieldDonationRecurrPayRadioName
+                : "transaction.recurrpay";
+        this.fieldDonationAmountOtherCheckboxID =
+            options.fieldDonationAmountOtherCheckboxID
+                ? options.fieldDonationAmountOtherCheckboxID
+                : "#en__field_transaction_donationAmt4";
+        this.fieldOptInSelectorTarget = options.fieldOptInSelectorTarget
+            ? options.fieldOptInSelectorTarget
+            : ".en__field--emailAddress.en__field";
+        this.fieldOptInSelectorTargetLocation =
+            options.fieldOptInSelectorTargetLocation
+                ? options.fieldOptInSelectorTargetLocation
+                : "after";
+        this.fieldClearSelectorTarget = options.fieldClearSelectorTarget
+            ? options.fieldClearSelectorTarget
+            : 'label[for="en__field_supporter_firstName"]';
+        this.fieldClearSelectorTargetLocation =
+            options.fieldClearSelectorTargetLocation
+                ? options.fieldClearSelectorTargetLocation
+                : "before";
         this.fieldData = {};
         if (this.useRemote()) {
             this.createIframe(() => {
                 if (this.iframe && this.iframe.contentWindow) {
-                    this.iframe.contentWindow.postMessage({ key: this.cookieName, operation: 'read' }, '*');
+                    this.iframe.contentWindow.postMessage({ key: this.cookieName, operation: "read" }, "*");
                     this._form.onSubmit.subscribe(() => {
                         if (this.rememberMeOptIn) {
                             this.readFields();
@@ -31,7 +55,10 @@ export class RememberMe {
                     });
                 }
             }, (event) => {
-                if (event.data && event.data.key && event.data.value !== undefined && event.data.key === this.cookieName) {
+                if (event.data &&
+                    event.data.key &&
+                    event.data.value !== undefined &&
+                    event.data.key === this.cookieName) {
                     this.updateFieldData(event.data.value);
                     this.writeFields();
                     let hasFieldData = Object.keys(this.fieldData).length > 0;
@@ -75,33 +102,35 @@ export class RememberMe {
         }
     }
     insertClearRememberMeLink() {
-        if (!document.getElementById('clear-autofill-data')) {
-            const clearAutofillLabel = 'clear autofill';
-            const clearRememberMeField = document.createElement('a');
-            clearRememberMeField.setAttribute('id', 'clear-autofill-data');
-            clearRememberMeField.classList.add('label-tooltip');
-            clearRememberMeField.setAttribute('style', 'cursor: pointer;');
+        if (!document.getElementById("clear-autofill-data")) {
+            const clearAutofillLabel = "clear autofill";
+            const clearRememberMeField = document.createElement("a");
+            clearRememberMeField.setAttribute("id", "clear-autofill-data");
+            clearRememberMeField.classList.add("label-tooltip");
+            clearRememberMeField.setAttribute("style", "cursor: pointer;");
             clearRememberMeField.innerHTML = `(${clearAutofillLabel})`;
             const targetField = this.getElementByFirstSelector(this.fieldClearSelectorTarget);
             if (targetField) {
-                if (this.fieldClearSelectorTargetLocation === 'after') {
+                if (this.fieldClearSelectorTargetLocation === "after") {
                     targetField.appendChild(clearRememberMeField);
                 }
                 else {
                     targetField.prepend(clearRememberMeField);
                 }
-                clearRememberMeField.addEventListener('click', (e) => {
+                clearRememberMeField.addEventListener("click", (e) => {
                     e.preventDefault();
-                    this.clearFields(['supporter.country' /*, 'supporter.emailAddress'*/]);
+                    this.clearFields([
+                        "supporter.country" /*, 'supporter.emailAddress'*/,
+                    ]);
                     if (this.useRemote()) {
                         this.clearCookieOnRemote();
                     }
                     else {
                         this.clearCookie();
                     }
-                    let clearAutofillLink = document.getElementById('clear-autofill-data');
+                    let clearAutofillLink = document.getElementById("clear-autofill-data");
                     if (clearAutofillLink) {
-                        clearAutofillLink.style.display = 'none';
+                        clearAutofillLink.style.display = "none";
                     }
                     this.rememberMeOptIn = false;
                 });
@@ -111,7 +140,7 @@ export class RememberMe {
     getElementByFirstSelector(selectorsString) {
         // iterate through the selectors until we find one that exists
         let targetField = null;
-        const selectorTargets = selectorsString.split(',');
+        const selectorTargets = selectorsString.split(",");
         for (let i = 0; i < selectorTargets.length; i++) {
             targetField = document.querySelector(selectorTargets[i]);
             if (targetField) {
@@ -121,19 +150,19 @@ export class RememberMe {
         return targetField;
     }
     insertRememberMeOptin() {
-        let rememberMeOptInField = document.getElementById('remember-me-opt-in');
+        let rememberMeOptInField = document.getElementById("remember-me-opt-in");
         if (!rememberMeOptInField) {
-            const rememberMeLabel = 'Remember Me';
+            const rememberMeLabel = "Remember Me";
             const rememberMeInfo = `
 				Check “Remember me” to complete forms on this device faster. 
 				While your financial information won’t be stored, you should only check this box from a personal device. 
 				Click “Clear autofill” to remove the information from your device at any time.
 			`;
-            const rememberMeOptInFieldChecked = (this.rememberMeOptIn) ? 'checked' : '';
-            const rememberMeOptInField = document.createElement('div');
-            rememberMeOptInField.classList.add('en__field', 'en__field--checkbox');
-            rememberMeOptInField.setAttribute('id', 'remember-me-opt-in');
-            rememberMeOptInField.setAttribute('style', 'overflow-x: hidden;');
+            const rememberMeOptInFieldChecked = this.rememberMeOptIn ? "checked" : "";
+            const rememberMeOptInField = document.createElement("div");
+            rememberMeOptInField.classList.add("en__field", "en__field--checkbox");
+            rememberMeOptInField.setAttribute("id", "remember-me-opt-in");
+            rememberMeOptInField.setAttribute("style", "overflow-x: hidden;");
             rememberMeOptInField.innerHTML = `
 				<div class="en__field__item rememberme-wrapper">
 					<input id="remember-me-checkbox" type="checkbox" class="en__field__input en__field__input--checkbox" ${rememberMeOptInFieldChecked} />
@@ -149,10 +178,12 @@ export class RememberMe {
 			`;
             const targetField = this.getElementByFirstSelector(this.fieldOptInSelectorTarget);
             if (targetField && targetField.parentNode) {
-                targetField.parentNode.insertBefore(rememberMeOptInField, (this.fieldOptInSelectorTargetLocation == 'before') ? targetField : targetField.nextSibling);
-                const rememberMeCheckbox = document.getElementById('remember-me-checkbox');
+                targetField.parentNode.insertBefore(rememberMeOptInField, this.fieldOptInSelectorTargetLocation == "before"
+                    ? targetField
+                    : targetField.nextSibling);
+                const rememberMeCheckbox = document.getElementById("remember-me-checkbox");
                 if (rememberMeCheckbox) {
-                    rememberMeCheckbox.addEventListener('change', () => {
+                    rememberMeCheckbox.addEventListener("change", () => {
                         if (rememberMeCheckbox.checked) {
                             this.rememberMeOptIn = true;
                         }
@@ -161,7 +192,7 @@ export class RememberMe {
                         }
                     });
                 }
-                tippy('#rememberme-learn-more-toggle', { content: rememberMeInfo });
+                tippy("#rememberme-learn-more-toggle", { content: rememberMeInfo });
             }
         }
         else if (this.rememberMeOptIn) {
@@ -169,18 +200,22 @@ export class RememberMe {
         }
     }
     useRemote() {
-        return (this.remoteUrl && window.postMessage && window.JSON && window.localStorage);
+        return (!!this.remoteUrl &&
+            typeof window.postMessage === "function" &&
+            window.JSON &&
+            window.localStorage);
     }
     createIframe(iframeLoaded, messageReceived) {
         if (this.remoteUrl) {
-            let iframe = document.createElement('iframe');
-            iframe.style.cssText = 'position:absolute;width:1px;height:1px;left:-9999px;';
+            let iframe = document.createElement("iframe");
+            iframe.style.cssText =
+                "position:absolute;width:1px;height:1px;left:-9999px;";
             iframe.src = this.remoteUrl;
-            iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts');
+            iframe.setAttribute("sandbox", "allow-same-origin allow-scripts");
             this.iframe = iframe;
             document.body.appendChild(this.iframe);
-            this.iframe.addEventListener('load', () => iframeLoaded(), false);
-            window.addEventListener('message', (event) => messageReceived(event), false);
+            this.iframe.addEventListener("load", () => iframeLoaded(), false);
+            window.addEventListener("message", (event) => messageReceived(event), false);
         }
     }
     clearCookie() {
@@ -193,28 +228,35 @@ export class RememberMe {
     }
     saveCookieToRemote() {
         if (this.iframe && this.iframe.contentWindow) {
-            this.iframe.contentWindow.postMessage({ key: this.cookieName, value: JSON.stringify(this.fieldData), operation: 'write', expires: this.cookieExpirationDays }, '*');
+            this.iframe.contentWindow.postMessage({
+                key: this.cookieName,
+                value: JSON.stringify(this.fieldData),
+                operation: "write",
+                expires: this.cookieExpirationDays,
+            }, "*");
         }
     }
     readCookie() {
-        this.updateFieldData(cookie.get(this.cookieName) || '');
+        this.updateFieldData(cookie.get(this.cookieName) || "");
     }
     saveCookie() {
-        cookie.set(this.cookieName, JSON.stringify(this.fieldData), { expires: this.cookieExpirationDays });
+        cookie.set(this.cookieName, JSON.stringify(this.fieldData), {
+            expires: this.cookieExpirationDays,
+        });
     }
     readFields() {
         for (let i = 0; i < this.fieldNames.length; i++) {
             let fieldSelector = "[name='" + this.fieldNames[i] + "']";
             let field = document.querySelector(fieldSelector);
             if (field) {
-                if (field.tagName === 'INPUT') {
-                    let type = field.getAttribute('type');
-                    if (type === 'radio' || type === 'checkbox') {
+                if (field.tagName === "INPUT") {
+                    let type = field.getAttribute("type");
+                    if (type === "radio" || type === "checkbox") {
                         field = document.querySelector(fieldSelector + ":checked");
                     }
                     this.fieldData[this.fieldNames[i]] = encodeURIComponent(field.value);
                 }
-                else if (field.tagName === 'SELECT') {
+                else if (field.tagName === "SELECT") {
                     this.fieldData[this.fieldNames[i]] = encodeURIComponent(field.value);
                 }
             }
@@ -222,7 +264,7 @@ export class RememberMe {
     }
     setFieldValue(field, value, overwrite = false) {
         if (field && value !== undefined) {
-            if (field.value && overwrite || !field.value) {
+            if ((field.value && overwrite) || !field.value) {
                 field.value = value;
             }
         }
@@ -232,11 +274,11 @@ export class RememberMe {
             if (skipFields.includes(key)) {
                 delete this.fieldData[key];
             }
-            else if (this.fieldData[key] === '') {
+            else if (this.fieldData[key] === "") {
                 delete this.fieldData[key];
             }
             else {
-                this.fieldData[key] = '';
+                this.fieldData[key] = "";
             }
         }
         this.writeFields(true);
@@ -246,14 +288,17 @@ export class RememberMe {
             let fieldSelector = "[name='" + this.fieldNames[i] + "']";
             let field = document.querySelector(fieldSelector);
             if (field) {
-                if (field.tagName === 'INPUT') {
+                if (field.tagName === "INPUT") {
                     if (this.fieldNames[i] === this.fieldDonationRecurrPayRadioName) {
-                        if (this.fieldData[this.fieldNames[i]] === 'Y') {
+                        if (this.fieldData[this.fieldNames[i]] === "Y") {
                             field.click();
                         }
                     }
                     else if (this.fieldDonationAmountRadioName === this.fieldNames[i]) {
-                        field = document.querySelector(fieldSelector + "[value='" + this.fieldData[this.fieldNames[i]] + "']");
+                        field = document.querySelector(fieldSelector +
+                            "[value='" +
+                            this.fieldData[this.fieldNames[i]] +
+                            "']");
                         if (field) {
                             field.click();
                         }
@@ -266,7 +311,7 @@ export class RememberMe {
                         this.setFieldValue(field, this.fieldData[this.fieldNames[i]], overwrite);
                     }
                 }
-                else if (field.tagName === 'SELECT') {
+                else if (field.tagName === "SELECT") {
                     this.setFieldValue(field, this.fieldData[this.fieldNames[i]], true);
                 }
             }
