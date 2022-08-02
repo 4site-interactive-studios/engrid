@@ -14,7 +14,7 @@
     const checkForTwoColumnLayout = document.querySelector('body[data-engrid-layout="centercenter2col"]');
     const checkForBodyTopContent = document.querySelector('.body-top > *');
     const checkForBodyMainContent = document.querySelector('.body-main > *');
-    if((checkForTwoColumnLayout && !checkForBodyTopContent) || (checkForTwoColumnLayout && !checkForBodyMainContent)){
+    if(checkForTwoColumnLayout && (!checkForBodyTopContent || !checkForBodyMainContent)){
         document.querySelector("body").setAttribute("data-engrid-layout", "centercenter1col");
     }
 </script>    
