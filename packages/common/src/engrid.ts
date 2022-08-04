@@ -229,6 +229,12 @@ export abstract class ENGrid {
     const body = <HTMLBodyElement>document.querySelector("body");
     return body.getAttribute(`data-engrid-${dataName}`);
   }
+  // Check if body has engrid data attributes
+  static hasBodyData(dataName: string) {
+    const body = <HTMLBodyElement>document.querySelector("body");
+    return body.hasAttribute(`data-engrid-${dataName}`);
+  }
+
   // Return the option value
   static getOption<K extends keyof Options>(key: K): Options[K] | null {
     return window.EngridOptions[key] || null;

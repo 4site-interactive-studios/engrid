@@ -16,6 +16,7 @@ export declare abstract class ENGrid {
     static getPageType(): "DONATION" | "ECARD" | "SURVEY" | "EMAILTOTARGET" | "ADVOCACY" | "SUBSCRIBEFORM" | "SUPPORTERHUB" | "UNSUBSCRIBE" | "UNKNOWN";
     static setBodyData(dataName: string, value: string | boolean): void;
     static getBodyData(dataName: string): string | null;
+    static hasBodyData(dataName: string): boolean;
     static getOption<K extends keyof Options>(key: K): Options[K] | null;
     static loadJS(url: string, onload?: (() => void) | null, head?: boolean): void;
     static formatNumber(number: string | number, decimals?: number, dec_point?: string, thousands_sep?: string): string;
