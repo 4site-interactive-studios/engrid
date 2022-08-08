@@ -47,6 +47,7 @@ import {
   RequiredIfVisible,
   TidyContact,
   DataLayer,
+  GiveBySelect,
 } from "./";
 
 export class App extends ENGrid {
@@ -291,6 +292,9 @@ export class App extends ENGrid {
 
     // Data Layer Events
     new DataLayer();
+
+    // Give By Select
+    new GiveBySelect();
 
     this.setDataAttributes();
 
