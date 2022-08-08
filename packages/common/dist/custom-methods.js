@@ -499,6 +499,8 @@ export const watchGiveBySelectField = () => {
             }
             enFieldPaymentType.value = "applepay";
         }
+        const event = new Event("change");
+        enFieldPaymentType.dispatchEvent(event);
     };
     // Check Giving Frequency on page load
     if (enFieldGiveBySelect) {
