@@ -6,9 +6,9 @@ export class GiveBySelect {
         this.transactionGiveBySelect = document.getElementsByName("transaction.giveBySelect");
         if (!this.enFieldGiveBySelect || !this.transactionGiveBySelect)
             return;
-        Array.from(this.transactionGiveBySelect).forEach((e) => {
-            let element = e;
-            element.addEventListener("change", () => {
+        this.transactionGiveBySelect.forEach((giveBySelect) => {
+            giveBySelect.addEventListener("change", () => {
+                this.logger.log("Changed to " + giveBySelect.value);
                 this.watchGiveBySelect();
             });
         });
