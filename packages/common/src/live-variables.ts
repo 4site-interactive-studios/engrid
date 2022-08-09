@@ -53,7 +53,7 @@ export class LiveVariables {
   }
 
   private getAmountTxt(amount: number = 0) {
-    const symbol = this.options.CurrencySymbol ?? "$";
+    const symbol = ENGrid.getCurrencySymbol() ?? "$";
     const dec_separator = this.options.DecimalSeparator ?? ".";
     const thousands_separator = this.options.ThousandsSeparator ?? "";
     const dec_places = amount % 1 == 0 ? 0 : this.options.DecimalPlaces ?? 2;
@@ -67,7 +67,7 @@ export class LiveVariables {
   }
 
   private getUpsellAmountTxt(amount: number = 0) {
-    const symbol = this.options.CurrencySymbol ?? "$";
+    const symbol = ENGrid.getCurrencySymbol() ?? "$";
     const dec_separator = this.options.DecimalSeparator ?? ".";
     const thousands_separator = this.options.ThousandsSeparator ?? "";
     const dec_places = amount % 1 == 0 ? 0 : this.options.DecimalPlaces ?? 2;

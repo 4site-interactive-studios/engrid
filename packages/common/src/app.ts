@@ -46,6 +46,7 @@ import {
   RequiredIfVisible,
   TidyContact,
   DataLayer,
+  LiveCurrency,
 } from "./";
 
 export class App extends ENGrid {
@@ -208,6 +209,9 @@ export class App extends ENGrid {
       if (this._form.validatePromise) return this._form.validatePromise;
       return true;
     };
+
+    // Live Currency
+    new LiveCurrency();
 
     // iFrame Logic
     new iFrame();
@@ -458,6 +462,15 @@ export class App extends ENGrid {
       countrySelect.addEventListener("change", () => {
         App.setBodyData("country", countrySelect.value);
       });
+    }
+    const otherAmountDiv = document.querySelector(
+      ".en__field--donationAmt .en__field__item--other"
+    );
+    if (otherAmountDiv) {
+      otherAmountDiv.setAttribute(
+        "data-currency-symbol",
+        App.getCurrencySymbol()
+      );
     }
   }
 }

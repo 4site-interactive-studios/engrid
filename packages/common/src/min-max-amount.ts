@@ -1,4 +1,4 @@
-// This script checks if the donations amounts are numbers and if they are, appends the correct currency symbol
+// This script adds an erros message to the page if the amount is greater than the max amount or less than the min amount.
 import { DonationAmount, EnForm, ENGrid, EngridLogger } from "./";
 export class MinMaxAmount {
   private _form: EnForm = EnForm.getInstance();

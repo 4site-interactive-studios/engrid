@@ -416,4 +416,30 @@ export abstract class ENGrid {
       element.getClientRects().length
     );
   }
+  static getCurrencySymbol(): string {
+    const currencyField = ENGrid.getField(
+      "transaction.paycurrency"
+    ) as HTMLSelectElement;
+    if (currencyField) {
+      const currencyArray = {
+        USD: "$",
+        EUR: "€",
+        GBP: "£",
+        AUD: "$",
+        CAD: "$",
+        JPY: "¥",
+      };
+      return (currencyArray as any)[currencyField.value] || "$";
+    }
+    return ENGrid.getOption("CurrencySymbol") || "$";
+  }
+  static getCurrencyCode(): string {
+    const currencyField = ENGrid.getField(
+      "transaction.paycurrency"
+    ) as HTMLSelectElement;
+    if (currencyField) {
+      return currencyField.value || "USD";
+    }
+    return ENGrid.getOption("CurrencyCode") || "USD";
+  }
 }

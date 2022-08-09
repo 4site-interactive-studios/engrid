@@ -342,7 +342,7 @@ export class UpsellLightbox {
     }
   }
   private getAmountTxt(amount: number = 0) {
-    const symbol = ENGrid.getOption("CurrencySymbol") ?? "$";
+    const symbol = ENGrid.getCurrencySymbol() ?? "$";
     const dec_separator = ENGrid.getOption("DecimalSeparator") ?? ".";
     const thousands_separator = ENGrid.getOption("ThousandsSeparator") ?? "";
     const dec_places =
