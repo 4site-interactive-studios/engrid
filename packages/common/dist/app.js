@@ -103,8 +103,8 @@ export class App extends ENGrid {
                 this._amount.load();
             }, 150);
         });
-        this._form.onSubmit.subscribe((s) => this.logger.success("Submit: " + s));
-        this._form.onError.subscribe((s) => this.logger.danger("Error: " + s));
+        this._form.onSubmit.subscribe((s) => this.logger.success("Submit: " + JSON.stringify(s)));
+        this._form.onError.subscribe((s) => this.logger.danger("Error: " + JSON.stringify(s)));
         window.enOnSubmit = () => {
             this._form.submit = true;
             this._form.submitPromise = false;
