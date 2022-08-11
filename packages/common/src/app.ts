@@ -48,6 +48,7 @@ import {
   TidyContact,
   DataLayer,
   GiveBySelect,
+  LiveCurrency,
 } from "./";
 
 export class App extends ENGrid {
@@ -181,8 +182,12 @@ export class App extends ENGrid {
         this._amount.load();
       }, 150);
     });
-    this._form.onSubmit.subscribe((s) => this.logger.success("Submit: " + s));
-    this._form.onError.subscribe((s) => this.logger.danger("Error: " + s));
+    this._form.onSubmit.subscribe((s) =>
+      this.logger.success("Submit: " + JSON.stringify(s))
+    );
+    this._form.onError.subscribe((s) =>
+      this.logger.danger("Error: " + JSON.stringify(s))
+    );
 
     window.enOnSubmit = () => {
       this._form.submit = true;
@@ -203,6 +208,9 @@ export class App extends ENGrid {
       if (this._form.validatePromise) return this._form.validatePromise;
       return true;
     };
+
+    // Live Currency
+    new LiveCurrency();
 
     // iFrame Logic
     new iFrame();
@@ -456,6 +464,15 @@ export class App extends ENGrid {
       countrySelect.addEventListener("change", () => {
         App.setBodyData("country", countrySelect.value);
       });
+    }
+    const otherAmountDiv = document.querySelector(
+      ".en__field--donationAmt .en__field__item--other"
+    );
+    if (otherAmountDiv) {
+      otherAmountDiv.setAttribute(
+        "data-currency-symbol",
+        App.getCurrencySymbol()
+      );
     }
   }
 }

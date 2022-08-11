@@ -5,6 +5,7 @@ export const OptionsDefaults = {
     CapitalizeFields: false,
     ClickToExpand: true,
     CurrencySymbol: "$",
+    CurrencyCode: "USD",
     AddCurrencySymbol: true,
     ThousandsSeparator: "",
     DecimalSeparator: ".",

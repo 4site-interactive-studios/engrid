@@ -33,4 +33,6 @@ export declare abstract class ENGrid {
     static setError(element: string | HTMLElement, errorMessage: string): void;
     static removeError(element: string | HTMLElement): void;
     static isVisible(element: HTMLElement): boolean;
+    static getCurrencySymbol(): string;
+    static getCurrencyCode(): string;
 }

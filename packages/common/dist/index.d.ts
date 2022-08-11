@@ -43,5 +43,6 @@ export * from "./url-to-form";
 export * from "./required-if-visible";
 export * from "./tidycontact";
 export * from "./give-by-select";
+export * from "./live-currency";
 export * from "./events";
 export * from "./version";

@@ -9,6 +9,16 @@
 <meta property="description"
     content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec iaculis laoreet sapien ac malesuada. Praesent sit amet dapibus ex, fringilla lacinia turpis. Vestibulum ac fringilla mauris.">
 
+<!-- If using a two column layout without content in the body-top OR body-main section, automatically change to a one column layout -->
+<script>
+    const checkForTwoColumnLayout = document.querySelector('body[data-engrid-layout="centercenter2col"]');
+    const checkForBodyTopContent = document.querySelector('.body-top > *');
+    const checkForBodyMainContent = document.querySelector('.body-main > *');
+    if(checkForTwoColumnLayout && (!checkForBodyTopContent || !checkForBodyMainContent)){
+        document.querySelector("body").setAttribute("data-engrid-layout", "centercenter1col");
+    }
+</script>    
+
 <!-- Load ENGrid's Javascript Asynchronous -->
 <script async src="https://c27fdabe952dfc357fe25ebf5c8897ee.ssl.cf5.rackcdn.com/12345/engrid.minjs"></script>
 

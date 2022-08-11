@@ -362,4 +362,26 @@ export class ENGrid {
             element.offsetHeight ||
             element.getClientRects().length);
     }
+    static getCurrencySymbol() {
+        const currencyField = ENGrid.getField("transaction.paycurrency");
+        if (currencyField) {
+            const currencyArray = {
+                USD: "$",
+                EUR: "€",
+                GBP: "£",
+                AUD: "$",
+                CAD: "$",
+                JPY: "¥",
+            };
+            return currencyArray[currencyField.value] || "$";
+        }
+        return ENGrid.getOption("CurrencySymbol") || "$";
+    }
+    static getCurrencyCode() {
+        const currencyField = ENGrid.getField("transaction.paycurrency");
+        if (currencyField) {
+            return currencyField.value || "USD";
+        }
+        return ENGrid.getOption("CurrencyCode") || "USD";
+    }
 }
