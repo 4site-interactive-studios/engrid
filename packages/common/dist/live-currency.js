@@ -63,6 +63,7 @@ export class LiveCurrency {
                     if (otherAmountDiv) {
                         otherAmountDiv.setAttribute("data-currency-symbol", ENGrid.getCurrencySymbol());
                     }
+                    ENGrid.setBodyData("currency-code", ENGrid.getCurrencyCode());
                 }, 10);
             });
         }

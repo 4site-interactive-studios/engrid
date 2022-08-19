@@ -85,6 +85,7 @@ export class LiveCurrency {
               ENGrid.getCurrencySymbol()
             );
           }
+          ENGrid.setBodyData("currency-code", ENGrid.getCurrencyCode());
         }, 10);
       });
     }
