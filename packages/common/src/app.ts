@@ -481,5 +481,15 @@ export class App extends ENGrid {
         App.getCurrencySymbol()
       );
     }
+    // Add a payment type data attribute
+    const paymentTypeSelect = App.getField(
+      "transaction.paymenttype"
+    ) as HTMLSelectElement;
+    if (paymentTypeSelect) {
+      App.setBodyData("payment-type", paymentTypeSelect.value);
+      paymentTypeSelect.addEventListener("change", () => {
+        App.setBodyData("payment-type", paymentTypeSelect.value);
+      });
+    }
   }
 }

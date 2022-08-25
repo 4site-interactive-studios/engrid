@@ -336,5 +336,13 @@ export class App extends ENGrid {
         if (otherAmountDiv) {
             otherAmountDiv.setAttribute("data-currency-symbol", App.getCurrencySymbol());
         }
+        // Add a payment type data attribute
+        const paymentTypeSelect = App.getField("transaction.paymenttype");
+        if (paymentTypeSelect) {
+            App.setBodyData("payment-type", paymentTypeSelect.value);
+            paymentTypeSelect.addEventListener("change", () => {
+                App.setBodyData("payment-type", paymentTypeSelect.value);
+            });
+        }
     }
 }
