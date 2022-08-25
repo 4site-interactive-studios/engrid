@@ -1,6 +1,5 @@
 export class AriaAttributes {
     constructor() {
-        this.enForm = document.querySelector("form.en__component");
         this.mandatoryFields = document.querySelectorAll(".en__mandatory .en__field__input");
         if (!this.shouldRun()) {
             return;
@@ -13,6 +12,6 @@ export class AriaAttributes {
         });
     }
     shouldRun() {
-        return this.enForm != null;
+        return this.mandatoryFields.length > 0;
     }
 }

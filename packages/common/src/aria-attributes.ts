@@ -1,7 +1,6 @@
 import { ENGrid } from "./";
 
 export class AriaAttributes {
-  private enForm = document.querySelector("form.en__component");
   private mandatoryFields = document.querySelectorAll(
     ".en__mandatory .en__field__input"
   );
@@ -21,6 +20,6 @@ export class AriaAttributes {
   }
 
   shouldRun() {
-    return this.enForm != null;
+    return this.mandatoryFields.length > 0;
   }
 }
