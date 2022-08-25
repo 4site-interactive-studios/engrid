@@ -15,6 +15,7 @@ export * from "./app";
 export * from "./amount-label";
 export * from "./engrid";
 export * from "./apple-pay";
+export * from "./aria-attributes";
 export * from "./capitalize-fields";
 export * from "./credit-card-numbers";
 export * from "./auto-year";
