@@ -39,6 +39,11 @@ export class iFrame {
                 this.hideFormComponents();
                 this.addChainedBanner();
             }
+            // Remove the skip link markup when inside an iFrame
+            let skipLink = document.querySelector(".skip-link");
+            if (skipLink) {
+                skipLink.remove();
+            }
         }
         else {
             // Parent Page Logic
