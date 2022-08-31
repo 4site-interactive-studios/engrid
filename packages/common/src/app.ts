@@ -491,5 +491,7 @@ export class App extends ENGrid {
         App.setBodyData("payment-type", paymentTypeSelect.value);
       });
     }
+    // Add demo data attribute
+    if (App.demo) App.setBodyData("demo", "");
   }
 }

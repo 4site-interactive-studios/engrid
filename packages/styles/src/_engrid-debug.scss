@@ -4,7 +4,7 @@
 * ##########################################################
 */
 
-[data-engrid-layout="debug"]{
+[data-engrid-layout="debug"] {
   border: 5px solid red;
 }
 
@@ -370,7 +370,6 @@ body[data-engrid-debug]:before {
       font-weight: 700;
       line-height: 1;
       font-family: Arial, sans-serif;
-      display: flex;
       align-items: center;
     }
 
@@ -423,4 +422,13 @@ body[data-engrid-debug]:before {
 
 body:not([data-engrid-debug]) #debug-bar {
   display: none;
+}
+
+[data-engrid-debug],
+[data-engrid-demo] {
+  // To help page editors identify images missing alt attributes which improve accesability
+  img:not([alt]),
+  img[alt=""] {
+    outline: 1px dashed #ff0000;
+  }
 }

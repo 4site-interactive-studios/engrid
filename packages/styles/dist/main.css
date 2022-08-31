@@ -9045,7 +9045,6 @@ body[data-engrid-debug]:before {
   font-weight: 700;
   line-height: 1;
   font-family: Arial, sans-serif;
-  display: flex;
   align-items: center;
 }
 [data-engrid-debug] #debug-bar #buttons-wrapper {
@@ -9087,6 +9086,13 @@ body[data-engrid-debug]:before {
 
 body:not([data-engrid-debug]) #debug-bar {
   display: none;
+}
+
+[data-engrid-debug] img:not([alt]),
+[data-engrid-debug] img[alt=""],
+[data-engrid-demo] img:not([alt]),
+[data-engrid-demo] img[alt=""] {
+  outline: 1px dashed #ff0000;
 }
 
 [data-engrid-theme] {

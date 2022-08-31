@@ -3,6 +3,7 @@ export declare abstract class ENGrid {
     constructor();
     static get enForm(): HTMLFormElement;
     static get debug(): boolean;
+    static get demo(): boolean;
     static getUrlParameter(name: string): string | true | Object[] | null;
     static getField(name: string): Element | null;
     static getFieldValue(name: string): string;

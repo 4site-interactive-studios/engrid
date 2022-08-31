@@ -15,6 +15,10 @@ export abstract class ENGrid {
     return !!this.getOption("Debug");
   }
 
+  static get demo(): boolean {
+    return this.getUrlParameter("mode") === "DEMO";
+  }
+
   // Return any parameter from the URL
   static getUrlParameter(name: string) {
     const searchParams = new URLSearchParams(window.location.search);

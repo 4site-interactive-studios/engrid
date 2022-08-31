@@ -52,7 +52,7 @@ export class iFrame {
       }
 
       // Remove the skip link markup when inside an iFrame
-      let skipLink = document.querySelector(".skip-link");
+      const skipLink = document.querySelector(".skip-link");
       if (skipLink) {
         skipLink.remove();
       }
