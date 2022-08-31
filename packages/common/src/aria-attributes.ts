@@ -31,7 +31,12 @@ export class AriaAttributes {
     );
     splitSelects.forEach((select) => {
       const firstOption = select.querySelector("option") as HTMLOptionElement;
-      if (firstOption) {
+      if (
+        firstOption &&
+        firstOption.value === "" &&
+        !firstOption.textContent?.toLowerCase()?.includes("select") &&
+        !firstOption.textContent?.toLowerCase()?.includes("choose")
+      ) {
         select.setAttribute("aria-label", firstOption.textContent || "");
       }
     });

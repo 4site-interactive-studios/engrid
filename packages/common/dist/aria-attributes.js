@@ -18,8 +18,12 @@ export class AriaAttributes {
         // Split selects usually don't have a label, so let's make the first option the label
         const splitSelects = document.querySelectorAll(".en__field__input--splitselect");
         splitSelects.forEach((select) => {
+            var _a, _b, _c, _d;
             const firstOption = select.querySelector("option");
-            if (firstOption) {
+            if (firstOption &&
+                firstOption.value === "" &&
+                !((_b = (_a = firstOption.textContent) === null || _a === void 0 ? void 0 : _a.toLowerCase()) === null || _b === void 0 ? void 0 : _b.includes("select")) &&
+                !((_d = (_c = firstOption.textContent) === null || _c === void 0 ? void 0 : _c.toLowerCase()) === null || _d === void 0 ? void 0 : _d.includes("choose"))) {
                 select.setAttribute("aria-label", firstOption.textContent || "");
             }
         });
