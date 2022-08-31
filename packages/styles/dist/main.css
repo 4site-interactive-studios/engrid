@@ -4050,6 +4050,7 @@ body:not(#en__pagebuilder) .en__component--column:last-of-type,
 [data-engrid-debug] .i11-hide .en__field:nth-of-type(11) {
   background-color: rgba(255, 0, 0, 0.1019607843) !important;
 }
+#en__pagebuilder label.hide-label,
 #en__pagebuilder .i1-hide-label .en__field:nth-of-type(1) > label,
 #en__pagebuilder .i2-hide-label .en__field:nth-of-type(2) > label,
 #en__pagebuilder .i3-hide-label .en__field:nth-of-type(3) > label,
@@ -4061,6 +4062,7 @@ body:not(#en__pagebuilder) .en__component--column:last-of-type,
 #en__pagebuilder .i9-hide-label .en__field:nth-of-type(9) > label,
 #en__pagebuilder .i10-hide-label .en__field:nth-of-type(10) > label,
 #en__pagebuilder .i11-hide-label .en__field:nth-of-type(11) > label,
+[data-engrid-debug] label.hide-label,
 [data-engrid-debug] .i1-hide-label .en__field:nth-of-type(1) > label,
 [data-engrid-debug] .i2-hide-label .en__field:nth-of-type(2) > label,
 [data-engrid-debug] .i3-hide-label .en__field:nth-of-type(3) > label,
@@ -4093,6 +4095,7 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) .i10-hide .en__field:nth-of-
 body:not(#en__pagebuilder):not([data-engrid-debug]) .i11-hide .en__field:nth-of-type(11) {
   display: none;
 }
+body:not(#en__pagebuilder):not([data-engrid-debug]) label.hide-label,
 body:not(#en__pagebuilder):not([data-engrid-debug]) .i1-hide-label .en__field:nth-of-type(1) > label,
 body:not(#en__pagebuilder):not([data-engrid-debug]) .i2-hide-label .en__field:nth-of-type(2) > label,
 body:not(#en__pagebuilder):not([data-engrid-debug]) .i3-hide-label .en__field:nth-of-type(3) > label,
