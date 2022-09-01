@@ -90,58 +90,56 @@ export class NeverBounce {
 
     const NBClass = this;
 
-    document
-      .getElementsByTagName("body")[0]
-      .addEventListener("nb:registered", function (event) {
-        const field = document.querySelector(
-          '[data-nb-id="' + (<CustomEvent>event).detail.id + '"]'
-        ) as HTMLInputElement;
+    document.body.addEventListener("nb:registered", function (event) {
+      const field = document.querySelector(
+        '[data-nb-id="' + (<CustomEvent>event).detail.id + '"]'
+      ) as HTMLInputElement;
 
-        field.addEventListener("nb:loading", function (e) {
-          ENGrid.disableSubmit("Validating Your Email");
-        });
-
-        // Never Bounce: Do work when input changes or when API responds with an error
-        field.addEventListener("nb:clear", function (e) {
-          NBClass.setEmailStatus("clear");
-          ENGrid.enableSubmit();
-          if (NBClass.nbDate) NBClass.nbDate.value = "";
-          if (NBClass.nbStatus) NBClass.nbStatus.value = "";
-        });
-
-        // Never Bounce: Do work when results have an input that does not look like an email (i.e. missing @ or no .com/.net/etc...)
-        field.addEventListener("nb:soft-result", function (e) {
-          NBClass.setEmailStatus("soft-result");
-          if (NBClass.nbDate) NBClass.nbDate.value = "";
-          if (NBClass.nbStatus) NBClass.nbStatus.value = "";
-          ENGrid.enableSubmit();
-        });
-
-        // Never Bounce: When results have been received
-        field.addEventListener("nb:result", function (e) {
-          if (
-            (<CustomEvent>e).detail.result.is(
-              window._nb.settings.getAcceptedStatusCodes()
-            )
-          ) {
-            NBClass.setEmailStatus("valid");
-            if (NBClass.nbDate)
-              NBClass.nbDate.value = ENGrid.formatDate(
-                new Date(),
-                NBClass.dateFormat
-              );
-            if (NBClass.nbStatus)
-              NBClass.nbStatus.value = (<CustomEvent>(
-                e
-              )).detail.result.response.result;
-          } else {
-            NBClass.setEmailStatus("invalid");
-            if (NBClass.nbDate) NBClass.nbDate.value = "";
-            if (NBClass.nbStatus) NBClass.nbStatus.value = "";
-          }
-          ENGrid.enableSubmit();
-        });
+      field.addEventListener("nb:loading", function (e) {
+        ENGrid.disableSubmit("Validating Your Email");
       });
+
+      // Never Bounce: Do work when input changes or when API responds with an error
+      field.addEventListener("nb:clear", function (e) {
+        NBClass.setEmailStatus("clear");
+        ENGrid.enableSubmit();
+        if (NBClass.nbDate) NBClass.nbDate.value = "";
+        if (NBClass.nbStatus) NBClass.nbStatus.value = "";
+      });
+
+      // Never Bounce: Do work when results have an input that does not look like an email (i.e. missing @ or no .com/.net/etc...)
+      field.addEventListener("nb:soft-result", function (e) {
+        NBClass.setEmailStatus("soft-result");
+        if (NBClass.nbDate) NBClass.nbDate.value = "";
+        if (NBClass.nbStatus) NBClass.nbStatus.value = "";
+        ENGrid.enableSubmit();
+      });
+
+      // Never Bounce: When results have been received
+      field.addEventListener("nb:result", function (e) {
+        if (
+          (<CustomEvent>e).detail.result.is(
+            window._nb.settings.getAcceptedStatusCodes()
+          )
+        ) {
+          NBClass.setEmailStatus("valid");
+          if (NBClass.nbDate)
+            NBClass.nbDate.value = ENGrid.formatDate(
+              new Date(),
+              NBClass.dateFormat
+            );
+          if (NBClass.nbStatus)
+            NBClass.nbStatus.value = (<CustomEvent>(
+              e
+            )).detail.result.response.result;
+        } else {
+          NBClass.setEmailStatus("invalid");
+          if (NBClass.nbDate) NBClass.nbDate.value = "";
+          if (NBClass.nbStatus) NBClass.nbStatus.value = "";
+        }
+        ENGrid.enableSubmit();
+      });
+    });
 
     // Never Bounce: Register field with the widget and broadcast nb:registration event
     window._nb.fields.registerListener(NBClass.emailField, true);

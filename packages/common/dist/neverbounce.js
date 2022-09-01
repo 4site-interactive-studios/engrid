@@ -70,9 +70,7 @@ export class NeverBounce {
             '<div id="nb-feedback" class="en__field__error nb-hidden">Enter a valid email.</div>';
         this.insertAfter(nbCustomMessageHTML, this.emailField);
         const NBClass = this;
-        document
-            .getElementsByTagName("body")[0]
-            .addEventListener("nb:registered", function (event) {
+        document.body.addEventListener("nb:registered", function (event) {
             const field = document.querySelector('[data-nb-id="' + event.detail.id + '"]');
             field.addEventListener("nb:loading", function (e) {
                 ENGrid.disableSubmit("Validating Your Email");

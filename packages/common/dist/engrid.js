@@ -216,10 +216,10 @@ export class ENGrid {
         scriptTag.src = url;
         scriptTag.onload = onload;
         if (head) {
-            document.getElementsByTagName("head")[0].appendChild(scriptTag);
+            document.head.appendChild(scriptTag);
             return;
         }
-        document.getElementsByTagName("body")[0].appendChild(scriptTag);
+        document.body.appendChild(scriptTag);
         return;
     }
     // Format a number
