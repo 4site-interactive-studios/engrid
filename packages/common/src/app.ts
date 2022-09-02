@@ -16,7 +16,7 @@ import {
   PageBackground,
   MediaAttribution,
   ApplePay,
-  AriaAttributes,
+  A11y,
   CapitalizeFields,
   CreditCardNumbers,
   Ecard,
@@ -285,7 +285,7 @@ export class App extends ENGrid {
     new MinMaxAmount();
 
     new Ticker();
-    new AriaAttributes();
+    new A11y();
 
     new AddNameToMessage();
     new ExpandRegionName();

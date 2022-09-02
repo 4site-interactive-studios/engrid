@@ -1,9 +1,28 @@
-// This Component is supposed to be used as a helper for Arria Attributes
+// a11y means accessibility
+// This Component is supposed to be used as a helper for Arria Attributes & Other Accessibility Features
 
-export class AriaAttributes {
+export class A11y {
   constructor() {
     this.addRequired();
     this.addLabel();
+    this.addGroupRole();
+  }
+
+  private addGroupRole() {
+    // Add role="group" to all EN Radio fields
+    const radioFields = document.querySelectorAll(".en__field--radio");
+    radioFields.forEach((field) => {
+      field.setAttribute("role", "group");
+      // Add random ID to the label
+      const label = field.querySelector("label") as HTMLLabelElement;
+      if (label) {
+        label.setAttribute(
+          "id",
+          `en__field__label--${Math.random().toString(36).slice(2, 7)}`
+        );
+        field.setAttribute("aria-labelledby", label.id);
+      }
+    });
   }
 
   private addRequired() {
