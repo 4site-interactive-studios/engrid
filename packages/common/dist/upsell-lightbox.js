@@ -52,7 +52,7 @@ export class UpsellLightbox {
                     </p>
                   </div>
                   <div class="upsellOtherAmountInput">
-                    <input href="#" id="secondOtherField" name="secondOtherField" type="text" value="" inputmode="decimal" aria-label="Enter your custom donation amount" placeholder="Other" autocomplete="off" data-lpignore="true" aria-required="true" size="12">
+                    <input href="#" id="secondOtherField" name="secondOtherField" type="text" value="" inputmode="decimal" aria-label="Enter your custom donation amount" autocomplete="off" data-lpignore="true" aria-required="true" size="12">
                     <small>Minimum ${this.getAmountTxt(this.options.minAmount)}</small>
                   </div>
                 </div>
