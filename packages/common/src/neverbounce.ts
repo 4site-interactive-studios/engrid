@@ -257,11 +257,11 @@ export class NeverBounce {
     wrapper.appendChild(el);
   }
   private validate() {
-    if (!this.emailField || !this.shouldRun || !this.nbLoaded) {
+    const nbResult = ENGrid.getFieldValue("nb-result");
+    if (!this.emailField || !this.shouldRun || !this.nbLoaded || !nbResult) {
       this.logger.log("validate(): Should Not Run. Returning true.");
       return;
     }
-    const nbResult = ENGrid.getFieldValue("nb-result");
     if (this.nbStatus) {
       this.nbStatus.value = nbResult;
     }
