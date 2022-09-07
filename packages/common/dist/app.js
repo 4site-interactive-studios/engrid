@@ -113,6 +113,7 @@ export class App extends ENGrid {
                 return false;
             if (this._form.submitPromise)
                 return this._form.submitPromise;
+            this.logger.success("enOnSubmit Success");
             return true;
         };
         window.enOnError = () => {
@@ -126,6 +127,7 @@ export class App extends ENGrid {
                 return false;
             if (this._form.validatePromise)
                 return this._form.validatePromise;
+            this.logger.success("Validation Passed");
             return true;
         };
         // Live Currency

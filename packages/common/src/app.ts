@@ -201,6 +201,7 @@ export class App extends ENGrid {
       this._form.dispatchSubmit();
       if (!this._form.submit) return false;
       if (this._form.submitPromise) return this._form.submitPromise;
+      this.logger.success("enOnSubmit Success");
       return true;
     };
     window.enOnError = () => {
@@ -212,6 +213,7 @@ export class App extends ENGrid {
       this._form.dispatchValidate();
       if (!this._form.validate) return false;
       if (this._form.validatePromise) return this._form.validatePromise;
+      this.logger.success("Validation Passed");
       return true;
     };
 

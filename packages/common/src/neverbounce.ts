@@ -57,9 +57,7 @@ export class NeverBounce {
         this.init();
       }, 1000);
     }
-    this.form.onValidate.subscribe(
-      () => (this.form.validate = this.validate())
-    );
+    this.form.onValidate.subscribe(this.validate.bind(this));
   }
   private init() {
     if (this.nbLoaded || !this.shouldRun) return;
@@ -261,20 +259,17 @@ export class NeverBounce {
   private validate() {
     if (!this.emailField || !this.shouldRun || !this.nbLoaded) {
       this.logger.log("validate(): Should Not Run. Returning true.");
-      return true;
+      return;
     }
+    const nbResult = ENGrid.getFieldValue("nb-result");
     if (this.nbStatus) {
-      this.nbStatus.value = ENGrid.getFieldValue("nb-result");
+      this.nbStatus.value = nbResult;
     }
-    if (
-      !["catchall", "unknown", "valid"].includes(
-        ENGrid.getFieldValue("nb-result")
-      )
-    ) {
+    if (!["catchall", "unknown", "valid"].includes(nbResult)) {
       this.setEmailStatus("required");
       this.emailField?.focus();
-      return false;
+      this.logger.log("NB-Result:", ENGrid.getFieldValue("nb-result"));
+      this.form.validate = false;
     }
-    return true;
   }
 }
