@@ -15,6 +15,11 @@ export class DataLayer {
     this.onLoad();
     this._form.onSubmit.subscribe(() => this.onSubmit());
   }
+
+  private transformJSON(value: string) {
+    return value.toUpperCase().split(" ").join("-");
+  }
+
   private onLoad() {
     if (ENGrid.getGiftProcess()) {
       this.logger.log("EN_SUCCESSFUL_DONATION");
@@ -27,7 +32,28 @@ export class DataLayer {
         event: "EN_PAGE_VIEW",
       });
     }
+
+    if (window.pageJson) {
+      const pageJson = window.pageJson;
+
+      for (const property in pageJson) {
+        if (Number.isInteger(pageJson[property])) {
+          this.dataLayer.push(`${property.toUpperCase}-${pageJson[property]}`);
+          console.log(`Pushing $${property.toUpperCase}-${pageJson[property]}`);
+        } else {
+          this.dataLayer.push(
+            `${property.toUpperCase}-${this.transformJSON(pageJson[property])}`
+          );
+          console.log(
+            `Pushing ${property.toUpperCase}-${this.transformJSON(
+              pageJson[property]
+            )}`
+          );
+        }
+      }
+    }
   }
+
   private onSubmit() {
     const optIn = document.querySelector(
       ".en__field__item:not(.en__field--question) input[name^='supporter.questions'][type='checkbox']:checked"

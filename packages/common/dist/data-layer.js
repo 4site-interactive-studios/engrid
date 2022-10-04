@@ -8,6 +8,9 @@ export class DataLayer {
         this.onLoad();
         this._form.onSubmit.subscribe(() => this.onSubmit());
     }
+    transformJSON(value) {
+        return value.toUpperCase().split(" ").join("-");
+    }
     onLoad() {
         if (ENGrid.getGiftProcess()) {
             this.logger.log("EN_SUCCESSFUL_DONATION");
@@ -20,6 +23,19 @@ export class DataLayer {
             this.dataLayer.push({
                 event: "EN_PAGE_VIEW",
             });
+        }
+        if (window.pageJson) {
+            const pageJson = window.pageJson;
+            for (const property in pageJson) {
+                if (Number.isInteger(pageJson[property])) {
+                    this.dataLayer.push(`${property.toUpperCase}-${pageJson[property]}`);
+                    console.log(`Pushing $${property.toUpperCase}-${pageJson[property]}`);
+                }
+                else {
+                    this.dataLayer.push(`${property.toUpperCase}-${this.transformJSON(pageJson[property])}`);
+                    console.log(`Pushing ${property.toUpperCase}-${this.transformJSON(pageJson[property])}`);
+                }
+            }
         }
     }
     onSubmit() {
