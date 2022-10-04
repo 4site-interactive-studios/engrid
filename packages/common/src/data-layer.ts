@@ -17,7 +17,14 @@ export class DataLayer {
   }
 
   private transformJSON(value: string) {
-    return value.toUpperCase().split(" ").join("-");
+    if (typeof value === "string") {
+      return value.toUpperCase().split(" ").join("-");
+    } else if (typeof value === "boolean") {
+      value = value ? "TRUE" : "FALSE";
+      return value;
+    }
+
+    return "";
   }
 
   private onLoad() {
@@ -38,17 +45,17 @@ export class DataLayer {
 
       for (const property in pageJson) {
         if (Number.isInteger(pageJson[property])) {
-          this.dataLayer.push(`${property.toUpperCase}-${pageJson[property]}`);
-          console.log(`Pushing $${property.toUpperCase}-${pageJson[property]}`);
-        } else {
-          this.dataLayer.push(
-            `${property.toUpperCase}-${this.transformJSON(pageJson[property])}`
-          );
-          console.log(
-            `Pushing ${property.toUpperCase}-${this.transformJSON(
+          this.dataLayer.push({
+            event: `EN_PAGEJSON_${property.toUpperCase()}-${
               pageJson[property]
-            )}`
-          );
+            }`,
+          });
+        } else {
+          this.dataLayer.push({
+            event: `EN_PAGEJSON_${property.toUpperCase()}-${this.transformJSON(
+              pageJson[property]
+            )}`,
+          });
         }
       }
     }
