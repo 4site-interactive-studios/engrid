@@ -10,7 +10,7 @@ export class DataLayer {
     }
     transformJSON(value) {
         if (typeof value === "string") {
-            return value.toUpperCase().split(" ").join("-");
+            return value.toUpperCase().split(" ").join("-").replace(":-", "-");
         }
         else if (typeof value === "boolean") {
             value = value ? "TRUE" : "FALSE";
@@ -38,15 +38,17 @@ export class DataLayer {
                     this.dataLayer.push({
                         event: `EN_PAGEJSON_${property.toUpperCase()}-${pageJson[property]}`,
                     });
-                    this.dataLayer[`EN_PAGEJSON_${property.toUpperCase()}`] =
-                        pageJson[property];
+                    this.dataLayer.push({
+                        [`EN_PAGEJSON_${property.toUpperCase()}`]: pageJson[property],
+                    });
                 }
                 else {
                     this.dataLayer.push({
                         event: `EN_PAGEJSON_${property.toUpperCase()}-${this.transformJSON(pageJson[property])}`,
                     });
-                    this.dataLayer[`EN_PAGEJSON_${property.toUpperCase()}`] =
-                        this.transformJSON(pageJson[property]);
+                    this.dataLayer.push({
+                        [`EN_PAGEJSON_${property.toUpperCase()}`]: this.transformJSON(pageJson[property]),
+                    });
                 }
             }
         }
