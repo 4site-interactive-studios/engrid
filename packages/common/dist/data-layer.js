@@ -39,7 +39,7 @@ export class DataLayer {
                         event: `EN_PAGEJSON_${property.toUpperCase()}-${pageJson[property]}`,
                     });
                     this.dataLayer.push({
-                        [`EN_PAGEJSON_${property.toUpperCase()}`]: pageJson[property],
+                        [`'EN_PAGEJSON_${property.toUpperCase()}'`]: pageJson[property],
                     });
                 }
                 else {
@@ -47,7 +47,7 @@ export class DataLayer {
                         event: `EN_PAGEJSON_${property.toUpperCase()}-${this.transformJSON(pageJson[property])}`,
                     });
                     this.dataLayer.push({
-                        [`EN_PAGEJSON_${property.toUpperCase()}`]: this.transformJSON(pageJson[property]),
+                        [`'EN_PAGEJSON_${property.toUpperCase()}'`]: this.transformJSON(pageJson[property]),
                     });
                 }
             }
