@@ -46,7 +46,7 @@ export class RememberMe {
         if (this.useRemote()) {
             this.createIframe(() => {
                 if (this.iframe && this.iframe.contentWindow) {
-                    this.iframe.contentWindow.postMessage({ key: this.cookieName, operation: "read" }, "*");
+                    this.iframe.contentWindow.postMessage(JSON.stringify({ key: this.cookieName, operation: "read" }), "*");
                     this._form.onSubmit.subscribe(() => {
                         if (this.rememberMeOptIn) {
                             this.readFields();
@@ -55,11 +55,15 @@ export class RememberMe {
                     });
                 }
             }, (event) => {
-                if (event.data &&
-                    event.data.key &&
-                    event.data.value !== undefined &&
-                    event.data.key === this.cookieName) {
-                    this.updateFieldData(event.data.value);
+                let data;
+                if (event.data && typeof event.data === "string") {
+                    data = JSON.parse(event.data);
+                }
+                if (data &&
+                    data.key &&
+                    data.value !== undefined &&
+                    data.key === this.cookieName) {
+                    this.updateFieldData(data.value);
                     this.writeFields();
                     let hasFieldData = Object.keys(this.fieldData).length > 0;
                     if (!hasFieldData) {
@@ -228,12 +232,12 @@ export class RememberMe {
     }
     saveCookieToRemote() {
         if (this.iframe && this.iframe.contentWindow) {
-            this.iframe.contentWindow.postMessage({
+            this.iframe.contentWindow.postMessage(JSON.stringify({
                 key: this.cookieName,
-                value: JSON.stringify(this.fieldData),
+                value: this.fieldData,
                 operation: "write",
                 expires: this.cookieExpirationDays,
-            }, "*");
+            }), "*");
         }
     }
     readCookie() {

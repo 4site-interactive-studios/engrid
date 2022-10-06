@@ -91,7 +91,7 @@ export class RememberMe {
         () => {
           if (this.iframe && this.iframe.contentWindow) {
             this.iframe.contentWindow.postMessage(
-              { key: this.cookieName, operation: "read" },
+              JSON.stringify({ key: this.cookieName, operation: "read" }),
               "*"
             );
             this._form.onSubmit.subscribe(() => {
@@ -103,13 +103,17 @@ export class RememberMe {
           }
         },
         (event) => {
+          let data: DataObj | undefined;
+          if (event.data && typeof event.data === "string") {
+            data = JSON.parse(event.data);
+          }
           if (
-            event.data &&
-            event.data.key &&
-            event.data.value !== undefined &&
-            event.data.key === this.cookieName
+            data &&
+            data.key &&
+            data.value !== undefined &&
+            data.key === this.cookieName
           ) {
-            this.updateFieldData(event.data.value);
+            this.updateFieldData(data.value);
             this.writeFields();
             let hasFieldData = Object.keys(this.fieldData).length > 0;
             if (!hasFieldData) {
@@ -307,12 +311,12 @@ export class RememberMe {
   private saveCookieToRemote() {
     if (this.iframe && this.iframe.contentWindow) {
       this.iframe.contentWindow.postMessage(
-        {
+        JSON.stringify({
           key: this.cookieName,
-          value: JSON.stringify(this.fieldData),
+          value: this.fieldData,
           operation: "write",
           expires: this.cookieExpirationDays,
-        },
+        }),
         "*"
       );
     }
