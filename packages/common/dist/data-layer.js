@@ -8,6 +8,16 @@ export class DataLayer {
         this.onLoad();
         this._form.onSubmit.subscribe(() => this.onSubmit());
     }
+    transformJSON(value) {
+        if (typeof value === "string") {
+            return value.toUpperCase().split(" ").join("-").replace(":-", "-");
+        }
+        else if (typeof value === "boolean") {
+            value = value ? "TRUE" : "FALSE";
+            return value;
+        }
+        return "";
+    }
     onLoad() {
         if (ENGrid.getGiftProcess()) {
             this.logger.log("EN_SUCCESSFUL_DONATION");
@@ -20,6 +30,27 @@ export class DataLayer {
             this.dataLayer.push({
                 event: "EN_PAGE_VIEW",
             });
+        }
+        if (window.pageJson) {
+            const pageJson = window.pageJson;
+            for (const property in pageJson) {
+                if (Number.isInteger(pageJson[property])) {
+                    this.dataLayer.push({
+                        event: `EN_PAGEJSON_${property.toUpperCase()}-${pageJson[property]}`,
+                    });
+                    this.dataLayer.push({
+                        [`'EN_PAGEJSON_${property.toUpperCase()}'`]: pageJson[property],
+                    });
+                }
+                else {
+                    this.dataLayer.push({
+                        event: `EN_PAGEJSON_${property.toUpperCase()}-${this.transformJSON(pageJson[property])}`,
+                    });
+                    this.dataLayer.push({
+                        [`'EN_PAGEJSON_${property.toUpperCase()}'`]: this.transformJSON(pageJson[property]),
+                    });
+                }
+            }
         }
     }
     onSubmit() {
