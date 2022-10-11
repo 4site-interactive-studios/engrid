@@ -104,7 +104,11 @@ export class RememberMe {
         },
         (event) => {
           let data: DataObj | undefined;
-          if (event.data && typeof event.data === "string") {
+          if (
+            event.data &&
+            typeof event.data === "string" &&
+            this.isJson(event.data)
+          ) {
             data = JSON.parse(event.data);
           }
           if (
@@ -412,5 +416,13 @@ export class RememberMe {
         }
       }
     }
+  }
+  private isJson(str: string) {
+    try {
+      JSON.parse(str);
+    } catch (e) {
+      return false;
+    }
+    return true;
   }
 }
