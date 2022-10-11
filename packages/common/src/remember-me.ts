@@ -299,7 +299,11 @@ export class RememberMe {
       this.iframe.addEventListener("load", () => iframeLoaded(), false);
       window.addEventListener(
         "message",
-        (event) => messageReceived(event),
+        (event) => {
+          if (this.iframe?.contentWindow === event.source) {
+            messageReceived(event);
+          }
+        },
         false
       );
     }
