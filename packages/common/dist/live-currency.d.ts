@@ -4,6 +4,7 @@ export declare class LiveCurrency {
     private elementsFound;
     _amount: DonationAmount;
     private _frequency;
+    private _fees;
     constructor();
     searchElements(): void;
     shouldRun(): boolean;

@@ -1,11 +1,12 @@
 // This script enables live currency symbol and code to the page.
-import { DonationAmount, DonationFrequency, ENGrid, EngridLogger } from ".";
+import { DonationAmount, DonationFrequency, ENGrid, EngridLogger, ProcessingFees, } from ".";
 export class LiveCurrency {
     constructor() {
         this.logger = new EngridLogger("LiveCurrency", "#1901b1", "#feb47a", "💲");
         this.elementsFound = false;
         this._amount = DonationAmount.getInstance();
         this._frequency = DonationFrequency.getInstance();
+        this._fees = ProcessingFees.getInstance();
         this.searchElements();
         if (!this.shouldRun())
             return;
@@ -42,6 +43,11 @@ export class LiveCurrency {
         return this.elementsFound;
     }
     addEventListeners() {
+        this._fees.onFeeChange.subscribe(() => {
+            setTimeout(() => {
+                this.updateCurrency();
+            }, 10);
+        });
         this._amount.onAmountChange.subscribe(() => {
             setTimeout(() => {
                 this.updateCurrency();
@@ -69,11 +75,18 @@ export class LiveCurrency {
         }
     }
     updateCurrency() {
-        document.querySelectorAll(".engrid-currency-symbol").forEach((item) => {
-            item.innerHTML = ENGrid.getCurrencySymbol();
-        });
-        document.querySelectorAll(".engrid-currency-code").forEach((item) => {
-            item.innerHTML = ENGrid.getCurrencyCode();
-        });
+        const currencySymbolElements = document.querySelectorAll(".engrid-currency-symbol");
+        const currencyCodeElements = document.querySelectorAll(".engrid-currency-code");
+        if (currencySymbolElements.length > 0) {
+            currencySymbolElements.forEach((item) => {
+                item.innerHTML = ENGrid.getCurrencySymbol();
+            });
+        }
+        if (currencyCodeElements.length > 0) {
+            currencyCodeElements.forEach((item) => {
+                item.innerHTML = ENGrid.getCurrencyCode();
+            });
+        }
+        this.logger.log(`Currency updated for ${currencySymbolElements.length + currencyCodeElements.length} elements`);
     }
 }

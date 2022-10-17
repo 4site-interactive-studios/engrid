@@ -1,5 +1,11 @@
 // This script enables live currency symbol and code to the page.
-import { DonationAmount, DonationFrequency, ENGrid, EngridLogger } from ".";
+import {
+  DonationAmount,
+  DonationFrequency,
+  ENGrid,
+  EngridLogger,
+  ProcessingFees,
+} from ".";
 
 export class LiveCurrency {
   private logger: EngridLogger = new EngridLogger(
@@ -11,6 +17,7 @@ export class LiveCurrency {
   private elementsFound: boolean = false;
   public _amount: DonationAmount = DonationAmount.getInstance();
   private _frequency: DonationFrequency = DonationFrequency.getInstance();
+  private _fees: ProcessingFees = ProcessingFees.getInstance();
   constructor() {
     this.searchElements();
     if (!this.shouldRun()) return;
@@ -57,6 +64,11 @@ export class LiveCurrency {
     return this.elementsFound;
   }
   addEventListeners() {
+    this._fees.onFeeChange.subscribe(() => {
+      setTimeout(() => {
+        this.updateCurrency();
+      }, 10);
+    });
     this._amount.onAmountChange.subscribe(() => {
       setTimeout(() => {
         this.updateCurrency();
@@ -91,11 +103,26 @@ export class LiveCurrency {
     }
   }
   updateCurrency() {
-    document.querySelectorAll(".engrid-currency-symbol").forEach((item) => {
-      item.innerHTML = ENGrid.getCurrencySymbol();
-    });
-    document.querySelectorAll(".engrid-currency-code").forEach((item) => {
-      item.innerHTML = ENGrid.getCurrencyCode();
-    });
+    const currencySymbolElements = document.querySelectorAll(
+      ".engrid-currency-symbol"
+    );
+    const currencyCodeElements = document.querySelectorAll(
+      ".engrid-currency-code"
+    );
+    if (currencySymbolElements.length > 0) {
+      currencySymbolElements.forEach((item) => {
+        item.innerHTML = ENGrid.getCurrencySymbol();
+      });
+    }
+    if (currencyCodeElements.length > 0) {
+      currencyCodeElements.forEach((item) => {
+        item.innerHTML = ENGrid.getCurrencyCode();
+      });
+    }
+    this.logger.log(
+      `Currency updated for ${
+        currencySymbolElements.length + currencyCodeElements.length
+      } elements`
+    );
   }
 }
