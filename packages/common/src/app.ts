@@ -48,6 +48,7 @@ import {
   TidyContact,
   DataLayer,
   LiveCurrency,
+  Autosubmit,
 } from "./";
 
 export class App extends ENGrid {
@@ -240,6 +241,9 @@ export class App extends ENGrid {
 
     // ENgrid Hide Script
     new DataHide();
+
+    // Autosubmit script
+    new Autosubmit();
 
     // On the end of the script, after all subscribers defined, let's load the current value
     this._amount.load();
