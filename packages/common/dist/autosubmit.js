@@ -2,7 +2,8 @@
 import { ENGrid, EngridLogger } from ".";
 export class autosubmit {
     constructor() {
-        this.logger = new EngridLogger("DataHide", "#333333", "#f0f0f0", "🙈");
+        this.logger = new EngridLogger("Autosubmit", "#333333", "#f0f0f0", "🙈");
+        this.autosubmit();
     }
     autosubmit() {
         // Check for server side errors
@@ -12,7 +13,7 @@ export class autosubmit {
         const urlParams = new URLSearchParams(queryString);
         if (!serverSideError && urlParams.get("autosubmit") == "Y") {
             if (ENGrid.debug)
-                console.log('"autosubmit=Y" argument is present in URL');
+                this.logger.log('"autosubmit=Y" argument is present in URL');
             const submitButton = document.querySelector("form .en__submit button");
             if (submitButton) {
                 submitButton.click();
