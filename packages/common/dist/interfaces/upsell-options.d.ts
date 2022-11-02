@@ -15,5 +15,6 @@ export interface UpsellOptions {
     minAmount: number;
     canClose: boolean;
     submitOnClose: boolean;
+    disablePaymentMethods: Array<string>;
 }
 export declare const UpsellOptionsDefaults: UpsellOptions;

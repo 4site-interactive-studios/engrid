@@ -235,12 +235,14 @@ export class UpsellLightbox {
   private shouldOpen() {
     const freq = this._frequency.frequency;
     const upsellAmount = this.getUpsellAmount();
+    const paymenttype = ENGrid.getFieldValue("transaction.paymenttype") || "";
     // If frequency is not onetime or
     // the modal is already opened or
     // there's no suggestion for this donation amount,
     // we should not open
     if (
       freq == "onetime" &&
+      !this.options.disablePaymentMethods.includes(paymenttype.toLowerCase()) &&
       !this.overlay.classList.contains("is-submitting") &&
       upsellAmount > 0
     ) {
