@@ -1,7 +1,7 @@
 // This class adds the autocomplete attribute to
 // the most common input elements
 
-import { ENGrid, EngridLogger } from "./";
+import { EngridLogger } from "./";
 
 export class Autocomplete {
   private logger: EngridLogger = new EngridLogger("Autocomplete");

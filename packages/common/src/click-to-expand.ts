@@ -1,6 +1,6 @@
 // Depends on engrid-click-to-expand.scss to work
 
-import { ENGrid, EngridLogger } from "./";
+import { EngridLogger } from "./";
 
 // Works when the user has adds ".click-to-expand" as a class to any field
 export class ClickToExpand {
