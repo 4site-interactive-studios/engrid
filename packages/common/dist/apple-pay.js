@@ -38,8 +38,7 @@ export class ApplePay {
                 const applePayContainer = document.querySelector(".en__field__item.applepay");
                 if (applePayContainer)
                     applePayContainer.remove();
-                if (ENGrid.debug)
-                    this.logger.log("Apple Pay DISABLED");
+                this.logger.log("Apple Pay DISABLED");
                 return false;
             }
             const promise = ApplePaySession.canMakePaymentsWithActiveCard(merchantIdentifier);
@@ -55,8 +54,7 @@ export class ApplePay {
                     this._form.onSubmit.subscribe(() => this.onPayClicked());
                 }
             });
-            if (ENGrid.debug)
-                this.logger.log("applePayEnabled", applePayEnabled);
+            this.logger.log("applePayEnabled", applePayEnabled);
             let applePayWrapper = this.applePay.closest(".en__field__item");
             if (applePayEnabled) {
                 // Set Apple Pay Class
@@ -109,6 +107,7 @@ export class ApplePay {
         });
     }
     onPayClicked() {
+        const logger = this.logger;
         const enFieldPaymentType = document.querySelector("#en__field_transaction_paymenttype");
         const applePayToken = document.getElementById("applePayToken");
         const formClass = this._form;
@@ -133,7 +132,7 @@ export class ApplePay {
                         .performValidation(event.validationURL)
                         .then(function (merchantSession) {
                         if (ENGrid.debug)
-                            this.logger.log("Apple Pay merchantSession", merchantSession);
+                            logger.log("Apple Pay merchantSession", merchantSession);
                         session.completeMerchantValidation(merchantSession);
                     });
                 };
@@ -142,14 +141,13 @@ export class ApplePay {
                         .sendPaymentToken(event.payment.token)
                         .then(function (success) {
                         if (ENGrid.debug)
-                            this.logger.log("Apple Pay Token", event.payment.token);
+                            logger.log("Apple Pay Token", event.payment.token);
                         document.getElementById("applePayToken").value = JSON.stringify(event.payment.token);
                         formClass.submitForm();
                     });
                 };
                 session.oncancel = function (event) {
-                    if (ENGrid.debug)
-                        this.logger.log("Cancelled", event);
+                    this.logger.log("Cancelled", event);
                     alert("You cancelled. Sorry it didn't work out.");
                     formClass.dispatchError();
                 };
