@@ -1,6 +1,9 @@
 import { ENGrid } from "./engrid";
+import { EngridLogger } from "./";
 
 export class PageBackground {
+  private logger: EngridLogger = new EngridLogger("Page Background");
+
   // @TODO: Change page-backgroundImage to page-background
   private pageBackground: HTMLElement = document.querySelector(
     ".page-backgroundImage"
@@ -19,7 +22,7 @@ export class PageBackground {
 
       if (this.pageBackground && pageBackgroundImgDataSrc) {
         if (ENGrid.debug)
-          console.log(
+          this.logger.log(
             "A background image set in the page was found with a data-src value, setting it as --engrid__page-backgroundImage_url",
             pageBackgroundImgDataSrc
           );
@@ -30,7 +33,7 @@ export class PageBackground {
         );
       } else if (this.pageBackground && pageBackgroundImgSrc) {
         if (ENGrid.debug)
-          console.log(
+          this.logger.log(
             "A background image set in the page was found with a src value, setting it as --engrid__page-backgroundImage_url",
             pageBackgroundImgSrc
           );
@@ -41,19 +44,19 @@ export class PageBackground {
         );
       } else if (pageBackgroundImg) {
         if (ENGrid.debug)
-          console.log(
+          this.logger.log(
             "A background image set in the page was found but without a data-src or src value, no action taken",
             pageBackgroundImg
           );
       } else {
         if (ENGrid.debug)
-          console.log(
+          this.logger.log(
             "A background image set in the page was not found, any default image set in the theme on --engrid__page-backgroundImage_url will be used"
           );
       }
     } else {
       if (ENGrid.debug)
-        console.log(
+        this.logger.log(
           "A background image set in the page was not found, any default image set in the theme on --engrid__page-backgroundImage_url will be used"
         );
     }
