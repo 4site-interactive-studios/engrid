@@ -8,7 +8,7 @@ export class iFrame {
             // Add the data-engrid-embedded attribute when inside an iFrame if it wasn't already added by a script in the Page Template
             ENGrid.setBodyData("embedded", "");
             // Fire the resize event
-            this.logger.log("First Resize");
+            this.logger.log("iFrame Event - Begin Resizing");
             this.sendIframeHeight();
             // Listen for the resize event
             window.addEventListener("resize", this.sendIframeHeight.bind(this));
@@ -21,7 +21,7 @@ export class iFrame {
                 }, "*");
                 // On click fire the resize event
                 document.addEventListener("click", (e) => {
-                    this.logger.log("Event - click");
+                    this.logger.log("iFrame Event - click");
                     setTimeout(() => {
                         this.sendIframeHeight();
                     }, 100);
@@ -29,12 +29,12 @@ export class iFrame {
             });
             // Listen for the form submit event
             this._form.onSubmit.subscribe((e) => {
-                this.logger.log("Event - onSubmit");
+                this.logger.log("iFrame Event - onSubmit");
                 this.sendIframeFormStatus("submit");
             });
             // If the iFrame is Chained, check if the form has data
             if (this.isChained() && this.hasPayment()) {
-                this.logger.log("Chained iFrame");
+                this.logger.log("iFrame Event - Chained iFrame");
                 this.sendIframeFormStatus("chained");
                 this.hideFormComponents();
                 this.addChainedBanner();
@@ -62,7 +62,7 @@ export class iFrame {
                             left: 0,
                             behavior: "smooth",
                         });
-                        this.logger.log("Scrolling Window To " + scrollTo);
+                        this.logger.log("iFrame Event - Scrolling Window to " + scrollTo);
                     }
                 }
             });
@@ -70,7 +70,7 @@ export class iFrame {
     }
     sendIframeHeight() {
         let height = document.body.offsetHeight;
-        this.logger.log("Sending iFrame height of: " + height + "px"); // check the message is being sent correctly
+        this.logger.log("iFrame Event - Sending iFrame height of: " + height + "px"); // check the message is being sent correctly
         window.parent.postMessage({
             frameHeight: height,
             pageNumber: ENGrid.getPageNumber(),
@@ -125,7 +125,7 @@ export class iFrame {
         return payment || ccnumber;
     }
     hideFormComponents() {
-        this.logger.log("Hiding Form Components");
+        this.logger.log("iFrame Event - Hiding Form Components");
         const en__component = document.querySelectorAll(".body-main > div");
         en__component.forEach((component, index) => {
             if (component.classList.contains("hide") === false &&
@@ -140,7 +140,7 @@ export class iFrame {
         this.sendIframeHeight();
     }
     showFormComponents() {
-        this.logger.log("Showing Form Components");
+        this.logger.log("iFrame Event - Showing Form Components");
         const en__component = document.querySelectorAll(".body-main > div.hide-chained");
         en__component.forEach((component) => {
             component.classList.remove("hide-iframe");
@@ -150,7 +150,7 @@ export class iFrame {
     }
     addChainedBanner() {
         var _a, _b;
-        this.logger.log("Adding Chained Banner");
+        this.logger.log("iFrame Event - Adding Chained Banner");
         const banner = document.createElement("div");
         const lastComponent = document.querySelector(".body-main > div:last-of-type");
         banner.classList.add("en__component");
