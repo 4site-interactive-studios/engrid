@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { EnForm, DonationAmount, ENGrid, EngridLogger, ProcessingFees, } from "./";
+import { EnForm, DonationAmount, EngridLogger, ProcessingFees } from "./";
 /*global window */
 const ApplePaySession = window.ApplePaySession;
 const merchantIdentifier = window.merchantIdentifier;
@@ -131,8 +131,7 @@ export class ApplePay {
                     thisClass
                         .performValidation(event.validationURL)
                         .then(function (merchantSession) {
-                        if (ENGrid.debug)
-                            logger.log("Apple Pay merchantSession", merchantSession);
+                        logger.log("Apple Pay merchantSession", merchantSession);
                         session.completeMerchantValidation(merchantSession);
                     });
                 };
@@ -140,8 +139,7 @@ export class ApplePay {
                     thisClass
                         .sendPaymentToken(event.payment.token)
                         .then(function (success) {
-                        if (ENGrid.debug)
-                            logger.log("Apple Pay Token", event.payment.token);
+                        logger.log("Apple Pay Token", event.payment.token);
                         document.getElementById("applePayToken").value = JSON.stringify(event.payment.token);
                         formClass.submitForm();
                     });
