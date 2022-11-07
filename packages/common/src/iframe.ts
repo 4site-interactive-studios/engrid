@@ -16,21 +16,23 @@ export class iFrame {
       if (this.hasForceFullView()) {
         document.body.removeAttribute("data-engrid-embedded"); // Remove the "data-engrid-embedded" data attribute from the EN page and force it's visiblity
         document.body.style.visibility = "visible"; // Force visiblity
-        this.logger.log(
-          "iFrame Event - Parent iFrame detected with'force-full-view' data attribute, removing 'data-engrid-embedded' from the 'body' in the event it was added from inline scripts."
-        );
+        if (ENGrid.debug)
+          this.logger.log(
+            "Parent iFrame detected with'force-full-view' data attribute, removing 'data-engrid-embedded' from the 'body' in the event it was added from inline scripts."
+          );
       } else {
-        ENGrid.setBodyData("embedded", ""); // Add the data-engrid-embedded attribute when inside an iFrame if it wasn't already added by a script in the Page Template
-        this.logger.log(
-          "iFrame Event - Detected running in an iFrame, added 'data-engrid-embedded' to the 'body'."
-        );
+        ENGrid.setBodyData("embedded", ""); // Add the data-engrid-embedded attribute when inside an iFrame
+        if (ENGrid.debug)
+          this.logger.log(
+            "Detected running in an iFrame, added 'data-engrid-embedded' to the 'body'."
+          );
       }
-      this.logger.log("iFrame Event - Begin Resizing");
+      if (ENGrid.debug) this.logger.log("Begin Resizing");
       this.sendIframeHeight(); // Fire the resize event immediately
       window.addEventListener("resize", this.sendIframeHeight.bind(this)); // Listen for the resize event
       window.addEventListener("load", (event) => {
         // Scroll to top of iFrame
-        this.logger.log("iFrame Event - window.onload");
+        if (ENGrid.debug) this.logger.log("window.onload");
         this.sendIframeHeight();
         window.parent.postMessage(
           {
@@ -41,7 +43,7 @@ export class iFrame {
 
         // On click fire the resize event
         document.addEventListener("click", (e: Event) => {
-          this.logger.log("iFrame Event - click");
+          if (ENGrid.debug) this.logger.log("click");
           setTimeout(() => {
             this.sendIframeHeight();
           }, 100);
@@ -49,12 +51,12 @@ export class iFrame {
       });
       // Listen for the form submit event
       this._form.onSubmit.subscribe((e) => {
-        this.logger.log("iFrame Event - onSubmit");
+        if (ENGrid.debug) this.logger.log("onSubmit");
         this.sendIframeFormStatus("submit");
       });
       // If the iFrame is Chained, check if the form has data
       if (this.isChained() && this.hasPayment()) {
-        this.logger.log("iFrame Event - Chained iFrame");
+        if (ENGrid.debug) this.logger.log("Chained iFrame");
         this.sendIframeFormStatus("chained");
         this.hideFormComponents();
         this.addChainedBanner();
@@ -84,7 +86,8 @@ export class iFrame {
               left: 0,
               behavior: "smooth",
             });
-            this.logger.log("iFrame Event - Scrolling Window to " + scrollTo);
+            if (ENGrid.debug)
+              this.logger.log("Scrolling Window to " + scrollTo);
           }
         }
       });
@@ -93,9 +96,8 @@ export class iFrame {
 
   private sendIframeHeight() {
     let height = document.body.offsetHeight;
-    this.logger.log(
-      "iFrame Event - Sending iFrame height of: " + height + "px"
-    ); // check the message is being sent correctly
+    if (ENGrid.debug)
+      this.logger.log("Sending iFrame height of: " + height + "px"); // check the message is being sent correctly
     window.parent.postMessage(
       {
         frameHeight: height,
@@ -165,7 +167,7 @@ export class iFrame {
     return payment || ccnumber;
   }
   private hideFormComponents() {
-    this.logger.log("iFrame Event - Hiding Form Components");
+    if (ENGrid.debug) this.logger.log("Hiding Form Components");
     const en__component = document.querySelectorAll(
       ".body-main > div"
     ) as NodeListOf<HTMLDivElement>;
@@ -184,7 +186,7 @@ export class iFrame {
     this.sendIframeHeight();
   }
   private showFormComponents() {
-    this.logger.log("iFrame Event - Showing Form Components");
+    if (ENGrid.debug) this.logger.log("Showing Form Components");
     const en__component = document.querySelectorAll(
       ".body-main > div.hide-chained"
     ) as NodeListOf<HTMLDivElement>;
@@ -195,7 +197,7 @@ export class iFrame {
     this.sendIframeHeight();
   }
   private addChainedBanner() {
-    this.logger.log("iFrame Event - Adding Chained Banner");
+    if (ENGrid.debug) this.logger.log("Adding Chained Banner");
     const banner = document.createElement("div");
     const lastComponent = document.querySelector(
       ".body-main > div:last-of-type"

@@ -1,4 +1,10 @@
-import { EnForm, DonationAmount, ENGrid, ProcessingFees } from "./";
+import {
+  EnForm,
+  DonationAmount,
+  ENGrid,
+  EngridLogger,
+  ProcessingFees,
+} from "./";
 
 /*global window */
 const ApplePaySession = (window as any).ApplePaySession;
@@ -22,6 +28,7 @@ export class ApplePay {
   public _amount: DonationAmount = DonationAmount.getInstance();
   public _fees: ProcessingFees = ProcessingFees.getInstance();
   public _form: EnForm = EnForm.getInstance();
+  private logger: EngridLogger = new EngridLogger("Apple Pay");
   constructor() {
     this.checkApplePay();
   }
@@ -35,7 +42,7 @@ export class ApplePay {
         ".en__field__item.applepay"
       );
       if (applePayContainer) applePayContainer.remove();
-      if (ENGrid.debug) console.log("Apple Pay DISABLED");
+      if (ENGrid.debug) this.logger.log("Apple Pay DISABLED");
       return false;
     }
 
@@ -53,7 +60,7 @@ export class ApplePay {
         this._form.onSubmit.subscribe(() => this.onPayClicked());
       }
     });
-    if (ENGrid.debug) console.log("applePayEnabled", applePayEnabled);
+    if (ENGrid.debug) this.logger.log("applePayEnabled", applePayEnabled);
     let applePayWrapper = this.applePay.closest(
       ".en__field__item"
     ) as HTMLDivElement;
@@ -68,6 +75,7 @@ export class ApplePay {
   }
 
   public performValidation(url: string) {
+    const logger = this.logger;
     return new Promise(function (resolve, reject) {
       var merchantSession: any = {};
       merchantSession.merchantIdentifier = merchantIdentifier;
@@ -88,7 +96,7 @@ export class ApplePay {
       var xhr = new XMLHttpRequest();
       xhr.onload = function () {
         var data = JSON.parse(this.responseText);
-        if (ENGrid.debug) console.log("Apple Pay Validation", data);
+        logger.log("Apple Pay Validation", data);
         resolve(data);
       };
       xhr.onerror = reject;
@@ -141,7 +149,7 @@ export class ApplePay {
             .performValidation(event.validationURL)
             .then(function (merchantSession: any) {
               if (ENGrid.debug)
-                console.log("Apple Pay merchantSession", merchantSession);
+                this.logger.log("Apple Pay merchantSession", merchantSession);
               session.completeMerchantValidation(merchantSession);
             });
         };
@@ -150,7 +158,7 @@ export class ApplePay {
             .sendPaymentToken(event.payment.token)
             .then(function (success: any) {
               if (ENGrid.debug)
-                console.log("Apple Pay Token", event.payment.token);
+                this.logger.log("Apple Pay Token", event.payment.token);
               (
                 document.getElementById("applePayToken") as HTMLInputElement
               ).value = JSON.stringify(event.payment.token);
@@ -158,7 +166,7 @@ export class ApplePay {
             });
         };
         session.oncancel = function (event: any) {
-          if (ENGrid.debug) console.log("Cancelled", event);
+          if (ENGrid.debug) this.logger.log("Cancelled", event);
           alert("You cancelled. Sorry it didn't work out.");
           formClass.dispatchError();
         };
