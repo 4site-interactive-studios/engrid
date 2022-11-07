@@ -54,7 +54,7 @@ export class iFrame {
       });
       // If the iFrame is Chained, check if the form has data
       if (this.isChained() && this.hasPayment()) {
-        this.logger.log("Chained iFrame");
+        this.logger.log("iFrame Event - Chained iFrame");
         this.sendIframeFormStatus("chained");
         this.hideFormComponents();
         this.addChainedBanner();
@@ -93,7 +93,9 @@ export class iFrame {
 
   private sendIframeHeight() {
     let height = document.body.offsetHeight;
-    this.logger.log("Sending iFrame height of: " + height + "px"); // check the message is being sent correctly
+    this.logger.log(
+      "iFrame Event - Sending iFrame height of: " + height + "px"
+    ); // check the message is being sent correctly
     window.parent.postMessage(
       {
         frameHeight: height,
@@ -163,7 +165,7 @@ export class iFrame {
     return payment || ccnumber;
   }
   private hideFormComponents() {
-    this.logger.log("Hiding Form Components");
+    this.logger.log("iFrame Event - Hiding Form Components");
     const en__component = document.querySelectorAll(
       ".body-main > div"
     ) as NodeListOf<HTMLDivElement>;
@@ -182,7 +184,7 @@ export class iFrame {
     this.sendIframeHeight();
   }
   private showFormComponents() {
-    this.logger.log("Showing Form Components");
+    this.logger.log("iFrame Event - Showing Form Components");
     const en__component = document.querySelectorAll(
       ".body-main > div.hide-chained"
     ) as NodeListOf<HTMLDivElement>;
@@ -193,7 +195,7 @@ export class iFrame {
     this.sendIframeHeight();
   }
   private addChainedBanner() {
-    this.logger.log("Adding Chained Banner");
+    this.logger.log("iFrame Event - Adding Chained Banner");
     const banner = document.createElement("div");
     const lastComponent = document.querySelector(
       ".body-main > div:last-of-type"
