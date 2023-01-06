@@ -1,0 +1,19 @@
+### Copy and Paste list of all semantic engrid sections
+ 1. page-alert
+ 2. content-header
+ 3. body-headerOutside
+ 4. body-header
+ 5. body-title
+ 6. body-banner
+ 7. body-bannerOverlay
+ 8. body-top
+ 9. body-main
+ 10. body-bottom
+ 11. body-footer
+ 12. body-footerOutside
+ 13. content-footerSpacer
+ 14. content-preFooter
+ 15. content-footer
+ 16. page-backgroundImage
+ 17. page-backgroundImageOverlay
+ 18. page-customCode
