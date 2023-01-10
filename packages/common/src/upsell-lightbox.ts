@@ -149,11 +149,18 @@ export class UpsellLightbox {
     // if it's a first page of a Donation page
     return (
       // !hideModal &&
+      !this.shouldSkip() &&
       "EngridUpsell" in window &&
       !!window.pageJson &&
       window.pageJson.pageNumber == 1 &&
       ["donation", "premiumgift"].includes(window.pageJson.pageType)
     );
+  }
+  private shouldSkip() {
+    if ("EngridUpsell" in window && window.EngridUpsell.skipUpsell) {
+      return true;
+    }
+    return this.options.skipUpsell;
   }
 
   private popupOtherField() {
@@ -242,6 +249,7 @@ export class UpsellLightbox {
     // we should not open
     if (
       freq == "onetime" &&
+      !this.shouldSkip() &&
       !this.options.disablePaymentMethods.includes(paymenttype.toLowerCase()) &&
       !this.overlay.classList.contains("is-submitting") &&
       upsellAmount > 0
