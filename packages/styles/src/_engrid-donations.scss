@@ -695,7 +695,7 @@
 
 // Helper classes to hide/show content based on if a the gift is one-time or recurring and the gift's frequency
 /* prettier-ignore */
-body{
+body:not(#en__pagebuilder):not([data-engrid-debug]){
 	&[data-engrid-transaction-recurring="n"] .recurring-frequency-n-hide,
 	&[data-engrid-transaction-recurring="n"] .recurring-frequency-onetime-hide, // Doesn't need data-engrid-transaction-recurring-frequency="onetime" defined to know the gift will be processed as one-time
 	&:not([data-engrid-transaction-recurring="n"]) .recurring-frequency-n-show,
@@ -712,4 +712,24 @@ body{
 	&:not([data-engrid-transaction-recurring="y"][data-engrid-transaction-recurring-frequency="annual"]) .recurring-frequency-annual-show{
 		display: none;
 	}
+}
+
+#en__pagebuilder,
+[data-engrid-debug] {
+  &[data-engrid-transaction-recurring="n"] .recurring-frequency-n-hide,
+	&[data-engrid-transaction-recurring="n"] .recurring-frequency-onetime-hide, // Doesn't need data-engrid-transaction-recurring-frequency="onetime" defined to know the gift will be processed as one-time
+	&:not([data-engrid-transaction-recurring="n"]) .recurring-frequency-n-show,
+	&:not([data-engrid-transaction-recurring="n"]) .recurring-frequency-onetime-show, // Doesn't need data-engrid-transaction-recurring-frequency="onetime" defined to know the gift will be processed as one-time
+	&[data-engrid-transaction-recurring="y"] .recurring-frequency-y-hide,
+	&[data-engrid-transaction-recurring="y"][data-engrid-transaction-recurring-frequency="monthly"] .recurring-frequency-monthly-hide,
+	&[data-engrid-transaction-recurring="y"][data-engrid-transaction-recurring-frequency="quarterly"] .recurring-frequency-quarterly-hide,
+	&[data-engrid-transaction-recurring="y"][data-engrid-transaction-recurring-frequency="semi_annual"] .recurring-frequency-semi-annual-hide,
+	&[data-engrid-transaction-recurring="y"][data-engrid-transaction-recurring-frequency="annual"] .recurring-frequency-annual-hide,
+	&:not([data-engrid-transaction-recurring="y"]) .recurring-frequency-y-show,
+	&:not([data-engrid-transaction-recurring="y"][data-engrid-transaction-recurring-frequency="monthly"]) .recurring-frequency-monthly-show,
+	&:not([data-engrid-transaction-recurring="y"][data-engrid-transaction-recurring-frequency="quarterly"]) .recurring-frequency-quarterly-show,
+	&:not([data-engrid-transaction-recurring="y"][data-engrid-transaction-recurring-frequency="semi_annual"]) .recurring-frequency-semi-annual-show,
+	&:not([data-engrid-transaction-recurring="y"][data-engrid-transaction-recurring-frequency="annual"]) .recurring-frequency-annual-show {
+    background-color: #0000ff1a !important;
+  }
 }
