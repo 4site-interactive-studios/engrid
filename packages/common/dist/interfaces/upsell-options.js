@@ -25,4 +25,6 @@ export const UpsellOptionsDefaults = {
     minAmount: 0,
     canClose: true,
     submitOnClose: false,
+    disablePaymentMethods: [],
+    skipUpsell: false,
 };

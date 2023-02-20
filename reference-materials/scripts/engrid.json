@@ -1,0 +1,216 @@
+{
+  "pages": [
+    {
+      "type": "1",
+      "label": "Page 1",
+      "design": {
+        "type": "page",
+        "options": {},
+        "children": [
+          {
+            "type": "advrow",
+            "options": {},
+            "children": [
+              {
+                "type": "advcolumn",
+                "options": { "customClasses": "page-alert" },
+                "children": []
+              },
+              {
+                "type": "advcolumn",
+                "options": { "customClasses": "content-header" },
+                "children": []
+              },
+              {
+                "type": "advcolumn",
+                "options": { "customClasses": "body-headerOutside" },
+                "children": []
+              },
+              {
+                "type": "advcolumn",
+                "options": { "customClasses": "body-header" },
+                "children": []
+              },
+              {
+                "type": "advcolumn",
+                "options": { "customClasses": "body-title" },
+                "children": []
+              },
+              {
+                "type": "advcolumn",
+                "options": { "customClasses": "body-banner" },
+                "children": []
+              },
+              {
+                "type": "advcolumn",
+                "options": { "customClasses": "body-bannerOverlay" },
+                "children": []
+              },
+              {
+                "type": "advcolumn",
+                "options": { "customClasses": "body-top" },
+                "children": []
+              },
+              {
+                "type": "advcolumn",
+                "options": { "customClasses": "body-main" },
+                "children": []
+              },
+              {
+                "type": "advcolumn",
+                "options": { "customClasses": "body-bottom" },
+                "children": []
+              },
+              {
+                "type": "advcolumn",
+                "options": { "customClasses": "body-footer" },
+                "children": []
+              },
+              {
+                "type": "advcolumn",
+                "options": { "customClasses": "body-footerOutside" },
+                "children": []
+              },
+              {
+                "type": "advcolumn",
+                "options": { "customClasses": "content-footerSpacer" },
+                "children": []
+              },
+              {
+                "type": "advcolumn",
+                "options": { "customClasses": "content-preFooter" },
+                "children": []
+              },
+              {
+                "type": "advcolumn",
+                "options": { "customClasses": "content-footer" },
+                "children": []
+              },
+              {
+                "type": "advcolumn",
+                "options": { "customClasses": "page-backgroundImage" },
+                "children": []
+              },
+              {
+                "type": "advcolumn",
+                "options": { "customClasses": "page-backgroundImageOverlay" },
+                "children": []
+              },
+              {
+                "type": "advcolumn",
+                "options": { "customClasses": "page-customCode" },
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "2",
+      "label": "Page 2",
+      "design": {
+        "type": "page",
+        "options": {},
+        "children": [
+          {
+            "type": "advrow",
+            "options": {},
+            "children": [
+              {
+                "type": "advcolumn",
+                "options": { "customClasses": "page-alert" },
+                "children": []
+              },
+              {
+                "type": "advcolumn",
+                "options": { "customClasses": "content-header" },
+                "children": []
+              },
+              {
+                "type": "advcolumn",
+                "options": { "customClasses": "body-headerOutside" },
+                "children": []
+              },
+              {
+                "type": "advcolumn",
+                "options": { "customClasses": "body-header" },
+                "children": []
+              },
+              {
+                "type": "advcolumn",
+                "options": { "customClasses": "body-title" },
+                "children": []
+              },
+              {
+                "type": "advcolumn",
+                "options": { "customClasses": "body-banner" },
+                "children": []
+              },
+              {
+                "type": "advcolumn",
+                "options": { "customClasses": "body-bannerOverlay" },
+                "children": []
+              },
+              {
+                "type": "advcolumn",
+                "options": { "customClasses": "body-top" },
+                "children": []
+              },
+              {
+                "type": "advcolumn",
+                "options": { "customClasses": "body-main" },
+                "children": []
+              },
+              {
+                "type": "advcolumn",
+                "options": { "customClasses": "body-bottom" },
+                "children": []
+              },
+              {
+                "type": "advcolumn",
+                "options": { "customClasses": "body-footer" },
+                "children": []
+              },
+              {
+                "type": "advcolumn",
+                "options": { "customClasses": "body-footerOutside" },
+                "children": []
+              },
+              {
+                "type": "advcolumn",
+                "options": { "customClasses": "content-footerSpacer" },
+                "children": []
+              },
+              {
+                "type": "advcolumn",
+                "options": { "customClasses": "content-preFooter" },
+                "children": []
+              },
+              {
+                "type": "advcolumn",
+                "options": { "customClasses": "content-footer" },
+                "children": []
+              },
+              {
+                "type": "advcolumn",
+                "options": { "customClasses": "page-backgroundImage" },
+                "children": []
+              },
+              {
+                "type": "advcolumn",
+                "options": { "customClasses": "page-backgroundImageOverlay" },
+                "children": []
+              },
+              {
+                "type": "advcolumn",
+                "options": { "customClasses": "page-customCode" },
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

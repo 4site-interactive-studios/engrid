@@ -18,6 +18,8 @@ export class Autocomplete {
         this.autoCompleteField('[name="supporter.city"]', "address-level2");
         this.autoCompleteField('[name="supporter.region"]', "address-level1");
         this.autoCompleteField('[name="supporter.postcode"]', "postal-code");
+        // Ignore Autocomplete on the Recipient Email Field
+        this.autoCompleteField('[name="transaction.infemail"]', "none");
     }
     autoCompleteField(querySelector, autoCompleteValue) {
         let field = document.querySelector(querySelector);

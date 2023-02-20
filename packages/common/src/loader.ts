@@ -2,7 +2,7 @@
 import { ENGrid, EngridLogger } from ".";
 export class Loader {
   private logger: EngridLogger = new EngridLogger(
-    "Logger",
+    "Loader",
     "gold",
     "black",
     "🔁"
@@ -18,33 +18,29 @@ export class Loader {
     let assets = this.getOption("assets");
 
     if (isLoaded || !assets) {
-      this.logger.success("ENgrid Loader: LOADED");
+      this.logger.success("LOADED");
       return false;
     }
 
     // Load the right ENgrid
-    this.logger.log("ENgrid Loader: RELOADING");
+    this.logger.log("RELOADING");
     ENGrid.setBodyData("loaded", "true"); // Set the loaded flag, so the next time we don't reload
     // Fetch the desired repo, assets location, and override JS/CSS
-    const engrid_repo = this.getOption("repo-name");
-    const engrid_repo_owner = this.getOption("repo-owner");
+    const theme = ENGrid.getBodyData("theme");
+    const engrid_repo = this.getOption("repo-name") ?? `engrid-${theme}`;
+    const engrid_repo_owner =
+      this.getOption("repo-owner") ?? "4site-interactive-studios";
     let engrid_js_url = "";
     let engrid_css_url = "";
     switch (assets) {
       case "local":
-        this.logger.log("ENgrid Loader: LOADING LOCAL");
-        // Find a way to guess local URL if there's no engrid_repo
-        if (!engrid_repo) {
-          const theme = ENGrid.getBodyData("theme");
-          engrid_js_url = `https://engrid-${theme}.test/dist/engrid.js`;
-          engrid_css_url = `https://engrid-${theme}.test/dist/engrid.css`;
-        } else {
-          engrid_js_url = `https://engrid-${engrid_repo}.test/dist/engrid.js`;
-          engrid_css_url = `https://engrid-${engrid_repo}.test/dist/engrid.css`;
-        }
+        this.logger.log("LOADING LOCAL");
+        ENGrid.setBodyData("assets", "local");
+        engrid_js_url = `https://${engrid_repo}.test/dist/engrid.js`;
+        engrid_css_url = `https://${engrid_repo}.test/dist/engrid.css`;
         break;
       case "flush":
-        this.logger.log("ENgrid Loader: FLUSHING CACHE");
+        this.logger.log("FLUSHING CACHE");
         const timestamp = Date.now();
         const jsCurrentURL = new URL(this.jsElement?.getAttribute("src") || "");
         jsCurrentURL.searchParams.set("v", timestamp.toString());
@@ -56,7 +52,7 @@ export class Loader {
         engrid_css_url = cssCurrentURL.toString();
         break;
       default:
-        this.logger.log("ENgrid Loader: LOADING EXTERNAL");
+        this.logger.log("LOADING EXTERNAL");
         engrid_js_url =
           "https://cdn.jsdelivr.net/gh/" +
           engrid_repo_owner +

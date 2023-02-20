@@ -53,5 +53,6 @@ $leftleft1col_body-column_max-width: $one_col_body-column_max-width !default; //
     @include engrid_replace-banner-with-background("leftleft1col");
     @include engrid_mobile-banner("leftleft1col");
     @include engrid_embedded-mobile-body;
+    @include remove-body-drop-shadow("leftleft1col");
   }
 }

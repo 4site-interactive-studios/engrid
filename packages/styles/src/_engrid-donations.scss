@@ -76,6 +76,7 @@
 
   // LABEL APPENDED TO DONTIONAL GIVING AMOUNTS BASED ON GIVING FREQUENCY
   --give-monthly-donation-amount-appended-label: "/mo";
+  --give-quarterly-donation-amount-appended-label: "/qt";
   --give-annual-donation-amount-appended-label: "/yr";
 
   // TYPOGRAPHY GIVE BY SELECT BUTTON
@@ -746,15 +747,17 @@
     content: var(--give-monthly-donation-amount-appended-label);
   }
 
-  // Append "/yr" to giving amount labels
+// Append "/yr" to giving amount labels
+/* prettier-ignore */
+[data-engrid-transaction-recurring-frequency="annual"] .radio-to-buttons_donationAmt .en__field--donationAmt div:not(.en__field__item--other) .en__field__label--item::after {
+	content: var(--give-annual-donation-amount-appended-label);
+}
 
-  &[data-engrid-transaction-recurring-frequency="annual"]
-    .radio-to-buttons_donationAmt
-    .en__field--donationAmt
-    div:not(.en__field__item--other)
-    .en__field__label--item::after {
-    content: var(--give-annual-donation-amount-appended-label);
-  }
+// Append "/yr" to giving amount labels
+/* prettier-ignore */
+[data-engrid-transaction-recurring-frequency="quarterly"] .radio-to-buttons_donationAmt .en__field--donationAmt div:not(.en__field__item--other) .en__field__label--item::after {
+	content: var(--give-quarterly-donation-amount-appended-label);
+}
 
   /*
 ########################################################################
@@ -762,9 +765,10 @@
 ########################################################################
 */
 
-  // Helper classes to hide/show content based on if a the gift is one-time or recurring and the gift's frequency
-
-  &[data-engrid-transaction-recurring="n"] .recurring-frequency-n-hide,
+// Helper classes to hide/show content based on if a the gift is one-time or recurring and the gift's frequency
+/* prettier-ignore */
+body:not(#en__pagebuilder):not([data-engrid-debug]){
+	&[data-engrid-transaction-recurring="n"] .recurring-frequency-n-hide,
 	&[data-engrid-transaction-recurring="n"] .recurring-frequency-onetime-hide, // Doesn't need data-engrid-transaction-recurring-frequency="onetime" defined to know the gift will be processed as one-time
 	&:not([data-engrid-transaction-recurring="n"]) .recurring-frequency-n-show,
 	&:not([data-engrid-transaction-recurring="n"]) .recurring-frequency-onetime-show, // Doesn't need data-engrid-transaction-recurring-frequency="onetime" defined to know the gift will be processed as one-time
@@ -779,5 +783,25 @@
 	&:not([data-engrid-transaction-recurring="y"][data-engrid-transaction-recurring-frequency="semi_annual"]) .recurring-frequency-semi-annual-show,
 	&:not([data-engrid-transaction-recurring="y"][data-engrid-transaction-recurring-frequency="annual"]) .recurring-frequency-annual-show {
     display: none;
+  }
+}
+
+#en__pagebuilder,
+[data-engrid-debug] {
+  .recurring-frequency-annual-hide,
+  .recurring-frequency-annual-show,
+  .recurring-frequency-monthly-hide,
+  .recurring-frequency-monthly-show,
+  .recurring-frequency-n-hide,
+  .recurring-frequency-n-show,
+  .recurring-frequency-onetime-hide,
+  .recurring-frequency-onetime-show,
+  .recurring-frequency-quarterly-hide,
+  .recurring-frequency-quarterly-show,
+  .recurring-frequency-semi-annual-hide,
+  .recurring-frequency-semi-annual-show,
+  .recurring-frequency-y-hide,
+  .recurring-frequency-y-show {
+    background-color: #0000ff1a !important;
   }
 }

@@ -5,6 +5,8 @@ export interface Options {
     CapitalizeFields?: boolean;
     ClickToExpand?: boolean;
     CurrencySymbol?: string;
+    CurrencyCode?: string;
+    AddCurrencySymbol?: boolean;
     CurrencySeparator?: string;
     ThousandsSeparator?: string;
     DecimalSeparator?: string;
@@ -23,6 +25,7 @@ export interface Options {
     AutoYear?: boolean;
     TranslateFields?: boolean;
     Debug?: boolean;
+    RegionLongFormat?: string;
     RememberMe?: boolean | {
         remoteUrl?: string;
         cookieName?: string;
@@ -37,6 +40,32 @@ export interface Options {
         fieldClearSelectorTarget?: string;
         fieldClearSelectorTargetLocation?: string;
         checked?: boolean;
+    };
+    TidyContact?: false | {
+        cid?: string;
+        record_field?: string;
+        date_field?: string;
+        status_field?: string;
+        countries?: string[];
+        country_fallback?: string;
+        us_zip_divider?: string;
+        address_fields?: {
+            address1: string;
+            address2: string;
+            address3: string;
+            city: string;
+            region: string;
+            postalCode: string;
+            country: string;
+            phone: string;
+        };
+        phone_enable?: boolean;
+        phone_flags?: boolean;
+        phone_country_from_ip?: boolean;
+        phone_preferred_countries?: string[];
+        phone_record_field?: string;
+        phone_date_field?: string;
+        phone_status_field?: string;
     };
     onLoad?: () => void;
     onResize?: () => void;

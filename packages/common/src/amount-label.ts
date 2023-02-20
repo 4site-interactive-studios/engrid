@@ -15,7 +15,10 @@ export class AmountLabel {
   }
   // Should we run the script?
   shouldRun() {
-    return ENGrid.getPageType() === "DONATION";
+    return !!(
+      ENGrid.getPageType() === "DONATION" &&
+      ENGrid.getOption("AddCurrencySymbol")
+    );
   }
 
   // Fix Amount Labels
@@ -23,7 +26,7 @@ export class AmountLabel {
     let amounts = document.querySelectorAll(
       ".en__field--donationAmt label"
     ) as NodeListOf<HTMLLabelElement>;
-    const currencySymbol = ENGrid.getOption("CurrencySymbol") || "";
+    const currencySymbol = ENGrid.getCurrencySymbol() || "";
     amounts.forEach((element) => {
       if (!isNaN(element.innerText as any)) {
         element.innerText = currencySymbol + element.innerText;

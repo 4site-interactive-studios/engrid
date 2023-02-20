@@ -13,8 +13,5 @@ export declare class App extends ENGrid {
     private onValidate;
     private onSubmit;
     private onError;
-    private inIframe;
-    private shouldScroll;
-    private loadIFrame;
     setDataAttributes(): void;
 }

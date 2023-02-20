@@ -52,7 +52,7 @@ export class UpsellLightbox {
                     </p>
                   </div>
                   <div class="upsellOtherAmountInput">
-                    <input href="#" id="secondOtherField" name="secondOtherField" size="12" type="number" inputmode="numeric" step="1" value="" autocomplete="off">
+                    <input href="#" id="secondOtherField" name="secondOtherField" type="text" value="" inputmode="decimal" aria-label="Enter your custom donation amount" autocomplete="off" data-lpignore="true" aria-required="true" size="12">
                     <small>Minimum ${this.getAmountTxt(this.options.minAmount)}</small>
                   </div>
                 </div>
@@ -116,10 +116,17 @@ export class UpsellLightbox {
         // if it's a first page of a Donation page
         return (
         // !hideModal &&
-        "EngridUpsell" in window &&
+        !this.shouldSkip() &&
+            "EngridUpsell" in window &&
             !!window.pageJson &&
             window.pageJson.pageNumber == 1 &&
             ["donation", "premiumgift"].includes(window.pageJson.pageType));
+    }
+    shouldSkip() {
+        if ("EngridUpsell" in window && window.EngridUpsell.skipUpsell) {
+            return true;
+        }
+        return this.options.skipUpsell;
     }
     popupOtherField() {
         var _a, _b;
@@ -173,11 +180,14 @@ export class UpsellLightbox {
     shouldOpen() {
         const freq = this._frequency.frequency;
         const upsellAmount = this.getUpsellAmount();
+        const paymenttype = ENGrid.getFieldValue("transaction.paymenttype") || "";
         // If frequency is not onetime or
         // the modal is already opened or
         // there's no suggestion for this donation amount,
         // we should not open
         if (freq == "onetime" &&
+            !this.shouldSkip() &&
+            !this.options.disablePaymentMethods.includes(paymenttype.toLowerCase()) &&
             !this.overlay.classList.contains("is-submitting") &&
             upsellAmount > 0) {
             this.logger.log("Upsell Frequency " + this._frequency.frequency);
@@ -266,7 +276,7 @@ export class UpsellLightbox {
     }
     getAmountTxt(amount = 0) {
         var _a, _b, _c, _d;
-        const symbol = (_a = ENGrid.getOption("CurrencySymbol")) !== null && _a !== void 0 ? _a : "$";
+        const symbol = (_a = ENGrid.getCurrencySymbol()) !== null && _a !== void 0 ? _a : "$";
         const dec_separator = (_b = ENGrid.getOption("DecimalSeparator")) !== null && _b !== void 0 ? _b : ".";
         const thousands_separator = (_c = ENGrid.getOption("ThousandsSeparator")) !== null && _c !== void 0 ? _c : "";
         const dec_places = amount % 1 == 0 ? 0 : (_d = ENGrid.getOption("DecimalPlaces")) !== null && _d !== void 0 ? _d : 2;

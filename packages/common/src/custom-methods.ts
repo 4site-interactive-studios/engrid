@@ -710,6 +710,8 @@ export const watchGiveBySelectField = () => {
       }
       enFieldPaymentType.value = "applepay";
     }
+    const event = new Event("change");
+    enFieldPaymentType.dispatchEvent(event);
   };
 
   // Check Giving Frequency on page load
@@ -1085,11 +1087,7 @@ const isInViewport = (e: any) => {
 
 // Checks to see if the page is so short, the footer is above the fold. If the footer is above the folde we'll use this class to ensure at a minimum the page fills the full viewport height.
 if (contentFooter && isInViewport(contentFooter)) {
-  document
-    .getElementsByTagName("BODY")[0]
-    .setAttribute("data-engrid-footer-above-fold", "");
+  document.body.setAttribute("data-engrid-footer-above-fold", "");
 } else {
-  document
-    .getElementsByTagName("BODY")[0]
-    .setAttribute("data-engrid-footer-below-fold", "");
+  document.body.setAttribute("data-engrid-footer-below-fold", "");
 }

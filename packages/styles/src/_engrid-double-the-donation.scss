@@ -1,0 +1,215 @@
+[data-engrid-theme] {
+  // Double the donation theming
+  @mixin dtd-search-input {
+    .dtd-search-input {
+      font-family: var(--input_font-family) !important;
+      color: var(--input_color) !important;
+      font-size: var(--input_font-size) !important;
+      font-weight: var(--input_font-weight) !important;
+      line-height: var(--input_line-height) !important;
+      background-color: var(--input_background-color) !important;
+      border-width: var(--input_border-width) !important;
+      border-color: var(--input_border-color) !important;
+      border-radius: var(--input_border-radius) !important;
+      height: auto !important; // Shared between input, textarea, and select
+      max-width: 100% !important; // Shared between input, textarea, and select
+      width: 100% !important; // Shared between input, textarea, and select
+      min-width: initial !important; // Shared between input, textarea, and select
+      display: block !important; // Shared between input, textarea, and select
+      // -webkit-box-sizing: border-box; // Shared between input, textarea, and select
+      box-sizing: border-box; // Shared between input, textarea, and select
+      margin: 0rem !important; // Shared between input, textarea, and select
+      padding: var(--input_padding) !important;
+      transition: box-shadow 0.25s, border-color 0.25s ease-in-out !important; // Shared between input, textarea, and select
+      border-style: solid !important; // Shared between input, textarea, and select
+
+      &:focus,
+      &:hover {
+        color: var(--input_color_hover) !important;
+        background-color: var(--input_background-color_hover) !important;
+        border-color: var(--input_border-color_hover) !important;
+        border-bottom-color: var(--input_border-bottom-color_hover) !important;
+        // outline: none; // Shared between input:focus, textarea:focus, and select:focus
+        // --input_placeholder-color: hsl(0, 0%, 67%);
+      }
+    }
+  }
+
+  #dd-container,
+  .dtd-plugin {
+    .dtd-callout {
+      // Remove Excessive Styling from the Double the Donation widgets https://cln.sh/BNe0sf
+      padding: 0;
+      border: none;
+      box-shadow: none;
+      background-color: transparent;
+
+      font-family: var(--default_font-family);
+      color: var(--default_color);
+      font-size: var(--default_font-size);
+      font-weight: var(--default_font-weight);
+      line-height: var(--default_line-height);
+    }
+
+    .heading[aria-level="1"] {
+      font-family: var(--h1_font-family);
+      color: var(--h1_color);
+      font-size: var(--h1_font-size);
+      font-weight: var(--h1_font-weight);
+      line-height: var(--h1_line-height);
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      text-transform: var(--h1_text-transform);
+    }
+
+    .heading[aria-level="2"] {
+      font-family: var(--h2_font-family);
+      color: var(--h2_color);
+      font-size: var(--h2_font-size);
+      font-weight: var(--h2_font-weight);
+      line-height: var(--h2_line-height);
+      margin-top: calc(2rem * var(--scale-down_20pct));
+      margin-bottom: calc(1rem * var(--scale-down_20pct));
+      text-transform: var(--h2_text-transform);
+    }
+
+    .heading[aria-level="3"] {
+      font-family: var(--h3_font-family);
+      color: var(--h3_color);
+      font-size: var(--h3_font-size);
+      font-weight: var(--h3_font-weight);
+      line-height: var(--h3_line-height);
+      margin-top: calc(2rem * var(--scale-down_40pct));
+      margin-bottom: calc(1rem * var(--scale-down_40pct));
+      text-transform: var(--h3_text-transform);
+    }
+
+    .heading[aria-level="4"],
+    .heading[aria-level="5"],
+    .heading[aria-level="6"] {
+      font-family: var(--h3_font-family);
+      color: var(--h3_color);
+      font-size: calc(var(--h3_font-size) * var(--scale-down_20pct));
+      font-weight: var(--h3_font-weight);
+      line-height: var(--h3_line-height);
+      margin-top: calc(2rem * var(--scale-down_80pct));
+      margin-bottom: calc(1rem * var(--scale-down_80pct));
+      text-transform: var(--h4_text-transform);
+    }
+
+    .eligibility-status {
+      font-size: var(--default_font-size);
+    }
+
+    .dtd-search-box {
+      border: none;
+      box-shadow: none;
+    }
+
+    @include dtd-search-input;
+
+    .dtd-search-input {
+      padding-left: 40px !important;
+    }
+
+    button,
+    .button,
+    a[class*="mg-"][class*="-button"] {
+      // Styles their a link buttons like the theme buttons
+      font-family: var(--button_font-family);
+      font-size: var(--button_font-size);
+      font-weight: var(--button_font-weight);
+      line-height: var(--button_line-height);
+      border-width: var(--button_border-width);
+      border-color: var(--button_border-color);
+      border-radius: var(--button_border-radius);
+      cursor: pointer;
+      border-style: solid;
+      padding: var(--button_padding);
+      text-transform: var(--button_text-transform);
+      -webkit-appearance: none;
+      -webkit-transition: background-color 0.2s ease-out, color 0.2s ease-out,
+        border-color 0.2s ease-out;
+      transition: background-color 0.2s ease-out, color 0.2s ease-out,
+        border-color 0.2s ease-out;
+      text-align: center;
+      background-color: var(--submit__button_background-color);
+      color: var(--submit__button_color);
+      border-color: var(--submit__button_border-color);
+
+      &.disabled,
+      &[disabled],
+      &.disabled:hover,
+      &[disabled]:hover,
+      &.disabled:focus,
+      &[disabled]:focus {
+        background-color: var(--submit__button_background-color);
+        color: var(--submit__button_color);
+        border-color: var(--submit__button_border-color);
+      }
+
+      &:hover,
+      &:focus {
+        background-color: var(--submit__button_background-color_hover);
+        color: var(--submit__button_color_hover);
+        border-color: var(--submit__button_border-color_hover);
+      }
+    }
+
+    .mg-forms-button,
+    .mg-guidelines-button {
+      width: calc(100% - 1rem);
+    }
+  }
+
+  #dd-company-name-input,
+  .dtd-streamlined-plugin {
+    @include dtd-search-input;
+  }
+
+  .dtd-company-selected {
+    // Style the "Wrong Company" A link like a button
+    .wrongcompany a {
+      font-family: var(--button_font-family);
+      color: var(--button_color);
+      font-size: var(--button_font-size);
+      font-weight: var(--button_font-weight);
+      line-height: var(--button_line-height);
+      background-color: var(--button_background-color);
+      border-width: var(--button_border-width);
+      border-color: var(--button_border-color);
+      border-radius: var(--button_border-radius);
+      cursor: pointer;
+      border-style: solid;
+      display: block;
+      margin: 0 0 1rem 0;
+      padding: var(--button_padding);
+      text-transform: var(--button_text-transform);
+      -webkit-appearance: none;
+      -webkit-transition: background-color 0.2s ease-out, color 0.2s ease-out,
+        border-color 0.2s ease-out;
+      transition: background-color 0.2s ease-out, color 0.2s ease-out,
+        border-color 0.2s ease-out;
+      text-align: center;
+
+      &:focus,
+      &:hover {
+        color: var(--button_color_hover);
+        background-color: var(--button_background-color_hover);
+        border-color: var(--button_border-color_hover);
+      }
+
+      &:active,
+      &.active {
+        color: var(--button_color_checked);
+        background-color: var(--button_background-color_checked);
+        border-color: var(--button_border-color_checked);
+      }
+    }
+
+    // Add some padding for breathing room
+    .wrongcompany a {
+      margin-top: var(--fields_spacing-block);
+    }
+  }
+}

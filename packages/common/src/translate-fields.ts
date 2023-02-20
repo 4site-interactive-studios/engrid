@@ -329,8 +329,8 @@ export class TranslateFields {
         break;
       case "MX":
       case "MEX":
-        this.setStateValues("Province", [
-          { label: "Select Province", value: "" },
+        this.setStateValues("Estado", [
+          { label: "Seleccione Estado", value: "" },
           { label: "Aguascalientes", value: "AGU" },
           { label: "Baja California", value: "BCN" },
           { label: "Baja California Sur", value: "BCS" },
@@ -365,8 +365,8 @@ export class TranslateFields {
         ]);
         break;
       case "Mexico":
-        this.setStateValues("Province", [
-          { label: "Select Province", value: "" },
+        this.setStateValues("Estado", [
+          { label: "Seleccione Estado", value: "" },
           { label: "Aguascalientes", value: "Aguascalientes" },
           { label: "Baja California", value: "Baja California" },
           { label: "Baja California Sur", value: "Baja California Sur" },
@@ -464,6 +464,8 @@ export class TranslateFields {
     if (stateField) {
       cookie.set("engrid-state", stateField.value, {
         expires: 1,
+        sameSite: "none",
+        secure: true,
       });
     }
   }

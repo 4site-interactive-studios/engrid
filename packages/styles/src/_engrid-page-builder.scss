@@ -73,6 +73,15 @@
       border: none !important;
     }
 
+    // Prevent this https://cln.sh/3WKFln
+    .en__component--active {
+      box-shadow: 0 0 0 2px #00b2d9;
+      background: rgba(0, 178, 217, 0.2);
+      z-index: 1000;
+      outline-color: #00b2d9;
+      outline-style: solid;
+    }
+
     // Includes both upper and lower case scenarios for typical field values
     .inmem-y,
     .inmem-n,
@@ -83,8 +92,10 @@
     .inmem-N,
     .giveBySelect-Card,
     .giveBySelect-ACH,
-    .giveBySelect-Paypal {
+    .giveBySelect-Paypal,
+    [class*="engrid__supporter"] {
       background-color: #0000ff1a !important;
+
       &.pboAdvancedRow__preview .en__component--column {
         outline-color: #0000ff !important;
         z-index: 1;

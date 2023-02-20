@@ -46,4 +46,5 @@ export declare class RememberMe {
     private setFieldValue;
     private clearFields;
     private writeFields;
+    private isJson;
 }

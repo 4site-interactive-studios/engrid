@@ -73,7 +73,7 @@ export class UpsellLightbox {
                     </p>
                   </div>
                   <div class="upsellOtherAmountInput">
-                    <input href="#" id="secondOtherField" name="secondOtherField" size="12" type="number" inputmode="numeric" step="1" value="" autocomplete="off">
+                    <input href="#" id="secondOtherField" name="secondOtherField" type="text" value="" inputmode="decimal" aria-label="Enter your custom donation amount" autocomplete="off" data-lpignore="true" aria-required="true" size="12">
                     <small>Minimum ${this.getAmountTxt(
                       this.options.minAmount
                     )}</small>
@@ -149,11 +149,18 @@ export class UpsellLightbox {
     // if it's a first page of a Donation page
     return (
       // !hideModal &&
+      !this.shouldSkip() &&
       "EngridUpsell" in window &&
       !!window.pageJson &&
       window.pageJson.pageNumber == 1 &&
       ["donation", "premiumgift"].includes(window.pageJson.pageType)
     );
+  }
+  private shouldSkip() {
+    if ("EngridUpsell" in window && window.EngridUpsell.skipUpsell) {
+      return true;
+    }
+    return this.options.skipUpsell;
   }
 
   private popupOtherField() {
@@ -235,12 +242,15 @@ export class UpsellLightbox {
   private shouldOpen() {
     const freq = this._frequency.frequency;
     const upsellAmount = this.getUpsellAmount();
+    const paymenttype = ENGrid.getFieldValue("transaction.paymenttype") || "";
     // If frequency is not onetime or
     // the modal is already opened or
     // there's no suggestion for this donation amount,
     // we should not open
     if (
       freq == "onetime" &&
+      !this.shouldSkip() &&
+      !this.options.disablePaymentMethods.includes(paymenttype.toLowerCase()) &&
       !this.overlay.classList.contains("is-submitting") &&
       upsellAmount > 0
     ) {
@@ -342,7 +352,7 @@ export class UpsellLightbox {
     }
   }
   private getAmountTxt(amount: number = 0) {
-    const symbol = ENGrid.getOption("CurrencySymbol") ?? "$";
+    const symbol = ENGrid.getCurrencySymbol() ?? "$";
     const dec_separator = ENGrid.getOption("DecimalSeparator") ?? ".";
     const thousands_separator = ENGrid.getOption("ThousandsSeparator") ?? "";
     const dec_places =

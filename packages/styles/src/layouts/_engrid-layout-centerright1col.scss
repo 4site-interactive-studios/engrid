@@ -64,5 +64,6 @@ $centerright1col_body-column_offset-width-remaining: $centerright1col_content-co
     @include engrid_replace-banner-with-background("centerright1col");
     @include engrid_mobile-banner("centerright1col");
     @include engrid_embedded-mobile-body;
+    @include remove-body-drop-shadow("centerright1col");
   }
 }

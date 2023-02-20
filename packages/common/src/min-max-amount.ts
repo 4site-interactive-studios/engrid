@@ -1,4 +1,4 @@
-// This script checks if the donations amounts are numbers and if they are, appends the correct currency symbol
+// This script adds an erros message to the page if the amount is greater than the max amount or less than the min amount.
 import { DonationAmount, EnForm, ENGrid, EngridLogger } from "./";
 export class MinMaxAmount {
   private _form: EnForm = EnForm.getInstance();
@@ -51,13 +51,15 @@ export class MinMaxAmount {
 
   // Disable Submit Button if the amount is not valid
   liveValidate() {
-    if (this._amount.amount < this.minAmount) {
+    const amount = ENGrid.cleanAmount(this._amount.amount.toString());
+    this.logger.log(`Amount: ${amount}`);
+    if (amount < this.minAmount) {
       this.logger.log("Amount is less than min amount: " + this.minAmount);
       ENGrid.setError(
         ".en__field--withOther",
         this.minAmountMessage || "Invalid Amount"
       );
-    } else if (this._amount.amount > this.maxAmount) {
+    } else if (amount > this.maxAmount) {
       this.logger.log("Amount is greater than max amount: " + this.maxAmount);
       ENGrid.setError(
         ".en__field--withOther",

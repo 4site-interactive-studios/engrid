@@ -15,14 +15,31 @@ export abstract class ENGrid {
     return !!this.getOption("Debug");
   }
 
+  static get demo(): boolean {
+    return this.getUrlParameter("mode") === "DEMO";
+  }
+
   // Return any parameter from the URL
   static getUrlParameter(name: string) {
-    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
-    var results = regex.exec(location.search);
-    return results === null
-      ? ""
-      : decodeURIComponent(results[1].replace(/\+/g, " "));
+    const searchParams = new URLSearchParams(window.location.search);
+    // Add support for array on the name ending with []
+    if (name.endsWith("[]")) {
+      let values: Object[] = [];
+      searchParams.forEach((value, key) => {
+        if (key.startsWith(name.replace("[]", ""))) {
+          values.push(new Object({ [key]: value }));
+        }
+      });
+      return values.length > 0 ? values : null;
+    }
+    if (searchParams.has(name)) {
+      return searchParams.get(name) || true;
+    }
+    return null;
+  }
+  static getField(name: string) {
+    // Get the field by name
+    return document.querySelector(`[name="${name}"]`);
   }
   // Return the field value from its name. It works on any field type.
   // Multiple values (from checkboxes or multi-select) are returned as single string
@@ -32,7 +49,12 @@ export abstract class ENGrid {
   }
 
   // Set a value to any field. If it's a dropdown, radio or checkbox, it selects the proper option matching the value
-  static setFieldValue(name: string, value: unknown) {
+  static setFieldValue(
+    name: string,
+    value: unknown,
+    parseENDependencies: boolean = true
+  ) {
+    if (value === ENGrid.getFieldValue(name)) return;
     (document.getElementsByName(name) as NodeListOf<HTMLFormElement>).forEach(
       (field) => {
         if ("type" in field) {
@@ -57,10 +79,11 @@ export abstract class ENGrid {
             default:
               field.value = value;
           }
+          field.setAttribute("engrid-value-changed", "");
         }
       }
     );
-    this.enParseDependencies();
+    if (parseENDependencies) this.enParseDependencies();
     return;
   }
 
@@ -84,10 +107,51 @@ export abstract class ENGrid {
       typeof window.EngagingNetworks?.require?._defined?.enDependencies
         ?.dependencies?.parseDependencies === "function"
     ) {
-      window.EngagingNetworks.require._defined.enDependencies.dependencies.parseDependencies(
-        window.EngagingNetworks.dependencies
-      );
-      if (ENGrid.getOption("Debug")) console.trace("EN Dependencies Triggered");
+      const customDependencies: object[] = [];
+      if ("dependencies" in window.EngagingNetworks) {
+        const amountContainer = document.querySelector(
+          ".en__field--donationAmt"
+        );
+        if (amountContainer) {
+          let amountID =
+            [...amountContainer.classList.values()]
+              .filter(
+                (v) =>
+                  v.startsWith("en__field--") && Number(v.substring(11)) > 0
+              )
+              .toString()
+              .match(/\d/g)
+              ?.join("") || "";
+          if (amountID) {
+            window.EngagingNetworks.dependencies.forEach(
+              (dependency: {
+                [key: string]: {
+                  [key: string]: string;
+                }[];
+              }) => {
+                if ("actions" in dependency && dependency.actions.length > 0) {
+                  let amountIdFound = false;
+                  dependency.actions.forEach((action) => {
+                    if ("target" in action && action.target === amountID) {
+                      amountIdFound = true;
+                    }
+                  });
+                  if (!amountIdFound) {
+                    customDependencies.push(dependency);
+                  }
+                }
+              }
+            );
+            if (customDependencies.length > 0) {
+              window.EngagingNetworks.require._defined.enDependencies.dependencies.parseDependencies(
+                customDependencies
+              );
+              if (ENGrid.getOption("Debug"))
+                console.log("EN Dependencies Triggered", customDependencies);
+            }
+          }
+        }
+      }
     }
   }
 
@@ -119,13 +183,20 @@ export abstract class ENGrid {
   static getPageType() {
     if ("pageJson" in window && "pageType" in window.pageJson) {
       switch (window.pageJson.pageType) {
+        case "donation":
+        case "premiumgift":
+          return "DONATION";
+          break;
         case "e-card":
           return "ECARD";
           break;
         case "otherdatacapture":
+        case "survey":
           return "SURVEY";
           break;
         case "emailtotarget":
+          return "EMAILTOTARGET";
+          break;
         case "advocacypetition":
           return "ADVOCACY";
           break;
@@ -135,11 +206,14 @@ export abstract class ENGrid {
         case "supporterhub":
           return "SUPPORTERHUB";
           break;
+        case "unsubscribe":
+          return "UNSUBSCRIBE";
+          break;
         default:
-          return "DONATION";
+          return "UNKNOWN";
       }
     } else {
-      return "DONATION";
+      return "UNKNOWN";
     }
   }
 
@@ -159,6 +233,12 @@ export abstract class ENGrid {
     const body = <HTMLBodyElement>document.querySelector("body");
     return body.getAttribute(`data-engrid-${dataName}`);
   }
+  // Check if body has engrid data attributes
+  static hasBodyData(dataName: string) {
+    const body = <HTMLBodyElement>document.querySelector("body");
+    return body.hasAttribute(`data-engrid-${dataName}`);
+  }
+
   // Return the option value
   static getOption<K extends keyof Options>(key: K): Options[K] | null {
     return window.EngridOptions[key] || null;
@@ -173,10 +253,10 @@ export abstract class ENGrid {
     scriptTag.src = url;
     scriptTag.onload = onload;
     if (head) {
-      document.getElementsByTagName("head")[0].appendChild(scriptTag);
+      document.head.appendChild(scriptTag);
       return;
     }
-    document.getElementsByTagName("body")[0].appendChild(scriptTag);
+    document.body.appendChild(scriptTag);
     return;
   }
   // Format a number
@@ -207,6 +287,46 @@ export abstract class ENGrid {
       s[1] += new Array(prec - s[1].length + 1).join("0");
     }
     return s.join(dec);
+  }
+  // Clean an Amount
+  static cleanAmount(amount: string): number {
+    // Split the number
+    const valueArray = amount.replace(/[^0-9,\.]/g, "").split(/[,.]+/);
+    const delimArray = amount.replace(/[^.,]/g, "").split("");
+    // Handle values with no decimal places and non-numeric values
+    if (valueArray.length === 1) {
+      return parseInt(valueArray[0]) || 0;
+    }
+    // Ignore invalid numbers
+    if (
+      valueArray
+        .map((x, index) => {
+          return index > 0 && index + 1 !== valueArray.length && x.length !== 3
+            ? true
+            : false;
+        })
+        .includes(true)
+    ) {
+      return 0;
+    }
+    // Multiple commas is a bad thing? So edgy.
+    if (delimArray.length > 1 && !delimArray.includes(".")) {
+      return 0;
+    }
+    // Handle invalid decimal and comma formatting
+    if ([...new Set(delimArray.slice(0, -1))].length > 1) {
+      return 0;
+    }
+    // If there are cents
+    if (valueArray[valueArray.length - 1].length <= 2) {
+      const cents = valueArray.pop() || "00";
+      return parseInt(cents) > 0
+        ? parseFloat(
+            Number(parseInt(valueArray.join("")) + "." + cents).toFixed(2)
+          )
+        : parseInt(valueArray.join(""));
+    }
+    return parseInt(valueArray.join(""));
   }
   static disableSubmit(label: string = "") {
     const submit = document.querySelector(
@@ -265,8 +385,9 @@ export abstract class ENGrid {
     }
     return true;
   }
-  static setError(querySelector: string, errorMessage: string) {
-    const errorElement = document.querySelector(querySelector);
+  static setError(element: string | HTMLElement, errorMessage: string) {
+    const errorElement =
+      typeof element === "string" ? document.querySelector(element) : element;
     if (errorElement) {
       errorElement.classList.add("en__field--validationFailed");
       let errorMessageElement = errorElement.querySelector(".en__field__error");
@@ -280,8 +401,9 @@ export abstract class ENGrid {
       }
     }
   }
-  static removeError(querySelector: string) {
-    const errorElement = document.querySelector(querySelector);
+  static removeError(element: string | HTMLElement) {
+    const errorElement =
+      typeof element === "string" ? document.querySelector(element) : element;
     if (errorElement) {
       errorElement.classList.remove("en__field--validationFailed");
       const errorMessageElement =
@@ -290,5 +412,38 @@ export abstract class ENGrid {
         errorElement.removeChild(errorMessageElement);
       }
     }
+  }
+  static isVisible(element: HTMLElement): boolean {
+    return !!(
+      element.offsetWidth ||
+      element.offsetHeight ||
+      element.getClientRects().length
+    );
+  }
+  static getCurrencySymbol(): string {
+    const currencyField = ENGrid.getField(
+      "transaction.paycurrency"
+    ) as HTMLSelectElement;
+    if (currencyField) {
+      const currencyArray = {
+        USD: "$",
+        EUR: "€",
+        GBP: "£",
+        AUD: "$",
+        CAD: "$",
+        JPY: "¥",
+      };
+      return (currencyArray as any)[currencyField.value] || "$";
+    }
+    return ENGrid.getOption("CurrencySymbol") || "$";
+  }
+  static getCurrencyCode(): string {
+    const currencyField = ENGrid.getField(
+      "transaction.paycurrency"
+    ) as HTMLSelectElement;
+    if (currencyField) {
+      return currencyField.value || "USD";
+    }
+    return ENGrid.getOption("CurrencyCode") || "USD";
   }
 }

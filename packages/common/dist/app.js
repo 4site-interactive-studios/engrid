@@ -1,5 +1,5 @@
 import { DonationAmount, DonationFrequency, EnForm, ProcessingFees, } from "./events";
-import { AmountLabel, Loader, ProgressBar, UpsellLightbox, ENGrid, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, CapitalizeFields, CreditCardNumbers, Ecard, ClickToExpand, legacy, LiveVariables, sendIframeHeight, sendIframeFormStatus, ShowHideRadioCheckboxes, SimpleCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce, AutoYear, Autocomplete, RememberMe, TranslateFields, ShowIfAmount, EngridLogger, OtherAmount, MinMaxAmount, } from "./";
+import { AmountLabel, Loader, ProgressBar, UpsellLightbox, ENGrid, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, A11y, CapitalizeFields, CreditCardNumbers, Ecard, ClickToExpand, legacy, LiveVariables, iFrame, ShowHideRadioCheckboxes, SimpleCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce, AutoYear, Autocomplete, RememberMe, TranslateFields, ShowIfAmount, EngridLogger, OtherAmount, MinMaxAmount, Ticker, DataReplace, DataHide, AddNameToMessage, ExpandRegionName, AppVersion, UrlToForm, RequiredIfVisible, TidyContact, DataLayer, LiveCurrency, Autosubmit, } from "./";
 export class App extends ENGrid {
     constructor(options) {
         super();
@@ -9,23 +9,17 @@ export class App extends ENGrid {
         this._amount = DonationAmount.getInstance("transaction.donationAmt", "transaction.donationAmt.other");
         this._frequency = DonationFrequency.getInstance();
         this.logger = new EngridLogger("App", "black", "white", "🍏");
-        this.shouldScroll = () => {
-            // If you find a error, scroll
-            if (document.querySelector(".en__errorHeader")) {
-                return true;
-            }
-            // Try to match the iframe referrer URL by testing valid EN Page URLs
-            let referrer = document.referrer;
-            let enURLPattern = new RegExp(/^(.*)\/(page)\/(\d+.*)/);
-            // Scroll if the Regex matches, don't scroll otherwise
-            return enURLPattern.test(referrer);
-        };
         const loader = new Loader();
         this.options = Object.assign(Object.assign({}, OptionsDefaults), options);
         // Add Options to window
         window.EngridOptions = this.options;
         if (loader.reload())
             return;
+        // Turn Debug ON if you use local assets
+        if (ENGrid.getBodyData("assets") === "local" &&
+            ENGrid.getUrlParameter("debug") !== "false") {
+            window.EngridOptions.Debug = true;
+        }
         // Document Load
         if (document.readyState !== "loading") {
             this.run();
@@ -56,11 +50,15 @@ export class App extends ENGrid {
             }, 10);
             return;
         }
+        // If there's an option object on the page, override the defaults
+        if (window.hasOwnProperty("EngridPageOptions")) {
+            this.options = Object.assign(Object.assign({}, this.options), window.EngridPageOptions);
+            // Add Options to window
+            window.EngridOptions = this.options;
+        }
         if (this.options.Debug || App.getUrlParameter("debug") == "true")
             // Enable debug if available is the first thing
             App.setBodyData("debug", "");
-        // Page Background
-        new PageBackground();
         // TODO: Abstract everything to the App class so we can remove custom-methods
         legacy.inputPlaceholder();
         legacy.preventAutocomplete();
@@ -105,23 +103,37 @@ export class App extends ENGrid {
                 this._amount.load();
             }, 150);
         });
-        this._form.onSubmit.subscribe((s) => this.logger.success("Submit: " + s));
-        this._form.onError.subscribe((s) => this.logger.danger("Error: " + s));
+        this._form.onSubmit.subscribe((s) => this.logger.success("Submit: " + JSON.stringify(s)));
+        this._form.onError.subscribe((s) => this.logger.danger("Error: " + JSON.stringify(s)));
         window.enOnSubmit = () => {
             this._form.submit = true;
+            this._form.submitPromise = false;
             this._form.dispatchSubmit();
-            return this._form.submit;
+            if (!this._form.submit)
+                return false;
+            if (this._form.submitPromise)
+                return this._form.submitPromise;
+            this.logger.success("enOnSubmit Success");
+            return true;
         };
         window.enOnError = () => {
             this._form.dispatchError();
         };
         window.enOnValidate = () => {
             this._form.validate = true;
+            this._form.validatePromise = false;
             this._form.dispatchValidate();
-            return this._form.validate;
+            if (!this._form.validate)
+                return false;
+            if (this._form.validatePromise)
+                return this._form.validatePromise;
+            this.logger.success("Validation Passed");
+            return true;
         };
+        // Live Currency
+        new LiveCurrency();
         // iFrame Logic
-        this.loadIFrame();
+        new iFrame();
         // Live Variables
         new LiveVariables(this.options);
         // Dynamically set Recurrency Frequency
@@ -130,12 +142,15 @@ export class App extends ENGrid {
         new UpsellLightbox();
         // Amount Labels
         new AmountLabel();
+        // Engrid Data Replacement
+        new DataReplace();
+        // ENgrid Hide Script
+        new DataHide();
+        // Autosubmit script
+        new Autosubmit();
         // On the end of the script, after all subscribers defined, let's load the current value
         this._amount.load();
         this._frequency.load();
-        // Translate Fields
-        if (this.options.TranslateFields)
-            new TranslateFields();
         // Simple Country Select
         new SimpleCountrySelect();
         // Add Image Attribution
@@ -174,36 +189,37 @@ export class App extends ENGrid {
         new ShowIfAmount();
         new OtherAmount();
         new MinMaxAmount();
+        new Ticker();
+        new A11y();
+        new AddNameToMessage();
+        new ExpandRegionName();
+        // Page Background
+        new PageBackground();
+        // Url Params to Form Fields
+        new UrlToForm();
+        // Required if Visible Fields
+        new RequiredIfVisible();
+        // TidyContact
+        if (this.options.TidyContact)
+            new TidyContact();
+        // Translate Fields
+        if (this.options.TranslateFields)
+            new TranslateFields();
+        // Data Layer Events
+        new DataLayer();
         this.setDataAttributes();
         ENGrid.setBodyData("data-engrid-scripts-js-loading", "finished");
+        window.EngridVersion = AppVersion;
+        this.logger.success(`VERSION: ${AppVersion}`);
     }
     onLoad() {
         if (this.options.onLoad) {
             this.options.onLoad();
         }
-        if (this.inIframe()) {
-            // Scroll to top of iFrame
-            this.logger.log("iFrame Event - window.onload");
-            sendIframeHeight();
-            window.parent.postMessage({
-                scroll: this.shouldScroll(),
-            }, "*");
-            // On click fire the resize event
-            document.addEventListener("click", (e) => {
-                this.logger.log("iFrame Event - click");
-                setTimeout(() => {
-                    sendIframeHeight();
-                }, 100);
-            });
-        }
     }
     onResize() {
         if (this.options.onResize) {
             this.options.onResize();
-        }
-        if (this.inIframe()) {
-            this.logger.log("iFrame Event - window.onload");
-            sendIframeHeight();
         }
     }
     onValidate() {
@@ -217,9 +233,6 @@ export class App extends ENGrid {
             this.logger.log("Client onSubmit Triggered");
             this.options.onSubmit();
         }
-        if (this.inIframe()) {
-            sendIframeFormStatus("submit");
-        }
     }
     onError() {
         if (this.options.onError) {
@@ -227,26 +240,9 @@ export class App extends ENGrid {
             this.options.onError();
         }
     }
-    inIframe() {
-        try {
-            return window.self !== window.top;
-        }
-        catch (e) {
-            return true;
-        }
-    }
-    loadIFrame() {
-        if (this.inIframe()) {
-            // Add the data-engrid-embedded attribute when inside an iFrame if it wasn't already added by a script in the Page Template
-            App.setBodyData("embedded", "");
-            // Fire the resize event
-            this.logger.log("iFrame Event - First Resize");
-            sendIframeHeight();
-        }
-    }
     // Use this function to add any Data Attributes to the Body tag
     setDataAttributes() {
-        // Add the Page Type as a Data Attribute on the video
+        // Add the Page Type as a Data Attribute on the Body Tag
         if (ENGrid.checkNested(window, "pageJson", "pageType")) {
             App.setBodyData("page-type", window.pageJson.pageType);
             this.logger.log("Page Type: " + window.pageJson.pageType);
@@ -254,10 +250,10 @@ export class App extends ENGrid {
         else {
             this.logger.log("Page Type: Not Found");
         }
-        // Add a body banner data attribute if the banner contains no image
-        // @TODO Should this account for video?
-        // @TODO Should we merge this with the script that checks the background image?
-        if (!document.querySelector(".body-banner img")) {
+        // Add the currency code as a Data Attribute on the Body Tag
+        App.setBodyData("currency-code", App.getCurrencyCode());
+        // Add a body banner data attribute if the banner contains no image or video
+        if (!document.querySelector(".body-banner img, .body-banner video")) {
             App.setBodyData("body-banner", "empty");
         }
         // Add a page-alert data attribute if it is empty
@@ -320,8 +316,8 @@ export class App extends ENGrid {
         if (!document.querySelector(".content-footer *")) {
             App.setBodyData("no-content-footer", "");
         }
-        // Add a page-backgroundImage data attribute if it is empty
-        if (!document.querySelector(".page-backgroundImage *")) {
+        // Add a page-backgroundImage banner data attribute if the page background image contains no image or video
+        if (!document.querySelector(".page-backgroundImage img, .page-backgroundImage video")) {
             App.setBodyData("no-page-backgroundImage", "");
         }
         // Add a page-backgroundImageOverlay data attribute if it is empty
@@ -340,5 +336,20 @@ export class App extends ENGrid {
                 App.setBodyData("country", countrySelect.value);
             });
         }
+        const otherAmountDiv = document.querySelector(".en__field--donationAmt .en__field__item--other");
+        if (otherAmountDiv) {
+            otherAmountDiv.setAttribute("data-currency-symbol", App.getCurrencySymbol());
+        }
+        // Add a payment type data attribute
+        const paymentTypeSelect = App.getField("transaction.paymenttype");
+        if (paymentTypeSelect) {
+            App.setBodyData("payment-type", paymentTypeSelect.value);
+            paymentTypeSelect.addEventListener("change", () => {
+                App.setBodyData("payment-type", paymentTypeSelect.value);
+            });
+        }
+        // Add demo data attribute
+        if (App.demo)
+            App.setBodyData("demo", "");
     }
 }

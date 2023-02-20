@@ -3,21 +3,25 @@ export declare abstract class ENGrid {
     constructor();
     static get enForm(): HTMLFormElement;
     static get debug(): boolean;
-    static getUrlParameter(name: string): string;
+    static get demo(): boolean;
+    static getUrlParameter(name: string): string | true | Object[] | null;
+    static getField(name: string): Element | null;
     static getFieldValue(name: string): string;
-    static setFieldValue(name: string, value: unknown): void;
+    static setFieldValue(name: string, value: unknown, parseENDependencies?: boolean): void;
     static createHiddenInput(name: string, value?: string): HTMLInputElement;
     static enParseDependencies(): void;
     static getGiftProcess(): any;
     static getPageCount(): any;
     static getPageNumber(): any;
     static getPageID(): any;
-    static getPageType(): "ECARD" | "SURVEY" | "ADVOCACY" | "SUBSCRIBEFORM" | "SUPPORTERHUB" | "DONATION";
+    static getPageType(): "DONATION" | "ECARD" | "SURVEY" | "EMAILTOTARGET" | "ADVOCACY" | "SUBSCRIBEFORM" | "SUPPORTERHUB" | "UNSUBSCRIBE" | "UNKNOWN";
     static setBodyData(dataName: string, value: string | boolean): void;
     static getBodyData(dataName: string): string | null;
+    static hasBodyData(dataName: string): boolean;
     static getOption<K extends keyof Options>(key: K): Options[K] | null;
     static loadJS(url: string, onload?: (() => void) | null, head?: boolean): void;
     static formatNumber(number: string | number, decimals?: number, dec_point?: string, thousands_sep?: string): string;
+    static cleanAmount(amount: string): number;
     static disableSubmit(label?: string): boolean;
     static enableSubmit(): boolean;
     static formatDate(date: Date, format?: string): string;
@@ -27,6 +31,9 @@ export declare abstract class ENGrid {
      * will return true if EngagingNetworks.require._defined.enjs.checkSubmissionFailed is defined
      */
     static checkNested(obj: any, ...args: string[]): boolean;
-    static setError(querySelector: string, errorMessage: string): void;
-    static removeError(querySelector: string): void;
+    static setError(element: string | HTMLElement, errorMessage: string): void;
+    static removeError(element: string | HTMLElement): void;
+    static isVisible(element: HTMLElement): boolean;
+    static getCurrencySymbol(): string;
+    static getCurrencyCode(): string;
 }

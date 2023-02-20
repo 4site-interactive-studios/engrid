@@ -7,7 +7,9 @@ export class EnForm {
         this._onValidate = new SignalDispatcher();
         this._onError = new SignalDispatcher();
         this.submit = true;
+        this.submitPromise = false;
         this.validate = true;
+        this.validatePromise = false;
     }
     static getInstance() {
         if (!EnForm.instance) {

@@ -9,13 +9,15 @@ export declare class NeverBounce {
     emailWrapper: HTMLDivElement;
     nbDate: HTMLInputElement | null;
     nbStatus: HTMLInputElement | null;
+    private logger;
+    private shouldRun;
+    private nbLoaded;
     constructor(apiKey: string, dateField: string | null, statusField: string | null, dateFormat: string | undefined);
     private init;
     private clearStatus;
     private deleteENFieldError;
     private setEmailStatus;
     private insertAfter;
-    private insertBefore;
     private wrap;
     private validate;
 }

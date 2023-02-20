@@ -120,7 +120,8 @@ body {
     [data-engrid-layout="#{$layout}"][data-replace-banner-with-background="if-background-video"][data-engrid-page-background="video"],
     [data-engrid-layout="#{$layout}"][data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="image"],
     [data-engrid-layout="#{$layout}"][data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="video"],
-    [data-engrid-layout="#{$layout}"][data-replace-banner-with-background="if-banner-empty-or-background-video"][data-engrid-body-banner="empty"],
+    [data-engrid-layout="#{$layout}"][data-replace-banner-with-background="if-banner-empty-or-background-video"][data-engrid-body-banner="empty"][data-engrid-page-background="image"],
+    [data-engrid-layout="#{$layout}"][data-replace-banner-with-background="if-banner-empty-or-background-video"][data-engrid-body-banner="empty"][data-engrid-page-background="video"],
     [data-engrid-layout="#{$layout}"][data-replace-banner-with-background="if-banner-empty-or-background-video"][data-engrid-page-background="video"] {
       .body-banner,
       .body-bannerOverlay {

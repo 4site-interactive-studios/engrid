@@ -5,6 +5,8 @@ export const OptionsDefaults = {
     CapitalizeFields: false,
     ClickToExpand: true,
     CurrencySymbol: "$",
+    CurrencyCode: "USD",
+    AddCurrencySymbol: true,
     ThousandsSeparator: "",
     DecimalSeparator: ".",
     DecimalPlaces: 2,
@@ -23,4 +25,6 @@ export const OptionsDefaults = {
     TranslateFields: true,
     Debug: false,
     RememberMe: false,
+    TidyContact: false,
+    RegionLongFormat: "",
 };

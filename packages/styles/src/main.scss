@@ -25,7 +25,9 @@
 @import "engrid-columns";
 @import "engrid-components-layout";
 @import "engrid-deprecated";
+@import "engrid-digital-wallets";
 @import "engrid-donations";
+@import "engrid-double-the-donation";
 @import "engrid-ecards";
 @import "engrid-ellipsis-animation";
 @import "engrid-errors";
@@ -51,6 +53,9 @@
 @import "engrid-progress-bar";
 @import "engrid-show-if-amount";
 @import "engrid-supporter-hub";
+@import "engrid-ticker";
+@import "engrid-data-replace";
+@import "engrid-tidycontact";
 
 /* ENGRID LAYOUTS */
 /* MUST COME AFTER OTHER ENGRID STYLES WHICH MIGHT DEFINE MIXINS REFERENCED IN THE LAYOUTS */

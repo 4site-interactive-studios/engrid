@@ -7,6 +7,7 @@ export * from "./app";
 export * from "./amount-label";
 export * from "./engrid";
 export * from "./apple-pay";
+export * from "./a11y";
 export * from "./capitalize-fields";
 export * from "./credit-card-numbers";
 export * from "./auto-year";
@@ -33,5 +34,18 @@ export * from "./show-if-amount";
 export * from "./other-amount";
 export * from "./logger";
 export * from "./min-max-amount";
+export * from "./ticker";
+export * from "./data-layer";
+export * from "./data-replace";
+export * from "./data-hide";
+export * from "./add-name-to-message";
+export * from "./expand-region-name";
+export * from "./url-to-form";
+export * from "./required-if-visible";
+export * from "./tidycontact";
+export * from "./live-currency";
+export * from "./autosubmit";
 // Events
 export * from "./events";
+// Version
+export * from "./version";

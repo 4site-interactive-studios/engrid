@@ -12,8 +12,10 @@ declare global {
     EngagingNetworks: any;
     EngridAmounts: any;
     EngridOptions: Options;
+    EngridPageOptions: Options;
     EngridUpsell: UpsellOptions;
     EngridTranslate: TranslateOptions;
+    EngridVersion: string;
     EngridLoader: {
       "repo-name"?: string;
       "repo-owner"?: string;

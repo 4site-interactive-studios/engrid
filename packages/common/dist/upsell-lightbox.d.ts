@@ -11,6 +11,7 @@ export declare class UpsellLightbox {
     constructor();
     private renderLightbox;
     private shouldRun;
+    private shouldSkip;
     private popupOtherField;
     private liveAmounts;
     private getUpsellAmount;
