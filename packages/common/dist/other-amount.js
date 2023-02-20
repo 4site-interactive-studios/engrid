@@ -28,7 +28,10 @@ export class OtherAmount {
                             otherAmountTransformation: `${amount} => ${cleanAmount}`,
                         });
                     }
-                    target.value = cleanAmount.toString();
+                    target.value =
+                        cleanAmount % 1 != 0
+                            ? cleanAmount.toFixed(2)
+                            : cleanAmount.toString();
                 }
             });
         }

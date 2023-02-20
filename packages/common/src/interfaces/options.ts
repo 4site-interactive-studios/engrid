@@ -46,7 +46,7 @@ export interface Options {
   TidyContact?:
     | false
     | {
-        cid?: number; // Client ID
+        cid?: string; // Client ID
         record_field?: string; // TidyContact Record
         date_field?: string; // TidyContact Date
         status_field?: string; // TidyContact Status

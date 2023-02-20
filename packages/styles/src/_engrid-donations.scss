@@ -695,7 +695,7 @@
 
 // Helper classes to hide/show content based on if a the gift is one-time or recurring and the gift's frequency
 /* prettier-ignore */
-body{
+body:not(#en__pagebuilder):not([data-engrid-debug]){
 	&[data-engrid-transaction-recurring="n"] .recurring-frequency-n-hide,
 	&[data-engrid-transaction-recurring="n"] .recurring-frequency-onetime-hide, // Doesn't need data-engrid-transaction-recurring-frequency="onetime" defined to know the gift will be processed as one-time
 	&:not([data-engrid-transaction-recurring="n"]) .recurring-frequency-n-show,
@@ -712,4 +712,24 @@ body{
 	&:not([data-engrid-transaction-recurring="y"][data-engrid-transaction-recurring-frequency="annual"]) .recurring-frequency-annual-show{
 		display: none;
 	}
+}
+
+#en__pagebuilder,
+[data-engrid-debug] {
+  .recurring-frequency-annual-hide,
+  .recurring-frequency-annual-show,
+  .recurring-frequency-monthly-hide,
+  .recurring-frequency-monthly-show,
+  .recurring-frequency-n-hide,
+  .recurring-frequency-n-show,
+  .recurring-frequency-onetime-hide,
+  .recurring-frequency-onetime-show,
+  .recurring-frequency-quarterly-hide,
+  .recurring-frequency-quarterly-show,
+  .recurring-frequency-semi-annual-hide,
+  .recurring-frequency-semi-annual-show,
+  .recurring-frequency-y-hide,
+  .recurring-frequency-y-show {
+    background-color: #0000ff1a !important;
+  }
 }

@@ -18,7 +18,10 @@ export class DonationAmount {
                 }
                 else if (element.name == other) {
                     const cleanedAmount = ENGrid.cleanAmount(element.value);
-                    element.value = cleanedAmount.toString();
+                    element.value =
+                        cleanedAmount % 1 != 0
+                            ? cleanedAmount.toFixed(2)
+                            : cleanedAmount.toString();
                     this.amount = cleanedAmount;
                 }
             }

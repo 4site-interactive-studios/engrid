@@ -42,7 +42,7 @@ export interface Options {
         checked?: boolean;
     };
     TidyContact?: false | {
-        cid?: number;
+        cid?: string;
         record_field?: string;
         date_field?: string;
         status_field?: string;

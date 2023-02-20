@@ -13,6 +13,7 @@ export interface UpsellOptions {
   canClose: boolean;
   submitOnClose: boolean;
   disablePaymentMethods: Array<string>;
+  skipUpsell: boolean; // Use this to skip the upsell entirely, used to disable the upsell programatically
 }
 
 export const UpsellOptionsDefaults: UpsellOptions = {
@@ -45,4 +46,5 @@ export const UpsellOptionsDefaults: UpsellOptions = {
   canClose: true,
   submitOnClose: false,
   disablePaymentMethods: [],
+  skipUpsell: false,
 };
