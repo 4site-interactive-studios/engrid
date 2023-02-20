@@ -3648,7 +3648,7 @@ body:not(#en__pagebuilder) .click-to-expand.expanded .click-to-expand-text-wrapp
 [data-engrid-theme][data-engrid-debug] .i9-hide .en__field:nth-of-type(9),
 [data-engrid-theme][data-engrid-debug] .i10-hide .en__field:nth-of-type(10),
 [data-engrid-theme][data-engrid-debug] .i11-hide .en__field:nth-of-type(11) {
-  background-color: #ff00001a !important;
+  background-color: rgba(255, 0, 0, 0.1019607843) !important;
 }
 [data-engrid-theme]#en__pagebuilder .i1-hide-label .en__field:nth-of-type(1) > label,
 [data-engrid-theme]#en__pagebuilder .i2-hide-label .en__field:nth-of-type(2) > label,
@@ -3671,7 +3671,7 @@ body:not(#en__pagebuilder) .click-to-expand.expanded .click-to-expand-text-wrapp
 [data-engrid-theme][data-engrid-debug] .i9-hide-label .en__field:nth-of-type(9) > label,
 [data-engrid-theme][data-engrid-debug] .i10-hide-label .en__field:nth-of-type(10) > label,
 [data-engrid-theme][data-engrid-debug] .i11-hide-label .en__field:nth-of-type(11) > label {
-  background-color: #ff00001a !important;
+  background-color: rgba(255, 0, 0, 0.1019607843) !important;
 }
 [data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug]) .hide, [data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug]):not([data-engrid-scripts-js-loading=finished]) .hide-until-engrid-js-loading-finished, [data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug]):not([data-engrid-client-js-loading=finished]) .hide-until-client-js-loading-finished,
 [data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug]) .i1-hide .en__field:nth-of-type(1),
@@ -3895,8 +3895,7 @@ body:not(#en__pagebuilder) .click-to-expand.expanded .click-to-expand-text-wrapp
 [data-engrid-theme] .en__field--donationAmt.en__field--withOther .en__field__element--radio .en__field__item:nth-last-child(2) {
   display: none;
 }
-[data-engrid-theme] .radio-to-buttons .en__field--radio .en__field__input--radio + .en__field__label:before,
-[data-engrid-theme] .en__field--give-by-select.en__field--radio .en__field__input--radio + .en__field__label:before,
+[data-engrid-theme] .radio-to-buttons .en__field--radio .en__field--give-by-select.en__field--radio .en__field__input--radio + .en__field__label:before,
 [data-engrid-theme] .radio-to-buttons_donationAmt .en__field--donationAmt.en__field--radio .en__field__input--radio + .en__field__label:before,
 [data-engrid-theme] .radio-to-buttons_recurrfreq .en__field--recurrfreq.en__field--radio .en__field__input--radio + .en__field__label:before,
 [data-engrid-theme] .radio-to-buttons_recurrpay .en__field--recurrpay.en__field--radio .en__field__input--radio + .en__field__label:before {
@@ -5431,7 +5430,7 @@ body:not(#en__pagebuilder) .click-to-expand.expanded .click-to-expand-text-wrapp
 }
 @media screen and (max-width: 439px) {
   [data-engrid-theme] header .indicator__progress {
-    background: #252525;
+    background: rgb(37, 37, 37);
   }
 }
 [data-engrid-theme] header .indicator__percentage {
@@ -8051,7 +8050,7 @@ body:not(#en__pagebuilder)[data-engrid-no-page-customCode] .en__component--advro
 [data-engrid-theme]#en__pagebuilder .giveBySelect-Card,
 [data-engrid-theme]#en__pagebuilder .giveBySelect-ACH,
 [data-engrid-theme]#en__pagebuilder .giveBySelect-Paypal {
-  background-color: #0000ff1a !important;
+  background-color: rgba(0, 0, 255, 0.1019607843) !important;
 }
 [data-engrid-theme]#en__pagebuilder .inmem-y.pboAdvancedRow__preview .en__component--column,
 [data-engrid-theme]#en__pagebuilder .inmem-n.pboAdvancedRow__preview .en__component--column,
@@ -8082,7 +8081,7 @@ body:not(#en__pagebuilder)[data-engrid-no-page-customCode] .en__component--advro
 [data-engrid-theme]#en__pagebuilder .live-giving-upsell-amount,
 [data-engrid-theme]#en__pagebuilder .live-giving-upsell-amount-raw,
 [data-engrid-theme]#en__pagebuilder .live-giving-frequency {
-  background-color: #00ff001a !important;
+  background-color: rgba(0, 255, 0, 0.1019607843) !important;
 }
 [data-engrid-theme]#en__pagebuilder .live-giving-amount.pboAdvancedRow__preview .en__component--column,
 [data-engrid-theme]#en__pagebuilder .live-giving-upsell-amount.pboAdvancedRow__preview .en__component--column,
@@ -8200,7 +8199,7 @@ body:not(#en__pagebuilder)[data-engrid-no-page-customCode] .en__component--advro
   content: "Custom Code";
 }
 [data-engrid-theme]#en__pagebuilder [class*=showifamount], [data-engrid-theme][data-engrid-debug] [class*=showifamount] {
-  background-color: #0000ff1a !important;
+  background-color: rgba(0, 0, 255, 0.1019607843) !important;
 }
 [data-engrid-theme]#en__pagebuilder .edit-warning.en__component.en__component--active.en__component--activeTarget {
   box-shadow: 0 0 0 2px #f12222;

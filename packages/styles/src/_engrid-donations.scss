@@ -108,61 +108,35 @@
 
   // Style the Donation Amount, Recurring Frequency, Radio to Buttons, and Give By Select Pseduo Fields as if they were buttons
 
-  // .en__field--splitselect.en__field--ccexpire {
-  //     flex-basis: calc((100% / 3) * 2);
-  //     min-width: auto;
-  //     position: relative;
-  //     left: -0.5rem;
-  // }
-
-  // .en__field--ccvv {
-  //     flex-basis: calc(100% / 3);
-  //     min-width: auto;
-  //     position: relative;
-  //     right: -0.5rem;
-  // }
-
-  .en__field--recurrfreq .en__field__element,
-  .en__field--recurrpay .en__field__element,
-  .en__field--donationAmt .en__field__element,
-  .en__field--give-by-select .en__field__element {
-    justify-content: center;
+  .en__field--recurrfreq,
+  .en__field--recurrpay,
+  .en__field--donationAmt,
+  .en__field--give-by-select {
+    .en__field__element {
+      justify-content: center;
+    }
   }
 
-  .en__field--donationAmt.en__field--withOther
-    .en__field__element--radio
+  .en__field--donationAmt.en__field--withOther .en__field__element--radio {
     .en__field__item:nth-last-child(1) {
-    display: flex;
-  }
-
-  .en__field--donationAmt.en__field--withOther
-    .en__field__element--radio
+      display: flex;
+    }
     .en__field__item:nth-last-child(2) {
-    display: none;
+      display: none;
+    }
   }
 
   // Hide the radio select fields when we style them like buttons
 
   .radio-to-buttons
     .en__field--radio
-    .en__field__input--radio
-    + .en__field__label:before,
-  .en__field--give-by-select.en__field--radio
-    .en__field__input--radio
-    + .en__field__label:before,
-  .radio-to-buttons_donationAmt
-    .en__field--donationAmt.en__field--radio
-    .en__field__input--radio
-    + .en__field__label:before,
-  .radio-to-buttons_recurrfreq
-    .en__field--recurrfreq.en__field--radio
-    .en__field__input--radio
-    + .en__field__label:before,
-  .radio-to-buttons_recurrpay
-    .en__field--recurrpay.en__field--radio
-    .en__field__input--radio
-    + .en__field__label:before {
-    display: none;
+    .en__field--give-by-select.en__field--radio,
+  .radio-to-buttons_donationAmt .en__field--donationAmt.en__field--radio,
+  .radio-to-buttons_recurrfreq .en__field--recurrfreq.en__field--radio,
+  .radio-to-buttons_recurrpay .en__field--recurrpay.en__field--radio {
+    .en__field__input--radio + .en__field__label:before {
+      display: none;
+    }
   }
 
   .radio-to-buttons
