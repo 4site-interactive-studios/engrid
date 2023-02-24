@@ -45,6 +45,7 @@ export * from "./required-if-visible";
 export * from "./tidycontact";
 export * from "./live-currency";
 export * from "./autosubmit";
+export * from "./event-tickets";
 // Events
 export * from "./events";
 // Version
