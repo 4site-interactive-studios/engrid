@@ -9214,11 +9214,13 @@ body:not([data-engrid-debug]) #debug-bar {
 #en__pagebuilder .inmem-n,
 #en__pagebuilder .giveBySelect-card,
 #en__pagebuilder .giveBySelect-ach,
+#en__pagebuilder .giveBySelect-check,
 #en__pagebuilder .giveBySelect-paypal,
 #en__pagebuilder .inmem-Y,
 #en__pagebuilder .inmem-N,
 #en__pagebuilder .giveBySelect-Card,
 #en__pagebuilder .giveBySelect-ACH,
+#en__pagebuilder .giveBySelect-Check,
 #en__pagebuilder .giveBySelect-Paypal,
 #en__pagebuilder [class*=engrid__supporter] {
   background-color: rgba(0, 0, 255, 0.1019607843) !important;
@@ -9227,11 +9229,13 @@ body:not([data-engrid-debug]) #debug-bar {
 #en__pagebuilder .inmem-n.pboAdvancedRow__preview .en__component--column,
 #en__pagebuilder .giveBySelect-card.pboAdvancedRow__preview .en__component--column,
 #en__pagebuilder .giveBySelect-ach.pboAdvancedRow__preview .en__component--column,
+#en__pagebuilder .giveBySelect-check.pboAdvancedRow__preview .en__component--column,
 #en__pagebuilder .giveBySelect-paypal.pboAdvancedRow__preview .en__component--column,
 #en__pagebuilder .inmem-Y.pboAdvancedRow__preview .en__component--column,
 #en__pagebuilder .inmem-N.pboAdvancedRow__preview .en__component--column,
 #en__pagebuilder .giveBySelect-Card.pboAdvancedRow__preview .en__component--column,
 #en__pagebuilder .giveBySelect-ACH.pboAdvancedRow__preview .en__component--column,
+#en__pagebuilder .giveBySelect-Check.pboAdvancedRow__preview .en__component--column,
 #en__pagebuilder .giveBySelect-Paypal.pboAdvancedRow__preview .en__component--column,
 #en__pagebuilder [class*=engrid__supporter].pboAdvancedRow__preview .en__component--column {
   outline-color: #0000ff !important;
@@ -9241,11 +9245,13 @@ body:not([data-engrid-debug]) #debug-bar {
 #en__pagebuilder .inmem-n .en__mandatory,
 #en__pagebuilder .giveBySelect-card .en__mandatory,
 #en__pagebuilder .giveBySelect-ach .en__mandatory,
+#en__pagebuilder .giveBySelect-check .en__mandatory,
 #en__pagebuilder .giveBySelect-paypal .en__mandatory,
 #en__pagebuilder .inmem-Y .en__mandatory,
 #en__pagebuilder .inmem-N .en__mandatory,
 #en__pagebuilder .giveBySelect-Card .en__mandatory,
 #en__pagebuilder .giveBySelect-ACH .en__mandatory,
+#en__pagebuilder .giveBySelect-Check .en__mandatory,
 #en__pagebuilder .giveBySelect-Paypal .en__mandatory,
 #en__pagebuilder [class*=engrid__supporter] .en__mandatory {
   outline: 5px solid #f12222;
