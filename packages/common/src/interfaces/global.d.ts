@@ -20,6 +20,8 @@ declare global {
       "repo-name"?: string;
       "repo-owner"?: string;
       assets?: string;
+      engridcss?: string;
+      engridjs?: string;
     };
     _NBSettings: object;
     _nb: any;
