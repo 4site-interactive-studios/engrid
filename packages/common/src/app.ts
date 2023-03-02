@@ -49,6 +49,7 @@ import {
   DataLayer,
   LiveCurrency,
   Autosubmit,
+  EventTickets
 } from "./";
 
 export class App extends ENGrid {
@@ -244,6 +245,9 @@ export class App extends ENGrid {
 
     // Autosubmit script
     new Autosubmit();
+
+    // Adjust display of event tickets.
+    new EventTickets();
 
     // On the end of the script, after all subscribers defined, let's load the current value
     this._amount.load();
