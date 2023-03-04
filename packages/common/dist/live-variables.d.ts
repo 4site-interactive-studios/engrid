@@ -18,6 +18,5 @@ export declare class LiveVariables {
     changeLiveUpsellAmount(): void;
     changeLiveFrequency(): void;
     changeRecurrency(): void;
-    swapAmounts(): void;
     private upsold;
 }

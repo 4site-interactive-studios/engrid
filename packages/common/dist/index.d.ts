@@ -45,5 +45,6 @@ export * from "./tidycontact";
 export * from "./live-currency";
 export * from "./autosubmit";
 export * from "./event-tickets";
+export * from "./swap-amounts";
 export * from "./events";
 export * from "./version";

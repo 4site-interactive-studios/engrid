@@ -26,7 +26,6 @@ export class LiveVariables {
     this._fees.onFeeChange.subscribe(() => this.changeLiveUpsellAmount());
     this._fees.onFeeChange.subscribe(() => this.changeSubmitButton());
 
-    this._frequency.onFrequencyChange.subscribe(() => this.swapAmounts());
     this._frequency.onFrequencyChange.subscribe(() =>
       this.changeLiveFrequency()
     );
@@ -174,41 +173,6 @@ export class LiveVariables {
       // Trigger the onChange event for the field
       const event = new Event("change", { bubbles: true });
       recurrpay.dispatchEvent(event);
-    }
-  }
-  public swapAmounts() {
-    if (
-      "EngridAmounts" in window &&
-      this._frequency.frequency in window.EngridAmounts
-    ) {
-      const loadEnAmounts = (amountArray: {
-        amounts: [string, number];
-        default: number;
-      }) => {
-        let ret = [];
-        for (let amount in amountArray.amounts) {
-          ret.push({
-            selected: amountArray.amounts[amount] === amountArray.default,
-            label: amount,
-            value: amountArray.amounts[amount].toString(),
-          });
-        }
-        return ret;
-      };
-      window.EngagingNetworks.require._defined.enjs.swapList(
-        "donationAmt",
-        loadEnAmounts(window.EngridAmounts[this._frequency.frequency]),
-        {
-          ignoreCurrentValue:
-            !window.EngagingNetworks.require._defined.enjs.checkSubmissionFailed(),
-        }
-      );
-      this._amount.load();
-      if (ENGrid.getOption("Debug"))
-        console.log(
-          "Amounts Swapped To",
-          window.EngridAmounts[this._frequency.frequency]
-        );
     }
   }
 
