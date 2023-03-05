@@ -357,6 +357,11 @@ export class App extends ENGrid {
   }
 
   private onError() {
+    // Smooth Scroll to the first .en__field--validationFailed element
+    const firstError = document.querySelector(".en__field--validationFailed");
+    if (firstError) {
+      firstError.scrollIntoView({ behavior: "smooth" });
+    }
     if (this.options.onError) {
       this.logger.danger("Client onError Triggered");
       this.options.onError();
