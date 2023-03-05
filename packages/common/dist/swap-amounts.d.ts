@@ -28,9 +28,18 @@ export declare class SwapAmounts {
     private logger;
     _amount: DonationAmount;
     private _frequency;
-    private _fees;
+    private defaultChange;
+    private swapped;
     constructor();
     swapAmounts(): void;
+    loadEnAmounts(amountArray: {
+        amounts: [string, number];
+        default: number;
+    }): {
+        selected: boolean;
+        label: string;
+        value: string;
+    }[];
     shouldRun(): boolean;
     ignoreCurrentValue(): boolean;
 }

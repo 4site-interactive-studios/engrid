@@ -36,29 +36,28 @@ export class SwapAmounts {
   );
   public _amount: DonationAmount = DonationAmount.getInstance();
   private _frequency: DonationFrequency = DonationFrequency.getInstance();
+  private defaultChange: boolean = false;
+  private swapped: boolean = false;
   constructor() {
     if (!this.shouldRun()) return;
     this._frequency.onFrequencyChange.subscribe(() => this.swapAmounts());
+    this._amount.onAmountChange.subscribe(() => {
+      this.defaultChange = false;
+      if (!this.swapped) return;
+      // Check if the amount is not default amount for the frequency
+      if (
+        this._amount.amount !=
+        window.EngridAmounts[this._frequency.frequency].default
+      ) {
+        this.defaultChange = true;
+      }
+    });
   }
   swapAmounts() {
     if (this._frequency.frequency in window.EngridAmounts) {
-      const loadEnAmounts = (amountArray: {
-        amounts: [string, number];
-        default: number;
-      }) => {
-        let ret = [];
-        for (let amount in amountArray.amounts) {
-          ret.push({
-            selected: amountArray.amounts[amount] === amountArray.default,
-            label: amount,
-            value: amountArray.amounts[amount].toString(),
-          });
-        }
-        return ret;
-      };
       window.EngagingNetworks.require._defined.enjs.swapList(
         "donationAmt",
-        loadEnAmounts(window.EngridAmounts[this._frequency.frequency]),
+        this.loadEnAmounts(window.EngridAmounts[this._frequency.frequency]),
         {
           ignoreCurrentValue: this.ignoreCurrentValue(),
         }
@@ -68,7 +67,19 @@ export class SwapAmounts {
         "Amounts Swapped To",
         window.EngridAmounts[this._frequency.frequency]
       );
+      this.swapped = true;
     }
+  }
+  loadEnAmounts(amountArray: { amounts: [string, number]; default: number }) {
+    let ret = [];
+    for (let amount in amountArray.amounts) {
+      ret.push({
+        selected: amountArray.amounts[amount] === amountArray.default,
+        label: amount,
+        value: amountArray.amounts[amount].toString(),
+      });
+    }
+    return ret;
   }
   shouldRun() {
     return "EngridAmounts" in window;
@@ -76,7 +87,8 @@ export class SwapAmounts {
   ignoreCurrentValue() {
     return !(
       window.EngagingNetworks.require._defined.enjs.checkSubmissionFailed() ||
-      ENGrid.getUrlParameter("transaction.donationAmt") !== null
+      ENGrid.getUrlParameter("transaction.donationAmt") !== null ||
+      this.defaultChange
     );
   }
 }
