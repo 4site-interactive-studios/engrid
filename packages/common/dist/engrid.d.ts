@@ -36,4 +36,6 @@ export declare abstract class ENGrid {
     static isVisible(element: HTMLElement): boolean;
     static getCurrencySymbol(): string;
     static getCurrencyCode(): string;
+    static addHtml(html: string | HTMLElement, target?: string, position?: string): void;
+    static removeHtml(target: string): void;
 }

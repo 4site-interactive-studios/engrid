@@ -446,4 +446,31 @@ export abstract class ENGrid {
     }
     return ENGrid.getOption("CurrencyCode") || "USD";
   }
+  static addHtml(
+    html: string | HTMLElement,
+    target: string = "body",
+    position: string = "before"
+  ) {
+    const targetElement = document.querySelector(target);
+    if (typeof html === "object") {
+      html = html.outerHTML;
+    }
+    if (targetElement) {
+      const htmlElement = document.createRange().createContextualFragment(html);
+      if (position === "before") {
+        targetElement.parentNode?.insertBefore(htmlElement, targetElement);
+      } else {
+        targetElement.parentNode?.insertBefore(
+          htmlElement,
+          targetElement.nextSibling
+        );
+      }
+    }
+  }
+  static removeHtml(target: string) {
+    const targetElement = document.querySelector(target);
+    if (targetElement) {
+      targetElement.remove();
+    }
+  }
 }
