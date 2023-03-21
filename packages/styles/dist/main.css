@@ -2515,6 +2515,11 @@ a:focus, a:hover {
   justify-content: flex-start;
   margin-left: calc(var(--fields_spacing-inline) * -1);
   margin-right: calc(var(--fields_spacing-inline) * -1);
+  /* Helper Class .direction-column (recording: https://cln.sh/3nPmz4Nb) */
+  /* Makes the Surveys and Questions field types have their Radio and Checkbox fields appear in a column. */
+  /* Helper Class .inline-other (recording: https://cln.sh/cJCcfYnD) */
+  /* If your Checkbox or Radio selects are in a column, this will make it so the Other Input appears to the side of the Checkbox or Radio select that makes it appear */
+  /* Be mindful of using this, a user with limited vision might not see it appear to the side */
 }
 .en__component--formblock > *,
 .en__component--svblock > *,
@@ -2631,6 +2636,61 @@ a:focus, a:hover {
 .en__registrants__registrantDetails .en__field.en__field--withOther .en__field__element .en__field__item {
   padding-left: var(--fields_spacing-inline);
   padding-right: var(--fields_spacing-inline);
+}
+.en__component--formblock.direction-column .en__field--radio .en__field__element, .en__component--formblock.direction-column .en__field--checkbox .en__field__element,
+.en__component--formblock .en__field.en__field--radio.en__field--survey .en__field__element,
+.en__component--formblock .en__field.en__field--checkbox.en__field--survey .en__field__element,
+.en__component--formblock .en__field.en__field--radio.en__field--question .en__field__element,
+.en__component--formblock .en__field.en__field--checkbox.en__field--question .en__field__element,
+.en__component--svblock.direction-column .en__field--radio .en__field__element,
+.en__component--svblock.direction-column .en__field--checkbox .en__field__element,
+.en__component--svblock .en__field.en__field--radio.en__field--survey .en__field__element,
+.en__component--svblock .en__field.en__field--checkbox.en__field--survey .en__field__element,
+.en__component--svblock .en__field.en__field--radio.en__field--question .en__field__element,
+.en__component--svblock .en__field.en__field--checkbox.en__field--question .en__field__element,
+.en__registrants__registrantDetails.direction-column .en__field--radio .en__field__element,
+.en__registrants__registrantDetails.direction-column .en__field--checkbox .en__field__element,
+.en__registrants__registrantDetails .en__field.en__field--radio.en__field--survey .en__field__element,
+.en__registrants__registrantDetails .en__field.en__field--checkbox.en__field--survey .en__field__element,
+.en__registrants__registrantDetails .en__field.en__field--radio.en__field--question .en__field__element,
+.en__registrants__registrantDetails .en__field.en__field--checkbox.en__field--question .en__field__element {
+  display: grid;
+  grid-auto-rows: auto;
+  margin-bottom: var(--fields_spacing-block);
+  align-items: center;
+}
+.en__component--formblock.inline-other .en__field--radio.en__field--withOther--active .en__field__element, .en__component--formblock.inline-other .en__field--checkbox.en__field--withOther--active .en__field__element,
+.en__component--svblock.inline-other .en__field--radio.en__field--withOther--active .en__field__element,
+.en__component--svblock.inline-other .en__field--checkbox.en__field--withOther--active .en__field__element,
+.en__registrants__registrantDetails.inline-other .en__field--radio.en__field--withOther--active .en__field__element,
+.en__registrants__registrantDetails.inline-other .en__field--checkbox.en__field--withOther--active .en__field__element {
+  grid-template-columns: min-content;
+}
+.en__component--formblock.inline-other .en__field--radio.en__field--withOther--active .en__field__item, .en__component--formblock.inline-other .en__field--checkbox.en__field--withOther--active .en__field__item,
+.en__component--svblock.inline-other .en__field--radio.en__field--withOther--active .en__field__item,
+.en__component--svblock.inline-other .en__field--checkbox.en__field--withOther--active .en__field__item,
+.en__registrants__registrantDetails.inline-other .en__field--radio.en__field--withOther--active .en__field__item,
+.en__registrants__registrantDetails.inline-other .en__field--checkbox.en__field--withOther--active .en__field__item {
+  grid-column: span 2;
+  /* If your label is not short (e.g. "Other") then you may need to hand-tune its width depending on the display scenarios */
+}
+.en__component--formblock.inline-other .en__field--radio.en__field--withOther--active .en__field__item:nth-last-child(2), .en__component--formblock.inline-other .en__field--radio.en__field--withOther--active .en__field__item:nth-last-child(1), .en__component--formblock.inline-other .en__field--checkbox.en__field--withOther--active .en__field__item:nth-last-child(2), .en__component--formblock.inline-other .en__field--checkbox.en__field--withOther--active .en__field__item:nth-last-child(1),
+.en__component--svblock.inline-other .en__field--radio.en__field--withOther--active .en__field__item:nth-last-child(2),
+.en__component--svblock.inline-other .en__field--radio.en__field--withOther--active .en__field__item:nth-last-child(1),
+.en__component--svblock.inline-other .en__field--checkbox.en__field--withOther--active .en__field__item:nth-last-child(2),
+.en__component--svblock.inline-other .en__field--checkbox.en__field--withOther--active .en__field__item:nth-last-child(1),
+.en__registrants__registrantDetails.inline-other .en__field--radio.en__field--withOther--active .en__field__item:nth-last-child(2),
+.en__registrants__registrantDetails.inline-other .en__field--radio.en__field--withOther--active .en__field__item:nth-last-child(1),
+.en__registrants__registrantDetails.inline-other .en__field--checkbox.en__field--withOther--active .en__field__item:nth-last-child(2),
+.en__registrants__registrantDetails.inline-other .en__field--checkbox.en__field--withOther--active .en__field__item:nth-last-child(1) {
+  grid-column: span 1;
+}
+.en__component--formblock.inline-other .en__field--radio.en__field--withOther--active .en__field__item:nth-last-child(2) label, .en__component--formblock.inline-other .en__field--checkbox.en__field--withOther--active .en__field__item:nth-last-child(2) label,
+.en__component--svblock.inline-other .en__field--radio.en__field--withOther--active .en__field__item:nth-last-child(2) label,
+.en__component--svblock.inline-other .en__field--checkbox.en__field--withOther--active .en__field__item:nth-last-child(2) label,
+.en__registrants__registrantDetails.inline-other .en__field--radio.en__field--withOther--active .en__field__item:nth-last-child(2) label,
+.en__registrants__registrantDetails.inline-other .en__field--checkbox.en__field--withOther--active .en__field__item:nth-last-child(2) label {
+  word-break: keep-all;
 }
 
 /************************************

@@ -246,6 +246,46 @@
       }
     }
   }
+
+  /* Helper Class .direction-column (recording: https://cln.sh/3nPmz4Nb) */
+  /* Makes the Surveys and Questions field types have their Radio and Checkbox fields appear in a column. */
+  &.direction-column .en__field--radio,
+  &.direction-column .en__field--checkbox,
+  .en__field.en__field--radio.en__field--survey,
+  .en__field.en__field--checkbox.en__field--survey,
+  .en__field.en__field--radio.en__field--question,
+  .en__field.en__field--checkbox.en__field--question {
+    .en__field__element {
+      display: grid;
+      grid-auto-rows: auto;
+      margin-bottom: var(--fields_spacing-block);
+      align-items: center;
+    }
+  }
+
+  /* Helper Class .inline-other (recording: https://cln.sh/cJCcfYnD) */
+  /* If your Checkbox or Radio selects are in a column, this will make it so the Other Input appears to the side of the Checkbox or Radio select that makes it appear */
+  /* Be mindful of using this, a user with limited vision might not see it appear to the side */
+  &.inline-other .en__field--radio.en__field--withOther--active,
+  &.inline-other .en__field--checkbox.en__field--withOther--active {
+    .en__field__element {
+      grid-template-columns: min-content;
+    }
+
+    .en__field__item {
+      grid-column: span 2;
+
+      &:nth-last-child(2),
+      &:nth-last-child(1) {
+        grid-column: span 1;
+      }
+
+      /* If your label is not short (e.g. "Other") then you may need to hand-tune its width depending on the display scenarios */
+      &:nth-last-child(2) label {
+        word-break: keep-all;
+      }
+    }
+  }
 }
 
 /************************************
