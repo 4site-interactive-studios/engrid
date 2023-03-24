@@ -12,8 +12,8 @@ export class Loader {
         var _a, _b, _c, _d;
         const assets = this.getOption("assets");
         const isLoaded = ENGrid.getBodyData("loaded");
-        const shouldSkipCss = this.getOption("engridcss") === "false";
-        const shouldSkipJs = this.getOption("engridjs") === "false";
+        let shouldSkipCss = this.getOption("engridcss") === "false";
+        let shouldSkipJs = this.getOption("engridjs") === "false";
         if (isLoaded || !assets) {
             if (shouldSkipCss && this.cssElement) {
                 this.logger.log("engridcss=false | Removing original stylesheet:", this.cssElement);
@@ -57,6 +57,47 @@ export class Loader {
                 cssCurrentURL.searchParams.set("v", timestamp.toString());
                 engrid_css_url = cssCurrentURL.toString();
                 break;
+            case "blank":
+                //Does not loads any ENgrid scripts and adds some CSS for debugging root cause of issues
+                this.logger.log("NOT LOADING ENGRID");
+                shouldSkipCss = true;
+                shouldSkipJs = true;
+                document.body.insertAdjacentHTML("beforeend", `<style>
+            html,
+            body {
+                background-color: #ffffff;
+            }
+
+            body {
+                opacity: 1;
+                margin: 0;
+            }
+
+            body:before {
+                content: "ENGRID UNLOADED";
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                background-color: #ffff00;
+                padding: 1rem;
+                margin-bottom: 1rem;
+                font-family: sans-serif;
+                font-weight: 600;
+            }
+
+            .en__component--advrow {
+                flex-direction: column;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            .en__component--advrow * {
+                max-width: 100%;
+                height: auto;
+            }
+          </style>`);
+                break;
             default:
                 this.logger.log("LOADING EXTERNAL");
                 engrid_js_url =
@@ -80,7 +121,7 @@ export class Loader {
             this.logger.log("engridcss=false | Removing original stylesheet:", this.cssElement);
             this.cssElement.remove();
         }
-        if (shouldSkipCss && engrid_css_url && engrid_css_url !== '') {
+        if (shouldSkipCss && engrid_css_url && engrid_css_url !== "") {
             this.logger.log("engridcss=false | Skipping injection of stylesheet:", engrid_css_url);
         }
         if (!shouldSkipCss) {
@@ -90,7 +131,7 @@ export class Loader {
             this.logger.log("engridjs=false | Removing original script:", this.jsElement);
             this.jsElement.remove();
         }
-        if (shouldSkipJs && engrid_js_url && engrid_js_url !== '') {
+        if (shouldSkipJs && engrid_js_url && engrid_js_url !== "") {
             this.logger.log("engridjs=false | Skipping injection of script:", engrid_js_url);
         }
         if (!shouldSkipJs) {
@@ -116,7 +157,7 @@ export class Loader {
         return null;
     }
     setCssFile(url) {
-        if (url === '') {
+        if (url === "") {
             return;
         }
         if (this.cssElement) {
@@ -134,7 +175,7 @@ export class Loader {
         }
     }
     setJsFile(url) {
-        if (url === '') {
+        if (url === "") {
             return;
         }
         this.logger.log("Injecting script:", url);
