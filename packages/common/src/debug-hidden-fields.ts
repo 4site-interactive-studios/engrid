@@ -21,6 +21,9 @@ export class DebugHiddenFields {
       fields.forEach((el) => {
         el.type = "text";
         el.setAttribute("unhidden", "");
+        const label = document.createElement("label");
+        label.textContent = el.name;
+        el.insertAdjacentElement("beforebegin", label);
       });
     }
   }
