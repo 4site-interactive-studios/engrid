@@ -23,6 +23,10 @@ export class Loader {
                 this.logger.log("engridjs=false | Removing original script:", this.jsElement);
                 this.jsElement.remove();
             }
+            if (shouldSkipCss) {
+                this.logger.log("engridcss=false | adding top banner CSS");
+                this.addENgridCSSUnloadedCSS();
+            }
             if (shouldSkipJs) {
                 this.logger.log("engridjs=false | Skipping JS load.");
                 this.logger.success("LOADED");
@@ -57,47 +61,6 @@ export class Loader {
                 cssCurrentURL.searchParams.set("v", timestamp.toString());
                 engrid_css_url = cssCurrentURL.toString();
                 break;
-            case "blank":
-                //Does not loads any ENgrid scripts and adds some CSS for debugging root cause of issues
-                this.logger.log("NOT LOADING ENGRID");
-                shouldSkipCss = true;
-                shouldSkipJs = true;
-                document.body.insertAdjacentHTML("beforeend", `<style>
-            html,
-            body {
-                background-color: #ffffff;
-            }
-
-            body {
-                opacity: 1;
-                margin: 0;
-            }
-
-            body:before {
-                content: "ENGRID UNLOADED";
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: 100%;
-                background-color: #ffff00;
-                padding: 1rem;
-                margin-bottom: 1rem;
-                font-family: sans-serif;
-                font-weight: 600;
-            }
-
-            .en__component--advrow {
-                flex-direction: column;
-                max-width: 600px;
-                margin: 0 auto;
-            }
-
-            .en__component--advrow * {
-                max-width: 100%;
-                height: auto;
-            }
-          </style>`);
-                break;
             default:
                 this.logger.log("LOADING EXTERNAL");
                 engrid_js_url =
@@ -124,7 +87,11 @@ export class Loader {
         if (shouldSkipCss && engrid_css_url && engrid_css_url !== "") {
             this.logger.log("engridcss=false | Skipping injection of stylesheet:", engrid_css_url);
         }
-        if (!shouldSkipCss) {
+        if (shouldSkipCss) {
+            this.logger.log("engridcss=false | adding top banner CSS");
+            this.addENgridCSSUnloadedCSS();
+        }
+        else {
             this.setCssFile(engrid_css_url);
         }
         if (shouldSkipJs && this.jsElement) {
@@ -182,5 +149,42 @@ export class Loader {
         const script = document.createElement("script");
         script.setAttribute("src", url);
         document.head.appendChild(script);
+    }
+    addENgridCSSUnloadedCSS() {
+        document.body.insertAdjacentHTML("beforeend", `<style>
+        html,
+        body {
+            background-color: #ffffff;
+        }
+
+        body {
+            opacity: 1;
+            margin: 0;
+        }
+
+        body:before {
+            content: "ENGRID CSS UNLOADED";
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            background-color: #ffff00;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            font-family: sans-serif;
+            font-weight: 600;
+        }
+
+        .en__component--advrow {
+            flex-direction: column;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .en__component--advrow * {
+            max-width: 100%;
+            height: auto;
+        }
+      </style>`);
     }
 }
