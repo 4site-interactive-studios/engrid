@@ -6,4 +6,5 @@ export declare class Loader {
     private getOption;
     private setCssFile;
     private setJsFile;
+    private addENgridCSSUnloadedCSS;
 }
