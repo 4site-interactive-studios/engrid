@@ -50,7 +50,7 @@ export class DebugPanel {
                     value: "555-555-5555",
                 },
             ],
-            "us-address-senate-rep": [
+            "us-address": [
                 {
                     name: "supporter.address1",
                     value: "3431 14th St NW",
@@ -76,7 +76,7 @@ export class DebugPanel {
                     value: "US",
                 },
             ],
-            "us-address": [
+            "us-address-senate-rep": [
                 {
                     name: "supporter.address1",
                     value: "20 W 34th Street",
