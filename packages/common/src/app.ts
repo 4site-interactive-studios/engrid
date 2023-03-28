@@ -315,6 +315,9 @@ export class App extends ENGrid {
     // Required if Visible Fields
     new RequiredIfVisible();
 
+    //Debug hidden fields
+    if (this.options.Debug) new DebugHiddenFields();
+
     // TidyContact
     if (this.options.TidyContact) new TidyContact();
 
@@ -325,6 +328,14 @@ export class App extends ENGrid {
     new DataLayer();
 
     this.setDataAttributes();
+
+    //Debug panel
+    if (
+      this.options.Debug ||
+      window.sessionStorage.hasOwnProperty(DebugPanel.debugSessionStorageKey)
+    ) {
+      new DebugPanel();
+    }
 
     ENGrid.setBodyData("data-engrid-scripts-js-loading", "finished");
 
