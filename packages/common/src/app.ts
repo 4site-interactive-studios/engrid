@@ -51,6 +51,7 @@ import {
   Autosubmit,
   EventTickets,
   SwapAmounts,
+  DebugPanel,
   DebugHiddenFields,
 } from "./";
 
@@ -313,9 +314,6 @@ export class App extends ENGrid {
 
     // Required if Visible Fields
     new RequiredIfVisible();
-
-    //Debug hidden fields
-    if (this.options.Debug) new DebugHiddenFields();
 
     // TidyContact
     if (this.options.TidyContact) new TidyContact();
