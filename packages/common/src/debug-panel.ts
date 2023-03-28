@@ -229,7 +229,7 @@ export class DebugPanel {
                   <option value="centercenter1col">centercenter1col</option>
                   <option value="centercenter2col">centercenter2col</option>
                   <option value="centerright1col">centerright1col</option>
-                  <option value="righright1col">righright1col</option>
+                  <option value="rightright1col">rightright1col</option>
                   <option value="embedded">embedded</option>
                   <option value="none">none</option>
                 </select>
