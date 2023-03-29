@@ -218,7 +218,7 @@ export class App extends ENGrid {
         //Debug panel
         if (this.options.Debug ||
             window.sessionStorage.hasOwnProperty(DebugPanel.debugSessionStorageKey)) {
-            new DebugPanel();
+            new DebugPanel(this.options.PageLayouts);
         }
         ENGrid.setBodyData("data-engrid-scripts-js-loading", "finished");
         window.EngridVersion = AppVersion;

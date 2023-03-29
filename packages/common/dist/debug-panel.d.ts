@@ -3,8 +3,9 @@ export declare class DebugPanel {
     private element;
     private currentTimestamp;
     static debugSessionStorageKey: string;
+    private pageLayouts;
     private quickFills;
-    constructor();
+    constructor(pageLayouts: string[] | undefined);
     private loadDebugPanel;
     private switchENGridLayout;
     private setupLayoutSwitcher;

@@ -23,6 +23,8 @@ export class DebugPanel {
 
   public static debugSessionStorageKey = "engrid_debug_panel";
 
+  private pageLayouts: string[] | undefined;
+
   private quickFills: QuickfillObject = {
     "pi-general": [
       {
@@ -190,8 +192,10 @@ export class DebugPanel {
     ],
   };
 
-  constructor() {
+  constructor(pageLayouts: string[] | undefined) {
     this.logger.log("Adding debug panel and starting a debug session");
+
+    this.pageLayouts = pageLayouts;
 
     this.loadDebugPanel();
 
@@ -228,13 +232,6 @@ export class DebugPanel {
               <div class="debug-panel__option">
                 <label for="engrid-layout-switch">Switch layout</label>
                 <select name="engrid-layout" id="engrid-layout-switch">
-                  <option value="leftleft1col">leftleft1col</option>
-                  <option value="centerleft1col">centerleft1col</option>
-                  <option value="centercenter1col">centercenter1col</option>
-                  <option value="centercenter2col">centercenter2col</option>
-                  <option value="centerright1col">centerright1col</option>
-                  <option value="rightright1col">rightright1col</option>
-                  <option value="none">none</option>
                 </select>
               </div>
               <div class="debug-panel__option">
@@ -298,7 +295,15 @@ export class DebugPanel {
     ) as HTMLSelectElement;
 
     if (engridLayoutSwitch) {
+      this.pageLayouts?.forEach((layout) => {
+        engridLayoutSwitch.insertAdjacentHTML(
+          "beforeend",
+          `<option value="${layout}">${layout}</option>`
+        );
+      });
+
       engridLayoutSwitch.value = ENGrid.getBodyData("layout") ?? "";
+
       engridLayoutSwitch.addEventListener("change", (e) => {
         const target = e.target as HTMLSelectElement;
         this.switchENGridLayout(target.value);

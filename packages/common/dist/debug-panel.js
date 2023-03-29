@@ -1,6 +1,6 @@
 import { ENGrid, EngridLogger } from "./";
 export class DebugPanel {
-    constructor() {
+    constructor(pageLayouts) {
         var _a, _b;
         this.logger = new EngridLogger("Debug Panel", "#f0f0f0", "#ff0000", "💥");
         this.element = null;
@@ -172,6 +172,7 @@ export class DebugPanel {
             ],
         };
         this.logger.log("Adding debug panel and starting a debug session");
+        this.pageLayouts = pageLayouts;
         this.loadDebugPanel();
         this.element = document.querySelector(".debug-panel");
         (_a = this.element) === null || _a === void 0 ? void 0 : _a.addEventListener("click", (e) => {
@@ -201,13 +202,6 @@ export class DebugPanel {
               <div class="debug-panel__option">
                 <label for="engrid-layout-switch">Switch layout</label>
                 <select name="engrid-layout" id="engrid-layout-switch">
-                  <option value="leftleft1col">leftleft1col</option>
-                  <option value="centerleft1col">centerleft1col</option>
-                  <option value="centercenter1col">centercenter1col</option>
-                  <option value="centercenter2col">centercenter2col</option>
-                  <option value="centerright1col">centerright1col</option>
-                  <option value="rightright1col">rightright1col</option>
-                  <option value="none">none</option>
                 </select>
               </div>
               <div class="debug-panel__option">
@@ -262,10 +256,13 @@ export class DebugPanel {
         ENGrid.setBodyData("layout", layout);
     }
     setupLayoutSwitcher() {
-        var _a;
+        var _a, _b;
         const engridLayoutSwitch = document.getElementById("engrid-layout-switch");
         if (engridLayoutSwitch) {
-            engridLayoutSwitch.value = (_a = ENGrid.getBodyData("layout")) !== null && _a !== void 0 ? _a : "";
+            (_a = this.pageLayouts) === null || _a === void 0 ? void 0 : _a.forEach((layout) => {
+                engridLayoutSwitch.insertAdjacentHTML("beforeend", `<option value="${layout}">${layout}</option>`);
+            });
+            engridLayoutSwitch.value = (_b = ENGrid.getBodyData("layout")) !== null && _b !== void 0 ? _b : "";
             engridLayoutSwitch.addEventListener("change", (e) => {
                 const target = e.target;
                 this.switchENGridLayout(target.value);
