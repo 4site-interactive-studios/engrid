@@ -16,4 +16,6 @@ export declare class DebugPanel {
     private setFieldValue;
     private getCurrentTimestamp;
     private createDebugSessionEndHandler;
+    private setupEmbeddedLayoutSwitcher;
+    private setupDebugLayoutSwitcher;
 }

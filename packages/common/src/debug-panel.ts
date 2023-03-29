@@ -207,6 +207,10 @@ export class DebugPanel {
       this.element?.classList.remove("debug-panel--open");
     });
 
+    if (ENGrid.getUrlParameter("assets") === "local") {
+      this.element?.classList.add("debug-panel--local");
+    }
+
     window.sessionStorage.setItem(DebugPanel.debugSessionStorageKey, "active");
   }
 
@@ -230,9 +234,14 @@ export class DebugPanel {
                   <option value="centercenter2col">centercenter2col</option>
                   <option value="centerright1col">centerright1col</option>
                   <option value="rightright1col">rightright1col</option>
-                  <option value="embedded">embedded</option>
                   <option value="none">none</option>
                 </select>
+              </div>
+              <div class="debug-panel__option">
+                <div class="debug-panel__checkbox">
+                  <input type="checkbox" name="engrid-embedded-layout" id="engrid-embedded-layout">
+                  <label for="engrid-embedded-layout">Embedded layout</label>            
+                </div>
               </div>
               <div class="debug-panel__option">
                 <label for="engrid-theme">Theme</label>
@@ -256,6 +265,12 @@ export class DebugPanel {
                   <option value="cc-paysafe-mastercard">CC - Paysafe - Mastercard</option>
                 </select>
               </div>
+              <div class="debug-panel__option debug-panel__option--local">
+                <div class="debug-panel__checkbox">
+                  <input type="checkbox" name="engrid-debug-layout" id="engrid-debug-layout">
+                  <label for="engrid-debug-layout">Debug layout</label>            
+                </div>
+              </div>
               <div class="debug-panel__option">
                 <button class="btn debug-panel__btn-end" type="button">End debug session</button>
               </div>
@@ -269,6 +284,8 @@ export class DebugPanel {
     this.setupSubThemeSwitcher();
     this.setupFormQuickfill();
     this.createDebugSessionEndHandler();
+    this.setupEmbeddedLayoutSwitcher();
+    this.setupDebugLayoutSwitcher();
   }
 
   private switchENGridLayout(layout: string) {
@@ -378,5 +395,37 @@ export class DebugPanel {
       this.element?.remove();
       window.sessionStorage.removeItem(DebugPanel.debugSessionStorageKey);
     });
+  }
+
+  private setupEmbeddedLayoutSwitcher() {
+    const embeddedLayoutSwitch = document.getElementById(
+      "engrid-embedded-layout"
+    ) as HTMLInputElement;
+
+    if (embeddedLayoutSwitch) {
+      embeddedLayoutSwitch.checked = !!ENGrid.getBodyData("embedded");
+      embeddedLayoutSwitch.addEventListener("change", (e) => {
+        const target = e.target as HTMLInputElement;
+        ENGrid.setBodyData("embedded", target.checked);
+      });
+    }
+  }
+
+  private setupDebugLayoutSwitcher() {
+    const debugLayoutSwitch = document.getElementById(
+      "engrid-debug-layout"
+    ) as HTMLInputElement;
+
+    if (debugLayoutSwitch) {
+      debugLayoutSwitch.checked = ENGrid.getBodyData("debug") === "layout";
+      debugLayoutSwitch.addEventListener("change", (e) => {
+        const target = e.target as HTMLInputElement;
+        if (target.checked) {
+          ENGrid.setBodyData("debug", "layout");
+        } else {
+          ENGrid.setBodyData("debug", "");
+        }
+      });
+    }
   }
 }

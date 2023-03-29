@@ -1,7 +1,7 @@
 import { ENGrid, EngridLogger } from "./";
 export class DebugPanel {
     constructor() {
-        var _a;
+        var _a, _b;
         this.logger = new EngridLogger("Debug Panel", "#f0f0f0", "#ff0000", "💥");
         this.element = null;
         this.currentTimestamp = this.getCurrentTimestamp();
@@ -184,6 +184,9 @@ export class DebugPanel {
             e.stopPropagation();
             (_a = this.element) === null || _a === void 0 ? void 0 : _a.classList.remove("debug-panel--open");
         });
+        if (ENGrid.getUrlParameter("assets") === "local") {
+            (_b = this.element) === null || _b === void 0 ? void 0 : _b.classList.add("debug-panel--local");
+        }
         window.sessionStorage.setItem(DebugPanel.debugSessionStorageKey, "active");
     }
     loadDebugPanel() {
@@ -204,9 +207,14 @@ export class DebugPanel {
                   <option value="centercenter2col">centercenter2col</option>
                   <option value="centerright1col">centerright1col</option>
                   <option value="rightright1col">rightright1col</option>
-                  <option value="embedded">embedded</option>
                   <option value="none">none</option>
                 </select>
+              </div>
+              <div class="debug-panel__option">
+                <div class="debug-panel__checkbox">
+                  <input type="checkbox" name="engrid-embedded-layout" id="engrid-embedded-layout">
+                  <label for="engrid-embedded-layout">Embedded layout</label>            
+                </div>
               </div>
               <div class="debug-panel__option">
                 <label for="engrid-theme">Theme</label>
@@ -230,6 +238,12 @@ export class DebugPanel {
                   <option value="cc-paysafe-mastercard">CC - Paysafe - Mastercard</option>
                 </select>
               </div>
+              <div class="debug-panel__option debug-panel__option--local">
+                <div class="debug-panel__checkbox">
+                  <input type="checkbox" name="engrid-debug-layout" id="engrid-debug-layout">
+                  <label for="engrid-debug-layout">Debug layout</label>            
+                </div>
+              </div>
               <div class="debug-panel__option">
                 <button class="btn debug-panel__btn-end" type="button">End debug session</button>
               </div>
@@ -241,6 +255,8 @@ export class DebugPanel {
         this.setupSubThemeSwitcher();
         this.setupFormQuickfill();
         this.createDebugSessionEndHandler();
+        this.setupEmbeddedLayoutSwitcher();
+        this.setupDebugLayoutSwitcher();
     }
     switchENGridLayout(layout) {
         ENGrid.setBodyData("layout", layout);
@@ -329,6 +345,31 @@ export class DebugPanel {
             (_a = this.element) === null || _a === void 0 ? void 0 : _a.remove();
             window.sessionStorage.removeItem(DebugPanel.debugSessionStorageKey);
         });
+    }
+    setupEmbeddedLayoutSwitcher() {
+        const embeddedLayoutSwitch = document.getElementById("engrid-embedded-layout");
+        if (embeddedLayoutSwitch) {
+            embeddedLayoutSwitch.checked = !!ENGrid.getBodyData("embedded");
+            embeddedLayoutSwitch.addEventListener("change", (e) => {
+                const target = e.target;
+                ENGrid.setBodyData("embedded", target.checked);
+            });
+        }
+    }
+    setupDebugLayoutSwitcher() {
+        const debugLayoutSwitch = document.getElementById("engrid-debug-layout");
+        if (debugLayoutSwitch) {
+            debugLayoutSwitch.checked = ENGrid.getBodyData("debug") === "layout";
+            debugLayoutSwitch.addEventListener("change", (e) => {
+                const target = e.target;
+                if (target.checked) {
+                    ENGrid.setBodyData("debug", "layout");
+                }
+                else {
+                    ENGrid.setBodyData("debug", "");
+                }
+            });
+        }
     }
 }
 DebugPanel.debugSessionStorageKey = "engrid_debug_panel";

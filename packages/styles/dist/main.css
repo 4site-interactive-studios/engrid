@@ -9195,6 +9195,26 @@ body[data-engrid-debug]:before {
   font-size: 1.2rem;
 }
 
+.debug-panel:not(.debug-panel--local) .debug-panel__option--local {
+  display: none;
+}
+
+.debug-panel__checkbox input[type=checkbox] {
+  clip: rect(0 0 0 0);
+  border: 0;
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+.debug-panel__checkbox input[type=checkbox] + label {
+  font-size: 1rem;
+}
+
 [data-engrid-debug] {
   margin-top: 56px;
 }
