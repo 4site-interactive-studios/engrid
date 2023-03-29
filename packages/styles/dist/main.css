@@ -9188,11 +9188,18 @@ body[data-engrid-debug]:before {
   margin-bottom: 0;
 }
 
-.btn.debug-panel__btn-end {
+.btn.debug-panel__btn {
   margin: 0;
   width: 100%;
-  background-color: #e13232;
   font-size: 1.2rem;
+}
+
+.debug-panel__btn--end {
+  background-color: #e13232;
+}
+
+.debug-panel__btn--branding {
+  background-color: #1a73e5;
 }
 
 .debug-panel:not(.debug-panel--local) .debug-panel__option--local {

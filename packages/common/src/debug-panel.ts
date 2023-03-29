@@ -1,4 +1,4 @@
-import { ENGrid, EngridLogger } from "./";
+import { ENGrid, EngridLogger, BrandingHtml } from "./";
 
 interface QuickfillData {
   name: string;
@@ -200,7 +200,7 @@ export class DebugPanel {
     this.loadDebugPanel();
 
     this.element = document.querySelector(".debug-panel");
-    this.element?.addEventListener("click", (e) => {
+    this.element?.addEventListener("click", () => {
       this.element?.classList.add("debug-panel--open");
     });
 
@@ -268,8 +268,11 @@ export class DebugPanel {
                   <label for="engrid-debug-layout">Debug layout</label>            
                 </div>
               </div>
+              <div class="debug-panel__option debug-panel__option--local">
+                <button class="btn debug-panel__btn debug-panel__btn--branding" type="button">Insert branding HTML</button>
+              </div>
               <div class="debug-panel__option">
-                <button class="btn debug-panel__btn-end" type="button">End debug session</button>
+                <button class="btn debug-panel__btn debug-panel__btn--end" type="button">End debug session</button>
               </div>
             </div>
           </div>
@@ -283,6 +286,7 @@ export class DebugPanel {
     this.createDebugSessionEndHandler();
     this.setupEmbeddedLayoutSwitcher();
     this.setupDebugLayoutSwitcher();
+    this.setupBrandingHtmlHandler();
   }
 
   private switchENGridLayout(layout: string) {
@@ -393,7 +397,7 @@ export class DebugPanel {
   }
 
   private createDebugSessionEndHandler() {
-    const debugSessionEndBtn = document.querySelector(".debug-panel__btn-end");
+    const debugSessionEndBtn = document.querySelector(".debug-panel__btn--end");
 
     debugSessionEndBtn?.addEventListener("click", () => {
       this.logger.log("Removing panel and ending debug session");
@@ -432,5 +436,21 @@ export class DebugPanel {
         }
       });
     }
+  }
+
+  private setupBrandingHtmlHandler() {
+    const brandingHtmlBtn = document.querySelector(
+      ".debug-panel__btn--branding"
+    ) as HTMLButtonElement;
+
+    if (ENGrid.getUrlParameter("development") === "branding") {
+      brandingHtmlBtn.setAttribute("disabled", "");
+    }
+
+    brandingHtmlBtn?.addEventListener("click", (e) => {
+      new BrandingHtml();
+      const el = e.target as HTMLButtonElement;
+      el.setAttribute("disabled", "");
+    });
   }
 }

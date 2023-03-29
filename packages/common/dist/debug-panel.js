@@ -1,4 +1,4 @@
-import { ENGrid, EngridLogger } from "./";
+import { ENGrid, EngridLogger, BrandingHtml } from "./";
 export class DebugPanel {
     constructor(pageLayouts) {
         var _a, _b;
@@ -175,7 +175,7 @@ export class DebugPanel {
         this.pageLayouts = pageLayouts;
         this.loadDebugPanel();
         this.element = document.querySelector(".debug-panel");
-        (_a = this.element) === null || _a === void 0 ? void 0 : _a.addEventListener("click", (e) => {
+        (_a = this.element) === null || _a === void 0 ? void 0 : _a.addEventListener("click", () => {
             var _a;
             (_a = this.element) === null || _a === void 0 ? void 0 : _a.classList.add("debug-panel--open");
         });
@@ -238,8 +238,11 @@ export class DebugPanel {
                   <label for="engrid-debug-layout">Debug layout</label>            
                 </div>
               </div>
+              <div class="debug-panel__option debug-panel__option--local">
+                <button class="btn debug-panel__btn debug-panel__btn--branding" type="button">Insert branding HTML</button>
+              </div>
               <div class="debug-panel__option">
-                <button class="btn debug-panel__btn-end" type="button">End debug session</button>
+                <button class="btn debug-panel__btn debug-panel__btn--end" type="button">End debug session</button>
               </div>
             </div>
           </div>
@@ -251,6 +254,7 @@ export class DebugPanel {
         this.createDebugSessionEndHandler();
         this.setupEmbeddedLayoutSwitcher();
         this.setupDebugLayoutSwitcher();
+        this.setupBrandingHtmlHandler();
     }
     switchENGridLayout(layout) {
         ENGrid.setBodyData("layout", layout);
@@ -335,7 +339,7 @@ export class DebugPanel {
         return `${year}${month}${day}-${hours}${minutes}`;
     }
     createDebugSessionEndHandler() {
-        const debugSessionEndBtn = document.querySelector(".debug-panel__btn-end");
+        const debugSessionEndBtn = document.querySelector(".debug-panel__btn--end");
         debugSessionEndBtn === null || debugSessionEndBtn === void 0 ? void 0 : debugSessionEndBtn.addEventListener("click", () => {
             var _a;
             this.logger.log("Removing panel and ending debug session");
@@ -367,6 +371,17 @@ export class DebugPanel {
                 }
             });
         }
+    }
+    setupBrandingHtmlHandler() {
+        const brandingHtmlBtn = document.querySelector(".debug-panel__btn--branding");
+        if (ENGrid.getUrlParameter("development") === "branding") {
+            brandingHtmlBtn.setAttribute("disabled", "");
+        }
+        brandingHtmlBtn === null || brandingHtmlBtn === void 0 ? void 0 : brandingHtmlBtn.addEventListener("click", (e) => {
+            new BrandingHtml();
+            const el = e.target;
+            el.setAttribute("disabled", "");
+        });
     }
 }
 DebugPanel.debugSessionStorageKey = "engrid_debug_panel";
