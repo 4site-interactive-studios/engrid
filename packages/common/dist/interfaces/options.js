@@ -20,6 +20,7 @@ export const OptionsDefaults = {
     NeverBounceDateField: null,
     NeverBounceStatusField: null,
     NeverBounceDateFormat: "MM/DD/YYYY",
+    FreshAddress: false,
     ProgressBar: false,
     AutoYear: false,
     TranslateFields: true,

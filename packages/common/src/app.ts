@@ -53,6 +53,7 @@ import {
   SwapAmounts,
   DebugPanel,
   DebugHiddenFields,
+  FreshAddress,
   BrandingHtml,
 } from "./";
 
@@ -294,6 +295,9 @@ export class App extends ENGrid {
         this.options.NeverBounceStatusField,
         this.options.NeverBounceDateFormat
       );
+
+    // FreshAddress
+    if (this.options.FreshAddress) new FreshAddress();
 
     new ShowIfAmount();
 

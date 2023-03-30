@@ -150,7 +150,7 @@ form > .en__component--row.en__component--advrow {
 // Set the min-height of a page to the viewport height; except when embedded because there is no "viewport" as far as the iframe is concerned
 // This also prevents an issue with Safari where the height of the iFrame'ed page can not be calculated correctly (https://d.pr/v/O2kcrb)
 body:not([data-engrid-embedded]) > #engrid > form {
-  height: 100vh;
+  min-height: 100vh;
 }
 
 // @TODO This might not be neccessary

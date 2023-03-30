@@ -6726,7 +6726,7 @@ form > .en__component--row.en__component--advrow > * > * > * {
 }
 
 body:not([data-engrid-embedded]) > #engrid > form {
-  height: 100vh;
+  min-height: 100vh;
 }
 
 body:not([data-engrid-embedded]) form > .en__component--row.en__component--advrow {

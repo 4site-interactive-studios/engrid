@@ -28,6 +28,7 @@ export * from "./src-defer";
 export * from "./set-recurr-freq";
 export * from "./page-background";
 export * from "./neverbounce";
+export * from "./freshaddress";
 export * from "./progress-bar";
 export * from "./remember-me";
 export * from "./show-if-amount";
