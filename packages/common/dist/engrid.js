@@ -148,6 +148,16 @@ export class ENGrid {
             return window.pageJson.campaignPageId;
         return 0;
     }
+    // Return the client ID
+    static getClientID() {
+        if ("pageJson" in window)
+            return window.pageJson.clientId;
+        return 0;
+    }
+    //returns 'us or 'ca' based on the client ID
+    static getDataCenter() {
+        return ENGrid.getClientID() >= 10000 ? "us" : "ca";
+    }
     // Return the current page type
     static getPageType() {
         if ("pageJson" in window && "pageType" in window.pageJson) {

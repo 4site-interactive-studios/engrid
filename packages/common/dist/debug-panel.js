@@ -232,6 +232,9 @@ export class DebugPanel {
                   <option value="cc-paysafe-mastercard">CC - Paysafe - Mastercard</option>
                 </select>
               </div>
+              <div class="debug-panel__option">
+                <button class="btn debug-panel__btn debug-panel__btn--edit" type="button">Open edit page</button>
+              </div>
               <div class="debug-panel__option debug-panel__option--local">
                 <div class="debug-panel__checkbox">
                   <input type="checkbox" name="engrid-debug-layout" id="engrid-debug-layout">
@@ -255,6 +258,7 @@ export class DebugPanel {
         this.setupEmbeddedLayoutSwitcher();
         this.setupDebugLayoutSwitcher();
         this.setupBrandingHtmlHandler();
+        this.setupEditBtnHandler();
     }
     switchENGridLayout(layout) {
         ENGrid.setBodyData("layout", layout);
@@ -381,6 +385,12 @@ export class DebugPanel {
             new BrandingHtml();
             const el = e.target;
             el.setAttribute("disabled", "");
+        });
+    }
+    setupEditBtnHandler() {
+        const editBtn = document.querySelector(".debug-panel__btn--edit");
+        editBtn === null || editBtn === void 0 ? void 0 : editBtn.addEventListener("click", () => {
+            window.open(`https://${ENGrid.getDataCenter()}.engagingnetworks.app/index.html#pages/${ENGrid.getPageID()}/edit`, "_blank");
         });
     }
 }

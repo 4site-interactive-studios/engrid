@@ -14,6 +14,8 @@ export declare abstract class ENGrid {
     static getPageCount(): any;
     static getPageNumber(): any;
     static getPageID(): any;
+    static getClientID(): any;
+    static getDataCenter(): "us" | "ca";
     static getPageType(): "DONATION" | "ECARD" | "SURVEY" | "EMAILTOTARGET" | "ADVOCACY" | "SUBSCRIBEFORM" | "SUPPORTERHUB" | "UNSUBSCRIBE" | "UNKNOWN";
     static setBodyData(dataName: string, value: string | boolean): void;
     static getBodyData(dataName: string): string | null;

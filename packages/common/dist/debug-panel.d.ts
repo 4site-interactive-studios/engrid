@@ -20,4 +20,5 @@ export declare class DebugPanel {
     private setupEmbeddedLayoutSwitcher;
     private setupDebugLayoutSwitcher;
     private setupBrandingHtmlHandler;
+    private setupEditBtnHandler;
 }
