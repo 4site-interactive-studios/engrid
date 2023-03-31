@@ -47,6 +47,8 @@ export * from "./live-currency";
 export * from "./autosubmit";
 export * from "./event-tickets";
 export * from "./swap-amounts";
+export * from "./debug-panel";
 export * from "./debug-hidden-fields";
+export * from "./branding-html";
 export * from "./events";
 export * from "./version";

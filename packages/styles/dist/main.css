@@ -9125,66 +9125,128 @@ body[data-engrid-debug]:before {
   z-index: 2147483641;
 }
 
-[data-engrid-debug] {
-  margin-top: 56px;
-}
-[data-engrid-debug] #debug-bar {
-  display: flex;
-  padding: 1ch 1.2ch;
-  border-bottom: 1px solid #cccccc;
-  justify-content: center;
-  background: #f5f5f5;
+.debug-panel {
   position: fixed;
-  width: 100vw;
-  top: 0;
-  left: 0;
-  z-index: 2147483640;
-  box-shadow: 0 36px 50px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
-}
-[data-engrid-debug] #debug-bar #info-wrapper {
+  bottom: 50px;
+  right: 50px;
+  z-index: 1000;
+  background-color: white;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
   display: flex;
-  margin: 0rem 1rem 0rem 0rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-  line-height: 1;
-  font-family: Arial, sans-serif;
-  align-items: center;
+  flex-direction: column;
 }
-[data-engrid-debug] #debug-bar #buttons-wrapper {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+
+.debug-panel:not(.debug-panel--open) {
+  cursor: pointer;
   justify-content: center;
+  align-items: center;
 }
-[data-engrid-debug] #debug-bar #buttons-wrapper p {
-  font-weight: bold;
-  margin-right: 1rem;
+
+.debug-panel--open {
+  width: 280px;
+  height: auto;
+  padding: 20px;
+  border-radius: 5px;
 }
-[data-engrid-debug] #debug-bar #buttons-wrapper button,
-[data-engrid-debug] #debug-bar #buttons-wrapper .button {
-  --button_font-family: Arial, sans-serif;
-  --button_color: #ffffff;
-  --button_font-size: 16px;
-  --button_font-weight: initial;
-  --button_line-height: normal;
-  --button_background-color: #000000;
-  --button_border-width: 0px;
-  --button_border-color: #000000;
-  --button_border-radius: 6px;
-  --button_padding: 1ch 1.2ch;
-  --button_text-transform: none;
-  --button_color_hover: #ffffff;
-  --button_background-color_hover: #3d9cd6;
-  --button_border-color_hover: #3d9cd6;
-  --button_color_checked: #ffffff;
-  --button_background-color_checked: #3d9cd6;
-  --button_border-color_checked: #3d9cd6;
-  text-decoration: none;
+
+.debug-panel--open .debug-panel__closed-title {
+  display: none;
+}
+
+.debug-panel--open .debug-panel__title {
+  display: flex;
+}
+
+.debug-panel--open .debug-panel__option {
+  display: block;
+}
+
+.debug-panel__title {
+  display: none;
+  margin-bottom: 15px;
+  justify-content: space-between;
+}
+
+.debug-panel__title > h2 {
   margin: 0;
 }
-[data-engrid-debug] #debug-bar #buttons-wrapper button:not(:last-child),
-[data-engrid-debug] #debug-bar #buttons-wrapper .button:not(:last-child) {
-  margin-right: 1rem;
+
+.debug-panel__close {
+  cursor: pointer;
+  padding: 5px;
+}
+
+.debug-panel__option {
+  display: none;
+  margin-bottom: 15px;
+}
+
+.debug-panel__option:last-of-type {
+  margin-bottom: 0;
+}
+
+.debug-panel__btn {
+  margin: 0;
+  width: 100%;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.debug-panel__btn,
+.debug-panel__btn:focus,
+.debug-panel__btn:active {
+  background-color: #1a73e5;
+}
+
+.debug-panel__btn:hover {
+  background-color: #155cb7;
+}
+
+.debug-panel__btn--end,
+.debug-panel__btn--end:focus,
+.debug-panel__btn--end:active {
+  background-color: #e13232;
+}
+
+.debug-panel__btn--end:hover {
+  background-color: #c31d1d;
+}
+
+.debug-panel__btn--submit,
+.debug-panel__btn--submit:focus,
+.debug-panel__btn--submit:active {
+  background-color: #139913;
+}
+
+.debug-panel__btn--submit:hover {
+  background-color: #0d6c0d;
+}
+
+.debug-panel:not(.debug-panel--local) .debug-panel__option--local {
+  display: none;
+}
+
+.debug-panel__checkbox input[type=checkbox] {
+  clip: rect(0 0 0 0);
+  border: 0;
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+.debug-panel__checkbox input[type=checkbox] + label {
+  font-size: 1rem;
+}
+
+[data-engrid-debug] {
+  margin-top: 56px;
 }
 
 body:not([data-engrid-debug]) #debug-bar {

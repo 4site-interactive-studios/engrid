@@ -7,13 +7,15 @@ export declare abstract class ENGrid {
     static getUrlParameter(name: string): string | true | Object[] | null;
     static getField(name: string): Element | null;
     static getFieldValue(name: string): string;
-    static setFieldValue(name: string, value: unknown, parseENDependencies?: boolean): void;
+    static setFieldValue(name: string, value: unknown, parseENDependencies?: boolean, dispatchEvents?: boolean): void;
     static createHiddenInput(name: string, value?: string): HTMLInputElement;
     static enParseDependencies(): void;
     static getGiftProcess(): any;
     static getPageCount(): any;
     static getPageNumber(): any;
     static getPageID(): any;
+    static getClientID(): any;
+    static getDataCenter(): "us" | "ca";
     static getPageType(): "DONATION" | "ECARD" | "SURVEY" | "EMAILTOTARGET" | "ADVOCACY" | "SUBSCRIBEFORM" | "SUPPORTERHUB" | "UNSUBSCRIBE" | "UNKNOWN";
     static setBodyData(dataName: string, value: string | boolean): void;
     static getBodyData(dataName: string): string | null;

@@ -63,3 +63,6 @@ typings/
 
 # VS Code Workspace
 workspace.code-workspace
+
+#Jetbrains IDE files
+.idea/

@@ -84,6 +84,7 @@ export interface Options {
   onSubmit?: () => void;
   onError?: () => void;
   onValidate?: () => void;
+  PageLayouts?: string[];
 }
 
 export const OptionsDefaults: Options = {
@@ -116,4 +117,13 @@ export const OptionsDefaults: Options = {
   RememberMe: false,
   TidyContact: false,
   RegionLongFormat: "",
+  PageLayouts: [
+    "leftleft1col",
+    "centerleft1col",
+    "centercenter1col",
+    "centercenter2col",
+    "centerright1col",
+    "rightright1col",
+    "none",
+  ],
 };

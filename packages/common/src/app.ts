@@ -51,8 +51,10 @@ import {
   Autosubmit,
   EventTickets,
   SwapAmounts,
+  DebugPanel,
   DebugHiddenFields,
   FreshAddress,
+  BrandingHtml,
 } from "./";
 
 export class App extends ENGrid {
@@ -331,6 +333,18 @@ export class App extends ENGrid {
     new DataLayer();
 
     this.setDataAttributes();
+
+    //Debug panel
+    if (
+      this.options.Debug ||
+      window.sessionStorage.hasOwnProperty(DebugPanel.debugSessionStorageKey)
+    ) {
+      new DebugPanel(this.options.PageLayouts);
+    }
+
+    if (ENGrid.getUrlParameter("development") === "branding") {
+      new BrandingHtml();
+    }
 
     ENGrid.setBodyData("data-engrid-scripts-js-loading", "finished");
 

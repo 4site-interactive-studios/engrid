@@ -78,5 +78,6 @@ export interface Options {
     onSubmit?: () => void;
     onError?: () => void;
     onValidate?: () => void;
+    PageLayouts?: string[];
 }
 export declare const OptionsDefaults: Options;
