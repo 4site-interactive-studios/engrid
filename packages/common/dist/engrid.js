@@ -42,7 +42,7 @@ export class ENGrid {
         return new FormData(this.enForm).getAll(name).join(",");
     }
     // Set a value to any field. If it's a dropdown, radio or checkbox, it selects the proper option matching the value
-    static setFieldValue(name, value, parseENDependencies = true) {
+    static setFieldValue(name, value, parseENDependencies = true, dispatchEvents = false) {
         if (value === ENGrid.getFieldValue(name))
             return;
         document.getElementsByName(name).forEach((field) => {
@@ -53,20 +53,29 @@ export class ENGrid {
                         for (const option of field.options) {
                             if (option.value == value) {
                                 option.selected = true;
+                                if (dispatchEvents) {
+                                    field.dispatchEvent(new Event("change", { bubbles: true }));
+                                }
                             }
                         }
                         break;
                     case "checkbox":
                     case "radio":
-                        // @TODO: Try to trigger the onChange event
                         if (field.value == value) {
                             field.checked = true;
+                            if (dispatchEvents) {
+                                field.dispatchEvent(new Event("change", { bubbles: true }));
+                            }
                         }
                         break;
                     case "textarea":
                     case "text":
                     default:
                         field.value = value;
+                        if (dispatchEvents) {
+                            field.dispatchEvent(new Event("change", { bubbles: true }));
+                            field.dispatchEvent(new Event("blur", { bubbles: true }));
+                        }
                 }
                 field.setAttribute("engrid-value-changed", "");
             }

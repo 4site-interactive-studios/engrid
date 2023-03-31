@@ -9192,11 +9192,37 @@ body[data-engrid-debug]:before {
   margin: 0;
   width: 100%;
   font-size: 1.2rem;
+  color: #fff;
+}
+
+.debug-panel__btn,
+.debug-panel__btn:focus,
+.debug-panel__btn:active {
   background-color: #1a73e5;
 }
 
-.debug-panel__btn--end {
+.debug-panel__btn:hover {
+  background-color: #155cb7;
+}
+
+.debug-panel__btn--end,
+.debug-panel__btn--end:focus,
+.debug-panel__btn--end:active {
   background-color: #e13232;
+}
+
+.debug-panel__btn--end:hover {
+  background-color: #c31d1d;
+}
+
+.debug-panel__btn--submit,
+.debug-panel__btn--submit:focus,
+.debug-panel__btn--submit:active {
+  background-color: #139913;
+}
+
+.debug-panel__btn--submit:hover {
+  background-color: #0d6c0d;
 }
 
 .debug-panel:not(.debug-panel--local) .debug-panel__option--local {

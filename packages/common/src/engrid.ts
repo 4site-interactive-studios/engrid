@@ -52,7 +52,8 @@ export abstract class ENGrid {
   static setFieldValue(
     name: string,
     value: unknown,
-    parseENDependencies: boolean = true
+    parseENDependencies: boolean = true,
+    dispatchEvents: boolean = false
   ) {
     if (value === ENGrid.getFieldValue(name)) return;
     (document.getElementsByName(name) as NodeListOf<HTMLFormElement>).forEach(
@@ -64,20 +65,29 @@ export abstract class ENGrid {
               for (const option of field.options) {
                 if (option.value == value) {
                   option.selected = true;
+                  if (dispatchEvents) {
+                    field.dispatchEvent(new Event("change", { bubbles: true }));
+                  }
                 }
               }
               break;
             case "checkbox":
             case "radio":
-              // @TODO: Try to trigger the onChange event
               if (field.value == value) {
                 field.checked = true;
+                if (dispatchEvents) {
+                  field.dispatchEvent(new Event("change", { bubbles: true }));
+                }
               }
               break;
             case "textarea":
             case "text":
             default:
               field.value = value;
+              if (dispatchEvents) {
+                field.dispatchEvent(new Event("change", { bubbles: true }));
+                field.dispatchEvent(new Event("blur", { bubbles: true }));
+              }
           }
           field.setAttribute("engrid-value-changed", "");
         }

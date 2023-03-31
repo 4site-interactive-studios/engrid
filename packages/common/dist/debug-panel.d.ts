@@ -21,4 +21,5 @@ export declare class DebugPanel {
     private setupDebugLayoutSwitcher;
     private setupBrandingHtmlHandler;
     private setupEditBtnHandler;
+    private setupSubmitBtnHandler;
 }

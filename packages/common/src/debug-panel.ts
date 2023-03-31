@@ -265,6 +265,9 @@ export class DebugPanel {
               <div class="debug-panel__option">
                 <button class="btn debug-panel__btn debug-panel__btn--edit" type="button">Open edit page</button>
               </div>
+              <div class="debug-panel__option">
+                <button class="btn debug-panel__btn debug-panel__btn--submit" type="button">Submit form</button>
+              </div>
               <div class="debug-panel__option debug-panel__option--local">
                 <div class="debug-panel__checkbox">
                   <input type="checkbox" name="engrid-debug-layout" id="engrid-debug-layout">
@@ -291,6 +294,7 @@ export class DebugPanel {
     this.setupDebugLayoutSwitcher();
     this.setupBrandingHtmlHandler();
     this.setupEditBtnHandler();
+    this.setupSubmitBtnHandler();
   }
 
   private switchENGridLayout(layout: string) {
@@ -381,13 +385,16 @@ export class DebugPanel {
         const expirationDate = qf.value.split("/");
         ccExpireEls[0].value = expirationDate[0];
         ccExpireEls[1].value = expirationDate[1];
+        ccExpireEls[0].dispatchEvent(new Event("change", { bubbles: true }));
+        ccExpireEls[1].dispatchEvent(new Event("change", { bubbles: true }));
       } else {
         ccExpireEls[0].value = qf.value;
+        ccExpireEls[0].dispatchEvent(new Event("change", { bubbles: true }));
       }
       return;
     }
 
-    ENGrid.setFieldValue(qf.name, qf.value);
+    ENGrid.setFieldValue(qf.name, qf.value, true, true);
   }
 
   private getCurrentTimestamp() {
@@ -468,6 +475,19 @@ export class DebugPanel {
         `https://${ENGrid.getDataCenter()}.engagingnetworks.app/index.html#pages/${ENGrid.getPageID()}/edit`,
         "_blank"
       );
+    });
+  }
+
+  private setupSubmitBtnHandler() {
+    const submitBtn = document.querySelector(
+      ".debug-panel__btn--submit"
+    ) as HTMLButtonElement;
+
+    submitBtn?.addEventListener("click", () => {
+      const enForm = document.querySelector(
+        "form.en__component"
+      ) as HTMLFormElement;
+      enForm?.submit();
     });
   }
 }
