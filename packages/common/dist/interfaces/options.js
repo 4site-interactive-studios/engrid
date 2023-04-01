@@ -28,6 +28,7 @@ export const OptionsDefaults = {
     RememberMe: false,
     TidyContact: false,
     RegionLongFormat: "",
+    CountryDisable: [],
     PageLayouts: [
         "leftleft1col",
         "centerleft1col",

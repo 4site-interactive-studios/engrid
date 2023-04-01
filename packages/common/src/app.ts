@@ -55,6 +55,7 @@ import {
   DebugHiddenFields,
   FreshAddress,
   BrandingHtml,
+  CountryDisable,
 } from "./";
 
 export class App extends ENGrid {
@@ -328,6 +329,9 @@ export class App extends ENGrid {
 
     // Translate Fields
     if (this.options.TranslateFields) new TranslateFields();
+
+    // Country Disable
+    new CountryDisable();
 
     // Data Layer Events
     new DataLayer();

@@ -73,11 +73,12 @@ export interface Options {
         phone_date_field?: string;
         phone_status_field?: string;
     };
+    PageLayouts?: string[];
+    CountryDisable?: string[];
     onLoad?: () => void;
     onResize?: () => void;
     onSubmit?: () => void;
     onError?: () => void;
     onValidate?: () => void;
-    PageLayouts?: string[];
 }
 export declare const OptionsDefaults: Options;
