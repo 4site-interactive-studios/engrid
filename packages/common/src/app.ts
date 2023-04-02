@@ -56,6 +56,7 @@ import {
   FreshAddress,
   BrandingHtml,
   CountryDisable,
+  PremiumGift,
 } from "./";
 
 export class App extends ENGrid {
@@ -332,6 +333,9 @@ export class App extends ENGrid {
 
     // Country Disable
     new CountryDisable();
+
+    // Premium Gift Features
+    new PremiumGift();
 
     // Data Layer Events
     new DataLayer();
