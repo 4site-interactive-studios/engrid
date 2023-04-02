@@ -99,19 +99,9 @@ export class FreshAddress {
         const email = (_a = this.emailField) === null || _a === void 0 ? void 0 : _a.value;
         const options = { emps: false, rtc_timeout: 1200 };
         ENGrid.disableSubmit("Validating Your Email");
-        const ret = window.FreshAddress.validateEmail(email, options)
-            .then((response) => {
+        const ret = window.FreshAddress.validateEmail(email, options).then((response) => {
             this.logger.log("Validate API Response", JSON.parse(JSON.stringify(response)));
             return this.validateResponse(response);
-        })
-            .catch((error) => {
-            if (error.toString().includes("AbortError")) {
-                // fetch aborted due to timeout
-                this.logger.log("Fetch aborted");
-            }
-            ENGrid.enableSubmit();
-            // network error or json parsing error
-            ENGrid.setError(this.emailWrapper, error.toString());
         });
     }
     validateResponse(data) {
