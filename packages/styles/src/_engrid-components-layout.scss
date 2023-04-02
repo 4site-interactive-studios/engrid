@@ -132,7 +132,6 @@
 [data-engrid-debug] {
   // Color Hidden Fields
   [hidden-via-url-argument],
-  input[unhidden],
   .hide,
   .hide-until-engrid-js-loading-finished,
   .hide-until-client-js-loading-finished,
@@ -152,7 +151,6 @@
 
   // Color Hidden Labels
   label.hide-label,
-  input[unhidden],
   .i1-hide-label .en__field:nth-of-type(1) > label,
   .i2-hide-label .en__field:nth-of-type(2) > label,
   .i3-hide-label .en__field:nth-of-type(3) > label,

@@ -472,6 +472,14 @@ body[data-engrid-debug]:before {
 [data-engrid-debug] {
   margin-top: 56px;
 
+  .en__component--page > [unhidden] {
+    display: flex;
+    flex-basis: 100%;
+    flex-direction: column;
+    margin-bottom: var(--fields_spacing-block);
+    padding-bottom: 0;
+  }
+
   //#debug-bar {
   //  display: flex;
   //  padding: 1ch 1.2ch;
