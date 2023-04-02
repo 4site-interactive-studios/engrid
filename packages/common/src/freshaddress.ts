@@ -92,6 +92,8 @@ export class FreshAddress {
     );
     this.faStatus!.value = status;
     this.faMessage!.value = message;
+    this.emailWrapper.dataset.freshaddressSafetosendstatus =
+      status.toLowerCase();
   }
 
   private addEventListeners() {

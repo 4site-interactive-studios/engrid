@@ -70,6 +70,8 @@ export class FreshAddress {
         this.faDate.value = ENGrid.formatDate(new Date(), this.options.dateFieldFormat || "yyyy-MM-dd");
         this.faStatus.value = status;
         this.faMessage.value = message;
+        this.emailWrapper.dataset.freshaddressSafetosendstatus =
+            status.toLowerCase();
     }
     addEventListeners() {
         var _a;
