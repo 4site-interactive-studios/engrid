@@ -2688,6 +2688,15 @@ a:focus, a:hover {
   width: fit-content;
   max-width: 100%;
 }
+.en__component--eccheckout__additional .en__field__element--radio.en__field__element {
+  display: grid;
+  grid-auto-rows: auto;
+  margin-bottom: var(--fields_spacing-block);
+  align-items: center;
+  width: fit-content;
+  max-width: 100%;
+}
+
 .en__component--formblock.inline-other .en__field--radio.en__field--withOther--active .en__field__element, .en__component--formblock.inline-other .en__field--checkbox.en__field--withOther--active .en__field__element,
 .en__component--svblock.inline-other .en__field--radio.en__field--withOther--active .en__field__element,
 .en__component--svblock.inline-other .en__field--checkbox.en__field--withOther--active .en__field__element,
