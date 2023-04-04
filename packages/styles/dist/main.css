@@ -9167,8 +9167,8 @@ body[data-engrid-debug]:before {
 
 .debug-panel {
   position: fixed;
-  bottom: 50px;
-  right: 50px;
+  bottom: min(10vw, 10vh, 50px);
+  right: min(10vw, 10vh, 50px);
   z-index: 1000;
   background-color: white;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
@@ -9179,6 +9179,22 @@ body[data-engrid-debug]:before {
   flex-direction: column;
   border: 2px solid #3b3b3b;
 }
+@media screen and (max-height: 760px) {
+  .debug-panel {
+    transform: scale(0.9);
+    transform-origin: bottom right;
+  }
+}
+@media screen and (max-height: 700px) {
+  .debug-panel {
+    transform: scale(0.8);
+  }
+}
+@media screen and (max-height: 625px) {
+  .debug-panel {
+    transform: scale(0.7);
+  }
+}
 
 .debug-panel:not(.debug-panel--open) {
   cursor: pointer;
@@ -9188,9 +9204,9 @@ body[data-engrid-debug]:before {
 }
 
 .debug-panel--open {
-  width: 280px;
+  width: min(100vw - 2px - min(10vw, 10vh, 50px) - min(10vw, 10vh, 50px), 280px);
   height: auto;
-  padding: 20px;
+  padding: min(20px, 5vw, 5vh);
   border-radius: 5px;
 }
 
