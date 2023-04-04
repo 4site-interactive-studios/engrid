@@ -197,6 +197,9 @@ export class ENGrid {
                 case "unsubscribe":
                     return "UNSUBSCRIBE";
                     break;
+                case "tweetpage":
+                    return "TWEETPAGE";
+                    break;
                 default:
                     return "UNKNOWN";
             }
