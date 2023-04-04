@@ -339,6 +339,13 @@
   wbr {
     outline: 1px solid #db175b !important;
   }
+
+  div.debug-panel {
+    outline: none !important;
+    * {
+      outline: none !important;
+    }
+  }
 }
 
 // For the breakpoints overlay
@@ -358,12 +365,14 @@ body[data-engrid-debug]:before {
   border-radius: 50%;
   display: flex;
   flex-direction: column;
+  border: 2px solid #3b3b3b;
 }
 
 .debug-panel:not(.debug-panel--open) {
   cursor: pointer;
   justify-content: center;
   align-items: center;
+  background-color: hsl(0deg 0% 100% / 75%);
 }
 
 .debug-panel--open {
@@ -385,10 +394,15 @@ body[data-engrid-debug]:before {
   display: block;
 }
 
+.debug-panel__closed-title {
+  font-family: sans-serif;
+}
+
 .debug-panel__title {
   display: none;
   margin-bottom: 15px;
   justify-content: space-between;
+  align-items: center;
 }
 
 .debug-panel__title > h2 {
@@ -397,7 +411,8 @@ body[data-engrid-debug]:before {
 
 .debug-panel__close {
   cursor: pointer;
-  padding: 5px;
+  padding: 10px;
+  font-family: sans-serif;
 }
 
 .debug-panel__option {
@@ -409,31 +424,46 @@ body[data-engrid-debug]:before {
   margin-bottom: 0;
 }
 
+.debug-panel__link-label {
+  display: flex;
+
+  &:not(.link-left) {
+    justify-content: center;
+  }
+
+  a,
+  a:hover {
+    color: #000;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .debug-panel__edit-link,
+  .debug-panel__edit-link:hover {
+    font-weight: bold;
+    color: #155cb7;
+    justify-self: left;
+  }
+}
+
 .debug-panel__btn {
   margin: 0;
   width: 100%;
   font-size: 1.2rem;
-  color: #fff;
+  border: none;
 }
 
 .debug-panel__btn,
 .debug-panel__btn:focus,
 .debug-panel__btn:active {
   background-color: #1a73e5;
+  color: #fff;
 }
 
 .debug-panel__btn:hover {
   background-color: darken(#1a73e5, 10%);
-}
-
-.debug-panel__btn--end,
-.debug-panel__btn--end:focus,
-.debug-panel__btn--end:active {
-  background-color: #e13232;
-}
-
-.debug-panel__btn--end:hover {
-  background-color: darken(#e13232, 10%);
+  color: #fff;
 }
 
 .debug-panel__btn--submit,

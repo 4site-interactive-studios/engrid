@@ -27,11 +27,7 @@ export class BrandingHtml {
 
   private bodyMain: HTMLElement | null = document.querySelector(".body-main");
 
-  constructor() {
-    this.fetchHtml().then((html) =>
-      html.forEach((h) => this.bodyMain?.insertAdjacentHTML("beforeend", h))
-    );
-  }
+  private htmlFetched: boolean = false;
 
   private async fetchHtml() {
     const htmlRequests = this.brandingHtmlFiles.map(async (file) => {
@@ -42,5 +38,39 @@ export class BrandingHtml {
     const brandingHtmls: string[] = await Promise.all(htmlRequests);
 
     return brandingHtmls;
+  }
+
+  private appendHtml() {
+    this.fetchHtml().then((html) =>
+      html.forEach((h) => {
+        const brandingSection = document.createElement("div");
+        brandingSection.classList.add("brand-guide-section");
+        brandingSection.innerHTML = h;
+        this.bodyMain?.insertAdjacentElement("beforeend", brandingSection);
+      })
+    );
+
+    this.htmlFetched = true;
+  }
+
+  public show() {
+    if (!this.htmlFetched) {
+      this.appendHtml();
+      return;
+    }
+
+    const guides = document.querySelectorAll(
+      ".brand-guide-section"
+    ) as NodeListOf<HTMLElement>;
+
+    guides?.forEach((g) => (g.style.display = "block"));
+  }
+
+  public hide() {
+    const guides = document.querySelectorAll(
+      ".brand-guide-section"
+    ) as NodeListOf<HTMLElement>;
+
+    guides?.forEach((g) => (g.style.display = "none"));
   }
 }

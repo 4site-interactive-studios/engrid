@@ -17,6 +17,8 @@ export class DebugPanel {
     "💥"
   );
 
+  private brandingHtml: BrandingHtml = new BrandingHtml();
+
   private element: HTMLElement | null = null;
 
   private currentTimestamp: string = this.getCurrentTimestamp();
@@ -230,23 +232,9 @@ export class DebugPanel {
             </div>
             <div class="debug-panel__options">
               <div class="debug-panel__option">
-                <label for="engrid-layout-switch">Switch layout</label>
-                <select name="engrid-layout" id="engrid-layout-switch">
-                </select>
-              </div>
-              <div class="debug-panel__option">
-                <div class="debug-panel__checkbox">
-                  <input type="checkbox" name="engrid-embedded-layout" id="engrid-embedded-layout">
-                  <label for="engrid-embedded-layout">Embedded layout</label>            
-                </div>
-              </div>
-              <div class="debug-panel__option">
-                <label for="engrid-theme">Theme</label>
-                <input type="text" id="engrid-theme">
-              </div>
-              <div class="debug-panel__option">
-                <label for="engrid-theme">Sub-theme</label>
-                <input type="text" id="engrid-subtheme">
+                <label class="debug-panel__link-label link-left">
+                  <a class="debug-panel__edit-link">Edit page</a>
+                </label>
               </div>
               <div class="debug-panel__option">
                 <label for="engrid-form-quickfill">Form Quick-fill</label>
@@ -263,10 +251,15 @@ export class DebugPanel {
                 </select>
               </div>
               <div class="debug-panel__option">
-                <button class="btn debug-panel__btn debug-panel__btn--edit" type="button">Open edit page</button>
+                <label for="engrid-layout-switch">Switch layout</label>
+                <select name="engrid-layout" id="engrid-layout-switch">
+                </select>
               </div>
               <div class="debug-panel__option">
-                <button class="btn debug-panel__btn debug-panel__btn--submit" type="button">Submit form</button>
+                <div class="debug-panel__checkbox">
+                  <input type="checkbox" name="engrid-embedded-layout" id="engrid-embedded-layout">
+                  <label for="engrid-embedded-layout">Embedded layout</label>            
+                </div>
               </div>
               <div class="debug-panel__option debug-panel__option--local">
                 <div class="debug-panel__checkbox">
@@ -275,10 +268,31 @@ export class DebugPanel {
                 </div>
               </div>
               <div class="debug-panel__option debug-panel__option--local">
-                <button class="btn debug-panel__btn debug-panel__btn--branding" type="button">Insert branding HTML</button>
+                <div class="debug-panel__checkbox">
+                  <input type="checkbox" name="engrid-branding" id="engrid-branding">
+                  <label for="engrid-branding">Branding HTML</label>            
+                </div>
               </div>
               <div class="debug-panel__option">
-                <button class="btn debug-panel__btn debug-panel__btn--end" type="button">End debug session</button>
+                <label for="engrid-theme">Theme</label>
+                <input type="text" id="engrid-theme">
+              </div>
+              <div class="debug-panel__option">
+                <label for="engrid-theme">Sub-theme</label>
+                <input type="text" id="engrid-subtheme">
+              </div>
+              <div class="debug-panel__option">
+                <button class="btn debug-panel__btn debug-panel__btn--submit" type="button">Submit form</button>
+              </div>
+              <div class="debug-panel__option">
+                <label class="debug-panel__link-label">
+                  <a class="debug-panel__force-submit-link">Force submit form</a>
+                </label>
+              </div>
+             <div class="debug-panel__option">
+                <label class="debug-panel__link-label">
+                  <a class="debug-panel__end-debug-link">End debug</a>
+                </label>
               </div>
             </div>
           </div>
@@ -294,6 +308,7 @@ export class DebugPanel {
     this.setupDebugLayoutSwitcher();
     this.setupBrandingHtmlHandler();
     this.setupEditBtnHandler();
+    this.setupForceSubmitLinkHandler();
     this.setupSubmitBtnHandler();
   }
 
@@ -408,7 +423,9 @@ export class DebugPanel {
   }
 
   private createDebugSessionEndHandler() {
-    const debugSessionEndBtn = document.querySelector(".debug-panel__btn--end");
+    const debugSessionEndBtn = document.querySelector(
+      ".debug-panel__end-debug-link"
+    ) as HTMLAnchorElement;
 
     debugSessionEndBtn?.addEventListener("click", () => {
       this.logger.log("Removing panel and ending debug session");
@@ -450,31 +467,45 @@ export class DebugPanel {
   }
 
   private setupBrandingHtmlHandler() {
-    const brandingHtmlBtn = document.querySelector(
-      ".debug-panel__btn--branding"
-    ) as HTMLButtonElement;
+    const brandingInput = document.getElementById(
+      "engrid-branding"
+    ) as HTMLInputElement;
 
-    if (ENGrid.getUrlParameter("development") === "branding") {
-      brandingHtmlBtn.setAttribute("disabled", "");
-    }
+    brandingInput.checked =
+      ENGrid.getUrlParameter("development") === "branding";
 
-    brandingHtmlBtn?.addEventListener("click", (e) => {
-      new BrandingHtml();
-      const el = e.target as HTMLButtonElement;
-      el.setAttribute("disabled", "");
+    brandingInput.addEventListener("change", (e) => {
+      if (brandingInput.checked) {
+        this.brandingHtml.show();
+      } else {
+        this.brandingHtml.hide();
+      }
     });
   }
 
   private setupEditBtnHandler() {
     const editBtn = document.querySelector(
-      ".debug-panel__btn--edit"
-    ) as HTMLButtonElement;
+      ".debug-panel__edit-link"
+    ) as HTMLAnchorElement;
 
     editBtn?.addEventListener("click", () => {
       window.open(
         `https://${ENGrid.getDataCenter()}.engagingnetworks.app/index.html#pages/${ENGrid.getPageID()}/edit`,
         "_blank"
       );
+    });
+  }
+
+  private setupForceSubmitLinkHandler() {
+    const submitBtn = document.querySelector(
+      ".debug-panel__force-submit-link"
+    ) as HTMLAnchorElement;
+
+    submitBtn?.addEventListener("click", () => {
+      const enForm = document.querySelector(
+        "form.en__component"
+      ) as HTMLFormElement;
+      enForm?.submit();
     });
   }
 
@@ -485,9 +516,9 @@ export class DebugPanel {
 
     submitBtn?.addEventListener("click", () => {
       const enForm = document.querySelector(
-        "form.en__component"
-      ) as HTMLFormElement;
-      enForm?.submit();
+        ".en__submit button"
+      ) as HTMLButtonElement;
+      enForm?.click();
     });
   }
 }

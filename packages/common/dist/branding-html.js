@@ -33,7 +33,7 @@ export class BrandingHtml {
             "tweet-to-target.html",
         ];
         this.bodyMain = document.querySelector(".body-main");
-        this.fetchHtml().then((html) => html.forEach((h) => { var _a; return (_a = this.bodyMain) === null || _a === void 0 ? void 0 : _a.insertAdjacentHTML("beforeend", h); }));
+        this.htmlFetched = false;
     }
     fetchHtml() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -44,5 +44,27 @@ export class BrandingHtml {
             const brandingHtmls = yield Promise.all(htmlRequests);
             return brandingHtmls;
         });
+    }
+    appendHtml() {
+        this.fetchHtml().then((html) => html.forEach((h) => {
+            var _a;
+            const brandingSection = document.createElement("div");
+            brandingSection.classList.add("brand-guide-section");
+            brandingSection.innerHTML = h;
+            (_a = this.bodyMain) === null || _a === void 0 ? void 0 : _a.insertAdjacentElement("beforeend", brandingSection);
+        }));
+        this.htmlFetched = true;
+    }
+    show() {
+        if (!this.htmlFetched) {
+            this.appendHtml();
+            return;
+        }
+        const guides = document.querySelectorAll(".brand-guide-section");
+        guides === null || guides === void 0 ? void 0 : guides.forEach((g) => (g.style.display = "block"));
+    }
+    hide() {
+        const guides = document.querySelectorAll(".brand-guide-section");
+        guides === null || guides === void 0 ? void 0 : guides.forEach((g) => (g.style.display = "none"));
     }
 }
