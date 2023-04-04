@@ -6172,7 +6172,7 @@ div[id^=nb-field-].nb-success input {
 }
 [data-engrid-theme] .en__pg .en__pg__body {
   display: grid;
-  grid-template-columns: min-content auto auto;
+  grid-template-columns: min-content auto var(--premium__image_max-width);
   grid-template-rows: min-content;
   grid-auto-columns: min-content;
   grid-auto-rows: min-content;
