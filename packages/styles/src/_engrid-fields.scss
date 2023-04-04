@@ -266,6 +266,17 @@
     }
   }
 
+  @at-root .en__component--eccheckout__additional {
+    .en__field__element--radio.en__field__element {
+      display: grid;
+      grid-auto-rows: auto;
+      margin-bottom: var(--fields_spacing-block);
+      align-items: center;
+      width: fit-content;
+      max-width: 100%;
+    }
+  }
+
   /* Helper Class .inline-other (recording: https://cln.sh/cJCcfYnD) */
   /* If your Checkbox or Radio selects are in a column, this will make it so the Other Input appears to the side of the Checkbox or Radio select that makes it appear */
   /* Be mindful of using this, a user with limited vision might not see it appear to the side */
