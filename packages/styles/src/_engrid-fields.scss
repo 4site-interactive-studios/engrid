@@ -214,7 +214,8 @@
         margin-right: calc(var(--fields_spacing-inline) * -1);
 
         // Fields inside a compound field wrapper need horizontal padding
-        .en__field__item {
+        .en__field__item,
+        > [unhidden] {
           padding-left: var(--fields_spacing-inline);
           padding-right: var(--fields_spacing-inline);
           padding-top: calc(var(--fields_spacing-block) * 0.5);
