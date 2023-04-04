@@ -1,5 +1,6 @@
 export declare class DebugPanel {
     private logger;
+    private brandingHtml;
     private element;
     private currentTimestamp;
     static debugSessionStorageKey: string;
@@ -21,5 +22,6 @@ export declare class DebugPanel {
     private setupDebugLayoutSwitcher;
     private setupBrandingHtmlHandler;
     private setupEditBtnHandler;
+    private setupForceSubmitLinkHandler;
     private setupSubmitBtnHandler;
 }

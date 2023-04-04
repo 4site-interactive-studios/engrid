@@ -228,7 +228,7 @@ export class App extends ENGrid {
             new DebugPanel(this.options.PageLayouts);
         }
         if (ENGrid.getUrlParameter("development") === "branding") {
-            new BrandingHtml();
+            new BrandingHtml().show();
         }
         ENGrid.setBodyData("data-engrid-scripts-js-loading", "finished");
         window.EngridVersion = AppVersion;

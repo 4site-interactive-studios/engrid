@@ -351,7 +351,7 @@ export class App extends ENGrid {
     }
 
     if (ENGrid.getUrlParameter("development") === "branding") {
-      new BrandingHtml();
+      new BrandingHtml().show();
     }
 
     ENGrid.setBodyData("data-engrid-scripts-js-loading", "finished");

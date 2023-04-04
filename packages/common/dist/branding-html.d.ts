@@ -6,6 +6,9 @@ export declare class BrandingHtml {
     private assetBaseUrl;
     private brandingHtmlFiles;
     private bodyMain;
-    constructor();
+    private htmlFetched;
     private fetchHtml;
+    private appendHtml;
+    show(): void;
+    hide(): void;
 }
