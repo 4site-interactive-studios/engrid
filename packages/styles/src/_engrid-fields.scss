@@ -260,6 +260,8 @@
       grid-auto-rows: auto;
       margin-bottom: var(--fields_spacing-block);
       align-items: center;
+      width: fit-content;
+      max-width: 100%;
     }
   }
 
