@@ -545,51 +545,6 @@ textarea,
   position: absolute;
 }
 
-/* ENGRID BREAKPOINTS*/
-body[data-engrid-debug]:before {
-  background-color: #fcf8e3;
-  border-bottom: 1px solid #fbeed5;
-  border-left: 1px solid #fbeed5;
-  color: #c09853;
-  font: small-caption;
-  padding: 3px 6px;
-  pointer-events: none;
-  position: fixed;
-  right: 0;
-  top: 0;
-  z-index: 100;
-}
-@media (min-width: 20em) {
-  body[data-engrid-debug]:before {
-    content: "mobile >= 320px (20em)";
-  }
-}
-@media (min-width: 26.5625em) {
-  body[data-engrid-debug]:before {
-    content: "mobile-l >= 425px (26.5625em)";
-  }
-}
-@media (min-width: 48em) {
-  body[data-engrid-debug]:before {
-    content: "tablet >= 768px (48em)";
-  }
-}
-@media (min-width: 64em) {
-  body[data-engrid-debug]:before {
-    content: "laptop >= 1024px (64em)";
-  }
-}
-@media (min-width: 90em) {
-  body[data-engrid-debug]:before {
-    content: "laptop-l >= 1440px (90em)";
-  }
-}
-@media (min-width: 240em) {
-  body[data-engrid-debug]:before {
-    content: "ultrawide >= 3840px (240em)";
-  }
-}
-
 /* ENGRID OVERRIDES, TYPOGRAPHY, AND MORE */
 /*
 	############################################################
@@ -6299,7 +6254,7 @@ body:not(#en__pagebuilder) .simple_country_select:not(.country-select-visible) .
   justify-content: flex-end;
   white-space: nowrap;
 }
-@media (max-width: 47.99em) {
+@media screen and (max-width: 1024px) {
   .en__component--socialshareblock::before {
     content: none;
   }
@@ -9351,9 +9306,6 @@ body[data-engrid-debug]:before {
   font-size: 1rem;
 }
 
-[data-engrid-debug] {
-  margin-top: 56px;
-}
 [data-engrid-debug] .en__component--page > [unhidden] {
   display: flex;
   flex-basis: 100%;
