@@ -603,7 +603,9 @@ input[type="checkbox"] {
 
 .en__pg__select input {
   cursor: pointer;
-  visibility: hidden; // Used to hide parent while keeping its pseduo element visible
+  // visibility: hidden; // Used to hide parent while keeping its pseduo element visible. Commented out because it was also preventing the radio from being navigated to with the keyboard
+  position: relative; // Used to hide the field while keeping its pseduo element visible
+  left: -9999px; // Used to hide the field while keeping its pseduo element visible
   max-width: min-content;
   content: "";
   min-height: var(
@@ -611,7 +613,9 @@ input[type="checkbox"] {
   ); // Give it a min height to match the pseduo element
 
   &:before {
-    visibility: visible; // Used to keep psuedo element visible while hiding the parent
+    // visibility: visible; // Used to keep psuedo element visible while hiding the parent
+    position: relative; // Used to hide the field while keeping its pseduo element visible
+    left: 9999px; // Used to hide the field while keeping its pseduo element visible
     content: var(--radio_content);
     justify-content: center;
     align-items: center;
@@ -652,13 +656,26 @@ input[type="checkbox"] {
     box-shadow: var(--radio_box-shadow_selected);
   }
 }
+
+.en__pg--selected .en__pg__select input[type="radio"] {
+  outline: none;
+}
+
 // Firefox Hack for Radio INPUT
 @-moz-document url-prefix() {
   .en__pg__select input[type="radio"] {
     visibility: visible !important;
     width: var(--radio_height);
     accent-color: var(--radio_color_selected);
-    transform: scale(1.4);
+    // transform: scale(1.4);
+    -moz-appearance: initial; // Because Firefox follows the HTML spec and won't allow pseudo elements on elements that don't allow for content: https://stackoverflow.com/a/59591634
+    outline: none; // Because Firefox follows the HTML spec and won't allow pseudo elements on elements that don't allow for content: https://stackoverflow.com/a/59591634
+    border: none; // Because Firefox follows the HTML spec and won't allow pseudo elements on elements that don't allow for content: https://stackoverflow.com/a/59591634
+    position: initial; // Because Firefox follows the HTML spec and won't allow pseudo elements on elements that don't allow for content: https://stackoverflow.com/a/59591634
+    background: transparent;
+    &:before {
+      position: initial; // Because Firefox follows the HTML spec and won't allow pseudo elements on elements that don't allow for content: https://stackoverflow.com/a/59591634
+    }
   }
 }
 

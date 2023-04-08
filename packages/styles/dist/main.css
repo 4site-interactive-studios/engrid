@@ -2941,13 +2941,15 @@ input[type=checkbox]:checked + label:before {
 ***********************************/
 .en__pg__select input {
   cursor: pointer;
-  visibility: hidden;
+  position: relative;
+  left: -9999px;
   max-width: min-content;
   content: "";
   min-height: var(--radio_height);
 }
 .en__pg__select input:before {
-  visibility: visible;
+  position: relative;
+  left: 9999px;
   content: var(--radio_content);
   justify-content: center;
   align-items: center;
@@ -2979,12 +2981,23 @@ input[type=checkbox]:checked + label:before {
   box-shadow: var(--radio_box-shadow_selected);
 }
 
+.en__pg--selected .en__pg__select input[type=radio] {
+  outline: none;
+}
+
 @-moz-document url-prefix() {
   .en__pg__select input[type=radio] {
     visibility: visible !important;
     width: var(--radio_height);
     accent-color: var(--radio_color_selected);
-    transform: scale(1.4);
+    -moz-appearance: initial;
+    outline: none;
+    border: none;
+    position: initial;
+    background: transparent;
+  }
+  .en__pg__select input[type=radio]:before {
+    position: initial;
   }
 }
 /************************************
