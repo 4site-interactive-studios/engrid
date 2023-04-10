@@ -47,6 +47,7 @@ export class RequiredIfVisible {
           ) as HTMLElement;
           if (
             fieldElement &&
+            fieldElement.closest("[data-unhidden]") === null &&
             !ENGrid.getFieldValue(fieldElement.getAttribute("name") as string)
           ) {
             const fieldLabel = field.querySelector(

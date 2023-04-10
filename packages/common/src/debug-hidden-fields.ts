@@ -48,7 +48,7 @@ export class DebugHiddenFields {
         // Create a new 'div' container for the label and input field, and add the required classes and attribute
         const fieldContainer = document.createElement("div");
         fieldContainer.classList.add("en__field", "en__field--text", "hide");
-        fieldContainer.setAttribute("unhidden", "");
+        fieldContainer.dataset.unhidden = "";
         fieldContainer.appendChild(label);
         fieldContainer.appendChild(fieldElement);
 

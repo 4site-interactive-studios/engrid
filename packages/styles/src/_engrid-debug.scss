@@ -518,7 +518,7 @@ body[data-engrid-debug]:before {
 [data-engrid-debug] {
   // margin-top: 56px;
 
-  .en__component--page > [unhidden] {
+  .en__component--page > [data-unhidden] {
     display: flex;
     flex-basis: 100%;
     flex-direction: column;

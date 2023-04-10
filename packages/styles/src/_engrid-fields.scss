@@ -215,7 +215,7 @@
 
         // Fields inside a compound field wrapper need horizontal padding
         .en__field__item,
-        > [unhidden] {
+        > [data-unhidden] {
           padding-left: var(--fields_spacing-inline);
           padding-right: var(--fields_spacing-inline);
           padding-top: calc(var(--fields_spacing-block) * 0.5);
@@ -668,7 +668,7 @@ input[type="checkbox"] {
     width: var(--radio_height);
     accent-color: var(--radio_color_selected);
     // transform: scale(1.4);
-    -moz-appearance: initial; // Because Firefox follows the HTML spec and won't allow pseudo elements on elements that don't allow for content: https://stackoverflow.com/a/59591634
+    appearance: initial; // Because Firefox follows the HTML spec and won't allow pseudo elements on elements that don't allow for content: https://stackoverflow.com/a/59591634
     outline: none; // Because Firefox follows the HTML spec and won't allow pseudo elements on elements that don't allow for content: https://stackoverflow.com/a/59591634
     border: none; // Because Firefox follows the HTML spec and won't allow pseudo elements on elements that don't allow for content: https://stackoverflow.com/a/59591634
     position: initial; // Because Firefox follows the HTML spec and won't allow pseudo elements on elements that don't allow for content: https://stackoverflow.com/a/59591634

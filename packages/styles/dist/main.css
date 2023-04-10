@@ -2545,51 +2545,51 @@ a:focus, a:hover {
   margin-right: calc(var(--fields_spacing-inline) * -1);
 }
 .en__component--formblock .en__field .en__field__element.en__field__element--checkbox .en__field__item,
-.en__component--formblock .en__field .en__field__element.en__field__element--checkbox > [unhidden], .en__component--formblock .en__field .en__field__element.en__field__element--radio .en__field__item,
-.en__component--formblock .en__field .en__field__element.en__field__element--radio > [unhidden], .en__component--formblock .en__field .en__field__element.en__field__element--rating .en__field__item,
-.en__component--formblock .en__field .en__field__element.en__field__element--rating > [unhidden], .en__component--formblock .en__field .en__field__element.en__field__element--imgselect .en__field__item,
-.en__component--formblock .en__field .en__field__element.en__field__element--imgselect > [unhidden], .en__component--formblock .en__field .en__field__element.en__field__element--splittext .en__field__item,
-.en__component--formblock .en__field .en__field__element.en__field__element--splittext > [unhidden], .en__component--formblock .en__field .en__field__element.en__field__element--tripletext .en__field__item,
-.en__component--formblock .en__field .en__field__element.en__field__element--tripletext > [unhidden], .en__component--formblock .en__field .en__field__element.en__field__element--splitselect .en__field__item,
-.en__component--formblock .en__field .en__field__element.en__field__element--splitselect > [unhidden], .en__component--formblock .en__field .en__field__element.en__field__element--tripleselect .en__field__item,
-.en__component--formblock .en__field .en__field__element.en__field__element--tripleselect > [unhidden], .en__component--formblock .en__field .en__field__element.en__field__element--withOther .en__field__item,
-.en__component--formblock .en__field .en__field__element.en__field__element--withOther > [unhidden],
+.en__component--formblock .en__field .en__field__element.en__field__element--checkbox > [data-unhidden], .en__component--formblock .en__field .en__field__element.en__field__element--radio .en__field__item,
+.en__component--formblock .en__field .en__field__element.en__field__element--radio > [data-unhidden], .en__component--formblock .en__field .en__field__element.en__field__element--rating .en__field__item,
+.en__component--formblock .en__field .en__field__element.en__field__element--rating > [data-unhidden], .en__component--formblock .en__field .en__field__element.en__field__element--imgselect .en__field__item,
+.en__component--formblock .en__field .en__field__element.en__field__element--imgselect > [data-unhidden], .en__component--formblock .en__field .en__field__element.en__field__element--splittext .en__field__item,
+.en__component--formblock .en__field .en__field__element.en__field__element--splittext > [data-unhidden], .en__component--formblock .en__field .en__field__element.en__field__element--tripletext .en__field__item,
+.en__component--formblock .en__field .en__field__element.en__field__element--tripletext > [data-unhidden], .en__component--formblock .en__field .en__field__element.en__field__element--splitselect .en__field__item,
+.en__component--formblock .en__field .en__field__element.en__field__element--splitselect > [data-unhidden], .en__component--formblock .en__field .en__field__element.en__field__element--tripleselect .en__field__item,
+.en__component--formblock .en__field .en__field__element.en__field__element--tripleselect > [data-unhidden], .en__component--formblock .en__field .en__field__element.en__field__element--withOther .en__field__item,
+.en__component--formblock .en__field .en__field__element.en__field__element--withOther > [data-unhidden],
 .en__component--svblock .en__field .en__field__element.en__field__element--checkbox .en__field__item,
-.en__component--svblock .en__field .en__field__element.en__field__element--checkbox > [unhidden],
+.en__component--svblock .en__field .en__field__element.en__field__element--checkbox > [data-unhidden],
 .en__component--svblock .en__field .en__field__element.en__field__element--radio .en__field__item,
-.en__component--svblock .en__field .en__field__element.en__field__element--radio > [unhidden],
+.en__component--svblock .en__field .en__field__element.en__field__element--radio > [data-unhidden],
 .en__component--svblock .en__field .en__field__element.en__field__element--rating .en__field__item,
-.en__component--svblock .en__field .en__field__element.en__field__element--rating > [unhidden],
+.en__component--svblock .en__field .en__field__element.en__field__element--rating > [data-unhidden],
 .en__component--svblock .en__field .en__field__element.en__field__element--imgselect .en__field__item,
-.en__component--svblock .en__field .en__field__element.en__field__element--imgselect > [unhidden],
+.en__component--svblock .en__field .en__field__element.en__field__element--imgselect > [data-unhidden],
 .en__component--svblock .en__field .en__field__element.en__field__element--splittext .en__field__item,
-.en__component--svblock .en__field .en__field__element.en__field__element--splittext > [unhidden],
+.en__component--svblock .en__field .en__field__element.en__field__element--splittext > [data-unhidden],
 .en__component--svblock .en__field .en__field__element.en__field__element--tripletext .en__field__item,
-.en__component--svblock .en__field .en__field__element.en__field__element--tripletext > [unhidden],
+.en__component--svblock .en__field .en__field__element.en__field__element--tripletext > [data-unhidden],
 .en__component--svblock .en__field .en__field__element.en__field__element--splitselect .en__field__item,
-.en__component--svblock .en__field .en__field__element.en__field__element--splitselect > [unhidden],
+.en__component--svblock .en__field .en__field__element.en__field__element--splitselect > [data-unhidden],
 .en__component--svblock .en__field .en__field__element.en__field__element--tripleselect .en__field__item,
-.en__component--svblock .en__field .en__field__element.en__field__element--tripleselect > [unhidden],
+.en__component--svblock .en__field .en__field__element.en__field__element--tripleselect > [data-unhidden],
 .en__component--svblock .en__field .en__field__element.en__field__element--withOther .en__field__item,
-.en__component--svblock .en__field .en__field__element.en__field__element--withOther > [unhidden],
+.en__component--svblock .en__field .en__field__element.en__field__element--withOther > [data-unhidden],
 .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--checkbox .en__field__item,
-.en__registrants__registrantDetails .en__field .en__field__element.en__field__element--checkbox > [unhidden],
+.en__registrants__registrantDetails .en__field .en__field__element.en__field__element--checkbox > [data-unhidden],
 .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--radio .en__field__item,
-.en__registrants__registrantDetails .en__field .en__field__element.en__field__element--radio > [unhidden],
+.en__registrants__registrantDetails .en__field .en__field__element.en__field__element--radio > [data-unhidden],
 .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--rating .en__field__item,
-.en__registrants__registrantDetails .en__field .en__field__element.en__field__element--rating > [unhidden],
+.en__registrants__registrantDetails .en__field .en__field__element.en__field__element--rating > [data-unhidden],
 .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--imgselect .en__field__item,
-.en__registrants__registrantDetails .en__field .en__field__element.en__field__element--imgselect > [unhidden],
+.en__registrants__registrantDetails .en__field .en__field__element.en__field__element--imgselect > [data-unhidden],
 .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--splittext .en__field__item,
-.en__registrants__registrantDetails .en__field .en__field__element.en__field__element--splittext > [unhidden],
+.en__registrants__registrantDetails .en__field .en__field__element.en__field__element--splittext > [data-unhidden],
 .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--tripletext .en__field__item,
-.en__registrants__registrantDetails .en__field .en__field__element.en__field__element--tripletext > [unhidden],
+.en__registrants__registrantDetails .en__field .en__field__element.en__field__element--tripletext > [data-unhidden],
 .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--splitselect .en__field__item,
-.en__registrants__registrantDetails .en__field .en__field__element.en__field__element--splitselect > [unhidden],
+.en__registrants__registrantDetails .en__field .en__field__element.en__field__element--splitselect > [data-unhidden],
 .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--tripleselect .en__field__item,
-.en__registrants__registrantDetails .en__field .en__field__element.en__field__element--tripleselect > [unhidden],
+.en__registrants__registrantDetails .en__field .en__field__element.en__field__element--tripleselect > [data-unhidden],
 .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--withOther .en__field__item,
-.en__registrants__registrantDetails .en__field .en__field__element.en__field__element--withOther > [unhidden] {
+.en__registrants__registrantDetails .en__field .en__field__element.en__field__element--withOther > [data-unhidden] {
   padding-left: var(--fields_spacing-inline);
   padding-right: var(--fields_spacing-inline);
   padding-top: calc(var(--fields_spacing-block) * 0.5);
@@ -2990,7 +2990,7 @@ input[type=checkbox]:checked + label:before {
     visibility: visible !important;
     width: var(--radio_height);
     accent-color: var(--radio_color_selected);
-    -moz-appearance: initial;
+    appearance: initial;
     outline: none;
     border: none;
     position: initial;
@@ -9319,7 +9319,7 @@ body[data-engrid-debug]:before {
   font-size: 1rem;
 }
 
-[data-engrid-debug] .en__component--page > [unhidden] {
+[data-engrid-debug] .en__component--page > [data-unhidden] {
   display: flex;
   flex-basis: 100%;
   flex-direction: column;
