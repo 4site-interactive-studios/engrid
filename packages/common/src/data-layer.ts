@@ -11,6 +11,28 @@ export class DataLayer {
   );
   private dataLayer = (window as any).dataLayer || [];
   private _form: EnForm = EnForm.getInstance();
+
+  private excludedFields = [
+    "transaction.ccnumber",
+    "transaction.ccexpire.delimiter",
+    "transaction.ccexpire",
+    "transaction.ccvv",
+    "supporter.creditCardHolderName",
+    "supporter.bankAccountNumber",
+    "supporter.bankAccountType",
+    "transaction.bankname",
+    "supporter.bankRoutingNumber",
+  ];
+
+  private hashedFields = [
+    "supporter.emailAddress",
+    "supporter.phoneNumber",
+    "supporter.phoneNumber2",
+    "supporter.address1",
+    "supporter.address2",
+    "supporter.postcode",
+  ];
+
   constructor() {
     this.onLoad();
     this._form.onSubmit.subscribe(() => this.onSubmit());
@@ -69,6 +91,35 @@ export class DataLayer {
         }
       }
     }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    urlParams.forEach((value, key) => {
+      this.dataLayer.push({
+        event: `EN_URLPARAM_${key.toUpperCase()}-${this.transformJSON(value)}`,
+      });
+      this.dataLayer.push({
+        [`'EN_URLPARAM_${key.toUpperCase()}'`]: this.transformJSON(value),
+      });
+    });
+
+    if (ENGrid.getPageType() === "DONATION") {
+      const recurrFreqEls = document.querySelectorAll(
+        '[name="transaction.recurrfreq"]'
+      ) as NodeListOf<HTMLInputElement>;
+
+      const recurrValues = [...recurrFreqEls].map((el) => el.value);
+
+      this.dataLayer.push({
+        event: "EN_RECURRING_FREQUENCIES",
+        frequencies: recurrValues,
+      });
+
+      this.dataLayer.push({
+        EN_RECURRING_FREQEUENCIES: recurrValues,
+      });
+    }
+
+    this.attachEventListeners();
   }
 
   private onSubmit() {
@@ -86,5 +137,90 @@ export class DataLayer {
         event: "EN_SUBMISSION_WITHOUT_EMAIL_OPTIN",
       });
     }
+  }
+
+  private attachEventListeners() {
+    const textInputs = document.querySelectorAll(
+      ".en__component--advrow input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]), .en__component--advrow textarea"
+    ) as NodeListOf<HTMLInputElement>;
+
+    textInputs.forEach((el) => {
+      el.addEventListener("blur", (e) => {
+        this.handleFieldValueChange(e.target as HTMLInputElement);
+      });
+    });
+
+    const radioAndCheckboxInputs = document.querySelectorAll(
+      ".en__component--advrow input[type=checkbox], .en__component--advrow input[type=radio]"
+    ) as NodeListOf<HTMLInputElement>;
+
+    radioAndCheckboxInputs.forEach((el) => {
+      el.addEventListener("change", (e) => {
+        this.handleFieldValueChange(e.target as HTMLInputElement);
+      });
+    });
+
+    const selectInputs = document.querySelectorAll(
+      ".en__component--advrow select"
+    ) as NodeListOf<HTMLInputElement>;
+
+    selectInputs.forEach((el) => {
+      el.addEventListener("change", (e) => {
+        this.handleFieldValueChange(e.target as HTMLInputElement);
+      });
+    });
+  }
+
+  private handleFieldValueChange(el: HTMLInputElement | HTMLSelectElement) {
+    if (el.value === "" || this.excludedFields.includes(el.name)) return;
+
+    const value = this.hashedFields.includes(el.name)
+      ? this.hash(el.value)
+      : el.value;
+
+    if (["checkbox", "radio"].includes(el.type)) {
+      if ((el as HTMLInputElement).checked) {
+        if (el.name === "en__pg") {
+          //Premium gift handling
+          this.dataLayer.push({
+            event: "EN_FORM_VALUE_UPDATED",
+            field: el.name,
+            label: "Premium Gift",
+            value: el.closest(".en__pg__body")?.querySelector(".en__pg__name")
+              ?.textContent,
+            productId: (
+              document.querySelector(
+                '[name="transaction.selprodvariantid"]'
+              ) as HTMLInputElement
+            )?.value,
+          });
+        } else {
+          this.dataLayer.push({
+            event: "EN_FORM_VALUE_UPDATED",
+            field: el.name,
+            label: this.getFieldLabel(el),
+            value: value,
+          });
+        }
+      }
+      return;
+    }
+
+    this.dataLayer.push({
+      event: "EN_FORM_VALUE_UPDATED",
+      field: el.name,
+      label: this.getFieldLabel(el),
+      value: value,
+    });
+  }
+
+  private hash(value: string): string {
+    return btoa(value);
+  }
+
+  private getFieldLabel(
+    el: HTMLInputElement | HTMLSelectElement
+  ): string | null {
+    return el.closest(".en__field")?.querySelector("label")?.textContent || "";
   }
 }
