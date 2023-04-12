@@ -28,6 +28,7 @@ export * from "./src-defer";
 export * from "./set-recurr-freq";
 export * from "./page-background";
 export * from "./neverbounce";
+export * from "./freshaddress";
 export * from "./progress-bar";
 export * from "./remember-me";
 export * from "./show-if-amount";
@@ -45,6 +46,13 @@ export * from "./required-if-visible";
 export * from "./tidycontact";
 export * from "./live-currency";
 export * from "./autosubmit";
+export * from "./event-tickets";
+export * from "./swap-amounts";
+export * from "./debug-panel";
+export * from "./debug-hidden-fields";
+export * from "./branding-html";
+export * from "./country-disable";
+export * from "./premium-gift";
 // Events
 export * from "./events";
 // Version

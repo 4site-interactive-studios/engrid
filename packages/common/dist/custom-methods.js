@@ -484,6 +484,14 @@ export const watchGiveBySelectField = () => {
             enFieldPaymentType.value = "ACH";
         }
         else if (enFieldGiveBySelectCurrentValue &&
+            enFieldGiveBySelectCurrentValue.value.toLowerCase() == "check") {
+            if (enGrid) {
+                removeClassesByPrefix(enGrid, prefix);
+                enGrid.classList.add("has-give-by-check");
+            }
+            enFieldPaymentType.value = "check";
+        }
+        else if (enFieldGiveBySelectCurrentValue &&
             enFieldGiveBySelectCurrentValue.value.toLowerCase() == "paypal") {
             if (enGrid) {
                 removeClassesByPrefix(enGrid, prefix);

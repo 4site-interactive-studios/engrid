@@ -171,37 +171,60 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) {
   // Hide Hidden Fields
   /* prettier-ignore */
   [hidden-via-url-argument],
-  .hide,
+  .hide:not(.en__field--validationFailed),
+  div:not(.en__field--validationFailed) .hide,
   &:not([data-engrid-scripts-js-loading="finished"]) .hide-until-engrid-js-loading-finished,
   &:not([data-engrid-client-js-loading="finished"]) .hide-until-client-js-loading-finished,
-  .i1-hide .en__field:nth-of-type(1),
-  .i2-hide .en__field:nth-of-type(2),
-  .i3-hide .en__field:nth-of-type(3),
-  .i4-hide .en__field:nth-of-type(4),
-  .i5-hide .en__field:nth-of-type(5),
-  .i6-hide .en__field:nth-of-type(6),
-  .i7-hide .en__field:nth-of-type(7),
-  .i8-hide .en__field:nth-of-type(8),
-  .i9-hide .en__field:nth-of-type(9),
-  .i10-hide .en__field:nth-of-type(10),
-  .i11-hide .en__field:nth-of-type(11) {
+  .i1-hide .en__field:not(.en__field--validationFailed):nth-of-type(1),
+  .i2-hide .en__field:not(.en__field--validationFailed):nth-of-type(2),
+  .i3-hide .en__field:not(.en__field--validationFailed):nth-of-type(3),
+  .i4-hide .en__field:not(.en__field--validationFailed):nth-of-type(4),
+  .i5-hide .en__field:not(.en__field--validationFailed):nth-of-type(5),
+  .i6-hide .en__field:not(.en__field--validationFailed):nth-of-type(6),
+  .i7-hide .en__field:not(.en__field--validationFailed):nth-of-type(7),
+  .i8-hide .en__field:not(.en__field--validationFailed):nth-of-type(8),
+  .i9-hide .en__field:not(.en__field--validationFailed):nth-of-type(9),
+  .i10-hide .en__field:not(.en__field--validationFailed):nth-of-type(10),
+  .i11-hide .en__field:not(.en__field--validationFailed):nth-of-type(11) {
     display: none;
   }
 
   // Hide Hidden Labels for sited visitors but keep them accessible for assistive technologies like screen readers
   // REF: https://stackoverflow.com/a/26032207
-  label.hide-label,
-  .i1-hide-label .en__field:nth-of-type(1) > label,
-  .i2-hide-label .en__field:nth-of-type(2) > label,
-  .i3-hide-label .en__field:nth-of-type(3) > label,
-  .i4-hide-label .en__field:nth-of-type(4) > label,
-  .i5-hide-label .en__field:nth-of-type(5) > label,
-  .i6-hide-label .en__field:nth-of-type(6) > label,
-  .i7-hide-label .en__field:nth-of-type(7) > label,
-  .i8-hide-label .en__field:nth-of-type(8) > label,
-  .i9-hide-label .en__field:nth-of-type(9) > label,
-  .i10-hide-label .en__field:nth-of-type(10) > label,
-  .i11-hide-label .en__field:nth-of-type(11) > label {
+  div:not(.en__field--validationFailed) label.hide-label,
+  .i1-hide-label
+    .en__field:not(.en__field--validationFailed):nth-of-type(1)
+    > label,
+  .i2-hide-label
+    .en__field:not(.en__field--validationFailed):nth-of-type(2)
+    > label,
+  .i3-hide-label
+    .en__field:not(.en__field--validationFailed):nth-of-type(3)
+    > label,
+  .i4-hide-label
+    .en__field:not(.en__field--validationFailed):nth-of-type(4)
+    > label,
+  .i5-hide-label
+    .en__field:not(.en__field--validationFailed):nth-of-type(5)
+    > label,
+  .i6-hide-label
+    .en__field:not(.en__field--validationFailed):nth-of-type(6)
+    > label,
+  .i7-hide-label
+    .en__field:not(.en__field--validationFailed):nth-of-type(7)
+    > label,
+  .i8-hide-label
+    .en__field:not(.en__field--validationFailed):nth-of-type(8)
+    > label,
+  .i9-hide-label
+    .en__field:not(.en__field--validationFailed):nth-of-type(9)
+    > label,
+  .i10-hide-label
+    .en__field:not(.en__field--validationFailed):nth-of-type(10)
+    > label,
+  .i11-hide-label
+    .en__field:not(.en__field--validationFailed):nth-of-type(11)
+    > label {
     position: absolute !important; /* Outside the DOM flow */
     height: 1px;
     width: 1px; /* Nearly collapsed */

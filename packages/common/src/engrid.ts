@@ -52,7 +52,8 @@ export abstract class ENGrid {
   static setFieldValue(
     name: string,
     value: unknown,
-    parseENDependencies: boolean = true
+    parseENDependencies: boolean = true,
+    dispatchEvents: boolean = false
   ) {
     if (value === ENGrid.getFieldValue(name)) return;
     (document.getElementsByName(name) as NodeListOf<HTMLFormElement>).forEach(
@@ -64,20 +65,29 @@ export abstract class ENGrid {
               for (const option of field.options) {
                 if (option.value == value) {
                   option.selected = true;
+                  if (dispatchEvents) {
+                    field.dispatchEvent(new Event("change", { bubbles: true }));
+                  }
                 }
               }
               break;
             case "checkbox":
             case "radio":
-              // @TODO: Try to trigger the onChange event
               if (field.value == value) {
                 field.checked = true;
+                if (dispatchEvents) {
+                  field.dispatchEvent(new Event("change", { bubbles: true }));
+                }
               }
               break;
             case "textarea":
             case "text":
             default:
               field.value = value;
+              if (dispatchEvents) {
+                field.dispatchEvent(new Event("change", { bubbles: true }));
+                field.dispatchEvent(new Event("blur", { bubbles: true }));
+              }
           }
           field.setAttribute("engrid-value-changed", "");
         }
@@ -179,6 +189,17 @@ export abstract class ENGrid {
     return 0;
   }
 
+  // Return the client ID
+  static getClientID() {
+    if ("pageJson" in window) return window.pageJson.clientId;
+    return 0;
+  }
+
+  //returns 'us or 'ca' based on the client ID
+  static getDataCenter() {
+    return ENGrid.getClientID() >= 10000 ? "us" : "ca";
+  }
+
   // Return the current page type
   static getPageType() {
     if ("pageJson" in window && "pageType" in window.pageJson) {
@@ -208,6 +229,9 @@ export abstract class ENGrid {
           break;
         case "unsubscribe":
           return "UNSUBSCRIBE";
+          break;
+        case "tweetpage":
+          return "TWEETPAGE";
           break;
         default:
           return "UNKNOWN";
@@ -445,5 +469,42 @@ export abstract class ENGrid {
       return currencyField.value || "USD";
     }
     return ENGrid.getOption("CurrencyCode") || "USD";
+  }
+  static addHtml(
+    html: string | HTMLElement,
+    target: string = "body",
+    position: string = "before"
+  ) {
+    const targetElement = document.querySelector(target);
+    if (typeof html === "object") {
+      html = html.outerHTML;
+    }
+    if (targetElement) {
+      const htmlElement = document.createRange().createContextualFragment(html);
+      if (position === "before") {
+        targetElement.parentNode?.insertBefore(htmlElement, targetElement);
+      } else {
+        targetElement.parentNode?.insertBefore(
+          htmlElement,
+          targetElement.nextSibling
+        );
+      }
+    }
+  }
+  static removeHtml(target: string) {
+    const targetElement = document.querySelector(target);
+    if (targetElement) {
+      targetElement.remove();
+    }
+  }
+  static slugify(text: string) {
+    return text
+      .toString()
+      .toLowerCase()
+      .replace(/\s+/g, "-") // Replace spaces with -
+      .replace(/[^\w\-]+/g, "") // Remove all non-word chars
+      .replace(/\-\-+/g, "-") // Replace multiple - with single -
+      .replace(/^-+/, "") // Trim - from start of text
+      .replace(/-+$/, ""); // Trim - from end of text
   }
 }

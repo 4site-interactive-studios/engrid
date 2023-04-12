@@ -482,7 +482,7 @@
 
 // Radio to Buttons
 /* prettier-ignore */
-.radio-to-buttons .en__field--radio .en__field__item:hover input[type=radio]+label{
+.radio-to-buttons .en__field--radio .en__field__item input[type=radio]+label:hover{
     color: var(--button_color_hover);
     background-color: var(--button_background-color_hover);
     border-color: var(--button_border-color_hover);
@@ -490,7 +490,7 @@
 
 // Give By Select
 /* prettier-ignore */
-.en__field--give-by-select.en__field--radio .en__field__item:hover input[type=radio]+label{
+.en__field--give-by-select.en__field--radio .en__field__item input[type=radio]+label:hover{
     color: var(--give-by-select__button_color_hover);
     background-color: var(--give-by-select__button_background-color_hover);
     border-color: var(--give-by-select__button_border-color_hover);
@@ -498,7 +498,7 @@
 
 // Donation Amount
 /* prettier-ignore */
-.radio-to-buttons_donationAmt .en__field--donationAmt.en__field--radio .en__field__item:hover input[type=radio]+label{
+.radio-to-buttons_donationAmt .en__field--donationAmt.en__field--radio .en__field__item input[type=radio]+label:hover{
     color: var(--donation-amount__button_color_hover);
     background-color: var(--donation-amount__button_background-color_hover);
     border-color: var(--donation-amount__button_border-color_hover);
@@ -506,7 +506,7 @@
 
 // Recurring Frequency
 /* prettier-ignore */
-.radio-to-buttons_recurrfreq .en__field--recurrfreq.en__field--radio .en__field__item:hover input[type=radio]+label{
+.radio-to-buttons_recurrfreq .en__field--recurrfreq.en__field--radio .en__field__item input[type=radio]+label:hover{
     color: var(--recurring-frequency__button_color_hover);
     background-color: var(--recurring-frequency__button_background-color_hover);
     border-color: var(--recurring-frequency__button_border-color_hover);
@@ -514,7 +514,7 @@
 
 // Recurring Payment
 /* prettier-ignore */
-.radio-to-buttons_recurrpay .en__field--recurrpay.en__field--radio .en__field__item:hover input[type=radio]+label{
+.radio-to-buttons_recurrpay .en__field--recurrpay.en__field--radio .en__field__item input[type=radio]+label:hover{
     color: var(--recurring-payment__button_color_hover);
     background-color: var(--recurring-payment__button_background-color_hover);
     border-color: var(--recurring-paymnet__button_border-color_hover);
@@ -581,7 +581,7 @@
 
 // Radio to Buttons
 /* prettier-ignore */
-.radio-to-buttons .en__field--radio .en__field__item:hover input[type=radio]:checked+label{
+.radio-to-buttons .en__field--radio .en__field__item input[type=radio]:checked+label:hover{
     color: var(--button_color_checked);
     background-color: var(--button_background-color_checked);
     border-color: var(--button_border-color_checked);
@@ -589,7 +589,7 @@
 
 // Give By Select
 /* prettier-ignore */
-.en__field--give-by-select.en__field--radio .en__field__item:hover input[type=radio]:checked+label{
+.en__field--give-by-select.en__field--radio .en__field__item input[type=radio]:checked+label:hover{
     color: var(--give-by-select__button_color_checked);
     background-color: var(--give-by-select__button_background-color_checked);
     border-color: var(--give-by-select__button_border-color_checked);
@@ -597,7 +597,7 @@
 
 // Donation Amount
 /* prettier-ignore */
-.radio-to-buttons_donationAmt .en__field--donationAmt.en__field--radio .en__field__item:hover input[type=radio]:checked+label{
+.radio-to-buttons_donationAmt .en__field--donationAmt.en__field--radio .en__field__item input[type=radio]:checked+label:hover{
     color: var(--donation-amount__button_color_checked);
     background-color: var(--donation-amount__button_background-color_checked);
     border-color: var(--donation-amount__button_border-color_checked);
@@ -605,7 +605,7 @@
 
 // Recurring Frequency
 /* prettier-ignore */
-.radio-to-buttons_recurrfreq .en__field--recurrfreq.en__field--radio .en__field__item:hover input[type=radio]:checked+label{
+.radio-to-buttons_recurrfreq .en__field--recurrfreq.en__field--radio .en__field__item input[type=radio]:checked+label:hover{
     color: var(--recurring-frequency__button_color_checked);
     background-color: var(--recurring-frequency__button_background-color_checked);
     border-color: var(--recurring-frequency__button_border-color_checked);
@@ -613,7 +613,7 @@
 
 // Recurring Payment
 /* prettier-ignore */
-.radio-to-buttons_recurrpay .en__field--recurrpay.en__field--radio .en__field__item:hover input[type=radio]:checked+label{
+.radio-to-buttons_recurrpay .en__field--recurrpay.en__field--radio .en__field__item input[type=radio]:checked+label:hover{
     color: var(--recurring-payment__button_color_checked);
     background-color: var(--recurring-payment__button_background-color_checked);
     border-color: var(--recurring-payment__button_border-color_checked);

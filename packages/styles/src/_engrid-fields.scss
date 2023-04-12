@@ -214,7 +214,8 @@
         margin-right: calc(var(--fields_spacing-inline) * -1);
 
         // Fields inside a compound field wrapper need horizontal padding
-        .en__field__item {
+        .en__field__item,
+        > [data-unhidden] {
           padding-left: var(--fields_spacing-inline);
           padding-right: var(--fields_spacing-inline);
           padding-top: calc(var(--fields_spacing-block) * 0.5);
@@ -243,6 +244,59 @@
           padding-left: var(--fields_spacing-inline);
           padding-right: var(--fields_spacing-inline);
         }
+      }
+    }
+  }
+
+  /* Helper Class .direction-column (recording: https://cln.sh/3nPmz4Nb) */
+  /* Makes the Surveys and Questions field types have their Radio and Checkbox fields appear in a column. */
+  &.direction-column .en__field--radio,
+  &.direction-column .en__field--checkbox,
+  .en__field.en__field--radio.en__field--survey,
+  .en__field.en__field--checkbox.en__field--survey,
+  .en__field.en__field--radio.en__field--question,
+  .en__field.en__field--checkbox.en__field--question {
+    .en__field__element {
+      display: grid;
+      grid-auto-rows: auto;
+      margin-bottom: var(--fields_spacing-block);
+      align-items: center;
+      width: fit-content;
+      max-width: 100%;
+    }
+  }
+
+  @at-root .en__component--eccheckout__additional {
+    .en__field__element--radio.en__field__element {
+      display: grid;
+      grid-auto-rows: auto;
+      margin-bottom: var(--fields_spacing-block);
+      align-items: center;
+      width: fit-content;
+      max-width: 100%;
+    }
+  }
+
+  /* Helper Class .inline-other (recording: https://cln.sh/cJCcfYnD) */
+  /* If your Checkbox or Radio selects are in a column, this will make it so the Other Input appears to the side of the Checkbox or Radio select that makes it appear */
+  /* Be mindful of using this, a user with limited vision might not see it appear to the side */
+  &.inline-other .en__field--radio.en__field--withOther--active,
+  &.inline-other .en__field--checkbox.en__field--withOther--active {
+    .en__field__element {
+      grid-template-columns: min-content;
+    }
+
+    .en__field__item {
+      grid-column: span 2;
+
+      &:nth-last-child(2),
+      &:nth-last-child(1) {
+        grid-column: span 1;
+      }
+
+      /* If your label is not short (e.g. "Other") then you may need to hand-tune its width depending on the display scenarios */
+      &:nth-last-child(2) label {
+        word-break: keep-all;
       }
     }
   }
@@ -549,7 +603,9 @@ input[type="checkbox"] {
 
 .en__pg__select input {
   cursor: pointer;
-  visibility: hidden; // Used to hide parent while keeping its pseduo element visible
+  // visibility: hidden; // Used to hide parent while keeping its pseduo element visible. Commented out because it was also preventing the radio from being navigated to with the keyboard
+  position: relative; // Used to hide the field while keeping its pseduo element visible
+  left: -9999px; // Used to hide the field while keeping its pseduo element visible
   max-width: min-content;
   content: "";
   min-height: var(
@@ -557,7 +613,9 @@ input[type="checkbox"] {
   ); // Give it a min height to match the pseduo element
 
   &:before {
-    visibility: visible; // Used to keep psuedo element visible while hiding the parent
+    // visibility: visible; // Used to keep psuedo element visible while hiding the parent
+    position: relative; // Used to hide the field while keeping its pseduo element visible
+    left: 9999px; // Used to hide the field while keeping its pseduo element visible
     content: var(--radio_content);
     justify-content: center;
     align-items: center;
@@ -598,13 +656,26 @@ input[type="checkbox"] {
     box-shadow: var(--radio_box-shadow_selected);
   }
 }
+
+.en__pg--selected .en__pg__select input[type="radio"] {
+  outline: none;
+}
+
 // Firefox Hack for Radio INPUT
 @-moz-document url-prefix() {
   .en__pg__select input[type="radio"] {
     visibility: visible !important;
     width: var(--radio_height);
     accent-color: var(--radio_color_selected);
-    transform: scale(1.4);
+    // transform: scale(1.4);
+    appearance: initial; // Because Firefox follows the HTML spec and won't allow pseudo elements on elements that don't allow for content: https://stackoverflow.com/a/59591634
+    outline: none; // Because Firefox follows the HTML spec and won't allow pseudo elements on elements that don't allow for content: https://stackoverflow.com/a/59591634
+    border: none; // Because Firefox follows the HTML spec and won't allow pseudo elements on elements that don't allow for content: https://stackoverflow.com/a/59591634
+    position: initial; // Because Firefox follows the HTML spec and won't allow pseudo elements on elements that don't allow for content: https://stackoverflow.com/a/59591634
+    background: transparent;
+    &:before {
+      position: initial; // Because Firefox follows the HTML spec and won't allow pseudo elements on elements that don't allow for content: https://stackoverflow.com/a/59591634
+    }
   }
 }
 

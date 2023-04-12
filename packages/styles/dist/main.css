@@ -545,51 +545,6 @@ textarea,
   position: absolute;
 }
 
-/* ENGRID BREAKPOINTS*/
-body[data-engrid-debug]:before {
-  background-color: #fcf8e3;
-  border-bottom: 1px solid #fbeed5;
-  border-left: 1px solid #fbeed5;
-  color: #c09853;
-  font: small-caption;
-  padding: 3px 6px;
-  pointer-events: none;
-  position: fixed;
-  right: 0;
-  top: 0;
-  z-index: 100;
-}
-@media (min-width: 20em) {
-  body[data-engrid-debug]:before {
-    content: "mobile >= 320px (20em)";
-  }
-}
-@media (min-width: 26.5625em) {
-  body[data-engrid-debug]:before {
-    content: "mobile-l >= 425px (26.5625em)";
-  }
-}
-@media (min-width: 48em) {
-  body[data-engrid-debug]:before {
-    content: "tablet >= 768px (48em)";
-  }
-}
-@media (min-width: 64em) {
-  body[data-engrid-debug]:before {
-    content: "laptop >= 1024px (64em)";
-  }
-}
-@media (min-width: 90em) {
-  body[data-engrid-debug]:before {
-    content: "laptop-l >= 1440px (90em)";
-  }
-}
-@media (min-width: 240em) {
-  body[data-engrid-debug]:before {
-    content: "ultrawide >= 3840px (240em)";
-  }
-}
-
 /* ENGRID OVERRIDES, TYPOGRAPHY, AND MORE */
 /*
 	############################################################
@@ -2515,6 +2470,11 @@ a:focus, a:hover {
   justify-content: flex-start;
   margin-left: calc(var(--fields_spacing-inline) * -1);
   margin-right: calc(var(--fields_spacing-inline) * -1);
+  /* Helper Class .direction-column (recording: https://cln.sh/3nPmz4Nb) */
+  /* Makes the Surveys and Questions field types have their Radio and Checkbox fields appear in a column. */
+  /* Helper Class .inline-other (recording: https://cln.sh/cJCcfYnD) */
+  /* If your Checkbox or Radio selects are in a column, this will make it so the Other Input appears to the side of the Checkbox or Radio select that makes it appear */
+  /* Be mindful of using this, a user with limited vision might not see it appear to the side */
 }
 .en__component--formblock > *,
 .en__component--svblock > *,
@@ -2584,25 +2544,52 @@ a:focus, a:hover {
   margin-left: calc(var(--fields_spacing-inline) * -1);
   margin-right: calc(var(--fields_spacing-inline) * -1);
 }
-.en__component--formblock .en__field .en__field__element.en__field__element--checkbox .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--radio .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--rating .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--imgselect .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--splittext .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--tripletext .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--splitselect .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--tripleselect .en__field__item, .en__component--formblock .en__field .en__field__element.en__field__element--withOther .en__field__item,
+.en__component--formblock .en__field .en__field__element.en__field__element--checkbox .en__field__item,
+.en__component--formblock .en__field .en__field__element.en__field__element--checkbox > [data-unhidden], .en__component--formblock .en__field .en__field__element.en__field__element--radio .en__field__item,
+.en__component--formblock .en__field .en__field__element.en__field__element--radio > [data-unhidden], .en__component--formblock .en__field .en__field__element.en__field__element--rating .en__field__item,
+.en__component--formblock .en__field .en__field__element.en__field__element--rating > [data-unhidden], .en__component--formblock .en__field .en__field__element.en__field__element--imgselect .en__field__item,
+.en__component--formblock .en__field .en__field__element.en__field__element--imgselect > [data-unhidden], .en__component--formblock .en__field .en__field__element.en__field__element--splittext .en__field__item,
+.en__component--formblock .en__field .en__field__element.en__field__element--splittext > [data-unhidden], .en__component--formblock .en__field .en__field__element.en__field__element--tripletext .en__field__item,
+.en__component--formblock .en__field .en__field__element.en__field__element--tripletext > [data-unhidden], .en__component--formblock .en__field .en__field__element.en__field__element--splitselect .en__field__item,
+.en__component--formblock .en__field .en__field__element.en__field__element--splitselect > [data-unhidden], .en__component--formblock .en__field .en__field__element.en__field__element--tripleselect .en__field__item,
+.en__component--formblock .en__field .en__field__element.en__field__element--tripleselect > [data-unhidden], .en__component--formblock .en__field .en__field__element.en__field__element--withOther .en__field__item,
+.en__component--formblock .en__field .en__field__element.en__field__element--withOther > [data-unhidden],
 .en__component--svblock .en__field .en__field__element.en__field__element--checkbox .en__field__item,
+.en__component--svblock .en__field .en__field__element.en__field__element--checkbox > [data-unhidden],
 .en__component--svblock .en__field .en__field__element.en__field__element--radio .en__field__item,
+.en__component--svblock .en__field .en__field__element.en__field__element--radio > [data-unhidden],
 .en__component--svblock .en__field .en__field__element.en__field__element--rating .en__field__item,
+.en__component--svblock .en__field .en__field__element.en__field__element--rating > [data-unhidden],
 .en__component--svblock .en__field .en__field__element.en__field__element--imgselect .en__field__item,
+.en__component--svblock .en__field .en__field__element.en__field__element--imgselect > [data-unhidden],
 .en__component--svblock .en__field .en__field__element.en__field__element--splittext .en__field__item,
+.en__component--svblock .en__field .en__field__element.en__field__element--splittext > [data-unhidden],
 .en__component--svblock .en__field .en__field__element.en__field__element--tripletext .en__field__item,
+.en__component--svblock .en__field .en__field__element.en__field__element--tripletext > [data-unhidden],
 .en__component--svblock .en__field .en__field__element.en__field__element--splitselect .en__field__item,
+.en__component--svblock .en__field .en__field__element.en__field__element--splitselect > [data-unhidden],
 .en__component--svblock .en__field .en__field__element.en__field__element--tripleselect .en__field__item,
+.en__component--svblock .en__field .en__field__element.en__field__element--tripleselect > [data-unhidden],
 .en__component--svblock .en__field .en__field__element.en__field__element--withOther .en__field__item,
+.en__component--svblock .en__field .en__field__element.en__field__element--withOther > [data-unhidden],
 .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--checkbox .en__field__item,
+.en__registrants__registrantDetails .en__field .en__field__element.en__field__element--checkbox > [data-unhidden],
 .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--radio .en__field__item,
+.en__registrants__registrantDetails .en__field .en__field__element.en__field__element--radio > [data-unhidden],
 .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--rating .en__field__item,
+.en__registrants__registrantDetails .en__field .en__field__element.en__field__element--rating > [data-unhidden],
 .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--imgselect .en__field__item,
+.en__registrants__registrantDetails .en__field .en__field__element.en__field__element--imgselect > [data-unhidden],
 .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--splittext .en__field__item,
+.en__registrants__registrantDetails .en__field .en__field__element.en__field__element--splittext > [data-unhidden],
 .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--tripletext .en__field__item,
+.en__registrants__registrantDetails .en__field .en__field__element.en__field__element--tripletext > [data-unhidden],
 .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--splitselect .en__field__item,
+.en__registrants__registrantDetails .en__field .en__field__element.en__field__element--splitselect > [data-unhidden],
 .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--tripleselect .en__field__item,
-.en__registrants__registrantDetails .en__field .en__field__element.en__field__element--withOther .en__field__item {
+.en__registrants__registrantDetails .en__field .en__field__element.en__field__element--tripleselect > [data-unhidden],
+.en__registrants__registrantDetails .en__field .en__field__element.en__field__element--withOther .en__field__item,
+.en__registrants__registrantDetails .en__field .en__field__element.en__field__element--withOther > [data-unhidden] {
   padding-left: var(--fields_spacing-inline);
   padding-right: var(--fields_spacing-inline);
   padding-top: calc(var(--fields_spacing-block) * 0.5);
@@ -2631,6 +2618,72 @@ a:focus, a:hover {
 .en__registrants__registrantDetails .en__field.en__field--withOther .en__field__element .en__field__item {
   padding-left: var(--fields_spacing-inline);
   padding-right: var(--fields_spacing-inline);
+}
+.en__component--formblock.direction-column .en__field--radio .en__field__element, .en__component--formblock.direction-column .en__field--checkbox .en__field__element,
+.en__component--formblock .en__field.en__field--radio.en__field--survey .en__field__element,
+.en__component--formblock .en__field.en__field--checkbox.en__field--survey .en__field__element,
+.en__component--formblock .en__field.en__field--radio.en__field--question .en__field__element,
+.en__component--formblock .en__field.en__field--checkbox.en__field--question .en__field__element,
+.en__component--svblock.direction-column .en__field--radio .en__field__element,
+.en__component--svblock.direction-column .en__field--checkbox .en__field__element,
+.en__component--svblock .en__field.en__field--radio.en__field--survey .en__field__element,
+.en__component--svblock .en__field.en__field--checkbox.en__field--survey .en__field__element,
+.en__component--svblock .en__field.en__field--radio.en__field--question .en__field__element,
+.en__component--svblock .en__field.en__field--checkbox.en__field--question .en__field__element,
+.en__registrants__registrantDetails.direction-column .en__field--radio .en__field__element,
+.en__registrants__registrantDetails.direction-column .en__field--checkbox .en__field__element,
+.en__registrants__registrantDetails .en__field.en__field--radio.en__field--survey .en__field__element,
+.en__registrants__registrantDetails .en__field.en__field--checkbox.en__field--survey .en__field__element,
+.en__registrants__registrantDetails .en__field.en__field--radio.en__field--question .en__field__element,
+.en__registrants__registrantDetails .en__field.en__field--checkbox.en__field--question .en__field__element {
+  display: grid;
+  grid-auto-rows: auto;
+  margin-bottom: var(--fields_spacing-block);
+  align-items: center;
+  width: fit-content;
+  max-width: 100%;
+}
+.en__component--eccheckout__additional .en__field__element--radio.en__field__element {
+  display: grid;
+  grid-auto-rows: auto;
+  margin-bottom: var(--fields_spacing-block);
+  align-items: center;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.en__component--formblock.inline-other .en__field--radio.en__field--withOther--active .en__field__element, .en__component--formblock.inline-other .en__field--checkbox.en__field--withOther--active .en__field__element,
+.en__component--svblock.inline-other .en__field--radio.en__field--withOther--active .en__field__element,
+.en__component--svblock.inline-other .en__field--checkbox.en__field--withOther--active .en__field__element,
+.en__registrants__registrantDetails.inline-other .en__field--radio.en__field--withOther--active .en__field__element,
+.en__registrants__registrantDetails.inline-other .en__field--checkbox.en__field--withOther--active .en__field__element {
+  grid-template-columns: min-content;
+}
+.en__component--formblock.inline-other .en__field--radio.en__field--withOther--active .en__field__item, .en__component--formblock.inline-other .en__field--checkbox.en__field--withOther--active .en__field__item,
+.en__component--svblock.inline-other .en__field--radio.en__field--withOther--active .en__field__item,
+.en__component--svblock.inline-other .en__field--checkbox.en__field--withOther--active .en__field__item,
+.en__registrants__registrantDetails.inline-other .en__field--radio.en__field--withOther--active .en__field__item,
+.en__registrants__registrantDetails.inline-other .en__field--checkbox.en__field--withOther--active .en__field__item {
+  grid-column: span 2;
+  /* If your label is not short (e.g. "Other") then you may need to hand-tune its width depending on the display scenarios */
+}
+.en__component--formblock.inline-other .en__field--radio.en__field--withOther--active .en__field__item:nth-last-child(2), .en__component--formblock.inline-other .en__field--radio.en__field--withOther--active .en__field__item:nth-last-child(1), .en__component--formblock.inline-other .en__field--checkbox.en__field--withOther--active .en__field__item:nth-last-child(2), .en__component--formblock.inline-other .en__field--checkbox.en__field--withOther--active .en__field__item:nth-last-child(1),
+.en__component--svblock.inline-other .en__field--radio.en__field--withOther--active .en__field__item:nth-last-child(2),
+.en__component--svblock.inline-other .en__field--radio.en__field--withOther--active .en__field__item:nth-last-child(1),
+.en__component--svblock.inline-other .en__field--checkbox.en__field--withOther--active .en__field__item:nth-last-child(2),
+.en__component--svblock.inline-other .en__field--checkbox.en__field--withOther--active .en__field__item:nth-last-child(1),
+.en__registrants__registrantDetails.inline-other .en__field--radio.en__field--withOther--active .en__field__item:nth-last-child(2),
+.en__registrants__registrantDetails.inline-other .en__field--radio.en__field--withOther--active .en__field__item:nth-last-child(1),
+.en__registrants__registrantDetails.inline-other .en__field--checkbox.en__field--withOther--active .en__field__item:nth-last-child(2),
+.en__registrants__registrantDetails.inline-other .en__field--checkbox.en__field--withOther--active .en__field__item:nth-last-child(1) {
+  grid-column: span 1;
+}
+.en__component--formblock.inline-other .en__field--radio.en__field--withOther--active .en__field__item:nth-last-child(2) label, .en__component--formblock.inline-other .en__field--checkbox.en__field--withOther--active .en__field__item:nth-last-child(2) label,
+.en__component--svblock.inline-other .en__field--radio.en__field--withOther--active .en__field__item:nth-last-child(2) label,
+.en__component--svblock.inline-other .en__field--checkbox.en__field--withOther--active .en__field__item:nth-last-child(2) label,
+.en__registrants__registrantDetails.inline-other .en__field--radio.en__field--withOther--active .en__field__item:nth-last-child(2) label,
+.en__registrants__registrantDetails.inline-other .en__field--checkbox.en__field--withOther--active .en__field__item:nth-last-child(2) label {
+  word-break: keep-all;
 }
 
 /************************************
@@ -2888,13 +2941,15 @@ input[type=checkbox]:checked + label:before {
 ***********************************/
 .en__pg__select input {
   cursor: pointer;
-  visibility: hidden;
+  position: relative;
+  left: -9999px;
   max-width: min-content;
   content: "";
   min-height: var(--radio_height);
 }
 .en__pg__select input:before {
-  visibility: visible;
+  position: relative;
+  left: 9999px;
   content: var(--radio_content);
   justify-content: center;
   align-items: center;
@@ -2926,12 +2981,23 @@ input[type=checkbox]:checked + label:before {
   box-shadow: var(--radio_box-shadow_selected);
 }
 
+.en__pg--selected .en__pg__select input[type=radio] {
+  outline: none;
+}
+
 @-moz-document url-prefix() {
   .en__pg__select input[type=radio] {
     visibility: visible !important;
     width: var(--radio_height);
     accent-color: var(--radio_color_selected);
-    transform: scale(1.4);
+    appearance: initial;
+    outline: none;
+    border: none;
+    position: initial;
+    background: transparent;
+  }
+  .en__pg__select input[type=radio]:before {
+    position: initial;
   }
 }
 /************************************
@@ -4081,32 +4147,33 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) {
   /* prettier-ignore */
 }
 body:not(#en__pagebuilder):not([data-engrid-debug]) [hidden-via-url-argument],
-body:not(#en__pagebuilder):not([data-engrid-debug]) .hide, body:not(#en__pagebuilder):not([data-engrid-debug]):not([data-engrid-scripts-js-loading=finished]) .hide-until-engrid-js-loading-finished, body:not(#en__pagebuilder):not([data-engrid-debug]):not([data-engrid-client-js-loading=finished]) .hide-until-client-js-loading-finished,
-body:not(#en__pagebuilder):not([data-engrid-debug]) .i1-hide .en__field:nth-of-type(1),
-body:not(#en__pagebuilder):not([data-engrid-debug]) .i2-hide .en__field:nth-of-type(2),
-body:not(#en__pagebuilder):not([data-engrid-debug]) .i3-hide .en__field:nth-of-type(3),
-body:not(#en__pagebuilder):not([data-engrid-debug]) .i4-hide .en__field:nth-of-type(4),
-body:not(#en__pagebuilder):not([data-engrid-debug]) .i5-hide .en__field:nth-of-type(5),
-body:not(#en__pagebuilder):not([data-engrid-debug]) .i6-hide .en__field:nth-of-type(6),
-body:not(#en__pagebuilder):not([data-engrid-debug]) .i7-hide .en__field:nth-of-type(7),
-body:not(#en__pagebuilder):not([data-engrid-debug]) .i8-hide .en__field:nth-of-type(8),
-body:not(#en__pagebuilder):not([data-engrid-debug]) .i9-hide .en__field:nth-of-type(9),
-body:not(#en__pagebuilder):not([data-engrid-debug]) .i10-hide .en__field:nth-of-type(10),
-body:not(#en__pagebuilder):not([data-engrid-debug]) .i11-hide .en__field:nth-of-type(11) {
+body:not(#en__pagebuilder):not([data-engrid-debug]) .hide:not(.en__field--validationFailed),
+body:not(#en__pagebuilder):not([data-engrid-debug]) div:not(.en__field--validationFailed) .hide, body:not(#en__pagebuilder):not([data-engrid-debug]):not([data-engrid-scripts-js-loading=finished]) .hide-until-engrid-js-loading-finished, body:not(#en__pagebuilder):not([data-engrid-debug]):not([data-engrid-client-js-loading=finished]) .hide-until-client-js-loading-finished,
+body:not(#en__pagebuilder):not([data-engrid-debug]) .i1-hide .en__field:not(.en__field--validationFailed):nth-of-type(1),
+body:not(#en__pagebuilder):not([data-engrid-debug]) .i2-hide .en__field:not(.en__field--validationFailed):nth-of-type(2),
+body:not(#en__pagebuilder):not([data-engrid-debug]) .i3-hide .en__field:not(.en__field--validationFailed):nth-of-type(3),
+body:not(#en__pagebuilder):not([data-engrid-debug]) .i4-hide .en__field:not(.en__field--validationFailed):nth-of-type(4),
+body:not(#en__pagebuilder):not([data-engrid-debug]) .i5-hide .en__field:not(.en__field--validationFailed):nth-of-type(5),
+body:not(#en__pagebuilder):not([data-engrid-debug]) .i6-hide .en__field:not(.en__field--validationFailed):nth-of-type(6),
+body:not(#en__pagebuilder):not([data-engrid-debug]) .i7-hide .en__field:not(.en__field--validationFailed):nth-of-type(7),
+body:not(#en__pagebuilder):not([data-engrid-debug]) .i8-hide .en__field:not(.en__field--validationFailed):nth-of-type(8),
+body:not(#en__pagebuilder):not([data-engrid-debug]) .i9-hide .en__field:not(.en__field--validationFailed):nth-of-type(9),
+body:not(#en__pagebuilder):not([data-engrid-debug]) .i10-hide .en__field:not(.en__field--validationFailed):nth-of-type(10),
+body:not(#en__pagebuilder):not([data-engrid-debug]) .i11-hide .en__field:not(.en__field--validationFailed):nth-of-type(11) {
   display: none;
 }
-body:not(#en__pagebuilder):not([data-engrid-debug]) label.hide-label,
-body:not(#en__pagebuilder):not([data-engrid-debug]) .i1-hide-label .en__field:nth-of-type(1) > label,
-body:not(#en__pagebuilder):not([data-engrid-debug]) .i2-hide-label .en__field:nth-of-type(2) > label,
-body:not(#en__pagebuilder):not([data-engrid-debug]) .i3-hide-label .en__field:nth-of-type(3) > label,
-body:not(#en__pagebuilder):not([data-engrid-debug]) .i4-hide-label .en__field:nth-of-type(4) > label,
-body:not(#en__pagebuilder):not([data-engrid-debug]) .i5-hide-label .en__field:nth-of-type(5) > label,
-body:not(#en__pagebuilder):not([data-engrid-debug]) .i6-hide-label .en__field:nth-of-type(6) > label,
-body:not(#en__pagebuilder):not([data-engrid-debug]) .i7-hide-label .en__field:nth-of-type(7) > label,
-body:not(#en__pagebuilder):not([data-engrid-debug]) .i8-hide-label .en__field:nth-of-type(8) > label,
-body:not(#en__pagebuilder):not([data-engrid-debug]) .i9-hide-label .en__field:nth-of-type(9) > label,
-body:not(#en__pagebuilder):not([data-engrid-debug]) .i10-hide-label .en__field:nth-of-type(10) > label,
-body:not(#en__pagebuilder):not([data-engrid-debug]) .i11-hide-label .en__field:nth-of-type(11) > label {
+body:not(#en__pagebuilder):not([data-engrid-debug]) div:not(.en__field--validationFailed) label.hide-label,
+body:not(#en__pagebuilder):not([data-engrid-debug]) .i1-hide-label .en__field:not(.en__field--validationFailed):nth-of-type(1) > label,
+body:not(#en__pagebuilder):not([data-engrid-debug]) .i2-hide-label .en__field:not(.en__field--validationFailed):nth-of-type(2) > label,
+body:not(#en__pagebuilder):not([data-engrid-debug]) .i3-hide-label .en__field:not(.en__field--validationFailed):nth-of-type(3) > label,
+body:not(#en__pagebuilder):not([data-engrid-debug]) .i4-hide-label .en__field:not(.en__field--validationFailed):nth-of-type(4) > label,
+body:not(#en__pagebuilder):not([data-engrid-debug]) .i5-hide-label .en__field:not(.en__field--validationFailed):nth-of-type(5) > label,
+body:not(#en__pagebuilder):not([data-engrid-debug]) .i6-hide-label .en__field:not(.en__field--validationFailed):nth-of-type(6) > label,
+body:not(#en__pagebuilder):not([data-engrid-debug]) .i7-hide-label .en__field:not(.en__field--validationFailed):nth-of-type(7) > label,
+body:not(#en__pagebuilder):not([data-engrid-debug]) .i8-hide-label .en__field:not(.en__field--validationFailed):nth-of-type(8) > label,
+body:not(#en__pagebuilder):not([data-engrid-debug]) .i9-hide-label .en__field:not(.en__field--validationFailed):nth-of-type(9) > label,
+body:not(#en__pagebuilder):not([data-engrid-debug]) .i10-hide-label .en__field:not(.en__field--validationFailed):nth-of-type(10) > label,
+body:not(#en__pagebuilder):not([data-engrid-debug]) .i11-hide-label .en__field:not(.en__field--validationFailed):nth-of-type(11) > label {
   position: absolute !important;
   /* Outside the DOM flow */
   height: 1px;
@@ -4601,35 +4668,35 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) .i11-hide-label .en__field:n
 ########################################################################
 */
 /* prettier-ignore */
-.radio-to-buttons .en__field--radio .en__field__item:hover input[type=radio] + label {
+.radio-to-buttons .en__field--radio .en__field__item input[type=radio] + label:hover {
   color: var(--button_color_hover);
   background-color: var(--button_background-color_hover);
   border-color: var(--button_border-color_hover);
 }
 
 /* prettier-ignore */
-.en__field--give-by-select.en__field--radio .en__field__item:hover input[type=radio] + label {
+.en__field--give-by-select.en__field--radio .en__field__item input[type=radio] + label:hover {
   color: var(--give-by-select__button_color_hover);
   background-color: var(--give-by-select__button_background-color_hover);
   border-color: var(--give-by-select__button_border-color_hover);
 }
 
 /* prettier-ignore */
-.radio-to-buttons_donationAmt .en__field--donationAmt.en__field--radio .en__field__item:hover input[type=radio] + label {
+.radio-to-buttons_donationAmt .en__field--donationAmt.en__field--radio .en__field__item input[type=radio] + label:hover {
   color: var(--donation-amount__button_color_hover);
   background-color: var(--donation-amount__button_background-color_hover);
   border-color: var(--donation-amount__button_border-color_hover);
 }
 
 /* prettier-ignore */
-.radio-to-buttons_recurrfreq .en__field--recurrfreq.en__field--radio .en__field__item:hover input[type=radio] + label {
+.radio-to-buttons_recurrfreq .en__field--recurrfreq.en__field--radio .en__field__item input[type=radio] + label:hover {
   color: var(--recurring-frequency__button_color_hover);
   background-color: var(--recurring-frequency__button_background-color_hover);
   border-color: var(--recurring-frequency__button_border-color_hover);
 }
 
 /* prettier-ignore */
-.radio-to-buttons_recurrpay .en__field--recurrpay.en__field--radio .en__field__item:hover input[type=radio] + label {
+.radio-to-buttons_recurrpay .en__field--recurrpay.en__field--radio .en__field__item input[type=radio] + label:hover {
   color: var(--recurring-payment__button_color_hover);
   background-color: var(--recurring-payment__button_background-color_hover);
   border-color: var(--recurring-paymnet__button_border-color_hover);
@@ -4681,35 +4748,35 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) .i11-hide-label .en__field:n
 ########################################################################
 */
 /* prettier-ignore */
-.radio-to-buttons .en__field--radio .en__field__item:hover input[type=radio]:checked + label {
+.radio-to-buttons .en__field--radio .en__field__item input[type=radio]:checked + label:hover {
   color: var(--button_color_checked);
   background-color: var(--button_background-color_checked);
   border-color: var(--button_border-color_checked);
 }
 
 /* prettier-ignore */
-.en__field--give-by-select.en__field--radio .en__field__item:hover input[type=radio]:checked + label {
+.en__field--give-by-select.en__field--radio .en__field__item input[type=radio]:checked + label:hover {
   color: var(--give-by-select__button_color_checked);
   background-color: var(--give-by-select__button_background-color_checked);
   border-color: var(--give-by-select__button_border-color_checked);
 }
 
 /* prettier-ignore */
-.radio-to-buttons_donationAmt .en__field--donationAmt.en__field--radio .en__field__item:hover input[type=radio]:checked + label {
+.radio-to-buttons_donationAmt .en__field--donationAmt.en__field--radio .en__field__item input[type=radio]:checked + label:hover {
   color: var(--donation-amount__button_color_checked);
   background-color: var(--donation-amount__button_background-color_checked);
   border-color: var(--donation-amount__button_border-color_checked);
 }
 
 /* prettier-ignore */
-.radio-to-buttons_recurrfreq .en__field--recurrfreq.en__field--radio .en__field__item:hover input[type=radio]:checked + label {
+.radio-to-buttons_recurrfreq .en__field--recurrfreq.en__field--radio .en__field__item input[type=radio]:checked + label:hover {
   color: var(--recurring-frequency__button_color_checked);
   background-color: var(--recurring-frequency__button_background-color_checked);
   border-color: var(--recurring-frequency__button_border-color_checked);
 }
 
 /* prettier-ignore */
-.radio-to-buttons_recurrpay .en__field--recurrpay.en__field--radio .en__field__item:hover input[type=radio]:checked + label {
+.radio-to-buttons_recurrpay .en__field--recurrpay.en__field--radio .en__field__item input[type=radio]:checked + label:hover {
   color: var(--recurring-payment__button_color_checked);
   background-color: var(--recurring-payment__button_background-color_checked);
   border-color: var(--recurring-payment__button_border-color_checked);
@@ -5233,6 +5300,9 @@ body:not[data-engrid-show-ecard-options] .show-if-ecard {
 .en__component .en__field__error {
   color: var(--error__color);
   font-size: max(75%, 10px);
+  font-family: var(--p_font-family);
+  font-weight: var(--p_font-weight);
+  line-height: var(--p_line-height);
   order: 3;
 }
 
@@ -6035,67 +6105,103 @@ div[id^=nb-field-].nb-success input {
   display: none !important;
 }
 
-.en__pg .en__pg__body {
+[data-engrid-theme] {
+  --premium__border-width: 0;
+  --premium__border-color: none;
+  --premium__border-radius: 0;
+  --premium__background-color: initial;
+  --premium__item_background-color: initial;
+  --premium__image_max-width: 125px;
+  --premium__image_max-height: 125px;
+}
+[data-engrid-theme] .en__component--premiumgiftblock {
+  background-color: var(--premium__background-color);
+  border: var(--premium__border-width) solid var(--premium__border-color);
+  border-radius: var(--premium__border-radius);
+}
+[data-engrid-theme] .en__pgHeader {
+  border-width: var(--premium__border-width);
+  border-color: var(--premium__border-color);
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  background-color: initial;
+  padding: 0;
+  color: var(--h2_color);
+  font-family: var(--h2_font-family);
+  font-size: var(--h2_font-size);
+  font-weight: var(--h2_font-weight);
+  line-height: var(--h2_line-height);
+  margin-bottom: calc(1rem * var(--scale-down_20pct));
+  margin-top: calc(2rem * var(--scale-down_20pct));
+  text-transform: var(--h2_text-transform);
+}
+[data-engrid-theme] .en__pg {
+  border-width: var(--premium__border-width);
+  border-color: var(--premium__border-color);
+  border-radius: var(--premium__border-radius);
+  cursor: pointer;
+}
+[data-engrid-theme] .en__pg .en__pg__body {
   display: grid;
-  grid-template-columns: min-content auto auto;
+  grid-template-columns: min-content auto var(--premium__image_max-width);
   grid-template-rows: min-content;
   grid-auto-columns: min-content;
   grid-auto-rows: min-content;
-  gap: 0px 0px;
+  gap: 0px max(var(--fields_spacing-inline), 0.5rem);
   grid-auto-flow: row;
   align-items: center;
   grid-template-areas: "en__pg__select en__pg__detail en__pg__display";
+  padding-top: calc(var(--fields_spacing-block) * 2);
+  padding-right: calc(var(--fields_spacing-inline) * 2);
+  padding-bottom: calc(var(--fields_spacing-block) * 2);
+  padding-left: calc(var(--fields_spacing-inline) * 2);
+  border-radius: var(--fields_border-radius);
+  background-color: var(--premium__item_background-color);
 }
-.en__pg:first-child .en__pg__body {
-  padding: calc(var(--fields_spacing-block) * 2) calc(var(--fields_spacing-inline) * 2) var(--fields_spacing-block);
-}
-.en__pg:last-child .en__pg__body {
-  padding: var(--fields_spacing-block) calc(var(--fields_spacing-inline) * 2) calc(var(--fields_spacing-block) * 2);
-}
-
-.en__pg__select {
+[data-engrid-theme] .en__pg__select {
   align-self: center;
   grid-area: en__pg__select;
-  padding: 0 calc(var(--fields_spacing-inline) * 2) 0 0;
+  padding: 0;
+  width: var(--radio_width);
 }
-
-.en__pg__display {
+[data-engrid-theme] .en__pg__display {
   grid-area: en__pg__display;
-  padding: 0 0 0 calc(var(--fields_spacing-inline) * 2);
+  padding: 0;
 }
-
-.en__pg__detail {
+[data-engrid-theme] .en__pg__detail {
   grid-area: en__pg__detail;
   padding: 0;
 }
-
-.en__pg__name {
+[data-engrid-theme] .en__pg__description {
+  font-family: var(--p_font-family);
+  font-size: var(--p_font-size);
+  font-weight: var(--p_font-weight);
+  line-height: var(--p_line-height);
+}
+[data-engrid-theme] .en__pg__name {
   margin-top: 0;
 }
-
-h2.en__pg__name {
+[data-engrid-theme] h2.en__pg__name {
   text-align: left;
 }
-
-.en__pg__optionType {
+[data-engrid-theme] .en__pg__optionType {
   display: flex;
   flex-direction: column;
 }
-
-.en__pg__optionType select {
+[data-engrid-theme] .en__pg__optionType select {
   width: auto;
 }
-
-.en__pg__image {
-  max-width: 125px;
+[data-engrid-theme] .en__pg__image {
+  max-width: var(--premium__image_max-width);
   min-width: 100%;
+  max-height: var(--premium__image_max-height);
+  width: auto;
+  object-fit: contain;
 }
-
-.en__pg--selected .en__pg__image--selected {
+[data-engrid-theme] .en__pg__images .en__pg__image--selected {
   outline-color: transparent;
 }
-
-.en__pgList[data-nogift] .en__pg:last-of-type .en__pg__display {
+[data-engrid-theme] .en__pgList[data-nogift] .en__pg:last-of-type .en__pg__display {
   flex-basis: 0;
   padding: 0;
 }
@@ -6170,7 +6276,7 @@ body:not(#en__pagebuilder) .simple_country_select:not(.country-select-visible) .
   justify-content: flex-end;
   white-space: nowrap;
 }
-@media (max-width: 47.99em) {
+@media screen and (max-width: 1024px) {
   .en__component--socialshareblock::before {
     content: none;
   }
@@ -6591,6 +6697,10 @@ body:not(#en__pagebuilder):not([data-engrid-debug]):not([data-engrid-merge-tags-
   border-bottom: 1px solid #ccc;
 }
 
+.en__ticket__currency__hidden {
+  display: none;
+}
+
 /* ENGRID LAYOUTS */
 /* MUST COME AFTER OTHER ENGRID STYLES WHICH MIGHT DEFINE MIXINS REFERENCED IN THE LAYOUTS */
 [data-engrid-theme] {
@@ -6657,7 +6767,7 @@ form > .en__component--row.en__component--advrow > * > * > * {
 }
 
 body:not([data-engrid-embedded]) > #engrid > form {
-  height: 100vh;
+  min-height: 100vh;
 }
 
 body:not([data-engrid-embedded]) form > .en__component--row.en__component--advrow {
@@ -9051,71 +9161,179 @@ body:not(#en__pagebuilder)[data-engrid-no-page-customCode] .en__component--advro
 [data-engrid-debug=layout] wbr {
   outline: 1px solid #db175b !important;
 }
+[data-engrid-debug=layout] div.debug-panel {
+  outline: none !important;
+}
+[data-engrid-debug=layout] div.debug-panel * {
+  outline: none !important;
+}
 
 body[data-engrid-debug]:before {
   z-index: 2147483641;
 }
 
-[data-engrid-debug] {
-  margin-top: 56px;
-}
-[data-engrid-debug] #debug-bar {
-  display: flex;
-  padding: 1ch 1.2ch;
-  border-bottom: 1px solid #cccccc;
-  justify-content: center;
-  background: #f5f5f5;
+.debug-panel {
   position: fixed;
-  width: 100vw;
-  top: 0;
-  left: 0;
-  z-index: 2147483640;
-  box-shadow: 0 36px 50px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
-}
-[data-engrid-debug] #debug-bar #info-wrapper {
+  bottom: min(10vw, 10vh, 50px);
+  right: min(10vw, 10vh, 50px);
+  z-index: 1000;
+  background-color: white;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
   display: flex;
-  margin: 0rem 1rem 0rem 0rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-  line-height: 1;
-  font-family: Arial, sans-serif;
-  align-items: center;
+  flex-direction: column;
+  border: 2px solid #3b3b3b;
 }
-[data-engrid-debug] #debug-bar #buttons-wrapper {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+@media screen and (max-height: 760px) {
+  .debug-panel {
+    transform: scale(0.9);
+    transform-origin: bottom right;
+  }
+}
+@media screen and (max-height: 700px) {
+  .debug-panel {
+    transform: scale(0.8);
+  }
+}
+@media screen and (max-height: 625px) {
+  .debug-panel {
+    transform: scale(0.7);
+  }
+}
+
+.debug-panel:not(.debug-panel--open) {
+  cursor: pointer;
   justify-content: center;
+  align-items: center;
+  background-color: hsla(0deg, 0%, 100%, 0.75);
 }
-[data-engrid-debug] #debug-bar #buttons-wrapper p {
-  font-weight: bold;
-  margin-right: 1rem;
+
+.debug-panel--open {
+  width: min(100vw - 2px - min(10vw, 10vh, 50px) - min(10vw, 10vh, 50px), 280px);
+  height: auto;
+  padding: min(20px, 5vw, 5vh);
+  border-radius: 5px;
 }
-[data-engrid-debug] #debug-bar #buttons-wrapper button,
-[data-engrid-debug] #debug-bar #buttons-wrapper .button {
-  --button_font-family: Arial, sans-serif;
-  --button_color: #ffffff;
-  --button_font-size: 16px;
-  --button_font-weight: initial;
-  --button_line-height: normal;
-  --button_background-color: #000000;
-  --button_border-width: 0px;
-  --button_border-color: #000000;
-  --button_border-radius: 6px;
-  --button_padding: 1ch 1.2ch;
-  --button_text-transform: none;
-  --button_color_hover: #ffffff;
-  --button_background-color_hover: #3d9cd6;
-  --button_border-color_hover: #3d9cd6;
-  --button_color_checked: #ffffff;
-  --button_background-color_checked: #3d9cd6;
-  --button_border-color_checked: #3d9cd6;
-  text-decoration: none;
+
+.debug-panel--open .debug-panel__closed-title {
+  display: none;
+}
+
+.debug-panel--open .debug-panel__title {
+  display: flex;
+}
+
+.debug-panel--open .debug-panel__option {
+  display: block;
+}
+
+.debug-panel__closed-title {
+  font-family: sans-serif;
+}
+
+.debug-panel__title {
+  display: none;
+  margin-bottom: 15px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.debug-panel__title > h2 {
   margin: 0;
 }
-[data-engrid-debug] #debug-bar #buttons-wrapper button:not(:last-child),
-[data-engrid-debug] #debug-bar #buttons-wrapper .button:not(:last-child) {
-  margin-right: 1rem;
+
+.debug-panel__close {
+  cursor: pointer;
+  padding: 10px;
+  font-family: sans-serif;
+}
+
+.debug-panel__option {
+  display: none;
+  margin-bottom: 15px;
+}
+
+.debug-panel__option:last-of-type {
+  margin-bottom: 0;
+}
+
+.debug-panel__link-label {
+  display: flex;
+}
+.debug-panel__link-label:not(.link-left) {
+  justify-content: center;
+}
+.debug-panel__link-label a,
+.debug-panel__link-label a:hover {
+  color: #000;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+.debug-panel__link-label .debug-panel__edit-link,
+.debug-panel__link-label .debug-panel__edit-link:hover {
+  font-weight: bold;
+  color: #155cb7;
+  justify-self: left;
+}
+
+.debug-panel__btn {
+  margin: 0;
+  width: 100%;
+  font-size: 1.2rem;
+  border: none;
+}
+
+.debug-panel__btn,
+.debug-panel__btn:focus,
+.debug-panel__btn:active {
+  background-color: #1a73e5;
+  color: #fff;
+}
+
+.debug-panel__btn:hover {
+  background-color: #155cb7;
+  color: #fff;
+}
+
+.debug-panel__btn--submit,
+.debug-panel__btn--submit:focus,
+.debug-panel__btn--submit:active {
+  background-color: #139913;
+}
+
+.debug-panel__btn--submit:hover {
+  background-color: #0d6c0d;
+}
+
+.debug-panel:not(.debug-panel--local) .debug-panel__option--local {
+  display: none;
+}
+
+.debug-panel__checkbox input[type=checkbox] {
+  clip: rect(0 0 0 0);
+  border: 0;
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+.debug-panel__checkbox input[type=checkbox] + label {
+  font-size: 1rem;
+}
+
+[data-engrid-debug] .en__component--page > [data-unhidden] {
+  display: flex;
+  flex-basis: 100%;
+  flex-direction: column;
+  margin-bottom: var(--fields_spacing-block);
+  padding-bottom: 0;
 }
 
 body:not([data-engrid-debug]) #debug-bar {
@@ -9214,11 +9432,13 @@ body:not([data-engrid-debug]) #debug-bar {
 #en__pagebuilder .inmem-n,
 #en__pagebuilder .giveBySelect-card,
 #en__pagebuilder .giveBySelect-ach,
+#en__pagebuilder .giveBySelect-check,
 #en__pagebuilder .giveBySelect-paypal,
 #en__pagebuilder .inmem-Y,
 #en__pagebuilder .inmem-N,
 #en__pagebuilder .giveBySelect-Card,
 #en__pagebuilder .giveBySelect-ACH,
+#en__pagebuilder .giveBySelect-Check,
 #en__pagebuilder .giveBySelect-Paypal,
 #en__pagebuilder [class*=engrid__supporter] {
   background-color: rgba(0, 0, 255, 0.1019607843) !important;
@@ -9227,11 +9447,13 @@ body:not([data-engrid-debug]) #debug-bar {
 #en__pagebuilder .inmem-n.pboAdvancedRow__preview .en__component--column,
 #en__pagebuilder .giveBySelect-card.pboAdvancedRow__preview .en__component--column,
 #en__pagebuilder .giveBySelect-ach.pboAdvancedRow__preview .en__component--column,
+#en__pagebuilder .giveBySelect-check.pboAdvancedRow__preview .en__component--column,
 #en__pagebuilder .giveBySelect-paypal.pboAdvancedRow__preview .en__component--column,
 #en__pagebuilder .inmem-Y.pboAdvancedRow__preview .en__component--column,
 #en__pagebuilder .inmem-N.pboAdvancedRow__preview .en__component--column,
 #en__pagebuilder .giveBySelect-Card.pboAdvancedRow__preview .en__component--column,
 #en__pagebuilder .giveBySelect-ACH.pboAdvancedRow__preview .en__component--column,
+#en__pagebuilder .giveBySelect-Check.pboAdvancedRow__preview .en__component--column,
 #en__pagebuilder .giveBySelect-Paypal.pboAdvancedRow__preview .en__component--column,
 #en__pagebuilder [class*=engrid__supporter].pboAdvancedRow__preview .en__component--column {
   outline-color: #0000ff !important;
@@ -9241,11 +9463,13 @@ body:not([data-engrid-debug]) #debug-bar {
 #en__pagebuilder .inmem-n .en__mandatory,
 #en__pagebuilder .giveBySelect-card .en__mandatory,
 #en__pagebuilder .giveBySelect-ach .en__mandatory,
+#en__pagebuilder .giveBySelect-check .en__mandatory,
 #en__pagebuilder .giveBySelect-paypal .en__mandatory,
 #en__pagebuilder .inmem-Y .en__mandatory,
 #en__pagebuilder .inmem-N .en__mandatory,
 #en__pagebuilder .giveBySelect-Card .en__mandatory,
 #en__pagebuilder .giveBySelect-ACH .en__mandatory,
+#en__pagebuilder .giveBySelect-Check .en__mandatory,
 #en__pagebuilder .giveBySelect-Paypal .en__mandatory,
 #en__pagebuilder [class*=engrid__supporter] .en__mandatory {
   outline: 5px solid #f12222;

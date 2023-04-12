@@ -21,6 +21,12 @@ export interface Options {
     NeverBounceDateField?: string | null;
     NeverBounceDateFormat?: string;
     NeverBounceStatusField?: string | null;
+    FreshAddress?: false | {
+        dateField?: string;
+        dateFieldFormat?: string;
+        statusField?: string;
+        messageField?: string;
+    };
     ProgressBar?: boolean | null;
     AutoYear?: boolean;
     TranslateFields?: boolean;
@@ -67,6 +73,8 @@ export interface Options {
         phone_date_field?: string;
         phone_status_field?: string;
     };
+    PageLayouts?: string[];
+    CountryDisable?: string[];
     onLoad?: () => void;
     onResize?: () => void;
     onSubmit?: () => void;

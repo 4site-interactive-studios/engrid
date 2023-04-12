@@ -7,14 +7,16 @@ export declare abstract class ENGrid {
     static getUrlParameter(name: string): string | true | Object[] | null;
     static getField(name: string): Element | null;
     static getFieldValue(name: string): string;
-    static setFieldValue(name: string, value: unknown, parseENDependencies?: boolean): void;
+    static setFieldValue(name: string, value: unknown, parseENDependencies?: boolean, dispatchEvents?: boolean): void;
     static createHiddenInput(name: string, value?: string): HTMLInputElement;
     static enParseDependencies(): void;
     static getGiftProcess(): any;
     static getPageCount(): any;
     static getPageNumber(): any;
     static getPageID(): any;
-    static getPageType(): "DONATION" | "ECARD" | "SURVEY" | "EMAILTOTARGET" | "ADVOCACY" | "SUBSCRIBEFORM" | "SUPPORTERHUB" | "UNSUBSCRIBE" | "UNKNOWN";
+    static getClientID(): any;
+    static getDataCenter(): "us" | "ca";
+    static getPageType(): "DONATION" | "ECARD" | "SURVEY" | "EMAILTOTARGET" | "ADVOCACY" | "SUBSCRIBEFORM" | "SUPPORTERHUB" | "UNSUBSCRIBE" | "TWEETPAGE" | "UNKNOWN";
     static setBodyData(dataName: string, value: string | boolean): void;
     static getBodyData(dataName: string): string | null;
     static hasBodyData(dataName: string): boolean;
@@ -36,4 +38,7 @@ export declare abstract class ENGrid {
     static isVisible(element: HTMLElement): boolean;
     static getCurrencySymbol(): string;
     static getCurrencyCode(): string;
+    static addHtml(html: string | HTMLElement, target?: string, position?: string): void;
+    static removeHtml(target: string): void;
+    static slugify(text: string): string;
 }

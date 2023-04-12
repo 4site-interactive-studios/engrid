@@ -42,7 +42,7 @@ export class ENGrid {
         return new FormData(this.enForm).getAll(name).join(",");
     }
     // Set a value to any field. If it's a dropdown, radio or checkbox, it selects the proper option matching the value
-    static setFieldValue(name, value, parseENDependencies = true) {
+    static setFieldValue(name, value, parseENDependencies = true, dispatchEvents = false) {
         if (value === ENGrid.getFieldValue(name))
             return;
         document.getElementsByName(name).forEach((field) => {
@@ -53,20 +53,29 @@ export class ENGrid {
                         for (const option of field.options) {
                             if (option.value == value) {
                                 option.selected = true;
+                                if (dispatchEvents) {
+                                    field.dispatchEvent(new Event("change", { bubbles: true }));
+                                }
                             }
                         }
                         break;
                     case "checkbox":
                     case "radio":
-                        // @TODO: Try to trigger the onChange event
                         if (field.value == value) {
                             field.checked = true;
+                            if (dispatchEvents) {
+                                field.dispatchEvent(new Event("change", { bubbles: true }));
+                            }
                         }
                         break;
                     case "textarea":
                     case "text":
                     default:
                         field.value = value;
+                        if (dispatchEvents) {
+                            field.dispatchEvent(new Event("change", { bubbles: true }));
+                            field.dispatchEvent(new Event("blur", { bubbles: true }));
+                        }
                 }
                 field.setAttribute("engrid-value-changed", "");
             }
@@ -148,6 +157,16 @@ export class ENGrid {
             return window.pageJson.campaignPageId;
         return 0;
     }
+    // Return the client ID
+    static getClientID() {
+        if ("pageJson" in window)
+            return window.pageJson.clientId;
+        return 0;
+    }
+    //returns 'us or 'ca' based on the client ID
+    static getDataCenter() {
+        return ENGrid.getClientID() >= 10000 ? "us" : "ca";
+    }
     // Return the current page type
     static getPageType() {
         if ("pageJson" in window && "pageType" in window.pageJson) {
@@ -177,6 +196,9 @@ export class ENGrid {
                     break;
                 case "unsubscribe":
                     return "UNSUBSCRIBE";
+                    break;
+                case "tweetpage":
+                    return "TWEETPAGE";
                     break;
                 default:
                     return "UNKNOWN";
@@ -386,5 +408,37 @@ export class ENGrid {
             return currencyField.value || "USD";
         }
         return ENGrid.getOption("CurrencyCode") || "USD";
+    }
+    static addHtml(html, target = "body", position = "before") {
+        var _a, _b;
+        const targetElement = document.querySelector(target);
+        if (typeof html === "object") {
+            html = html.outerHTML;
+        }
+        if (targetElement) {
+            const htmlElement = document.createRange().createContextualFragment(html);
+            if (position === "before") {
+                (_a = targetElement.parentNode) === null || _a === void 0 ? void 0 : _a.insertBefore(htmlElement, targetElement);
+            }
+            else {
+                (_b = targetElement.parentNode) === null || _b === void 0 ? void 0 : _b.insertBefore(htmlElement, targetElement.nextSibling);
+            }
+        }
+    }
+    static removeHtml(target) {
+        const targetElement = document.querySelector(target);
+        if (targetElement) {
+            targetElement.remove();
+        }
+    }
+    static slugify(text) {
+        return text
+            .toString()
+            .toLowerCase()
+            .replace(/\s+/g, "-") // Replace spaces with -
+            .replace(/[^\w\-]+/g, "") // Remove all non-word chars
+            .replace(/\-\-+/g, "-") // Replace multiple - with single -
+            .replace(/^-+/, "") // Trim - from start of text
+            .replace(/-+$/, ""); // Trim - from end of text
     }
 }

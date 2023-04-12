@@ -47,6 +47,9 @@
 .en__component .en__field__error {
   color: var(--error__color);
   font-size: calc(max(75%, 10px));
+  font-family: var(--p_font-family);
+  font-weight: var(--p_font-weight);
+  line-height: var(--p_line-height);
   order: 3;
 }
 

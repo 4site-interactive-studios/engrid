@@ -49,6 +49,14 @@ import {
   DataLayer,
   LiveCurrency,
   Autosubmit,
+  EventTickets,
+  SwapAmounts,
+  DebugPanel,
+  DebugHiddenFields,
+  FreshAddress,
+  BrandingHtml,
+  CountryDisable,
+  PremiumGift,
 } from "./";
 
 export class App extends ENGrid {
@@ -245,6 +253,12 @@ export class App extends ENGrid {
     // Autosubmit script
     new Autosubmit();
 
+    // Adjust display of event tickets.
+    new EventTickets();
+
+    // Swap Amounts
+    new SwapAmounts();
+
     // On the end of the script, after all subscribers defined, let's load the current value
     this._amount.load();
     this._frequency.load();
@@ -284,6 +298,9 @@ export class App extends ENGrid {
         this.options.NeverBounceDateFormat
       );
 
+    // FreshAddress
+    if (this.options.FreshAddress) new FreshAddress();
+
     new ShowIfAmount();
 
     new OtherAmount();
@@ -305,16 +322,37 @@ export class App extends ENGrid {
     // Required if Visible Fields
     new RequiredIfVisible();
 
+    //Debug hidden fields
+    if (this.options.Debug) new DebugHiddenFields();
+
     // TidyContact
     if (this.options.TidyContact) new TidyContact();
 
     // Translate Fields
     if (this.options.TranslateFields) new TranslateFields();
 
+    // Country Disable
+    new CountryDisable();
+
+    // Premium Gift Features
+    new PremiumGift();
+
     // Data Layer Events
     new DataLayer();
 
     this.setDataAttributes();
+
+    //Debug panel
+    if (
+      this.options.Debug ||
+      window.sessionStorage.hasOwnProperty(DebugPanel.debugSessionStorageKey)
+    ) {
+      new DebugPanel(this.options.PageLayouts);
+    }
+
+    if (ENGrid.getUrlParameter("development") === "branding") {
+      new BrandingHtml().show();
+    }
 
     ENGrid.setBodyData("data-engrid-scripts-js-loading", "finished");
 
@@ -349,6 +387,11 @@ export class App extends ENGrid {
   }
 
   private onError() {
+    // Smooth Scroll to the first .en__field--validationFailed element
+    const firstError = document.querySelector(".en__field--validationFailed");
+    if (firstError) {
+      firstError.scrollIntoView({ behavior: "smooth" });
+    }
     if (this.options.onError) {
       this.logger.danger("Client onError Triggered");
       this.options.onError();

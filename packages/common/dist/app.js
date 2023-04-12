@@ -1,5 +1,5 @@
 import { DonationAmount, DonationFrequency, EnForm, ProcessingFees, } from "./events";
-import { AmountLabel, Loader, ProgressBar, UpsellLightbox, ENGrid, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, A11y, CapitalizeFields, CreditCardNumbers, Ecard, ClickToExpand, legacy, LiveVariables, iFrame, ShowHideRadioCheckboxes, SimpleCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce, AutoYear, Autocomplete, RememberMe, TranslateFields, ShowIfAmount, EngridLogger, OtherAmount, MinMaxAmount, Ticker, DataReplace, DataHide, AddNameToMessage, ExpandRegionName, AppVersion, UrlToForm, RequiredIfVisible, TidyContact, DataLayer, LiveCurrency, Autosubmit, } from "./";
+import { AmountLabel, Loader, ProgressBar, UpsellLightbox, ENGrid, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, A11y, CapitalizeFields, CreditCardNumbers, Ecard, ClickToExpand, legacy, LiveVariables, iFrame, ShowHideRadioCheckboxes, SimpleCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce, AutoYear, Autocomplete, RememberMe, TranslateFields, ShowIfAmount, EngridLogger, OtherAmount, MinMaxAmount, Ticker, DataReplace, DataHide, AddNameToMessage, ExpandRegionName, AppVersion, UrlToForm, RequiredIfVisible, TidyContact, DataLayer, LiveCurrency, Autosubmit, EventTickets, SwapAmounts, DebugPanel, DebugHiddenFields, FreshAddress, BrandingHtml, CountryDisable, PremiumGift, } from "./";
 export class App extends ENGrid {
     constructor(options) {
         super();
@@ -148,6 +148,10 @@ export class App extends ENGrid {
         new DataHide();
         // Autosubmit script
         new Autosubmit();
+        // Adjust display of event tickets.
+        new EventTickets();
+        // Swap Amounts
+        new SwapAmounts();
         // On the end of the script, after all subscribers defined, let's load the current value
         this._amount.load();
         this._frequency.load();
@@ -186,6 +190,9 @@ export class App extends ENGrid {
             new RememberMe(this.options.RememberMe);
         if (this.options.NeverBounceAPI)
             new NeverBounce(this.options.NeverBounceAPI, this.options.NeverBounceDateField, this.options.NeverBounceStatusField, this.options.NeverBounceDateFormat);
+        // FreshAddress
+        if (this.options.FreshAddress)
+            new FreshAddress();
         new ShowIfAmount();
         new OtherAmount();
         new MinMaxAmount();
@@ -199,15 +206,30 @@ export class App extends ENGrid {
         new UrlToForm();
         // Required if Visible Fields
         new RequiredIfVisible();
+        //Debug hidden fields
+        if (this.options.Debug)
+            new DebugHiddenFields();
         // TidyContact
         if (this.options.TidyContact)
             new TidyContact();
         // Translate Fields
         if (this.options.TranslateFields)
             new TranslateFields();
+        // Country Disable
+        new CountryDisable();
+        // Premium Gift Features
+        new PremiumGift();
         // Data Layer Events
         new DataLayer();
         this.setDataAttributes();
+        //Debug panel
+        if (this.options.Debug ||
+            window.sessionStorage.hasOwnProperty(DebugPanel.debugSessionStorageKey)) {
+            new DebugPanel(this.options.PageLayouts);
+        }
+        if (ENGrid.getUrlParameter("development") === "branding") {
+            new BrandingHtml().show();
+        }
         ENGrid.setBodyData("data-engrid-scripts-js-loading", "finished");
         window.EngridVersion = AppVersion;
         this.logger.success(`VERSION: ${AppVersion}`);
@@ -235,6 +257,11 @@ export class App extends ENGrid {
         }
     }
     onError() {
+        // Smooth Scroll to the first .en__field--validationFailed element
+        const firstError = document.querySelector(".en__field--validationFailed");
+        if (firstError) {
+            firstError.scrollIntoView({ behavior: "smooth" });
+        }
         if (this.options.onError) {
             this.logger.danger("Client onError Triggered");
             this.options.onError();

@@ -36,6 +36,7 @@ export class RequiredIfVisible {
                 this.logger.log(`${field.getAttribute("class")} is visible`);
                 const fieldElement = field.querySelector("input, select, textarea");
                 if (fieldElement &&
+                    fieldElement.closest("[data-unhidden]") === null &&
                     !ENGrid.getFieldValue(fieldElement.getAttribute("name"))) {
                     const fieldLabel = field.querySelector(".en__field__label");
                     if (fieldLabel) {

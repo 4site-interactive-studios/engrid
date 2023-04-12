@@ -20,6 +20,7 @@ export const OptionsDefaults = {
     NeverBounceDateField: null,
     NeverBounceStatusField: null,
     NeverBounceDateFormat: "MM/DD/YYYY",
+    FreshAddress: false,
     ProgressBar: false,
     AutoYear: false,
     TranslateFields: true,
@@ -27,4 +28,14 @@ export const OptionsDefaults = {
     RememberMe: false,
     TidyContact: false,
     RegionLongFormat: "",
+    CountryDisable: [],
+    PageLayouts: [
+        "leftleft1col",
+        "centerleft1col",
+        "centercenter1col",
+        "centercenter2col",
+        "centerright1col",
+        "rightright1col",
+        "none",
+    ],
 };

@@ -58,7 +58,7 @@ export class EngridLogger {
     return console.log.bind(
       window.console,
       "%c" + this.emoji + " " + this.prefix + " %s",
-      `color: ${this.color}; background: ${this.background}; font-size: 1.2em; padding: 4px; border-radius: 2px; font-family: monospace;`
+      `color: ${this.color}; background-color: ${this.background}; font-size: 1.2em; padding: 4px; border-radius: 2px; font-family: monospace;`
     );
   }
   get success(): Function {
@@ -68,7 +68,7 @@ export class EngridLogger {
     return console.log.bind(
       window.console,
       "%c ✅ " + this.prefix + " %s",
-      `color: green; background: white; font-size: 1.2em; padding: 4px; border-radius: 2px; font-family: monospace;`
+      `color: green; background-color: white; font-size: 1.2em; padding: 4px; border-radius: 2px; font-family: monospace;`
     );
   }
   get danger(): Function {
@@ -78,7 +78,7 @@ export class EngridLogger {
     return console.log.bind(
       window.console,
       "%c ⛔️ " + this.prefix + " %s",
-      `color: red; background: white; font-size: 1.2em; padding: 4px; border-radius: 2px; font-family: monospace;`
+      `color: red; background-color: white; font-size: 1.2em; padding: 4px; border-radius: 2px; font-family: monospace;`
     );
   }
 
@@ -89,7 +89,7 @@ export class EngridLogger {
     return console.warn.bind(
       window.console,
       "%c" + this.emoji + " " + this.prefix + " %s",
-      `color: ${this.color}; background: ${this.background}; font-size: 1.2em; padding: 4px; border-radius: 2px; font-family: monospace;`
+      `color: ${this.color}; background-color: ${this.background}; font-size: 1.2em; padding: 4px; border-radius: 2px; font-family: monospace;`
     );
   }
 
@@ -100,7 +100,7 @@ export class EngridLogger {
     return console.dir.bind(
       window.console,
       "%c" + this.emoji + " " + this.prefix + " %s",
-      `color: ${this.color}; background: ${this.background}; font-size: 1.2em; padding: 4px; border-radius: 2px; font-family: monospace;`
+      `color: ${this.color}; background-color: ${this.background}; font-size: 1.2em; padding: 4px; border-radius: 2px; font-family: monospace;`
     );
   }
 
@@ -111,7 +111,7 @@ export class EngridLogger {
     return console.error.bind(
       window.console,
       "%c" + this.emoji + " " + this.prefix + " %s",
-      `color: ${this.color}; background: ${this.background}; font-size: 1.2em; padding: 4px; border-radius: 2px; font-family: monospace;`
+      `color: ${this.color}; background-color: ${this.background}; font-size: 1.2em; padding: 4px; border-radius: 2px; font-family: monospace;`
     );
   }
 }

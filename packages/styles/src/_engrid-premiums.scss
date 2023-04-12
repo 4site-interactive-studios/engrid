@@ -1,73 +1,118 @@
-.en__pg {
-  .en__pg__body {
-    display: grid;
-    grid-template-columns: min-content auto auto;
-    grid-template-rows: min-content;
-    grid-auto-columns: min-content;
-    grid-auto-rows: min-content;
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    align-items: center;
-    grid-template-areas: "en__pg__select en__pg__detail en__pg__display";
+[data-engrid-theme] {
+  --premium__border-width: 0;
+  --premium__border-color: none;
+  --premium__border-radius: 0;
+  --premium__background-color: initial;
+  --premium__item_background-color: initial;
+  --premium__image_max-width: 125px;
+  --premium__image_max-height: 125px;
+
+  .en__component--premiumgiftblock {
+    background-color: var(--premium__background-color);
+    border: var(--premium__border-width) solid var(--premium__border-color);
+    border-radius: var(--premium__border-radius);
   }
 
-  &:first-child .en__pg__body {
-    padding: calc(var(--fields_spacing-block) * 2)
-      calc(var(--fields_spacing-inline) * 2) var(--fields_spacing-block);
+  .en__pgHeader {
+    border-width: var(--premium__border-width);
+    border-color: var(--premium__border-color);
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    background-color: initial;
+    padding: 0;
+    color: var(--h2_color);
+    font-family: var(--h2_font-family);
+    font-size: var(--h2_font-size);
+    font-weight: var(--h2_font-weight);
+    line-height: var(--h2_line-height);
+    margin-bottom: calc(1rem * var(--scale-down_20pct));
+    margin-top: calc(2rem * var(--scale-down_20pct));
+    text-transform: var(--h2_text-transform);
   }
 
-  &:not(:first-child):not(:last-child) .en__pg__body {
+  .en__pg {
+    border-width: var(--premium__border-width);
+    border-color: var(--premium__border-color);
+    border-radius: var(--premium__border-radius);
+    cursor: pointer;
+
+    .en__pg__body {
+      display: grid;
+      grid-template-columns: min-content auto var(--premium__image_max-width);
+      grid-template-rows: min-content;
+      grid-auto-columns: min-content;
+      grid-auto-rows: min-content;
+      gap: 0px max(var(--fields_spacing-inline), 0.5rem);
+      grid-auto-flow: row;
+      align-items: center;
+      grid-template-areas: "en__pg__select en__pg__detail en__pg__display";
+      padding-top: calc(var(--fields_spacing-block) * 2);
+      padding-right: calc(var(--fields_spacing-inline) * 2);
+      padding-bottom: calc(var(--fields_spacing-block) * 2);
+      padding-left: calc(var(--fields_spacing-inline) * 2);
+      border-radius: var(--fields_border-radius);
+      background-color: var(--premium__item_background-color);
+    }
   }
 
-  &:last-child .en__pg__body {
-    padding: var(--fields_spacing-block) calc(var(--fields_spacing-inline) * 2)
-      calc(var(--fields_spacing-block) * 2);
+  .en__pg__select {
+    align-self: center;
+    grid-area: en__pg__select;
+    padding: 0;
+    width: var(--radio_width);
+    // padding: 0 calc(var(--fields_spacing-inline) * 2) 0 0;
   }
-}
 
-.en__pg__select {
-  align-self: center;
-  grid-area: en__pg__select;
-  padding: 0 calc(var(--fields_spacing-inline) * 2) 0 0;
-}
+  .en__pg__display {
+    grid-area: en__pg__display;
+    padding: 0;
+    // padding: 0 0 0 calc(var(--fields_spacing-inline) * 2);
+  }
 
-.en__pg__display {
-  grid-area: en__pg__display;
-  padding: 0 0 0 calc(var(--fields_spacing-inline) * 2);
-}
+  .en__pg__detail {
+    grid-area: en__pg__detail;
+    padding: 0;
+  }
 
-.en__pg__detail {
-  grid-area: en__pg__detail;
-  padding: 0;
-}
+  .en__pg__description {
+    font-family: var(--p_font-family);
+    font-size: var(--p_font-size);
+    font-weight: var(--p_font-weight);
+    line-height: var(--p_line-height);
+  }
 
-.en__pg__name {
-  margin-top: 0;
-}
+  .en__pg__name {
+    margin-top: 0;
+  }
 
-h2.en__pg__name {
-  text-align: left;
-}
+  h2.en__pg__name {
+    text-align: left;
+  }
 
-.en__pg__optionType {
-  display: flex;
-  flex-direction: column;
-}
+  .en__pg__optionType {
+    display: flex;
+    flex-direction: column;
+  }
 
-.en__pg__optionType select {
-  width: auto;
-}
+  .en__pg__optionType select {
+    width: auto;
+  }
 
-.en__pg__image {
-  max-width: 125px;
-  min-width: 100%;
-}
+  .en__pg__image {
+    max-width: var(--premium__image_max-width);
+    min-width: 100%;
+    max-height: var(--premium__image_max-height);
+    width: auto;
+    object-fit: contain;
+  }
 
-.en__pg--selected .en__pg__image--selected {
-  outline-color: transparent;
-}
+  // Note that EN does not add alt attributes to the selected image
+  .en__pg__images .en__pg__image--selected {
+    outline-color: transparent;
+  }
 
-.en__pgList[data-nogift] .en__pg:last-of-type .en__pg__display {
-  flex-basis: 0;
-  padding: 0;
+  .en__pgList[data-nogift] .en__pg:last-of-type .en__pg__display {
+    flex-basis: 0;
+    padding: 0;
+  }
 }

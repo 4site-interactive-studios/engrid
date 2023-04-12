@@ -4,9 +4,6 @@
 /* SANITIZE.CSS (INCLUDES NORMALIZE.CSS) */
 @import "sanitize.css/sanitize";
 
-/* ENGRID BREAKPOINTS*/
-@import "engrid-breakpoints";
-
 /* ENGRID OVERRIDES, TYPOGRAPHY, AND MORE */
 @import "engrid-enpage-overrides";
 @import "engrid-typography";
@@ -56,6 +53,7 @@
 @import "engrid-ticker";
 @import "engrid-data-replace";
 @import "engrid-tidycontact";
+@import "engrid-event-tickets";
 
 /* ENGRID LAYOUTS */
 /* MUST COME AFTER OTHER ENGRID STYLES WHICH MIGHT DEFINE MIXINS REFERENCED IN THE LAYOUTS */
