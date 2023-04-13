@@ -90,6 +90,16 @@ export class DataLayer {
           });
         }
       }
+
+      if (ENGrid.getPageCount() === ENGrid.getPageNumber()) {
+        this.dataLayer.push({
+          event: "EN_SUBMISSION_SUCCESS_" + pageJson.pageType.toUpperCase(),
+        });
+        this.dataLayer.push({
+          [`'EN_SUBMISSION_SUCCESS_${pageJson.pageType.toUpperCase()}'`]:
+            "TRUE",
+        });
+      }
     }
 
     const urlParams = new URLSearchParams(window.location.search);
@@ -111,11 +121,7 @@ export class DataLayer {
 
       this.dataLayer.push({
         event: "EN_RECURRING_FREQUENCIES",
-        frequencies: recurrValues,
-      });
-
-      this.dataLayer.push({
-        EN_RECURRING_FREQEUENCIES: recurrValues,
+        [`'EN_RECURRING_FREQEUENCIES'`]: recurrValues,
       });
     }
 
@@ -141,7 +147,7 @@ export class DataLayer {
 
   private attachEventListeners() {
     const textInputs = document.querySelectorAll(
-      ".en__component--advrow input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]), .en__component--advrow textarea"
+      ".en__component--advrow input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]):not([type=hidden]):not([unhidden]), .en__component--advrow textarea"
     ) as NodeListOf<HTMLInputElement>;
 
     textInputs.forEach((el) => {
@@ -184,11 +190,12 @@ export class DataLayer {
           //Premium gift handling
           this.dataLayer.push({
             event: "EN_FORM_VALUE_UPDATED",
-            field: el.name,
-            label: "Premium Gift",
-            value: el.closest(".en__pg__body")?.querySelector(".en__pg__name")
-              ?.textContent,
-            productId: (
+            enFieldName: el.name,
+            enFieldLabel: "Premium Gift",
+            enFieldValue: el
+              .closest(".en__pg__body")
+              ?.querySelector(".en__pg__name")?.textContent,
+            enProductId: (
               document.querySelector(
                 '[name="transaction.selprodvariantid"]'
               ) as HTMLInputElement
@@ -197,9 +204,9 @@ export class DataLayer {
         } else {
           this.dataLayer.push({
             event: "EN_FORM_VALUE_UPDATED",
-            field: el.name,
-            label: this.getFieldLabel(el),
-            value: value,
+            enFieldName: el.name,
+            enFieldLabel: this.getFieldLabel(el),
+            enFieldValue: value,
           });
         }
       }
@@ -208,9 +215,9 @@ export class DataLayer {
 
     this.dataLayer.push({
       event: "EN_FORM_VALUE_UPDATED",
-      field: el.name,
-      label: this.getFieldLabel(el),
-      value: value,
+      enFieldName: el.name,
+      enFieldLabel: this.getFieldLabel(el),
+      enFieldValue: value,
     });
   }
 

@@ -70,6 +70,14 @@ export class DataLayer {
                     });
                 }
             }
+            if (ENGrid.getPageCount() === ENGrid.getPageNumber()) {
+                this.dataLayer.push({
+                    event: "EN_SUBMISSION_SUCCESS_" + pageJson.pageType.toUpperCase(),
+                });
+                this.dataLayer.push({
+                    [`'EN_SUBMISSION_SUCCESS_${pageJson.pageType.toUpperCase()}'`]: "TRUE",
+                });
+            }
         }
         const urlParams = new URLSearchParams(window.location.search);
         urlParams.forEach((value, key) => {
@@ -85,10 +93,7 @@ export class DataLayer {
             const recurrValues = [...recurrFreqEls].map((el) => el.value);
             this.dataLayer.push({
                 event: "EN_RECURRING_FREQUENCIES",
-                frequencies: recurrValues,
-            });
-            this.dataLayer.push({
-                EN_RECURRING_FREQEUENCIES: recurrValues,
+                [`'EN_RECURRING_FREQEUENCIES'`]: recurrValues,
             });
         }
         this.attachEventListeners();
@@ -109,7 +114,7 @@ export class DataLayer {
         }
     }
     attachEventListeners() {
-        const textInputs = document.querySelectorAll(".en__component--advrow input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]), .en__component--advrow textarea");
+        const textInputs = document.querySelectorAll(".en__component--advrow input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]):not([type=hidden]):not([unhidden]), .en__component--advrow textarea");
         textInputs.forEach((el) => {
             el.addEventListener("blur", (e) => {
                 this.handleFieldValueChange(e.target);
@@ -141,18 +146,19 @@ export class DataLayer {
                     //Premium gift handling
                     this.dataLayer.push({
                         event: "EN_FORM_VALUE_UPDATED",
-                        field: el.name,
-                        label: "Premium Gift",
-                        value: (_b = (_a = el.closest(".en__pg__body")) === null || _a === void 0 ? void 0 : _a.querySelector(".en__pg__name")) === null || _b === void 0 ? void 0 : _b.textContent,
-                        productId: (_c = document.querySelector('[name="transaction.selprodvariantid"]')) === null || _c === void 0 ? void 0 : _c.value,
+                        enFieldName: el.name,
+                        enFieldLabel: "Premium Gift",
+                        enFieldValue: (_b = (_a = el
+                            .closest(".en__pg__body")) === null || _a === void 0 ? void 0 : _a.querySelector(".en__pg__name")) === null || _b === void 0 ? void 0 : _b.textContent,
+                        enProductId: (_c = document.querySelector('[name="transaction.selprodvariantid"]')) === null || _c === void 0 ? void 0 : _c.value,
                     });
                 }
                 else {
                     this.dataLayer.push({
                         event: "EN_FORM_VALUE_UPDATED",
-                        field: el.name,
-                        label: this.getFieldLabel(el),
-                        value: value,
+                        enFieldName: el.name,
+                        enFieldLabel: this.getFieldLabel(el),
+                        enFieldValue: value,
                     });
                 }
             }
@@ -160,9 +166,9 @@ export class DataLayer {
         }
         this.dataLayer.push({
             event: "EN_FORM_VALUE_UPDATED",
-            field: el.name,
-            label: this.getFieldLabel(el),
-            value: value,
+            enFieldName: el.name,
+            enFieldLabel: this.getFieldLabel(el),
+            enFieldValue: value,
         });
     }
     hash(value) {
