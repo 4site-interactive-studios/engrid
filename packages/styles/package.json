@@ -5,6 +5,7 @@
   "main": "./src/main.scss",
   "scripts": {
     "build": "sass src:dist --load-path=node_modules",
+    "watch": "nodemon -e scss -x \"npm run build\"",
     "postpublish": "git push origin --tags"
   },
   "keywords": [
@@ -25,6 +26,7 @@
   "homepage": "https://github.com/4site-interactive-studios/engrid-scripts#readme",
   "url": "https://github.com/4site-interactive-studios/engrid-scripts",
   "devDependencies": {
+    "nodemon": "^2.0.22",
     "sass": "^1.45.2"
   },
   "dependencies": {

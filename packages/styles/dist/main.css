@@ -5300,6 +5300,9 @@ body:not[data-engrid-show-ecard-options] .show-if-ecard {
 .en__component .en__field__error {
   color: var(--error__color);
   font-size: max(75%, 10px);
+  font-family: var(--p_font-family);
+  font-weight: var(--p_font-weight);
+  line-height: var(--p_line-height);
   order: 3;
 }
 
@@ -6168,6 +6171,12 @@ div[id^=nb-field-].nb-success input {
 [data-engrid-theme] .en__pg__detail {
   grid-area: en__pg__detail;
   padding: 0;
+}
+[data-engrid-theme] .en__pg__description {
+  font-family: var(--p_font-family);
+  font-size: var(--p_font-size);
+  font-weight: var(--p_font-weight);
+  line-height: var(--p_line-height);
 }
 [data-engrid-theme] .en__pg__name {
   margin-top: 0;

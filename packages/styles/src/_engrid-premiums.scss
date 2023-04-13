@@ -74,6 +74,13 @@
     padding: 0;
   }
 
+  .en__pg__description {
+    font-family: var(--p_font-family);
+    font-size: var(--p_font-size);
+    font-weight: var(--p_font-weight);
+    line-height: var(--p_line-height);
+  }
+
   .en__pg__name {
     margin-top: 0;
   }
