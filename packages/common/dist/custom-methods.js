@@ -507,6 +507,14 @@ export const watchGiveBySelectField = () => {
             }
             enFieldPaymentType.value = "applepay";
         }
+        else if (enFieldGiveBySelectCurrentValue &&
+            enFieldGiveBySelectCurrentValue.value.toLowerCase() == "digitalwallet") {
+            if (enGrid) {
+                removeClassesByPrefix(enGrid, prefix);
+                enGrid.classList.add("has-give-by-digitalwallet");
+            }
+            enFieldPaymentType.value = "digitalwallet";
+        }
         const event = new Event("change");
         enFieldPaymentType.dispatchEvent(event);
     };
@@ -545,6 +553,14 @@ export const watchGiveBySelectField = () => {
                 enGrid.classList.add("has-give-by-applepay");
             }
             enFieldPaymentType.value = "applepay";
+        }
+        else if (enFieldGiveBySelectCurrentValue &&
+            enFieldGiveBySelectCurrentValue.value.toLowerCase() == "digitalwallet") {
+            if (enGrid) {
+                removeClassesByPrefix(enGrid, prefix);
+                enGrid.classList.add("has-give-by-digitalwallet");
+            }
+            enFieldPaymentType.value = "digitalwallet";
         }
     }
     // Watch each Giving Frequency radio input for a change
