@@ -57,6 +57,7 @@ import {
   BrandingHtml,
   CountryDisable,
   PremiumGift,
+  DigitalWallets,
 } from "./";
 
 export class App extends ENGrid {
@@ -336,6 +337,11 @@ export class App extends ENGrid {
 
     // Premium Gift Features
     new PremiumGift();
+
+    // Digital Wallets Features
+    if (ENGrid.getPageType() === "DONATION") {
+      new DigitalWallets();
+    }
 
     // Data Layer Events
     new DataLayer();

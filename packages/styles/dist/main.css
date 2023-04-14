@@ -9441,6 +9441,7 @@ body:not([data-engrid-debug]) #debug-bar {
 #en__pagebuilder .giveBySelect-ACH,
 #en__pagebuilder .giveBySelect-Check,
 #en__pagebuilder .giveBySelect-Paypal,
+#en__pagebuilder .giveBySelect-digitalwallet,
 #en__pagebuilder [class*=engrid__supporter] {
   background-color: rgba(0, 0, 255, 0.1019607843) !important;
 }
@@ -9456,6 +9457,7 @@ body:not([data-engrid-debug]) #debug-bar {
 #en__pagebuilder .giveBySelect-ACH.pboAdvancedRow__preview .en__component--column,
 #en__pagebuilder .giveBySelect-Check.pboAdvancedRow__preview .en__component--column,
 #en__pagebuilder .giveBySelect-Paypal.pboAdvancedRow__preview .en__component--column,
+#en__pagebuilder .giveBySelect-digitalwallet.pboAdvancedRow__preview .en__component--column,
 #en__pagebuilder [class*=engrid__supporter].pboAdvancedRow__preview .en__component--column {
   outline-color: #0000ff !important;
   z-index: 1;
@@ -9472,6 +9474,7 @@ body:not([data-engrid-debug]) #debug-bar {
 #en__pagebuilder .giveBySelect-ACH .en__mandatory,
 #en__pagebuilder .giveBySelect-Check .en__mandatory,
 #en__pagebuilder .giveBySelect-Paypal .en__mandatory,
+#en__pagebuilder .giveBySelect-digitalwallet .en__mandatory,
 #en__pagebuilder [class*=engrid__supporter] .en__mandatory {
   outline: 5px solid #f12222;
 }
