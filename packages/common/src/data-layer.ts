@@ -13,11 +13,14 @@ export class DataLayer {
   private _form: EnForm = EnForm.getInstance();
 
   private excludedFields = [
+    // Credit Card
     "transaction.ccnumber",
     "transaction.ccexpire.delimiter",
     "transaction.ccexpire",
     "transaction.ccvv",
     "supporter.creditCardHolderName",
+
+    // Bank Account
     "supporter.bankAccountNumber",
     "supporter.bankAccountType",
     "transaction.bankname",
@@ -25,12 +28,24 @@ export class DataLayer {
   ];
 
   private hashedFields = [
+    // Supporter Address, Phone Numbers, and Address
     "supporter.emailAddress",
     "supporter.phoneNumber",
     "supporter.phoneNumber2",
     "supporter.address1",
     "supporter.address2",
-    "supporter.postcode",
+    "supporter.address3",
+
+    // In Honor/Memory Inform Email and Address
+    "transaction.infemail",
+    "transaction.infadd1",
+    "transaction.infadd2",
+    "transaction.infadd3",
+
+    // Billing Address
+    "supporter.billingAddress1",
+    "supporter.billingAddress2",
+    "supporter.billingAddress3",
   ];
 
   constructor() {
