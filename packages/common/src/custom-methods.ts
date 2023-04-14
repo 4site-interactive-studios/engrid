@@ -729,13 +729,23 @@ export const watchGiveBySelectField = () => {
       enFieldPaymentType.value = "applepay";
     } else if (
       enFieldGiveBySelectCurrentValue &&
-      enFieldGiveBySelectCurrentValue.value.toLowerCase() == "digitalwallet"
+      enFieldGiveBySelectCurrentValue.value.toLowerCase() ==
+        "stripedigitalwallet"
     ) {
       if (enGrid) {
         removeClassesByPrefix(enGrid, prefix);
-        enGrid.classList.add("has-give-by-digitalwallet");
+        enGrid.classList.add("has-give-by-stripedigitalwallet");
       }
-      enFieldPaymentType.value = "digitalwallet";
+      enFieldPaymentType.value = "stripedigitalwallet";
+    } else if (
+      enFieldGiveBySelectCurrentValue &&
+      enFieldGiveBySelectCurrentValue.value.toLowerCase() == "paypaltouch"
+    ) {
+      if (enGrid) {
+        removeClassesByPrefix(enGrid, prefix);
+        enGrid.classList.add("has-give-by-paypaltouch");
+      }
+      enFieldPaymentType.value = "paypaltouch";
     }
     const event = new Event("change");
     enFieldPaymentType.dispatchEvent(event);
@@ -803,13 +813,23 @@ export const watchGiveBySelectField = () => {
       enFieldPaymentType.value = "applepay";
     } else if (
       enFieldGiveBySelectCurrentValue &&
-      enFieldGiveBySelectCurrentValue.value.toLowerCase() == "digitalwallet"
+      enFieldGiveBySelectCurrentValue.value.toLowerCase() ==
+        "stripedigitalwallet"
     ) {
       if (enGrid) {
         removeClassesByPrefix(enGrid, prefix);
-        enGrid.classList.add("has-give-by-digitalwallet");
+        enGrid.classList.add("has-give-by-stripedigitalwallet");
       }
-      enFieldPaymentType.value = "digitalwallet";
+      enFieldPaymentType.value = "stripedigitalwallet";
+    } else if (
+      enFieldGiveBySelectCurrentValue &&
+      enFieldGiveBySelectCurrentValue.value.toLowerCase() == "paypaltouch"
+    ) {
+      if (enGrid) {
+        removeClassesByPrefix(enGrid, prefix);
+        enGrid.classList.add("has-give-by-paypaltouch");
+      }
+      enFieldPaymentType.value = "paypaltouch";
     }
   }
 
