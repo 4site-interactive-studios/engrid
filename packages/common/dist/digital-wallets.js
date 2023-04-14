@@ -2,8 +2,13 @@ import { ENGrid } from "./engrid";
 export class DigitalWallets {
     constructor() {
         //digital wallets not enabled.
-        if (!document.getElementById("en__digitalWallet"))
+        if (!document.getElementById("en__digitalWallet")) {
+            ENGrid.setBodyData("payment-type-option-apple-pay", "false");
+            ENGrid.setBodyData("payment-type-option-google-pay", "false");
+            ENGrid.setBodyData("payment-type-option-paypal-one-touch", "false");
+            ENGrid.setBodyData("payment-type-option-venmo", "false");
             return;
+        }
         // Add giveBySelect classes to the separate wallet containers
         // and hide them on load.
         const stripeButtons = document.getElementById("en__digitalWallet__stripeButtons__container");

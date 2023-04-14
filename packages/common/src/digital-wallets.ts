@@ -3,7 +3,13 @@ import { ENGrid } from "./engrid";
 export class DigitalWallets {
   constructor() {
     //digital wallets not enabled.
-    if (!document.getElementById("en__digitalWallet")) return;
+    if (!document.getElementById("en__digitalWallet")) {
+      ENGrid.setBodyData("payment-type-option-apple-pay", "false");
+      ENGrid.setBodyData("payment-type-option-google-pay", "false");
+      ENGrid.setBodyData("payment-type-option-paypal-one-touch", "false");
+      ENGrid.setBodyData("payment-type-option-venmo", "false");
+      return;
+    }
 
     // Add giveBySelect classes to the separate wallet containers
     // and hide them on load.

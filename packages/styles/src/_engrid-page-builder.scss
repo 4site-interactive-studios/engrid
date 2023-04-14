@@ -359,10 +359,11 @@
   }
 }
 
-// See _engrid-show-if-amounts.scss for corresponding styles
+// Style conditional "show if" content
 #en__pagebuilder,
 [data-engrid-debug] {
-  [class*="showifamount"] {
+  [class*="showif"],
+  [class*="hideif"] {
     background-color: #0000ff1a !important;
   }
 }
