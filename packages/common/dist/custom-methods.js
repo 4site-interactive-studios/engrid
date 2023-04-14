@@ -515,6 +515,23 @@ export const watchGiveBySelectField = () => {
             }
             enFieldPaymentType.value = "applepay";
         }
+        else if (enFieldGiveBySelectCurrentValue &&
+            enFieldGiveBySelectCurrentValue.value.toLowerCase() ==
+                "stripedigitalwallet") {
+            if (enGrid) {
+                removeClassesByPrefix(enGrid, prefix);
+                enGrid.classList.add("has-give-by-stripedigitalwallet");
+            }
+            enFieldPaymentType.value = "stripedigitalwallet";
+        }
+        else if (enFieldGiveBySelectCurrentValue &&
+            enFieldGiveBySelectCurrentValue.value.toLowerCase() == "paypaltouch") {
+            if (enGrid) {
+                removeClassesByPrefix(enGrid, prefix);
+                enGrid.classList.add("has-give-by-paypaltouch");
+            }
+            enFieldPaymentType.value = "paypaltouch";
+        }
         const event = new Event("change");
         enFieldPaymentType.dispatchEvent(event);
     };
@@ -569,6 +586,23 @@ export const watchGiveBySelectField = () => {
                 enGrid.classList.add("has-give-by-applepay");
             }
             enFieldPaymentType.value = "applepay";
+        }
+        else if (enFieldGiveBySelectCurrentValue &&
+            enFieldGiveBySelectCurrentValue.value.toLowerCase() ==
+                "stripedigitalwallet") {
+            if (enGrid) {
+                removeClassesByPrefix(enGrid, prefix);
+                enGrid.classList.add("has-give-by-stripedigitalwallet");
+            }
+            enFieldPaymentType.value = "stripedigitalwallet";
+        }
+        else if (enFieldGiveBySelectCurrentValue &&
+            enFieldGiveBySelectCurrentValue.value.toLowerCase() == "paypaltouch") {
+            if (enGrid) {
+                removeClassesByPrefix(enGrid, prefix);
+                enGrid.classList.add("has-give-by-paypaltouch");
+            }
+            enFieldPaymentType.value = "paypaltouch";
         }
     }
     // Watch each Giving Frequency radio input for a change
