@@ -83,21 +83,16 @@
     outline-style: solid;
   }
 
-  // Includes both upper and lower case scenarios for typical field values
-  .inmem-y,
-  .inmem-n,
-  .giveBySelect-card,
-  .giveBySelect-ach,
-  .giveBySelect-check,
-  .giveBySelect-paypal,
-  .inmem-Y,
-  .inmem-N,
-  .giveBySelect-Card,
-  .giveBySelect-ACH,
-  .giveBySelect-Check,
-  .giveBySelect-Paypal,
-  .giveBySelect-digitalwallet,
-  [class*="engrid__supporter"] {
+  [class*="inmem-y" i],
+  [class*="inmem-n" i],
+  [class*="giveBySelect-card" i],
+  [class*="giveBySelect-ach" i],
+  [class*="giveBySelect-check" i],
+  [class*="giveBySelect-paypal" i],
+  [class*="giveBySelect-stripedigitalwallet" i],
+  [class*="giveBySelect-paypaltouch" i],
+  [class*="giveBySelect-digitalwallet" i],
+  [class*="engrid__supporter" i] {
     background-color: #0000ff1a !important;
 
     &.pboAdvancedRow__preview .en__component--column {
