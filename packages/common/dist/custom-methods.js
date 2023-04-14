@@ -463,147 +463,75 @@ export const watchGiveBySelectField = () => {
     const enFieldPaymentType = document.querySelector("#en__field_transaction_paymenttype");
     let enFieldGiveBySelectCurrentValue = document.querySelector('input[name="transaction.giveBySelect"]:checked');
     const prefix = "has-give-by-";
-    const handleEnFieldGiveBySelect = (e) => {
+    /* prettier-ignore */
+    const handleEnFieldGiveBySelect = () => {
         enFieldGiveBySelectCurrentValue = document.querySelector('input[name="transaction.giveBySelect"]:checked');
         console.log("enFieldGiveBySelectCurrentValue:", enFieldGiveBySelectCurrentValue);
-        if (enFieldGiveBySelectCurrentValue &&
-            enFieldGiveBySelectCurrentValue.value.toLowerCase() == "card") {
+        // Give By Card
+        if (enFieldGiveBySelectCurrentValue && enFieldGiveBySelectCurrentValue.value.toLowerCase() == "card") {
             if (enGrid) {
                 removeClassesByPrefix(enGrid, prefix);
                 enGrid.classList.add("has-give-by-card");
             }
             // enFieldPaymentType.value = "card";
             handleCCUpdate();
+            // Give By ACH
         }
-        else if (enFieldGiveBySelectCurrentValue &&
-            enFieldGiveBySelectCurrentValue.value.toLowerCase() == "ach") {
+        else if (enFieldGiveBySelectCurrentValue && enFieldGiveBySelectCurrentValue.value.toLowerCase() == "ach") {
             if (enGrid) {
                 removeClassesByPrefix(enGrid, prefix);
                 enGrid.classList.add("has-give-by-ach");
             }
-            enFieldPaymentType.value = "ACH";
+            enFieldPaymentType.value = "ach";
+            // Give By Check
         }
-        else if (enFieldGiveBySelectCurrentValue &&
-            enFieldGiveBySelectCurrentValue.value.toLowerCase() == "check") {
+        else if (enFieldGiveBySelectCurrentValue && enFieldGiveBySelectCurrentValue.value.toLowerCase() == "check") {
             if (enGrid) {
                 removeClassesByPrefix(enGrid, prefix);
                 enGrid.classList.add("has-give-by-check");
             }
             enFieldPaymentType.value = "check";
+            // Give By PayPal
         }
-        else if (enFieldGiveBySelectCurrentValue &&
-            enFieldGiveBySelectCurrentValue.value.toLowerCase() == "paypal") {
+        else if (enFieldGiveBySelectCurrentValue && enFieldGiveBySelectCurrentValue.value.toLowerCase() == "paypal") {
             if (enGrid) {
                 removeClassesByPrefix(enGrid, prefix);
                 enGrid.classList.add("has-give-by-paypal");
             }
             enFieldPaymentType.value = "paypal";
+            // Give By Paypal One Touch or Venmo
         }
-        else if (enFieldGiveBySelectCurrentValue &&
-            enFieldGiveBySelectCurrentValue.value.toLowerCase() == "paypalvenmo") {
+        else if (enFieldGiveBySelectCurrentValue && enFieldGiveBySelectCurrentValue.value.toLowerCase() == "paypaltouch") {
             if (enGrid) {
                 removeClassesByPrefix(enGrid, prefix);
-                enGrid.classList.add("has-give-by-paypal-venmo");
+                enGrid.classList.add("has-give-by-paypaltouch");
             }
-            enFieldPaymentType.value = "paypal";
+            enFieldPaymentType.value = "paypaltouch";
+            // Give By Apple Pay via Vantiv
         }
-        else if (enFieldGiveBySelectCurrentValue &&
-            enFieldGiveBySelectCurrentValue.value.toLowerCase() == "applepay") {
+        else if (enFieldGiveBySelectCurrentValue && enFieldGiveBySelectCurrentValue.value.toLowerCase() == "applepay") {
             if (enGrid) {
                 removeClassesByPrefix(enGrid, prefix);
                 enGrid.classList.add("has-give-by-applepay");
             }
             enFieldPaymentType.value = "applepay";
+            // Give By Apple Pay or Google Pay via Stripe
         }
-        else if (enFieldGiveBySelectCurrentValue &&
-            enFieldGiveBySelectCurrentValue.value.toLowerCase() ==
-                "stripedigitalwallet") {
+        else if (enFieldGiveBySelectCurrentValue && enFieldGiveBySelectCurrentValue.value.toLowerCase() == "stripedigitalwallet") {
             if (enGrid) {
                 removeClassesByPrefix(enGrid, prefix);
                 enGrid.classList.add("has-give-by-stripedigitalwallet");
             }
             enFieldPaymentType.value = "stripedigitalwallet";
         }
-        else if (enFieldGiveBySelectCurrentValue &&
-            enFieldGiveBySelectCurrentValue.value.toLowerCase() == "paypaltouch") {
-            if (enGrid) {
-                removeClassesByPrefix(enGrid, prefix);
-                enGrid.classList.add("has-give-by-paypaltouch");
-            }
-            enFieldPaymentType.value = "paypaltouch";
-        }
+        ;
         const event = new Event("change");
         enFieldPaymentType.dispatchEvent(event);
     };
+    /* prettier-ignore */
     // Check Giving Frequency on page load
     if (enFieldGiveBySelect) {
-        enFieldGiveBySelectCurrentValue = document.querySelector('input[name="transaction.giveBySelect"]:checked');
-        if (enFieldGiveBySelectCurrentValue &&
-            enFieldGiveBySelectCurrentValue.value.toLowerCase() == "card") {
-            if (enGrid) {
-                removeClassesByPrefix(enGrid, prefix);
-                enGrid.classList.add("has-give-by-card");
-            }
-            // enFieldPaymentType.value = "card";
-            handleCCUpdate();
-        }
-        else if (enFieldGiveBySelectCurrentValue &&
-            enFieldGiveBySelectCurrentValue.value.toLowerCase() == "ach") {
-            if (enGrid) {
-                removeClassesByPrefix(enGrid, prefix);
-                enGrid.classList.add("has-give-by-check");
-            }
-            enFieldPaymentType.value = "ACH";
-        }
-        else if (enFieldGiveBySelectCurrentValue &&
-            enFieldGiveBySelectCurrentValue.value.toLowerCase() == "check") {
-            if (enGrid) {
-                removeClassesByPrefix(enGrid, prefix);
-                enGrid.classList.add("has-give-by-check");
-            }
-            enFieldPaymentType.value = "check";
-        }
-        else if (enFieldGiveBySelectCurrentValue &&
-            enFieldGiveBySelectCurrentValue.value.toLowerCase() == "paypal") {
-            if (enGrid) {
-                removeClassesByPrefix(enGrid, prefix);
-                enGrid.classList.add("has-give-by-paypal");
-            }
-            enFieldPaymentType.value = "paypal";
-        }
-        else if (enFieldGiveBySelectCurrentValue &&
-            enFieldGiveBySelectCurrentValue.value.toLowerCase() == "paypalvenmo") {
-            if (enGrid) {
-                removeClassesByPrefix(enGrid, prefix);
-                enGrid.classList.add("has-give-by-paypal-venmo");
-            }
-            enFieldPaymentType.value = "paypal";
-        }
-        else if (enFieldGiveBySelectCurrentValue &&
-            enFieldGiveBySelectCurrentValue.value.toLowerCase() == "applepay") {
-            if (enGrid) {
-                removeClassesByPrefix(enGrid, prefix);
-                enGrid.classList.add("has-give-by-applepay");
-            }
-            enFieldPaymentType.value = "applepay";
-        }
-        else if (enFieldGiveBySelectCurrentValue &&
-            enFieldGiveBySelectCurrentValue.value.toLowerCase() ==
-                "stripedigitalwallet") {
-            if (enGrid) {
-                removeClassesByPrefix(enGrid, prefix);
-                enGrid.classList.add("has-give-by-stripedigitalwallet");
-            }
-            enFieldPaymentType.value = "stripedigitalwallet";
-        }
-        else if (enFieldGiveBySelectCurrentValue &&
-            enFieldGiveBySelectCurrentValue.value.toLowerCase() == "paypaltouch") {
-            if (enGrid) {
-                removeClassesByPrefix(enGrid, prefix);
-                enGrid.classList.add("has-give-by-paypaltouch");
-            }
-            enFieldPaymentType.value = "paypaltouch";
-        }
+        handleEnFieldGiveBySelect();
     }
     // Watch each Giving Frequency radio input for a change
     if (transactionGiveBySelect) {
