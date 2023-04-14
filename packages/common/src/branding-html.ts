@@ -7,22 +7,22 @@ export class BrandingHtml {
     "https://cdn.jsdelivr.net/gh/4site-interactive-studios/engrid-scripts@main/reference-materials/html/brand-guide-markup/";
 
   private brandingHtmlFiles: string[] = [
-    "click-to-call.html",
-    "donation-page.html",
-    "ecards.html",
-    "ecommerce.html",
-    "email-to-target.html",
-    "en-common-fields-with-errors.html",
-    "en-common-fields-with-fancy-errors.html",
-    "en-common-fields.html",
-    "event.html",
     "html5-tags.html",
-    "membership.html",
-    "petition.html",
-    "premium-donation.html",
-    "styles.html",
+    "en-common-fields.html",
     "survey.html",
+    // "en-common-fields-with-errors.html",
+    // "en-common-fields-with-fancy-errors.html",
+    "donation-page.html",
+    "premium-donation.html",
+    "ecards.html",
+    "email-to-target.html",
     "tweet-to-target.html",
+    // "click-to-call.html",
+    "petition.html",
+    "event.html",
+    // "ecommerce.html",
+    // "membership.html",
+    "styles.html",
   ];
 
   private bodyMain: HTMLElement | null = document.querySelector(".body-main");

@@ -2445,6 +2445,7 @@ a:focus, a:hover {
   --select_border-radius: var(--input_border-radius);
   --select_box-shadow: var(--input_box-shadow);
   --select_padding: var(--input_padding);
+  --select_padding-right: 2.4ch;
   --select_box-shadow_hover: var(--input_box-shadow_hover);
   --textarea_font-family: var(--input_font-family);
   --textarea_font-size: var(--input_font-size);
@@ -3056,7 +3057,7 @@ select.en__field__input--tripleselect {
   transition: box-shadow 0.25s, border-color 0.25s ease-in-out;
   border-style: solid;
   appearance: none;
-  padding-right: 2.4ch;
+  padding-right: var(--select_padding-right);
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'><polygon points='0,0 32,0 16,24' style='fill: rgb(0, 0, 0)'></polygon></svg>");
   background-origin: content-box;
   background-position: calc(100% + 1.2ch + 0.1875rem) center;
