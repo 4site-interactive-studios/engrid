@@ -44,6 +44,15 @@ export class MinMaxAmount {
     // Disable Submit Button if the amount is not valid
     liveValidate() {
         const amount = ENGrid.cleanAmount(this._amount.amount.toString());
+        const activeElement = document.activeElement;
+        if (activeElement &&
+            activeElement.tagName === "INPUT" &&
+            "name" in activeElement &&
+            activeElement.name === "transaction.donationAmt.other" &&
+            amount === 0) {
+            // Don't validate if the other amount has focus and the amount is 0
+            return;
+        }
         this.logger.log(`Amount: ${amount}`);
         if (amount < this.minAmount) {
             this.logger.log("Amount is less than min amount: " + this.minAmount);
