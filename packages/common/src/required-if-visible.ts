@@ -43,7 +43,7 @@ export class RequiredIfVisible {
         if (ENGrid.isVisible(field)) {
           this.logger.log(`${field.getAttribute("class")} is visible`);
           const fieldElement = field.querySelector(
-            "input, select, textarea"
+            "input:not([type=hidden]) , select, textarea"
           ) as HTMLElement;
           if (
             fieldElement &&
