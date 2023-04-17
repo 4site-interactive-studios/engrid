@@ -1,7 +1,14 @@
 [data-engrid-theme] {
+  #en__digitalWallet,
+  .en__digitalWallet__container {
+    max-width: 100% !important;
+  }
+
   #en__digitalWallet {
     flex-basis: 100%;
     padding: 0;
+    font-size: var(--submit__button_font-size);
+    // flex-direction: column;
 
     > div[style]:not([class]) {
       flex-basis: 0 !important;
@@ -10,38 +17,48 @@
     .en__digitalWallet__button {
       display: inline-block;
       width: auto !important;
-      flex-basis: 50%;
+      flex-basis: 100%;
       flex-grow: 1;
       height: auto;
-
-      .en__digitalWallet__container {
-        width: 100%;
-        margin-bottom: 0;
-        margin-top: calc(var(--fields_spacing-inline) * 0.5);
-        margin-bottom: var(--fields_spacing-block);
-        padding-left: var(--fields_spacing-inline);
-        padding-right: var(--fields_spacing-inline);
-      }
     }
+
+    .en__digitalWallet__container {
+      width: 100%;
+      padding-right: 0;
+      padding-left: 0;
+      margin-bottom: 14px !important; // The digital wallets adds their own inline styles we need to overwrite
+    }
+  }
+
+  &[conditonally-hide-show-digital-wallet-elements]
+    #en__digitalWallet
+    .en__digitalWallet__container {
+    padding-right: var(--fields_spacing-inline);
+    padding-left: var(--fields_spacing-inline);
+    padding-top: 0; //var(--submit__button_padding-top)
+    padding-bottom: 0; // var(--submit__button_padding-bottom)
+    max-width: 100% !important; // The digital wallets adds their own inline styles we need to overwrite
+    margin-top: 2rem !important; // The digital wallets adds their own inline styles we need to overwrite
+    margin-bottom: 1rem !important; // The digital wallets adds their own inline styles we need to overwrite
   }
 
   /* prettier-ignore */
   &:not(#en__pagebuilder):not([data-engrid-debug])[conditonally-hide-show-digital-wallet-elements]{
 
-    // Show If
-    &:not([data-engrid-payment-type-option-apple-pay="true"]) .showif-apple-pay-available,
-    &:not([data-engrid-payment-type-option-google-pay="true"]) .showif-google-pay-available,
-    &:not([data-engrid-payment-type-option-paypal-one-touch="true"]) .showif-paypal-one-touch-available,
-    &:not([data-engrid-payment-type-option-venmo="true"]) .showif-venmo-available,
-    &:not([data-engrid-payment-type="stripedigitalwallet"]) .showif-stripedigitalwallet-selected,
-    &:not([data-engrid-payment-type="paypaltouch"]) .showif-paypaltouch-selected {
-      display: none;
-    }
+      // Show If
+      &:not([data-engrid-payment-type-option-apple-pay="true"]) .showif-apple-pay-available,
+      &:not([data-engrid-payment-type-option-google-pay="true"]) .showif-google-pay-available,
+      &:not([data-engrid-payment-type-option-paypal-one-touch="true"]) .showif-paypal-one-touch-available,
+      &:not([data-engrid-payment-type-option-venmo="true"]) .showif-venmo-available,
+      &:not([data-engrid-payment-type="stripedigitalwallet"]) .showif-stripedigitalwallet-selected,
+      &:not([data-engrid-payment-type="paypaltouch"]) .showif-paypaltouch-selected {
+        display: none;
+      }
 
-    // Hide If
-    &[data-engrid-payment-type="stripedigitalwallet"] .hideif-stripedigitalwallet-selected,
-    &[data-engrid-payment-type="paypaltouch"] .hideif-paypaltouch-selected {
-      display: none;
-    }
+      // Hide If
+      &[data-engrid-payment-type="stripedigitalwallet"] .hideif-stripedigitalwallet-selected,
+      &[data-engrid-payment-type="paypaltouch"] .hideif-paypaltouch-selected {
+        display: none;
+      }
   }
 }

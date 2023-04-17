@@ -1,7 +1,7 @@
 [data-engrid-theme] {
   --premium__border-width: 0;
   --premium__border-color: none;
-  --premium__border-radius: 0;
+  --premium__border-radius: var(--input_border-radius);
   --premium__background-color: initial;
   --premium__item_background-color: initial;
   --premium__image_max-width: 125px;
@@ -33,7 +33,6 @@
   .en__pg {
     border-width: var(--premium__border-width);
     border-color: var(--premium__border-color);
-    border-radius: var(--premium__border-radius);
     cursor: pointer;
 
     .en__pg__body {
@@ -52,6 +51,7 @@
       padding-left: calc(var(--fields_spacing-inline) * 2);
       border-radius: var(--fields_border-radius);
       background-color: var(--premium__item_background-color);
+      border-radius: var(--premium__border-radius);
     }
   }
 

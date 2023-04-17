@@ -4305,9 +4305,14 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) .i11-hide-label .en__field:n
 [data-engrid-theme] {
   /* prettier-ignore */
 }
+[data-engrid-theme] #en__digitalWallet,
+[data-engrid-theme] .en__digitalWallet__container {
+  max-width: 100% !important;
+}
 [data-engrid-theme] #en__digitalWallet {
   flex-basis: 100%;
   padding: 0;
+  font-size: var(--submit__button_font-size);
 }
 [data-engrid-theme] #en__digitalWallet > div[style]:not([class]) {
   flex-basis: 0 !important;
@@ -4315,17 +4320,24 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) .i11-hide-label .en__field:n
 [data-engrid-theme] #en__digitalWallet .en__digitalWallet__button {
   display: inline-block;
   width: auto !important;
-  flex-basis: 50%;
+  flex-basis: 100%;
   flex-grow: 1;
   height: auto;
 }
-[data-engrid-theme] #en__digitalWallet .en__digitalWallet__button .en__digitalWallet__container {
+[data-engrid-theme] #en__digitalWallet .en__digitalWallet__container {
   width: 100%;
-  margin-bottom: 0;
-  margin-top: calc(var(--fields_spacing-inline) * 0.5);
-  margin-bottom: var(--fields_spacing-block);
-  padding-left: var(--fields_spacing-inline);
+  padding-right: 0;
+  padding-left: 0;
+  margin-bottom: 14px !important;
+}
+[data-engrid-theme][conditonally-hide-show-digital-wallet-elements] #en__digitalWallet .en__digitalWallet__container {
   padding-right: var(--fields_spacing-inline);
+  padding-left: var(--fields_spacing-inline);
+  padding-top: 0;
+  padding-bottom: 0;
+  max-width: 100% !important;
+  margin-top: 2rem !important;
+  margin-bottom: 1rem !important;
 }
 [data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug])[conditonally-hide-show-digital-wallet-elements]:not([data-engrid-payment-type-option-apple-pay=true]) .showif-apple-pay-available, [data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug])[conditonally-hide-show-digital-wallet-elements]:not([data-engrid-payment-type-option-google-pay=true]) .showif-google-pay-available, [data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug])[conditonally-hide-show-digital-wallet-elements]:not([data-engrid-payment-type-option-paypal-one-touch=true]) .showif-paypal-one-touch-available, [data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug])[conditonally-hide-show-digital-wallet-elements]:not([data-engrid-payment-type-option-venmo=true]) .showif-venmo-available, [data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug])[conditonally-hide-show-digital-wallet-elements]:not([data-engrid-payment-type=stripedigitalwallet]) .showif-stripedigitalwallet-selected, [data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug])[conditonally-hide-show-digital-wallet-elements]:not([data-engrid-payment-type=paypaltouch]) .showif-paypaltouch-selected {
   display: none;
@@ -6121,7 +6133,7 @@ div[id^=nb-field-].nb-success input {
 [data-engrid-theme] {
   --premium__border-width: 0;
   --premium__border-color: none;
-  --premium__border-radius: 0;
+  --premium__border-radius: var(--input_border-radius);
   --premium__background-color: initial;
   --premium__item_background-color: initial;
   --premium__image_max-width: 125px;
@@ -6151,7 +6163,6 @@ div[id^=nb-field-].nb-success input {
 [data-engrid-theme] .en__pg {
   border-width: var(--premium__border-width);
   border-color: var(--premium__border-color);
-  border-radius: var(--premium__border-radius);
   cursor: pointer;
 }
 [data-engrid-theme] .en__pg .en__pg__body {
@@ -6170,6 +6181,7 @@ div[id^=nb-field-].nb-success input {
   padding-left: calc(var(--fields_spacing-inline) * 2);
   border-radius: var(--fields_border-radius);
   background-color: var(--premium__item_background-color);
+  border-radius: var(--premium__border-radius);
 }
 [data-engrid-theme] .en__pg__select {
   align-self: center;
