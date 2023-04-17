@@ -62,10 +62,13 @@ export class PremiumGift {
     if (premiumGift) {
       const premiumGiftValue = premiumGift.value;
       this.logger.log("Premium Gift Value: " + premiumGiftValue);
+      const premiumGiftContainer = premiumGift.closest(
+        ".en__pg"
+      ) as HTMLElement;
       if (premiumGiftValue !== "0") {
-        const premiumGiftName = premiumGift
-          .closest(".en__pg__body")
-          ?.querySelector(".en__pg__name") as HTMLHeadingElement;
+        const premiumGiftName = premiumGiftContainer.querySelector(
+          ".en__pg__name"
+        ) as HTMLHeadingElement;
         ENGrid.setBodyData("premium-gift-maximize", "false");
         ENGrid.setBodyData(
           "premium-gift-name",
@@ -76,6 +79,15 @@ export class PremiumGift {
         ENGrid.setBodyData("premium-gift-maximize", "true");
         ENGrid.setBodyData("premium-gift-name", false);
         this.setPremiumTitle("");
+      }
+      if (!premiumGiftContainer.classList.contains("en__pg--selected")) {
+        const checkedPremiumGift = document.querySelector(
+          ".en__pg--selected"
+        ) as HTMLElement;
+        if (checkedPremiumGift) {
+          checkedPremiumGift.classList.remove("en__pg--selected");
+        }
+        premiumGiftContainer.classList.add("en__pg--selected");
       }
     }
   }

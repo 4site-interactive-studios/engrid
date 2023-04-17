@@ -44,14 +44,13 @@ export class PremiumGift {
         });
     }
     checkPremiumGift() {
-        var _a;
         const premiumGift = document.querySelector('[name="en__pg"]:checked');
         if (premiumGift) {
             const premiumGiftValue = premiumGift.value;
             this.logger.log("Premium Gift Value: " + premiumGiftValue);
+            const premiumGiftContainer = premiumGift.closest(".en__pg");
             if (premiumGiftValue !== "0") {
-                const premiumGiftName = (_a = premiumGift
-                    .closest(".en__pg__body")) === null || _a === void 0 ? void 0 : _a.querySelector(".en__pg__name");
+                const premiumGiftName = premiumGiftContainer.querySelector(".en__pg__name");
                 ENGrid.setBodyData("premium-gift-maximize", "false");
                 ENGrid.setBodyData("premium-gift-name", ENGrid.slugify(premiumGiftName.innerText));
                 this.setPremiumTitle(premiumGiftName.innerText);
@@ -60,6 +59,13 @@ export class PremiumGift {
                 ENGrid.setBodyData("premium-gift-maximize", "true");
                 ENGrid.setBodyData("premium-gift-name", false);
                 this.setPremiumTitle("");
+            }
+            if (!premiumGiftContainer.classList.contains("en__pg--selected")) {
+                const checkedPremiumGift = document.querySelector(".en__pg--selected");
+                if (checkedPremiumGift) {
+                    checkedPremiumGift.classList.remove("en__pg--selected");
+                }
+                premiumGiftContainer.classList.add("en__pg--selected");
             }
         }
     }
