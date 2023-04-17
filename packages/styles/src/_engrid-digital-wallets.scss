@@ -2,7 +2,6 @@
   #en__digitalWallet {
     flex-basis: 100%;
     padding: 0;
-    margin-bottom: var(--fields_spacing-block);
 
     > div[style]:not([class]) {
       flex-basis: 0 !important;
@@ -11,17 +10,17 @@
     .en__digitalWallet__button {
       display: inline-block;
       width: auto !important;
-      padding-left: var(--fields_spacing-inline);
-      padding-right: var(--fields_spacing-inline);
       flex-basis: 50%;
       flex-grow: 1;
-      margin-bottom: var(--fields_spacing-block);
-      margin-top: calc(var(--fields_spacing-inline) * 0.5);
       height: auto;
 
       .en__digitalWallet__container {
         width: 100%;
         margin-bottom: 0;
+        margin-top: calc(var(--fields_spacing-inline) * 0.5);
+        margin-bottom: var(--fields_spacing-block);
+        padding-left: var(--fields_spacing-inline);
+        padding-right: var(--fields_spacing-inline);
       }
     }
   }
@@ -36,7 +35,7 @@
     &:not([data-engrid-payment-type-option-venmo="true"]) .showif-venmo-available{
       display: none;
     }
-    
+
     // Hide If
     &[data-engrid-payment-type="stripedigitalwallet"] .hideif-stripedigitalwallet-selected,
     &[data-engrid-payment-type="paypaltouch"] .hideif-paypaltouch-selected {

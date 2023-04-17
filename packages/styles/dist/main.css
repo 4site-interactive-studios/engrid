@@ -4308,7 +4308,6 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) .i11-hide-label .en__field:n
 [data-engrid-theme] #en__digitalWallet {
   flex-basis: 100%;
   padding: 0;
-  margin-bottom: var(--fields_spacing-block);
 }
 [data-engrid-theme] #en__digitalWallet > div[style]:not([class]) {
   flex-basis: 0 !important;
@@ -4316,17 +4315,17 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) .i11-hide-label .en__field:n
 [data-engrid-theme] #en__digitalWallet .en__digitalWallet__button {
   display: inline-block;
   width: auto !important;
-  padding-left: var(--fields_spacing-inline);
-  padding-right: var(--fields_spacing-inline);
   flex-basis: 50%;
   flex-grow: 1;
-  margin-bottom: var(--fields_spacing-block);
-  margin-top: calc(var(--fields_spacing-inline) * 0.5);
   height: auto;
 }
 [data-engrid-theme] #en__digitalWallet .en__digitalWallet__button .en__digitalWallet__container {
   width: 100%;
   margin-bottom: 0;
+  margin-top: calc(var(--fields_spacing-inline) * 0.5);
+  margin-bottom: var(--fields_spacing-block);
+  padding-left: var(--fields_spacing-inline);
+  padding-right: var(--fields_spacing-inline);
 }
 [data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug]):not([data-engrid-payment-type-option-apple-pay=true]) .showif-apple-pay-available, [data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug]):not([data-engrid-payment-type-option-google-pay=true]) .showif-google-pay-available, [data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug]):not([data-engrid-payment-type-option-paypal-one-touch=true]) .showif-paypal-one-touch-available, [data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug]):not([data-engrid-payment-type-option-venmo=true]) .showif-venmo-available {
   display: none;
