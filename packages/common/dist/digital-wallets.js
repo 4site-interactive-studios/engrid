@@ -14,12 +14,14 @@ export class DigitalWallets {
         const stripeButtons = document.getElementById("en__digitalWallet__stripeButtons__container");
         if (stripeButtons) {
             stripeButtons.classList.add("giveBySelect-stripedigitalwallet");
-            stripeButtons.style.display = "none";
+            stripeButtons.classList.add("showif-stripedigitalwallet-selected");
+            // stripeButtons.style.display = "none";
         }
         const paypalTouchButtons = document.getElementById("en__digitalWallet__paypalTouch__container");
         if (paypalTouchButtons) {
             paypalTouchButtons.classList.add("giveBySelect-paypaltouch");
-            paypalTouchButtons.style.display = "none";
+            paypalTouchButtons.classList.add("showif-paypaltouch-selected");
+            // paypalTouchButtons.style.display = "none";
         }
         /**
          * Check for presence of elements that indicated Stripe digital wallets
