@@ -16,7 +16,9 @@ export class TranslateFields {
     this.options = TranslateOptionsDefaults;
     if (options) {
       for (let key in options) {
-        this.options[key] = [...this.options[key], ...options[key]];
+        this.options[key] = this.options[key]
+          ? [...this.options[key], ...options[key]]
+          : options[key];
       }
     }
     if (this.countrySelect) {
