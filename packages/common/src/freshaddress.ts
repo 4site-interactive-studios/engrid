@@ -100,7 +100,12 @@ export class FreshAddress {
     if (!this.options) return;
     // Add event listeners to fields
     this.emailField?.addEventListener("change", () => {
-      if (!this.shouldRun) {
+      if (
+        !this.shouldRun ||
+        this.emailField?.value.includes("@4sitestudios.com")
+      ) {
+        ENGrid.removeError(this.emailWrapper);
+        this.writeToFields("Valid", "Skipped");
         this.logger.log("Skipping E-mail Validation");
         return;
       }

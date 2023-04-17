@@ -79,12 +79,15 @@ export class FreshAddress {
             return;
         // Add event listeners to fields
         (_a = this.emailField) === null || _a === void 0 ? void 0 : _a.addEventListener("change", () => {
-            var _a;
-            if (!this.shouldRun) {
+            var _a, _b;
+            if (!this.shouldRun ||
+                ((_a = this.emailField) === null || _a === void 0 ? void 0 : _a.value.includes("@4sitestudios.com"))) {
+                ENGrid.removeError(this.emailWrapper);
+                this.writeToFields("Valid", "Skipped");
                 this.logger.log("Skipping E-mail Validation");
                 return;
             }
-            this.logger.log("Validating " + ((_a = this.emailField) === null || _a === void 0 ? void 0 : _a.value));
+            this.logger.log("Validating " + ((_b = this.emailField) === null || _b === void 0 ? void 0 : _b.value));
             this.callAPI();
         });
         // Add event listener to submit
