@@ -61,6 +61,11 @@
   background-color: var(--error__color_faded);
 }
 
+[class*="validationFail"]:not(.has-value):not(.has-focus) select {
+  color: var(--error__color);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'><polygon points='0,0 32,0 16,24' style='fill: rgb(255, 83, 10)'></polygon></svg>");
+}
+
 .en__field--radio[class*="validationFail"]
   .en__field--checkbox[class*="validationFail"] {
   border-color: var(--error__color);
