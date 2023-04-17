@@ -4330,6 +4330,9 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) .i11-hide-label .en__field:n
   padding-left: 0;
   margin-bottom: 14px !important;
 }
+[data-engrid-theme] #en__digitalWallet .en__digitalWallet__container iframe {
+  min-height: 22px !important;
+}
 [data-engrid-theme][conditonally-hide-show-digital-wallet-elements] #en__digitalWallet .en__digitalWallet__container {
   padding-right: var(--fields_spacing-inline);
   padding-left: var(--fields_spacing-inline);

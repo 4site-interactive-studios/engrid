@@ -27,6 +27,10 @@
       padding-right: 0;
       padding-left: 0;
       margin-bottom: 14px !important; // The digital wallets adds their own inline styles we need to overwrite
+
+      iframe {
+        min-height: 22px !important;
+      }
     }
   }
 
