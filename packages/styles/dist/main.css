@@ -3028,6 +3028,12 @@ input.en__contactDetails__select {
   outline-offset: calc(max(var(--fields_spacing-inline), var(--fields_spacing-block)) - 3px);
 }
 
+.en__field--radio[class*=en__field--NOT_TAGGED_] .en__field__element,
+.en__field--checkbox[class*=en__field--NOT_TAGGED_] .en__field__element {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 /************************************
  * Select Fields
  ***********************************/

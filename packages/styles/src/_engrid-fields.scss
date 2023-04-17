@@ -712,6 +712,12 @@ input.en__contactDetails__select {
   );
 }
 
+.en__field--radio[class*="en__field--NOT_TAGGED_"] .en__field__element,
+.en__field--checkbox[class*="en__field--NOT_TAGGED_"] .en__field__element {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 /************************************
  * Select Fields
  ***********************************/
