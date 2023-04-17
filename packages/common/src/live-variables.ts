@@ -34,8 +34,8 @@ export class LiveVariables {
       this.changeSubmitButton()
     );
 
-    this._form.onSubmit.subscribe(() => this.loadingSubmitButton());
-    this._form.onError.subscribe(() => this.changeSubmitButton());
+    this._form.onSubmit.subscribe(() => ENGrid.disableSubmit("Processing..."));
+    this._form.onError.subscribe(() => ENGrid.enableSubmit());
 
     // Watch the monthly-upsell links
     document.addEventListener("click", (e: Event) => {
@@ -108,23 +108,6 @@ export class LiveVariables {
     if (submit && label) {
       submit.innerHTML = label;
     }
-  }
-  public loadingSubmitButton() {
-    const submit = document.querySelector(
-      ".en__submit button"
-    ) as HTMLButtonElement;
-    // Don't add the Loading element if the button is from an Ajax form (like the supporter hub)
-    if (submit.closest(".en__hubOverlay") !== null) {
-      return true;
-    }
-    let submitButtonOriginalHTML = submit.innerHTML;
-    let submitButtonProcessingHTML =
-      "<span class='loader-wrapper'><span class='loader loader-quart'></span><span class='submit-button-text-wrapper'>" +
-      submitButtonOriginalHTML +
-      "</span></span>";
-    submitButtonOriginalHTML = submit.innerHTML;
-    submit.innerHTML = submitButtonProcessingHTML;
-    return true;
   }
 
   public changeLiveAmount() {

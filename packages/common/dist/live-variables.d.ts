@@ -13,7 +13,6 @@ export declare class LiveVariables {
     private getUpsellAmountTxt;
     private getUpsellAmountRaw;
     changeSubmitButton(): void;
-    loadingSubmitButton(): boolean;
     changeLiveAmount(): void;
     changeLiveUpsellAmount(): void;
     changeLiveFrequency(): void;

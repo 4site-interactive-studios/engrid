@@ -374,7 +374,7 @@ export abstract class ENGrid {
     ) as HTMLButtonElement;
     if (submit.dataset.originalText) {
       submit.disabled = false;
-      submit.innerText = submit.dataset.originalText;
+      submit.innerHTML = submit.dataset.originalText;
       delete submit.dataset.originalText;
       return true;
     }

@@ -321,7 +321,7 @@ export class ENGrid {
         const submit = document.querySelector(".en__submit button");
         if (submit.dataset.originalText) {
             submit.disabled = false;
-            submit.innerText = submit.dataset.originalText;
+            submit.innerHTML = submit.dataset.originalText;
             delete submit.dataset.originalText;
             return true;
         }
