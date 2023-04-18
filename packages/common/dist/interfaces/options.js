@@ -29,6 +29,7 @@ export const OptionsDefaults = {
     TidyContact: false,
     RegionLongFormat: "",
     CountryDisable: [],
+    MobileCTA: false,
     PageLayouts: [
         "leftleft1col",
         "centerleft1col",

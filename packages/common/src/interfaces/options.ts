@@ -79,6 +79,12 @@ export interface Options {
         phone_date_field?: string; // TidyContact Date
         phone_status_field?: string; // TidyContact Status
       };
+  MobileCTA?:
+    | false
+    | {
+        label?: string;
+        pages?: string[];
+      };
   PageLayouts?: string[];
   CountryDisable?: string[];
   onLoad?: () => void;
@@ -119,6 +125,7 @@ export const OptionsDefaults: Options = {
   TidyContact: false,
   RegionLongFormat: "",
   CountryDisable: [],
+  MobileCTA: false,
   PageLayouts: [
     "leftleft1col",
     "centerleft1col",

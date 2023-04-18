@@ -70,9 +70,7 @@ button.en__eventOccurrence__select {
   margin: 0 0 1rem 0;
   padding: var(--button_padding);
   text-transform: var(--button_text-transform);
-  -webkit-appearance: none;
-  -webkit-transition: background-color 0.2s ease-out, color 0.2s ease-out,
-    border-color 0.2s ease-out;
+  appearance: none;
   transition: background-color 0.2s ease-out, color 0.2s ease-out,
     border-color 0.2s ease-out;
   text-align: center;
@@ -108,7 +106,7 @@ a.button {
 .en__submit {
   width: 100%;
 }
-
+button.primary,
 .en__submit button,
 .en__submit .button,
 .pseduo__en__submit_button {
@@ -135,16 +133,6 @@ a.button {
     background-color: var(--submit__button_background-color_checked);
     border-color: var(--submit__button_border-color_checked);
   }
-}
-
-// @TODO The "primary" styling might no longer be needed
-button.primary:hover,
-button.primary:focus,
-.button.primary:hover,
-.button.primary:focus {
-  color: var(--button_color_checked);
-  background-color: var(--button_background-color_checked);
-  border-color: var(--button_border-color_checked);
 }
 
 .arrow .en__submit button::after,

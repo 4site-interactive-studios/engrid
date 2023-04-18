@@ -53,5 +53,6 @@ export * from "./branding-html";
 export * from "./country-disable";
 export * from "./premium-gift";
 export * from "./digital-wallets";
+export * from "./mobile-cta";
 export * from "./events";
 export * from "./version";

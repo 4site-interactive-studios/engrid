@@ -3545,8 +3545,7 @@ button.en__eventOccurrence__select {
   margin: 0 0 1rem 0;
   padding: var(--button_padding);
   text-transform: var(--button_text-transform);
-  -webkit-appearance: none;
-  -webkit-transition: background-color 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out;
+  appearance: none;
   transition: background-color 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out;
   text-align: center;
 }
@@ -3596,6 +3595,7 @@ a.button:focus, a.button:hover, a.button:active, a.button.active {
   width: 100%;
 }
 
+button.primary,
 .en__submit button,
 .en__submit .button,
 .pseduo__en__submit_button {
@@ -3610,7 +3610,9 @@ a.button:focus, a.button:hover, a.button:active, a.button.active {
   width: 100%;
   max-width: var(--submit__button_max-width);
 }
-.en__submit button:focus, .en__submit button:hover,
+button.primary:focus, button.primary:hover,
+.en__submit button:focus,
+.en__submit button:hover,
 .en__submit .button:focus,
 .en__submit .button:hover,
 .pseduo__en__submit_button:focus,
@@ -3619,21 +3621,13 @@ a.button:focus, a.button:hover, a.button:active, a.button.active {
   background-color: var(--submit__button_background-color_hover);
   border-color: var(--submit__button_border-color_hover);
 }
+button.primary:active,
 .en__submit button:active,
 .en__submit .button:active,
 .pseduo__en__submit_button:active {
   color: var(--submit__button_color_checked);
   background-color: var(--submit__button_background-color_checked);
   border-color: var(--submit__button_border-color_checked);
-}
-
-button.primary:hover,
-button.primary:focus,
-.button.primary:hover,
-.button.primary:focus {
-  color: var(--button_color_checked);
-  background-color: var(--button_background-color_checked);
-  border-color: var(--button_border-color_checked);
 }
 
 .arrow .en__submit button::after,
@@ -6727,6 +6721,28 @@ body:not(#en__pagebuilder):not([data-engrid-debug]):not([data-engrid-merge-tags-
 
 .en__ticket__currency__hidden {
   display: none;
+}
+
+.engrid-mobile-cta-container {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  padding: 10px 0;
+  text-align: center;
+}
+.engrid-mobile-cta-container .primary {
+  display: inline-block;
+  width: 80%;
+  margin: 0 10px;
+  box-sizing: content-box;
+}
+@media screen and (max-width: 767px) {
+  .engrid-mobile-cta-container {
+    display: block;
+  }
 }
 
 /* ENGRID LAYOUTS */

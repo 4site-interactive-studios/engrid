@@ -58,6 +58,7 @@ import {
   CountryDisable,
   PremiumGift,
   DigitalWallets,
+  MobileCTA,
 } from "./";
 
 export class App extends ENGrid {
@@ -345,6 +346,9 @@ export class App extends ENGrid {
 
     // Data Layer Events
     new DataLayer();
+
+    // Mobile CTA
+    new MobileCTA();
 
     this.setDataAttributes();
 

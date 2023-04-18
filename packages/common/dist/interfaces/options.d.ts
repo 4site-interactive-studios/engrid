@@ -73,6 +73,10 @@ export interface Options {
         phone_date_field?: string;
         phone_status_field?: string;
     };
+    MobileCTA?: false | {
+        label?: string;
+        pages?: string[];
+    };
     PageLayouts?: string[];
     CountryDisable?: string[];
     onLoad?: () => void;
