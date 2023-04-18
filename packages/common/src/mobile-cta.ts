@@ -39,7 +39,7 @@ export class MobileCTA {
   }
   private addEventListeners() {
     const formBlock = document.querySelector(
-      ".en__component--formblock"
+      ".body-main, .en__component--formblock"
     ) as HTMLElement;
     // When the form block is scrolled into view, hide the button
     window.addEventListener("scroll", () => {

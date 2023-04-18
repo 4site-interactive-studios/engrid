@@ -30,7 +30,7 @@ export class MobileCTA {
             engridDiv.appendChild(buttonContainer);
     }
     addEventListeners() {
-        const formBlock = document.querySelector(".en__component--formblock");
+        const formBlock = document.querySelector(".body-main, .en__component--formblock");
         // When the form block is scrolled into view, hide the button
         window.addEventListener("scroll", () => {
             if (formBlock.getBoundingClientRect().top <= window.innerHeight - 100) {
