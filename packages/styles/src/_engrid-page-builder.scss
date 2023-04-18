@@ -359,11 +359,12 @@
   }
 }
 
-// Style conditional "show if" content
+// Style conditional content
 #en__pagebuilder,
 [data-engrid-debug] {
   [class*="showif"],
-  [class*="hideif"] {
+  [class*="hideif"],
+  [class*="engrid__supporter"] {
     background-color: #0000ff1a !important;
   }
 }

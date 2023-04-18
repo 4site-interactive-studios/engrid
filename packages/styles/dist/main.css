@@ -9701,8 +9701,10 @@ body:not([data-engrid-debug]) #debug-bar {
 
 #en__pagebuilder [class*=showif],
 #en__pagebuilder [class*=hideif],
+#en__pagebuilder [class*=engrid__supporter],
 [data-engrid-debug] [class*=showif],
-[data-engrid-debug] [class*=hideif] {
+[data-engrid-debug] [class*=hideif],
+[data-engrid-debug] [class*=engrid__supporter] {
   background-color: rgba(0, 0, 255, 0.1019607843) !important;
 }
 
