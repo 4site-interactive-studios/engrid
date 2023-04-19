@@ -9224,11 +9224,11 @@ body[data-engrid-debug]:before {
   display: flex;
   flex-direction: column;
   border: 2px solid #3b3b3b;
+  transform-origin: bottom right;
 }
 @media screen and (max-height: 760px) {
   .debug-panel {
     transform: scale(0.9);
-    transform-origin: bottom right;
   }
 }
 @media screen and (max-height: 700px) {
