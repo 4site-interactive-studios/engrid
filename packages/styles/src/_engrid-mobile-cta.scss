@@ -1,21 +1,18 @@
 .engrid-mobile-cta-container {
-  display: flex;
   position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
+  left: 2rem;
+  bottom: 1rem;
+  width: calc(100% - 4rem);
   z-index: 9999;
-  padding: 10px 0;
-  text-align: center;
 
   .primary {
     display: inline-block;
-    width: 80%;
-    margin: 0 10px;
-    box-sizing: content-box;
+    margin: 0;
   }
+}
 
-  @media screen and (min-width: 767px) {
-    display: none;
+@media screen and (min-width: 768px) {
+  .engrid-mobile-cta-container {
+    display: none !important;
   }
 }

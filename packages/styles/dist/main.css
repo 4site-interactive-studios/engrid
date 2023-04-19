@@ -6724,27 +6724,22 @@ body:not(#en__pagebuilder):not([data-engrid-debug]):not([data-engrid-merge-tags-
 }
 
 .engrid-mobile-cta-container {
-  display: flex;
   position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
+  left: 2rem;
+  bottom: 1rem;
+  width: calc(100% - 4rem);
   z-index: 9999;
-  padding: 10px 0;
-  text-align: center;
 }
 .engrid-mobile-cta-container .primary {
   display: inline-block;
-  width: 80%;
-  margin: 0 10px;
-  box-sizing: content-box;
-}
-@media screen and (min-width: 767px) {
-  .engrid-mobile-cta-container {
-    display: none;
-  }
+  margin: 0;
 }
 
+@media screen and (min-width: 768px) {
+  .engrid-mobile-cta-container {
+    display: none !important;
+  }
+}
 /* ENGRID LAYOUTS */
 /* MUST COME AFTER OTHER ENGRID STYLES WHICH MIGHT DEFINE MIXINS REFERENCED IN THE LAYOUTS */
 [data-engrid-theme] {

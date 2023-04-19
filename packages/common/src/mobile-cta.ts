@@ -2,45 +2,57 @@
 import { ENGrid, Options } from "./";
 
 export class MobileCTA {
+  // Initialize options with the MobileCTA value or false
   private options: Options["MobileCTA"] =
-    ENGrid.getOption("MobileCTA") || false;
-
+    ENGrid.getOption("MobileCTA") ?? false;
   private buttonLabel: string = "";
 
   constructor() {
-    if (
-      this.options === false ||
-      !this.options?.pages?.includes(ENGrid.getPageType())
-    )
+    // Return early if the options object is falsy or the current page type is not in the options.pages array
+    if (!this.options || !this.options.pages?.includes(ENGrid.getPageType()))
       return;
-    this.buttonLabel = this.options?.label || "Take Action";
+
+    // Set the button label using the options.label or the default value "Take Action"
+    this.buttonLabel = this.options.label ?? "Take Action";
     this.renderButton();
     this.addEventListeners();
   }
 
   private renderButton() {
     const engridDiv = document.querySelector("#engrid") as HTMLElement;
-    const buttonContainer = document.createElement("div");
-    const button = document.createElement("button");
     const formBlock = document.querySelector(
       ".en__component--formblock"
     ) as HTMLElement;
+
+    // Return early if engridDiv or formBlock are not found
+    if (!engridDiv || !formBlock) return;
+
+    const buttonContainer = document.createElement("div");
+    const button = document.createElement("button");
+
+    // Add necessary classes and set the initial display style for the button container
     buttonContainer.classList.add("engrid-mobile-cta-container");
     buttonContainer.style.display = "none";
     button.classList.add("primary");
 
+    // Set the button's innerHTML and add a click event listener
     button.innerHTML = this.buttonLabel;
     button.addEventListener("click", () => {
-      formBlock.scrollIntoView({
-        behavior: "smooth",
-      });
+      formBlock.scrollIntoView({ behavior: "smooth" });
     });
+
+    // Append the button to the button container and the container to engridDiv
     buttonContainer.appendChild(button);
-    if (engridDiv) engridDiv.appendChild(buttonContainer);
+    engridDiv.appendChild(buttonContainer);
   }
+
   private addEventListeners() {
     const formBlock = document.querySelector(".body-main") as HTMLElement;
 
+    // Return early if formBlock is not found
+    if (!formBlock) return;
+
+    // Define a function to toggle the button visibility based on the formBlock position
     const toggleButton = () => {
       if (formBlock.getBoundingClientRect().top <= window.innerHeight - 100) {
         this.hideButton();
@@ -49,17 +61,21 @@ export class MobileCTA {
       }
     };
 
-    // When the page loads, resizes or scrolls, toggle the button visibility
+    // Add event listeners for load, resize, and scroll events to toggle the button visibility
     window.addEventListener("load", toggleButton);
     window.addEventListener("resize", toggleButton);
     window.addEventListener("scroll", toggleButton);
   }
+
+  // Hide the button by setting the container's display style to "none"
   private hideButton() {
     const buttonContainer = document.querySelector(
       ".engrid-mobile-cta-container"
     ) as HTMLElement;
     if (buttonContainer) buttonContainer.style.display = "none";
   }
+
+  // Show the button by setting the container's display style to "block"
   private showButton() {
     const buttonContainer = document.querySelector(
       ".engrid-mobile-cta-container"
