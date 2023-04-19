@@ -36,13 +36,13 @@ export class MobileCTA {
         engridDiv.appendChild(buttonContainer);
     }
     addEventListeners() {
-        const formBlock = document.querySelector(".body-main");
+        const bodyMain = document.querySelector(".body-main");
         // Return early if formBlock is not found
-        if (!formBlock)
+        if (!bodyMain)
             return;
-        // Define a function to toggle the button visibility based on the formBlock position
+        // Define a function to toggle the button visibility based on the bodyMain position
         const toggleButton = () => {
-            if (formBlock.getBoundingClientRect().top <= window.innerHeight - 100) {
+            if (bodyMain.getBoundingClientRect().top <= window.innerHeight - 100) {
                 this.hideButton();
             }
             else {
