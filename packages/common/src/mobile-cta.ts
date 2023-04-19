@@ -40,32 +40,19 @@ export class MobileCTA {
   }
   private addEventListeners() {
     const formBlock = document.querySelector(".body-main") as HTMLElement;
-    // When the page loads, if body-main is in view already, hide the button
-    window.addEventListener("load", () => {
-      if (formBlock.getBoundingClientRect().top <= window.innerHeight - 100) {
-        this.hideButton();
-      } else {
-        this.showButton();
-      }
-    });
 
-    // When the page is resized, if body-main is in view, hide the button
-    window.addEventListener("resize", () => {
+    const toggleButton = () => {
       if (formBlock.getBoundingClientRect().top <= window.innerHeight - 100) {
         this.hideButton();
       } else {
         this.showButton();
       }
-    });
+    };
 
-    // When the body-main is scrolled into view, hide the button
-    window.addEventListener("scroll", () => {
-      if (formBlock.getBoundingClientRect().top <= window.innerHeight - 100) {
-        this.hideButton();
-      } else {
-        this.showButton();
-      }
-    });
+    // When the page loads, resizes or scrolls, toggle the button visibility
+    window.addEventListener("load", toggleButton);
+    window.addEventListener("resize", toggleButton);
+    window.addEventListener("scroll", toggleButton);
   }
   private hideButton() {
     const buttonContainer = document.querySelector(
