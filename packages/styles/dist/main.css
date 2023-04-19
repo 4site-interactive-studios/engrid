@@ -9216,7 +9216,7 @@ body[data-engrid-debug]:before {
   bottom: min(10vw, 10vh, 50px);
   right: min(10vw, 10vh, 50px);
   z-index: 1000;
-  background-color: white;
+  background-color: #ffffff;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
   width: 100px;
   height: 100px;
@@ -9225,6 +9225,15 @@ body[data-engrid-debug]:before {
   flex-direction: column;
   border: 2px solid #3b3b3b;
   transform-origin: bottom right;
+  animation: fadeIn 750ms;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 @media screen and (max-height: 760px) {
   .debug-panel {
@@ -9247,6 +9256,10 @@ body[data-engrid-debug]:before {
   justify-content: center;
   align-items: center;
   background-color: hsla(0deg, 0%, 100%, 0.75);
+  transition: background-color 0.15s ease;
+}
+.debug-panel:not(.debug-panel--open):hover {
+  background-color: #ffffff;
 }
 
 .debug-panel--open {
