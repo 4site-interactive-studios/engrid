@@ -23,9 +23,10 @@ export class MobileCTA {
     const buttonContainer = document.createElement("div");
     const button = document.createElement("button");
     const formBlock = document.querySelector(
-      ".body-main, .en__component--formblock"
+      ".en__component--formblock"
     ) as HTMLElement;
     buttonContainer.classList.add("engrid-mobile-cta-container");
+    buttonContainer.style.display = "none";
     button.classList.add("primary");
 
     button.innerHTML = this.buttonLabel;
@@ -38,10 +39,26 @@ export class MobileCTA {
     if (engridDiv) engridDiv.appendChild(buttonContainer);
   }
   private addEventListeners() {
-    const formBlock = document.querySelector(
-      ".body-main, .en__component--formblock"
-    ) as HTMLElement;
-    // When the form block is scrolled into view, hide the button
+    const formBlock = document.querySelector(".body-main") as HTMLElement;
+    // When the page loads, if body-main is in view already, hide the button
+    window.addEventListener("load", () => {
+      if (formBlock.getBoundingClientRect().top <= window.innerHeight - 100) {
+        this.hideButton();
+      } else {
+        this.showButton();
+      }
+    });
+
+    // When the page is resized, if body-main is in view, hide the button
+    window.addEventListener("resize", () => {
+      if (formBlock.getBoundingClientRect().top <= window.innerHeight - 100) {
+        this.hideButton();
+      } else {
+        this.showButton();
+      }
+    });
+
+    // When the body-main is scrolled into view, hide the button
     window.addEventListener("scroll", () => {
       if (formBlock.getBoundingClientRect().top <= window.innerHeight - 100) {
         this.hideButton();

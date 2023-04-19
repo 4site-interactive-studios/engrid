@@ -6724,7 +6724,7 @@ body:not(#en__pagebuilder):not([data-engrid-debug]):not([data-engrid-merge-tags-
 }
 
 .engrid-mobile-cta-container {
-  display: none;
+  display: flex;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -6739,9 +6739,9 @@ body:not(#en__pagebuilder):not([data-engrid-debug]):not([data-engrid-merge-tags-
   margin: 0 10px;
   box-sizing: content-box;
 }
-@media screen and (max-width: 767px) {
+@media screen and (min-width: 767px) {
   .engrid-mobile-cta-container {
-    display: block;
+    display: none;
   }
 }
 

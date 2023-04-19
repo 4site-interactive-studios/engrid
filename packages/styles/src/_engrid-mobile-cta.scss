@@ -1,5 +1,5 @@
 .engrid-mobile-cta-container {
-  display: none;
+  display: flex;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -14,7 +14,8 @@
     margin: 0 10px;
     box-sizing: content-box;
   }
-  @media screen and (max-width: 767px) {
-    display: block;
+
+  @media screen and (min-width: 767px) {
+    display: none;
   }
 }
