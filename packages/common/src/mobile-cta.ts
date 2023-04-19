@@ -9,7 +9,11 @@ export class MobileCTA {
 
   constructor() {
     // Return early if the options object is falsy or the current page type is not in the options.pages array
-    if (!this.options || !this.options.pages?.includes(ENGrid.getPageType()))
+    if (
+      !this.options ||
+      !this.options.pages?.includes(ENGrid.getPageType()) ||
+      ENGrid.getPageNumber() !== 1
+    )
       return;
 
     // Set the button label using the options.label or the default value "Take Action"
