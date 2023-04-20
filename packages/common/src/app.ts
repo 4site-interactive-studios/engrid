@@ -59,6 +59,7 @@ import {
   PremiumGift,
   DigitalWallets,
   MobileCTA,
+  LiveFrequency,
 } from "./";
 
 export class App extends ENGrid {
@@ -349,6 +350,9 @@ export class App extends ENGrid {
 
     // Mobile CTA
     new MobileCTA();
+
+    // Live Frequency
+    new LiveFrequency();
 
     this.setDataAttributes();
 

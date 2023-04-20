@@ -54,5 +54,6 @@ export * from "./country-disable";
 export * from "./premium-gift";
 export * from "./digital-wallets";
 export * from "./mobile-cta";
+export * from "./live-frequency";
 export * from "./events";
 export * from "./version";
