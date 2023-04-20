@@ -1,6 +1,7 @@
 [data-engrid-theme] {
-    --ecard_thumnail-row_count: 3;
-    --ecard_thumnail-row_height: auto;
+  --ecard_thumnail-row_count: 3;
+  --ecard_thumnail-row_height: auto;
+  --ecard_thumnail-border-width: 2px;
 }
 
 // @TODO Update with ENGRID CSS Properties
@@ -64,13 +65,18 @@ button.en__ecarditems__addrecipient {
   right: 2px;
 }
 
-.en__ecarditems__list{
+.en__ecarditems__list {
   margin-left: calc(var(--fields_spacing-inline) * -1);
   margin-right: calc(var(--fields_spacing-inline) * -1);
 }
 
-.en__ecarditems__thumb{
-  width: calc((100% - var(--fields_spacing-inline) * (var(--ecard_thumnail-row_count) * 2)) / var(--ecard_thumnail-row_count));
+.en__ecarditems__thumb {
+  width: calc(
+    (
+        100% - var(--fields_spacing-inline) *
+          (var(--ecard_thumnail-row_count) * 2)
+      ) / var(--ecard_thumnail-row_count)
+  );
   margin-left: var(--fields_spacing-inline);
   margin-right: var(--fields_spacing-inline);
 }
@@ -78,7 +84,7 @@ button.en__ecarditems__addrecipient {
 .en__ecarditems__thumb img {
   height: var(--ecard_thumnail-row_height);
   width: auto;
-  border: 2px solid var(--color_primary);
+  border: var(--ecard_thumnail-border-width) solid var(--color_primary);
   -webkit-filter: brightness(75%);
   filter: brightness(75%);
 }

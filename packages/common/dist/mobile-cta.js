@@ -18,7 +18,7 @@ export class MobileCTA {
     }
     renderButton() {
         const engridDiv = document.querySelector("#engrid");
-        const formBlock = document.querySelector(".en__component--formblock");
+        const formBlock = document.querySelector(".body-main .en__component--widgetblock:first-child, .en__component--formblock");
         // Return early if engridDiv or formBlock are not found
         if (!engridDiv || !formBlock)
             return;

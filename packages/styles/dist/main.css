@@ -5136,6 +5136,7 @@ body:not(#en__pagebuilder):not([data-engrid-debug])[data-engrid-transaction-recu
 [data-engrid-theme] {
   --ecard_thumnail-row_count: 3;
   --ecard_thumnail-row_height: auto;
+  --ecard_thumnail-border-width: 2px;
 }
 
 .en__ecarditems__thumb {
@@ -5212,7 +5213,7 @@ button.en__ecarditems__addrecipient {
 .en__ecarditems__thumb img {
   height: var(--ecard_thumnail-row_height);
   width: auto;
-  border: 2px solid var(--color_primary);
+  border: var(--ecard_thumnail-border-width) solid var(--color_primary);
   -webkit-filter: brightness(75%);
   filter: brightness(75%);
 }
