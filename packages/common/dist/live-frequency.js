@@ -60,7 +60,9 @@ export class LiveFrequency {
         });
     }
     updateFrequency() {
-        const frequency = this._frequency.frequency === "onetime" ? "" : this._frequency.frequency;
+        const frequency = this._frequency.frequency === "onetime"
+            ? "one-time"
+            : this._frequency.frequency;
         const elemenst = document.querySelectorAll(".engrid-frequency");
         elemenst.forEach((item) => {
             if (item.classList.contains("engrid-frequency--lowercase")) {
@@ -78,7 +80,9 @@ export class LiveFrequency {
         });
     }
     replaceMergeTags(tag, element) {
-        const frequency = this._frequency.frequency === "onetime" ? "" : this._frequency.frequency;
+        const frequency = this._frequency.frequency === "onetime"
+            ? "one-time"
+            : this._frequency.frequency;
         const frequencyElement = document.createElement("span");
         frequencyElement.classList.add("engrid-frequency");
         frequencyElement.innerHTML = frequency;
