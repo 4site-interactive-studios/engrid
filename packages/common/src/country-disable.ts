@@ -10,21 +10,27 @@ export class CountryDisable {
     "🌎"
   );
   constructor() {
-    const country = ENGrid.getField("supporter.country") as HTMLSelectElement;
+    const countries = document.querySelectorAll(
+      'select[name="supporter.country"], select[name="transaction.shipcountry"], select[name="supporter.billingCountry"], select[name="transaction.infcountry"]'
+    );
     const CountryDisable = ENGrid.getOption("CountryDisable") as string[];
     // Remove the countries from the dropdown list
-    if (country && CountryDisable.length > 0) {
+    if (countries.length > 0 && CountryDisable.length > 0) {
       const countriesLower = CountryDisable.map((country) =>
         country.toLowerCase()
       );
-      country.querySelectorAll("option").forEach((option) => {
-        if (
-          countriesLower.includes(option.value.toLowerCase()) ||
-          countriesLower.includes(option.text.toLowerCase())
-        ) {
-          this.logger.log(`Removing ${option.text}`);
-          option.remove();
-        }
+      countries.forEach((country) => {
+        country.querySelectorAll("option").forEach((option) => {
+          if (
+            countriesLower.includes(option.value.toLowerCase()) ||
+            countriesLower.includes(option.text.toLowerCase())
+          ) {
+            this.logger.log(
+              `Removing ${option.text} from ${country.getAttribute("name")}`
+            );
+            option.remove();
+          }
+        });
       });
     }
   }

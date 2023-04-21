@@ -1,6 +1,6 @@
 export declare class TranslateFields {
-    countrySelect: HTMLSelectElement;
-    stateField: HTMLInputElement;
+    private countryToStateFields;
+    countriesSelect: NodeListOf<HTMLSelectElement>;
     private options;
     constructor();
     private translateFields;

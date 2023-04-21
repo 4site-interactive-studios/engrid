@@ -1,10 +1,16 @@
-import { TranslateOptionsDefaults } from ".";
+// Component to translate fields based on the country selected
+// It will also adapt the state field to the country selected
+import { ENGrid, TranslateOptionsDefaults } from ".";
 import * as cookie from "./cookie";
-// This class works when the user has added ".simple_country_select" as a class in page builder for the Country select
 export class TranslateFields {
     constructor() {
-        this.countrySelect = document.querySelector("#en__field_supporter_country");
-        this.stateField = document.querySelector("#en__field_supporter_region");
+        this.countryToStateFields = {
+            "supporter.country": "supporter.region",
+            "transaction.shipcountry": "transaction.shipregion",
+            "supporter.billingCountry": "supporter.billingRegion",
+            "transaction.infcountry": "transaction.infreg",
+        };
+        this.countriesSelect = document.querySelectorAll('select[name="supporter.country"], select[name="transaction.shipcountry"], select[name="supporter.billingCountry"], select[name="transaction.infcountry"]');
         let options = "EngridTranslate" in window ? window.EngridTranslate : {};
         this.options = TranslateOptionsDefaults;
         if (options) {
@@ -14,45 +20,51 @@ export class TranslateFields {
                     : options[key];
             }
         }
-        if (this.countrySelect) {
-            this.countrySelect.addEventListener("change", this.translateFields.bind(this));
-            this.translateFields();
-        }
-        if (this.stateField) {
-            this.stateField.addEventListener("change", this.rememberState.bind(this));
+        if (this.countriesSelect) {
+            this.countriesSelect.forEach((select) => {
+                select.addEventListener("change", this.translateFields.bind(this, select.name));
+                const stateField = document.querySelector(`select[name="${this.countryToStateFields[select.name]}"]`);
+                if (stateField) {
+                    stateField.addEventListener("change", this.rememberState.bind(this, select.name));
+                }
+            });
+            this.translateFields("supporter.country");
         }
     }
-    translateFields() {
+    translateFields(countryName = "supporter.country") {
         this.resetTranslatedFields();
-        if (this.countrySelect.value in this.options) {
-            this.options[this.countrySelect.value].forEach((field) => {
-                // console.log(field);
-                this.translateField(field.field, field.translation);
-            });
-        }
-        // Translate the "To:"
-        const recipient_block = document.querySelectorAll(".recipient-block");
-        if (!!recipient_block.length) {
-            switch (this.countrySelect.value) {
-                case "FR":
-                case "FRA":
-                case "France":
-                    recipient_block.forEach((elem) => (elem.innerHTML = "À:"));
-                    break;
-                case "DE":
-                case "DEU":
-                case "Germany":
-                    recipient_block.forEach((elem) => (elem.innerHTML = "Zu:"));
-                    break;
-                case "NL":
-                case "NLD":
-                case "Netherlands":
-                    recipient_block.forEach((elem) => (elem.innerHTML = "Aan:"));
-                    break;
+        const countryValue = ENGrid.getFieldValue(countryName);
+        // Translate the State Field
+        this.setStateField(countryValue, this.countryToStateFields[countryName]);
+        if (countryName === "supporter.country") {
+            if (countryValue in this.options) {
+                this.options[countryValue].forEach((field) => {
+                    // console.log(field);
+                    this.translateField(field.field, field.translation);
+                });
+            }
+            // Translate the "To:"
+            const recipient_block = document.querySelectorAll(".recipient-block");
+            if (!!recipient_block.length) {
+                switch (countryValue) {
+                    case "FR":
+                    case "FRA":
+                    case "France":
+                        recipient_block.forEach((elem) => (elem.innerHTML = "À:"));
+                        break;
+                    case "DE":
+                    case "DEU":
+                    case "Germany":
+                        recipient_block.forEach((elem) => (elem.innerHTML = "Zu:"));
+                        break;
+                    case "NL":
+                    case "NLD":
+                    case "Netherlands":
+                        recipient_block.forEach((elem) => (elem.innerHTML = "Aan:"));
+                        break;
+                }
             }
         }
-        // Translate the State Field
-        this.setStateField(this.countrySelect.value);
     }
     translateField(name, translation) {
         const field = document.querySelector(`[name="${name}"]`);
@@ -61,9 +73,9 @@ export class TranslateFields {
             if (fieldWrapper) {
                 const fieldLabel = fieldWrapper.querySelector(".en__field__label");
                 // Check if there's the simple country select class
-                const simpleCountrySelect = fieldLabel.querySelector(".engrid-simple-country");
-                let simpleCountrySelectClone = simpleCountrySelect
-                    ? simpleCountrySelect.cloneNode(true)
+                const simplecountriesSelect = fieldLabel.querySelector(".engrid-simple-country");
+                let simplecountriesSelectClone = simplecountriesSelect
+                    ? simplecountriesSelect.cloneNode(true)
                     : null;
                 if (field instanceof HTMLInputElement && field.placeholder != "") {
                     if (!fieldLabel || fieldLabel.innerHTML == field.placeholder) {
@@ -74,8 +86,8 @@ export class TranslateFields {
                 if (fieldLabel) {
                     fieldLabel.dataset.original = fieldLabel.innerHTML;
                     fieldLabel.innerHTML = translation;
-                    if (simpleCountrySelectClone) {
-                        fieldLabel.appendChild(simpleCountrySelectClone);
+                    if (simplecountriesSelectClone) {
+                        fieldLabel.appendChild(simplecountriesSelectClone);
                     }
                 }
             }
@@ -89,48 +101,48 @@ export class TranslateFields {
             }
             else {
                 // Check if there's the simple country select class
-                const simpleCountrySelect = field.querySelector(".engrid-simple-country");
-                let simpleCountrySelectClone = simpleCountrySelect
-                    ? simpleCountrySelect.cloneNode(true)
+                const simplecountriesSelect = field.querySelector(".engrid-simple-country");
+                let simplecountriesSelectClone = simplecountriesSelect
+                    ? simplecountriesSelect.cloneNode(true)
                     : null;
                 field.innerHTML = field.dataset.original;
-                if (simpleCountrySelectClone) {
-                    field.appendChild(simpleCountrySelectClone);
+                if (simplecountriesSelectClone) {
+                    field.appendChild(simplecountriesSelectClone);
                 }
             }
             field.removeAttribute("data-original");
         });
     }
-    setStateField(country) {
+    setStateField(country, state) {
         switch (country) {
             case "BR":
             case "BRA":
             case "Brazil":
-                this.setStateValues("Estado", null);
+                this.setStateValues(state, "Estado", null);
                 break;
             case "FR":
             case "FRA":
             case "France":
-                this.setStateValues("Région", null);
+                this.setStateValues(state, "Région", null);
                 break;
             case "GB":
             case "GBR":
             case "United Kingdom":
-                this.setStateValues("State/Region", null);
+                this.setStateValues(state, "State/Region", null);
                 break;
             case "DE":
             case "DEU":
             case "Germany":
-                this.setStateValues("Bundesland", null);
+                this.setStateValues(state, "Bundesland", null);
                 break;
             case "NL":
             case "NLD":
             case "Netherlands":
-                this.setStateValues("Provincie", null);
+                this.setStateValues(state, "Provincie", null);
                 break;
             case "AU":
             case "AUS":
-                this.setStateValues("Province / State", [
+                this.setStateValues(state, "Province / State", [
                     { label: "Select", value: "" },
                     { label: "New South Wales", value: "NSW" },
                     { label: "Victoria", value: "VIC" },
@@ -143,7 +155,7 @@ export class TranslateFields {
                 ]);
                 break;
             case "Australia":
-                this.setStateValues("Province / State", [
+                this.setStateValues(state, "Province / State", [
                     { label: "Select", value: "" },
                     { label: "New South Wales", value: "New South Wales" },
                     { label: "Victoria", value: "Victoria" },
@@ -160,7 +172,7 @@ export class TranslateFields {
                 break;
             case "US":
             case "USA":
-                this.setStateValues("State", [
+                this.setStateValues(state, "State", [
                     { label: "Select State", value: "" },
                     { label: "Alabama", value: "AL" },
                     { label: "Alaska", value: "AK" },
@@ -216,7 +228,7 @@ export class TranslateFields {
                 ]);
                 break;
             case "United States":
-                this.setStateValues("State", [
+                this.setStateValues(state, "State", [
                     { label: "Select State", value: "" },
                     { label: "Alabama", value: "Alabama" },
                     { label: "Alaska", value: "Alaska" },
@@ -273,7 +285,7 @@ export class TranslateFields {
                 break;
             case "CA":
             case "CAN":
-                this.setStateValues("Province / Territory", [
+                this.setStateValues(state, "Province / Territory", [
                     { label: "Select", value: "" },
                     { label: "Alberta", value: "AB" },
                     { label: "British Columbia", value: "BC" },
@@ -291,7 +303,7 @@ export class TranslateFields {
                 ]);
                 break;
             case "Canada":
-                this.setStateValues("Province / Territory", [
+                this.setStateValues(state, "Province / Territory", [
                     { label: "Select", value: "" },
                     { label: "Alberta", value: "Alberta" },
                     { label: "British Columbia", value: "British Columbia" },
@@ -313,7 +325,7 @@ export class TranslateFields {
                 break;
             case "MX":
             case "MEX":
-                this.setStateValues("Estado", [
+                this.setStateValues(state, "Estado", [
                     { label: "Seleccione Estado", value: "" },
                     { label: "Aguascalientes", value: "AGU" },
                     { label: "Baja California", value: "BCN" },
@@ -349,7 +361,7 @@ export class TranslateFields {
                 ]);
                 break;
             case "Mexico":
-                this.setStateValues("Estado", [
+                this.setStateValues(state, "Estado", [
                     { label: "Seleccione Estado", value: "" },
                     { label: "Aguascalientes", value: "Aguascalientes" },
                     { label: "Baja California", value: "Baja California" },
@@ -385,12 +397,12 @@ export class TranslateFields {
                 ]);
                 break;
             default:
-                this.setStateValues("Province / State", null);
+                this.setStateValues(state, "Province / State", null);
                 break;
         }
     }
-    setStateValues(label, values) {
-        const stateField = document.querySelector("#en__field_supporter_region");
+    setStateValues(state, label, values) {
+        const stateField = ENGrid.getField(state);
         const stateWrapper = stateField ? stateField.closest(".en__field") : null;
         if (stateWrapper) {
             const stateLabel = stateWrapper.querySelector(".en__field__label");
@@ -399,11 +411,11 @@ export class TranslateFields {
                 stateLabel.innerHTML = label;
             }
             if (elementWrapper) {
-                const selectedState = cookie.get("engrid-state");
+                const selectedState = cookie.get(`engrid-state-${state}`);
                 if (values === null || values === void 0 ? void 0 : values.length) {
                     const select = document.createElement("select");
-                    select.name = "supporter.region";
-                    select.id = "en__field_supporter_region";
+                    select.name = state;
+                    select.id = "en__field_" + state.toLowerCase().replace(".", "_");
                     select.classList.add("en__field__input");
                     select.classList.add("en__field__input--select");
                     select.autocomplete = "address-level1";
@@ -418,15 +430,15 @@ export class TranslateFields {
                     });
                     elementWrapper.innerHTML = "";
                     elementWrapper.appendChild(select);
-                    select.addEventListener("change", this.rememberState.bind(this));
+                    select.addEventListener("change", this.rememberState.bind(this, state));
                 }
                 else {
                     elementWrapper.innerHTML = "";
                     const input = document.createElement("input");
                     input.type = "text";
-                    input.name = "supporter.region";
+                    input.name = state;
                     input.placeholder = label;
-                    input.id = "en__field_supporter_region";
+                    input.id = "en__field_" + state.toLowerCase().replace(".", "_");
                     input.classList.add("en__field__input");
                     input.classList.add("en__field__input--text");
                     input.autocomplete = "address-level1";
@@ -434,15 +446,15 @@ export class TranslateFields {
                         input.value = selectedState;
                     }
                     elementWrapper.appendChild(input);
-                    input.addEventListener("change", this.rememberState.bind(this));
+                    input.addEventListener("change", this.rememberState.bind(this, state));
                 }
             }
         }
     }
-    rememberState() {
-        const stateField = document.querySelector("#en__field_supporter_region");
+    rememberState(state) {
+        const stateField = ENGrid.getField(state);
         if (stateField) {
-            cookie.set("engrid-state", stateField.value, {
+            cookie.set(`engrid-state-${stateField.name}`, stateField.value, {
                 expires: 1,
                 sameSite: "none",
                 secure: true,
