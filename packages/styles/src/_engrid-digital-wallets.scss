@@ -64,5 +64,10 @@
       &[data-engrid-payment-type="paypaltouch"] .hideif-paypaltouch-selected {
         display: none;
       }
+
+      // Hide the PayPal One Touch / Venmo Give By Selector when a recurring gift is selected as it is not currently supported by EN
+      &[data-engrid-transaction-recurring="y"] .en__field--giveBySelect.paypaltouch{
+        display: none;
+      }
   }
 }

@@ -4342,6 +4342,9 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) .i11-hide-label .en__field:n
 [data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug])[conditonally-hide-show-digital-wallet-elements][data-engrid-payment-type=stripedigitalwallet] .hideif-stripedigitalwallet-selected, [data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug])[conditonally-hide-show-digital-wallet-elements][data-engrid-payment-type=paypaltouch] .hideif-paypaltouch-selected {
   display: none;
 }
+[data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug])[conditonally-hide-show-digital-wallet-elements][data-engrid-transaction-recurring=y] .en__field--giveBySelect.paypaltouch {
+  display: none;
+}
 
 [data-engrid-theme] {
   --recurring-frequency__button_font-family: var(--button_font-family);
