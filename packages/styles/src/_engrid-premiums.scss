@@ -115,4 +115,20 @@
     flex-basis: 0;
     padding: 0;
   }
+
+  // On a premium page, but no premium has been selected
+  &:not(#en__pagebuilder):not(
+      [data-engrid-debug]
+    )[data-engrid-page-type="premiumgift"]:not([data-engrid-premium-gift-name])
+    .showif-has-premium {
+    display: none;
+  }
+
+  // On a premium page, and a premius has been selected
+  &:not(#en__pagebuilder):not(
+      [data-engrid-debug]
+    )[data-engrid-page-type="premiumgift"][data-engrid-premium-gift-name]
+    .showif-no-premium {
+    display: none;
+  }
 }
