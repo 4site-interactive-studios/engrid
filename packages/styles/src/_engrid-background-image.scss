@@ -114,15 +114,15 @@ body {
   // Depends on page-background.ts
   // Documentation: https://docs.google.com/document/d/1zF-86Iq8tCRk4HCv-JaJYZulkC273x-_QODUed9F0Pw/edit#heading=h.72pw1gcv9zk7
   @at-root {
+    // [data-engrid-layout="#{$layout}"][data-replace-banner-with-background="if-background-exists"][data-engrid-page-background="video"],
+    // [data-engrid-layout="#{$layout}"][data-replace-banner-with-background="if-background-video"][data-engrid-page-background="video"],
+    // [data-engrid-layout="#{$layout}"][data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="video"],
+    // [data-engrid-layout="#{$layout}"][data-replace-banner-with-background="if-banner-empty-or-background-video"][data-engrid-body-banner="empty"][data-engrid-page-background="video"],
+    // [data-engrid-layout="#{$layout}"][data-replace-banner-with-background="if-banner-empty-or-background-video"][data-engrid-page-background="video"]
     [data-engrid-layout="#{$layout}"][data-replace-banner-with-background="if-background-exists"][data-engrid-page-background="image"],
-    [data-engrid-layout="#{$layout}"][data-replace-banner-with-background="if-background-exists"][data-engrid-page-background="video"],
     [data-engrid-layout="#{$layout}"][data-replace-banner-with-background="if-background-image"][data-engrid-page-background="image"],
-    [data-engrid-layout="#{$layout}"][data-replace-banner-with-background="if-background-video"][data-engrid-page-background="video"],
     [data-engrid-layout="#{$layout}"][data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="image"],
-    [data-engrid-layout="#{$layout}"][data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="video"],
-    [data-engrid-layout="#{$layout}"][data-replace-banner-with-background="if-banner-empty-or-background-video"][data-engrid-body-banner="empty"][data-engrid-page-background="image"],
-    [data-engrid-layout="#{$layout}"][data-replace-banner-with-background="if-banner-empty-or-background-video"][data-engrid-body-banner="empty"][data-engrid-page-background="video"],
-    [data-engrid-layout="#{$layout}"][data-replace-banner-with-background="if-banner-empty-or-background-video"][data-engrid-page-background="video"] {
+    [data-engrid-layout="#{$layout}"][data-replace-banner-with-background="if-banner-empty-or-background-video"][data-engrid-body-banner="empty"][data-engrid-page-background="image"] {
       .body-banner,
       .body-bannerOverlay {
         display: none;
