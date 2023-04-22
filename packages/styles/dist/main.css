@@ -8980,6 +8980,9 @@ body[data-engrid-debug]:before {
   margin-bottom: var(--fields_spacing-block);
   padding-bottom: 0;
 }
+[data-engrid-debug] .en__field--ccexpire.en__field--splitselect [data-unhidden] {
+  display: none;
+}
 
 body:not([data-engrid-debug]) #debug-bar {
   display: none;

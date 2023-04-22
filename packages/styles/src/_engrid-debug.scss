@@ -540,6 +540,11 @@ body[data-engrid-debug]:before {
     padding-bottom: 0;
   }
 
+  // Some fields can remain hidden. No one wants to see the CC Expiration Date Delimiter
+  .en__field--ccexpire.en__field--splitselect [data-unhidden] {
+    display: none;
+  }
+
   //#debug-bar {
   //  display: flex;
   //  padding: 1ch 1.2ch;
