@@ -6228,10 +6228,10 @@ div[id^=nb-field-].nb-success input {
   flex-basis: 0;
   padding: 0;
 }
-[data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug])[data-engrid-page-type=premiumgift]:not([data-engrid-premium-gift-name]) .showif-has-premium {
+[data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug]):not([data-engrid-premium-gift-name]) .showif-has-premium {
   display: none;
 }
-[data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug])[data-engrid-page-type=premiumgift][data-engrid-premium-gift-name] .showif-no-premium {
+[data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug])[data-engrid-premium-gift-name] .showif-no-premium {
   display: none;
 }
 
