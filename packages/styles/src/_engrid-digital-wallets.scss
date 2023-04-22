@@ -69,5 +69,10 @@
       &[data-engrid-transaction-recurring="y"] .en__field--giveBySelect.paypaltouch{
         display: none;
       }
+
+      // If the PayPal One Touch / Venmo option is enabled, hide Vanilla Paypal when a one-time gift is selected so only one PayPal option is ever visible at a time{
+      &[data-engrid-transaction-recurring="n"][data-engrid-payment-type-option-paypal-one-touch="true"] .en__field--giveBySelect.paypal{
+        display: none;
+      }
   }
 }

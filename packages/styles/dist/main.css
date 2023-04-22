@@ -4345,6 +4345,9 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) .i11-hide-label .en__field:n
 [data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug])[conditonally-hide-show-digital-wallet-elements][data-engrid-transaction-recurring=y] .en__field--giveBySelect.paypaltouch {
   display: none;
 }
+[data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug])[conditonally-hide-show-digital-wallet-elements][data-engrid-transaction-recurring=n][data-engrid-payment-type-option-paypal-one-touch=true] .en__field--giveBySelect.paypal {
+  display: none;
+}
 
 [data-engrid-theme] {
   --recurring-frequency__button_font-family: var(--button_font-family);
