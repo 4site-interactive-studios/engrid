@@ -22,15 +22,10 @@ export class ExitIntentLightbox {
     let options = "EngridExitIntent" in window ? window.EngridExitIntent : {};
     this.options = { ...ExitIntentOptionsDefaults, ...options };
 
-    console.log(this.options);
-
     if (!this.options.enabled) {
       this.logger.log("ExitIntentLightbox not enabled");
       return;
     }
-
-    this.open();
-    return;
 
     if (getCookie(this.options.cookieName)) {
       this.logger.log("ExitIntentLightbox not showing - cookie found.");
@@ -68,7 +63,11 @@ export class ExitIntentLightbox {
       // Reliable, works on mouse exiting window and
       // user switching active program
       const from = e.relatedTarget;
-      if (!from) this.open();
+
+      if (!from) {
+        this.logger.log("ExitIntentLightbox triggered by mouse position");
+        this.open();
+      }
     });
   }
 
@@ -114,11 +113,11 @@ export class ExitIntentLightbox {
 
     document
       .querySelector(".ExitIntent__overlay")
-      ?.addEventListener("click", function (this: HTMLElement, event) {
-        if (event.target === this) {
-          this.closest(".ExitIntent")?.remove();
+      ?.addEventListener("click", (event) => {
+        if (event.target === event.currentTarget) {
+          document.querySelector(".ExitIntent")?.remove();
           ENGrid.setBodyData("exit-intent-lightbox", "closed");
-          //this.dataLayer.push({ event: "exit_intent_lightbox_closed" });
+          this.dataLayer.push({ event: "exit_intent_lightbox_closed" });
         }
       });
   }

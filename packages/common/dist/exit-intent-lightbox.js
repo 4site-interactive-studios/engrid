@@ -7,13 +7,10 @@ export class ExitIntentLightbox {
         this.logger = new EngridLogger("ExitIntentLightbox", "yellow", "black", "🚪");
         let options = "EngridExitIntent" in window ? window.EngridExitIntent : {};
         this.options = Object.assign(Object.assign({}, ExitIntentOptionsDefaults), options);
-        console.log(this.options);
         if (!this.options.enabled) {
             this.logger.log("ExitIntentLightbox not enabled");
             return;
         }
-        this.open();
-        return;
         if (getCookie(this.options.cookieName)) {
             this.logger.log("ExitIntentLightbox not showing - cookie found.");
             return;
@@ -42,8 +39,10 @@ export class ExitIntentLightbox {
             // Reliable, works on mouse exiting window and
             // user switching active program
             const from = e.relatedTarget;
-            if (!from)
+            if (!from) {
+                this.logger.log("ExitIntentLightbox triggered by mouse position");
                 this.open();
+            }
         });
     }
     open() {
@@ -80,12 +79,12 @@ export class ExitIntentLightbox {
             this.dataLayer.push({ event: "exit_intent_lightbox_closed" });
         });
         (_b = document
-            .querySelector(".ExitIntent__overlay")) === null || _b === void 0 ? void 0 : _b.addEventListener("click", function (event) {
+            .querySelector(".ExitIntent__overlay")) === null || _b === void 0 ? void 0 : _b.addEventListener("click", (event) => {
             var _a;
-            if (event.target === this) {
-                (_a = this.closest(".ExitIntent")) === null || _a === void 0 ? void 0 : _a.remove();
+            if (event.target === event.currentTarget) {
+                (_a = document.querySelector(".ExitIntent")) === null || _a === void 0 ? void 0 : _a.remove();
                 ENGrid.setBodyData("exit-intent-lightbox", "closed");
-                //this.dataLayer.push({ event: "exit_intent_lightbox_closed" });
+                this.dataLayer.push({ event: "exit_intent_lightbox_closed" });
             }
         });
     }
