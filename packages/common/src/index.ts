@@ -9,6 +9,10 @@ export {
   TranslateOptions,
   TranslateOptionsDefaults,
 } from "./interfaces/translate-options";
+export {
+  ExitIntentOptions,
+  ExitIntentOptionsDefaults,
+} from "./interfaces/exit-intent-options";
 
 export * from "./loader";
 export * from "./app";
@@ -63,6 +67,7 @@ export * from "./premium-gift";
 export * from "./digital-wallets";
 export * from "./mobile-cta";
 export * from "./live-frequency";
+export * from "./exit-intent-lightbox";
 
 // Events
 export * from "./events";

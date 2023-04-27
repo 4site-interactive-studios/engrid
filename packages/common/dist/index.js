@@ -2,6 +2,7 @@ export * from "./deprecated"; // Runs first so it can change the DOM markup befo
 export { OptionsDefaults } from "./interfaces/options";
 export { UpsellOptionsDefaults, } from "./interfaces/upsell-options";
 export { TranslateOptionsDefaults, } from "./interfaces/translate-options";
+export { ExitIntentOptionsDefaults, } from "./interfaces/exit-intent-options";
 export * from "./loader";
 export * from "./app";
 export * from "./amount-label";
@@ -56,6 +57,7 @@ export * from "./premium-gift";
 export * from "./digital-wallets";
 export * from "./mobile-cta";
 export * from "./live-frequency";
+export * from "./exit-intent-lightbox";
 // Events
 export * from "./events";
 // Version

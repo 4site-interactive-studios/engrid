@@ -60,6 +60,7 @@ import {
   DigitalWallets,
   MobileCTA,
   LiveFrequency,
+  ExitIntentLightbox,
 } from "./";
 
 export class App extends ENGrid {
@@ -355,6 +356,9 @@ export class App extends ENGrid {
     new LiveFrequency();
 
     this.setDataAttributes();
+
+    //Exit Intent Lightbox
+    new ExitIntentLightbox();
 
     //Debug panel
     if (
