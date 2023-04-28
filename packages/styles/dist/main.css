@@ -9320,13 +9320,18 @@ body:not([data-engrid-debug]) #debug-bar {
   background-color: var(--color_transparent) !important;
 }
 
-#en__pagebuilder [class*=showif],
-#en__pagebuilder [class*=hideif],
-#en__pagebuilder [class*=engrid__],
 [data-engrid-debug] [class*=showif],
 [data-engrid-debug] [class*=hideif],
 [data-engrid-debug] [class*=engrid__] {
   background-color: rgba(0, 0, 255, 0.1019607843) !important;
+}
+
+#en__pagebuilder .messageOverlay {
+  z-index: 2147483647;
+}
+
+#en__pagebuilder .en__component--activeTarget .en__component__actions {
+  z-index: 2147483646;
 }
 
 /*
