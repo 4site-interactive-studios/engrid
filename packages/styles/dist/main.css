@@ -9336,66 +9336,64 @@ body:not([data-engrid-debug]) #debug-bar {
 * .edit-lock - https://d.pr/i/vsA4ao
 * ##########################################################
 */
-/* Make the border of component with an edit warning, red  */
-#en__pagebuilder .edit-warning.en__component.en__component--active.en__component--activeTarget {
-  box-shadow: 0 0 0 2px #f12222;
+.edit-warning {
+  --edit_color: #ffffff;
+  --edit_background-color: #000000;
+  --edit_background-color-faded: rgba(0, 0, 0, 0.2);
+  --edit_text: "Unlink Before Edit";
 }
 
-/* Make the border of component with an edit lock, black  */
-#en__pagebuilder .edit-lock.en__component.en__component--active.en__component--activeTarget {
-  box-shadow: 0 0 0 2px #000000;
+.edit-lock {
+  --edit_color: #ffffff;
+  --edit_background-color: #f12222;
+  --edit_background-color-faded: rgba(241, 34, 34, 0.2);
+  --edit_text: "Do Not     ";
 }
 
-/* Remove action handle from its normal position */
 /* Style the edit warning and lock messages to match the styling of the component actions */
-#en__pagebuilder .edit-warning.en__component.en__component--active.en__component--activeTarget .en__component__actions::after,
-#en__pagebuilder .edit-lock.en__component.en__component--active.en__component--activeTarget .en__component__actions::after {
+#en__pagebuilder [class*=edit-].en__component.en__component--active.en__component--activeTarget {
+  box-shadow: 0 0 0 2px var(--edit_background-color);
+  outline-color: var(--edit_background-color);
+  background: var(--edit_background-color-faded);
+}
+#en__pagebuilder [class*=edit-].en__component.en__component--active.en__component--activeTarget .en__component__actions {
   display: block;
   text-decoration: none;
   line-height: 30px;
   font-weight: 700;
-  padding: 0 6px 0 28px;
+  padding: 0 calc(28px + var(--fields_spacing-inline)) 0 calc(28px + var(--fields_spacing-inline));
   min-width: 30px;
   text-align: left;
-  z-index: 9999;
   white-space: nowrap;
+  padding-top: var(--fields_spacing-block);
+  padding-bottom: var(--fields_spacing-block);
+  margin-left: 8px;
+  padding-left: 0;
+  padding-right: 0;
+  background-color: var(--edit_background-color);
+  cursor: default;
+}
+#en__pagebuilder [class*=edit-].en__component.en__component--active.en__component--activeTarget .en__component__actions::before {
+  content: var(--edit_text);
+  padding-left: 28px;
+  padding-right: 28px;
+  color: var(--edit_color);
+  font-size: 18px;
+}
+#en__pagebuilder [class*=edit-].en__component.en__component--active.en__component--activeTarget .en__component__actions > a.en__component__action {
+  background-color: var(--edit_background-color);
 }
 
-/* Style edit warning messages to match the styling of the component actions */
-#en__pagebuilder .edit-warning.en__component.en__component--active.en__component--activeTarget .en__component__actions {
-  background-color: #f12222;
-  color: #fff;
-}
-
-/* Style the edit lock messages to match the styling of the component actions */
-#en__pagebuilder .edit-lock.en__component.en__component--active.en__component--activeTarget .en__component__actions {
-  background-color: #000000;
-  color: #fff;
-}
-
-/* Add edit warning message */
-#en__pagebuilder .edit-warning.en__component.en__component--active.en__component--activeTarget .en__component__actions::after {
-  content: "Unlink Before Editing";
-}
-
-/* Add edit lock message */
-#en__pagebuilder .edit-lock.en__component.en__component--active.en__component--activeTarget .en__component__actions::after {
-  content: "Edit From Library";
-}
-
-/* Hide the edit action when editing of the form component has been locked */
+/* When locked move the edit link up inline with the "Do Not Edit" header so that "Edit" becomes the clickable link */
 #en__pagebuilder .edit-lock.en__component.en__component--active.en__component--activeTarget > .en__component__actions > a.en__component__action.en__component__action--settings {
-  display: none;
+  transform: translate(-18px, -31px);
+  font-size: 18px;
+  padding: 0;
+  background: none;
+  cursor: default;
 }
-
-/* Change the background color of the component actions, when an edit warning is added, to further visually differentiate them */
-#en__pagebuilder .edit-warning.en__component.en__component--active.en__component--activeTarget > .en__component__actions > a.en__component__action {
-  background-color: #f12222;
-}
-
-/* Change the background color of the component actions, when an edit warning is added, to further visually differentiate them */
-#en__pagebuilder .edit-lock.en__component.en__component--active.en__component--activeTarget > .en__component__actions > a.en__component__action {
-  background-color: #000000;
+#en__pagebuilder .edit-lock.en__component.en__component--active.en__component--activeTarget > .en__component__actions > a.en__component__action.en__component__action--delete {
+  transform: translate(-33px, 0px);
 }
 
 /*
