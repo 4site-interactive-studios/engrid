@@ -119,17 +119,15 @@ body {
     // [data-engrid-layout="#{$layout}"][data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="video"],
     // [data-engrid-layout="#{$layout}"][data-replace-banner-with-background="if-banner-empty-or-background-video"][data-engrid-body-banner="empty"][data-engrid-page-background="video"],
     // [data-engrid-layout="#{$layout}"][data-replace-banner-with-background="if-banner-empty-or-background-video"][data-engrid-page-background="video"]
-    [data-engrid-layout="#{$layout}"][data-replace-banner-with-background="if-background-exists"][data-engrid-page-background="image"],
+    // [data-engrid-layout="#{$layout}"][data-replace-banner-with-background="if-background-exists"][data-engrid-page-background="image"],
+    // [data-engrid-layout="#{$layout}"][data-replace-banner-with-background="if-banner-empty-or-background-video"][data-engrid-body-banner="empty"][data-engrid-page-background="image"],
     [data-engrid-layout="#{$layout}"][data-replace-banner-with-background="if-background-image"][data-engrid-page-background="image"],
-    [data-engrid-layout="#{$layout}"][data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="image"],
-    [data-engrid-layout="#{$layout}"][data-replace-banner-with-background="if-banner-empty-or-background-video"][data-engrid-body-banner="empty"][data-engrid-page-background="image"] {
-      .body-banner,
-      .body-bannerOverlay {
+    [data-engrid-layout="#{$layout}"][data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"][data-engrid-page-background="image"] {
+      [class*="body-banner"] {
         display: none;
       }
 
-      .page-backgroundImage,
-      .page-backgroundImageOverlay {
+      [class*="page-backgroundImage"] {
         grid-column: pc;
         grid-row: body-banner;
 
@@ -163,8 +161,7 @@ body {
 
 @mixin engrid_hide-background-on-desktop {
   &[data-engrid-embedded] {
-    .page-backgroundImage,
-    .page-backgroundImageOverlay {
+    [class*="page-backgroundImage"] {
       display: none !important;
     }
   }
