@@ -360,13 +360,21 @@
 }
 
 // Style conditional content
-#en__pagebuilder,
+
 [data-engrid-debug] {
   [class*="showif"],
   [class*="hideif"],
   [class*="engrid__"] {
     background-color: #0000ff1a !important;
   }
+}
+
+#en__pagebuilder .messageOverlay {
+  z-index: 2147483647; // The modal you see when confirming the deletion of a form component.
+}
+
+#en__pagebuilder .en__component--activeTarget .en__component__actions {
+  z-index: 2147483646; // Should be one less than the .messageOverlay so that the delete modal always wins out in the z-index stacking
 }
 
 /*
@@ -392,44 +400,45 @@
 }
 
 /* Style the edit warning and lock messages to match the styling of the component actions */
-#en__pagebuilder
-  [class*="edit-"].en__component.en__component--active.en__component--activeTarget {
-  box-shadow: 0 0 0 2px var(--edit_background-color);
-  outline-color: var(--edit_background-color);
-  background: var(--edit_background-color-faded);
+#en__pagebuilder [class*="edit-"] {
+  &.en__component.en__component--active.en__component--activeTarget {
+    box-shadow: 0 0 0 2px var(--edit_background-color);
+    outline-color: var(--edit_background-color);
+    background: var(--edit_background-color-faded);
 
-  .en__component__actions {
-    display: block;
-    text-decoration: none;
-    line-height: 30px;
-    font-weight: 700;
-    padding: 0 calc(28px + var(--fields_spacing-inline)) 0
-      calc(28px + var(--fields_spacing-inline));
-    min-width: 30px;
-    text-align: left;
-    white-space: nowrap;
-    padding-top: var(--fields_spacing-block);
-    padding-bottom: var(--fields_spacing-block);
-    margin-left: 8px;
-    padding-left: 0;
-    padding-right: 0;
-    // cursor: move;
-    // background-image: url(https://e-activist.com/ea-demo/frontend/build/3.63.1/images/icons/move-16-white.png) !important;
-    // background-position: 6px 50%;
-    // background-repeat: no-repeat;
-    background-color: var(--edit_background-color);
-    cursor: default;
-
-    &::before {
-      content: var(--edit_text);
-      padding-left: 28px;
-      padding-right: 28px;
-      color: var(--edit_color);
-      font-size: 18px;
-    }
-
-    > a.en__component__action {
+    .en__component__actions {
+      display: block;
+      text-decoration: none;
+      line-height: 30px;
+      font-weight: 700;
+      padding: 0 calc(28px + var(--fields_spacing-inline)) 0
+        calc(28px + var(--fields_spacing-inline));
+      min-width: 30px;
+      text-align: left;
+      white-space: nowrap;
+      padding-top: var(--fields_spacing-block);
+      padding-bottom: var(--fields_spacing-block);
+      margin-left: 8px;
+      padding-left: 0;
+      padding-right: 0;
+      // cursor: move;
+      // background-image: url(https://e-activist.com/ea-demo/frontend/build/3.63.1/images/icons/move-16-white.png) !important;
+      // background-position: 6px 50%;
+      // background-repeat: no-repeat;
       background-color: var(--edit_background-color);
+      cursor: default;
+
+      &::before {
+        content: var(--edit_text);
+        padding-left: 28px;
+        padding-right: 28px;
+        color: var(--edit_color);
+        font-size: 18px;
+      }
+
+      > a.en__component__action {
+        background-color: var(--edit_background-color);
+      }
     }
   }
 }
