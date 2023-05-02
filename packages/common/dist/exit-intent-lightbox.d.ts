@@ -4,7 +4,8 @@ export declare class ExitIntentLightbox {
     private dataLayer;
     private logger;
     constructor();
-    private watchForTrigger;
+    private watchForTriggers;
     private watchMouse;
+    private watchDocumentVisibility;
     private open;
 }

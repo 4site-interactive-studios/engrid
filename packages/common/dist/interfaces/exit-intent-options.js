@@ -6,4 +6,8 @@ export const ExitIntentOptionsDefaults = {
     buttonLink: "https://www.4sitestudios.com/",
     cookieName: "engrid-exit-intent-lightbox",
     cookieDuration: 30,
+    triggers: {
+        visibilityState: true,
+        mousePosition: true,
+    }
 };

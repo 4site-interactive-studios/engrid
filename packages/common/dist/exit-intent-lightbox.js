@@ -15,11 +15,17 @@ export class ExitIntentLightbox {
             this.logger.log("ExitIntentLightbox not showing - cookie found.");
             return;
         }
-        this.logger.log("ExitIntentLightbox enabled, waiting for trigger..");
-        this.watchForTrigger();
+        const activeTriggers = Object.keys(this.options.triggers).filter(t => this.options.triggers[t]).join(', ');
+        this.logger.log("ExitIntentLightbox enabled, waiting for trigger. Active triggers: " + activeTriggers);
+        this.watchForTriggers();
     }
-    watchForTrigger() {
-        this.watchMouse();
+    watchForTriggers() {
+        if (this.options.triggers.mousePosition) {
+            this.watchMouse();
+        }
+        if (this.options.triggers.visibilityState) {
+            this.watchDocumentVisibility();
+        }
     }
     watchMouse() {
         document.addEventListener("mouseout", (e) => {
@@ -44,6 +50,16 @@ export class ExitIntentLightbox {
                 this.open();
             }
         });
+    }
+    watchDocumentVisibility() {
+        const visibilityListener = () => {
+            if (document.visibilityState === "hidden") {
+                this.logger.log("ExitIntentLightbox triggered by visibilityState is hidden");
+                this.open();
+                document.removeEventListener("visibilitychange", visibilityListener);
+            }
+        };
+        document.addEventListener("visibilitychange", visibilityListener);
     }
     open() {
         var _a, _b;

@@ -6,5 +6,8 @@ export interface ExitIntentOptions {
     buttonLink: string;
     cookieName: string;
     cookieDuration: number;
+    triggers: {
+        [key: string]: boolean;
+    };
 }
 export declare const ExitIntentOptionsDefaults: ExitIntentOptions;

@@ -6,6 +6,9 @@ export interface ExitIntentOptions {
   buttonLink: string;
   cookieName: string;
   cookieDuration: number;
+  triggers: {
+    [key: string]: boolean;
+  }
 }
 
 export const ExitIntentOptionsDefaults: ExitIntentOptions = {
@@ -16,4 +19,8 @@ export const ExitIntentOptionsDefaults: ExitIntentOptions = {
   buttonLink: "https://www.4sitestudios.com/",
   cookieName: "engrid-exit-intent-lightbox",
   cookieDuration: 30,
+  triggers: {
+    visibilityState: true,
+    mousePosition: true,
+  }
 };
