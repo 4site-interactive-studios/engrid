@@ -307,6 +307,9 @@ export const inputPlaceholder = () => {
   let enFieldPhoneNumber2Required = document.querySelector(
     ".en__mandatory > * > input#en__field_supporter_phoneNumber2"
   ) as HTMLInputElement;
+  let enFieldPhoneNumber2HideOptionalPlaceholder = document.querySelector(
+    ".hide-optional-phone-placeholder [name='supporter.phoneNumber2']"
+  ) as HTMLInputElement;
 
   // Address
   let enFieldCountry = document.querySelector(
@@ -473,6 +476,13 @@ export const inputPlaceholder = () => {
     enAddInputPlaceholder &&
     enFieldPhoneNumber2 &&
     enFieldPhoneNumber2Required
+  ) {
+    enFieldPhoneNumber2.placeholder = "000-000-0000";
+  } else if (
+    enAddInputPlaceholder &&
+    enFieldPhoneNumber2 &&
+    !enFieldPhoneNumber2Required &&
+    enFieldPhoneNumber2HideOptionalPlaceholder
   ) {
     enFieldPhoneNumber2.placeholder = "000-000-0000";
   } else if (

@@ -225,6 +225,7 @@ export const inputPlaceholder = () => {
     let enFieldPhoneNumberRequired = document.querySelector(".en__mandatory > * > input#en__field_supporter_phoneNumber");
     let enFieldPhoneNumber2 = document.querySelector("input#en__field_supporter_phoneNumber2");
     let enFieldPhoneNumber2Required = document.querySelector(".en__mandatory > * > input#en__field_supporter_phoneNumber2");
+    let enFieldPhoneNumber2HideOptionalPlaceholder = document.querySelector(".hide-optional-phone-placeholder [name='supporter.phoneNumber2']");
     // Address
     let enFieldCountry = document.querySelector("input#en__field_supporter_country");
     let enFieldAddress1 = document.querySelector("input#en__field_supporter_address1");
@@ -300,6 +301,12 @@ export const inputPlaceholder = () => {
     if (enAddInputPlaceholder &&
         enFieldPhoneNumber2 &&
         enFieldPhoneNumber2Required) {
+        enFieldPhoneNumber2.placeholder = "000-000-0000";
+    }
+    else if (enAddInputPlaceholder &&
+        enFieldPhoneNumber2 &&
+        !enFieldPhoneNumber2Required &&
+        enFieldPhoneNumber2HideOptionalPlaceholder) {
         enFieldPhoneNumber2.placeholder = "000-000-0000";
     }
     else if (enAddInputPlaceholder &&

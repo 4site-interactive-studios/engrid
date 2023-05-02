@@ -25,8 +25,15 @@ export class Autocomplete {
     this.autoCompleteField('[name="supporter.region"]', "address-level1");
     this.autoCompleteField('[name="supporter.postcode"]', "postal-code");
 
-    // Ignore Autocomplete on the Recipient Email Field
+    // Ignore Autocomplete on the Recipient Email Field & Address ("none" is intentional because "off" doesn't work)
+    this.autoCompleteField('[name="transaction.honname"]', "none");
+
     this.autoCompleteField('[name="transaction.infemail"]', "none");
+    this.autoCompleteField('[name="transaction.infname"]', "none");
+    this.autoCompleteField('[name="transaction.infadd1"]', "none");
+    this.autoCompleteField('[name="transaction.infadd2"]', "none");
+    this.autoCompleteField('[name="transaction.infcity"]', "none");
+    this.autoCompleteField('[name="transaction.infpostcd"]', "none");
   }
 
   private autoCompleteField(querySelector: string, autoCompleteValue: string) {
@@ -36,7 +43,8 @@ export class Autocomplete {
       field.autocomplete = autoCompleteValue;
       return true;
     }
-    if (this.debug) console.log("AutoComplete: Field Not Found", querySelector);
+    if (this.debug && autoCompleteValue !== "none")
+      console.log("AutoComplete: Field Not Found", querySelector);
     return false;
   }
 }
