@@ -125,7 +125,21 @@ export abstract class ENGrid {
     textElement.appendChild(inputField);
     textField.appendChild(textElement);
     formBlock.appendChild(textField);
-    ENGrid.enForm.appendChild(formBlock);
+    const submitElement = document.querySelector(
+      ".en__submit"
+    ) as HTMLDivElement;
+    if (submitElement) {
+      const lastFormComponent = submitElement.closest(".en__component");
+      if (lastFormComponent) {
+        // Insert the new field after the submit button
+        lastFormComponent.parentNode?.insertBefore(
+          formBlock,
+          lastFormComponent.nextSibling
+        );
+      }
+    } else {
+      ENGrid.enForm.appendChild(formBlock);
+    }
     return inputField;
   }
 

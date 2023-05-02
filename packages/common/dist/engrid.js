@@ -86,6 +86,7 @@ export class ENGrid {
     }
     // Create a hidden input field
     static createHiddenInput(name, value = "") {
+        var _a;
         const formBlock = document.createElement("div");
         formBlock.classList.add("en__component", "en__component--formblock", "hide");
         const textField = document.createElement("div");
@@ -100,7 +101,17 @@ export class ENGrid {
         textElement.appendChild(inputField);
         textField.appendChild(textElement);
         formBlock.appendChild(textField);
-        ENGrid.enForm.appendChild(formBlock);
+        const submitElement = document.querySelector(".en__submit");
+        if (submitElement) {
+            const lastFormComponent = submitElement.closest(".en__component");
+            if (lastFormComponent) {
+                // Insert the new field after the submit button
+                (_a = lastFormComponent.parentNode) === null || _a === void 0 ? void 0 : _a.insertBefore(formBlock, lastFormComponent.nextSibling);
+            }
+        }
+        else {
+            ENGrid.enForm.appendChild(formBlock);
+        }
         return inputField;
     }
     // Trigger EN Dependencies
