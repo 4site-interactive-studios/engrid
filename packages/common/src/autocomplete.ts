@@ -1,10 +1,15 @@
 // This class adds the autocomplete attribute to
 // the most common input elements
 
-import { ENGrid } from "./";
+import { ENGrid, EngridLogger } from "./";
 
 export class Autocomplete {
-  private debug: boolean = ENGrid.debug;
+  private logger: EngridLogger = new EngridLogger(
+    "Autocomplete",
+    "#330033",
+    "#f0f0f0",
+    "📇"
+  );
 
   constructor() {
     this.autoCompleteField('[name="supporter.firstName"]', "given-name");
@@ -43,8 +48,8 @@ export class Autocomplete {
       field.autocomplete = autoCompleteValue;
       return true;
     }
-    if (this.debug && autoCompleteValue !== "none")
-      console.log("AutoComplete: Field Not Found", querySelector);
+    if (autoCompleteValue !== "none")
+      this.logger.log("Field Not Found", querySelector);
     return false;
   }
 }
