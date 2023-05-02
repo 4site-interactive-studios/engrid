@@ -63,6 +63,7 @@ export * from "./premium-gift";
 export * from "./digital-wallets";
 export * from "./mobile-cta";
 export * from "./live-frequency";
+export * from "./universal-opt-in";
 
 // Events
 export * from "./events";

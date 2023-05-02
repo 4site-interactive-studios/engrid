@@ -60,6 +60,7 @@ import {
   DigitalWallets,
   MobileCTA,
   LiveFrequency,
+  UniversalOptIn,
 } from "./";
 
 export class App extends ENGrid {
@@ -353,6 +354,9 @@ export class App extends ENGrid {
 
     // Live Frequency
     new LiveFrequency();
+
+    // Universal Opt In
+    new UniversalOptIn();
 
     this.setDataAttributes();
 
