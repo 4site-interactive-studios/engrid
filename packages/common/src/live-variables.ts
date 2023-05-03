@@ -62,7 +62,11 @@ export class LiveVariables {
       dec_separator,
       thousands_separator
     );
-    return amount > 0 ? <string>symbol + amountTxt : "";
+    return amount > 0
+      ? <string>(
+          `<span class="live-variable-currency">${symbol}</span><span class="live-variable-amount">${amountTxt}</span>`
+        )
+      : "";
   }
 
   private getUpsellAmountTxt(amount: number = 0) {
@@ -99,7 +103,10 @@ export class LiveVariables {
 
     if (amount) {
       label = label.replace("$AMOUNT", amount);
-      label = label.replace("$FREQUENCY", frequency);
+      label = label.replace(
+        "$FREQUENCY",
+        `<span class="live-variable-frequency">${frequency}</span>`
+      );
     } else {
       label = label.replace("$AMOUNT", "");
       label = label.replace("$FREQUENCY", "");

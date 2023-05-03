@@ -324,7 +324,7 @@ export class ENGrid {
     }
     static disableSubmit(label = "") {
         const submit = document.querySelector(".en__submit button");
-        submit.dataset.originalText = submit.innerText;
+        submit.dataset.originalText = submit.innerHTML;
         let submitButtonProcessingHTML = "<span class='loader-wrapper'><span class='loader loader-quart'></span><span class='submit-button-text-wrapper'>" +
             label +
             "</span></span>";

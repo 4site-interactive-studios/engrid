@@ -389,7 +389,7 @@ export abstract class ENGrid {
     const submit = document.querySelector(
       ".en__submit button"
     ) as HTMLButtonElement;
-    submit.dataset.originalText = submit.innerText;
+    submit.dataset.originalText = submit.innerHTML;
     let submitButtonProcessingHTML =
       "<span class='loader-wrapper'><span class='loader loader-quart'></span><span class='submit-button-text-wrapper'>" +
       label +

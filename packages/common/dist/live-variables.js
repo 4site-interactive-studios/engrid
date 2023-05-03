@@ -43,7 +43,9 @@ export class LiveVariables {
         const thousands_separator = (_c = this.options.ThousandsSeparator) !== null && _c !== void 0 ? _c : "";
         const dec_places = amount % 1 == 0 ? 0 : (_d = this.options.DecimalPlaces) !== null && _d !== void 0 ? _d : 2;
         const amountTxt = ENGrid.formatNumber(amount, dec_places, dec_separator, thousands_separator);
-        return amount > 0 ? symbol + amountTxt : "";
+        return amount > 0
+            ? (`<span class="live-variable-currency">${symbol}</span><span class="live-variable-amount">${amountTxt}</span>`)
+            : "";
     }
     getUpsellAmountTxt(amount = 0) {
         var _a, _b, _c, _d;
@@ -69,7 +71,7 @@ export class LiveVariables {
         let label = this.submitLabel;
         if (amount) {
             label = label.replace("$AMOUNT", amount);
-            label = label.replace("$FREQUENCY", frequency);
+            label = label.replace("$FREQUENCY", `<span class="live-variable-frequency">${frequency}</span>`);
         }
         else {
             label = label.replace("$AMOUNT", "");
