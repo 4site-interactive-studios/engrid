@@ -3376,7 +3376,9 @@ input[type=number]::-webkit-outer-spin-button {
     /**/
   }
 }
-input:-webkit-autofill {
+input:-webkit-autofill,
+select:-webkit-autofill,
+textarea:-webkit-autofill {
   /* Expose a hook for JavaScript when autofill is shown */
   /* JavaScript can capture 'animationstart' events */
   -webkit-animation-name: onAutoFillStart;
