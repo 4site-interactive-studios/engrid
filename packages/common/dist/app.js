@@ -389,4 +389,8 @@ export class App extends ENGrid {
         if (App.demo)
             App.setBodyData("demo", "");
     }
+    static log(message) {
+        const logger = new EngridLogger("Client", "brown", "aliceblue", "🍪");
+        logger.log(message);
+    }
 }

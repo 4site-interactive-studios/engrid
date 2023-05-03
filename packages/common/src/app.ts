@@ -561,4 +561,8 @@ export class App extends ENGrid {
     // Add demo data attribute
     if (App.demo) App.setBodyData("demo", "");
   }
+  public static log(message: string) {
+    const logger = new EngridLogger("Client", "brown", "aliceblue", "🍪");
+    logger.log(message);
+  }
 }
