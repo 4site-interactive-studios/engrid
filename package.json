@@ -33,7 +33,7 @@
     "@babel/plugin-proposal-object-rest-spread": "7.14.2",
     "@babel/plugin-transform-runtime": "^7.14.3",
     "@babel/preset-env": "^7.14.2",
-    "@babel/preset-typescript": "7.13.0",
+    "@babel/preset-typescript": "7.21.0",
     "babel-loader": "^8.2.2",
     "breakpoint-sass": "^2.7.1",
     "breakpoint-slicer": "^2.0.0",
