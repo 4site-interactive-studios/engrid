@@ -32,9 +32,14 @@ export class ExitIntentLightbox {
       return;
     }
 
-    const activeTriggers = Object.keys(this.options.triggers).filter(t => this.options.triggers[t]).join(', ');
+    const activeTriggers = Object.keys(this.options.triggers)
+      .filter((t) => this.options.triggers[t])
+      .join(", ");
 
-    this.logger.log("ExitIntentLightbox enabled, waiting for trigger. Active triggers: " + activeTriggers);
+    this.logger.log(
+      "ExitIntentLightbox enabled, waiting for trigger. Active triggers: " +
+        activeTriggers
+    );
 
     this.watchForTriggers();
   }
@@ -82,11 +87,13 @@ export class ExitIntentLightbox {
   private watchDocumentVisibility() {
     const visibilityListener = () => {
       if (document.visibilityState === "hidden") {
-        this.logger.log("ExitIntentLightbox triggered by visibilityState is hidden");
+        this.logger.log(
+          "ExitIntentLightbox triggered by visibilityState is hidden"
+        );
         this.open();
         document.removeEventListener("visibilitychange", visibilityListener);
       }
-    }
+    };
 
     document.addEventListener("visibilitychange", visibilityListener);
   }
@@ -110,7 +117,7 @@ export class ExitIntentLightbox {
               <div class="ExitIntent__body">
                 <h2>${this.options.title}</h2>
                 <p>${this.options.text}</p>
-                <a class="ExitIntent__button" href="${this.options.buttonLink}">
+                <a class="ExitIntent__button" href="${this.options.buttonLink}" target="_blank">
                   ${this.options.buttonText}
                 </a>
               </div>
@@ -139,6 +146,12 @@ export class ExitIntentLightbox {
           ENGrid.setBodyData("exit-intent-lightbox", "closed");
           this.dataLayer.push({ event: "exit_intent_lightbox_closed" });
         }
+      });
+
+    document
+      .querySelector(".ExitIntent__button")
+      ?.addEventListener("click", () => {
+        this.dataLayer.push({ event: "exit_intent_lightbox_cta_clicked" });
       });
   }
 }

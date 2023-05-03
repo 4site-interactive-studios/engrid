@@ -15,8 +15,11 @@ export class ExitIntentLightbox {
             this.logger.log("ExitIntentLightbox not showing - cookie found.");
             return;
         }
-        const activeTriggers = Object.keys(this.options.triggers).filter(t => this.options.triggers[t]).join(', ');
-        this.logger.log("ExitIntentLightbox enabled, waiting for trigger. Active triggers: " + activeTriggers);
+        const activeTriggers = Object.keys(this.options.triggers)
+            .filter((t) => this.options.triggers[t])
+            .join(", ");
+        this.logger.log("ExitIntentLightbox enabled, waiting for trigger. Active triggers: " +
+            activeTriggers);
         this.watchForTriggers();
     }
     watchForTriggers() {
@@ -62,7 +65,7 @@ export class ExitIntentLightbox {
         document.addEventListener("visibilitychange", visibilityListener);
     }
     open() {
-        var _a, _b;
+        var _a, _b, _c;
         if (this.opened)
             return;
         ENGrid.setBodyData("exit-intent-lightbox", "open");
@@ -77,7 +80,7 @@ export class ExitIntentLightbox {
               <div class="ExitIntent__body">
                 <h2>${this.options.title}</h2>
                 <p>${this.options.text}</p>
-                <a class="ExitIntent__button" href="${this.options.buttonLink}">
+                <a class="ExitIntent__button" href="${this.options.buttonLink}" target="_blank">
                   ${this.options.buttonText}
                 </a>
               </div>
@@ -102,6 +105,10 @@ export class ExitIntentLightbox {
                 ENGrid.setBodyData("exit-intent-lightbox", "closed");
                 this.dataLayer.push({ event: "exit_intent_lightbox_closed" });
             }
+        });
+        (_c = document
+            .querySelector(".ExitIntent__button")) === null || _c === void 0 ? void 0 : _c.addEventListener("click", () => {
+            this.dataLayer.push({ event: "exit_intent_lightbox_cta_clicked" });
         });
     }
 }
