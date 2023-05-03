@@ -4101,6 +4101,7 @@ body:not(#en__pagebuilder) .en__component--column:last-of-type,
 #en__pagebuilder .i9-hide .en__field:nth-of-type(9),
 #en__pagebuilder .i10-hide .en__field:nth-of-type(10),
 #en__pagebuilder .i11-hide .en__field:nth-of-type(11),
+#en__pagebuilder .en__field--plaid,
 [data-engrid-debug] [hidden-via-url-argument],
 [data-engrid-debug] .hide,
 [data-engrid-debug] .hide-until-engrid-js-loading-finished,
@@ -4115,7 +4116,8 @@ body:not(#en__pagebuilder) .en__component--column:last-of-type,
 [data-engrid-debug] .i8-hide .en__field:nth-of-type(8),
 [data-engrid-debug] .i9-hide .en__field:nth-of-type(9),
 [data-engrid-debug] .i10-hide .en__field:nth-of-type(10),
-[data-engrid-debug] .i11-hide .en__field:nth-of-type(11) {
+[data-engrid-debug] .i11-hide .en__field:nth-of-type(11),
+[data-engrid-debug] .en__field--plaid {
   background-color: rgba(255, 0, 0, 0.1019607843) !important;
 }
 #en__pagebuilder label.hide-label,
@@ -4161,7 +4163,8 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) .i7-hide .en__field:not(.en_
 body:not(#en__pagebuilder):not([data-engrid-debug]) .i8-hide .en__field:not(.en__field--validationFailed):nth-of-type(8),
 body:not(#en__pagebuilder):not([data-engrid-debug]) .i9-hide .en__field:not(.en__field--validationFailed):nth-of-type(9),
 body:not(#en__pagebuilder):not([data-engrid-debug]) .i10-hide .en__field:not(.en__field--validationFailed):nth-of-type(10),
-body:not(#en__pagebuilder):not([data-engrid-debug]) .i11-hide .en__field:not(.en__field--validationFailed):nth-of-type(11) {
+body:not(#en__pagebuilder):not([data-engrid-debug]) .i11-hide .en__field:not(.en__field--validationFailed):nth-of-type(11),
+body:not(#en__pagebuilder):not([data-engrid-debug]) .en__field--plaid {
   display: none;
 }
 body:not(#en__pagebuilder):not([data-engrid-debug]) div:not(.en__field--validationFailed) label.hide-label,
