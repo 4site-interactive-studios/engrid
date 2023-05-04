@@ -9064,6 +9064,9 @@ body:not([data-engrid-debug]) #debug-bar {
   background-color: var(--color_transparent) !important;
 }
 
+#en__pagebuilder [class*=showif],
+#en__pagebuilder [class*=hideif],
+#en__pagebuilder [class*=engrid__],
 [data-engrid-debug] [class*=showif],
 [data-engrid-debug] [class*=hideif],
 [data-engrid-debug] [class*=engrid__] {
