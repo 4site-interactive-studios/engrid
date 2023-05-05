@@ -13,7 +13,7 @@ export class DebugHiddenFields {
   constructor() {
     // Query all hidden input elements within the specified selectors
     const fields = document.querySelectorAll(
-      ".en__component--row [type='hidden'], .engrid-added-input[type='hidden']"
+      ".en__component--row [type='hidden'][class*='en_'], .engrid-added-input[type='hidden']"
     ) as NodeListOf<HTMLInputElement>;
 
     // Check if there are any hidden fields
