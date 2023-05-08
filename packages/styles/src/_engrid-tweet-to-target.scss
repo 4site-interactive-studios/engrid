@@ -86,3 +86,7 @@
   background-color: var(--button_background-color_hover);
   border-color: var(--button_border-color_hover);
 }
+
+.en__contacts--singleTweetMode .en__twitterTarget__image {
+  margin-left: calc((var(--checkbox_width) / 2) + var(--fields_spacing-inline));
+}

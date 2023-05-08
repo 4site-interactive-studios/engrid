@@ -5611,7 +5611,8 @@ video.grayscale-video {
   padding: initial;
 }
 
-.en__contactDetails__select {
+.en__contactDetails__select,
+.en__contacts--hideCheck .en__contactDetails__rows {
   margin-left: 0;
 }
 
@@ -6419,6 +6420,10 @@ iframe[src*="enWidget.iframe.html"]   {
   color: var(--button_color_hover);
   background-color: var(--button_background-color_hover);
   border-color: var(--button_border-color_hover);
+}
+
+.en__contacts--singleTweetMode .en__twitterTarget__image {
+  margin-left: calc(var(--checkbox_width) / 2 + var(--fields_spacing-inline));
 }
 
 [data-engrid-theme] {
