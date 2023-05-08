@@ -3228,7 +3228,7 @@ textarea:focus, textarea:hover,
 .en__contacts:not(.en__contacts--hideCheck) .en__contactDetails__select:checked + .en__contactDetails__rows::after {
   content: var(--checkbox_content_checked);
   position: absolute;
-  left: 4px;
+  left: 3px;
   top: 5px;
   color: var(--checkbox_color_checked);
   cursor: pointer;
@@ -6360,6 +6360,10 @@ iframe[src*="enWidget.iframe.html"]   {
   width: 100%;
 }
 
+.en__twitterTarget {
+  gap: calc(var(--checkbox_width) + var(--fields_spacing-inline) - var(--checkbox_width));
+}
+
 /* Make sure that background colors are not hard coded */
 .en__twitterTarget,
 .en__tweetBackgroundText,
@@ -6383,7 +6387,7 @@ iframe[src*="enWidget.iframe.html"]   {
 .en__twitterTarget__image,
 .en__twitterTarget__image:not([width]) {
   margin-left: 0;
-  margin-right: 1rem;
+  margin-right: 0;
   width: initial;
 }
 
@@ -6432,10 +6436,6 @@ iframe[src*="enWidget.iframe.html"]   {
   color: var(--button_color_hover);
   background-color: var(--button_background-color_hover);
   border-color: var(--button_border-color_hover);
-}
-
-.en__contacts--singleTweetMode .en__twitterTarget__image {
-  margin-left: var(--fields_spacing-inline);
 }
 
 [data-engrid-theme] {

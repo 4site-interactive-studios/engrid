@@ -1,5 +1,12 @@
 //Tweet to target theming
 
+// Matches the spacing with native checkboxes and email to targets
+.en__twitterTarget {
+  gap: calc(
+    var(--checkbox_width) + var(--fields_spacing-inline) - var(--checkbox_width)
+  );
+}
+
 /* Make sure that background colors are not hard coded */
 .en__twitterTarget,
 .en__tweetBackgroundText,
@@ -27,7 +34,7 @@
 .en__twitterTarget__image,
 .en__twitterTarget__image:not([width]) {
   margin-left: 0;
-  margin-right: 1rem;
+  margin-right: 0;
   width: initial; // Required for flexbox sizing because the image doesn't have a width and will be set to 100% width
 }
 
@@ -85,8 +92,4 @@
   color: var(--button_color_hover);
   background-color: var(--button_background-color_hover);
   border-color: var(--button_border-color_hover);
-}
-
-.en__contacts--singleTweetMode .en__twitterTarget__image {
-  margin-left: var(--fields_spacing-inline);
 }
