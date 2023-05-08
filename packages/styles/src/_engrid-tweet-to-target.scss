@@ -88,5 +88,5 @@
 }
 
 .en__contacts--singleTweetMode .en__twitterTarget__image {
-  margin-left: calc((var(--checkbox_width) / 2) + var(--fields_spacing-inline));
+  margin-left: var(--fields_spacing-inline);
 }
