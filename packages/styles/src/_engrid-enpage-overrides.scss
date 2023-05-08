@@ -651,7 +651,9 @@
   align-items: center;
 }
 
-.en__eventOccurrencesDateSelector:not(.en__eventOccurrencesDateSelector--selected)
+.en__eventOccurrencesDateSelector:not(
+    .en__eventOccurrencesDateSelector--selected
+  )
   .en__eventOccurrencesDateSelector__clear {
   display: none;
 }
@@ -1303,7 +1305,7 @@
 
 .en__twitterTarget__select {
   // display: none;
-  margin: 0 0.5rem 0 0; // 0 10px 0 0
+  margin: 0; // 0 10px 0 0
 }
 
 .en__contacts--singleTweetMode .en__twitterTarget__select {
@@ -1312,6 +1314,8 @@
   height: var(
     --checkbox_height
   ); // Matches the pseudo element that adds the checkbox
+  display: grid;
+  margin: 0;
 }
 
 .en__twitterTarget {

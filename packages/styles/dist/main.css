@@ -1371,12 +1371,14 @@ textarea,
 }
 
 .en__twitterTarget__select {
-  margin: 0 0.5rem 0 0;
+  margin: 0;
 }
 
 .en__contacts--singleTweetMode .en__twitterTarget__select {
   flex: 1 0 auto;
   height: var(--checkbox_height);
+  display: grid;
+  margin: 0;
 }
 
 .en__twitterTarget p {
