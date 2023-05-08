@@ -3704,8 +3704,24 @@ button[disabled],
 [data-engrid-theme] .en__component--callcontactblock .en__overlay--callcontact {
   width: 100%;
 }
+[data-engrid-theme] .en__component--callsurveyblock .en__c2c__survey__rate {
+  max-width: 100%;
+  gap: 1rem;
+}
+[data-engrid-theme] .en__component--callsurveyblock .en__field__element--textarea {
+  width: 100%;
+}
 [data-engrid-theme] .en__component--callsurveyblock .en__c2c__survey__rate .en__button {
   opacity: 1;
+  margin-bottom: 0;
+}
+@media screen and (max-width: 768px) {
+  [data-engrid-theme] .en__component--callsurveyblock .en__c2c__survey__rate {
+    flex-direction: column;
+  }
+  [data-engrid-theme] .en__component--callsurveyblock .en__button {
+    width: 100%;
+  }
 }
 
 [data-engrid-theme] {
