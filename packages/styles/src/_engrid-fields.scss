@@ -44,10 +44,18 @@
   // --radio_border-color: var(--input_border-color);
   --radio_border-radius: 50%;
   --radio_box-shadow: none;
-  --radio_font-family: var(--p_font-family);
-  --radio_font-size: var(--p_font-size);
-  --radio_font-weight: var(--p_font-weight);
-  --radio_line-height: var(--p_line-height);
+  --radio_font-family: var(
+    --p_font-family
+  ); // @TODO This should probably inherit from --inputs instead of --p, but maybe there was a reason it wasn't
+  --radio_font-size: var(
+    --p_font-size
+  ); // @TODO This should probably inherit from --inputs instead of --p, but maybe there was a reason it wasn't
+  --radio_font-weight: var(
+    --p_font-weight
+  ); // @TODO This should probably inherit from --inputs instead of --p, but maybe there was a reason it wasn't
+  --radio_line-height: var(
+    --p_line-height
+  ); // @TODO This should probably inherit from --inputs instead of --p, but maybe there was a reason it wasn't
   --radio_width: 20px; // REM's can result in fractional pixel values. By defining integers values you avoid oblong radio buttons ( https://d.pr/v/2ApFvk ).
   --radio_height: 20px; // REM's can result in fractional pixel values. By defining integers values  you avoid oblong radio buttons ( https://d.pr/v/2ApFvk ).
   --radio_top: 0px;
@@ -924,6 +932,7 @@ textarea,
   border-color: var(--checkbox_border-color_checked);
 }
 
+// @TODO This entire checkbox could better inherit, in order to match, the styling of checkboxes
 .en__contacts:not(.en__contacts--hideCheck)
   .en__contactDetails__select:checked
   + .en__contactDetails__rows::after {
@@ -941,6 +950,10 @@ textarea,
   color: var(--checkbox_color_checked);
   // background-color: var(--checkbox_background-color_checked);
   cursor: pointer;
+  font-family: var(--checkbox_font-family);
+  font-size: var(--checkbox_font-size);
+  font-weight: var(--checkbox_font-weight);
+  line-height: var(--checkbox_line-height);
 }
 
 /************************************

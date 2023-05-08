@@ -2413,10 +2413,18 @@ a:focus, a:hover {
   --radio_border-width: var(--input_border-width);
   --radio_border-radius: 50%;
   --radio_box-shadow: none;
-  --radio_font-family: var(--p_font-family);
-  --radio_font-size: var(--p_font-size);
-  --radio_font-weight: var(--p_font-weight);
-  --radio_line-height: var(--p_line-height);
+  --radio_font-family: var(
+    --p_font-family
+  );
+  --radio_font-size: var(
+    --p_font-size
+  );
+  --radio_font-weight: var(
+    --p_font-weight
+  );
+  --radio_line-height: var(
+    --p_line-height
+  );
   --radio_width: 20px;
   --radio_height: 20px;
   --radio_top: 0px;
@@ -3224,6 +3232,10 @@ textarea:focus, textarea:hover,
   top: 5px;
   color: var(--checkbox_color_checked);
   cursor: pointer;
+  font-family: var(--checkbox_font-family);
+  font-size: var(--checkbox_font-size);
+  font-weight: var(--checkbox_font-weight);
+  line-height: var(--checkbox_line-height);
 }
 
 /************************************
@@ -6423,7 +6435,7 @@ iframe[src*="enWidget.iframe.html"]   {
 }
 
 .en__contacts--singleTweetMode .en__twitterTarget__image {
-  margin-left: calc(var(--checkbox_width) / 2 + var(--fields_spacing-inline));
+  margin-left: var(--fields_spacing-inline);
 }
 
 [data-engrid-theme] {
