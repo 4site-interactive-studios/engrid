@@ -327,6 +327,7 @@ label {
   letter-spacing: var(--label_letter-spacing);
 }
 
+// The old approach of "label a.label-tooltip" is no longer prefered because on error EN uses the label name, including the tooltip name. Our new approach makes it a sibling element wrapping both it and the label in a span tag.
 label a.label-tooltip {
   text-transform: none;
   right: 0;
@@ -337,6 +338,29 @@ label a.label-tooltip {
   margin-right: var(--fields_spacing-inline);
 
   &:last-child {
+    margin-right: 0;
+  }
+}
+
+// New approach that adds tooltips as siblins to the label and wraps them both in a span
+.label-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: center;
+  gap: var(--fields_spacing-inline) calc(var(--fields_spacing-inline) * 2);
+
+  a.label-tooltip {
+    font-family: var(--label_font-family);
+    color: var(--a_color);
+    font-size: var(--label_font-size);
+    font-weight: var(--a_font-weight);
+    line-height: var(--label_line-height);
+    text-transform: var(--label_text-transform);
+    letter-spacing: var(--label_letter-spacing);
+    text-decoration: underline;
+    margin-left: 0;
     margin-right: 0;
   }
 }

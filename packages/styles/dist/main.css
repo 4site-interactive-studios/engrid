@@ -2724,6 +2724,27 @@ label a.label-tooltip:last-child {
   margin-right: 0;
 }
 
+.label-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: center;
+  gap: var(--fields_spacing-inline) calc(var(--fields_spacing-inline) * 2);
+}
+.label-wrapper a.label-tooltip {
+  font-family: var(--label_font-family);
+  color: var(--a_color);
+  font-size: var(--label_font-size);
+  font-weight: var(--a_font-weight);
+  line-height: var(--label_line-height);
+  text-transform: var(--label_text-transform);
+  letter-spacing: var(--label_letter-spacing);
+  text-decoration: underline;
+  margin-left: 0;
+  margin-right: 0;
+}
+
 /************************************
  * Inputs
  * The use of "input.en__field__input" is needed to provide enough specificity to suprass class selectors like ".en__field__input--calendar" in enPage.css
