@@ -349,7 +349,8 @@ label a.label-tooltip {
   flex-wrap: wrap;
   justify-content: space-between;
   align-content: center;
-  gap: var(--fields_spacing-inline) calc(var(--fields_spacing-inline) * 2);
+  gap: calc(var(--fields_spacing-inline) / 2)
+    calc(var(--fields_spacing-inline) * 2);
 
   a.label-tooltip {
     font-family: var(--label_font-family);
@@ -359,7 +360,7 @@ label a.label-tooltip {
     line-height: var(--label_line-height);
     text-transform: var(--label_text-transform);
     letter-spacing: var(--label_letter-spacing);
-    text-decoration: underline;
+    text-decoration: var(--a_text-decoration);
     margin-left: 0;
     margin-right: 0;
   }
