@@ -299,7 +299,7 @@ export class DebugPanel {
           <div class="debug-panel__container">
             <div class="debug-panel__closed-title">Debug</div>
             <div class="debug-panel__title">
-              <h2>Debug Panel</h2>
+              <h2>Debug</h2>
               <div class="debug-panel__close">X</div>
             </div>
             <div class="debug-panel__options">
@@ -309,7 +309,7 @@ export class DebugPanel {
                 </label>
               </div>
               <div class="debug-panel__option">
-                <label for="engrid-form-quickfill">Form Quick-fill</label>
+                <label for="engrid-form-quickfill">Quick-fill</label>
                 <select name="engrid-form-quickfill" id="engrid-form-quickfill">
                   <option disabled selected>Choose an option</option>
                   <option value="quick-fill-pi-unique-us-address-senate-rep-cc-stripe-visa">Quick-fill - Unique w/ Senate Address - Stripe Visa</option>
@@ -325,11 +325,11 @@ export class DebugPanel {
                 </select>
               </div>
               <div class="debug-panel__option">
-                <label for="engrid-layout-switch">Switch layout</label>
+                <label for="engrid-layout-switch">Layout</label>
                 <select name="engrid-layout" id="engrid-layout-switch">
                 </select>
               </div>
-              <div class="debug-panel__option">
+              <div class="debug-panel__option debug-panel__option--local">
                 <div class="debug-panel__checkbox">
                   <input type="checkbox" name="engrid-embedded-layout" id="engrid-embedded-layout">
                   <label for="engrid-embedded-layout">Embedded layout</label>            
@@ -351,7 +351,7 @@ export class DebugPanel {
                 <label for="engrid-theme">Theme</label>
                 <input type="text" id="engrid-theme">
               </div>
-              <div class="debug-panel__option">
+              <div class="debug-panel__option debug-panel__option--local">
                 <label for="engrid-theme">Sub-theme</label>
                 <input type="text" id="engrid-subtheme">
               </div>
