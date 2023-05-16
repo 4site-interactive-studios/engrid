@@ -6631,6 +6631,10 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) [class*=showifamount].animat
   border: none;
 }
 
+.en__component--hubgadget > img[src*=pageassets] {
+  max-width: 72px;
+}
+
 #en__pagebuilder div.en__component.engrid-ticker {
   display: block !important;
   max-height: 200px;

@@ -25,3 +25,8 @@
     }
   }
 }
+
+// Set an upper bounds to the native supporter hub widget images
+.en__component--hubgadget > img[src*="pageassets"] {
+  max-width: 72px;
+}
