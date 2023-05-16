@@ -17,3 +17,10 @@
 .en__contact--open .en__contact__toggle {
   background-color: initial;
 }
+
+// Helps style the contact block to look like normal Inputs and Textareas
+.en__contactSubject input,
+.en__contactMessage--typePlainText textarea {
+  margin-top: calc(var(--fields_spacing-inline) * 0.5);
+  margin-bottom: var(--fields_spacing-block);
+}

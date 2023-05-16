@@ -5675,6 +5675,12 @@ video.grayscale-video {
   background-color: initial;
 }
 
+.en__contactSubject input,
+.en__contactMessage--typePlainText textarea {
+  margin-top: calc(var(--fields_spacing-inline) * 0.5);
+  margin-bottom: var(--fields_spacing-block);
+}
+
 #en__field_transaction_ccnumber {
   background-size: contain;
   background-repeat: no-repeat;
