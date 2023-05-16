@@ -401,6 +401,9 @@ export class ENGrid {
         }
     }
     static isVisible(element) {
+        if (!element) {
+            return false;
+        }
         return !!(element.offsetWidth ||
             element.offsetHeight ||
             element.getClientRects().length);

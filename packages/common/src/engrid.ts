@@ -471,6 +471,9 @@ export abstract class ENGrid {
     }
   }
   static isVisible(element: HTMLElement): boolean {
+    if (!element) {
+      return false;
+    }
     return !!(
       element.offsetWidth ||
       element.offsetHeight ||
