@@ -1767,7 +1767,10 @@
 }
 
 .en__supporterHubLogin {
-  width: 26.25rem; // 420px - @HOLD-TODO There has to be a better way to do this than a fixed width
+  width: min(
+    100%,
+    26.25rem
+  ); // 420px - @HOLD-TODO There has to be a better way to do this than a fixed width
   // margin: auto;
   border: 1px solid #bfbfbf;
   border-radius: var(--input_border-radius); // 6px

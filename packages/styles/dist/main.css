@@ -1654,7 +1654,7 @@ textarea,
 }
 
 .en__supporterHubLogin {
-  width: 26.25rem;
+  width: min(100%, 26.25rem);
   border: 1px solid #bfbfbf;
   border-radius: var(--input_border-radius);
 }
