@@ -6617,22 +6617,26 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) [class*=showifamount].animat
 [data-engrid-theme][data-engrid-page-type=supporterhub] .en__hubPledge__column {
   width: 100%;
 }
-[data-engrid-theme][data-engrid-page-type=supporterhub] .en__hubPledge__buttons .en__submit:first-child {
-  margin-right: 1rem;
-}
-[data-engrid-theme][data-engrid-page-type=supporterhub] .en__hubPledge__buttons .en__submit:last-child {
-  margin-left: 1rem;
-}
-[data-engrid-theme][data-engrid-page-type=supporterhub] .en__hubPledge__buttons .en__submit:first-child:last-child {
-  margin-left: 0;
-  margin-right: 0;
+[data-engrid-theme][data-engrid-page-type=supporterhub] .en__hubPledge__buttons {
+  gap: 2rem;
+  align-items: center;
 }
 [data-engrid-theme][data-engrid-page-type=supporterhub] .en__hubPledge__validationFail .en__field__element {
   border: none;
 }
-
-.en__component--hubgadget > img[src*=pageassets] {
+@media screen and (max-width: 768px) {
+  [data-engrid-theme] .en__hubPledge__buttons {
+    flex-direction: column;
+  }
+  [data-engrid-theme] .en__hubPledge__buttons .en__submit button {
+    margin: 0;
+  }
+}
+[data-engrid-theme] .en__component--hubgadget > img[src*=pageassets] {
   max-width: 72px;
+}
+[data-engrid-theme] .en__pagination .en__button {
+  word-break: keep-all;
 }
 
 #en__pagebuilder div.en__component.engrid-ticker {

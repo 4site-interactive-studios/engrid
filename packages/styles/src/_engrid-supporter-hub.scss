@@ -6,17 +6,9 @@
     }
 
     // In the event there are two submit buttons in a row
-    .en__hubPledge__buttons .en__submit:first-child {
-      margin-right: 1rem;
-    }
-
-    .en__hubPledge__buttons .en__submit:last-child {
-      margin-left: 1rem;
-    }
-
-    .en__hubPledge__buttons .en__submit:first-child:last-child {
-      margin-left: 0;
-      margin-right: 0;
+    .en__hubPledge__buttons {
+      gap: 2rem;
+      align-items: center;
     }
 
     // Removes a red border that appears only on errored fields within the support hub
@@ -24,9 +16,22 @@
       border: none;
     }
   }
-}
 
-// Set an upper bounds to the native supporter hub widget images
-.en__component--hubgadget > img[src*="pageassets"] {
-  max-width: 72px;
+  @media screen and (max-width: 768px) {
+    .en__hubPledge__buttons {
+      flex-direction: column;
+      .en__submit button {
+        margin: 0;
+      }
+    }
+  }
+
+  // Set an upper bounds to the native supporter hub widget images
+  .en__component--hubgadget > img[src*="pageassets"] {
+    max-width: 72px;
+  }
+
+  .en__pagination .en__button {
+    word-break: keep-all;
+  }
 }
