@@ -100,14 +100,6 @@ export class App extends ENGrid {
         this.run();
       });
     }
-    // Window Load
-    let onLoad = typeof window.onload === "function" ? window.onload : null;
-    window.onload = (e: Event) => {
-      this.onLoad();
-      if (onLoad) {
-        onLoad.bind(window, e);
-      }
-    };
     // Window Resize
     window.onresize = () => {
       this.onResize();
@@ -126,7 +118,7 @@ export class App extends ENGrid {
       this.logger.danger("Engaging Networks JS Framework NOT FOUND");
       setTimeout(() => {
         this.run();
-      }, 10);
+      }, 100);
       return;
     }
     // If there's an option object on the page, override the defaults
@@ -380,6 +372,19 @@ export class App extends ENGrid {
 
     window.EngridVersion = AppVersion;
     this.logger.success(`VERSION: ${AppVersion}`);
+
+    // Window Load
+    let onLoad = typeof window.onload === "function" ? window.onload : null;
+    if (document.readyState !== "loading") {
+      this.onLoad();
+    } else {
+      window.onload = (e: Event) => {
+        this.onLoad();
+        if (onLoad) {
+          onLoad.bind(window, e);
+        }
+      };
+    }
   }
 
   private onLoad() {
