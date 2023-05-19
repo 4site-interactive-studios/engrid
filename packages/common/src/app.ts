@@ -61,6 +61,7 @@ import {
   MobileCTA,
   LiveFrequency,
   UniversalOptIn,
+  CreditCardScroll,
 } from "./";
 
 export class App extends ENGrid {
@@ -266,6 +267,9 @@ export class App extends ENGrid {
 
     // Swap Amounts
     new SwapAmounts();
+
+    // Credit Card Script
+    new CreditCardScroll();
 
     // On the end of the script, after all subscribers defined, let's load the current value
     this._amount.load();

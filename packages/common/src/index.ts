@@ -64,6 +64,7 @@ export * from "./digital-wallets";
 export * from "./mobile-cta";
 export * from "./live-frequency";
 export * from "./universal-opt-in";
+export * from "./credit-card-scroll";
 
 // Events
 export * from "./events";
