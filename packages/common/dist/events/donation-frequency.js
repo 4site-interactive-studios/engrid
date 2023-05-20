@@ -52,8 +52,12 @@ export class DonationFrequency {
     }
     // Set amount var with currently selected amount
     load() {
-        this.frequency = ENGrid.getFieldValue("transaction.recurrfreq");
-        this.recurring = ENGrid.getFieldValue("transaction.recurrpay");
+        const freqField = ENGrid.getField("transaction.recurrfreq");
+        if (freqField)
+            this.frequency = ENGrid.getFieldValue("transaction.recurrfreq");
+        const recurrField = ENGrid.getField("transaction.recurrpay");
+        if (recurrField)
+            this.recurring = ENGrid.getFieldValue("transaction.recurrpay");
         // ENGrid.enParseDependencies();
     }
     // Force a new recurrency

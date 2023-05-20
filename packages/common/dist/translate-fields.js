@@ -225,6 +225,17 @@ export class TranslateFields {
                     { label: "West Virginia", value: "WV" },
                     { label: "Wisconsin", value: "WI" },
                     { label: "Wyoming", value: "WY" },
+                    { label: "American Samoa", value: "AS" },
+                    { label: "Federated States of Micronesia", value: "FM" },
+                    { label: "Guam", value: "GU" },
+                    { label: "Marshall Islands", value: "MH" },
+                    { label: "Northern Mariana Islands", value: "MP" },
+                    { label: "Puerto Rico", value: "PR" },
+                    { label: "Palau", value: "PW" },
+                    { label: "Virgin Islands", value: "VI" },
+                    { label: "Armed Forces America", value: "AA" },
+                    { label: "Armed Forces Europe", value: "AE" },
+                    { label: "Armed Forces Pacific", value: "AP" },
                 ]);
                 break;
             case "United States":
@@ -281,6 +292,23 @@ export class TranslateFields {
                     { label: "West Virginia", value: "West Virginia" },
                     { label: "Wisconsin", value: "Wisconsin" },
                     { label: "Wyoming", value: "Wyoming" },
+                    { label: "American Samoa", value: "American Samoa" },
+                    {
+                        label: "Federated States of Micronesia",
+                        value: "Federated States of Micronesia",
+                    },
+                    { label: "Guam", value: "Guam" },
+                    { label: "Marshall Islands", value: "Marshall Islands" },
+                    {
+                        label: "Northern Mariana Islands",
+                        value: "Northern Mariana Islands",
+                    },
+                    { label: "Puerto Rico", value: "Puerto Rico" },
+                    { label: "Palau", value: "Palau" },
+                    { label: "Virgin Islands", value: "Virgin Islands" },
+                    { label: "Armed Forces America", value: "Armed Forces America" },
+                    { label: "Armed Forces Europe", value: "Armed Forces Europe" },
+                    { label: "Armed Forces Pacific", value: "Armed Forces Pacific" },
                 ]);
                 break;
             case "CA":

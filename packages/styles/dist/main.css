@@ -1371,12 +1371,14 @@ textarea,
 }
 
 .en__twitterTarget__select {
-  margin: 0 0.5rem 0 0;
+  margin: 0;
 }
 
 .en__contacts--singleTweetMode .en__twitterTarget__select {
   flex: 1 0 auto;
   height: var(--checkbox_height);
+  display: grid;
+  margin: 0;
 }
 
 .en__twitterTarget p {
@@ -1652,7 +1654,7 @@ textarea,
 }
 
 .en__supporterHubLogin {
-  width: 26.25rem;
+  width: min(100%, 26.25rem);
   border: 1px solid #bfbfbf;
   border-radius: var(--input_border-radius);
 }
@@ -2413,10 +2415,18 @@ a:focus, a:hover {
   --radio_border-width: var(--input_border-width);
   --radio_border-radius: 50%;
   --radio_box-shadow: none;
-  --radio_font-family: var(--p_font-family);
-  --radio_font-size: var(--p_font-size);
-  --radio_font-weight: var(--p_font-weight);
-  --radio_line-height: var(--p_line-height);
+  --radio_font-family: var(
+    --p_font-family
+  );
+  --radio_font-size: var(
+    --p_font-size
+  );
+  --radio_font-weight: var(
+    --p_font-weight
+  );
+  --radio_line-height: var(
+    --p_line-height
+  );
   --radio_width: 20px;
   --radio_height: 20px;
   --radio_top: 0px;
@@ -2711,6 +2721,27 @@ label a.label-tooltip {
   margin-right: var(--fields_spacing-inline);
 }
 label a.label-tooltip:last-child {
+  margin-right: 0;
+}
+
+.label-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: center;
+  gap: calc(var(--fields_spacing-inline) / 2) calc(var(--fields_spacing-inline) * 2);
+}
+.label-wrapper a.label-tooltip {
+  font-family: var(--label_font-family);
+  color: var(--a_color);
+  font-size: var(--label_font-size);
+  font-weight: var(--a_font-weight);
+  line-height: var(--label_line-height);
+  text-transform: var(--label_text-transform);
+  letter-spacing: var(--label_letter-spacing);
+  text-decoration: var(--a_text-decoration);
+  margin-left: 0;
   margin-right: 0;
 }
 
@@ -3220,10 +3251,14 @@ textarea:focus, textarea:hover,
 .en__contacts:not(.en__contacts--hideCheck) .en__contactDetails__select:checked + .en__contactDetails__rows::after {
   content: var(--checkbox_content_checked);
   position: absolute;
-  left: 4px;
+  left: 3px;
   top: 5px;
   color: var(--checkbox_color_checked);
   cursor: pointer;
+  font-family: var(--checkbox_font-family);
+  font-size: var(--checkbox_font-size);
+  font-weight: var(--checkbox_font-weight);
+  line-height: var(--checkbox_line-height);
 }
 
 /************************************
@@ -3376,7 +3411,9 @@ input[type=number]::-webkit-outer-spin-button {
     /**/
   }
 }
-input:-webkit-autofill {
+input:-webkit-autofill,
+select:-webkit-autofill,
+textarea:-webkit-autofill {
   /* Expose a hook for JavaScript when autofill is shown */
   /* JavaScript can capture 'animationstart' events */
   -webkit-animation-name: onAutoFillStart;
@@ -3688,8 +3725,24 @@ button[disabled],
 [data-engrid-theme] .en__component--callcontactblock .en__overlay--callcontact {
   width: 100%;
 }
+[data-engrid-theme] .en__component--callsurveyblock .en__c2c__survey__rate {
+  max-width: 100%;
+  gap: 1rem;
+}
+[data-engrid-theme] .en__component--callsurveyblock .en__field__element--textarea {
+  width: 100%;
+}
 [data-engrid-theme] .en__component--callsurveyblock .en__c2c__survey__rate .en__button {
   opacity: 1;
+  margin-bottom: 0;
+}
+@media screen and (max-width: 768px) {
+  [data-engrid-theme] .en__component--callsurveyblock .en__c2c__survey__rate {
+    flex-direction: column;
+  }
+  [data-engrid-theme] .en__component--callsurveyblock .en__button {
+    width: 100%;
+  }
 }
 
 [data-engrid-theme] {
@@ -5612,7 +5665,8 @@ video.grayscale-video {
   padding: initial;
 }
 
-.en__contactDetails__select {
+.en__contactDetails__select,
+.en__contacts--hideCheck .en__contactDetails__rows {
   margin-left: 0;
 }
 
@@ -5622,6 +5676,12 @@ video.grayscale-video {
 .en__contact__toggle,
 .en__contact--open .en__contact__toggle {
   background-color: initial;
+}
+
+.en__contactSubject input,
+.en__contactMessage--typePlainText textarea {
+  margin-top: calc(var(--fields_spacing-inline) * 0.5);
+  margin-bottom: var(--fields_spacing-block);
 }
 
 #en__field_transaction_ccnumber {
@@ -6348,6 +6408,10 @@ iframe[src*="enWidget.iframe.html"]   {
   width: 100%;
 }
 
+.en__twitterTarget {
+  gap: calc(var(--checkbox_width) + var(--fields_spacing-inline) - var(--checkbox_width));
+}
+
 /* Make sure that background colors are not hard coded */
 .en__twitterTarget,
 .en__tweetBackgroundText,
@@ -6371,7 +6435,7 @@ iframe[src*="enWidget.iframe.html"]   {
 .en__twitterTarget__image,
 .en__twitterTarget__image:not([width]) {
   margin-left: 0;
-  margin-right: 1rem;
+  margin-right: 0;
   width: initial;
 }
 
@@ -6556,18 +6620,26 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) [class*=showifamount].animat
 [data-engrid-theme][data-engrid-page-type=supporterhub] .en__hubPledge__column {
   width: 100%;
 }
-[data-engrid-theme][data-engrid-page-type=supporterhub] .en__hubPledge__buttons .en__submit:first-child {
-  margin-right: 1rem;
-}
-[data-engrid-theme][data-engrid-page-type=supporterhub] .en__hubPledge__buttons .en__submit:last-child {
-  margin-left: 1rem;
-}
-[data-engrid-theme][data-engrid-page-type=supporterhub] .en__hubPledge__buttons .en__submit:first-child:last-child {
-  margin-left: 0;
-  margin-right: 0;
+[data-engrid-theme][data-engrid-page-type=supporterhub] .en__hubPledge__buttons {
+  gap: 2rem;
+  align-items: center;
 }
 [data-engrid-theme][data-engrid-page-type=supporterhub] .en__hubPledge__validationFail .en__field__element {
   border: none;
+}
+@media screen and (max-width: 768px) {
+  [data-engrid-theme] .en__hubPledge__buttons {
+    flex-direction: column;
+  }
+  [data-engrid-theme] .en__hubPledge__buttons .en__submit button {
+    margin: 0;
+  }
+}
+[data-engrid-theme] .en__component--hubgadget > img[src*=pageassets] {
+  max-width: 72px;
+}
+[data-engrid-theme] .en__pagination .en__button {
+  word-break: keep-all;
 }
 
 #en__pagebuilder div.en__component.engrid-ticker {
@@ -9065,6 +9137,9 @@ body:not([data-engrid-debug]) #debug-bar {
   background-color: var(--color_transparent) !important;
 }
 
+#en__pagebuilder [class*=showif],
+#en__pagebuilder [class*=hideif],
+#en__pagebuilder [class*=engrid__],
 [data-engrid-debug] [class*=showif],
 [data-engrid-debug] [class*=hideif],
 [data-engrid-debug] [class*=engrid__] {

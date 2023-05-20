@@ -471,6 +471,9 @@ export abstract class ENGrid {
     }
   }
   static isVisible(element: HTMLElement): boolean {
+    if (!element) {
+      return false;
+    }
     return !!(
       element.offsetWidth ||
       element.offsetHeight ||
@@ -539,5 +542,38 @@ export abstract class ENGrid {
       .replace(/\-\-+/g, "-") // Replace multiple - with single -
       .replace(/^-+/, "") // Trim - from start of text
       .replace(/-+$/, ""); // Trim - from end of text
+  }
+  // This function is used to run a callback function when an error is displayed on the page
+  static watchForError(callback: Function) {
+    const errorElement = document.querySelector(
+      ".en__errorList"
+    ) as HTMLUListElement;
+    const capitalize = (word: string) =>
+      word.charAt(0).toUpperCase() + word.slice(1);
+    // Avoid duplicate callbacks
+    let callbackType = callback.toString();
+    if (callbackType.indexOf("function") === 0) {
+      callbackType = callbackType.replace("function ", "");
+    }
+    if (callbackType.indexOf("(") > 0) {
+      callbackType = callbackType.substring(0, callbackType.indexOf("("));
+    }
+    // Remove invalid characters
+    callbackType = callbackType.replace(/[^a-zA-Z0-9]/g, "");
+    // Limit to 20 characters and add prefix
+    callbackType = callbackType.substring(0, 20);
+    callbackType = "engrid" + capitalize(callbackType);
+    if (errorElement && !errorElement.dataset[callbackType]) {
+      errorElement.dataset[callbackType] = "true";
+
+      const observer = new MutationObserver(function (mutations) {
+        mutations.forEach(function (mutation) {
+          if (mutation.type === "childList" && mutation.addedNodes.length > 0) {
+            callback();
+          }
+        });
+      });
+      observer.observe(errorElement, { childList: true });
+    }
   }
 }

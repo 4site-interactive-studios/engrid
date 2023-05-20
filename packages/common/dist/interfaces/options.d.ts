@@ -79,6 +79,7 @@ export interface Options {
     };
     PageLayouts?: string[];
     CountryDisable?: string[];
+    Plaid?: boolean;
     onLoad?: () => void;
     onResize?: () => void;
     onSubmit?: () => void;

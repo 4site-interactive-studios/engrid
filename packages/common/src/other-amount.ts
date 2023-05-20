@@ -1,6 +1,6 @@
 // This class automatically select other radio input when an amount is entered into it.
 
-import { EngridLogger, ENGrid } from ".";
+import { EngridLogger, ENGrid, DonationAmount } from ".";
 
 export class OtherAmount {
   private logger: EngridLogger = new EngridLogger(
@@ -9,6 +9,7 @@ export class OtherAmount {
     "black",
     "💰"
   );
+  private _amount: DonationAmount = DonationAmount.getInstance();
   constructor() {
     "focusin input".split(" ").forEach((e) => {
       // We're attaching this event to the body because sometimes the other amount input is not in the DOM yet and comes via AJAX.
@@ -42,6 +43,20 @@ export class OtherAmount {
             cleanAmount % 1 != 0
               ? cleanAmount.toFixed(2)
               : cleanAmount.toString();
+        }
+      });
+      // On blur, if the amount is 0, select the previous amount
+      otherAmountField.addEventListener("blur", (e: Event) => {
+        const target = e.target as HTMLInputElement;
+        const amount = target.value;
+        const cleanAmount = ENGrid.cleanAmount(amount);
+        if (cleanAmount === 0) {
+          this.logger.log("Other Amount Field Blurred with 0 amount");
+          // Get Live Amount
+          const liveAmount = this._amount.amount;
+          if (liveAmount > 0) {
+            this._amount.setAmount(liveAmount, false);
+          }
         }
       });
     }

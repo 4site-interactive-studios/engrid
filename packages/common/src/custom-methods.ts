@@ -660,15 +660,30 @@ export const watchInmemField = () => {
 
 // @TODO Refactor (low priority)
 export const watchGiveBySelectField = () => {
+  const setPaymentType = (paymentType: string) => {
+    const enFieldPaymentType = document.querySelector(
+      "#en__field_transaction_paymenttype"
+    ) as HTMLSelectElement;
+    if (enFieldPaymentType) {
+      // Set Payment Type Option Value Case Insensitive
+      const paymentTypeOption = Array.from(enFieldPaymentType.options).find(
+        (option) => option.value.toLowerCase() === paymentType.toLowerCase()
+      );
+      if (paymentTypeOption) {
+        paymentTypeOption.selected = true;
+        const event = new Event("change");
+        enFieldPaymentType.dispatchEvent(event);
+      }
+    }
+  };
+
   const enFieldGiveBySelect = document.querySelector(
     ".en__field--give-by-select"
   ) as HTMLElement;
   const transactionGiveBySelect = document.getElementsByName(
     "transaction.giveBySelect"
   ) as NodeList;
-  const enFieldPaymentType = document.querySelector(
-    "#en__field_transaction_paymenttype"
-  ) as HTMLSelectElement;
+
   let enFieldGiveBySelectCurrentValue = document.querySelector(
     'input[name="transaction.giveBySelect"]:checked'
   ) as HTMLInputElement;
@@ -694,7 +709,7 @@ export const watchGiveBySelectField = () => {
         removeClassesByPrefix(enGrid, prefix);
         enGrid.classList.add("has-give-by-ach");
       }
-      enFieldPaymentType.value = "ach";
+      setPaymentType("ach");
 
     // Give By Check
     } else if (enFieldGiveBySelectCurrentValue && enFieldGiveBySelectCurrentValue.value.toLowerCase() == "check") {
@@ -702,7 +717,7 @@ export const watchGiveBySelectField = () => {
         removeClassesByPrefix(enGrid, prefix);
         enGrid.classList.add("has-give-by-check");
       }
-      enFieldPaymentType.value = "check";
+      setPaymentType("check");
 
     // Give By PayPal
     } else if (enFieldGiveBySelectCurrentValue && enFieldGiveBySelectCurrentValue.value.toLowerCase() == "paypal") {
@@ -710,7 +725,7 @@ export const watchGiveBySelectField = () => {
         removeClassesByPrefix(enGrid, prefix);
         enGrid.classList.add("has-give-by-paypal");
       }
-      enFieldPaymentType.value = "paypal";
+      setPaymentType("paypal");
 
     // Give By Paypal One Touch or Venmo
     } else if (enFieldGiveBySelectCurrentValue && enFieldGiveBySelectCurrentValue.value.toLowerCase() == "paypaltouch") {
@@ -718,7 +733,7 @@ export const watchGiveBySelectField = () => {
         removeClassesByPrefix(enGrid, prefix);
         enGrid.classList.add("has-give-by-paypaltouch");
       }
-      enFieldPaymentType.value = "paypaltouch";
+      setPaymentType("paypaltouch");
 
     // Give By Apple Pay via Vantiv
     } else if (enFieldGiveBySelectCurrentValue && enFieldGiveBySelectCurrentValue.value.toLowerCase() == "applepay") {
@@ -726,7 +741,7 @@ export const watchGiveBySelectField = () => {
         removeClassesByPrefix(enGrid, prefix);
         enGrid.classList.add("has-give-by-applepay");
       }
-      enFieldPaymentType.value = "applepay";
+      setPaymentType("applepay");
 
     // Give By Apple Pay or Google Pay via Stripe
     } else if (enFieldGiveBySelectCurrentValue && enFieldGiveBySelectCurrentValue.value.toLowerCase() == "stripedigitalwallet") {
@@ -734,11 +749,8 @@ export const watchGiveBySelectField = () => {
         removeClassesByPrefix(enGrid, prefix);
         enGrid.classList.add("has-give-by-stripedigitalwallet");
       }
-      enFieldPaymentType.value = "stripedigitalwallet";
+      setPaymentType("stripedigitalwallet");
     };
-
-    const event = new Event("change");
-    enFieldPaymentType.dispatchEvent(event);
   };
 
   /* prettier-ignore */

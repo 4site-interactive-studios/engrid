@@ -20,7 +20,10 @@ export class LiveVariables {
         this._frequency.onFrequencyChange.subscribe(() => this.changeLiveFrequency());
         this._frequency.onFrequencyChange.subscribe(() => this.changeRecurrency());
         this._frequency.onFrequencyChange.subscribe(() => this.changeSubmitButton());
-        this._form.onSubmit.subscribe(() => ENGrid.disableSubmit("Processing..."));
+        this._form.onSubmit.subscribe(() => {
+            if (ENGrid.getPageType() !== "SUPPORTERHUB")
+                ENGrid.disableSubmit("Processing...");
+        });
         this._form.onError.subscribe(() => ENGrid.enableSubmit());
         // Watch the monthly-upsell links
         document.addEventListener("click", (e) => {
