@@ -61,6 +61,7 @@ import {
   MobileCTA,
   LiveFrequency,
   UniversalOptIn,
+  Plaid,
 } from "./";
 
 export class App extends ENGrid {
@@ -353,6 +354,9 @@ export class App extends ENGrid {
 
     // Universal Opt In
     new UniversalOptIn();
+
+    // Plaid
+    if (this.options.Plaid) new Plaid();
 
     this.setDataAttributes();
 

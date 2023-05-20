@@ -57,6 +57,7 @@ export * from "./digital-wallets";
 export * from "./mobile-cta";
 export * from "./live-frequency";
 export * from "./universal-opt-in";
+export * from "./plaid";
 // Events
 export * from "./events";
 // Version
