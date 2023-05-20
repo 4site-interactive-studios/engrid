@@ -34,7 +34,10 @@ export class LiveVariables {
       this.changeSubmitButton()
     );
 
-    this._form.onSubmit.subscribe(() => ENGrid.disableSubmit("Processing..."));
+    this._form.onSubmit.subscribe(() => {
+      if (ENGrid.getPageType() !== "SUPPORTERHUB")
+        ENGrid.disableSubmit("Processing...");
+    });
     this._form.onError.subscribe(() => ENGrid.enableSubmit());
 
     // Watch the monthly-upsell links
