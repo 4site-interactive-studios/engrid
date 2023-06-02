@@ -2502,11 +2502,11 @@ a:focus, a:hover {
   padding-bottom: 0rem;
   margin-bottom: var(--fields_spacing-block);
 }
-.en__component--formblock .en__field .en__field__label:not(.en__field__label--item),
+.en__component--formblock .en__field .en__field__label:not(.en__field__label--item):not([for*=svquestion]),
 .en__component--formblock .en__field .en__field__helpText,
-.en__component--svblock .en__field .en__field__label:not(.en__field__label--item),
+.en__component--svblock .en__field .en__field__label:not(.en__field__label--item):not([for*=svquestion]),
 .en__component--svblock .en__field .en__field__helpText,
-.en__registrants__registrantDetails .en__field .en__field__label:not(.en__field__label--item),
+.en__registrants__registrantDetails .en__field .en__field__label:not(.en__field__label--item):not([for*=svquestion]),
 .en__registrants__registrantDetails .en__field .en__field__helpText {
   position: relative;
   display: flex;

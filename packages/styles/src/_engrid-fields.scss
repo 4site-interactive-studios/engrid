@@ -180,7 +180,8 @@
     // align-self: flex-end;
 
     // Helps when the field label gets additional content added to it. https://d.pr/v/9rFaiW
-    .en__field__label:not(.en__field__label--item),
+    // Exclude Survey Block questions from having justify-content: space-between; because they have numbers included with them. https://cln.sh/0d6G0Jn9
+    .en__field__label:not(.en__field__label--item):not([for*="svquestion"]),
     .en__field__helpText {
       // padding-top: 0rem;
       // padding-bottom: 0rem;
