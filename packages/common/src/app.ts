@@ -205,13 +205,13 @@ export class App extends ENGrid {
       this._form.submit = true;
       this._form.submitPromise = false;
       this._form.dispatchSubmit();
+      ENGrid.watchForError(ENGrid.enableSubmit);
       if (!this._form.submit) return false;
       if (this._form.submitPromise) return this._form.submitPromise;
       this.logger.success("enOnSubmit Success");
       // If all validation passes, we'll watch for Digital Wallets Errors, which
       // will not reload the page (thanks EN), so we will enable the submit button if
       // an error is programmatically thrown by the Digital Wallets
-      ENGrid.watchForError(ENGrid.enableSubmit);
       return true;
     };
     window.enOnError = () => {
