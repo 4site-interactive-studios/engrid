@@ -344,6 +344,7 @@ label a.label-tooltip {
 }
 
 // New approach that adds tooltips as siblins to the label and wraps them both in a span
+// Before and After Comparison: https://cln.sh/nfw5C99L
 .label-wrapper {
   display: flex;
   flex-direction: row;
