@@ -983,6 +983,14 @@ textarea,
 }
 
 /************************************
+ * A notice shown below a field via JS
+ * Example: https://pastebin.com/raw/RERZudKH
+ ***********************************/
+.en__field__notice {
+  order: 3;
+}
+
+/************************************
  * Number Input Spinner Field
  * Remove Number Input Spinners https://stackoverflow.com/a/4298216
  ***********************************/
