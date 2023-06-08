@@ -16,9 +16,6 @@ export class iFrame {
       ENGrid.setBodyData("embedded", "");
       // Fire the resize event
       this.logger.log("iFrame Event - Begin Resizing");
-      this.sendIframeHeight();
-      // Listen for the resize event
-      window.addEventListener("resize", this.sendIframeHeight.bind(this));
       window.addEventListener("load", (event) => {
         // Scroll to top of iFrame
         this.logger.log("iFrame Event - window.onload");
@@ -38,6 +35,9 @@ export class iFrame {
           }, 100);
         });
       });
+      window.setTimeout(() => {
+        this.sendIframeHeight();
+      }, 300);
       // Listen for the form submit event
       this._form.onSubmit.subscribe((e) => {
         this.logger.log("iFrame Event - onSubmit");
