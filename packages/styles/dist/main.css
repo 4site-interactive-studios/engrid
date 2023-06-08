@@ -3546,7 +3546,7 @@ body .page-backgroundImage video.crop-on-right {
 
 body {
   background-color: var(--engrid__page_background-color);
-  min-width: 100vw;
+  min-width: min(100vw, 100%);
   min-height: 100vh;
 }
 

@@ -1,5 +1,6 @@
 body {
   background-color: var(--engrid__page_background-color);
-  min-width: 100vw;
+  // @TODO: consider removing min-width as part of legacy CSS cleanup: https://4site.slack.com/archives/C6U22L1NJ/p1686236992607359
+  min-width: min(100vw, 100%);
   min-height: 100vh;
 }
