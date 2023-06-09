@@ -18,7 +18,7 @@ import {
   ApplePay,
   A11y,
   CapitalizeFields,
-  CreditCardNumbers,
+  CreditCard,
   Ecard,
   ClickToExpand,
   legacy,
@@ -62,6 +62,7 @@ import {
   LiveFrequency,
   UniversalOptIn,
   Plaid,
+  GiveBySelect,
 } from "./";
 
 export class App extends ENGrid {
@@ -137,7 +138,6 @@ export class App extends ENGrid {
     legacy.inputPlaceholder();
     legacy.preventAutocomplete();
     legacy.watchInmemField();
-    legacy.watchGiveBySelectField();
     legacy.simpleUnsubscribe();
 
     legacy.contactDetailLabels();
@@ -274,8 +274,8 @@ export class App extends ENGrid {
     if (this.options.CapitalizeFields) new CapitalizeFields();
     // Auto Year Class
     if (this.options.AutoYear) new AutoYear();
-    // Credit Card Numbers Only
-    new CreditCardNumbers();
+    // Credit Card Utility
+    new CreditCard();
     // Autocomplete Class
     new Autocomplete();
     // Ecard Class
@@ -357,6 +357,9 @@ export class App extends ENGrid {
 
     // Plaid
     if (this.options.Plaid) new Plaid();
+
+    // Give By Select
+    new GiveBySelect();
 
     this.setDataAttributes();
 

@@ -491,4 +491,23 @@ export class ENGrid {
             observer.observe(errorElement, { childList: true });
         }
     }
+    // Get the Payment Type
+    static getPaymentType() {
+        return ENGrid.getFieldValue("transaction.paymenttype");
+    }
+    // Set the Payment Type
+    static setPaymentType(paymentType) {
+        const enFieldPaymentType = ENGrid.getField("transaction.paymenttype");
+        if (enFieldPaymentType) {
+            const paymentTypeOption = Array.from(enFieldPaymentType.options).find((option) => option.value.toLowerCase() === paymentType.toLowerCase());
+            if (paymentTypeOption) {
+                paymentTypeOption.selected = true;
+                const event = new Event("change");
+                enFieldPaymentType.dispatchEvent(event);
+            }
+            else {
+                enFieldPaymentType.value = paymentType;
+            }
+        }
+    }
 }

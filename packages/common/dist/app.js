@@ -1,5 +1,5 @@
 import { DonationAmount, DonationFrequency, EnForm, ProcessingFees, } from "./events";
-import { AmountLabel, Loader, ProgressBar, UpsellLightbox, ENGrid, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, A11y, CapitalizeFields, CreditCardNumbers, Ecard, ClickToExpand, legacy, LiveVariables, iFrame, ShowHideRadioCheckboxes, SimpleCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce, AutoYear, Autocomplete, RememberMe, TranslateFields, ShowIfAmount, EngridLogger, OtherAmount, MinMaxAmount, Ticker, DataReplace, DataHide, AddNameToMessage, ExpandRegionName, AppVersion, UrlToForm, RequiredIfVisible, TidyContact, DataLayer, LiveCurrency, Autosubmit, EventTickets, SwapAmounts, DebugPanel, DebugHiddenFields, FreshAddress, BrandingHtml, CountryDisable, PremiumGift, DigitalWallets, MobileCTA, LiveFrequency, UniversalOptIn, Plaid, } from "./";
+import { AmountLabel, Loader, ProgressBar, UpsellLightbox, ENGrid, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, A11y, CapitalizeFields, CreditCard, Ecard, ClickToExpand, legacy, LiveVariables, iFrame, ShowHideRadioCheckboxes, SimpleCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce, AutoYear, Autocomplete, RememberMe, TranslateFields, ShowIfAmount, EngridLogger, OtherAmount, MinMaxAmount, Ticker, DataReplace, DataHide, AddNameToMessage, ExpandRegionName, AppVersion, UrlToForm, RequiredIfVisible, TidyContact, DataLayer, LiveCurrency, Autosubmit, EventTickets, SwapAmounts, DebugPanel, DebugHiddenFields, FreshAddress, BrandingHtml, CountryDisable, PremiumGift, DigitalWallets, MobileCTA, LiveFrequency, UniversalOptIn, Plaid, GiveBySelect, } from "./";
 export class App extends ENGrid {
     constructor(options) {
         super();
@@ -55,7 +55,6 @@ export class App extends ENGrid {
         legacy.inputPlaceholder();
         legacy.preventAutocomplete();
         legacy.watchInmemField();
-        legacy.watchGiveBySelectField();
         legacy.simpleUnsubscribe();
         legacy.contactDetailLabels();
         legacy.easyEdit();
@@ -165,8 +164,8 @@ export class App extends ENGrid {
         // Auto Year Class
         if (this.options.AutoYear)
             new AutoYear();
-        // Credit Card Numbers Only
-        new CreditCardNumbers();
+        // Credit Card Utility
+        new CreditCard();
         // Autocomplete Class
         new Autocomplete();
         // Ecard Class
@@ -230,6 +229,8 @@ export class App extends ENGrid {
         // Plaid
         if (this.options.Plaid)
             new Plaid();
+        // Give By Select
+        new GiveBySelect();
         this.setDataAttributes();
         //Debug panel
         if (this.options.Debug ||

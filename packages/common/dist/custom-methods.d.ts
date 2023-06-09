@@ -9,7 +9,6 @@ export declare const debugBar: () => void;
 export declare const inputPlaceholder: () => void;
 export declare const preventAutocomplete: () => void;
 export declare const watchInmemField: () => void;
-export declare const watchGiveBySelectField: () => void;
 export declare const contactDetailLabels: () => void;
 export declare const easyEdit: () => void;
 export declare const simpleUnsubscribe: () => void;

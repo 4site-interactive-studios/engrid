@@ -17,7 +17,7 @@ export * from "./engrid";
 export * from "./apple-pay";
 export * from "./a11y";
 export * from "./capitalize-fields";
-export * from "./credit-card-numbers";
+export * from "./credit-card";
 export * from "./auto-year";
 export * from "./autocomplete";
 export * from "./ecard";
@@ -65,6 +65,7 @@ export * from "./mobile-cta";
 export * from "./live-frequency";
 export * from "./universal-opt-in";
 export * from "./plaid";
+export * from "./give-by-select";
 
 // Events
 export * from "./events";
