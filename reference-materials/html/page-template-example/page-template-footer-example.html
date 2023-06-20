@@ -17,7 +17,7 @@
     if(checkForTwoColumnLayout && (!checkForBodyTopContent || !checkForBodyMainContent)){
         document.querySelector("body").setAttribute("data-engrid-layout", "centercenter1col");
     }
-</script>    
+</script>
 
 <!-- Load ENGrid's Javascript Asynchronous -->
 <script async src="https://c27fdabe952dfc357fe25ebf5c8897ee.ssl.cf5.rackcdn.com/12345/engrid.minjs"></script>
@@ -40,6 +40,18 @@
     });
 </script>
 <!-- End Render Critical Javascript -->
+
+<!-- Function to set ENGrid data attributes on the body if not set in URL -->
+<script>
+  function setEnGridBodyDataAttribute(attributeName, attributeValue) {
+    const body = document.querySelector("body");
+    const urlParams = new URLSearchParams(window.location.search);
+
+    if (!urlParams.has("data-engrid-" + attributeName)) {
+      body.setAttribute("data-engrid-" + attributeName, attributeValue);
+    }
+  }
+</script>
 
 <!-- Start Google Tag Manager Script -->
 <!-- <script>(function (w, d, s, l, i) {

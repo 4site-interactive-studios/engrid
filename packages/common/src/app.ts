@@ -63,6 +63,7 @@ import {
   UniversalOptIn,
   Plaid,
   GiveBySelect,
+  UrlParamsToBodyAttrs,
 } from "./";
 
 export class App extends ENGrid {
@@ -362,6 +363,8 @@ export class App extends ENGrid {
     new GiveBySelect();
 
     this.setDataAttributes();
+
+    new UrlParamsToBodyAttrs();
 
     //Debug panel
     if (
