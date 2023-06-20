@@ -48,7 +48,7 @@
     <meta name="twitter:description"
         content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec iaculis laoreet sapien ac malesuada. Praesent sit amet dapibus ex, fringilla lacinia turpis. Vestibulum ac fringilla mauris.">
     <meta property="og:type" content="website">
-    
+
     <!-- Start connections for all known assets -->
     <link rel="preconnect" href="//c27fdabe952dfc357fe25ebf5c8897ee.ssl.cf5.rackcdn.com">
     <link rel="preconnect" href="//e-activist.com">
@@ -88,6 +88,14 @@
         if (window.self !== window.top) {
             document.body.setAttribute("data-engrid-embedded", "");
         };
+    </script>
+
+    <script>
+        (new URLSearchParams(document.location.search)).forEach((value, key) => {
+            if (key.startsWith("data-engrid-")) {
+                document.body.setAttribute(key, value);
+            }
+        });
     </script>
 
     <!-- Load ENGrid's CSS here so that it always comes after Engaging Networks CSS which gets injected into <head> -->
