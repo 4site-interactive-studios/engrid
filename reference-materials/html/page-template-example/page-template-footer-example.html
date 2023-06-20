@@ -41,18 +41,6 @@
 </script>
 <!-- End Render Critical Javascript -->
 
-<!-- Function to set ENGrid data attributes on the body if not set in URL -->
-<script>
-  function setEnGridBodyDataAttribute(attributeName, attributeValue) {
-    const body = document.querySelector("body");
-    const urlParams = new URLSearchParams(window.location.search);
-
-    if (!urlParams.has("data-engrid-" + attributeName)) {
-      body.setAttribute("data-engrid-" + attributeName, attributeValue);
-    }
-  }
-</script>
-
 <!-- Start Google Tag Manager Script -->
 <!-- <script>(function (w, d, s, l, i) {
             w[l] = w[l] || []; w[l].push({
