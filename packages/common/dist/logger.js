@@ -46,7 +46,7 @@ export class EngridLogger {
         }
     }
     get log() {
-        if (!ENGrid.debug) {
+        if (!ENGrid.debug && ENGrid.getUrlParameter("debug") !== "log") {
             return () => { };
         }
         return console.log.bind(window.console, "%c" + this.emoji + " " + this.prefix + " %s", `color: ${this.color}; background-color: ${this.background}; font-size: 1.2em; padding: 4px; border-radius: 2px; font-family: monospace;`);
