@@ -259,16 +259,27 @@ export class TranslateFields {
           { label: "West Virginia", value: "WV" },
           { label: "Wisconsin", value: "WI" },
           { label: "Wyoming", value: "WY" },
+          {
+            label: "&#9472&#9472&nbspUS&nbspTerritories&nbsp&#9472&#9472",
+            value: "",
+            disabled: true,
+          },
           { label: "American Samoa", value: "AS" },
-          { label: "Federated States of Micronesia", value: "FM" },
           { label: "Guam", value: "GU" },
-          { label: "Marshall Islands", value: "MH" },
           { label: "Northern Mariana Islands", value: "MP" },
           { label: "Puerto Rico", value: "PR" },
-          { label: "Palau", value: "PW" },
+          { label: "US Minor Outlying Islands", value: "UM" },
           { label: "Virgin Islands", value: "VI" },
-          { label: "Armed Forces America", value: "AA" },
+          {
+            label: "&#9472&#9472&nbspArmed&nbspForces&nbsp&#9472&#9472",
+            value: "",
+            disabled: true,
+          },
+          { label: "Armed Forces Americas", value: "AA" },
+          { label: "Armed Forces Africa", value: "AE" },
+          { label: "Armed Forces Canada", value: "AE" },
           { label: "Armed Forces Europe", value: "AE" },
+          { label: "Armed Forces Middle East", value: "AE" },
           { label: "Armed Forces Pacific", value: "AP" },
         ]);
         break;
@@ -326,22 +337,36 @@ export class TranslateFields {
           { label: "West Virginia", value: "West Virginia" },
           { label: "Wisconsin", value: "Wisconsin" },
           { label: "Wyoming", value: "Wyoming" },
-          { label: "American Samoa", value: "American Samoa" },
           {
-            label: "Federated States of Micronesia",
-            value: "Federated States of Micronesia",
+            label: "&#9472&#9472&nbspUS&nbspTerritories&nbsp&#9472&#9472",
+            value: "",
+            disabled: true,
           },
+          { label: "American Samoa", value: "American Samoa" },
           { label: "Guam", value: "Guam" },
-          { label: "Marshall Islands", value: "Marshall Islands" },
           {
             label: "Northern Mariana Islands",
             value: "Northern Mariana Islands",
           },
           { label: "Puerto Rico", value: "Puerto Rico" },
-          { label: "Palau", value: "Palau" },
+          {
+            label: "US Minor Outlying Islands",
+            value: "US Minor Outlying Islands",
+          },
           { label: "Virgin Islands", value: "Virgin Islands" },
-          { label: "Armed Forces America", value: "Armed Forces America" },
+          {
+            label: "&#9472&#9472&nbspArmed&nbspForces&nbsp&#9472&#9472",
+            value: "",
+            disabled: true,
+          },
+          { label: "Armed Forces Americas", value: "Armed Forces Americas" },
+          { label: "Armed Forces Africa", value: "Armed Forces Africa" },
+          { label: "Armed Forces Canada", value: "Armed Forces Canada" },
           { label: "Armed Forces Europe", value: "Armed Forces Europe" },
+          {
+            label: "Armed Forces Middle East",
+            value: "Armed Forces Middle East",
+          },
           { label: "Armed Forces Pacific", value: "Armed Forces Pacific" },
         ]);
         break;
@@ -466,7 +491,7 @@ export class TranslateFields {
   private setStateValues(
     state: string,
     label: string,
-    values: { label: string; value: string }[] | null
+    values: { label: string; value: string; disabled?: boolean }[] | null
   ) {
     const stateField = ENGrid.getField(state);
     const stateWrapper = stateField ? stateField.closest(".en__field") : null;
@@ -491,6 +516,9 @@ export class TranslateFields {
             option.innerHTML = value.label;
             if (selectedState === value.value) {
               option.selected = true;
+            }
+            if (value.disabled) {
+              option.disabled = true;
             }
             select.appendChild(option);
           });
