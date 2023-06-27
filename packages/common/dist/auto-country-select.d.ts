@@ -1,4 +1,4 @@
-export declare class SimpleCountrySelect {
+export declare class AutoCountrySelect {
     countryWrapper: HTMLDivElement;
     countrySelect: HTMLSelectElement;
     private country;

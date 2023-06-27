@@ -25,7 +25,7 @@ import {
   LiveVariables,
   iFrame,
   ShowHideRadioCheckboxes,
-  SimpleCountrySelect,
+  AutoCountrySelect,
   SkipToMainContentLink,
   SrcDefer,
   NeverBounce,
@@ -265,8 +265,8 @@ export class App extends ENGrid {
     this._amount.load();
     this._frequency.load();
 
-    // Simple Country Select
-    new SimpleCountrySelect();
+    // Auto Country Select
+    new AutoCountrySelect();
     // Add Image Attribution
     if (this.options.MediaAttribution) new MediaAttribution();
     // Apple Pay

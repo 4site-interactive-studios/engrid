@@ -6338,31 +6338,6 @@ a.skip-link:not(:focus):not(:active) {
   word-wrap: normal !important;
 }
 
-/************************************
-   * Utility: Hide Display
-   * // Depends on corresponding JS library
-   * .simple_country_select
-   ***********************************/
-body:not(#en__pagebuilder) .simple_country_select:not(.country-select-visible) .en__field--country {
-  display: none;
-}
-
-.simple_country_select .en__field--address1 label {
-  flex-wrap: wrap;
-}
-.simple_country_select .en__field--address1 label a {
-  cursor: pointer;
-  color: var(--a_color);
-  text-align: right;
-}
-.simple_country_select .en__field--address1 label a:focus, .simple_country_select .en__field--address1 label a:hover {
-  color: var(--a_color_hover);
-}
-
-.simple_country_select.country-select-visible .en__field--address1 label label {
-  display: none;
-}
-
 .en__component--socialshareblock {
   display: flex;
   align-items: center;
