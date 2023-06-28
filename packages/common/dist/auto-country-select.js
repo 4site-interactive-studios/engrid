@@ -1,7 +1,7 @@
 // This class works when the user has added ".simple_country_select" as a class in page builder for the Country select
 import * as cookie from "./cookie";
 import { ENGrid } from ".";
-export class SimpleCountrySelect {
+export class AutoCountrySelect {
     constructor() {
         this.countryWrapper = document.querySelector(".simple_country_select");
         this.countrySelect = document.querySelector("select#en__field_supporter_country");
