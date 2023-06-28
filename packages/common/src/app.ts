@@ -90,7 +90,8 @@ export class App extends ENGrid {
     // Turn Debug ON if you use local assets
     if (
       ENGrid.getBodyData("assets") === "local" &&
-      ENGrid.getUrlParameter("debug") !== "false"
+      ENGrid.getUrlParameter("debug") !== "false" &&
+      ENGrid.getUrlParameter("debug") !== "log"
     ) {
       window.EngridOptions.Debug = true;
     }

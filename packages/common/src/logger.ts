@@ -52,7 +52,7 @@ export class EngridLogger {
   }
 
   get log(): Function {
-    if (!ENGrid.debug) {
+    if (!ENGrid.debug && ENGrid.getUrlParameter("debug") !== "log") {
       return () => {};
     }
     return console.log.bind(
