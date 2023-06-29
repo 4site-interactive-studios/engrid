@@ -9,8 +9,15 @@ export class AutoCountrySelect {
         const engridAutofill = cookie.get("engrid-autofill");
         const submissionFailed = !!(ENGrid.checkNested(window.EngagingNetworks, "require", "_defined", "enjs", "checkSubmissionFailed") && window.EngagingNetworks.require._defined.enjs.checkSubmissionFailed());
         const hasIntlSupport = !!ENGrid.checkNested(window.Intl, "DisplayNames");
-        // Only run if there's no engrid-autofill cookie && if it has Intl support
-        if (!engridAutofill && !submissionFailed && hasIntlSupport) {
+        // Only run if there's no engrid-autofill cookie && if it has Intl support && no country data in url
+        const locationDataInUrl = ENGrid.getUrlParameter("supporter.country") ||
+            ENGrid.getUrlParameter("supporter.region") ||
+            (ENGrid.getUrlParameter("ea.url.id") &&
+                !ENGrid.getUrlParameter("forwarded"));
+        if (!engridAutofill &&
+            !submissionFailed &&
+            hasIntlSupport &&
+            !locationDataInUrl) {
             fetch(`https://${window.location.hostname}/cdn-cgi/trace`)
                 .then((res) => res.text())
                 .then((t) => {

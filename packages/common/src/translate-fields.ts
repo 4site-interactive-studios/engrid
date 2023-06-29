@@ -26,6 +26,10 @@ export class TranslateFields {
           : options[key];
       }
     }
+
+    //Storing these values on load so we can set them back after the translation/swap.
+    let countryAndStateValuesOnLoad: Record<string, string | null> = {};
+
     if (this.countriesSelect) {
       this.countriesSelect.forEach((select: HTMLSelectElement) => {
         select.addEventListener(
@@ -35,22 +39,50 @@ export class TranslateFields {
             select.name as keyof typeof this.countryToStateFields
           )
         );
+        if (select.value) {
+          countryAndStateValuesOnLoad[select.name] = select.value;
+        }
         const stateField = document.querySelector(
           `select[name="${
             this.countryToStateFields[
               select.name as keyof typeof this.countryToStateFields
             ]
           }"]`
-        );
+        ) as HTMLSelectElement | null;
         if (stateField) {
           stateField.addEventListener(
             "change",
             this.rememberState.bind(this, select.name as string)
           );
+          if (stateField.value) {
+            countryAndStateValuesOnLoad[stateField.name] = stateField.value;
+          }
         }
       });
 
       this.translateFields("supporter.country");
+
+      //dont set these back if submission failed. EN / cookie will handle it.
+      const submissionFailed = !!(
+        ENGrid.checkNested(
+          window.EngagingNetworks,
+          "require",
+          "_defined",
+          "enjs",
+          "checkSubmissionFailed"
+        ) &&
+        window.EngagingNetworks.require._defined.enjs.checkSubmissionFailed()
+      );
+
+      if (!submissionFailed) {
+        for (let field in countryAndStateValuesOnLoad) {
+          ENGrid.setFieldValue(
+            field,
+            countryAndStateValuesOnLoad[field],
+            false
+          );
+        }
+      }
     }
   }
 
