@@ -3332,6 +3332,16 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 /************************************
+ * Disabled Fields
+ ***********************************/
+input[disabled],
+textarea[disabled],
+input[readonly],
+textarea[readonly] {
+  cursor: not-allowed;
+}
+
+/************************************
  * Captcha
  ***********************************/
 .en__captcha {
@@ -3708,13 +3718,6 @@ button[disabled],
   opacity: 0.5;
   cursor: not-allowed;
   filter: grayscale(1);
-}
-
-input[disabled],
-textarea[disabled],
-input[readonly],
-textarea[readonly] {
-  cursor: not-allowed;
 }
 
 [data-engrid-theme] .en__component--callcontactblock {

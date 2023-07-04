@@ -1055,6 +1055,16 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 /************************************
+ * Disabled Fields
+ ***********************************/
+input[disabled],
+textarea[disabled],
+input[readonly],
+textarea[readonly] {
+  cursor: not-allowed;
+}
+
+/************************************
  * Captcha
  ***********************************/
 
