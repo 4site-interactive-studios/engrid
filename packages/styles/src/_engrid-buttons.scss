@@ -168,3 +168,12 @@ button[disabled],
   cursor: not-allowed;
   filter: grayscale(1);
 }
+
+input[disabled],
+textarea[disabled],
+input[readonly],
+textarea[readonly] {
+  cursor: not-allowed;
+}
+
+

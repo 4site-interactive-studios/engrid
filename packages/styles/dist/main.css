@@ -3710,6 +3710,13 @@ button[disabled],
   filter: grayscale(1);
 }
 
+input[disabled],
+textarea[disabled],
+input[readonly],
+textarea[readonly] {
+  cursor: not-allowed;
+}
+
 [data-engrid-theme] .en__component--callcontactblock {
   margin-left: auto;
   margin-right: auto;
