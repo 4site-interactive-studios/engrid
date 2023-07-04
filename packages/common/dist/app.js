@@ -1,5 +1,5 @@
 import { DonationAmount, DonationFrequency, EnForm, ProcessingFees, } from "./events";
-import { AmountLabel, Loader, ProgressBar, UpsellLightbox, ENGrid, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, A11y, CapitalizeFields, CreditCard, Ecard, ClickToExpand, legacy, LiveVariables, iFrame, ShowHideRadioCheckboxes, AutoCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce, AutoYear, Autocomplete, RememberMe, TranslateFields, ShowIfAmount, EngridLogger, OtherAmount, MinMaxAmount, Ticker, DataReplace, DataHide, AddNameToMessage, ExpandRegionName, AppVersion, UrlToForm, RequiredIfVisible, TidyContact, DataLayer, LiveCurrency, Autosubmit, EventTickets, SwapAmounts, DebugPanel, DebugHiddenFields, FreshAddress, BrandingHtml, CountryDisable, PremiumGift, DigitalWallets, MobileCTA, LiveFrequency, UniversalOptIn, Plaid, GiveBySelect, UrlParamsToBodyAttrs, } from "./";
+import { AmountLabel, Loader, ProgressBar, UpsellLightbox, ENGrid, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, A11y, CapitalizeFields, CreditCard, Ecard, ClickToExpand, legacy, LiveVariables, iFrame, InputPlaceholders, InputHasValueAndFocus, ShowHideRadioCheckboxes, AutoCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce, AutoYear, Autocomplete, RememberMe, TranslateFields, ShowIfAmount, EngridLogger, OtherAmount, MinMaxAmount, Ticker, DataReplace, DataHide, AddNameToMessage, ExpandRegionName, AppVersion, UrlToForm, RequiredIfVisible, TidyContact, DataLayer, LiveCurrency, Autosubmit, EventTickets, SwapAmounts, DebugPanel, DebugHiddenFields, FreshAddress, BrandingHtml, CountryDisable, PremiumGift, DigitalWallets, MobileCTA, LiveFrequency, UniversalOptIn, Plaid, GiveBySelect, UrlParamsToBodyAttrs, } from "./";
 export class App extends ENGrid {
     constructor(options) {
         super();
@@ -53,13 +53,12 @@ export class App extends ENGrid {
             // Enable debug if available is the first thing
             App.setBodyData("debug", "");
         // TODO: Abstract everything to the App class so we can remove custom-methods
-        legacy.inputPlaceholder();
-        legacy.preventAutocomplete();
         legacy.watchInmemField();
         legacy.simpleUnsubscribe();
         legacy.contactDetailLabels();
         legacy.easyEdit();
-        legacy.enInput.init();
+        new InputPlaceholders();
+        new InputHasValueAndFocus();
         new ShowHideRadioCheckboxes("transaction.giveBySelect", "giveBySelect-");
         new ShowHideRadioCheckboxes("transaction.inmem", "inmem-");
         new ShowHideRadioCheckboxes("transaction.recurrpay", "recurrpay-");

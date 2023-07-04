@@ -16,6 +16,8 @@ export * from "./ecard";
 export * from "./click-to-expand";
 export * as legacy from "./custom-methods";
 export * from "./iframe";
+export * from "./input-has-value-and-focus";
+export * from "./input-placeholders";
 export * from "./media-attribution";
 export * from "./live-variables";
 export * from "./upsell-lightbox";

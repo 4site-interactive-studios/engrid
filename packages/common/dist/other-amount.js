@@ -17,6 +17,11 @@ export class OtherAmount {
         });
         const otherAmountField = document.querySelector("[name='transaction.donationAmt.other'");
         if (otherAmountField) {
+            otherAmountField.setAttribute("inputmode", "decimal");
+            // ADD THE MISSING LABEL FOR IMPROVED ACCESSABILITY
+            otherAmountField.setAttribute("aria-label", "Enter your custom donation amount");
+            otherAmountField.setAttribute("autocomplete", "off");
+            otherAmountField.setAttribute("data-lpignore", "true");
             otherAmountField.addEventListener("change", (e) => {
                 const target = e.target;
                 const amount = target.value;

@@ -25,6 +25,14 @@ export class OtherAmount {
       "[name='transaction.donationAmt.other'"
     ) as HTMLInputElement;
     if (otherAmountField) {
+      otherAmountField.setAttribute("inputmode", "decimal");
+      // ADD THE MISSING LABEL FOR IMPROVED ACCESSABILITY
+      otherAmountField.setAttribute(
+        "aria-label",
+        "Enter your custom donation amount"
+      );
+      otherAmountField.setAttribute("autocomplete", "off");
+      otherAmountField.setAttribute("data-lpignore", "true");
       otherAmountField.addEventListener("change", (e: Event) => {
         const target = e.target as HTMLInputElement;
         const amount = target.value;

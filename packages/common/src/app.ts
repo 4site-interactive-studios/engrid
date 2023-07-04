@@ -24,6 +24,8 @@ import {
   legacy,
   LiveVariables,
   iFrame,
+  InputPlaceholders,
+  InputHasValueAndFocus,
   ShowHideRadioCheckboxes,
   AutoCountrySelect,
   SkipToMainContentLink,
@@ -137,14 +139,14 @@ export class App extends ENGrid {
       App.setBodyData("debug", "");
 
     // TODO: Abstract everything to the App class so we can remove custom-methods
-    legacy.inputPlaceholder();
-    legacy.preventAutocomplete();
     legacy.watchInmemField();
     legacy.simpleUnsubscribe();
 
     legacy.contactDetailLabels();
     legacy.easyEdit();
-    legacy.enInput.init();
+
+    new InputPlaceholders();
+    new InputHasValueAndFocus();
 
     new ShowHideRadioCheckboxes("transaction.giveBySelect", "giveBySelect-");
     new ShowHideRadioCheckboxes("transaction.inmem", "inmem-");

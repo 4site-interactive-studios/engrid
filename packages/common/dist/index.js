@@ -17,6 +17,8 @@ export * from "./click-to-expand";
 import * as legacy_1 from "./custom-methods";
 export { legacy_1 as legacy };
 export * from "./iframe";
+export * from "./input-has-value-and-focus";
+export * from "./input-placeholders";
 export * from "./media-attribution";
 export * from "./live-variables";
 export * from "./upsell-lightbox";
