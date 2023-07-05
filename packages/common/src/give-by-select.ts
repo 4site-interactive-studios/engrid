@@ -7,15 +7,12 @@ export class GiveBySelect {
     "#333",
     "🐇"
   );
-  private enFieldGiveBySelect = document.querySelector(
-    ".en__field--give-by-select"
-  ) as HTMLElement;
   private transactionGiveBySelect = document.getElementsByName(
     "transaction.giveBySelect"
   ) as NodeListOf<HTMLInputElement>;
 
   constructor() {
-    if (!this.enFieldGiveBySelect || !this.transactionGiveBySelect) return;
+    if (!this.transactionGiveBySelect) return;
     this.transactionGiveBySelect.forEach((giveBySelect) => {
       giveBySelect.addEventListener("change", () => {
         this.logger.log("Changed to " + giveBySelect.value);

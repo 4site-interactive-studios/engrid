@@ -2,9 +2,8 @@ import { ENGrid, EngridLogger } from "./";
 export class GiveBySelect {
     constructor() {
         this.logger = new EngridLogger("GiveBySelect", "#FFF", "#333", "🐇");
-        this.enFieldGiveBySelect = document.querySelector(".en__field--give-by-select");
         this.transactionGiveBySelect = document.getElementsByName("transaction.giveBySelect");
-        if (!this.enFieldGiveBySelect || !this.transactionGiveBySelect)
+        if (!this.transactionGiveBySelect)
             return;
         this.transactionGiveBySelect.forEach((giveBySelect) => {
             giveBySelect.addEventListener("change", () => {
