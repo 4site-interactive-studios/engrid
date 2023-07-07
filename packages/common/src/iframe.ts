@@ -38,10 +38,13 @@ export class iFrame {
       window.setTimeout(() => {
         this.sendIframeHeight();
       }, 300);
-      window.addEventListener("resize", () => {
-        this.logger.log("iFrame Event - window resized");
-        this.sendIframeHeight();
-      });
+      window.addEventListener(
+        "resize",
+        this.debounce(() => {
+          this.logger.log("iFrame Event - window resized");
+          this.sendIframeHeight();
+        }, 500)
+      );
       // Listen for the form submit event
       this._form.onSubmit.subscribe((e) => {
         this.logger.log("iFrame Event - onSubmit");
@@ -205,5 +208,15 @@ export class iFrame {
         this.showFormComponents();
         banner.remove();
       });
+  }
+
+  private debounce(func: Function, timeout: number = 500) {
+    let timer: ReturnType<typeof setTimeout>;
+    return (...args: any[]) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        func.apply(this, args);
+      }, timeout);
+    };
   }
 }
