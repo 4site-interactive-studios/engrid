@@ -40,10 +40,10 @@ export class iFrame {
       }, 300);
       window.addEventListener(
         "resize",
-        this.debounce(() => {
+        this.debounceWithImmediate(() => {
           this.logger.log("iFrame Event - window resized");
           this.sendIframeHeight();
-        }, 500)
+        })
       );
       // Listen for the form submit event
       this._form.onSubmit.subscribe((e) => {
@@ -210,12 +210,21 @@ export class iFrame {
       });
   }
 
-  private debounce(func: Function, timeout: number = 500) {
+  private debounceWithImmediate(func: Function, timeout: number = 1000) {
     let timer: ReturnType<typeof setTimeout>;
+    let firstEvent = true;
+
     return (...args: any[]) => {
       clearTimeout(timer);
+
+      if (firstEvent) {
+        func.apply(this, args);
+        firstEvent = false;
+      }
+
       timer = setTimeout(() => {
         func.apply(this, args);
+        firstEvent = true;
       }, timeout);
     };
   }
