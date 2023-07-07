@@ -27,6 +27,10 @@ export class iFrame {
             window.setTimeout(() => {
                 this.sendIframeHeight();
             }, 300);
+            window.addEventListener("resize", () => {
+                this.logger.log("iFrame Event - window resized");
+                this.sendIframeHeight();
+            });
             // Listen for the form submit event
             this._form.onSubmit.subscribe((e) => {
                 this.logger.log("iFrame Event - onSubmit");
