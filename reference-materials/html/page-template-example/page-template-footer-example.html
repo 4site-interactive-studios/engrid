@@ -14,12 +14,12 @@
     const checkForTwoColumnLayout = document.querySelector('body[data-engrid-layout="centercenter2col"]');
     const checkForBodyTopContent = document.querySelector('.body-top > *');
     const checkForBodyMainContent = document.querySelector('.body-main > *');
-    if(checkForTwoColumnLayout && (!checkForBodyTopContent || !checkForBodyMainContent)){
+    if (checkForTwoColumnLayout && (!checkForBodyTopContent || !checkForBodyMainContent)) {
         document.querySelector("body").setAttribute("data-engrid-layout", "centercenter1col");
     }
 </script>
 
-<!-- Load ENGrid's Javascript Asynchronous -->
+<!-- Load ENgrid's Javascript Asynchronous -->
 <script async src="https://c27fdabe952dfc357fe25ebf5c8897ee.ssl.cf5.rackcdn.com/12345/engrid.minjs"></script>
 
 <!-- Start Render Critical Javascript -->
@@ -33,7 +33,7 @@
                 srcDefer[i].setAttribute("decoding", "async"); // Gets image processing off the main working thread
                 srcDefer[i].setAttribute("loading", "lazy"); // Lets the browser determine when the asset should be downloaded
                 srcDefer[i].setAttribute("src", dataSrc); // Sets the src which will cause the browser to retrieve the asset
-                srcDefer[i].setAttribute("data-engrid-data-src-processed", "true"); // Sets an attribute to mark that it has been processed by ENGrid
+                srcDefer[i].setAttribute("data-engrid-data-src-processed", "true"); // Sets an attribute to mark that it has been processed by ENgrid
                 srcDefer[i].removeAttribute("data-src"); // Removes the data-source
             }
         }

@@ -1,4 +1,4 @@
-# Naming Conventions for ENGrid
+# Naming Conventions for ENgrid
 
 ## CSS Custom Properties 
 BEM Naming: https://en.bem.info/methodology/naming-convention/

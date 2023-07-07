@@ -549,11 +549,11 @@ textarea,
 /*
 	############################################################
 	# ENPAGE OVERRIDE
-	# @TODO Move into its own repository and publish the NPM. Then add as a dependency on ENGrid
+	# @TODO Move into its own repository and publish the NPM. Then add as a dependency on ENgrid
 	# @TODO Once in its own repository replace "HOLD-TODO" with "TODO" to trigger the todo'ist bot
 	############################################################
 
-	A mirror of "enPage.css" that was then edited to provide more responsive sizing (e.g removal of fixed widths) and to use ENGrid's theme colors (e.g. Error Red) and preferences (e.g. Border Radius)
+	A mirror of "enPage.css" that was then edited to provide more responsive sizing (e.g removal of fixed widths) and to use ENgrid's theme colors (e.g. Error Red) and preferences (e.g. Border Radius)
 	As a changes in this document are made, changes elsewhere (e.g. engrid-fields.scss) will become redundant and can be removed from their respective files.
 
 	REF: https://e-activist.com/ea-demo/frontend/pbAssets/build/css/enPage.css
