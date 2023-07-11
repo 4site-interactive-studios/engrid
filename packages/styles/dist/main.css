@@ -2408,6 +2408,8 @@ a:focus, a:hover {
   --input_line-height: initial;
   --input_border-width: 1px;
   --input_border-radius: 6px;
+  --input_placeholder-opacity: initial;
+  --input_placeholder-font-weight: initial;
   --input_box-shadow: inset 0 2px 2px -1px rgba(74, 74, 104, 0.1);
   --input_padding: 1ch 1.2ch;
   --input_box-shadow_hover: var(--input_box-shadow);
@@ -2453,6 +2455,8 @@ a:focus, a:hover {
   --select_line-height: var(--input_line-height);
   --select_border-width: var(--input_border-width);
   --select_border-radius: var(--input_border-radius);
+  --select_placeholder-opacity: var(--input_placeholder-opacity);
+  --select_placeholder-font-weight: var(--input_placeholder-font-weight);
   --select_box-shadow: var(--input_box-shadow);
   --select_padding: var(--input_padding);
   --select_padding-right: 2.4ch;
@@ -3285,35 +3289,49 @@ input[type=number]::-webkit-outer-spin-button {
 /* Chrome, Firefox, Opera, Safari 10.1+ */
 ::-webkit-input-placeholder {
   color: var(--input_placeholder-color);
-  opacity: 1;
+  opacity: var(--input_placeholder-opacity);
+  font-weight: var(--input_placeholder-font-weight);
 }
 
 /* Firefox */
 :-ms-input-placeholder {
   color: var(--input_placeholder-color);
-  opacity: 1;
+  opacity: var(--input_placeholder-opacity);
+  font-weight: var(--input_placeholder-font-weight);
 }
 
 /* Firefox */
 ::-ms-input-placeholder {
   color: var(--input_placeholder-color);
-  opacity: 1;
+  opacity: var(--input_placeholder-opacity);
+  font-weight: var(--input_placeholder-font-weight);
 }
 
 /* Firefox */
 ::placeholder {
   color: var(--input_placeholder-color);
-  opacity: 1;
+  opacity: var(--input_placeholder-opacity);
+  font-weight: var(--input_placeholder-font-weight);
 }
 
 /* Internet Explorer 10-11 */
 :-ms-input-placeholder {
   color: var(--input_placeholder-color);
+  opacity: var(--input_placeholder-opacity);
+  font-weight: var(--input_placeholder-font-weight);
 }
 
 /* Microsoft Edge */
 ::-ms-input-placeholder {
   color: var(--input_placeholder-color);
+  opacity: var(--input_placeholder-opacity);
+  font-weight: var(--input_placeholder-font-weight);
+}
+
+select[data-selected-value=""] {
+  color: var(--select_placeholder-color);
+  opacity: var(--select_placeholder-opacity);
+  font-weight: var(--select_placeholder-font-weight);
 }
 
 /************************************
@@ -3870,6 +3888,7 @@ body:not(#en__pagebuilder) .click-to-expand.expanded .click-to-expand-text-wrapp
   --select_background-color_hover: var(--select_background-color);
   --select_border-color_hover: var(--input_border-color_hover);
   --select_border-bottom-color_hover: var(--select_border-color_hover);
+  --select_placeholder-color: var(--input_placeholder-color);
   --textarea_color: var(--input_color);
   --textarea_background-color: var(--input_background-color);
   --textarea_border-color: var(--input_border-color);
