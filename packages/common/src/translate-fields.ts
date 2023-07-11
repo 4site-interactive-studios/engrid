@@ -542,12 +542,14 @@ export class TranslateFields {
           select.classList.add("en__field__input");
           select.classList.add("en__field__input--select");
           select.autocomplete = "address-level1";
+          let valueSelected = false;
           values.forEach((value) => {
             const option = document.createElement("option");
             option.value = value.value;
             option.innerHTML = value.label;
-            if (selectedState === value.value) {
+            if (selectedState === value.value && !valueSelected) {
               option.selected = true;
+              valueSelected = true;
             }
             if (value.disabled) {
               option.disabled = true;
@@ -560,6 +562,7 @@ export class TranslateFields {
             "change",
             this.rememberState.bind(this, state)
           );
+          select.dispatchEvent(new Event("change", { bubbles: true }));
         } else {
           elementWrapper.innerHTML = "";
           const input = document.createElement("input");
