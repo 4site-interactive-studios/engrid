@@ -3328,7 +3328,7 @@ input[type=number]::-webkit-outer-spin-button {
   font-weight: var(--input_placeholder-font-weight);
 }
 
-select[data-selected-value=""] {
+[data-engrid-theme] select[data-selected-value=""] {
   color: var(--select_placeholder-color);
   opacity: var(--select_placeholder-opacity);
   font-weight: var(--select_placeholder-font-weight);
