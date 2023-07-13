@@ -48,8 +48,24 @@ export class iFrame {
             if (skipLink) {
                 skipLink.remove();
             }
+            this._form.onError.subscribe(() => {
+                // Smooth Scroll to the first .en__field--validationFailed element
+                const firstError = document.querySelector(".en__field--validationFailed");
+                //send scrollTo event.
+                window.parent.postMessage({
+                    scrollTo: firstError ? firstError.getBoundingClientRect().top : 0,
+                }, "*");
+            });
         }
         else {
+            // When not in iframe, default behaviour
+            this._form.onError.subscribe(() => {
+                // Smooth Scroll to the first .en__field--validationFailed element
+                const firstError = document.querySelector(".en__field--validationFailed");
+                if (firstError) {
+                    firstError.scrollIntoView({ behavior: "smooth" });
+                }
+            });
             // Parent Page Logic
             window.addEventListener("message", (event) => {
                 const iframe = this.getIFrameByEvent(event);
@@ -67,6 +83,15 @@ export class iFrame {
                             behavior: "smooth",
                         });
                         this.logger.log("iFrame Event - Scrolling Window to " + scrollTo);
+                    }
+                    else if (event.data.hasOwnProperty("scrollTo")) {
+                        window.scrollTo({
+                            top: event.data.scrollTo +
+                                window.scrollY +
+                                iframe.getBoundingClientRect().top,
+                            left: 0,
+                            behavior: "smooth",
+                        });
                     }
                 }
             });
