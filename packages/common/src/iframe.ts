@@ -114,14 +114,18 @@ export class iFrame {
           }
           // New scroll event logic "scrollTo", scrolls to the first error
           else if (event.data.hasOwnProperty("scrollTo")) {
+            const scrollToPosition =
+              event.data.scrollTo +
+              window.scrollY +
+              iframe.getBoundingClientRect().top;
             window.scrollTo({
-              top:
-                event.data.scrollTo +
-                window.scrollY +
-                iframe.getBoundingClientRect().top,
+              top: scrollToPosition,
               left: 0,
               behavior: "smooth",
             });
+            this.logger.log(
+              "iFrame Event - Scrolling Window to " + scrollToPosition
+            );
           }
         }
       });
