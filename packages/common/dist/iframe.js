@@ -53,9 +53,11 @@ export class iFrame {
                 const firstError = document.querySelector(".en__field--validationFailed");
                 // Send scrollTo message
                 // Parent pages listens for this message and scrolls to the correct position
-                window.parent.postMessage({
-                    scrollTo: firstError ? firstError.getBoundingClientRect().top : 0,
-                }, "*");
+                const scrollTo = firstError
+                    ? firstError.getBoundingClientRect().top
+                    : 0;
+                this.logger.log(`iFrame Event 'scrollTo' - Position of top of first error ${scrollTo} px`); // check the message is being sent correctly
+                window.parent.postMessage({ scrollTo }, "*");
             });
         }
         else {
