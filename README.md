@@ -10,24 +10,26 @@ Since then, we've continued to enhance and refine our work, culminating in a com
 
 Designed and Developed by [4Site Studios](http://4sitestudios.com/en?ms=github) while working with:
 
-- Amnesty International USA
+- Amnesty International USA (AIUSA)
+- Catholic Extension
 - Earth Island Institute
-- Human Rights Campaign via Lautman Maska Neill & Company
-- Humane Society
-- International Fund for Animal Welfare
+- Human Rights Campaign (HRC) via Lautman Maska Neill & Company
+- International Fund for Animal Welfare (IFAW)
 - Mercy for Animals
 - National Trust for Historic Preservation
-- National Wildlife Federation
+- National Wildlife Federation (NWF)
 - Oceana
 - Ocean Conservancy
 - Organic Consumers
 - Oxfam America
 - Oxfam Canada
-- People for the Ethical Treatment of Animals
+- People for the Ethical Treatment of Animals (PETA)
 - Polaris Project
-- Rainforest Action Network
+- Rainforest Action Network (RAN)
 - Saint Anthony's Guild (Friar Works)
 - Save Tibet via Schultz and Williams
+- The Nature Conservancy (TNC)
+- World Wildlife Fund (WWF)
 
 ## ENgrid Features
 
