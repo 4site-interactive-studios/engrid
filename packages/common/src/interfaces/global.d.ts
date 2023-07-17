@@ -28,5 +28,6 @@ declare global {
     _NBSettings: object;
     _nb: any;
     FreshAddress: any;
+    FreshAddressStatus: string;
   }
 }

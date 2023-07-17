@@ -28,8 +28,28 @@
   }
 
   .en__component--callsurveyblock {
+    .en__c2c__survey__rate {
+      max-width: 100%;
+      gap: 1rem;
+    }
+
+    .en__field__element--textarea {
+      width: 100%;
+    }
+
     .en__c2c__survey__rate .en__button {
       opacity: 1;
+      margin-bottom: 0;
+    }
+
+    @media screen and (max-width: 768px) {
+      .en__c2c__survey__rate {
+        flex-direction: column;
+      }
+
+      .en__button {
+        width: 100%;
+      }
     }
   }
 }

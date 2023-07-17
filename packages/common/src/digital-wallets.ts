@@ -95,9 +95,12 @@ export class DigitalWallets {
   private addOptionToPaymentTypeField(value: string, label: string) {
     const paymentTypeField = document.querySelector(
       '[name="transaction.paymenttype"]'
-    );
+    ) as HTMLSelectElement;
 
-    if (paymentTypeField) {
+    if (
+      paymentTypeField &&
+      !paymentTypeField.querySelector(`[value=${value}]`)
+    ) {
       const walletOption = document.createElement("option");
       walletOption.value = value;
       walletOption.innerText = label;

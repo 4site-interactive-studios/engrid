@@ -4,7 +4,5 @@ export declare class SimpleCountrySelect {
     private country;
     constructor();
     private init;
-    showCountrySelect(e: Event): void;
-    private writeLink;
     private setCountryByName;
 }

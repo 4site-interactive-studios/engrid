@@ -1,5 +1,5 @@
 import { DonationAmount, DonationFrequency, EnForm, ProcessingFees, } from "./events";
-import { AmountLabel, Loader, ProgressBar, UpsellLightbox, ENGrid, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, A11y, CapitalizeFields, CreditCardNumbers, Ecard, ClickToExpand, legacy, LiveVariables, iFrame, ShowHideRadioCheckboxes, SimpleCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce, AutoYear, Autocomplete, RememberMe, TranslateFields, ShowIfAmount, EngridLogger, OtherAmount, MinMaxAmount, Ticker, DataReplace, DataHide, AddNameToMessage, ExpandRegionName, AppVersion, UrlToForm, RequiredIfVisible, TidyContact, DataLayer, LiveCurrency, Autosubmit, EventTickets, SwapAmounts, DebugPanel, DebugHiddenFields, FreshAddress, BrandingHtml, CountryDisable, PremiumGift, DigitalWallets, MobileCTA, LiveFrequency, ExitIntentLightbox, } from "./";
+import { AmountLabel, Loader, ProgressBar, UpsellLightbox, ENGrid, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, A11y, CapitalizeFields, CreditCard, Ecard, ClickToExpand, legacy, LiveVariables, iFrame, InputPlaceholders, InputHasValueAndFocus, ShowHideRadioCheckboxes, AutoCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce, AutoYear, Autocomplete, RememberMe, TranslateFields, ShowIfAmount, EngridLogger, OtherAmount, MinMaxAmount, Ticker, DataReplace, DataHide, AddNameToMessage, ExpandRegionName, AppVersion, UrlToForm, RequiredIfVisible, TidyContact, DataLayer, LiveCurrency, Autosubmit, EventTickets, SwapAmounts, DebugPanel, DebugHiddenFields, FreshAddress, BrandingHtml, CountryDisable, PremiumGift, DigitalWallets, MobileCTA, LiveFrequency, UniversalOptIn, Plaid, GiveBySelect, UrlParamsToBodyAttrs, ExitIntentLightbox, } from "./";
 export class App extends ENGrid {
     constructor(options) {
         super();
@@ -17,7 +17,8 @@ export class App extends ENGrid {
             return;
         // Turn Debug ON if you use local assets
         if (ENGrid.getBodyData("assets") === "local" &&
-            ENGrid.getUrlParameter("debug") !== "false") {
+            ENGrid.getUrlParameter("debug") !== "false" &&
+            ENGrid.getUrlParameter("debug") !== "log") {
             window.EngridOptions.Debug = true;
         }
         // Document Load
@@ -29,14 +30,6 @@ export class App extends ENGrid {
                 this.run();
             });
         }
-        // Window Load
-        let onLoad = typeof window.onload === "function" ? window.onload : null;
-        window.onload = (e) => {
-            this.onLoad();
-            if (onLoad) {
-                onLoad.bind(window, e);
-            }
-        };
         // Window Resize
         window.onresize = () => {
             this.onResize();
@@ -47,7 +40,7 @@ export class App extends ENGrid {
             this.logger.danger("Engaging Networks JS Framework NOT FOUND");
             setTimeout(() => {
                 this.run();
-            }, 10);
+            }, 100);
             return;
         }
         // If there's an option object on the page, override the defaults
@@ -60,14 +53,12 @@ export class App extends ENGrid {
             // Enable debug if available is the first thing
             App.setBodyData("debug", "");
         // TODO: Abstract everything to the App class so we can remove custom-methods
-        legacy.inputPlaceholder();
-        legacy.preventAutocomplete();
         legacy.watchInmemField();
-        legacy.watchGiveBySelectField();
         legacy.simpleUnsubscribe();
         legacy.contactDetailLabels();
         legacy.easyEdit();
-        legacy.enInput.init();
+        new InputPlaceholders();
+        new InputHasValueAndFocus();
         new ShowHideRadioCheckboxes("transaction.giveBySelect", "giveBySelect-");
         new ShowHideRadioCheckboxes("transaction.inmem", "inmem-");
         new ShowHideRadioCheckboxes("transaction.recurrpay", "recurrpay-");
@@ -109,11 +100,15 @@ export class App extends ENGrid {
             this._form.submit = true;
             this._form.submitPromise = false;
             this._form.dispatchSubmit();
+            ENGrid.watchForError(ENGrid.enableSubmit);
             if (!this._form.submit)
                 return false;
             if (this._form.submitPromise)
                 return this._form.submitPromise;
             this.logger.success("enOnSubmit Success");
+            // If all validation passes, we'll watch for Digital Wallets Errors, which
+            // will not reload the page (thanks EN), so we will enable the submit button if
+            // an error is programmatically thrown by the Digital Wallets
             return true;
         };
         window.enOnError = () => {
@@ -155,8 +150,8 @@ export class App extends ENGrid {
         // On the end of the script, after all subscribers defined, let's load the current value
         this._amount.load();
         this._frequency.load();
-        // Simple Country Select
-        new SimpleCountrySelect();
+        // Auto Country Select
+        new AutoCountrySelect();
         // Add Image Attribution
         if (this.options.MediaAttribution)
             new MediaAttribution();
@@ -169,8 +164,8 @@ export class App extends ENGrid {
         // Auto Year Class
         if (this.options.AutoYear)
             new AutoYear();
-        // Credit Card Numbers Only
-        new CreditCardNumbers();
+        // Credit Card Utility
+        new CreditCard();
         // Autocomplete Class
         new Autocomplete();
         // Ecard Class
@@ -229,9 +224,17 @@ export class App extends ENGrid {
         new MobileCTA();
         // Live Frequency
         new LiveFrequency();
+        // Universal Opt In
+        new UniversalOptIn();
+        // Plaid
+        if (this.options.Plaid)
+            new Plaid();
+        // Give By Select
+        new GiveBySelect();
         this.setDataAttributes();
         //Exit Intent Lightbox
         new ExitIntentLightbox();
+        new UrlParamsToBodyAttrs();
         //Debug panel
         if (this.options.Debug ||
             window.sessionStorage.hasOwnProperty(DebugPanel.debugSessionStorageKey)) {
@@ -243,6 +246,19 @@ export class App extends ENGrid {
         ENGrid.setBodyData("data-engrid-scripts-js-loading", "finished");
         window.EngridVersion = AppVersion;
         this.logger.success(`VERSION: ${AppVersion}`);
+        // Window Load
+        let onLoad = typeof window.onload === "function" ? window.onload : null;
+        if (document.readyState !== "loading") {
+            this.onLoad();
+        }
+        else {
+            window.onload = (e) => {
+                this.onLoad();
+                if (onLoad) {
+                    onLoad.bind(window, e);
+                }
+            };
+        }
     }
     onLoad() {
         if (this.options.onLoad) {
@@ -267,11 +283,6 @@ export class App extends ENGrid {
         }
     }
     onError() {
-        // Smooth Scroll to the first .en__field--validationFailed element
-        const firstError = document.querySelector(".en__field--validationFailed");
-        if (firstError) {
-            firstError.scrollIntoView({ behavior: "smooth" });
-        }
         if (this.options.onError) {
             this.logger.danger("Client onError Triggered");
             this.options.onError();
@@ -388,5 +399,9 @@ export class App extends ENGrid {
         // Add demo data attribute
         if (App.demo)
             App.setBodyData("demo", "");
+    }
+    static log(message) {
+        const logger = new EngridLogger("Client", "brown", "aliceblue", "🍪");
+        logger.log(message);
     }
 }

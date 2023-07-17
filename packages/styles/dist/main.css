@@ -549,11 +549,11 @@ textarea,
 /*
 	############################################################
 	# ENPAGE OVERRIDE
-	# @TODO Move into its own repository and publish the NPM. Then add as a dependency on ENGrid
+	# @TODO Move into its own repository and publish the NPM. Then add as a dependency on ENgrid
 	# @TODO Once in its own repository replace "HOLD-TODO" with "TODO" to trigger the todo'ist bot
 	############################################################
 
-	A mirror of "enPage.css" that was then edited to provide more responsive sizing (e.g removal of fixed widths) and to use ENGrid's theme colors (e.g. Error Red) and preferences (e.g. Border Radius)
+	A mirror of "enPage.css" that was then edited to provide more responsive sizing (e.g removal of fixed widths) and to use ENgrid's theme colors (e.g. Error Red) and preferences (e.g. Border Radius)
 	As a changes in this document are made, changes elsewhere (e.g. engrid-fields.scss) will become redundant and can be removed from their respective files.
 
 	REF: https://e-activist.com/ea-demo/frontend/pbAssets/build/css/enPage.css
@@ -1371,12 +1371,14 @@ textarea,
 }
 
 .en__twitterTarget__select {
-  margin: 0 0.5rem 0 0;
+  margin: 0;
 }
 
 .en__contacts--singleTweetMode .en__twitterTarget__select {
   flex: 1 0 auto;
   height: var(--checkbox_height);
+  display: grid;
+  margin: 0;
 }
 
 .en__twitterTarget p {
@@ -1652,7 +1654,7 @@ textarea,
 }
 
 .en__supporterHubLogin {
-  width: 26.25rem;
+  width: min(100%, 26.25rem);
   border: 1px solid #bfbfbf;
   border-radius: var(--input_border-radius);
 }
@@ -2406,6 +2408,8 @@ a:focus, a:hover {
   --input_line-height: initial;
   --input_border-width: 1px;
   --input_border-radius: 6px;
+  --input_placeholder-opacity: initial;
+  --input_placeholder-font-weight: initial;
   --input_box-shadow: inset 0 2px 2px -1px rgba(74, 74, 104, 0.1);
   --input_padding: 1ch 1.2ch;
   --input_box-shadow_hover: var(--input_box-shadow);
@@ -2413,10 +2417,18 @@ a:focus, a:hover {
   --radio_border-width: var(--input_border-width);
   --radio_border-radius: 50%;
   --radio_box-shadow: none;
-  --radio_font-family: var(--p_font-family);
-  --radio_font-size: var(--p_font-size);
-  --radio_font-weight: var(--p_font-weight);
-  --radio_line-height: var(--p_line-height);
+  --radio_font-family: var(
+    --p_font-family
+  );
+  --radio_font-size: var(
+    --p_font-size
+  );
+  --radio_font-weight: var(
+    --p_font-weight
+  );
+  --radio_line-height: var(
+    --p_line-height
+  );
   --radio_width: 20px;
   --radio_height: 20px;
   --radio_top: 0px;
@@ -2443,6 +2455,8 @@ a:focus, a:hover {
   --select_line-height: var(--input_line-height);
   --select_border-width: var(--input_border-width);
   --select_border-radius: var(--input_border-radius);
+  --select_placeholder-opacity: var(--input_placeholder-opacity);
+  --select_placeholder-font-weight: var(--input_placeholder-font-weight);
   --select_box-shadow: var(--input_box-shadow);
   --select_padding: var(--input_padding);
   --select_padding-right: 2.4ch;
@@ -2492,11 +2506,11 @@ a:focus, a:hover {
   padding-bottom: 0rem;
   margin-bottom: var(--fields_spacing-block);
 }
-.en__component--formblock .en__field .en__field__label:not(.en__field__label--item),
+.en__component--formblock .en__field .en__field__label:not(.en__field__label--item):not([for*=svquestion]),
 .en__component--formblock .en__field .en__field__helpText,
-.en__component--svblock .en__field .en__field__label:not(.en__field__label--item),
+.en__component--svblock .en__field .en__field__label:not(.en__field__label--item):not([for*=svquestion]),
 .en__component--svblock .en__field .en__field__helpText,
-.en__registrants__registrantDetails .en__field .en__field__label:not(.en__field__label--item),
+.en__registrants__registrantDetails .en__field .en__field__label:not(.en__field__label--item):not([for*=svquestion]),
 .en__registrants__registrantDetails .en__field .en__field__helpText {
   position: relative;
   display: flex;
@@ -2711,6 +2725,27 @@ label a.label-tooltip {
   margin-right: var(--fields_spacing-inline);
 }
 label a.label-tooltip:last-child {
+  margin-right: 0;
+}
+
+.label-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: center;
+  gap: calc(var(--fields_spacing-inline) / 2) calc(var(--fields_spacing-inline) * 2);
+}
+.label-wrapper a.label-tooltip {
+  font-family: var(--label_font-family);
+  color: var(--a_color);
+  font-size: var(--label_font-size);
+  font-weight: var(--a_font-weight);
+  line-height: var(--label_line-height);
+  text-transform: var(--label_text-transform);
+  letter-spacing: var(--label_letter-spacing);
+  text-decoration: var(--a_text-decoration);
+  margin-left: 0;
   margin-right: 0;
 }
 
@@ -3220,10 +3255,22 @@ textarea:focus, textarea:hover,
 .en__contacts:not(.en__contacts--hideCheck) .en__contactDetails__select:checked + .en__contactDetails__rows::after {
   content: var(--checkbox_content_checked);
   position: absolute;
-  left: 4px;
+  left: 3px;
   top: 5px;
   color: var(--checkbox_color_checked);
   cursor: pointer;
+  font-family: var(--checkbox_font-family);
+  font-size: var(--checkbox_font-size);
+  font-weight: var(--checkbox_font-weight);
+  line-height: var(--checkbox_line-height);
+}
+
+/************************************
+ * A notice shown below a field via JS
+ * Example: https://pastebin.com/raw/RERZudKH
+ ***********************************/
+.en__field__notice {
+  order: 3;
 }
 
 /************************************
@@ -3242,35 +3289,49 @@ input[type=number]::-webkit-outer-spin-button {
 /* Chrome, Firefox, Opera, Safari 10.1+ */
 ::-webkit-input-placeholder {
   color: var(--input_placeholder-color);
-  opacity: 1;
+  opacity: var(--input_placeholder-opacity);
+  font-weight: var(--input_placeholder-font-weight);
 }
 
 /* Firefox */
 :-ms-input-placeholder {
   color: var(--input_placeholder-color);
-  opacity: 1;
+  opacity: var(--input_placeholder-opacity);
+  font-weight: var(--input_placeholder-font-weight);
 }
 
 /* Firefox */
 ::-ms-input-placeholder {
   color: var(--input_placeholder-color);
-  opacity: 1;
+  opacity: var(--input_placeholder-opacity);
+  font-weight: var(--input_placeholder-font-weight);
 }
 
 /* Firefox */
 ::placeholder {
   color: var(--input_placeholder-color);
-  opacity: 1;
+  opacity: var(--input_placeholder-opacity);
+  font-weight: var(--input_placeholder-font-weight);
 }
 
 /* Internet Explorer 10-11 */
 :-ms-input-placeholder {
   color: var(--input_placeholder-color);
+  opacity: var(--input_placeholder-opacity);
+  font-weight: var(--input_placeholder-font-weight);
 }
 
 /* Microsoft Edge */
 ::-ms-input-placeholder {
   color: var(--input_placeholder-color);
+  opacity: var(--input_placeholder-opacity);
+  font-weight: var(--input_placeholder-font-weight);
+}
+
+[data-engrid-theme] select[data-selected-value=""] {
+  color: var(--select_placeholder-color);
+  opacity: var(--select_placeholder-opacity);
+  font-weight: var(--select_placeholder-font-weight);
 }
 
 /************************************
@@ -3286,6 +3347,16 @@ input[type=number]::-webkit-outer-spin-button {
 .en__field--hidden {
   display: block;
   width: 100% !important;
+}
+
+/************************************
+ * Disabled Fields
+ ***********************************/
+input[disabled],
+textarea[disabled],
+input[readonly],
+textarea[readonly] {
+  cursor: not-allowed;
 }
 
 /************************************
@@ -3376,7 +3447,9 @@ input[type=number]::-webkit-outer-spin-button {
     /**/
   }
 }
-input:-webkit-autofill {
+input:-webkit-autofill,
+select:-webkit-autofill,
+textarea:-webkit-autofill {
   /* Expose a hook for JavaScript when autofill is shown */
   /* JavaScript can capture 'animationstart' events */
   -webkit-animation-name: onAutoFillStart;
@@ -3501,7 +3574,7 @@ body .page-backgroundImage video.crop-on-right {
 
 body {
   background-color: var(--engrid__page_background-color);
-  min-width: 100vw;
+  min-width: min(100vw, 100%);
   min-height: 100vh;
 }
 
@@ -3688,8 +3761,24 @@ button[disabled],
 [data-engrid-theme] .en__component--callcontactblock .en__overlay--callcontact {
   width: 100%;
 }
+[data-engrid-theme] .en__component--callsurveyblock .en__c2c__survey__rate {
+  max-width: 100%;
+  gap: 1rem;
+}
+[data-engrid-theme] .en__component--callsurveyblock .en__field__element--textarea {
+  width: 100%;
+}
 [data-engrid-theme] .en__component--callsurveyblock .en__c2c__survey__rate .en__button {
   opacity: 1;
+  margin-bottom: 0;
+}
+@media screen and (max-width: 768px) {
+  [data-engrid-theme] .en__component--callsurveyblock .en__c2c__survey__rate {
+    flex-direction: column;
+  }
+  [data-engrid-theme] .en__component--callsurveyblock .en__button {
+    width: 100%;
+  }
 }
 
 [data-engrid-theme] {
@@ -3799,6 +3888,7 @@ body:not(#en__pagebuilder) .click-to-expand.expanded .click-to-expand-text-wrapp
   --select_background-color_hover: var(--select_background-color);
   --select_border-color_hover: var(--input_border-color_hover);
   --select_border-bottom-color_hover: var(--select_border-color_hover);
+  --select_placeholder-color: var(--input_placeholder-color);
   --textarea_color: var(--input_color);
   --textarea_background-color: var(--input_background-color);
   --textarea_border-color: var(--input_border-color);
@@ -4101,6 +4191,7 @@ body:not(#en__pagebuilder) .en__component--column:last-of-type,
 #en__pagebuilder .i9-hide .en__field:nth-of-type(9),
 #en__pagebuilder .i10-hide .en__field:nth-of-type(10),
 #en__pagebuilder .i11-hide .en__field:nth-of-type(11),
+#en__pagebuilder .en__field--plaid,
 [data-engrid-debug] [hidden-via-url-argument],
 [data-engrid-debug] .hide,
 [data-engrid-debug] .hide-until-engrid-js-loading-finished,
@@ -4115,7 +4206,8 @@ body:not(#en__pagebuilder) .en__component--column:last-of-type,
 [data-engrid-debug] .i8-hide .en__field:nth-of-type(8),
 [data-engrid-debug] .i9-hide .en__field:nth-of-type(9),
 [data-engrid-debug] .i10-hide .en__field:nth-of-type(10),
-[data-engrid-debug] .i11-hide .en__field:nth-of-type(11) {
+[data-engrid-debug] .i11-hide .en__field:nth-of-type(11),
+[data-engrid-debug] .en__field--plaid {
   background-color: rgba(255, 0, 0, 0.1019607843) !important;
 }
 #en__pagebuilder label.hide-label,
@@ -4161,7 +4253,8 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) .i7-hide .en__field:not(.en_
 body:not(#en__pagebuilder):not([data-engrid-debug]) .i8-hide .en__field:not(.en__field--validationFailed):nth-of-type(8),
 body:not(#en__pagebuilder):not([data-engrid-debug]) .i9-hide .en__field:not(.en__field--validationFailed):nth-of-type(9),
 body:not(#en__pagebuilder):not([data-engrid-debug]) .i10-hide .en__field:not(.en__field--validationFailed):nth-of-type(10),
-body:not(#en__pagebuilder):not([data-engrid-debug]) .i11-hide .en__field:not(.en__field--validationFailed):nth-of-type(11) {
+body:not(#en__pagebuilder):not([data-engrid-debug]) .i11-hide .en__field:not(.en__field--validationFailed):nth-of-type(11),
+body:not(#en__pagebuilder):not([data-engrid-debug]) .en__field--plaid {
   display: none;
 }
 body:not(#en__pagebuilder):not([data-engrid-debug]) div:not(.en__field--validationFailed) label.hide-label,
@@ -5609,7 +5702,8 @@ video.grayscale-video {
   padding: initial;
 }
 
-.en__contactDetails__select {
+.en__contactDetails__select,
+.en__contacts--hideCheck .en__contactDetails__rows {
   margin-left: 0;
 }
 
@@ -5619,6 +5713,12 @@ video.grayscale-video {
 .en__contact__toggle,
 .en__contact--open .en__contact__toggle {
   background-color: initial;
+}
+
+.en__contactSubject input,
+.en__contactMessage--typePlainText textarea {
+  margin-top: calc(var(--fields_spacing-inline) * 0.5);
+  margin-bottom: var(--fields_spacing-block);
 }
 
 #en__field_transaction_ccnumber {
@@ -6267,31 +6367,6 @@ a.skip-link:not(:focus):not(:active) {
   word-wrap: normal !important;
 }
 
-/************************************
-   * Utility: Hide Display
-   * // Depends on corresponding JS library
-   * .simple_country_select
-   ***********************************/
-body:not(#en__pagebuilder) .simple_country_select:not(.country-select-visible) .en__field--country {
-  display: none;
-}
-
-.simple_country_select .en__field--address1 label {
-  flex-wrap: wrap;
-}
-.simple_country_select .en__field--address1 label a {
-  cursor: pointer;
-  color: var(--a_color);
-  text-align: right;
-}
-.simple_country_select .en__field--address1 label a:focus, .simple_country_select .en__field--address1 label a:hover {
-  color: var(--a_color_hover);
-}
-
-.simple_country_select.country-select-visible .en__field--address1 label label {
-  display: none;
-}
-
 .en__component--socialshareblock {
   display: flex;
   align-items: center;
@@ -6345,6 +6420,10 @@ iframe[src*="enWidget.iframe.html"]   {
   width: 100%;
 }
 
+.en__twitterTarget {
+  gap: calc(var(--checkbox_width) + var(--fields_spacing-inline) - var(--checkbox_width));
+}
+
 /* Make sure that background colors are not hard coded */
 .en__twitterTarget,
 .en__tweetBackgroundText,
@@ -6368,7 +6447,7 @@ iframe[src*="enWidget.iframe.html"]   {
 .en__twitterTarget__image,
 .en__twitterTarget__image:not([width]) {
   margin-left: 0;
-  margin-right: 1rem;
+  margin-right: 0;
   width: initial;
 }
 
@@ -6553,18 +6632,26 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) [class*=showifamount].animat
 [data-engrid-theme][data-engrid-page-type=supporterhub] .en__hubPledge__column {
   width: 100%;
 }
-[data-engrid-theme][data-engrid-page-type=supporterhub] .en__hubPledge__buttons .en__submit:first-child {
-  margin-right: 1rem;
-}
-[data-engrid-theme][data-engrid-page-type=supporterhub] .en__hubPledge__buttons .en__submit:last-child {
-  margin-left: 1rem;
-}
-[data-engrid-theme][data-engrid-page-type=supporterhub] .en__hubPledge__buttons .en__submit:first-child:last-child {
-  margin-left: 0;
-  margin-right: 0;
+[data-engrid-theme][data-engrid-page-type=supporterhub] .en__hubPledge__buttons {
+  gap: 2rem;
+  align-items: center;
 }
 [data-engrid-theme][data-engrid-page-type=supporterhub] .en__hubPledge__validationFail .en__field__element {
   border: none;
+}
+@media screen and (max-width: 768px) {
+  [data-engrid-theme] .en__hubPledge__buttons {
+    flex-direction: column;
+  }
+  [data-engrid-theme] .en__hubPledge__buttons .en__submit button {
+    margin: 0;
+  }
+}
+[data-engrid-theme] .en__component--hubgadget > img[src*=pageassets] {
+  max-width: 72px;
+}
+[data-engrid-theme] .en__pagination .en__button {
+  word-break: keep-all;
 }
 
 #en__pagebuilder div.en__component.engrid-ticker {
@@ -9139,6 +9226,9 @@ body:not([data-engrid-debug]) #debug-bar {
   background-color: var(--color_transparent) !important;
 }
 
+#en__pagebuilder [class*=showif],
+#en__pagebuilder [class*=hideif],
+#en__pagebuilder [class*=engrid__],
 [data-engrid-debug] [class*=showif],
 [data-engrid-debug] [class*=hideif],
 [data-engrid-debug] [class*=engrid__] {

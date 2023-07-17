@@ -26,6 +26,10 @@ export class TranslateFields {
           : options[key];
       }
     }
+
+    //Storing these values on load so we can set them back after the translation/swap.
+    let countryAndStateValuesOnLoad: Record<string, string | null> = {};
+
     if (this.countriesSelect) {
       this.countriesSelect.forEach((select: HTMLSelectElement) => {
         select.addEventListener(
@@ -35,22 +39,50 @@ export class TranslateFields {
             select.name as keyof typeof this.countryToStateFields
           )
         );
+        if (select.value) {
+          countryAndStateValuesOnLoad[select.name] = select.value;
+        }
         const stateField = document.querySelector(
           `select[name="${
             this.countryToStateFields[
               select.name as keyof typeof this.countryToStateFields
             ]
           }"]`
-        );
+        ) as HTMLSelectElement | null;
         if (stateField) {
           stateField.addEventListener(
             "change",
             this.rememberState.bind(this, select.name as string)
           );
+          if (stateField.value) {
+            countryAndStateValuesOnLoad[stateField.name] = stateField.value;
+          }
         }
       });
 
       this.translateFields("supporter.country");
+
+      //dont set these back if submission failed. EN / cookie will handle it.
+      const submissionFailed = !!(
+        ENGrid.checkNested(
+          window.EngagingNetworks,
+          "require",
+          "_defined",
+          "enjs",
+          "checkSubmissionFailed"
+        ) &&
+        window.EngagingNetworks.require._defined.enjs.checkSubmissionFailed()
+      );
+
+      if (!submissionFailed) {
+        for (let field in countryAndStateValuesOnLoad) {
+          ENGrid.setFieldValue(
+            field,
+            countryAndStateValuesOnLoad[field],
+            false
+          );
+        }
+      }
     }
   }
 
@@ -259,6 +291,28 @@ export class TranslateFields {
           { label: "West Virginia", value: "WV" },
           { label: "Wisconsin", value: "WI" },
           { label: "Wyoming", value: "WY" },
+          {
+            label: "&#9472&#9472&nbspUS&nbspTerritories&nbsp&#9472&#9472",
+            value: "",
+            disabled: true,
+          },
+          { label: "American Samoa", value: "AS" },
+          { label: "Guam", value: "GU" },
+          { label: "Northern Mariana Islands", value: "MP" },
+          { label: "Puerto Rico", value: "PR" },
+          { label: "US Minor Outlying Islands", value: "UM" },
+          { label: "Virgin Islands", value: "VI" },
+          {
+            label: "&#9472&#9472&nbspArmed&nbspForces&nbsp&#9472&#9472",
+            value: "",
+            disabled: true,
+          },
+          { label: "Armed Forces Americas", value: "AA" },
+          { label: "Armed Forces Africa", value: "AE" },
+          { label: "Armed Forces Canada", value: "AE" },
+          { label: "Armed Forces Europe", value: "AE" },
+          { label: "Armed Forces Middle East", value: "AE" },
+          { label: "Armed Forces Pacific", value: "AP" },
         ]);
         break;
       case "United States":
@@ -315,6 +369,37 @@ export class TranslateFields {
           { label: "West Virginia", value: "West Virginia" },
           { label: "Wisconsin", value: "Wisconsin" },
           { label: "Wyoming", value: "Wyoming" },
+          {
+            label: "&#9472&#9472&nbspUS&nbspTerritories&nbsp&#9472&#9472",
+            value: "",
+            disabled: true,
+          },
+          { label: "American Samoa", value: "American Samoa" },
+          { label: "Guam", value: "Guam" },
+          {
+            label: "Northern Mariana Islands",
+            value: "Northern Mariana Islands",
+          },
+          { label: "Puerto Rico", value: "Puerto Rico" },
+          {
+            label: "US Minor Outlying Islands",
+            value: "US Minor Outlying Islands",
+          },
+          { label: "Virgin Islands", value: "Virgin Islands" },
+          {
+            label: "&#9472&#9472&nbspArmed&nbspForces&nbsp&#9472&#9472",
+            value: "",
+            disabled: true,
+          },
+          { label: "Armed Forces Americas", value: "Armed Forces Americas" },
+          { label: "Armed Forces Africa", value: "Armed Forces Africa" },
+          { label: "Armed Forces Canada", value: "Armed Forces Canada" },
+          { label: "Armed Forces Europe", value: "Armed Forces Europe" },
+          {
+            label: "Armed Forces Middle East",
+            value: "Armed Forces Middle East",
+          },
+          { label: "Armed Forces Pacific", value: "Armed Forces Pacific" },
         ]);
         break;
       case "CA":
@@ -438,7 +523,7 @@ export class TranslateFields {
   private setStateValues(
     state: string,
     label: string,
-    values: { label: string; value: string }[] | null
+    values: { label: string; value: string; disabled?: boolean }[] | null
   ) {
     const stateField = ENGrid.getField(state);
     const stateWrapper = stateField ? stateField.closest(".en__field") : null;
@@ -457,12 +542,17 @@ export class TranslateFields {
           select.classList.add("en__field__input");
           select.classList.add("en__field__input--select");
           select.autocomplete = "address-level1";
+          let valueSelected = false;
           values.forEach((value) => {
             const option = document.createElement("option");
             option.value = value.value;
             option.innerHTML = value.label;
-            if (selectedState === value.value) {
+            if (selectedState === value.value && !valueSelected) {
               option.selected = true;
+              valueSelected = true;
+            }
+            if (value.disabled) {
+              option.disabled = true;
             }
             select.appendChild(option);
           });
@@ -472,6 +562,7 @@ export class TranslateFields {
             "change",
             this.rememberState.bind(this, state)
           );
+          select.dispatchEvent(new Event("change", { bubbles: true }));
         } else {
           elementWrapper.innerHTML = "";
           const input = document.createElement("input");

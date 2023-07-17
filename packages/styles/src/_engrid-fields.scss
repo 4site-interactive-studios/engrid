@@ -25,6 +25,8 @@
   // --input_border-color: #dfdfe1;
   --input_border-radius: 6px;
   // --input_placeholder-color: var(--color_light-gray);
+  --input_placeholder-opacity: initial;
+  --input_placeholder-font-weight: initial;
   --input_box-shadow: inset 0 2px 2px -1px rgba(74, 74, 104, 0.1);
   --input_padding: 1ch 1.2ch;
 
@@ -44,10 +46,18 @@
   // --radio_border-color: var(--input_border-color);
   --radio_border-radius: 50%;
   --radio_box-shadow: none;
-  --radio_font-family: var(--p_font-family);
-  --radio_font-size: var(--p_font-size);
-  --radio_font-weight: var(--p_font-weight);
-  --radio_line-height: var(--p_line-height);
+  --radio_font-family: var(
+    --p_font-family
+  ); // @TODO This should probably inherit from --inputs instead of --p, but maybe there was a reason it wasn't
+  --radio_font-size: var(
+    --p_font-size
+  ); // @TODO This should probably inherit from --inputs instead of --p, but maybe there was a reason it wasn't
+  --radio_font-weight: var(
+    --p_font-weight
+  ); // @TODO This should probably inherit from --inputs instead of --p, but maybe there was a reason it wasn't
+  --radio_line-height: var(
+    --p_line-height
+  ); // @TODO This should probably inherit from --inputs instead of --p, but maybe there was a reason it wasn't
   --radio_width: 20px; // REM's can result in fractional pixel values. By defining integers values you avoid oblong radio buttons ( https://d.pr/v/2ApFvk ).
   --radio_height: 20px; // REM's can result in fractional pixel values. By defining integers values  you avoid oblong radio buttons ( https://d.pr/v/2ApFvk ).
   --radio_top: 0px;
@@ -106,6 +116,9 @@
   --select_border-width: var(--input_border-width);
   // --select_border-color: var(--input_border-color);
   --select_border-radius: var(--input_border-radius);
+  // --select_placeholder-color: var(--input_placeholder-color);
+  --select_placeholder-opacity: var(--input_placeholder-opacity);
+  --select_placeholder-font-weight: var(--input_placeholder-font-weight);
   --select_box-shadow: var(--input_box-shadow);
   --select_padding: var(--input_padding);
   --select_padding-right: 2.4ch;
@@ -172,7 +185,8 @@
     // align-self: flex-end;
 
     // Helps when the field label gets additional content added to it. https://d.pr/v/9rFaiW
-    .en__field__label:not(.en__field__label--item),
+    // Exclude Survey Block questions from having justify-content: space-between; because they have numbers included with them. https://cln.sh/0d6G0Jn9
+    .en__field__label:not(.en__field__label--item):not([for*="svquestion"]),
     .en__field__helpText {
       // padding-top: 0rem;
       // padding-bottom: 0rem;
@@ -319,6 +333,7 @@ label {
   letter-spacing: var(--label_letter-spacing);
 }
 
+// The old approach of "label a.label-tooltip" is no longer prefered because on error EN uses the label name, including the tooltip name. Our new approach makes it a sibling element wrapping both it and the label in a span tag.
 label a.label-tooltip {
   text-transform: none;
   right: 0;
@@ -329,6 +344,31 @@ label a.label-tooltip {
   margin-right: var(--fields_spacing-inline);
 
   &:last-child {
+    margin-right: 0;
+  }
+}
+
+// New approach that adds tooltips as siblins to the label and wraps them both in a span
+// Before and After Comparison: https://cln.sh/nfw5C99L
+.label-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: center;
+  gap: calc(var(--fields_spacing-inline) / 2)
+    calc(var(--fields_spacing-inline) * 2);
+
+  a.label-tooltip {
+    font-family: var(--label_font-family);
+    color: var(--a_color);
+    font-size: var(--label_font-size);
+    font-weight: var(--a_font-weight);
+    line-height: var(--label_line-height);
+    text-transform: var(--label_text-transform);
+    letter-spacing: var(--label_letter-spacing);
+    text-decoration: var(--a_text-decoration);
+    margin-left: 0;
     margin-right: 0;
   }
 }
@@ -924,6 +964,7 @@ textarea,
   border-color: var(--checkbox_border-color_checked);
 }
 
+// @TODO This entire checkbox could better inherit, in order to match, the styling of checkboxes
 .en__contacts:not(.en__contacts--hideCheck)
   .en__contactDetails__select:checked
   + .en__contactDetails__rows::after {
@@ -934,13 +975,25 @@ textarea,
     --checkbox_content_checked
   ); // REF: https://www.toptal.com/designers/htmlarrows/symbols/check-mark/
   position: absolute;
-  left: 4px;
+  left: 3px;
   top: 5px;
   // width: 21px;
   // height: 16px;
   color: var(--checkbox_color_checked);
   // background-color: var(--checkbox_background-color_checked);
   cursor: pointer;
+  font-family: var(--checkbox_font-family);
+  font-size: var(--checkbox_font-size);
+  font-weight: var(--checkbox_font-weight);
+  line-height: var(--checkbox_line-height);
+}
+
+/************************************
+ * A notice shown below a field via JS
+ * Example: https://pastebin.com/raw/RERZudKH
+ ***********************************/
+.en__field__notice {
+  order: 3;
 }
 
 /************************************
@@ -959,35 +1012,49 @@ input[type="number"]::-webkit-outer-spin-button {
 /* Chrome, Firefox, Opera, Safari 10.1+ */
 ::-webkit-input-placeholder {
   color: var(--input_placeholder-color);
-  opacity: 1;
+  opacity: var(--input_placeholder-opacity);
+  font-weight: var(--input_placeholder-font-weight);
 }
 
 /* Firefox */
 :-ms-input-placeholder {
   color: var(--input_placeholder-color);
-  opacity: 1;
+  opacity: var(--input_placeholder-opacity);
+  font-weight: var(--input_placeholder-font-weight);
 }
 
 /* Firefox */
 ::-ms-input-placeholder {
   color: var(--input_placeholder-color);
-  opacity: 1;
+  opacity: var(--input_placeholder-opacity);
+  font-weight: var(--input_placeholder-font-weight);
 }
 
 /* Firefox */
 ::placeholder {
   color: var(--input_placeholder-color);
-  opacity: 1;
+  opacity: var(--input_placeholder-opacity);
+  font-weight: var(--input_placeholder-font-weight);
 }
 
 /* Internet Explorer 10-11 */
 :-ms-input-placeholder {
   color: var(--input_placeholder-color);
+  opacity: var(--input_placeholder-opacity);
+  font-weight: var(--input_placeholder-font-weight);
 }
 
 /* Microsoft Edge */
 ::-ms-input-placeholder {
   color: var(--input_placeholder-color);
+  opacity: var(--input_placeholder-opacity);
+  font-weight: var(--input_placeholder-font-weight);
+}
+
+[data-engrid-theme] select[data-selected-value=""] {
+  color: var(--select_placeholder-color);
+  opacity: var(--select_placeholder-opacity);
+  font-weight: var(--select_placeholder-font-weight);
 }
 
 /************************************
@@ -1004,6 +1071,16 @@ input[type="number"]::-webkit-outer-spin-button {
 .en__field--hidden {
   display: block;
   width: 100% !important;
+}
+
+/************************************
+ * Disabled Fields
+ ***********************************/
+input[disabled],
+textarea[disabled],
+input[readonly],
+textarea[readonly] {
+  cursor: not-allowed;
 }
 
 /************************************

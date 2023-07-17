@@ -37,6 +37,7 @@ export class FreshAddress {
     if (this.emailField) {
       this.createFields();
       this.addEventListeners();
+      window.FreshAddressStatus = "idle";
       if (this.emailField.value) {
         this.logger.log("E-mail Field Found");
         this.shouldRun = false;
@@ -120,9 +121,9 @@ export class FreshAddress {
   private callAPI() {
     if (!this.options || !window.FreshAddress) return;
     if (!this.shouldRun) return;
+    window.FreshAddressStatus = "validating";
     const email = this.emailField?.value;
     const options = { emps: false, rtc_timeout: 1200 };
-    ENGrid.disableSubmit("Validating Your Email");
 
     const ret = window.FreshAddress.validateEmail(email, options).then(
       (response: any) => {
@@ -184,6 +185,7 @@ export class FreshAddress {
       // Error Condition 2 - the service should always respond with finding E/W/V
       this.writeToFields("API Error", "Unknown Error");
     }
+    window.FreshAddressStatus = "idle";
     ENGrid.enableSubmit();
   }
   private validate() {
@@ -196,14 +198,34 @@ export class FreshAddress {
       this.form.validate = true;
       return;
     }
-    if (this.faStatus!.value === "Invalid") {
+    if (window.FreshAddressStatus === "validating") {
+      this.logger.log("Waiting for API Response");
+      // Self resolving Promise that waits 1000ms
+      const wait = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          const status = this.faStatus!.value;
+          if (status === "" || status === "Invalid") {
+            this.logger.log("Promise Rejected");
+            this.emailField?.focus();
+            reject(false);
+            return;
+          }
+          this.logger.log("Promise Resolved");
+          resolve(true);
+        }, 700);
+      });
+      this.form.validatePromise = wait;
+      return;
+    } else if (this.faStatus!.value === "Invalid") {
       this.form.validate = false;
       window.setTimeout(() => {
         ENGrid.setError(this.emailWrapper, this.faMessage!.value);
       }, 100);
       this.emailField?.focus();
-      return;
+      ENGrid.enableSubmit();
+      return false;
     }
     this.form.validate = true;
+    return true;
   }
 }

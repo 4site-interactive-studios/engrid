@@ -87,6 +87,7 @@ export interface Options {
       };
   PageLayouts?: string[];
   CountryDisable?: string[];
+  Plaid?: boolean;
   onLoad?: () => void;
   onResize?: () => void;
   onSubmit?: () => void;
@@ -125,6 +126,7 @@ export const OptionsDefaults: Options = {
   TidyContact: false,
   RegionLongFormat: "",
   CountryDisable: [],
+  Plaid: false,
   MobileCTA: false,
   PageLayouts: [
     "leftleft1col",

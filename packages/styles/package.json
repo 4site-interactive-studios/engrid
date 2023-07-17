@@ -1,7 +1,7 @@
 {
   "name": "@4site/engrid-styles",
-  "version": "0.13.65",
-  "description": "Main SASS Styles for the ENGRID Project",
+  "version": "0.14.10",
+  "description": "Main SASS Styles for the ENgrid Project",
   "main": "./src/main.scss",
   "scripts": {
     "build": "sass src:dist --load-path=node_modules",
@@ -10,7 +10,7 @@
   },
   "keywords": [
     "Engaging Networks",
-    "ENGrid",
+    "ENgrid",
     "4Site Studios",
     "4Site",
     "Page Templates",

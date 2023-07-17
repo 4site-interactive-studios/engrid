@@ -41,11 +41,15 @@ export class RequiredIfVisible {
                     const fieldLabel = field.querySelector(".en__field__label");
                     if (fieldLabel) {
                         this.logger.log(`${fieldLabel.innerText} is required`);
-                        ENGrid.setError(field, `${fieldLabel.innerText} is required`);
+                        window.setTimeout(() => {
+                            ENGrid.setError(field, `${fieldLabel.innerText} is required`);
+                        }, 100);
                     }
                     else {
                         this.logger.log(`${fieldElement.getAttribute("name")} is required`);
-                        ENGrid.setError(field, `This field is required`);
+                        window.setTimeout(() => {
+                            ENGrid.setError(field, `This field is required`);
+                        }, 100);
                     }
                     fieldElement.focus();
                     this._form.validate = false;

@@ -41,4 +41,7 @@ export declare abstract class ENGrid {
     static addHtml(html: string | HTMLElement, target?: string, position?: string): void;
     static removeHtml(target: string): void;
     static slugify(text: string): string;
+    static watchForError(callback: Function): void;
+    static getPaymentType(): string;
+    static setPaymentType(paymentType: string): void;
 }

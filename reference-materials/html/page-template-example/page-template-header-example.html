@@ -4,7 +4,7 @@
 <head>
     <!-- Start Google Tag Manager Data Layer Initialization Script -->
     <script>
-        dataLayer = [];
+        window.dataLayer = window.dataLayer || [];
     </script>
     <!-- End Google Tag Manager Data Layer Initialization Script -->
 
@@ -48,7 +48,7 @@
     <meta name="twitter:description"
         content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec iaculis laoreet sapien ac malesuada. Praesent sit amet dapibus ex, fringilla lacinia turpis. Vestibulum ac fringilla mauris.">
     <meta property="og:type" content="website">
-    
+
     <!-- Start connections for all known assets -->
     <link rel="preconnect" href="//c27fdabe952dfc357fe25ebf5c8897ee.ssl.cf5.rackcdn.com">
     <link rel="preconnect" href="//e-activist.com">
@@ -90,7 +90,27 @@
         };
     </script>
 
-    <!-- Load ENGrid's CSS here so that it always comes after Engaging Networks CSS which gets injected into <head> -->
+    <script>
+        (new URLSearchParams(document.location.search)).forEach((value, key) => {
+            if (key.startsWith("data-engrid-")) {
+                document.body.setAttribute(key, value);
+            }
+        });
+    </script>
+
+    <!-- Function to set ENgrid data attributes on the body if not set in URL -->
+    <script>
+        function setEnGridBodyDataAttribute(attributeName, attributeValue) {
+            const body = document.querySelector("body");
+            const urlParams = new URLSearchParams(window.location.search);
+
+            if (!urlParams.has("data-engrid-" + attributeName)) {
+                body.setAttribute("data-engrid-" + attributeName, attributeValue);
+            }
+        }
+    </script>
+
+    <!-- Load ENgrid's CSS here so that it always comes after Engaging Networks CSS which gets injected into <head> -->
     <link href="https://c27fdabe952dfc357fe25ebf5c8897ee.ssl.cf5.rackcdn.com/12345/engrid.min.css" rel="stylesheet"
         type="text/css">
 
