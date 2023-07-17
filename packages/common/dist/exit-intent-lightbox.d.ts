@@ -8,4 +8,5 @@ export declare class ExitIntentLightbox {
     private watchMouse;
     private watchDocumentVisibility;
     private open;
+    private close;
 }

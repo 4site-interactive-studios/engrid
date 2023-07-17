@@ -117,9 +117,9 @@ export class ExitIntentLightbox {
               <div class="ExitIntent__body">
                 <h2>${this.options.title}</h2>
                 <p>${this.options.text}</p>
-                <a class="ExitIntent__button" href="${this.options.buttonLink}" target="_blank">
+                <button type="button" class="ExitIntent__button">
                   ${this.options.buttonText}
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -133,18 +133,16 @@ export class ExitIntentLightbox {
     document
       .querySelector(".ExitIntent__close")
       ?.addEventListener("click", () => {
-        document.querySelector(".ExitIntent")?.remove();
-        ENGrid.setBodyData("exit-intent-lightbox", "closed");
         this.dataLayer.push({ event: "exit_intent_lightbox_closed" });
+        this.close();
       });
 
     document
       .querySelector(".ExitIntent__overlay")
       ?.addEventListener("click", (event) => {
         if (event.target === event.currentTarget) {
-          document.querySelector(".ExitIntent")?.remove();
-          ENGrid.setBodyData("exit-intent-lightbox", "closed");
           this.dataLayer.push({ event: "exit_intent_lightbox_closed" });
+          this.close();
         }
       });
 
@@ -152,6 +150,21 @@ export class ExitIntentLightbox {
       .querySelector(".ExitIntent__button")
       ?.addEventListener("click", () => {
         this.dataLayer.push({ event: "exit_intent_lightbox_cta_clicked" });
+        this.close();
+        const target = this.options.buttonLink;
+        if (target.startsWith(".") || target.startsWith("#")) {
+          const targetEl = document.querySelector(target);
+          if (targetEl) {
+            targetEl.scrollIntoView({ behavior: "smooth" });
+          }
+        } else {
+          window.open(target, "_blank");
+        }
       });
+  }
+
+  private close() {
+    document.querySelector(".ExitIntent")?.remove();
+    ENGrid.setBodyData("exit-intent-lightbox", "closed");
   }
 }

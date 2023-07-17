@@ -6841,6 +6841,40 @@ body:not(#en__pagebuilder):not([data-engrid-debug]):not([data-engrid-merge-tags-
     display: none !important;
   }
 }
+[data-engrid-theme] {
+  --exit-intent__overlay_background-color: rgba(0, 0, 0, 0.5);
+  --exit-intent__overlay_padding: 0 20px;
+  --exit-intent__container_background-color: #ffffff;
+  --exit-intent__container_width: 300px;
+  --exit-intent__container_height: auto;
+  --exit-intent__container_padding: 30px;
+  --exit-intent__container_box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  --exit-intent__container_outline: 5px solid black;
+  --exit-intent__container_outline-offset: -10px;
+  --exit-intent__container_scale: 1;
+  --exit-intent__button_font-family: var(--submit__button_font-family);
+  --exit-intent__button_font-size: var(--submit__button_font-size);
+  --exit-intent__button_font-weight: var(--submit__button_font-weight);
+  --exit-intent__button_text-transform: var(--submit__button_text-transform);
+  --exit-intent__button_padding: var(--button_padding);
+  --exit-intent__button_padding-bottom: var(--submit__button_padding-bottom);
+  --exit-intent__button_padding-top: var(--submit__button_padding-top);
+  --exit-intent__button_background-color: var(--submit__button_background-color);
+  --exit-intent__button_color: var(--submit__button_color);
+  --exit-intent__button_border-radius: var(--submit__button_border-radius);
+  --exit-intent__button_border-color: var(--submit__button_border-color);
+  --exit-intent__button_border-width: var(--submit__button_border-width);
+  --exit-intent__button_background-color_hover: var(--submit__button_background-color_hover);
+  --exit-intent__button_color_hover: var(--submit__button_color_hover);
+  --exit-intent__button_border-color_hover: var(--submit__button_border-color_hover);
+}
+
+.ExitIntent__button:hover {
+  background-color: var(--submit__button_background-color_hover);
+  color: var(--submit__button_color_hover);
+  border-color: var(--submit__button_border-color_hover);
+}
+
 body[data-engrid-exit-intent-lightbox=open] {
   overflow: hidden;
 }
@@ -6860,21 +6894,24 @@ body[data-engrid-exit-intent-lightbox=open] {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: var(--exit-intent__overlay_background-color);
+  padding: var(--exit-intent__overlay_padding);
 }
 
 .ExitIntent__container {
-  background-color: #fff;
-  width: 300px;
   max-width: 100%;
-  padding: 30px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   position: relative;
-  outline: 5px solid black;
-  outline-offset: -10px;
+  background-color: var(--exit-intent__container_background-color);
+  width: var(--exit-intent__container_width);
+  height: var(--exit-intent__container_height);
+  padding: var(--exit-intent__container_padding);
+  box-shadow: var(--exit-intent__container_box-shadow);
+  outline: var(--exit-intent__container_outline);
+  outline-offset: var(--exit-intent__container_outline-offset);
+  transform: scale(var(--exit-intent__container_scale));
 }
 
 .ExitIntent__close {
@@ -6897,25 +6934,27 @@ body[data-engrid-exit-intent-lightbox=open] {
   text-align: center;
   text-decoration: none;
   transition: all 0.3s ease-in-out;
-  font-family: var(--submit__button_font-family);
-  font-size: var(--submit__button_font-size);
-  font-weight: var(--submit__button_font-weight);
-  text-transform: var(--submit__button_text-transform);
-  padding: var(--button_padding);
-  padding-bottom: var(--submit__button_padding-bottom);
-  padding-top: var(--submit__button_padding-top);
-  background-color: var(--submit__button_background-color);
-  color: var(--submit__button_color);
-  border-radius: var(--submit__button_border-radius);
-  border-color: var(--submit__button_border-color);
-  border-width: var(--submit__button_border-width);
   border-style: solid;
+  margin: 0 auto;
+  width: 100%;
+  font-family: var(--exit-intent__button_font-family);
+  font-size: var(--exit-intent__button_font-size);
+  font-weight: var(--exit-intent__button_font-weight);
+  text-transform: var(--exit-intent__button_text-transform);
+  padding: var(--exit-intent__button_padding);
+  padding-bottom: var(--exit-intent__button_padding-bottom);
+  padding-top: var(--exit-intent__button_padding-top);
+  background-color: var(--exit-intent__button_background-color);
+  color: var(--exit-intent__button_color);
+  border-radius: var(--exit-intent__button_border-radius);
+  border-color: var(--exit-intent__button_border-color);
+  border-width: var(--exit-intent__button_border-width);
 }
 
 .ExitIntent__button:hover {
-  background-color: var(--submit__button_background-color_hover);
-  color: var(--submit__button_color_hover);
-  border-color: var(--submit__button_border-color_hover);
+  background-color: var(--exit-intent__button_background-color_hover);
+  color: var(--exit-intent__button_color_hover);
+  border-color: var(--exit-intent__button_border-color_hover);
 }
 
 /* ENGRID LAYOUTS */

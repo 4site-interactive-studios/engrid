@@ -80,9 +80,9 @@ export class ExitIntentLightbox {
               <div class="ExitIntent__body">
                 <h2>${this.options.title}</h2>
                 <p>${this.options.text}</p>
-                <a class="ExitIntent__button" href="${this.options.buttonLink}" target="_blank">
+                <button type="button" class="ExitIntent__button">
                   ${this.options.buttonText}
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -92,23 +92,35 @@ export class ExitIntentLightbox {
         this.dataLayer.push({ event: "exit_intent_lightbox_shown" });
         (_a = document
             .querySelector(".ExitIntent__close")) === null || _a === void 0 ? void 0 : _a.addEventListener("click", () => {
-            var _a;
-            (_a = document.querySelector(".ExitIntent")) === null || _a === void 0 ? void 0 : _a.remove();
-            ENGrid.setBodyData("exit-intent-lightbox", "closed");
             this.dataLayer.push({ event: "exit_intent_lightbox_closed" });
+            this.close();
         });
         (_b = document
             .querySelector(".ExitIntent__overlay")) === null || _b === void 0 ? void 0 : _b.addEventListener("click", (event) => {
-            var _a;
             if (event.target === event.currentTarget) {
-                (_a = document.querySelector(".ExitIntent")) === null || _a === void 0 ? void 0 : _a.remove();
-                ENGrid.setBodyData("exit-intent-lightbox", "closed");
                 this.dataLayer.push({ event: "exit_intent_lightbox_closed" });
+                this.close();
             }
         });
         (_c = document
             .querySelector(".ExitIntent__button")) === null || _c === void 0 ? void 0 : _c.addEventListener("click", () => {
             this.dataLayer.push({ event: "exit_intent_lightbox_cta_clicked" });
+            this.close();
+            const target = this.options.buttonLink;
+            if (target.startsWith(".") || target.startsWith("#")) {
+                const targetEl = document.querySelector(target);
+                if (targetEl) {
+                    targetEl.scrollIntoView({ behavior: "smooth" });
+                }
+            }
+            else {
+                window.open(target, "_blank");
+            }
         });
+    }
+    close() {
+        var _a;
+        (_a = document.querySelector(".ExitIntent")) === null || _a === void 0 ? void 0 : _a.remove();
+        ENGrid.setBodyData("exit-intent-lightbox", "closed");
     }
 }
