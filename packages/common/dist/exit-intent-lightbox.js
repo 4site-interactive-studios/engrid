@@ -8,18 +8,17 @@ export class ExitIntentLightbox {
         let options = "EngridExitIntent" in window ? window.EngridExitIntent : {};
         this.options = Object.assign(Object.assign({}, ExitIntentOptionsDefaults), options);
         if (!this.options.enabled) {
-            this.logger.log("ExitIntentLightbox not enabled");
+            this.logger.log("Not enabled");
             return;
         }
         if (getCookie(this.options.cookieName)) {
-            this.logger.log("ExitIntentLightbox not showing - cookie found.");
+            this.logger.log("Not showing - cookie found.");
             return;
         }
         const activeTriggers = Object.keys(this.options.triggers)
             .filter((t) => this.options.triggers[t])
             .join(", ");
-        this.logger.log("ExitIntentLightbox enabled, waiting for trigger. Active triggers: " +
-            activeTriggers);
+        this.logger.log("Enabled, waiting for trigger. Active triggers: " + activeTriggers);
         this.watchForTriggers();
     }
     watchForTriggers() {
@@ -49,7 +48,7 @@ export class ExitIntentLightbox {
             // user switching active program
             const from = e.relatedTarget;
             if (!from) {
-                this.logger.log("ExitIntentLightbox triggered by mouse position");
+                this.logger.log("Triggered by mouse position");
                 this.open();
             }
         });
@@ -57,7 +56,7 @@ export class ExitIntentLightbox {
     watchDocumentVisibility() {
         const visibilityListener = () => {
             if (document.visibilityState === "hidden") {
-                this.logger.log("ExitIntentLightbox triggered by visibilityState is hidden");
+                this.logger.log("Triggered by visibilityState is hidden");
                 this.open();
                 document.removeEventListener("visibilitychange", visibilityListener);
             }
