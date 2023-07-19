@@ -66,6 +66,7 @@ import {
   Plaid,
   GiveBySelect,
   UrlParamsToBodyAttrs,
+  ExitIntentLightbox,
 } from "./";
 
 export class App extends ENGrid {
@@ -366,6 +367,9 @@ export class App extends ENGrid {
     new GiveBySelect();
 
     this.setDataAttributes();
+
+    //Exit Intent Lightbox
+    new ExitIntentLightbox();
 
     new UrlParamsToBodyAttrs();
 

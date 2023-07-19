@@ -2,6 +2,7 @@ export * from "./deprecated"; // Runs first so it can change the DOM markup befo
 export { OptionsDefaults } from "./interfaces/options";
 export { UpsellOptionsDefaults, } from "./interfaces/upsell-options";
 export { TranslateOptionsDefaults, } from "./interfaces/translate-options";
+export { ExitIntentOptionsDefaults, } from "./interfaces/exit-intent-options";
 export * from "./loader";
 export * from "./app";
 export * from "./amount-label";
@@ -62,6 +63,7 @@ export * from "./universal-opt-in";
 export * from "./plaid";
 export * from "./give-by-select";
 export * from "./url-params-to-body-attrs";
+export * from "./exit-intent-lightbox";
 // Events
 export * from "./events";
 // Version
