@@ -23,12 +23,12 @@ export class ExitIntentLightbox {
     this.options = { ...ExitIntentOptionsDefaults, ...options };
 
     if (!this.options.enabled) {
-      this.logger.log("ExitIntentLightbox not enabled");
+      this.logger.log("Not enabled");
       return;
     }
 
     if (getCookie(this.options.cookieName)) {
-      this.logger.log("ExitIntentLightbox not showing - cookie found.");
+      this.logger.log("Not showing - cookie found.");
       return;
     }
 
@@ -37,8 +37,7 @@ export class ExitIntentLightbox {
       .join(", ");
 
     this.logger.log(
-      "ExitIntentLightbox enabled, waiting for trigger. Active triggers: " +
-        activeTriggers
+      "Enabled, waiting for trigger. Active triggers: " + activeTriggers
     );
 
     this.watchForTriggers();
@@ -78,7 +77,7 @@ export class ExitIntentLightbox {
       const from = e.relatedTarget;
 
       if (!from) {
-        this.logger.log("ExitIntentLightbox triggered by mouse position");
+        this.logger.log("Triggered by mouse position");
         this.open();
       }
     });
@@ -87,9 +86,7 @@ export class ExitIntentLightbox {
   private watchDocumentVisibility() {
     const visibilityListener = () => {
       if (document.visibilityState === "hidden") {
-        this.logger.log(
-          "ExitIntentLightbox triggered by visibilityState is hidden"
-        );
+        this.logger.log("Triggered by visibilityState is hidden");
         this.open();
         document.removeEventListener("visibilitychange", visibilityListener);
       }
