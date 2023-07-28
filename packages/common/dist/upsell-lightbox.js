@@ -155,7 +155,6 @@ export class UpsellLightbox {
     }
     liveFrequency() {
         const live_upsell_frequency = document.querySelectorAll(".upsell_frequency");
-        const upsellFrequency = this._frequency.frequency;
         live_upsell_frequency.forEach((elem) => (elem.innerHTML = this.getFrequencyTxt()));
     }
     // Return the Suggested Upsell Amount
@@ -187,7 +186,6 @@ export class UpsellLightbox {
             : this.options.minAmount;
     }
     shouldOpen() {
-        const freq = this._frequency.frequency;
         const upsellAmount = this.getUpsellAmount();
         const paymenttype = ENGrid.getFieldValue("transaction.paymenttype") || "";
         // If frequency is not onetime or
