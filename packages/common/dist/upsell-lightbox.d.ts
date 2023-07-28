@@ -14,12 +14,15 @@ export declare class UpsellLightbox {
     private shouldSkip;
     private popupOtherField;
     private liveAmounts;
+    private liveFrequency;
     private getUpsellAmount;
     private shouldOpen;
+    private freqAllowed;
     private open;
     private setOriginalAmount;
     private continue;
     private close;
     private getAmountTxt;
+    private getFrequencyTxt;
     private checkOtherAmount;
 }

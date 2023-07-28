@@ -40,16 +40,20 @@ export class UpsellLightbox {
   private renderLightbox() {
     const title = this.options.title
       .replace("{new-amount}", "<span class='upsell_suggestion'></span>")
-      .replace("{old-amount}", "<span class='upsell_amount'></span>");
+      .replace("{old-amount}", "<span class='upsell_amount'></span>")
+      .replace("{old-frequency}", "<span class='upsell_frequency'></span>");
     const paragraph = this.options.paragraph
       .replace("{new-amount}", "<span class='upsell_suggestion'></span>")
-      .replace("{old-amount}", "<span class='upsell_amount'></span>");
+      .replace("{old-amount}", "<span class='upsell_amount'></span>")
+      .replace("{old-frequency}", "<span class='upsell_frequency'></span>");
     const yes = this.options.yesLabel
       .replace("{new-amount}", "<span class='upsell_suggestion'></span>")
-      .replace("{old-amount}", "<span class='upsell_amount'></span>");
+      .replace("{old-amount}", "<span class='upsell_amount'></span>")
+      .replace("{old-frequency}", "<span class='upsell_frequency'></span>");
     const no = this.options.noLabel
       .replace("{new-amount}", "<span class='upsell_suggestion'></span>")
-      .replace("{old-amount}", "<span class='upsell_amount'></span>");
+      .replace("{old-amount}", "<span class='upsell_amount'></span>")
+      .replace("{old-frequency}", "<span class='upsell_frequency'></span>");
     const markup = `
             <div class="upsellLightboxContainer" id="goMonthly">
               <!-- ideal image size is 480x650 pixels -->
@@ -204,6 +208,14 @@ export class UpsellLightbox {
     );
   }
 
+  private liveFrequency() {
+    const live_upsell_frequency =
+      document.querySelectorAll(".upsell_frequency");
+    live_upsell_frequency.forEach(
+      (elem) => (elem.innerHTML = this.getFrequencyTxt())
+    );
+  }
+
   // Return the Suggested Upsell Amount
   private getUpsellAmount(): number {
     const amount = this._amount.amount;
@@ -240,7 +252,6 @@ export class UpsellLightbox {
       : this.options.minAmount;
   }
   private shouldOpen() {
-    const freq = this._frequency.frequency;
     const upsellAmount = this.getUpsellAmount();
     const paymenttype = ENGrid.getFieldValue("transaction.paymenttype") || "";
     // If frequency is not onetime or
@@ -248,7 +259,7 @@ export class UpsellLightbox {
     // there's no suggestion for this donation amount,
     // we should not open
     if (
-      freq == "onetime" &&
+      this.freqAllowed() &&
       !this.shouldSkip() &&
       !this.options.disablePaymentMethods.includes(paymenttype.toLowerCase()) &&
       !this.overlay.classList.contains("is-submitting") &&
@@ -261,6 +272,15 @@ export class UpsellLightbox {
       return true;
     }
     return false;
+  }
+
+  // Return true if the current frequency is allowed by the options
+  private freqAllowed() {
+    const freq = this._frequency.frequency;
+    const allowed = [];
+    if (this.options.oneTime) allowed.push("onetime");
+    if (this.options.annual) allowed.push("annual");
+    return allowed.includes(freq);
   }
 
   private open() {
@@ -281,6 +301,7 @@ export class UpsellLightbox {
       return true;
     }
     this.liveAmounts();
+    this.liveFrequency();
     this.overlay.classList.remove("is-hidden");
     this._form.submit = false;
     ENGrid.setBodyData("has-lightbox", "");
@@ -364,6 +385,15 @@ export class UpsellLightbox {
       thousands_separator
     );
     return amount > 0 ? <string>symbol + amountTxt : "";
+  }
+  private getFrequencyTxt() {
+    const freqTxt = {
+      onetime: "one-time",
+      monthly: "monthly",
+      annual: "annual",
+    };
+    const frequency = this._frequency.frequency as keyof typeof freqTxt;
+    return frequency in freqTxt ? freqTxt[frequency] : frequency;
   }
   private checkOtherAmount(value: number) {
     const otherInput = document.querySelector(".upsellOtherAmountInput");

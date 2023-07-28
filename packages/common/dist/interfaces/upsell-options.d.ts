@@ -15,6 +15,8 @@ export interface UpsellOptions {
     minAmount: number;
     canClose: boolean;
     submitOnClose: boolean;
+    oneTime: boolean;
+    annual: boolean;
     disablePaymentMethods: Array<string>;
     skipUpsell: boolean;
 }

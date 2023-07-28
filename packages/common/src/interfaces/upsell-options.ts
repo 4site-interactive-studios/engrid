@@ -12,6 +12,8 @@ export interface UpsellOptions {
   minAmount: number; // Never accept less than this amount
   canClose: boolean;
   submitOnClose: boolean;
+  oneTime: boolean;
+  annual: boolean;
   disablePaymentMethods: Array<string>;
   skipUpsell: boolean; // Use this to skip the upsell entirely, used to disable the upsell programatically
 }
@@ -45,6 +47,8 @@ export const UpsellOptionsDefaults: UpsellOptions = {
   minAmount: 0,
   canClose: true,
   submitOnClose: false,
+  oneTime: true,
+  annual: false,
   disablePaymentMethods: [],
   skipUpsell: false,
 };
