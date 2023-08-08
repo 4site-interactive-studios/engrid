@@ -591,11 +591,11 @@ export abstract class ENGrid {
       );
       if (paymentTypeOption) {
         paymentTypeOption.selected = true;
-        const event = new Event("change");
-        enFieldPaymentType.dispatchEvent(event);
       } else {
         enFieldPaymentType.value = paymentType;
       }
+      const event = new Event("change");
+      enFieldPaymentType.dispatchEvent(event);
     }
   }
 }
