@@ -502,12 +502,12 @@ export class ENGrid {
             const paymentTypeOption = Array.from(enFieldPaymentType.options).find((option) => option.value.toLowerCase() === paymentType.toLowerCase());
             if (paymentTypeOption) {
                 paymentTypeOption.selected = true;
-                const event = new Event("change");
-                enFieldPaymentType.dispatchEvent(event);
             }
             else {
                 enFieldPaymentType.value = paymentType;
             }
+            const event = new Event("change");
+            enFieldPaymentType.dispatchEvent(event);
         }
     }
 }
