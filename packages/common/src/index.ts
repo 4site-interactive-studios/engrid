@@ -74,6 +74,7 @@ export * from "./plaid";
 export * from "./give-by-select";
 export * from "./url-params-to-body-attrs";
 export * from "./exit-intent-lightbox";
+export * from "./supporter-hub";
 
 // Events
 export * from "./events";

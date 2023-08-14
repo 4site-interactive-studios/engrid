@@ -33,46 +33,10 @@
 	--color_black - Black
 */
 
-.en__field__element--range,
-.en__field__element--rating,
-.en__field__helpText,
-.en__field__input--checkbox,
-.en__field__input--radio,
-.en__field__label {
-  // vertical-align: middle
-}
-
-.en__component--hubgadget span,
-.en__imageSelectField__control,
-.en__rangeFieldLabels__label--current {
-  // text-align: center
-}
-
 .en-noselect,
 .en__ticket__minus,
 .en__ticket__plus {
   user-select: none;
-}
-
-.en__errorList {
-  // margin: 0;
-  // padding: 0
-}
-
-.en__component {
-  // position: relative
-}
-
-.en__component--row {
-  // display: flex;
-  // flex-wrap: wrap;
-  // box-sizing: border-box
-}
-
-.en__component--row.en__component--advrow {
-  // display: flex;
-  // flex-wrap: nowrap;
-  // box-sizing: border-box
 }
 
 .en__component--column {
@@ -81,29 +45,6 @@
   // box-sizing: border-box;
   // width: 100%;
   min-width: initial; // 300px - Set to no min-width
-}
-
-.en__component--column.en__component--advcolumn {
-  // width: auto;
-  // min-width: 0;
-  // flex: 1 0 0%;
-  // flex: 1 0 0 // TODO: Let EN know this is unnecessary and can be removed
-}
-
-.en__component--row--2 .en__component--column {
-  // width: 50%
-}
-
-@media only screen and (max-width: 600px),
-  only screen and (max-device-width: 600px) {
-  .en__component--row,
-  .en__component--row.en__component--advrow {
-    // display: block
-  }
-  .en__component--column.en__component--advcolumn,
-  .en__component--row--2 .en__component--column {
-    // width: 100%
-  }
 }
 
 .en__component--hubgadget {
@@ -164,26 +105,6 @@
   display: block;
 }
 
-.en__field__element--calendar,
-.en__field__element--checkbox,
-.en__field__element--email,
-.en__field__element--number,
-.en__field__element--password,
-.en__field__element--radio,
-.en__field__element--range,
-.en__field__element--rating,
-.en__field__element--select,
-.en__field__element--splitselect,
-.en__field__element--splittext,
-.en__field__element--telephone,
-.en__field__element--text,
-.en__field__element--textarea,
-.en__field__element--tripleselect,
-.en__field__element--tripletext,
-.en__field__item {
-  // display: inline-block
-}
-
 .en__field__input--calendar,
 .en__field__input--email,
 .en__field__input--number,
@@ -235,39 +156,13 @@
   padding: 0.375rem 0; // 6px 0
 }
 
-.en__field__element--layoutvertical .en__field__item,
-.en__field__label--positionabove {
-  // display: block
-}
-
-.en__field__label--item {
-  // width: auto;
-  // padding: 0
-}
-
 .en__field__input--radio {
   margin-top: initial; // -1px - This is likely unnecessary
-}
-
-.en__field--checkbox .en__field__label,
-.en__field--radio .en__field__label,
-.en__field--textarea .en__field__label {
-  // vertical-align: top
-}
-
-.en__field__element--layoutvertical .en__field__label--item {
-  // padding: 0;
-  // vertical-align: middle
 }
 
 .en__field__element--labelsleft .en__field__label--item {
   float: left; // left - @HOLD-TODO Help EN get away from using floats
   margin-right: 0.25rem; // 4px
-}
-
-.en__field__item.en__field__item--hidden,
-.en__hidden {
-  // display: none
 }
 
 .en__field__element--imgselect .en__field__item {
@@ -278,30 +173,9 @@
   cursor: pointer;
 }
 
-.en__rangeFieldLabels {
-  // display: flex;
-  // justify-content: space-between
-}
-
 .en__rangeFieldLabels__label {
   width: 30%; // @HOLD-TODO Investigate to see if there is a better way to do this
   // overflow-wrap: break-word
-}
-
-.en__rangeFieldLabels__label--max {
-  // text-align: right
-}
-
-.en__field__element--range input[type="range"]::-moz-range-thumb {
-  // cursor: pointer
-}
-
-.en__field__element--range input[type="range"]::-webkit-slider-thumb {
-  // cursor: pointer
-}
-
-.en__field__element--range input[type="range"]::-ms-thumb {
-  // cursor: pointer
 }
 
 .en__pagination {
@@ -313,22 +187,8 @@
   padding: 0.375rem; // 6px
 }
 
-.en__ratingField input {
-  // display: none
-}
-
 .en__ratingField__image {
   cursor: pointer;
-}
-
-.en__ratingField--on .en__ratingField__image--on,
-.en__ratingField__image--off {
-  // display: block
-}
-
-.en__ratingField--on .en__ratingField__image--off,
-.en__ratingField__image--on {
-  // display: none
 }
 
 .en__submit button {
@@ -355,13 +215,6 @@
   background: #bfbfbf;
 }
 
-.en__button.en__button--ajax--done,
-.en__button.en__button--ajax--inprogress {
-  // color: transparent;
-  // user-select: none;
-  // cursor: auto
-}
-
 .en__button--ajax--inprogress {
   background: url(https://e-activist.com/pageassets/images/en_loading.gif)
     center center no-repeat; // @HOLD-TODO
@@ -381,21 +234,10 @@
   padding: 0.4375rem; // 7px
 }
 
-.en__orderSummary__additional,
-.en__orderSummary__headers,
-.en__orderSummary__item,
-.en__orderSummary__total {
-  // display: table-row
-}
-
 .en__orderSummary__data,
 .en__orderSummary__header {
   // display: table-cell;
   padding: 0.4375rem; // 7px
-}
-
-.en__orderSummary__data--promo {
-  // word-break: break-word
 }
 
 .en__ticketBlock {
@@ -411,22 +253,9 @@
   // table-layout: fixed
 }
 
-.en__additional,
-.en__ticket {
-  // display: table-row
-}
-
-.en__ticket--DSBL {
-  // display: none
-}
-
 .en__ticket__field {
   border-bottom: 1px solid #bfbfbf;
   // vertical-align: top
-}
-
-.en__ticket:last-child .en__ticket__field {
-  // border: 0
 }
 
 .en__additional__amount,
@@ -438,27 +267,11 @@
 
 .en__additional__amount,
 .en__additional__label,
-.en__additional__promo,
-.en__ticketSummary__checkout,
-.en__ticket__field {
-  // display: table-cell
-}
-
-.en__additional__amount,
-.en__additional__label,
 .en__ticket__currency,
 .en__ticket__name,
 .en__ticket__price {
   font-size: 1.5em;
   font-weight: 700;
-}
-
-.en__ticket__currency,
-.en__ticket__minus,
-.en__ticket__plus,
-.en__ticket__price,
-.en__ticket__quantity {
-  // display: inline-block
 }
 
 .en__ticket__field--quantity {
@@ -651,9 +464,7 @@
   align-items: center;
 }
 
-.en__eventOccurrencesDateSelector:not(
-    .en__eventOccurrencesDateSelector--selected
-  )
+.en__eventOccurrencesDateSelector:not(.en__eventOccurrencesDateSelector--selected)
   .en__eventOccurrencesDateSelector__clear {
   display: none;
 }
@@ -815,11 +626,6 @@
   // text-align: center
 }
 
-.en__waitlist {
-  // text-align: left;
-  // display: inline-block
-}
-
 .en__waitlist__text {
   margin-bottom: 1.5rem; // 1.5em
   // text-align: left
@@ -842,10 +648,6 @@
   font-size: 1rem; // 1em
 }
 
-.en__waitlist__input--ticketId {
-  // display: none
-}
-
 .en__waitlist__input--quantity {
   width: 5rem; // 5em
 }
@@ -853,10 +655,6 @@
 .en__waitlist__actions {
   // text-align: right;
   margin-top: 1rem; // 1em
-}
-
-.en__lightbox {
-  // text-align: left
 }
 
 .en__lightbox__action {
@@ -879,26 +677,6 @@
   margin-right: 1rem; // 1em
 }
 
-.en__waitlist--thankyou {
-  // display: none
-}
-
-.en__component--eventtickets .en__orderSummary__headers,
-.en__component--eventtickets .en__orderSummary__total {
-  // font-weight: 700
-}
-
-.en__component--eventtickets .en__orderSummary__data,
-.en__component--eventtickets .en__orderSummary__header {
-  // text-align: center
-}
-
-.en__component--eventtickets .en__orderSummary__data--totalLabel,
-.en__component--eventtickets .en__orderSummary__data--type,
-.en__component--eventtickets .en__orderSummary__header--type {
-  // text-align: left
-}
-
 .en__registrants {
   padding: 0 0.875rem; // 0 14px
 }
@@ -907,11 +685,6 @@
   font-size: 1.5rem; // 1.5em
   // font-weight: 700;
   padding-bottom: 0.875rem; // 14px
-}
-
-.en__registrants__group {
-  // display: flex;
-  // flex-wrap: wrap
 }
 
 .en__registrants__registrant {
@@ -987,37 +760,9 @@
   width: auto; // 65px - Set the height to Auto and allow it to resize as needed
 }
 
-.en__socialShare__image,
-.en__socialShares {
-  // width: 100%;
-  // height: 100%
-}
-
 .en__share__button--large.en__share__button--twitter {
   background: url(https://e-activist.com/pageassets/images/en_twitter--large.png)
     center top no-repeat;
-}
-
-.en__socialShares {
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
-  // flex-wrap: wrap
-}
-
-.en__contact--closed .en__contactSubject,
-.en__contact--dummy,
-.en__contact__image.en__brokenImage img,
-.en__contacts--hideCheck .en__contactDetails__select,
-.en__contacts--hideContact,
-.en__contacts--hideMessage .en__contactMessage,
-.en__contacts--hideMessage .en__contactSections,
-.en__contacts--hideSubject .en__contactSubject,
-.en__contacts--hideSubject.en__contacts--hideMessage .en__contact__toggle,
-.en__singleMessage--hideMessage .en__contactMessage,
-.en__singleMessage--hideSubject .en__contactSubject,
-.en__singleMessage--hideSubject.en__singleMessage--hideMessage {
-  // display: none
 }
 
 .en__socialShare {
@@ -1032,10 +777,6 @@
 .en__contact {
   margin-bottom: 0.625rem; // 10px
   // position: relative
-}
-
-.en__contact:last-child {
-  // margin-bottom: 0
 }
 
 .en__contact__detail {
@@ -1061,43 +802,9 @@
     top center no-repeat;
 }
 
-.en__contact__main {
-  // flex-grow: 1
-}
-
-.en__contact__description p {
-  // margin: 0
-}
-
-.en__contact--closed .en__contactMessage,
-.en__contact--closed .en__contactSections {
-  // height: 0;
-  // overflow: hidden;
-  // padding: 0
-}
-
 .en__contactMessage,
 .en__contactSubject {
   margin-top: 0.625rem; // padding-top: 10px
-}
-
-.en__contactDetails {
-  // display: flex;
-  // align-items: center
-}
-
-.en__contactDetail {
-  // display: inline-block
-}
-
-.en__contactSubject__field {
-  // width: 100%
-}
-
-.en__contactMessage__htmlDisplay iframe,
-.en__contactMessage__plainText {
-  // width: 100%;
-  // box-sizing: border-box
 }
 
 .en__contactMessage__htmlDisplay {
@@ -1174,23 +881,12 @@
     center center no-repeat #dfdfdf;
 }
 
-.en__contact--open .en__contactDetails__background,
-.en__contacts--singleMessageMode .en__contactDetails__background {
-  // display: block
-}
-
 .en__contactBackground {
   // display: none;
   padding: 1.25rem; // 20px
   border-top: 1px solid #dfdfdf;
   margin-top: 0.625rem; // 10px
   // position: relative
-}
-
-.en__contact--showBackground .en__contactMessage,
-.en__contact--showBackground .en__contactSection,
-.en__contact--showBackground .en__contactSubject {
-  // display: none
 }
 
 .en__contact--showBackground .en__contactDetails {
@@ -1205,21 +901,8 @@
   margin-right: 0.625rem; // 10px
 }
 
-.en__contact--open.en__contact--showBackground .en__contactBackground,
-.en__contacts--singleMessageMode
-  .en__contact--showBackground
-  .en__contactBackground {
-  // display: block
-}
-
 .en__contactBackground__text {
   margin-top: 0.3125rem; // 5px
-}
-
-.en__contactBackground__text pre {
-  // font-family: inherit;
-  // white-space: pre-wrap;
-  // margin: 0
 }
 
 .en__contactBackground__cycle {
@@ -1243,42 +926,9 @@
   // left: 0
 }
 
-.en__contact:first-child .en__contactBackground__cycle--prev,
-.en__contact:last-child .en__contactBackground__cycle--next,
-.en__contactSection--hidden {
-  // display: none
-}
-
-.en__contactSection__content--editable .en__contactMessage__plainText {
-  // height: initial
-}
-
 .en__contactSection__content--uneditable,
 .en__contactSection__label {
   padding-top: 0.625rem; // 10px
-}
-
-.en__contactSection__content--uneditable .en__contactMessage__plainText {
-  // background: 0 0;
-  // border: none;
-  // height: auto;
-  // cursor: default;
-  // resize: none;
-  // outline: 0;
-  // -webkit-box-shadow: none;
-  // -moz-box-shadow: none;
-  // box-shadow: none;
-  // padding: 0
-}
-
-.en__component--tweetcontactblock {
-  // background-color: transparent
-}
-
-.en__component--tweetcontactblock .en__contacts {
-  // display: flex;
-  // justify-content: space-around;
-  // flex-wrap: wrap
 }
 
 .en__tweetContact {
@@ -1298,11 +948,6 @@
   padding: 0.625rem; // 10px
 }
 
-.en__tweetBackgroundText,
-.en__tweetButton {
-  // padding-top: 0
-}
-
 .en__twitterTarget__select {
   // display: none;
   margin: 0; // 0 10px 0 0
@@ -1316,11 +961,6 @@
   ); // Matches the pseudo element that adds the checkbox
   display: grid;
   margin: 0;
-}
-
-.en__twitterTarget {
-  // display: flex;
-  // align-items: center
 }
 
 .en__twitterTarget p {
@@ -1379,22 +1019,9 @@
   // display: inline-block
 }
 
-.en__tweetButton__send {
-  // cursor: pointer
-}
-
 .en__tweetButton__sent {
   // display: none;
   background-color: #33cc33;
-}
-
-.en__tweetButton--sent .en__tweetButton__sent {
-  // display: inline-block
-}
-
-.en__tweetBackgroundText,
-.en__tweetButton--sent .en__tweetButton__send {
-  // display: none
 }
 
 .en__tweetContact .en__tweetBackgroundToggle {
@@ -1422,24 +1049,12 @@
     center center no-repeat #dfdfdf;
 }
 
-.en__tweetContact--showBackground .en__tweetBackgroundText {
-  // display: block
-}
-
 .en__component.en__component--ecardblock {
   max-width: 55rem; // 880px
 }
 
-.en__component.en__component--ecardblock.ui-draggable {
-  // max-width: initial
-}
-
 .en__component--ecardblock h2 {
   margin: 1.25rem 0 0.625rem; // 20px 0 10px
-}
-
-.en__ecarditems__list {
-  // font-size: 0
 }
 
 .en__ecarditems__thumb {
@@ -1471,10 +1086,6 @@
   border-color: default !important; // @HOLD-TODO Investigate, there has to be a better way to do this
 }
 
-.en__ecarditems__action {
-  // text-align: center
-}
-
 .en__ecarditems__button {
   // cursor: pointer;
   font-size: 1rem; // 16px
@@ -1499,11 +1110,6 @@
   // font-family: arial!important
 }
 
-.en__ecarditems__button::-moz-focus-inner {
-  // padding: 0!important;
-  // border: 0!important
-}
-
 .en__ecardmessage__default {
   // width: 100%;
   min-height: 15.625rem; // 200px - Set a larger default height for Text Areas @HOLD-TODO, is this actually a text area?
@@ -1512,13 +1118,6 @@
   // -webkit-box-sizing: border-box;
   // -moz-box-sizing: border-box;
   // box-sizing: border-box
-}
-
-.en__ecardrecipients__detail {
-  // display: -webkit-box;
-  // display: flex;
-  // flex-wrap: wrap;
-  // justify-content: space-between
 }
 
 .en__ecarditems__preview.preview--show,
@@ -1584,14 +1183,6 @@
   // padding: 0
 }
 
-.en__ecardrecipients__recipient .ecardrecipient__remove button {
-  // border: none;
-  // background: 0 0;
-  // padding: 0;
-  // cursor: pointer;
-  // font-weight: 700
-}
-
 .en__ecarditems__preview {
   // display: none;
   // position: fixed;
@@ -1619,18 +1210,6 @@
   height: 80vh; // 800px; - @HOLD-TODO There has to be a better way to do this than a fixed height
   // position: absolute;
   z-index: 9;
-}
-
-.en__ecarditems__preview.overflow--height .en__ecarditems__prevwrap {
-  // height: 100%!important;
-  // top: 0!important;
-  // margin-top: 0!important
-}
-
-.en__ecarditems__preview.overflow--width .en__ecarditems__prevwrap {
-  // width: 100%!important;
-  // left: 0!important;
-  // margin-left: 0!important
 }
 
 .en__ecarditems__prevwrap iframe {
@@ -1675,10 +1254,6 @@
   padding: 1.5rem; // 24px
 }
 
-.en__hubOverlay--closed {
-  // display: none
-}
-
 .en__hubOverlay__popup {
   // position: relative;
   // margin: auto;
@@ -1696,10 +1271,6 @@
   // right: 0;
   background: url(https://e-activist.com/pageassets/images/en_loading.gif)
     center center no-repeat var(--color_white);
-}
-
-.en__hubOverlay__loading--active {
-  // display: block
 }
 
 .en__hubOverlay--supporterdetails .en__hubOverlay__popup,
@@ -1788,22 +1359,10 @@
   background: var(--color_white);
 }
 
-.en__supporterHubLogin__emailAddress {
-  // display: flex;
-  // justify-content: space-between
-}
-
 .en__supporterHubLogin__body .en__field__label {
   margin-right: 0.625rem; // 10px
   // flex-grow: 1;
   // width: initial
-}
-
-.en__supporterHubLogin__body .en__field__input--email,
-.en__supporterHubLogin__body .en__field__input--number,
-.en__supporterHubLogin__body .en__field__input--telephone,
-.en__supporterHubLogin__body .en__field__input--text {
-  // flex-grow: 1
 }
 
 .en__hubgadget__response {
@@ -1823,18 +1382,6 @@
 .en__hubgadget__response--warn {
   border: 1px dashed #fcac00;
   // display: block
-}
-
-.en__hubgadget__response--active {
-  // display: block
-}
-
-.en__hubPledge__currency {
-  // display: inline-block
-}
-
-.en__myImpact__hubCopies {
-  // margin: 0
 }
 
 .en__myImpact__hubCopy {
@@ -1871,10 +1418,6 @@
   margin: 0 0 1.5rem; // 0 0 24px
 }
 
-.en__hubCopy__content {
-  // clear: both
-}
-
 .en__hubOverlay__impact .en__hubOverlay__header h2 {
   font-size: 1.25rem; // 20px
   color: #0070ba;
@@ -1884,15 +1427,6 @@
   background: url(https://e-activist.com/pageassets/images/en_thumbsup.png)
     no-repeat;
   padding: 0 0 0 11.25rem; // 0 0 0 160px
-}
-
-.en__hubOverlay__impact .en__hubOverlay__content.hubdetail > div {
-  // background: 0 0;
-  // padding: 0
-}
-
-.en__hubOverlay__impact .en__myImpact__header iframe {
-  // border: none
 }
 
 .en__p2phub__sites {
@@ -1930,8 +1464,9 @@
 
 .en__hubMembership__card__update,
 .en__hubUpdateCC__toggle {
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/en_edit.png)
-    center center no-repeat;
+  background: url(https://e-activist.com/pageassets/images/en_edit.png) center
+    center no-repeat;
+  visibility: hidden;
 }
 
 .en__hubPledge__state {
@@ -1940,39 +1475,6 @@
 
 .en__hubPledge__icon {
   margin-right: 1.5rem; // 24px
-}
-
-@media (max-width: 768px) {
-  .en__hubPledge__icon {
-    // display: none
-  }
-}
-
-.en__hubPledge__columns {
-  // display: flex;
-  // justify-content: space-between;
-  // flex-wrap: wrap
-}
-
-.en__hubPledge__panels {
-  // flex-grow: 1
-}
-
-.en__hubPledge__buttons {
-  // display: flex;
-  // justify-content: space-between
-}
-
-.en__hubPledge__buttons .en__submit:only-child {
-  // margin-left: auto
-}
-
-.en__component--copyblock--copyFailure {
-  // display: none
-}
-
-.en__hubPledge__state--failed .en__component--copyblock--copyFailure {
-  // display: block
 }
 
 .en__hubPledge__validationFail .en__field__element {
@@ -1994,26 +1496,6 @@
   width: 1.5rem; // 25px - @HOLD-TODO There has to be a better way to do this than a fixed width
   margin-bottom: 1.125rem; // 18px
   margin-left: 1.5rem; // 25px
-}
-
-.en__hubUpdateCC {
-  // display: none
-}
-
-.en__hubPledge__state--ccEnabled .en__hubUpdateCC {
-  // display: block
-}
-
-.en__hubUpdateCC--enabled .en__hubUpdateCC__toggle {
-  // opacity: .5;
-  // cursor: initial
-}
-
-.en__hubUpdateCC__additional {
-  // -webkit-transition: max-height 1s;
-  // transition: max-height 1s;
-  // max-height: 0;
-  // overflow: hidden
 }
 
 .en__hubPledge__roi__list ol {
@@ -2065,10 +1547,6 @@
 
 .en__hubPledge__roi--confirmation .en__hubPledge__roi__next {
   margin: 1rem 0;
-}
-
-.en__hubMembership__viewMemberships {
-  // display: inline-block
 }
 
 .en__hubMembership__viewMemberships p {
@@ -2138,11 +1616,6 @@
   min-width: initial; // 300px - Set to no min-width
 }
 
-.en__hubMembership__membership__detail {
-  // display: flex;
-  // flex-wrap: wrap
-}
-
 .en__hubMembership__membership__detail__label {
   // font-weight: 700;
   width: 11.25rem; // 180px - @HOLD-TODO Investigate, there has to be a better way to do this than setting a fixed width
@@ -2158,29 +1631,6 @@
   padding: 0.5625rem 0; // 9px 0
 }
 
-.en__hubMemCardUpdate__page--success {
-  // display: none
-}
-
-.en__hubMemCardUpdate--success .en__hubMemCardUpdate__page--success {
-  // display: block
-}
-
-.en__hubMemCardUpdate--success .en__hubMemCardUpdate__page--initial {
-  // display: none
-}
-
-.en__hubMemCardUpdate__actions {
-  // display: flex;
-  // justify-content: space-between
-}
-
-.en__hubMemCardUpdate__forms {
-  // display: flex;
-  // flex-wrap: wrap;
-  // justify-content: space-between
-}
-
 .en__hubMemCardUpdate__form--left {
   margin-right: 0.625rem; // 10px
 }
@@ -2192,13 +1642,6 @@
   // position: relative;
   width: 20rem; // 320px; - @HOLD-TODO Investigate, there has to be a better way to do this than setting a fixed width
   font-size: 0.85rem; // .85em
-}
-
-.en__hubMembership__card dl {
-  // padding: 0;
-  // margin: 0;
-  // display: flex;
-  // flex-wrap: wrap
 }
 
 .en__hubMembership__card dt {
@@ -2226,26 +1669,8 @@
   right: 0.75rem; // 12px
 }
 
-.en__hubMembershipRenew__actions {
-  // text-align: right
-}
-
-.en__hubMembershipHistory table {
-  // width: 100%
-}
-
-.en__hubMembershipHistory th {
-  // text-align: left
-}
-
 .en__hubTxnGiving__header {
   margin-bottom: 1.5rem; // 24px
-}
-
-.en__hubTxnGiving__transactions__list ol {
-  // list-style: none;
-  // padding: 0;
-  // margin: 0
 }
 
 .en__hubTxnGiving__transactions__list li {
@@ -2255,20 +1680,10 @@
   padding: 0.375rem; // 6px
 }
 
-.en__hubTxnGiving__transactions__header {
-  // display: table;
-  // width: 100%
-}
-
 .en__hubTxnGiving__transactions__date {
   // display: table-cell;
   width: 33%; // @HOLD-TODO Investigate, there has to be a better way to do this
   padding-right: 0.75rem; // 12px
-}
-
-.en__hubTxnGiving__transactions__total {
-  // display: table-cell;
-  // text-align: right
 }
 
 .en__component--premiumgiftblock {
@@ -2293,23 +1708,6 @@
   padding: 0.75rem; // 12px
 }
 
-.en__pg:last-child {
-  // border-bottom: 0
-}
-
-.en__pg__select input {
-  // cursor: pointer;
-  // margin: 0
-}
-
-.en__pg__image {
-  // display: none
-}
-
-.en__pg__image--selected {
-  // display: block
-}
-
 .en__pg--selected .en__pg__image--selected {
   outline: #0070ba solid 3px;
 }
@@ -2317,11 +1715,6 @@
 .en__pg__imageSelector {
   // text-align: center;
   margin-top: 0.375rem; // 6px
-}
-
-.en__pg__imageSelector input,
-.en__pg__imageSelector--hidden {
-  // display: none
 }
 
 .en__pg__imageSelector label {
@@ -2345,22 +1738,6 @@
   // cursor: pointer
 }
 
-.en__pg__body {
-  // display: flex;
-  // flex-wrap: wrap;
-}
-
-.en__memselector,
-.en__memtypelist,
-.en__memtypeselect__descriptions {
-  // padding: 0;
-  // list-style-type: none
-}
-
-.en__pg__optionTypes {
-  // display: flex
-}
-
 .en__pg__optionType {
   margin: 0.75rem 0.75rem 0 0; // 12px 12px 0 0
 }
@@ -2374,26 +1751,11 @@
   margin-bottom: 0.75rem; // 12px
 }
 
-.en__memtypeselect .en__memactions {
-  // justify-content: space-between
-}
-
-.en__memselector {
-  // display: flex;
-  // flex-wrap: wrap
-}
-
 .en__memselector__item {
   border: 1px solid #bfbfbf;
   margin: 0.375rem; // 6px
   // display: flex;
   // align-items: center
-}
-
-.en__memselector__label,
-.en__memselector__radio {
-  // display: block;
-  // cursor: pointer
 }
 
 .en__memselector__radio {
@@ -2409,32 +1771,12 @@
   // user-select: none
 }
 
-.en__memtypeselect__description {
-  // display: none
-}
-
-.en__memtypeselect__description--active {
-  // display: block
-}
-
-.en__memtype {
-  // display: flex;
-  // flex-wrap: wrap
-}
-
 .en__memimage {
   max-width: 18.75rem; // 300px - @HOLD-TODO Investigate, there has to be a better way to do this
   // flex-grow: 0;
   // flex-shrink: 0;
   // font-size: 0;
   padding: 0.75rem; // 12px
-}
-
-.en__memimage img {
-  // max-width: 100%;
-  // max-height: 100%;
-  // display: block;
-  // margin: auto
 }
 
 .en__memtype__details {
@@ -2445,30 +1787,8 @@
   min-width: initial; // 350px - Set to no min-width
 }
 
-.en__memactions {
-  // display: flex
-}
-
-.en__memaction {
-  // margin: 6px
-}
-
-.en__component--memordersummary
-  .en__orderSummary__item--total
-  .en__orderSummary__data:first-child {
-  // text-align: right
-}
-
 .en__hubOverlay--memtyperenew .en__hubOverlay__popup {
   max-width: 37.5rem; // 600px @HOLD-TODO Investigate, there has to be a better way to do this
-}
-
-.en__hubOverlay--memtyperenew .en__field__element {
-  // display: block
-}
-
-.en__hubOverlay--memtyperenew .en__field__input {
-  // width: 100%
 }
 
 .en__memtyperenew__message {
@@ -2476,11 +1796,6 @@
   border-width: 1px;
   padding: 0 0.625rem; // 0 10px;
   // display: none
-}
-
-.en__memtyperenew__actions {
-  // display: flex;
-  // justify-content: center
 }
 
 .en__memtyperenew__or {
@@ -2493,15 +1808,6 @@
   background-color: var(--color_white);
   // display: inline-block;
   padding: 0.625rem; // 10px
-}
-
-.en__memtyperenew__page:not(.en__memtyperenew__page--active) {
-  // display: none
-}
-
-.en__members {
-  // list-style-type: none;
-  // padding: 0
 }
 
 .en__member {
@@ -2547,31 +1853,12 @@
   width: 10rem; // 160px @HOLD-TODO - There has to be a better way to do this than setting a fixed width
 }
 
-.en__member--closed .en__member__openButton,
-.en__member--closed .en__member__toggle,
-.en__member--open .en__member__toggle {
-  // display: block
-}
-
 .en__member--validationFailed .en__member__openButton {
   border: 1px solid var(--error__color);
 }
 
 .en__member__details {
   padding: 0.625rem; // 10px
-}
-
-.en__member--open .en__member__row {
-  // cursor: pointer
-}
-
-.en__member--closed {
-  // border: 0
-}
-
-.en__member--closed .en__member__details,
-.en__overlay {
-  // display: none
 }
 
 .en__member--closed .en__member__row {
@@ -2668,22 +1955,6 @@
   padding: 0.625rem; // 10px
 }
 
-.en__component--callcontactblock .en__component--callcontactblock__officehours,
-.en__component--callcontactblock .en__contacts {
-  // display: none
-}
-
-.en__component--callcontactblock.en__component--callcontactblock--inofficehours
-  .en__contacts,
-.en__component--callcontactblock.en__component--callcontactblock--outofoffice
-  .en__component--callcontactblock__officehours {
-  // display: block
-}
-
-.en__component--callcontactblock .en__contact__detail {
-  // display: flex
-}
-
 .en__component--callcontactblock .en__contact__description {
   margin-bottom: 0.625rem; // 10px
 }
@@ -2703,11 +1974,6 @@
   margin-top: 0.625rem; // 10px
 }
 
-.en__c2c__survey__form .en__status--error,
-.en__c2c__survey__thankyou {
-  // display: none
-}
-
 .en__c2c__survey__rate {
   // display: flex;
   // justify-content: space-between;
@@ -2721,26 +1987,6 @@
 
 .en__c2c__survey__rate .en__button.active {
   opacity: 1;
-}
-
-.en__component--svblock .en__field__label--positionabove {
-  // width: auto
-}
-
-.en__component--svblock--displayInOrder .en__field--survey {
-  // display: none
-}
-
-.en__component--svblock--displayInOrder .en__field--survey--surveyActive,
-.en__component--svblock--displayInOrder .en__field--survey--surveyDone,
-.en__component--svblock--displayInOrder
-  .en__field--survey[class*="validationFail"],
-.en__component--svblock--displayInOrder .en__field--survey:first-child {
-  // display: block
-}
-
-.en__component--svblock--numbered {
-  // counter-reset: surveyFieldNumbering
 }
 
 .en__component--svblock--numbered .en__field > .en__field__label:before {
@@ -2808,10 +2054,6 @@
   // position: relative
 }
 
-.en__paypalTouch__preview .en__paypalTouch__previewWrap {
-  // display: inline
-}
-
 .en__paypalTouch__preview .en__paypalTouch__previewIcon {
   background: url(https://e-activist.com/pageassets/images/gateways/buttons/paypal-icon-svg.svg)
     0 center no-repeat;
@@ -2865,12 +2107,6 @@
   background: url(https://e-activist.com/pageassets/images/gateways/buttons/paypal-text-white-svg.svg)
     0 center no-repeat;
   background-size: 3.75rem; // 60px - @HOLD-TODO Investigate, there has to be a better way to do this
-}
-
-#en__digitalWallet {
-  // font-size: 0;
-  // display: flex;
-  // flex-wrap: wrap
 }
 
 #en__digitalWallet .en__digitalWallet__button {

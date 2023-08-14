@@ -1759,7 +1759,8 @@ textarea,
 }
 .en__hubMembership__card__update,
 .en__hubUpdateCC__toggle {
-  background: url(https://e-activist.com/ea-demo/frontend/pbAssets/build/en_edit.png) center center no-repeat;
+  background: url(https://e-activist.com/pageassets/images/en_edit.png) center center no-repeat;
+  visibility: hidden;
 }
 
 .en__hubPledge__icon {

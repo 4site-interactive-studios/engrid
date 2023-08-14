@@ -67,6 +67,7 @@ import {
   GiveBySelect,
   UrlParamsToBodyAttrs,
   ExitIntentLightbox,
+  SupporterHub,
 } from "./";
 
 export class App extends ENGrid {
@@ -342,6 +343,9 @@ export class App extends ENGrid {
 
     // Premium Gift Features
     new PremiumGift();
+
+    // Supporter Hub Features
+    new SupporterHub();
 
     // Digital Wallets Features
     if (ENGrid.getPageType() === "DONATION") {
