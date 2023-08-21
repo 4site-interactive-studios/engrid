@@ -6961,6 +6961,21 @@ body[data-engrid-exit-intent-lightbox=open] {
   border-color: var(--exit-intent__button_border-color_hover);
 }
 
+[data-engrid-theme]:not(#en__pagebuilder)[data-engrid-hide-fast-address-details=true] .hideif-fast-address-details,
+[data-engrid-theme]:not(#en__pagebuilder)[data-engrid-hide-fast-address-details=true] .fast-address-details {
+  display: none !important;
+}
+[data-engrid-theme]:not(#en__pagebuilder)[data-engrid-hide-fast-personal-details=true] .hideif-fast-personal-details,
+[data-engrid-theme]:not(#en__pagebuilder)[data-engrid-hide-fast-personal-details=true] .fast-personal-details {
+  display: none !important;
+}
+[data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-hide-fast-address-details=true]) .showif-fast-address-details {
+  display: none !important;
+}
+[data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-hide-fast-personal-details=true]) .showif-fast-personal-details {
+  display: none !important;
+}
+
 /* ENGRID LAYOUTS */
 /* MUST COME AFTER OTHER ENGRID STYLES WHICH MIGHT DEFINE MIXINS REFERENCED IN THE LAYOUTS */
 [data-engrid-theme] {
@@ -9272,10 +9287,19 @@ body:not([data-engrid-debug]) #debug-bar {
 #en__pagebuilder [class*=showif],
 #en__pagebuilder [class*=hideif],
 #en__pagebuilder [class*=engrid__],
+#en__pagebuilder .fast-address-details,
+#en__pagebuilder .fast-personal-details,
 [data-engrid-debug] [class*=showif],
 [data-engrid-debug] [class*=hideif],
-[data-engrid-debug] [class*=engrid__] {
+[data-engrid-debug] [class*=engrid__],
+[data-engrid-debug] .fast-address-details,
+[data-engrid-debug] .fast-personal-details {
   background-color: rgba(0, 0, 255, 0.1019607843) !important;
+}
+
+#en__pagebuilder [class*=setattr],
+[data-engrid-debug] [class*=setattr] {
+  background-color: rgba(255, 255, 0, 0.1019607843) !important;
 }
 
 #en__pagebuilder .messageOverlay {
