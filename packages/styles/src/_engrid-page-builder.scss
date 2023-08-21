@@ -364,8 +364,18 @@
 [data-engrid-debug] {
   [class*="showif"],
   [class*="hideif"],
-  [class*="engrid__"] {
+  [class*="engrid__"],
+  .fast-address-details,
+  .fast-personal-details {
     background-color: #0000ff1a !important;
+  }
+}
+
+//Style interactive content
+#en__pagebuilder,
+[data-engrid-debug] {
+  [class*="setattr"] {
+    background-color: #ffff001a !important;
   }
 }
 

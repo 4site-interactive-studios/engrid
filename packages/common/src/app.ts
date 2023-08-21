@@ -68,6 +68,8 @@ import {
   UrlParamsToBodyAttrs,
   ExitIntentLightbox,
   SupporterHub,
+  FastFormFill,
+  SetAttr,
 } from "./";
 
 export class App extends ENGrid {
@@ -376,6 +378,10 @@ export class App extends ENGrid {
     new ExitIntentLightbox();
 
     new UrlParamsToBodyAttrs();
+
+    new FastFormFill();
+
+    new SetAttr();
 
     //Debug panel
     if (
