@@ -1,8 +1,8 @@
 /**
- * This class add body data attributes if all mandatory inputs are filled.
+ * This class adds body data attributes if all mandatory inputs, on specific form blocks, are filled.
  * Related styling (to hide elements) can be found in "fast-form-fill.scss".
  *
- * To activate add the custom class "fast-personal-details" or "fast-address-details"
+ * To activate: add the custom class "fast-personal-details" or "fast-address-details"
  * to the relevant form block.
  */
 import { ENGrid, EngridLogger } from "./";
