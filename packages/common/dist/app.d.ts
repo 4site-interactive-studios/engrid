@@ -13,6 +13,5 @@ export declare class App extends ENGrid {
     private onValidate;
     private onSubmit;
     private onError;
-    setDataAttributes(): void;
     static log(message: string): void;
 }

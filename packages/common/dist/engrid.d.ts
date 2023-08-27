@@ -44,4 +44,5 @@ export declare abstract class ENGrid {
     static watchForError(callback: Function): void;
     static getPaymentType(): string;
     static setPaymentType(paymentType: string): void;
+    static isInViewport(element: HTMLElement): boolean;
 }
