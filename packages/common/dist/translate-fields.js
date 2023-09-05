@@ -131,6 +131,11 @@ export class TranslateFields {
     }
     setStateField(country, state) {
         switch (country) {
+            case "ES":
+            case "ESP":
+            case "Spain":
+                this.setStateValues(state, "Provincia", null);
+                break;
             case "BR":
             case "BRA":
             case "Brazil":
