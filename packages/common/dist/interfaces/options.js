@@ -30,6 +30,7 @@ export const OptionsDefaults = {
     RegionLongFormat: "",
     CountryDisable: [],
     Plaid: false,
+    Placeholders: false,
     MobileCTA: false,
     PageLayouts: [
         "leftleft1col",

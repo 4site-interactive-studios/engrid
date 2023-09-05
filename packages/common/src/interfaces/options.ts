@@ -88,6 +88,7 @@ export interface Options {
   PageLayouts?: string[];
   CountryDisable?: string[];
   Plaid?: boolean;
+  Placeholders?: false | { [key: string]: string };
   onLoad?: () => void;
   onResize?: () => void;
   onSubmit?: () => void;
@@ -127,6 +128,7 @@ export const OptionsDefaults: Options = {
   RegionLongFormat: "",
   CountryDisable: [],
   Plaid: false,
+  Placeholders: false,
   MobileCTA: false,
   PageLayouts: [
     "leftleft1col",
