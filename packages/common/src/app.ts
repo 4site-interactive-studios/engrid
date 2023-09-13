@@ -82,6 +82,7 @@ export class App extends ENGrid {
     "transaction.donationAmt.other"
   );
   private _frequency: DonationFrequency = DonationFrequency.getInstance();
+  private _dataLayer: DataLayer = DataLayer.getInstance();
 
   private options: Options;
 
@@ -346,9 +347,6 @@ export class App extends ENGrid {
     if (ENGrid.getPageType() === "DONATION") {
       new DigitalWallets();
     }
-
-    // Data Layer Events
-    new DataLayer();
 
     // Mobile CTA
     new MobileCTA();

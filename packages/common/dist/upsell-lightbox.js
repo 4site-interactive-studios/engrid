@@ -1,4 +1,4 @@
-import { ENGrid, EngridLogger, ProcessingFees, UpsellOptionsDefaults, } from "./";
+import { ENGrid, EngridLogger, ProcessingFees, UpsellOptionsDefaults, DataLayer } from "./";
 import { DonationAmount, DonationFrequency, EnForm } from "./events";
 export class UpsellLightbox {
     constructor() {
@@ -7,6 +7,7 @@ export class UpsellLightbox {
         this._amount = DonationAmount.getInstance();
         this._fees = ProcessingFees.getInstance();
         this._frequency = DonationFrequency.getInstance();
+        this._dataLayer = DataLayer.getInstance();
         this.logger = new EngridLogger("UpsellLightbox", "black", "pink", "🪟");
         let options = "EngridUpsell" in window ? window.EngridUpsell : {};
         this.options = Object.assign(Object.assign({}, UpsellOptionsDefaults), options);
@@ -270,12 +271,24 @@ export class UpsellLightbox {
             this.logger.success("Upsold");
             this.setOriginalAmount(this._amount.amount.toString());
             const upsoldAmount = this.getUpsellAmount();
+            const originalAmount = this._amount.amount;
             this._frequency.setFrequency("monthly");
             this._amount.setAmount(upsoldAmount);
+            this._dataLayer.addEndOfGiftProcessEvent("ENGRID_UPSELL", {
+                eventValue: true,
+                originalAmount: originalAmount,
+                upsoldAmount: upsoldAmount,
+                frequency: "monthly",
+            });
+            this._dataLayer.addEndOfGiftProcessVariable("ENGRID_UPSELL", true);
+            this._dataLayer.addEndOfGiftProcessVariable("ENGRID_UPSELL_ORIGINAL_AMOUNT", originalAmount);
+            this._dataLayer.addEndOfGiftProcessVariable("ENGRID_UPSELL_DONATION_FREQUENCY", "MONTHLY");
         }
         else {
             this.setOriginalAmount("");
             window.sessionStorage.removeItem("original");
+            this._dataLayer.addEndOfGiftProcessVariable("ENGRID_UPSELL", false);
+            this._dataLayer.addEndOfGiftProcessVariable("ENGRID_UPSELL_DONATION_FREQUENCY", "ONE-TIME");
         }
         this._form.submitForm();
     }

@@ -11,6 +11,8 @@ export class DataLayer {
   );
   private dataLayer = (window as any).dataLayer || [];
   private _form: EnForm = EnForm.getInstance();
+  private static instance: DataLayer;
+  private endOfGiftProcessStorageKey = 'ENGRID_END_OF_GIFT_PROCESS_EVENTS'
 
   private excludedFields = [
     // Credit Card
@@ -53,6 +55,15 @@ export class DataLayer {
     this._form.onSubmit.subscribe(() => this.onSubmit());
   }
 
+  public static getInstance(): DataLayer {
+    if (!DataLayer.instance) {
+      DataLayer.instance = new DataLayer();
+      (window as any)._dataLayer = DataLayer.instance;
+    }
+
+    return DataLayer.instance;
+  }
+
   private transformJSON(value: string) {
     if (typeof value === "string") {
       return value.toUpperCase().split(" ").join("-").replace(":-", "-");
@@ -70,6 +81,7 @@ export class DataLayer {
       this.dataLayer.push({
         event: "EN_SUCCESSFUL_DONATION",
       });
+      this.addEndOfGiftProcessEventsToDataLayer();
     } else {
       this.logger.log("EN_PAGE_VIEW");
       this.dataLayer.push({
@@ -81,7 +93,7 @@ export class DataLayer {
       const pageJson = window.pageJson;
 
       for (const property in pageJson) {
-        if (Number.isInteger(pageJson[property])) {
+        if (!Number.isNaN(pageJson[property])) {
           this.dataLayer.push({
             event: `EN_PAGEJSON_${property.toUpperCase()}-${
               pageJson[property]
@@ -104,6 +116,11 @@ export class DataLayer {
             ),
           });
         }
+
+        this.dataLayer.push({
+          event: 'EN_PAGEJSON_' + property.toUpperCase(),
+          eventValue: pageJson[property],
+        });
       }
 
       if (ENGrid.getPageCount() === ENGrid.getPageNumber()) {
@@ -244,5 +261,36 @@ export class DataLayer {
     el: HTMLInputElement | HTMLSelectElement
   ): string | null {
     return el.closest(".en__field")?.querySelector("label")?.textContent || "";
+  }
+
+  public addEndOfGiftProcessEvent(eventName: string, eventProperties: object  = {}) {
+    this.storeEndOfGiftProcessData({
+      event: eventName,
+      ...eventProperties
+    })
+  }
+
+  public addEndOfGiftProcessVariable(variableName: string, variableValue: any = '') {
+    this.storeEndOfGiftProcessData({
+      [`${variableName.toUpperCase()}`]: variableValue
+    })
+  }
+
+  private storeEndOfGiftProcessData(data: object) {
+    const events = this.getEndOfGiftProcessData();
+    events.push(data)
+    window.sessionStorage.setItem(this.endOfGiftProcessStorageKey, JSON.stringify(events))
+  }
+
+  private addEndOfGiftProcessEventsToDataLayer() {
+    this.getEndOfGiftProcessData().forEach((event: object) => {
+      this.dataLayer.push(event)
+    });
+    window.sessionStorage.removeItem(this.endOfGiftProcessStorageKey);
+  }
+
+  private getEndOfGiftProcessData(): Array<any> {
+    let eventsData = window.sessionStorage.getItem(this.endOfGiftProcessStorageKey);
+    return !eventsData ? [] : JSON.parse(eventsData);
   }
 }

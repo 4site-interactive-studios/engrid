@@ -5,6 +5,7 @@ export class DataLayer {
         this.logger = new EngridLogger("DataLayer", "#f1e5bc", "#009cdc", "📊");
         this.dataLayer = window.dataLayer || [];
         this._form = EnForm.getInstance();
+        this.endOfGiftProcessStorageKey = 'ENGRID_END_OF_GIFT_PROCESS_EVENTS';
         this.excludedFields = [
             // Credit Card
             "transaction.ccnumber",
@@ -39,6 +40,13 @@ export class DataLayer {
         this.onLoad();
         this._form.onSubmit.subscribe(() => this.onSubmit());
     }
+    static getInstance() {
+        if (!DataLayer.instance) {
+            DataLayer.instance = new DataLayer();
+            window._dataLayer = DataLayer.instance;
+        }
+        return DataLayer.instance;
+    }
     transformJSON(value) {
         if (typeof value === "string") {
             return value.toUpperCase().split(" ").join("-").replace(":-", "-");
@@ -55,6 +63,7 @@ export class DataLayer {
             this.dataLayer.push({
                 event: "EN_SUCCESSFUL_DONATION",
             });
+            this.addEndOfGiftProcessEventsToDataLayer();
         }
         else {
             this.logger.log("EN_PAGE_VIEW");
@@ -65,7 +74,7 @@ export class DataLayer {
         if (window.pageJson) {
             const pageJson = window.pageJson;
             for (const property in pageJson) {
-                if (Number.isInteger(pageJson[property])) {
+                if (!Number.isNaN(pageJson[property])) {
                     this.dataLayer.push({
                         event: `EN_PAGEJSON_${property.toUpperCase()}-${pageJson[property]}`,
                     });
@@ -81,6 +90,10 @@ export class DataLayer {
                         [`'EN_PAGEJSON_${property.toUpperCase()}'`]: this.transformJSON(pageJson[property]),
                     });
                 }
+                this.dataLayer.push({
+                    event: 'EN_PAGEJSON_' + property.toUpperCase(),
+                    eventValue: pageJson[property],
+                });
             }
             if (ENGrid.getPageCount() === ENGrid.getPageNumber()) {
                 this.dataLayer.push({
@@ -189,5 +202,28 @@ export class DataLayer {
     getFieldLabel(el) {
         var _a, _b;
         return ((_b = (_a = el.closest(".en__field")) === null || _a === void 0 ? void 0 : _a.querySelector("label")) === null || _b === void 0 ? void 0 : _b.textContent) || "";
+    }
+    addEndOfGiftProcessEvent(eventName, eventProperties = {}) {
+        this.storeEndOfGiftProcessData(Object.assign({ event: eventName }, eventProperties));
+    }
+    addEndOfGiftProcessVariable(variableName, variableValue = '') {
+        this.storeEndOfGiftProcessData({
+            [`${variableName.toUpperCase()}`]: variableValue
+        });
+    }
+    storeEndOfGiftProcessData(data) {
+        const events = this.getEndOfGiftProcessData();
+        events.push(data);
+        window.sessionStorage.setItem(this.endOfGiftProcessStorageKey, JSON.stringify(events));
+    }
+    addEndOfGiftProcessEventsToDataLayer() {
+        this.getEndOfGiftProcessData().forEach((event) => {
+            this.dataLayer.push(event);
+        });
+        window.sessionStorage.removeItem(this.endOfGiftProcessStorageKey);
+    }
+    getEndOfGiftProcessData() {
+        let eventsData = window.sessionStorage.getItem(this.endOfGiftProcessStorageKey);
+        return !eventsData ? [] : JSON.parse(eventsData);
     }
 }
