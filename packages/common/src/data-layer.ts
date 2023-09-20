@@ -12,7 +12,7 @@ export class DataLayer {
   private dataLayer = (window as any).dataLayer || [];
   private _form: EnForm = EnForm.getInstance();
   private static instance: DataLayer;
-  private endOfGiftProcessStorageKey = 'ENGRID_END_OF_GIFT_PROCESS_EVENTS'
+  private endOfGiftProcessStorageKey = "ENGRID_END_OF_GIFT_PROCESS_EVENTS";
 
   private excludedFields = [
     // Credit Card
@@ -118,7 +118,7 @@ export class DataLayer {
         }
 
         this.dataLayer.push({
-          event: 'EN_PAGEJSON_' + property.toUpperCase(),
+          event: "EN_PAGEJSON_" + property.toUpperCase(),
           eventValue: pageJson[property],
         });
       }
@@ -263,34 +263,45 @@ export class DataLayer {
     return el.closest(".en__field")?.querySelector("label")?.textContent || "";
   }
 
-  public addEndOfGiftProcessEvent(eventName: string, eventProperties: object  = {}) {
+  public addEndOfGiftProcessEvent(
+    eventName: string,
+    eventProperties: object = {}
+  ) {
     this.storeEndOfGiftProcessData({
       event: eventName,
-      ...eventProperties
-    })
+      ...eventProperties,
+    });
   }
 
-  public addEndOfGiftProcessVariable(variableName: string, variableValue: any = '') {
+  public addEndOfGiftProcessVariable(
+    variableName: string,
+    variableValue: any = ""
+  ) {
     this.storeEndOfGiftProcessData({
-      [`${variableName.toUpperCase()}`]: variableValue
-    })
+      [`'${variableName.toUpperCase()}'`]: variableValue,
+    });
   }
 
   private storeEndOfGiftProcessData(data: object) {
     const events = this.getEndOfGiftProcessData();
-    events.push(data)
-    window.sessionStorage.setItem(this.endOfGiftProcessStorageKey, JSON.stringify(events))
+    events.push(data);
+    window.sessionStorage.setItem(
+      this.endOfGiftProcessStorageKey,
+      JSON.stringify(events)
+    );
   }
 
   private addEndOfGiftProcessEventsToDataLayer() {
     this.getEndOfGiftProcessData().forEach((event: object) => {
-      this.dataLayer.push(event)
+      this.dataLayer.push(event);
     });
     window.sessionStorage.removeItem(this.endOfGiftProcessStorageKey);
   }
 
   private getEndOfGiftProcessData(): Array<any> {
-    let eventsData = window.sessionStorage.getItem(this.endOfGiftProcessStorageKey);
+    let eventsData = window.sessionStorage.getItem(
+      this.endOfGiftProcessStorageKey
+    );
     return !eventsData ? [] : JSON.parse(eventsData);
   }
 }

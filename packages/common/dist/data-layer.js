@@ -5,7 +5,7 @@ export class DataLayer {
         this.logger = new EngridLogger("DataLayer", "#f1e5bc", "#009cdc", "📊");
         this.dataLayer = window.dataLayer || [];
         this._form = EnForm.getInstance();
-        this.endOfGiftProcessStorageKey = 'ENGRID_END_OF_GIFT_PROCESS_EVENTS';
+        this.endOfGiftProcessStorageKey = "ENGRID_END_OF_GIFT_PROCESS_EVENTS";
         this.excludedFields = [
             // Credit Card
             "transaction.ccnumber",
@@ -91,7 +91,7 @@ export class DataLayer {
                     });
                 }
                 this.dataLayer.push({
-                    event: 'EN_PAGEJSON_' + property.toUpperCase(),
+                    event: "EN_PAGEJSON_" + property.toUpperCase(),
                     eventValue: pageJson[property],
                 });
             }
@@ -206,9 +206,9 @@ export class DataLayer {
     addEndOfGiftProcessEvent(eventName, eventProperties = {}) {
         this.storeEndOfGiftProcessData(Object.assign({ event: eventName }, eventProperties));
     }
-    addEndOfGiftProcessVariable(variableName, variableValue = '') {
+    addEndOfGiftProcessVariable(variableName, variableValue = "") {
         this.storeEndOfGiftProcessData({
-            [`${variableName.toUpperCase()}`]: variableValue
+            [`'${variableName.toUpperCase()}'`]: variableValue,
         });
     }
     storeEndOfGiftProcessData(data) {
