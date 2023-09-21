@@ -71,6 +71,7 @@ import {
   SupporterHub,
   FastFormFill,
   SetAttr,
+  ShowIfPresent,
 } from "./";
 
 export class App extends ENGrid {
@@ -375,6 +376,8 @@ export class App extends ENGrid {
     new FastFormFill();
 
     new SetAttr();
+
+    new ShowIfPresent();
 
     //Debug panel
     if (

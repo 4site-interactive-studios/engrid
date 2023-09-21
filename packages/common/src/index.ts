@@ -78,6 +78,7 @@ export * from "./exit-intent-lightbox";
 export * from "./supporter-hub";
 export * from "./fast-form-fill";
 export * from "./set-attr";
+export * from "./show-if-present";
 
 // Events
 export * from "./events";
