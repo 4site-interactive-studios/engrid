@@ -1,3 +1,21 @@
+/**
+ * This class contains the logic for special classes that can be used to hide elements if
+ * certain supporter questions are present or absent.
+ * Typically, this can be used to hide elements when an opt in question is not rendered on the page
+ * because the supporter came from a campaign link and is already opted in, so EN doesn't render
+ * the question on the page.
+ *
+ * The class names are of the format:
+ * engrid__supporterquestions{id}-present -- show this element when the supporter question is present
+ * engrid__supporterquestions{id}-absent -- show this element when the supporter question is absent
+ *
+ * The {id} is the id of the supporter question. This can be found by inspecting the element on the page.
+ *
+ * It's also possible to combine multiple questions using the following format. These examples show 2 questions,
+ * but you can use as many as you like:
+ * engrid__supporterquestions{id1}__supporterquestions{id2}-present -- show this element when EITHER question is present
+ * engrid__supporterquestions{id1}__supporterquestions{id2}-absent -- show this element when EITHER question is absent
+ */
 import { EngridLogger } from "./logger";
 export class ShowIfPresent {
     constructor() {
@@ -9,7 +27,7 @@ export class ShowIfPresent {
     }
     shouldRun() {
         // Check if we have any elements on the page that match the pattern for this functionality
-        // e.g. engrid__supporterquestions{id}__{id}-present, etc.
+        // e.g. engrid__supporterquestions{id}__supporterquestions{id}-present, etc.
         this.elements = [
             ...document.querySelectorAll('[class*="engrid__supporterquestions"]'),
         ].filter((el) => {
@@ -29,6 +47,9 @@ export class ShowIfPresent {
                 return null;
             const typeIndex = matchingClass.lastIndexOf("-");
             const type = matchingClass.substring(typeIndex + 1);
+            // Getting an array of the matching input names
+            // e.g. engrid__supporterquestions12345-present => ['supporter.questions.12345']
+            // e.g. engrid__supporterquestions12345__supporterquestions67890-present => ['supporter.questions.12345', 'supporter.questions.67890']
             const inputIds = matchingClass
                 .substring(8, typeIndex)
                 .split("__")
