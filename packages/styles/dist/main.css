@@ -4396,6 +4396,7 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) .i11-hide-label .en__field:n
 
 [data-engrid-theme] {
   /* prettier-ignore */
+  /* Mattch the Plaid iFrame so we can apply a background color as soon as it appears on screen, normally there is a slight delay. We use the same background color that Plaid natively uses. */
 }
 [data-engrid-theme] #en__digitalWallet,
 [data-engrid-theme] .en__digitalWallet__container {
@@ -4445,6 +4446,10 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) .i11-hide-label .en__field:n
 }
 [data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug])[data-conditonally-hide-show-digital-wallet-elements][data-engrid-transaction-recurring=n][data-engrid-payment-type-option-paypal-one-touch=true] .en__field--giveBySelect.paypal {
   display: none;
+}
+[data-engrid-theme] iframe.plaid-link-iframe,
+[data-engrid-theme] iframe[id^=plaid-link-iframe] {
+  background-color: rgba(144, 144, 144, 0.98);
 }
 
 [data-engrid-theme] {
