@@ -28,7 +28,7 @@ export class InputPlaceholders {
     "input#en__field_supporter_address2": "Apt., ste., bldg.",
     "input#en__field_supporter_city": "City",
     "input#en__field_supporter_region": "Region",
-    "input#en__field_supporter_postcode": "Zip Code",
+    "input#en__field_supporter_postcode": "ZIP Code",
     ".en__field--donationAmt.en__field--withOther .en__field__input--other":
       "Other",
     "input#en__field_transaction_ccnumber": "•••• •••• •••• ••••",
