@@ -15,7 +15,9 @@ export class CreditCard {
                 return;
             const current_date = new Date();
             const current_month = current_date.getMonth() + 1;
-            const current_year = current_date.getFullYear() - 2000;
+            const current_year = parseInt(this.field_expiration_year[this.field_expiration_year.length - 1].value) > 2000
+                ? current_date.getFullYear()
+                : current_date.getFullYear() - 2000;
             // handle if year is changed to current year (disable all months less than current month)
             // handle if month is changed to less than current month (disable current year)
             if (e == "month") {
