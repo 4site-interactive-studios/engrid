@@ -111,6 +111,12 @@ export class DonationAmount {
         'input[name="' + this._other + '"]'
       ) as HTMLInputElement;
       if (otherField) {
+        const enFieldOtherAmountRadio = document.querySelector(
+          'input[name="' + this._radios + '"][value="other" i]'
+        ) as HTMLInputElement;
+        if (enFieldOtherAmountRadio) {
+          enFieldOtherAmountRadio.checked = true;
+        }
         otherField.value = parseFloat(amount.toString()).toFixed(2);
         const otherWrapper = otherField.parentNode as HTMLElement;
         otherWrapper.classList.remove("en__field__item--hidden");
