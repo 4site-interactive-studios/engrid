@@ -86,8 +86,11 @@ export class DonationAmount {
         }
         else {
             const otherField = document.querySelector('input[name="' + this._other + '"]');
-            otherField.focus();
-            otherField.value = parseFloat(amount.toString()).toFixed(2);
+            if (otherField) {
+                otherField.value = parseFloat(amount.toString()).toFixed(2);
+                const otherWrapper = otherField.parentNode;
+                otherWrapper.classList.remove("en__field__item--hidden");
+            }
         }
         // Set the new amount and trigger all live variables
         this.amount = amount;
