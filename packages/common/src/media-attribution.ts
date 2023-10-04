@@ -1,7 +1,7 @@
 /*
   Looks for specially crafted <img> links and will transform its markup to display an attribution overlay on top of the image
   Depends on "_engrid-media-attribution.scss" for styling
-  
+
   Example Image Input
   <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAABCAQAAABeK7cBAAAADUlEQVR42mO8/5+BAQAGgwHgbKwW2QAAAABJRU5ErkJggg==" data-src="https://via.placeholder.com/300x300" data-attribution-source="© Jane Doe 1">
   <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAABCAQAAABeK7cBAAAADUlEQVR42mO8/5+BAQAGgwHgbKwW2QAAAABJRU5ErkJggg==" data-src="https://via.placeholder.com/300x300" data-attribution-source="© John Doe 2" data-attribution-source-link="https://www.google.com/">
@@ -68,7 +68,7 @@ export class MediaAttribution {
               ? mediaWithAttributionElement.dataset.attributionSourceTooltip
               : false;
           if (attributionSourceTooltip) {
-            tippy(".media-with-attribution figattribution", {
+            tippy(mediaWithAttributionElement.nextSibling, {
               content: attributionSourceTooltip,
               arrow: true,
               arrowType: "default",
