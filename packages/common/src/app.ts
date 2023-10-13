@@ -72,6 +72,7 @@ import {
   FastFormFill,
   SetAttr,
   ShowIfPresent,
+  ENValidators,
 } from "./";
 
 export class App extends ENGrid {
@@ -324,6 +325,9 @@ export class App extends ENGrid {
 
     // Required if Visible Fields
     new RequiredIfVisible();
+
+    // EN Custom Validators (behind a feature flag, off by default)
+    new ENValidators();
 
     //Debug hidden fields
     if (this.options.Debug) new DebugHiddenFields();

@@ -83,6 +83,7 @@ export interface Options {
     Placeholders?: false | {
         [key: string]: string;
     };
+    ENValidators?: boolean;
     onLoad?: () => void;
     onResize?: () => void;
     onSubmit?: () => void;

@@ -31,6 +31,7 @@ export const OptionsDefaults = {
     CountryDisable: [],
     Plaid: false,
     Placeholders: false,
+    ENValidators: false,
     MobileCTA: false,
     PageLayouts: [
         "leftleft1col",

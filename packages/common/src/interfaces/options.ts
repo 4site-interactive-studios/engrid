@@ -89,6 +89,7 @@ export interface Options {
   CountryDisable?: string[];
   Plaid?: boolean;
   Placeholders?: false | { [key: string]: string };
+  ENValidators?: boolean;
   onLoad?: () => void;
   onResize?: () => void;
   onSubmit?: () => void;
@@ -129,6 +130,7 @@ export const OptionsDefaults: Options = {
   CountryDisable: [],
   Plaid: false,
   Placeholders: false,
+  ENValidators: false,
   MobileCTA: false,
   PageLayouts: [
     "leftleft1col",

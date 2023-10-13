@@ -79,6 +79,7 @@ export * from "./supporter-hub";
 export * from "./fast-form-fill";
 export * from "./set-attr";
 export * from "./show-if-present";
+export * from "./en-validators";
 
 // Events
 export * from "./events";
