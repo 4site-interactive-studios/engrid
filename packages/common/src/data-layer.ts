@@ -1,6 +1,12 @@
 // This class automatically select other radio input when an amount is entered into it.
 
-import { EngridLogger, ENGrid, EnForm } from ".";
+import {
+  EngridLogger,
+  ENGrid,
+  EnForm,
+  FastFormFill,
+  RememberMeEvents,
+} from ".";
 
 export class DataLayer {
   private logger: EngridLogger = new EngridLogger(
@@ -49,7 +55,14 @@ export class DataLayer {
   ];
 
   constructor() {
-    this.onLoad();
+    if (ENGrid.getOption("RememberMe")) {
+      RememberMeEvents.getInstance().onLoad.subscribe((hasData) => {
+        this.logger.log("Remember me - onLoad", hasData);
+        this.onLoad();
+      });
+    } else {
+      this.onLoad();
+    }
     this._form.onSubmit.subscribe(() => this.onSubmit());
   }
 
@@ -137,6 +150,66 @@ export class DataLayer {
       this.dataLayer.push({
         event: "EN_RECURRING_FREQUENCIES",
         [`'EN_RECURRING_FREQEUENCIES'`]: recurrValues,
+      });
+    }
+
+    let fastFormFill = false;
+    // Fast Form Fill - Personal Details
+    const fastPersonalDetailsFormBlock = document.querySelector(
+      ".en__component--formblock.fast-personal-details"
+    ) as HTMLElement;
+    if (fastPersonalDetailsFormBlock) {
+      const allPersonalMandatoryInputsAreFilled =
+        FastFormFill.allMandatoryInputsAreFilled(fastPersonalDetailsFormBlock);
+      const somePersonalMandatoryInputsAreFilled =
+        FastFormFill.someMandatoryInputsAreFilled(fastPersonalDetailsFormBlock);
+      if (allPersonalMandatoryInputsAreFilled) {
+        this.dataLayer.push({
+          event: "EN_FASTFORMFILL_PERSONALINFO_SUCCESS",
+        });
+        fastFormFill = true;
+      } else if (somePersonalMandatoryInputsAreFilled) {
+        this.dataLayer.push({
+          event: "EN_FASTFORMFILL_PERSONALINFO_PARTIALSUCCESS",
+        });
+      } else {
+        this.dataLayer.push({
+          event: "EN_FASTFORMFILL_PERSONALINFO_FAILURE",
+        });
+      }
+    }
+
+    // Fast Form Fill - Address Details
+    const fastAddressDetailsFormBlock = document.querySelector(
+      ".en__component--formblock.fast-address-details"
+    ) as HTMLElement;
+    if (fastAddressDetailsFormBlock) {
+      const allAddressMandatoryInputsAreFilled =
+        FastFormFill.allMandatoryInputsAreFilled(fastAddressDetailsFormBlock);
+      const someAddressMandatoryInputsAreFilled =
+        FastFormFill.someMandatoryInputsAreFilled(fastAddressDetailsFormBlock);
+      if (allAddressMandatoryInputsAreFilled) {
+        this.dataLayer.push({
+          event: "EN_FASTFORMFILL_ADDRESS_SUCCESS",
+        });
+        fastFormFill = fastFormFill ? true : false; // Only set to true if it was true before
+      } else if (someAddressMandatoryInputsAreFilled) {
+        this.dataLayer.push({
+          event: "EN_FASTFORMFILL_ADDRESS_PARTIALSUCCESS",
+        });
+      } else {
+        this.dataLayer.push({
+          event: "EN_FASTFORMFILL_ADDRESS_FAILURE",
+        });
+      }
+    }
+    if (fastFormFill) {
+      this.dataLayer.push({
+        event: "EN_FASTFORMFILL_ALL_SUCCESS",
+      });
+    } else {
+      this.dataLayer.push({
+        event: "EN_FASTFORMFILL_ALL_FAILURE",
       });
     }
 
