@@ -1,5 +1,5 @@
 import * as cookie from "./cookie";
-import { EnForm } from "./events";
+import { EnForm, RememberMeEvents } from "./events";
 const tippy = require("tippy.js").default;
 
 interface DataObj {
@@ -8,6 +8,7 @@ interface DataObj {
 
 export class RememberMe {
   public _form: EnForm = EnForm.getInstance();
+  public _events: RememberMeEvents = RememberMeEvents.getInstance();
 
   private remoteUrl: string | null;
   private cookieName: string;
@@ -195,9 +196,11 @@ export class RememberMe {
             clearAutofillLink.style.display = "none";
           }
           this.rememberMeOptIn = false;
+          this._events.dispatchClear();
         });
       }
     }
+    this._events.dispatchLoad(true);
   }
   private getElementByFirstSelector(selectorsString: string) {
     // iterate through the selectors until we find one that exists
@@ -280,6 +283,7 @@ export class RememberMe {
     } else if (this.rememberMeOptIn) {
       rememberMeOptInField.checked = true;
     }
+    this._events.dispatchLoad(false);
   }
   private useRemote() {
     return (
@@ -386,6 +390,16 @@ export class RememberMe {
     }
     this.writeFields(true);
   }
+  /**
+   * Writes the values from the fieldData object to the corresponding HTML input fields.
+   *
+   * This function iterates over the fieldNames array and for each field name, it selects the corresponding HTML input field.
+   * If the field is found and its tag name is "INPUT", it checks if the field name matches certain conditions (like being a donation recurring payment radio button or a donation amount radio button).
+   * Depending on these conditions, it either clicks the field or sets its value using the setFieldValue function.
+   * If the field tag name is "SELECT", it sets its value using the setFieldValue function.
+   *
+   * @param overwrite - A boolean indicating whether to overwrite the existing value of the fields. Defaults to false.
+   */
   private writeFields(overwrite: boolean = false) {
     for (let i = 0; i < this.fieldNames.length; i++) {
       let fieldSelector = "[name='" + this.fieldNames[i] + "']";
