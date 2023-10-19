@@ -267,6 +267,9 @@ export class App extends ENGrid {
     this._amount.load();
     this._frequency.load();
 
+    // Fast Form Fill
+    new FastFormFill();
+
     // Auto Country Select
     new AutoCountrySelect();
     // Add Image Attribution
@@ -376,8 +379,6 @@ export class App extends ENGrid {
     new ExitIntentLightbox();
 
     new UrlParamsToBodyAttrs();
-
-    new FastFormFill();
 
     new SetAttr();
 

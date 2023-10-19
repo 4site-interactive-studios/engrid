@@ -144,6 +144,8 @@ export class App extends ENGrid {
         // On the end of the script, after all subscribers defined, let's load the current value
         this._amount.load();
         this._frequency.load();
+        // Fast Form Fill
+        new FastFormFill();
         // Auto Country Select
         new AutoCountrySelect();
         // Add Image Attribution
@@ -233,7 +235,6 @@ export class App extends ENGrid {
         //Exit Intent Lightbox
         new ExitIntentLightbox();
         new UrlParamsToBodyAttrs();
-        new FastFormFill();
         new SetAttr();
         new ShowIfPresent();
         //Debug panel
