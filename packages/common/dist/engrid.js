@@ -132,7 +132,7 @@ export class ENGrid {
                             if ("actions" in dependency && dependency.actions.length > 0) {
                                 let amountIdFound = false;
                                 dependency.actions.forEach((action) => {
-                                    if ("target" in action && action.target === amountID) {
+                                    if ("target" in action && action.target == amountID) {
                                         amountIdFound = true;
                                     }
                                 });
