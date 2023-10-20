@@ -30,7 +30,6 @@ export class ENValidators {
     if (!this.shouldRun()) {
       // If there's no custom validators, get out
       this.logger.log("Not Needed");
-      console.log(this._enElements);
       return;
     }
     this._form.onValidate.subscribe(this.enOnValidate.bind(this));
