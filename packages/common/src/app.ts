@@ -391,10 +391,17 @@ export class App extends ENGrid {
     new ShowIfPresent();
 
     //Debug panel
-    if (
-      this.options.Debug ||
-      window.sessionStorage.hasOwnProperty(DebugPanel.debugSessionStorageKey)
-    ) {
+    let showDebugPanel = this.options.Debug;
+    try {
+      // accessing storage can throw an exception if it isn't available in Firefox
+      if (
+        !showDebugPanel &&
+        window.sessionStorage.hasOwnProperty(DebugPanel.debugSessionStorageKey)
+      ) {
+        showDebugPanel = true;
+      }
+    } catch(e) {}
+    if(showDebugPanel) {
       new DebugPanel(this.options.PageLayouts);
     }
 
