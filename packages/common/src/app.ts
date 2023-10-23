@@ -294,8 +294,14 @@ export class App extends ENGrid {
     if (this.options.ProgressBar) new ProgressBar();
 
     // RememberMe
-    if (this.options.RememberMe && typeof this.options.RememberMe === "object")
-      new RememberMe(this.options.RememberMe);
+    try {
+      // Accessing window.localStorage will throw an exception if it isn't permitted due to security reasons
+      // For example, this happens in Firefox when cookies are disabled.  If it isn't available, we shouldn't
+      //  bother with enabling RememberMe
+      if (this.options.RememberMe && typeof this.options.RememberMe === "object" && window.localStorage) {
+        new RememberMe(this.options.RememberMe);
+      }
+    } catch(e) {}
 
     if (this.options.NeverBounceAPI)
       new NeverBounce(
@@ -385,10 +391,17 @@ export class App extends ENGrid {
     new ShowIfPresent();
 
     //Debug panel
-    if (
-      this.options.Debug ||
-      window.sessionStorage.hasOwnProperty(DebugPanel.debugSessionStorageKey)
-    ) {
+    let showDebugPanel = this.options.Debug;
+    try {
+      // accessing storage can throw an exception if it isn't available in Firefox
+      if (
+        !showDebugPanel &&
+        window.sessionStorage.hasOwnProperty(DebugPanel.debugSessionStorageKey)
+      ) {
+        showDebugPanel = true;
+      }
+    } catch(e) {}
+    if(showDebugPanel) {
       new DebugPanel(this.options.PageLayouts);
     }
 
