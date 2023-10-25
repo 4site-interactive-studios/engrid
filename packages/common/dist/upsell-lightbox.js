@@ -10,6 +10,9 @@ export class UpsellLightbox {
         this.logger = new EngridLogger("UpsellLightbox", "black", "pink", "🪟");
         let options = "EngridUpsell" in window ? window.EngridUpsell : {};
         this.options = Object.assign(Object.assign({}, UpsellOptionsDefaults), options);
+        //Disable for "applepay" via Vantiv payment method. Adding it to the array like this so it persists
+        //even if the client provides custom options.
+        this.options.disablePaymentMethods.push('applepay');
         if (!this.shouldRun()) {
             this.logger.log("Upsell script should NOT run");
             // If we're not on a Donation Page, get out
