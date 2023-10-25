@@ -113,6 +113,7 @@ export class ApplePay {
   }
 
   private onPayClicked() {
+    if (!this._form.submit) return;
     const enFieldPaymentType = document.querySelector(
       "#en__field_transaction_paymenttype"
     ) as HTMLSelectElement;

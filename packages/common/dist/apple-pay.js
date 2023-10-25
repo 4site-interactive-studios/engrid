@@ -108,6 +108,8 @@ export class ApplePay {
         });
     }
     onPayClicked() {
+        if (!this._form.submit)
+            return;
         const enFieldPaymentType = document.querySelector("#en__field_transaction_paymenttype");
         const applePayToken = document.getElementById("applePayToken");
         const formClass = this._form;
