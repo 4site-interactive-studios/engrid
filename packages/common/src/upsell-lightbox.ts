@@ -26,6 +26,9 @@ export class UpsellLightbox {
   constructor() {
     let options = "EngridUpsell" in window ? window.EngridUpsell : {};
     this.options = { ...UpsellOptionsDefaults, ...options };
+    //Disable for "applepay" via Vantiv payment method. Adding it to the array like this so it persists
+    //even if the client provides custom options.
+    this.options.disablePaymentMethods.push('applepay');
     if (!this.shouldRun()) {
       this.logger.log("Upsell script should NOT run");
       // If we're not on a Donation Page, get out
