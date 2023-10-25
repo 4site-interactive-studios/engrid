@@ -224,6 +224,8 @@ export class NeverBounce {
     }
     validate() {
         var _a;
+        if (!this.form.validate)
+            return;
         const nbResult = ENGrid.getFieldValue("nb-result");
         if (!this.emailField || !this.shouldRun || !this.nbLoaded || !nbResult) {
             this.logger.log("validate(): Should Not Run. Returning true.");
