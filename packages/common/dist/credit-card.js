@@ -101,6 +101,12 @@ export class CreditCard {
         ["keyup", "paste"].forEach((event) => {
             this.ccField.addEventListener(event, () => this.handleCCUpdate());
         });
+        // Avoid spaces in the credit card field
+        this.ccField.addEventListener("keydown", (e) => {
+            if (e.key === " ") {
+                e.preventDefault();
+            }
+        });
         // Add event listeners to the expiration fields
         if (this.field_expiration_month && this.field_expiration_year) {
             ["change"].forEach((event) => {
@@ -153,7 +159,7 @@ export class CreditCard {
         const card_type_name = (_b = card_validation.card) === null || _b === void 0 ? void 0 : _b.niceType;
         this.isPotentiallyValid = card_validation.isPotentiallyValid || false;
         this.isValid = card_validation.isValid || false;
-        console.log(EngridCard.number(this.ccField.value));
+        // console.log(EngridCard.number(this.ccField.value));
         this.removeLiveCardTypeClasses();
         if (!this.isPotentiallyValid) {
             ENGrid.setError(cardContainer, "Invalid Credit Card Number");
@@ -225,8 +231,16 @@ export class CreditCard {
             ? Array.from(this.paymentTypeField.options).filter((d) => this.ccValues[card_type].includes(d.value.toLowerCase()))[0].value || false
             : false;
     }
+    isPaymentTypeCard() {
+        // Return true if the current payment type (selected option of this.paymentTypeField) matches any of the ccValues values
+        // Also return true if the payment type is empty, which means the user has not selected a payment type, or has entered an invalid card number
+        // otherwise return false
+        const payment_type = this.paymentTypeField.value.toLowerCase();
+        return (payment_type === "" ||
+            Object.keys(this.ccValues).some((card_type) => this.ccValues[card_type].includes(payment_type)));
+    }
     validate() {
-        if (!this.isValid) {
+        if (this.isPaymentTypeCard() && !this.isValid) {
             const cardContainer = this.ccField.closest(".en__field--ccnumber") ||
                 document.querySelector(".en__field--ccnumber");
             if (cardContainer) {

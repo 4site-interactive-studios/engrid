@@ -19,5 +19,6 @@ export declare class CreditCard {
     private clearPaymentTypeField;
     private isCardSupported;
     private getCardTypeFromPaymentTypeField;
+    private isPaymentTypeCard;
     private validate;
 }

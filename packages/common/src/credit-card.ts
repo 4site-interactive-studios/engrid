@@ -75,6 +75,12 @@ export class CreditCard {
     ["keyup", "paste"].forEach((event) => {
       this.ccField.addEventListener(event, () => this.handleCCUpdate());
     });
+    // Avoid spaces in the credit card field
+    this.ccField.addEventListener("keydown", (e) => {
+      if (e.key === " ") {
+        e.preventDefault();
+      }
+    });
     // Add event listeners to the expiration fields
     if (this.field_expiration_month && this.field_expiration_year) {
       ["change"].forEach((event) => {
@@ -278,9 +284,23 @@ export class CreditCard {
         )[0].value || false
       : false;
   }
+  private isPaymentTypeCard(): boolean {
+    // Return true if the current payment type (selected option of this.paymentTypeField) matches any of the ccValues values
+    // Also return true if the payment type is empty, which means the user has not selected a payment type, or has entered an invalid card number
+    // otherwise return false
+    const payment_type = this.paymentTypeField.value.toLowerCase();
+    return (
+      payment_type === "" ||
+      Object.keys(this.ccValues).some((card_type) =>
+        this.ccValues[card_type as keyof typeof this.ccValues].includes(
+          payment_type
+        )
+      )
+    );
+  }
 
   private validate() {
-    if (!this.isValid) {
+    if (this.isPaymentTypeCard() && !this.isValid) {
       const cardContainer =
         (this.ccField.closest(".en__field--ccnumber") as HTMLElement) ||
         (document.querySelector(".en__field--ccnumber") as HTMLElement);
