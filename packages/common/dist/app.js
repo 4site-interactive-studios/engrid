@@ -8,12 +8,12 @@ export class App extends ENGrid {
         this._fees = ProcessingFees.getInstance();
         this._amount = DonationAmount.getInstance("transaction.donationAmt", "transaction.donationAmt.other");
         this._frequency = DonationFrequency.getInstance();
-        this._dataLayer = DataLayer.getInstance();
         this.logger = new EngridLogger("App", "black", "white", "🍏");
         const loader = new Loader();
         this.options = Object.assign(Object.assign({}, OptionsDefaults), options);
         // Add Options to window
         window.EngridOptions = this.options;
+        this._dataLayer = DataLayer.getInstance();
         if (loader.reload())
             return;
         // Turn Debug ON if you use local assets
@@ -182,7 +182,9 @@ export class App extends ENGrid {
             // Accessing window.localStorage will throw an exception if it isn't permitted due to security reasons
             // For example, this happens in Firefox when cookies are disabled.  If it isn't available, we shouldn't
             //  bother with enabling RememberMe
-            if (this.options.RememberMe && typeof this.options.RememberMe === "object" && window.localStorage) {
+            if (this.options.RememberMe &&
+                typeof this.options.RememberMe === "object" &&
+                window.localStorage) {
                 new RememberMe(this.options.RememberMe);
             }
         }
