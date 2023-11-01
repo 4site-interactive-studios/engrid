@@ -5,6 +5,7 @@ import {
   ProcessingFees,
   UpsellOptions,
   UpsellOptionsDefaults,
+  DataLayer
 } from "./";
 import { DonationAmount, DonationFrequency, EnForm } from "./events";
 
@@ -15,6 +16,7 @@ export class UpsellLightbox {
   public _amount: DonationAmount = DonationAmount.getInstance();
   public _fees: ProcessingFees = ProcessingFees.getInstance();
   private _frequency: DonationFrequency = DonationFrequency.getInstance();
+  private _dataLayer: DataLayer = DataLayer.getInstance();
 
   private logger: EngridLogger = new EngridLogger(
     "UpsellLightbox",
@@ -355,11 +357,23 @@ export class UpsellLightbox {
       this.logger.success("Upsold");
       this.setOriginalAmount(this._amount.amount.toString());
       const upsoldAmount = this.getUpsellAmount();
+      const originalAmount = this._amount.amount;
       this._frequency.setFrequency("monthly");
       this._amount.setAmount(upsoldAmount);
+      this._dataLayer.addEndOfGiftProcessEvent("ENGRID_UPSELL", {
+        eventValue: true,
+        originalAmount: originalAmount,
+        upsoldAmount: upsoldAmount,
+        frequency: "monthly",
+      });
+      this._dataLayer.addEndOfGiftProcessVariable("ENGRID_UPSELL", true);
+      this._dataLayer.addEndOfGiftProcessVariable("ENGRID_UPSELL_ORIGINAL_AMOUNT", originalAmount);
+      this._dataLayer.addEndOfGiftProcessVariable("ENGRID_UPSELL_DONATION_FREQUENCY", "MONTHLY");
     } else {
       this.setOriginalAmount("");
       window.sessionStorage.removeItem("original");
+      this._dataLayer.addEndOfGiftProcessVariable("ENGRID_UPSELL", false);
+      this._dataLayer.addEndOfGiftProcessVariable("ENGRID_UPSELL_DONATION_FREQUENCY", "ONE-TIME");
     }
     this._form.submitForm();
   }

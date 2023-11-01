@@ -8,6 +8,7 @@ export class App extends ENGrid {
         this._fees = ProcessingFees.getInstance();
         this._amount = DonationAmount.getInstance("transaction.donationAmt", "transaction.donationAmt.other");
         this._frequency = DonationFrequency.getInstance();
+        this._dataLayer = DataLayer.getInstance();
         this.logger = new EngridLogger("App", "black", "white", "🍏");
         const loader = new Loader();
         this.options = Object.assign(Object.assign({}, OptionsDefaults), options);
@@ -225,8 +226,6 @@ export class App extends ENGrid {
         if (ENGrid.getPageType() === "DONATION") {
             new DigitalWallets();
         }
-        // Data Layer Events
-        new DataLayer();
         // Mobile CTA
         new MobileCTA();
         // Live Frequency
