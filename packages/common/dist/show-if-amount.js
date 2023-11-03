@@ -1,4 +1,4 @@
-import { EngridLogger } from ".";
+import { ENGrid, EngridLogger } from ".";
 import { DonationAmount } from "./events";
 export class ShowIfAmount {
     constructor() {
@@ -13,7 +13,10 @@ export class ShowIfAmount {
         this.logger.log("Show If Amount: NO ELEMENTS FOUND");
     }
     init() {
-        const amount = this._amount.amount;
+        //If we are on a thank you page, use the window.pageJson.amount
+        const amount = ENGrid.getGiftProcess()
+            ? window.pageJson.amount
+            : this._amount.amount;
         this._elements.forEach((element) => {
             this.lessthan(amount, element);
             this.lessthanorequalto(amount, element);

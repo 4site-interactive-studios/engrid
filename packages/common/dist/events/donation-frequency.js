@@ -23,6 +23,12 @@ export class DonationFrequency {
                 this.frequency = element.value;
             }
         });
+        //Thank you page handling for utility classes
+        if (ENGrid.getGiftProcess()) {
+            ENGrid.setBodyData("transaction-recurring-frequency", sessionStorage.getItem("engrid-transaction-recurring-frequency") ||
+                "onetime");
+            ENGrid.setBodyData("transaction-recurring", window.pageJson.recurring ? "y" : "n");
+        }
     }
     static getInstance() {
         if (!DonationFrequency.instance) {
@@ -39,6 +45,7 @@ export class DonationFrequency {
         if (this._dispatch)
             this._onFrequencyChange.dispatch(this._frequency);
         ENGrid.setBodyData("transaction-recurring-frequency", this._frequency);
+        sessionStorage.setItem("engrid-transaction-recurring-frequency", this._frequency);
     }
     get recurring() {
         return this._recurring;

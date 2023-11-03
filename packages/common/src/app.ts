@@ -84,6 +84,7 @@ export class App extends ENGrid {
     "transaction.donationAmt.other"
   );
   private _frequency: DonationFrequency = DonationFrequency.getInstance();
+  private _dataLayer: DataLayer;
 
   private options: Options;
 
@@ -95,6 +96,7 @@ export class App extends ENGrid {
     this.options = { ...OptionsDefaults, ...options };
     // Add Options to window
     window.EngridOptions = this.options;
+    this._dataLayer = DataLayer.getInstance();
     if (loader.reload()) return;
     // Turn Debug ON if you use local assets
     if (
@@ -298,10 +300,14 @@ export class App extends ENGrid {
       // Accessing window.localStorage will throw an exception if it isn't permitted due to security reasons
       // For example, this happens in Firefox when cookies are disabled.  If it isn't available, we shouldn't
       //  bother with enabling RememberMe
-      if (this.options.RememberMe && typeof this.options.RememberMe === "object" && window.localStorage) {
+      if (
+        this.options.RememberMe &&
+        typeof this.options.RememberMe === "object" &&
+        window.localStorage
+      ) {
         new RememberMe(this.options.RememberMe);
       }
-    } catch(e) {}
+    } catch (e) {}
 
     if (this.options.NeverBounceAPI)
       new NeverBounce(
@@ -361,9 +367,6 @@ export class App extends ENGrid {
       new DigitalWallets();
     }
 
-    // Data Layer Events
-    new DataLayer();
-
     // Mobile CTA
     new MobileCTA();
 
@@ -400,8 +403,8 @@ export class App extends ENGrid {
       ) {
         showDebugPanel = true;
       }
-    } catch(e) {}
-    if(showDebugPanel) {
+    } catch (e) {}
+    if (showDebugPanel) {
       new DebugPanel(this.options.PageLayouts);
     }
 
