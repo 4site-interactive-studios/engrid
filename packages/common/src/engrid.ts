@@ -485,6 +485,11 @@ export abstract class ENGrid {
       "transaction.paycurrency"
     ) as HTMLSelectElement;
     if (currencyField) {
+      // Check if the selected currency field option have a data-currency-symbol attribute
+      const selectedOption = currencyField.options[currencyField.selectedIndex];
+      if (selectedOption.dataset.currencySymbol) {
+        return selectedOption.dataset.currencySymbol;
+      }
       const currencyArray = {
         USD: "$",
         EUR: "€",

@@ -33,6 +33,7 @@ export const OptionsDefaults = {
     Placeholders: false,
     ENValidators: false,
     MobileCTA: false,
+    CustomCurrency: false,
     PageLayouts: [
         "leftleft1col",
         "centerleft1col",
