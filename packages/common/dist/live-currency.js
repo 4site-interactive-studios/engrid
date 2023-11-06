@@ -4,6 +4,7 @@ export class LiveCurrency {
     constructor() {
         this.logger = new EngridLogger("LiveCurrency", "#1901b1", "#feb47a", "💲");
         this.elementsFound = false;
+        this.isUpdating = false;
         this._amount = DonationAmount.getInstance();
         this._frequency = DonationFrequency.getInstance();
         this._fees = ProcessingFees.getInstance();
@@ -27,6 +28,11 @@ export class LiveCurrency {
             const currencyElement = `<span class="engrid-currency-symbol">${currency}</span>`;
             const currencyCodeElement = `<span class="engrid-currency-code">${currencyCode}</span>`;
             enElements.forEach((item) => {
+                // If item starts with <script, skip it
+                if (item instanceof HTMLElement &&
+                    item.innerHTML.startsWith("<script")) {
+                    return;
+                }
                 if (item instanceof HTMLElement &&
                     (item.innerHTML.includes("[$]") || item.innerHTML.includes("[$$$]"))) {
                     this.logger.log("Old Value:", item.innerHTML);
@@ -42,6 +48,28 @@ export class LiveCurrency {
     shouldRun() {
         return this.elementsFound;
     }
+    addMutationObserver() {
+        const targetNode = document.querySelector(".en__field--donationAmt .en__field__element--radio");
+        if (!targetNode)
+            return;
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.type === "childList") {
+                    // Update the currency only once, after the mutation is complete
+                    if (this.isUpdating)
+                        return;
+                    this.isUpdating = true;
+                    setTimeout(() => {
+                        this.searchElements();
+                        this.updateCurrency();
+                        this.isUpdating = false;
+                    }, 20);
+                }
+            });
+        });
+        const config = { childList: true };
+        observer.observe(targetNode, config);
+    }
     addEventListeners() {
         this._fees.onFeeChange.subscribe(() => {
             setTimeout(() => {
@@ -54,9 +82,13 @@ export class LiveCurrency {
             }, 10);
         });
         this._frequency.onFrequencyChange.subscribe(() => {
+            if (this.isUpdating)
+                return;
+            this.isUpdating = true;
             setTimeout(() => {
                 this.searchElements();
                 this.updateCurrency();
+                this.isUpdating = false;
             }, 10);
         });
         const currencyField = ENGrid.getField("transaction.paycurrency");
@@ -73,6 +105,7 @@ export class LiveCurrency {
                 }, 10);
             });
         }
+        this.addMutationObserver();
     }
     updateCurrency() {
         const currencySymbolElements = document.querySelectorAll(".engrid-currency-symbol");
