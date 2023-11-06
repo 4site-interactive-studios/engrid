@@ -73,6 +73,7 @@ import {
   SetAttr,
   ShowIfPresent,
   ENValidators,
+  CustomCurrency,
 } from "./";
 
 export class App extends ENGrid {
@@ -232,9 +233,6 @@ export class App extends ENGrid {
       return true;
     };
 
-    // Live Currency
-    new LiveCurrency();
-
     // iFrame Logic
     new iFrame();
 
@@ -272,8 +270,13 @@ export class App extends ENGrid {
     // Fast Form Fill
     new FastFormFill();
 
+    // Currency Related Components
+    new LiveCurrency();
+    new CustomCurrency();
+
     // Auto Country Select
     new AutoCountrySelect();
+
     // Add Image Attribution
     if (this.options.MediaAttribution) new MediaAttribution();
     // Apple Pay

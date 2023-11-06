@@ -48,6 +48,7 @@ export * from "./url-to-form";
 export * from "./required-if-visible";
 export * from "./tidycontact";
 export * from "./live-currency";
+export * from "./custom-currency";
 export * from "./autosubmit";
 export * from "./event-tickets";
 export * from "./swap-amounts";

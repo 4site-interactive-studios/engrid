@@ -84,6 +84,17 @@ export interface Options {
         [key: string]: string;
     };
     ENValidators?: boolean;
+    CustomCurrency?: false | {
+        label?: string;
+        default: {
+            [key: string]: string;
+        };
+        countries?: {
+            [key: string]: {
+                [key: string]: string;
+            };
+        };
+    };
     onLoad?: () => void;
     onResize?: () => void;
     onSubmit?: () => void;

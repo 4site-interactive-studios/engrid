@@ -1,5 +1,5 @@
 import { DonationAmount, DonationFrequency, EnForm, ProcessingFees, } from "./events";
-import { AmountLabel, Loader, ProgressBar, UpsellLightbox, ENGrid, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, A11y, CapitalizeFields, CreditCard, Ecard, ClickToExpand, Advocacy, DataAttributes, LiveVariables, iFrame, InputPlaceholders, InputHasValueAndFocus, ShowHideRadioCheckboxes, AutoCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce, AutoYear, Autocomplete, RememberMe, TranslateFields, ShowIfAmount, EngridLogger, OtherAmount, MinMaxAmount, Ticker, DataReplace, DataHide, AddNameToMessage, ExpandRegionName, AppVersion, UrlToForm, RequiredIfVisible, TidyContact, DataLayer, LiveCurrency, Autosubmit, EventTickets, SwapAmounts, DebugPanel, DebugHiddenFields, FreshAddress, BrandingHtml, CountryDisable, PremiumGift, DigitalWallets, MobileCTA, LiveFrequency, UniversalOptIn, Plaid, GiveBySelect, UrlParamsToBodyAttrs, ExitIntentLightbox, SupporterHub, FastFormFill, SetAttr, ShowIfPresent, ENValidators, } from "./";
+import { AmountLabel, Loader, ProgressBar, UpsellLightbox, ENGrid, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, A11y, CapitalizeFields, CreditCard, Ecard, ClickToExpand, Advocacy, DataAttributes, LiveVariables, iFrame, InputPlaceholders, InputHasValueAndFocus, ShowHideRadioCheckboxes, AutoCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce, AutoYear, Autocomplete, RememberMe, TranslateFields, ShowIfAmount, EngridLogger, OtherAmount, MinMaxAmount, Ticker, DataReplace, DataHide, AddNameToMessage, ExpandRegionName, AppVersion, UrlToForm, RequiredIfVisible, TidyContact, DataLayer, LiveCurrency, Autosubmit, EventTickets, SwapAmounts, DebugPanel, DebugHiddenFields, FreshAddress, BrandingHtml, CountryDisable, PremiumGift, DigitalWallets, MobileCTA, LiveFrequency, UniversalOptIn, Plaid, GiveBySelect, UrlParamsToBodyAttrs, ExitIntentLightbox, SupporterHub, FastFormFill, SetAttr, ShowIfPresent, ENValidators, CustomCurrency, } from "./";
 export class App extends ENGrid {
     constructor(options) {
         super();
@@ -120,8 +120,6 @@ export class App extends ENGrid {
             this.logger.success("Validation Passed");
             return true;
         };
-        // Live Currency
-        new LiveCurrency();
         // iFrame Logic
         new iFrame();
         // Live Variables
@@ -147,6 +145,9 @@ export class App extends ENGrid {
         this._frequency.load();
         // Fast Form Fill
         new FastFormFill();
+        // Currency Related Components
+        new LiveCurrency();
+        new CustomCurrency();
         // Auto Country Select
         new AutoCountrySelect();
         // Add Image Attribution

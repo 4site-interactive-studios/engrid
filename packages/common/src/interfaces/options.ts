@@ -90,6 +90,18 @@ export interface Options {
   Plaid?: boolean;
   Placeholders?: false | { [key: string]: string };
   ENValidators?: boolean;
+  // CustomCurrency is either false or an object with the following properties:
+  //   label: string;
+  //   default: object[];
+  //   countries: object[];
+  CustomCurrency?:
+    | false
+    | {
+        label?: string;
+        default: { [key: string]: string };
+        countries?: { [key: string]: { [key: string]: string } };
+      };
+
   onLoad?: () => void;
   onResize?: () => void;
   onSubmit?: () => void;
@@ -132,6 +144,7 @@ export const OptionsDefaults: Options = {
   Placeholders: false,
   ENValidators: false,
   MobileCTA: false,
+  CustomCurrency: false,
   PageLayouts: [
     "leftleft1col",
     "centerleft1col",
