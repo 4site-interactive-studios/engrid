@@ -37,6 +37,8 @@ export class SwapAmounts {
             return;
         this._frequency.onFrequencyChange.subscribe(() => this.swapAmounts());
         this._amount.onAmountChange.subscribe(() => {
+            if (this._frequency.frequency in window.EngridAmounts === false)
+                return;
             this.defaultChange = false;
             if (!this.swapped)
                 return;

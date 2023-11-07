@@ -42,6 +42,7 @@ export class SwapAmounts {
     if (!this.shouldRun()) return;
     this._frequency.onFrequencyChange.subscribe(() => this.swapAmounts());
     this._amount.onAmountChange.subscribe(() => {
+      if (this._frequency.frequency in window.EngridAmounts === false) return;
       this.defaultChange = false;
       if (!this.swapped) return;
       // Check if the amount is not default amount for the frequency
