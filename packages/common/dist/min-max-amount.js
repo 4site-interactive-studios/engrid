@@ -24,6 +24,8 @@ export class MinMaxAmount {
     }
     // Don't submit the form if the amount is not valid
     enOnValidate() {
+        if (!this._form.validate)
+            return;
         const otherAmount = document.querySelector("[name='transaction.donationAmt.other']");
         if (this._amount.amount < this.minAmount) {
             this.logger.log("Amount is less than min amount: " + this.minAmount);

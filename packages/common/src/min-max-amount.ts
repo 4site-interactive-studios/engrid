@@ -30,6 +30,7 @@ export class MinMaxAmount {
 
   // Don't submit the form if the amount is not valid
   enOnValidate() {
+    if (!this._form.validate) return;
     const otherAmount = document.querySelector(
       "[name='transaction.donationAmt.other']"
     ) as HTMLInputElement;

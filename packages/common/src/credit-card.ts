@@ -4,6 +4,8 @@
 
 import { ENGrid, EnForm, EngridLogger } from "./";
 
+import * as EngridCard from "./third-party/card-validator";
+
 export class CreditCard {
   private logger: EngridLogger = new EngridLogger(
     "CreditCard",
@@ -16,6 +18,30 @@ export class CreditCard {
   private ccField: HTMLInputElement = ENGrid.getField(
     "transaction.ccnumber"
   ) as HTMLInputElement;
+
+  private ccValues = {
+    "american-express": [
+      "amex",
+      "american express",
+      "americanexpress",
+      "american-express",
+      "amx",
+      "ax",
+    ],
+    visa: ["visa", "vi"],
+    mastercard: ["mastercard", "master card", "mc"],
+    discover: ["discover", "di"],
+    "diners-club": ["diners", "diners club", "dinersclub", "dc"],
+    jcb: ["jcb"],
+    unionpay: ["unionpay", "union pay", "up"],
+    maestro: ["maestro"],
+    elo: ["elo"],
+    mir: ["mir"],
+    hiper: ["hiper", "hipercard"],
+  };
+
+  private isPotentiallyValid: boolean = false;
+  private isValid: boolean = false;
 
   private field_expiration_month: HTMLSelectElement | null = null;
   private field_expiration_year: HTMLSelectElement | null = null;
@@ -34,14 +60,26 @@ export class CreditCard {
       this.field_expiration_year = expireFiels[1];
     }
     this._form.onSubmit.subscribe(() => this.onlyNumbersCC());
+    this._form.onValidate.subscribe(() => {
+      if (this._form.validate) {
+        if (ENGrid.debug) console.log("Engrid Credit Cards: onValidate");
+        this._form.validate = this.validate();
+      }
+    });
     this.addEventListeners();
     this.handleCCUpdate();
   }
 
   private addEventListeners() {
     // Add event listeners to the credit card field
-    ["keyup", "paste", "blur"].forEach((event) => {
+    ["keyup", "paste"].forEach((event) => {
       this.ccField.addEventListener(event, () => this.handleCCUpdate());
+    });
+    // Avoid spaces in the credit card field
+    this.ccField.addEventListener("keydown", (e) => {
+      if (e.key === " ") {
+        e.preventDefault();
+      }
     });
     // Add event listeners to the expiration fields
     if (this.field_expiration_month && this.field_expiration_year) {
@@ -79,22 +117,58 @@ export class CreditCard {
     return true;
   }
   handleCCUpdate() {
-    const card_type = this.getCardType(this.ccField.value);
-    const card_values = {
-      amex: ["amex", "american express", "americanexpress", "amx", "ax"],
-      visa: ["visa", "vi"],
-      mastercard: ["mastercard", "master card", "mc"],
-      discover: ["discover", "di"],
-    };
-    const selected_card_value = card_type
-      ? Array.from(this.paymentTypeField.options).filter((d) =>
-          card_values[card_type].includes(d.value.toLowerCase())
-        )[0].value
-      : "";
+    const cardContainer =
+      (this.ccField.closest(".en__field--ccnumber") as HTMLElement) ||
+      (document.querySelector(".en__field--ccnumber") as HTMLElement);
+    if (!cardContainer) {
+      this.logger.log("Card Container Not Found");
+      return;
+    }
+    ENGrid.removeError(cardContainer);
+    if (this.ccField.value.length < 2) {
+      this.removeLiveCardTypeClasses();
+      this.clearPaymentTypeField();
+      return;
+    }
+    // const card_type = this.getCardType(this.ccField.value);
+    const card_validation = EngridCard.number(this.ccField.value);
+    const card_type = card_validation.card?.type;
+    const card_type_name = card_validation.card?.niceType;
+    this.isPotentiallyValid = card_validation.isPotentiallyValid || false;
+    this.isValid = card_validation.isValid || false;
 
+    // console.log(EngridCard.number(this.ccField.value));
+
+    this.removeLiveCardTypeClasses();
+
+    if (!this.isPotentiallyValid) {
+      ENGrid.setError(cardContainer, "Invalid Credit Card Number");
+      this.addLiveCardTypeClasses("invalid");
+      return;
+    }
+    if (!card_type) {
+      // The card is potentially valid, but we don't know what type it is
+      this.removeLiveCardTypeClasses();
+      this.clearPaymentTypeField();
+      return;
+    }
+
+    const selected_card_value = this.getCardTypeFromPaymentTypeField(card_type);
+
+    if (!selected_card_value) {
+      ENGrid.setError(
+        cardContainer,
+        `Unsupported Credit Card Type: ${card_type_name}`
+      );
+      this.addLiveCardTypeClasses("invalid");
+      return;
+    }
+
+    this.addLiveCardTypeClasses(card_type);
+    this.ccField.value = this.formatCCNumber(card_validation.card);
     if (this.paymentTypeField.value != selected_card_value) {
       this.logger.log(`card type ${card_type}`);
-      this.paymentTypeField.value = selected_card_value;
+      this.paymentTypeField.value = selected_card_value || "";
       const paymentTypeChangeEvent = new Event("change", { bubbles: true });
       this.paymentTypeField.dispatchEvent(paymentTypeChangeEvent);
     }
@@ -158,58 +232,86 @@ export class CreditCard {
       }
     }
   };
-  private getCardType(cc_partial: string) {
-    let key_character = cc_partial.charAt(0);
+  private formatCCNumber(card: any) {
+    const cc_number = this.ccField.value;
+    const clean_cc_number = cc_number.replace(/\D/g, "");
+    const gaps = card.gaps;
+    let formatted_cc_number = "";
+    for (let i = 0; i < clean_cc_number.length; i++) {
+      if (gaps.includes(i)) {
+        formatted_cc_number += " ";
+      }
+      formatted_cc_number += clean_cc_number[i];
+    }
+    return formatted_cc_number;
+  }
+  private removeLiveCardTypeClasses() {
     const prefix = "live-card-type-";
     const field_credit_card_classes = this.ccField.className
       .split(" ")
       .filter((c) => !c.startsWith(prefix));
-
-    switch (key_character) {
-      case "0":
-        this.ccField.className = field_credit_card_classes.join(" ").trim();
-        this.ccField.classList.add("live-card-type-invalid");
-        return false;
-      case "1":
-        this.ccField.className = field_credit_card_classes.join(" ").trim();
-        this.ccField.classList.add("live-card-type-invalid");
-        return false;
-      case "2":
-        this.ccField.className = field_credit_card_classes.join(" ").trim();
-        this.ccField.classList.add("live-card-type-invalid");
-        return false;
-      case "3":
-        this.ccField.className = field_credit_card_classes.join(" ").trim();
-        this.ccField.classList.add("live-card-type-amex");
-        return "amex";
-      case "4":
-        this.ccField.className = field_credit_card_classes.join(" ").trim();
-        this.ccField.classList.add("live-card-type-visa");
-        return "visa";
-      case "5":
-        this.ccField.className = field_credit_card_classes.join(" ").trim();
-        this.ccField.classList.add("live-card-type-mastercard");
-        return "mastercard";
-      case "6":
-        this.ccField.className = field_credit_card_classes.join(" ").trim();
-        this.ccField.classList.add("live-card-type-discover");
-        return "discover";
-      case "7":
-        this.ccField.className = field_credit_card_classes.join(" ").trim();
-        this.ccField.classList.add("live-card-type-invalid");
-        return false;
-      case "8":
-        this.ccField.className = field_credit_card_classes.join(" ").trim();
-        this.ccField.classList.add("live-card-type-invalid");
-        return false;
-      case "9":
-        this.ccField.className = field_credit_card_classes.join(" ").trim();
-        this.ccField.classList.add("live-card-type-invalid");
-        return false;
-      default:
-        this.ccField.className = field_credit_card_classes.join(" ").trim();
-        this.ccField.classList.add("live-card-type-na");
-        return false;
+    this.ccField.className = field_credit_card_classes.join(" ").trim();
+  }
+  private addLiveCardTypeClasses(class_name: string) {
+    this.ccField.classList.add(`live-card-type-${class_name}`);
+    if (class_name == "invalid") {
+      this.clearPaymentTypeField();
     }
+  }
+  private clearPaymentTypeField() {
+    this.paymentTypeField.value = "";
+    const paymentTypeChangeEvent = new Event("change", { bubbles: true });
+    this.paymentTypeField.dispatchEvent(paymentTypeChangeEvent);
+  }
+  private isCardSupported(card_type: keyof typeof this.ccValues) {
+    // Return true if the this.paymentTypeField.options contains a value that matches the
+    // card_type key on the ccValues object, otherwise return false
+    return (
+      card_type in this.ccValues &&
+      Array.from(this.paymentTypeField.options).filter((d) =>
+        this.ccValues[card_type].includes(d.value.toLowerCase())
+      ).length > 0
+    );
+  }
+  private getCardTypeFromPaymentTypeField(
+    card_type: keyof typeof this.ccValues
+  ) {
+    // Return the value of the this.paymentTypeField.options that matches the
+    // card_type key on the ccValues object, otherwise return false
+    return this.isCardSupported(card_type)
+      ? Array.from(this.paymentTypeField.options).filter((d) =>
+          this.ccValues[card_type].includes(d.value.toLowerCase())
+        )[0].value || false
+      : false;
+  }
+  private isPaymentTypeCard(): boolean {
+    // Return true if the current payment type (selected option of this.paymentTypeField) matches any of the ccValues values
+    // Also return true if the payment type is empty, which means the user has not selected a payment type, or has entered an invalid card number
+    // otherwise return false
+    const payment_type = this.paymentTypeField.value.toLowerCase();
+    return (
+      payment_type === "" ||
+      Object.keys(this.ccValues).some((card_type) =>
+        this.ccValues[card_type as keyof typeof this.ccValues].includes(
+          payment_type
+        )
+      )
+    );
+  }
+
+  private validate() {
+    if (this.isPaymentTypeCard() && !this.isValid) {
+      const cardContainer =
+        (this.ccField.closest(".en__field--ccnumber") as HTMLElement) ||
+        (document.querySelector(".en__field--ccnumber") as HTMLElement);
+      if (cardContainer) {
+        window.setTimeout(() => {
+          ENGrid.setError(cardContainer, "Invalid Credit Card Number");
+          this.ccField.focus();
+        }, 100);
+      }
+      return false;
+    }
+    return true;
   }
 }

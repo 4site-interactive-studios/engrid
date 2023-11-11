@@ -159,6 +159,8 @@ export class FreshAddress {
     validate() {
         var _a;
         ENGrid.removeError(this.emailWrapper);
+        if (!this.form.validate)
+            return;
         if (!this.options) {
             this.form.validate = true;
             return;
