@@ -412,7 +412,9 @@ export class ENGrid {
         const currencyField = ENGrid.getField("transaction.paycurrency");
         if (currencyField) {
             // Check if the selected currency field option have a data-currency-symbol attribute
-            const selectedOption = currencyField.options[currencyField.selectedIndex];
+            const selectedOption = currencyField.tagName === "SELECT"
+                ? currencyField.options[currencyField.selectedIndex]
+                : currencyField;
             if (selectedOption.dataset.currencySymbol) {
                 return selectedOption.dataset.currencySymbol;
             }
