@@ -197,10 +197,10 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) {
   /* REF: https://caniuse.com/?search=%40supports */
   /* REF: https://www.bram.us/2023/01/04/css-has-feature-detection-with-supportsselector-you-want-has-not-has/ */
   /* REF: https://stackoverflow.com/questions/42143275/css-supports-mixing-not-with-and-or-or */
+  /* prettier-ignore */
   @supports (not selector(:has(*))) {
     .hide:not(.en__field--validationFailed),
-    div:not(.en__field--validationFailed)
-      .hide:not(.en__field--validationFailed) {
+    div:not(.en__field--validationFailed) .hide:not(.en__field--validationFailed) {
       display: none;
     }
   }
