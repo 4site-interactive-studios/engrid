@@ -4,7 +4,7 @@
 // 3 - Check the premium gift when click on the title or description
 // 4 - Create new {$PREMIUMTITLE} merge tag that's replaced with the premium gift name
 
-import { DonationAmount, ENGrid, EngridLogger } from ".";
+import { ENGrid, EngridLogger } from ".";
 
 export class PremiumGift {
   private logger: EngridLogger = new EngridLogger(
