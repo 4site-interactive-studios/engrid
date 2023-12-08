@@ -1112,3 +1112,14 @@ textarea[readonly] {
 //     text-align-last: right;
 //   }
 // }
+
+/************************************
+ * Live currency
+ ***********************************/
+// When live currency is active, hide radio labels until replacement is done
+
+body[data-engrid-live-currency="active"] {
+  .en__field--donationAmt .en__field__item:not([data-engrid-currency-symbol-updated="true"]) label {
+    color: transparent!important;
+  }
+}

@@ -42,6 +42,25 @@ export class PremiumGift {
                 }
             });
         });
+        // Check when visibility of the Premium Gift Block changes.
+        // EN will add "display: none" to this element when the supporter does not qualify for a premium
+        const premiumGiftsBlock = document.querySelector(".en__component--premiumgiftblock");
+        if (premiumGiftsBlock) {
+            const observer = new MutationObserver((mutationsList) => {
+                for (const mutation of mutationsList) {
+                    if (mutation.type === "attributes" &&
+                        mutation.attributeName === "style") {
+                        if (premiumGiftsBlock.style.display === "none") {
+                            this.logger.log("Premium Gift Section hidden - removing premium gift body data attributes and premium title.");
+                            ENGrid.setBodyData("premium-gift-maximize", false);
+                            ENGrid.setBodyData("premium-gift-name", false);
+                            this.setPremiumTitle("");
+                        }
+                    }
+                }
+            });
+            observer.observe(premiumGiftsBlock, { attributes: true });
+        }
     }
     checkPremiumGift() {
         const premiumGift = document.querySelector('[name="en__pg"]:checked');

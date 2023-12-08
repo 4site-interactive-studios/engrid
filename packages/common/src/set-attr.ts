@@ -19,7 +19,10 @@ export class SetAttr {
 
     if (enGrid) {
       enGrid.addEventListener("click", (e) => {
-        const clickedEl = e.target as HTMLElement;
+        const clickedEl = e.target as HTMLElement | SVGElement;
+        if (typeof clickedEl.className !== "string") {
+          return;
+        }
         const clickedElClassNames = clickedEl.className.split(" ");
 
         if (
