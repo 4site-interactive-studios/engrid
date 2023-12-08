@@ -4247,9 +4247,16 @@ body:not(#en__pagebuilder) .en__component--column:last-of-type,
   background-color: rgba(255, 0, 0, 0.1019607843) !important;
 }
 
+/* Seperated out form the block below so that if it breaks (ie older Firefox) it doesn't break the whole thing */
 body:not(#en__pagebuilder):not([data-engrid-debug]) {
   /* prettier-ignore */
-  /* Seperated out form the above so that if it breaks (ie older Firefox) it doesn't break the whole thing */
+}
+body:not(#en__pagebuilder):not([data-engrid-debug]) .hide:not(.en__field--validationFailed):not(:has(.en__field.en__field--validationFailed)),
+body:not(#en__pagebuilder):not([data-engrid-debug]) div:not(.en__field--validationFailed) .hide:not(.en__field--validationFailed):not(:has(.en__field.en__field--validationFailed)) {
+  display: none;
+}
+
+body:not(#en__pagebuilder):not([data-engrid-debug]) {
   /* prettier-ignore */
   /* Provide a fallback for browsers that do not support :has selector */
   /* REF: https://caniuse.com/?search=has */
@@ -4271,10 +4278,6 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) .i9-hide .en__field:not(.en_
 body:not(#en__pagebuilder):not([data-engrid-debug]) .i10-hide .en__field:not(.en__field--validationFailed):nth-of-type(10),
 body:not(#en__pagebuilder):not([data-engrid-debug]) .i11-hide .en__field:not(.en__field--validationFailed):nth-of-type(11),
 body:not(#en__pagebuilder):not([data-engrid-debug]) .en__field--plaid {
-  display: none;
-}
-body:not(#en__pagebuilder):not([data-engrid-debug]) .hide:not(.en__field--validationFailed):not(:has(.en__field.en__field--validationFailed)),
-body:not(#en__pagebuilder):not([data-engrid-debug]) div:not(.en__field--validationFailed) .hide:not(.en__field--validationFailed):not(:has(.en__field.en__field--validationFailed)) {
   display: none;
 }
 @supports not selector(:has(*)) {

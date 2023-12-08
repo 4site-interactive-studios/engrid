@@ -168,6 +168,16 @@
   }
 }
 
+/* Seperated out form the block below so that if it breaks (ie older Firefox) it doesn't break the whole thing */
+body:not(#en__pagebuilder):not([data-engrid-debug]) {
+  /* prettier-ignore */
+  .hide:not(.en__field--validationFailed):not(:has(.en__field.en__field--validationFailed)),
+  div:not(.en__field--validationFailed) .hide:not(.en__field--validationFailed):not(:has(.en__field.en__field--validationFailed)){
+    display: none;
+  }
+}
+
+
 // When outside page builder and not debugging,
 body:not(#en__pagebuilder):not([data-engrid-debug]) {
   // Hide Hidden Fields
@@ -187,13 +197,6 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) {
   .i10-hide .en__field:not(.en__field--validationFailed):nth-of-type(10),
   .i11-hide .en__field:not(.en__field--validationFailed):nth-of-type(11),
   .en__field--plaid{
-    display: none;
-  }
-
-  /* Seperated out form the above so that if it breaks (ie older Firefox) it doesn't break the whole thing */
-  /* prettier-ignore */
-  .hide:not(.en__field--validationFailed):not(:has(.en__field.en__field--validationFailed)),
-  div:not(.en__field--validationFailed) .hide:not(.en__field--validationFailed):not(:has(.en__field.en__field--validationFailed)){
     display: none;
   }
 
