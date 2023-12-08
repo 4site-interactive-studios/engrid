@@ -3374,6 +3374,13 @@ textarea[readonly] {
 /************************************
  * Inline Country Styling
  ***********************************/
+/************************************
+ * Live currency
+ ***********************************/
+body[data-engrid-live-currency=active] .en__field--donationAmt .en__field__item:not([data-engrid-currency-symbol-updated=true]) label {
+  color: transparent !important;
+}
+
 /* ENGRID STYLINGS */
 @supports (-webkit-appearance: -apple-pay-button) {
   .apple-pay-button {

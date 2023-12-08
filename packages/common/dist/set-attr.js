@@ -11,6 +11,9 @@ export class SetAttr {
         if (enGrid) {
             enGrid.addEventListener("click", (e) => {
                 const clickedEl = e.target;
+                if (typeof clickedEl.className !== "string") {
+                    return;
+                }
                 const clickedElClassNames = clickedEl.className.split(" ");
                 if (clickedElClassNames.some((className) => className.startsWith("setattr--"))) {
                     clickedEl.classList.forEach((className) => {

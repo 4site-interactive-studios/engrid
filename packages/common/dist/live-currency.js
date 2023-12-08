@@ -11,8 +11,13 @@ export class LiveCurrency {
         this.searchElements();
         if (!this.shouldRun())
             return;
+        ENGrid.setBodyData("live-currency", "active");
         this.updateCurrency();
         this.addEventListeners();
+        // Make labels visible on page load
+        document.querySelectorAll(".en__field--donationAmt .en__field__element--radio .en__field__item").forEach((node) => {
+            node.setAttribute("data-engrid-currency-symbol-updated", "true");
+        });
     }
     searchElements() {
         const enElements = document.querySelectorAll(`
@@ -62,6 +67,9 @@ export class LiveCurrency {
                     setTimeout(() => {
                         this.searchElements();
                         this.updateCurrency();
+                        targetNode.querySelectorAll('.en__field__item').forEach((node) => {
+                            node.setAttribute("data-engrid-currency-symbol-updated", "true");
+                        });
                         this.isUpdating = false;
                     }, 20);
                 }
