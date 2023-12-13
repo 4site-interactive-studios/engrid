@@ -81,6 +81,7 @@ export * from "./fast-form-fill";
 export * from "./set-attr";
 export * from "./show-if-present";
 export * from "./en-validators";
+export * from "./postal-code-validator";
 
 // Events
 export * from "./events";

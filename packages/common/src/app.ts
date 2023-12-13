@@ -74,6 +74,7 @@ import {
   ShowIfPresent,
   ENValidators,
   CustomCurrency,
+  PostalCodeValidator,
 } from "./";
 
 export class App extends ENGrid {
@@ -395,6 +396,8 @@ export class App extends ENGrid {
     new SetAttr();
 
     new ShowIfPresent();
+
+    new PostalCodeValidator();
 
     //Debug panel
     let showDebugPanel = this.options.Debug;
