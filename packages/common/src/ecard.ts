@@ -53,6 +53,10 @@ export class Ecard {
       futureDeliveryH2.innerText = futureDeliveryLabel.innerText;
       futureDeliveryLabel.replaceWith(futureDeliveryH2);
     }
+    if (emailField) {
+      emailField.setAttribute("type", "email");
+      emailField.setAttribute("autocomplete", "off");
+    }
   }
 
   private shouldRun() {
