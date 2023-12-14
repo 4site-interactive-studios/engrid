@@ -112,7 +112,7 @@ export class DonationAmount {
       ) as HTMLInputElement;
       if (otherField) {
         const enFieldOtherAmountRadio = document.querySelector(
-          'input[name="' + this._radios + '"][value="other" i]'
+          `.en__field--donationAmt.en__field--withOther .en__field__item:nth-last-child(2) input[name="${this._radios}"]`
         ) as HTMLInputElement;
         if (enFieldOtherAmountRadio) {
           enFieldOtherAmountRadio.checked = true;

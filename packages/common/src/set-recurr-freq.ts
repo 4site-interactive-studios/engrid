@@ -1,8 +1,9 @@
 import { ENGrid } from "./";
-import { DonationFrequency } from "./events";
+import { DonationFrequency, DonationAmount } from "./events";
 
 export class setRecurrFreq {
   private _frequency: DonationFrequency = DonationFrequency.getInstance();
+  private _amount: DonationAmount = DonationAmount.getInstance();
   private linkClass: string = "setRecurrFreq-";
   private checkboxName: string = "engrid.recurrfreq";
 
@@ -54,10 +55,12 @@ export class setRecurrFreq {
           ENGrid.setFieldValue("transaction.recurrfreq", frequency);
           ENGrid.setFieldValue("transaction.recurrpay", "Y");
           this._frequency.load();
+          this._amount.setAmount(this._amount.amount, false);
         } else if (frequency !== "ONETIME") {
           ENGrid.setFieldValue("transaction.recurrfreq", "ONETIME");
           ENGrid.setFieldValue("transaction.recurrpay", "N");
           this._frequency.load();
+          this._amount.setAmount(this._amount.amount, false);
         }
       });
     });
