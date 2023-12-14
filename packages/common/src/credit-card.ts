@@ -52,6 +52,9 @@ export class CreditCard {
 
   constructor() {
     if (!this.ccField) return;
+    // Set credit card field to type="tel" to prevent mobile browsers from
+    //  showing a credit card number keyboard
+    this.ccField.type = "tel";
     const expireFiels = document.getElementsByName(
       "transaction.ccexpire"
     ) as NodeListOf<HTMLSelectElement>;
