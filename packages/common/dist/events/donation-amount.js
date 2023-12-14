@@ -87,7 +87,7 @@ export class DonationAmount {
         else {
             const otherField = document.querySelector('input[name="' + this._other + '"]');
             if (otherField) {
-                const enFieldOtherAmountRadio = document.querySelector('input[name="' + this._radios + '"][value="other" i]');
+                const enFieldOtherAmountRadio = document.querySelector(`.en__field--donationAmt.en__field--withOther .en__field__item:nth-last-child(2) input[name="${this._radios}"]`);
                 if (enFieldOtherAmountRadio) {
                     enFieldOtherAmountRadio.checked = true;
                 }
