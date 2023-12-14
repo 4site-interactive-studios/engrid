@@ -15,7 +15,9 @@ export class LiveCurrency {
         this.updateCurrency();
         this.addEventListeners();
         // Make labels visible on page load
-        document.querySelectorAll(".en__field--donationAmt .en__field__element--radio .en__field__item").forEach((node) => {
+        document
+            .querySelectorAll(".en__field--donationAmt .en__field__element--radio .en__field__item")
+            .forEach((node) => {
             node.setAttribute("data-engrid-currency-symbol-updated", "true");
         });
     }
@@ -67,7 +69,7 @@ export class LiveCurrency {
                     setTimeout(() => {
                         this.searchElements();
                         this.updateCurrency();
-                        targetNode.querySelectorAll('.en__field__item').forEach((node) => {
+                        targetNode.querySelectorAll(".en__field__item").forEach((node) => {
                             node.setAttribute("data-engrid-currency-symbol-updated", "true");
                         });
                         this.isUpdating = false;
@@ -96,6 +98,11 @@ export class LiveCurrency {
             setTimeout(() => {
                 this.searchElements();
                 this.updateCurrency();
+                document
+                    .querySelectorAll(".en__field--donationAmt .en__field__element--radio .en__field__item")
+                    .forEach((node) => {
+                    node.setAttribute("data-engrid-currency-symbol-updated", "true");
+                });
                 this.isUpdating = false;
             }, 10);
         });
