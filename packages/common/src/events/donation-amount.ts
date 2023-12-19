@@ -84,6 +84,20 @@ export class DonationAmount {
         currentAmountValue = ENGrid.cleanAmount(otherField.value);
         this.amount = currentAmountValue;
       }
+    } else if (
+      ENGrid.checkNested(
+        window.EngagingNetworks,
+        "require",
+        "_defined",
+        "enjs",
+        "getDonationTotal"
+      )
+    ) {
+      const total =
+        window.EngagingNetworks.require._defined.enjs.getDonationTotal();
+      if (total) {
+        this.amount = total;
+      }
     }
   }
   // Force a new amount
