@@ -100,7 +100,7 @@ export class DonationFrequency {
       this.recurring =
         window.EngagingNetworks.require._defined.enjs
           .getSupporterData("recurrpay")
-          .toLowerCase() || "n";
+          ?.toLowerCase() || "n";
     }
     // ENGrid.enParseDependencies();
   }
