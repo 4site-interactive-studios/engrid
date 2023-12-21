@@ -5,6 +5,8 @@ export class ExitIntentLightbox {
         this.opened = false;
         this.dataLayer = window.dataLayer || [];
         this.logger = new EngridLogger("ExitIntentLightbox", "yellow", "black", "🚪");
+        this.triggerDelay = 1000; // Don't run the exit intent lightbox until at least 1 second has passed after page load
+        this.triggerTimeout = null;
         let options = "EngridExitIntent" in window ? window.EngridExitIntent : {};
         this.options = Object.assign(Object.assign({}, ExitIntentOptionsDefaults), options);
         if (!this.options.enabled) {
@@ -22,12 +24,16 @@ export class ExitIntentLightbox {
         this.watchForTriggers();
     }
     watchForTriggers() {
-        if (this.options.triggers.mousePosition) {
-            this.watchMouse();
-        }
-        if (this.options.triggers.visibilityState) {
-            this.watchDocumentVisibility();
-        }
+        window.onload = () => {
+            setTimeout(() => {
+                if (this.options.triggers.mousePosition) {
+                    this.watchMouse();
+                }
+                if (this.options.triggers.visibilityState) {
+                    this.watchDocumentVisibility();
+                }
+            }, this.triggerDelay); // Delay activation of triggers
+        };
     }
     watchMouse() {
         document.addEventListener("mouseout", (e) => {
@@ -51,14 +57,28 @@ export class ExitIntentLightbox {
                 this.logger.log("Triggered by mouse position");
                 this.open();
             }
+            if (!this.triggerTimeout) {
+                this.triggerTimeout = window.setTimeout(() => {
+                    if (!from) {
+                        this.logger.log("Triggered by mouse position");
+                        this.open();
+                    }
+                    this.triggerTimeout = null;
+                }, this.triggerDelay);
+            }
         });
     }
     watchDocumentVisibility() {
         const visibilityListener = () => {
             if (document.visibilityState === "hidden") {
-                this.logger.log("Triggered by visibilityState is hidden");
-                this.open();
-                document.removeEventListener("visibilitychange", visibilityListener);
+                if (!this.triggerTimeout) {
+                    this.triggerTimeout = window.setTimeout(() => {
+                        this.logger.log("Triggered by visibilityState is hidden");
+                        this.open();
+                        document.removeEventListener("visibilitychange", visibilityListener);
+                        this.triggerTimeout = null;
+                    }, this.triggerDelay);
+                }
             }
         };
         document.addEventListener("visibilitychange", visibilityListener);

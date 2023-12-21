@@ -5,6 +5,8 @@ export declare class ExitIntentLightbox {
     private logger;
     constructor();
     private watchForTriggers;
+    private triggerDelay;
+    private triggerTimeout;
     private watchMouse;
     private watchDocumentVisibility;
     private open;
