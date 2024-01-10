@@ -44,14 +44,21 @@ export class ExitIntentLightbox {
   }
 
   private watchForTriggers() {
-    if (this.options.triggers.mousePosition) {
-      this.watchMouse();
-    }
+    window.onload = () => {
+      setTimeout(() => {
+        if (this.options.triggers.mousePosition) {
+          this.watchMouse();
+        }
 
-    if (this.options.triggers.visibilityState) {
-      this.watchDocumentVisibility();
-    }
+        if (this.options.triggers.visibilityState) {
+          this.watchDocumentVisibility();
+        }
+      }, this.triggerDelay); // Delay activation of triggers
+    };
   }
+
+  private triggerDelay = 1000; // Don't run the exit intent lightbox until at least 1 second has passed after page load
+  private triggerTimeout: number | null = null;
 
   private watchMouse() {
     document.addEventListener("mouseout", (e: MouseEvent) => {
@@ -80,15 +87,33 @@ export class ExitIntentLightbox {
         this.logger.log("Triggered by mouse position");
         this.open();
       }
+
+      if (!this.triggerTimeout) {
+        this.triggerTimeout = window.setTimeout(() => {
+          if (!from) {
+            this.logger.log("Triggered by mouse position");
+            this.open();
+          }
+          this.triggerTimeout = null;
+        }, this.triggerDelay);
+      }
     });
   }
 
   private watchDocumentVisibility() {
     const visibilityListener = () => {
       if (document.visibilityState === "hidden") {
-        this.logger.log("Triggered by visibilityState is hidden");
-        this.open();
-        document.removeEventListener("visibilitychange", visibilityListener);
+        if (!this.triggerTimeout) {
+          this.triggerTimeout = window.setTimeout(() => {
+            this.logger.log("Triggered by visibilityState is hidden");
+            this.open();
+            document.removeEventListener(
+              "visibilitychange",
+              visibilityListener
+            );
+            this.triggerTimeout = null;
+          }, this.triggerDelay);
+        }
       }
     };
 
