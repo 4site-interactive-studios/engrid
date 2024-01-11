@@ -44,7 +44,7 @@ export class ExitIntentLightbox {
   }
 
   private watchForTriggers() {
-    window.onload = () => {
+    window.addEventListener("load", () => {
       setTimeout(() => {
         if (this.options.triggers.mousePosition) {
           this.watchMouse();
@@ -54,7 +54,7 @@ export class ExitIntentLightbox {
           this.watchDocumentVisibility();
         }
       }, this.triggerDelay); // Delay activation of triggers
-    };
+    });
   }
 
   private triggerDelay = 1000; // Don't run the exit intent lightbox until at least 1 second has passed after page load

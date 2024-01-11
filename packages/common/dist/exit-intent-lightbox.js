@@ -24,7 +24,7 @@ export class ExitIntentLightbox {
         this.watchForTriggers();
     }
     watchForTriggers() {
-        window.onload = () => {
+        window.addEventListener("load", () => {
             setTimeout(() => {
                 if (this.options.triggers.mousePosition) {
                     this.watchMouse();
@@ -33,7 +33,7 @@ export class ExitIntentLightbox {
                     this.watchDocumentVisibility();
                 }
             }, this.triggerDelay); // Delay activation of triggers
-        };
+        });
     }
     watchMouse() {
         document.addEventListener("mouseout", (e) => {
