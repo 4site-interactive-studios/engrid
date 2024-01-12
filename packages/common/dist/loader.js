@@ -63,7 +63,7 @@ export class Loader {
             default:
                 this.logger.log("LOADING EXTERNAL");
                 engrid_js_url = `https://s3.amazonaws.com/engrid-dev.4sitestudios.com/${engrid_repo}/${assets}/engrid.js`;
-                engrid_js_url = `https://s3.amazonaws.com/engrid-dev.4sitestudios.com/${engrid_repo}/${assets}/engrid.css`;
+                engrid_css_url = `https://s3.amazonaws.com/engrid-dev.4sitestudios.com/${engrid_repo}/${assets}/engrid.css`;
         }
         if (shouldSkipCss && this.cssElement) {
             this.logger.log("engridcss=false | Removing original stylesheet:", this.cssElement);
