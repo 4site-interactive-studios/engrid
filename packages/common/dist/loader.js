@@ -9,7 +9,7 @@ export class Loader {
     // Returns true if ENgrid should reload (that means the current ENgrid is not the right one)
     // Returns false if ENgrid should not reload (that means the current ENgrid is the right one)
     reload() {
-        var _a, _b, _c, _d;
+        var _a, _b, _c;
         const assets = this.getOption("assets");
         const isLoaded = ENGrid.getBodyData("loaded");
         let shouldSkipCss = this.getOption("engridcss") === "false";
@@ -41,7 +41,6 @@ export class Loader {
         // Fetch the desired repo, assets location, and override JS/CSS
         const theme = ENGrid.getBodyData("theme");
         const engrid_repo = (_a = this.getOption("repo-name")) !== null && _a !== void 0 ? _a : `engrid-${theme}`;
-        const engrid_repo_owner = (_b = this.getOption("repo-owner")) !== null && _b !== void 0 ? _b : "4site-interactive-studios";
         let engrid_js_url = "";
         let engrid_css_url = "";
         switch (assets) {
@@ -54,31 +53,17 @@ export class Loader {
             case "flush":
                 this.logger.log("FLUSHING CACHE");
                 const timestamp = Date.now();
-                const jsCurrentURL = new URL(((_c = this.jsElement) === null || _c === void 0 ? void 0 : _c.getAttribute("src")) || "");
+                const jsCurrentURL = new URL(((_b = this.jsElement) === null || _b === void 0 ? void 0 : _b.getAttribute("src")) || "");
                 jsCurrentURL.searchParams.set("v", timestamp.toString());
                 engrid_js_url = jsCurrentURL.toString();
-                const cssCurrentURL = new URL(((_d = this.cssElement) === null || _d === void 0 ? void 0 : _d.getAttribute("href")) || "");
+                const cssCurrentURL = new URL(((_c = this.cssElement) === null || _c === void 0 ? void 0 : _c.getAttribute("href")) || "");
                 cssCurrentURL.searchParams.set("v", timestamp.toString());
                 engrid_css_url = cssCurrentURL.toString();
                 break;
             default:
                 this.logger.log("LOADING EXTERNAL");
-                engrid_js_url =
-                    "https://cdn.jsdelivr.net/gh/" +
-                        engrid_repo_owner +
-                        "/" +
-                        engrid_repo +
-                        "@" +
-                        assets +
-                        "/dist/engrid.js";
-                engrid_css_url =
-                    "https://cdn.jsdelivr.net/gh/" +
-                        engrid_repo_owner +
-                        "/" +
-                        engrid_repo +
-                        "@" +
-                        assets +
-                        "/dist/engrid.css";
+                engrid_js_url = `https://s3.amazonaws.com/engrid-dev.4sitestudios.com/${engrid_repo}/${assets}/engrid.js`;
+                engrid_js_url = `https://s3.amazonaws.com/engrid-dev.4sitestudios.com/${engrid_repo}/${assets}/engrid.css`;
         }
         if (shouldSkipCss && this.cssElement) {
             this.logger.log("engridcss=false | Removing original stylesheet:", this.cssElement);
