@@ -81,12 +81,27 @@ export class DonationFrequency {
 
   // Set amount var with currently selected amount
   public load() {
-    const freqField = ENGrid.getField("transaction.recurrfreq");
-    if (freqField)
-      this.frequency = ENGrid.getFieldValue("transaction.recurrfreq");
+    this.frequency =
+      ENGrid.getFieldValue("transaction.recurrfreq") ||
+      sessionStorage.getItem("engrid-transaction-recurring-frequency") ||
+      "onetime";
     const recurrField = ENGrid.getField("transaction.recurrpay");
-    if (recurrField)
+    if (recurrField) {
       this.recurring = ENGrid.getFieldValue("transaction.recurrpay");
+    } else if (
+      ENGrid.checkNested(
+        window.EngagingNetworks,
+        "require",
+        "_defined",
+        "enjs",
+        "getSupporterData"
+      )
+    ) {
+      this.recurring =
+        window.EngagingNetworks.require._defined.enjs
+          .getSupporterData("recurrpay")
+          ?.toLowerCase() || "n";
+    }
     // ENGrid.enParseDependencies();
   }
   // Force a new recurrency

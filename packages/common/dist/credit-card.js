@@ -80,6 +80,9 @@ export class CreditCard {
         };
         if (!this.ccField)
             return;
+        // Set credit card field to type="tel" to prevent mobile browsers from
+        //  showing a credit card number keyboard
+        this.ccField.type = "tel";
         const expireFiels = document.getElementsByName("transaction.ccexpire");
         if (expireFiels) {
             this.field_expiration_month = expireFiels[0];
