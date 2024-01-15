@@ -1,6 +1,7 @@
 import { ENGrid } from "./engrid";
 import { EnForm } from "./events";
-// Validates the postcode field for a US format zip code
+import { EngridLogger } from "./logger";
+// Conditionally validates the postcode field for a US format zip code
 // If US is selected as the country, a country has not been selected yet
 // or if there is no country field
 // Allows blank zip code if zip code is not required.
@@ -9,21 +10,30 @@ export class PostalCodeValidator {
         var _a, _b;
         this.postalCodeField = ENGrid.getField("supporter.postcode");
         this._form = EnForm.getInstance();
+        this.logger = new EngridLogger("Postal Code Validator", "white", "red", "📬");
         if (this.shouldRun()) {
             (_a = this.postalCodeField) === null || _a === void 0 ? void 0 : _a.addEventListener("blur", () => this.validate());
             (_b = this.postalCodeField) === null || _b === void 0 ? void 0 : _b.addEventListener("input", () => this.liveValidate());
             this._form.onValidate.subscribe(() => {
+                if (!this._form.validate)
+                    return;
                 // It seems like we need some delay or EN removes our error message.
                 setTimeout(() => {
                     this.validate();
                 }, 100);
                 // We dont need to validate the zip code, or it is valid
-                return !this.shouldValidateUSZipCode() || this.isValidUSZipCode();
+                const postalCodeValid = !this.shouldValidateUSZipCode() || this.isValidUSZipCode();
+                this._form.validate = postalCodeValid;
+                if (!postalCodeValid) {
+                    this.logger.log(`Invalid Zip Code ${this.postalCodeField.value}`);
+                    this.postalCodeField.scrollIntoView({ behavior: "smooth" });
+                }
+                return postalCodeValid;
             });
         }
     }
     shouldRun() {
-        return !!this.postalCodeField;
+        return !!(ENGrid.getOption("PostalCodeValidator") && this.postalCodeField);
     }
     validate() {
         if (this.shouldValidateUSZipCode() && !this.isValidUSZipCode()) {

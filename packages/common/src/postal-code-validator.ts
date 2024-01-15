@@ -1,7 +1,8 @@
 import { ENGrid } from "./engrid";
 import { EnForm } from "./events";
+import { EngridLogger } from "./logger";
 
-// Validates the postcode field for a US format zip code
+// Conditionally validates the postcode field for a US format zip code
 // If US is selected as the country, a country has not been selected yet
 // or if there is no country field
 // Allows blank zip code if zip code is not required.
@@ -10,6 +11,12 @@ export class PostalCodeValidator {
     "supporter.postcode"
   ) as HTMLInputElement;
   private _form: EnForm = EnForm.getInstance();
+  private logger = new EngridLogger(
+    "Postal Code Validator",
+    "white",
+    "red",
+    "📬"
+  );
 
   constructor() {
     if (this.shouldRun()) {
@@ -18,18 +25,28 @@ export class PostalCodeValidator {
         this.liveValidate()
       );
       this._form.onValidate.subscribe(() => {
+        if (!this._form.validate) return;
+
         // It seems like we need some delay or EN removes our error message.
         setTimeout(() => {
           this.validate();
         }, 100);
+
         // We dont need to validate the zip code, or it is valid
-        return !this.shouldValidateUSZipCode() || this.isValidUSZipCode();
+        const postalCodeValid =
+          !this.shouldValidateUSZipCode() || this.isValidUSZipCode();
+        this._form.validate = postalCodeValid;
+        if (!postalCodeValid) {
+          this.logger.log(`Invalid Zip Code ${this.postalCodeField.value}`);
+          this.postalCodeField.scrollIntoView({ behavior: "smooth" });
+        }
+        return postalCodeValid;
       });
     }
   }
 
   private shouldRun(): boolean {
-    return !!this.postalCodeField;
+    return !!(ENGrid.getOption("PostalCodeValidator") && this.postalCodeField);
   }
 
   private validate() {
