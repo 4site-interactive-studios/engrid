@@ -22,9 +22,14 @@ export class AutoYear {
         if (this.yearField) {
             this.yearLength =
                 this.yearField.options[this.yearField.options.length - 1].value.length;
-            while (this.yearField.options.length > 1) {
-                this.yearField.remove(1);
-            }
+            [...this.yearField.options].forEach((option) => {
+                var _a;
+                if (option.value !== "" && !isNaN(Number(option.value))) {
+                    // @ts-ignore
+                    const index = [...this.yearField.options].findIndex((i) => i.value === option.value);
+                    (_a = this.yearField) === null || _a === void 0 ? void 0 : _a.remove(index);
+                }
+            });
         }
     }
 }
