@@ -68,15 +68,22 @@ export class PostalCodeValidator {
     return !!this.postalCodeField?.value.match(/^\d{5}(-\d{4})?$/);
   }
 
+  /**
+   * Formats the zip code to #####-####  as the user inputs it
+   */
   private liveValidate() {
-    if (
-      this.shouldValidateUSZipCode() &&
-      this.postalCodeField?.value.match(/[^0-9-]/)
-    ) {
-      ENGrid.setError(".en__field--postcode", "Please enter a valid zip code.");
-    } else {
-      ENGrid.removeError(".en__field--postcode");
+    if (!this.shouldValidateUSZipCode()) return;
+
+    let value = this.postalCodeField?.value;
+    // Removing all non-numeric characters and separators in the wrong position
+    value = value.replace(/[^0-9\s+-]|(?<!^.{5})[\s+-]/g, "");
+    //replace + and space with - and insert a dash after the 5th character if a 6th character is entered
+    if (value.match(/\d{5}/)) {
+      value = value.replace(/[\s+]/g, "-");
+      value = value.replace(/(\d{5})(\d)/, "$1-$2");
     }
+    //set field value with max 10 characters
+    this.postalCodeField.value = value.slice(0, 10);
   }
 
   private shouldValidateUSZipCode(): boolean {

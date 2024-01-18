@@ -6,6 +6,9 @@ export declare class PostalCodeValidator {
     private shouldRun;
     private validate;
     private isValidUSZipCode;
+    /**
+     * Formats the zip code to #####-####  as the user inputs it
+     */
     private liveValidate;
     private shouldValidateUSZipCode;
 }
