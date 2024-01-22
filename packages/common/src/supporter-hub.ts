@@ -31,9 +31,13 @@ export class SupporterHub {
           mutation.addedNodes.forEach((node) => {
             if (node.nodeName === "DIV") {
               const overlay = node as HTMLDivElement;
-              if (overlay.classList.contains("en__hubOverlay")) {
+              if (
+                overlay.classList.contains("en__hubOverlay") ||
+                overlay.classList.contains("en__hubPledge__panels")
+              ) {
                 this.logger.log("Overlay found");
                 this.creditCardUpdate(node as HTMLDivElement);
+                this.amountLabelUpdate(node as HTMLDivElement);
               }
             }
           });
@@ -49,6 +53,7 @@ export class SupporterHub {
     const hubOverlay = document.querySelector(".en__hubOverlay");
     if (hubOverlay) {
       this.creditCardUpdate(hubOverlay as HTMLDivElement);
+      this.amountLabelUpdate(hubOverlay as HTMLDivElement);
     }
   }
   creditCardUpdate(overlay: HTMLDivElement) {
@@ -66,6 +71,21 @@ export class SupporterHub {
           this.logger.log("Credit Card field focused");
           updateButton.click();
         });
+      }
+    }, 300);
+  }
+  amountLabelUpdate(overlay: HTMLDivElement) {
+    window.setTimeout(() => {
+      // Check if the overlay has Amounts, and set the currency symbol updated attribute
+      const amountContainer = overlay.querySelector(
+        ".en__field--donationAmt"
+      ) as HTMLDivElement;
+      if (amountContainer) {
+        amountContainer
+          .querySelectorAll(".en__field__element--radio .en__field__item")
+          .forEach((node) => {
+            node.setAttribute("data-engrid-currency-symbol-updated", "true");
+          });
       }
     }, 300);
   }

@@ -5,4 +5,5 @@ export declare class SupporterHub {
     shoudRun(): boolean;
     watch(): void;
     creditCardUpdate(overlay: HTMLDivElement): void;
+    amountLabelUpdate(overlay: HTMLDivElement): void;
 }
