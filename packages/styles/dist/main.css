@@ -3791,7 +3791,7 @@ button[disabled],
 
 [data-engrid-theme] {
   --click-to-expand__copy-area_height: 450px;
-  --click-to-expand__cta-image_url: url("https://e-activist.com/pageassets/images/en_open.png");
+  --click-to-expand__cta-image_url: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAALVBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADBoCg+AAAAD3RSTlMA8fqeDQWopG9ku5d/fFeqbhOLAAAASElEQVQI12PAA9ZBqFcMSRNANKcaA7skiDGxgIHVsJWBIUI4gIHBWYKBodEEKMpieIFX2AEk765zqASskzVJLQBiBvcGBuIAAGXcCweYv+y6AAAAAElFTkSuQmCC");
   --click-to-expand__cta-image_width: 16px;
   --click-to-expand__cta-image_height: 16px;
 }
