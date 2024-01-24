@@ -72,8 +72,8 @@ export class DonationAmount {
     const currentAmountField = document.querySelector(
       'input[name="' + this._radios + '"]:checked'
     ) as HTMLInputElement;
-    if (currentAmountField && currentAmountField.value) {
-      let currentAmountValue = parseFloat(currentAmountField.value);
+    if (currentAmountField) {
+      let currentAmountValue = parseFloat(currentAmountField.value || "");
 
       if (currentAmountValue > 0) {
         this.amount = parseFloat(currentAmountField.value);
@@ -91,10 +91,18 @@ export class DonationAmount {
         "_defined",
         "enjs",
         "getDonationTotal"
+      ) &&
+      ENGrid.checkNested(
+        window.EngagingNetworks,
+        "require",
+        "_defined",
+        "enjs",
+        "getDonationFee"
       )
     ) {
       const total =
-        window.EngagingNetworks.require._defined.enjs.getDonationTotal();
+        window.EngagingNetworks.require._defined.enjs.getDonationTotal() -
+        window.EngagingNetworks.require._defined.enjs.getDonationFee();
       if (total) {
         this.amount = total;
       }
