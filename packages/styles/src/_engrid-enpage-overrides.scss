@@ -366,12 +366,12 @@ only screen and (max-device-width: 600px) {
 
 .en__button--ajax--inprogress {
   // background: url(https://e-activist.com/pageassets/images/en_loading.gif) center center no-repeat; // @HOLD-TODO
-  // background-size: 1.875rem 1.875rem; // 30px 30px - @HOLD-TODO
+  background-size: 1.875rem 1.875rem; // 30px 30px - @HOLD-TODO
 }
 
 .en__button--ajax--done {
   // background: url(https://e-activist.com/pageassets/images/en__end--30.png) center center no-repeat; // @HOLD-TODO
-  // background-size: 1.875rem 1.875rem; // 30px 30px - @HOLD-TODO
+  background-size: 1.875rem 1.875rem; // 30px 30px - @HOLD-TODO
 }
 
 .en__orderSummary {
@@ -511,12 +511,12 @@ only screen and (max-device-width: 600px) {
 
 .en__ticket__plus {
   // background: url(https://e-activist.com/pageassets/images/en_plus.png) center center no-repeat var(--color_white);
-  // margin-left: 0.3125rem; // 5px - @HOLD-TODO Investigate, this seems unnecessary
+  margin-left: 0.3125rem; // 5px - @HOLD-TODO Investigate, this seems unnecessary
 }
 
 .en__ticket__minus {
   // background: url(https://e-activist.com/pageassets/images/en_minus.png) center center no-repeat var(--color_white);
-  // margin-right: 0.3125rem; // 5px - @HOLD-TODO Investigate, this seems unnecessary
+  margin-right: 0.3125rem; // 5px - @HOLD-TODO Investigate, this seems unnecessary
 }
 
 .en__ticket__soldout,
