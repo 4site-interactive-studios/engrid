@@ -264,9 +264,13 @@ export class App extends ENGrid {
     // Swap Amounts
     new SwapAmounts();
 
-    // On the end of the script, after all subscribers defined, let's load the current value
-    this._amount.load();
-    this._frequency.load();
+    // On the end of the script, after all subscribers defined, let's load the current frequency
+    // The amount will be loaded by the frequency change event
+    // This timeout is needed because when you have alternative amounts, EN is slower than Engrid
+    // about 20% of the time and we get a race condition if the client is also using the SwapAmounts feature
+    window.setTimeout(() => {
+      this._frequency.load();
+    }, 150);
 
     // Fast Form Fill
     new FastFormFill();
