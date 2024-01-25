@@ -1,6 +1,7 @@
 import { ENGrid } from "./engrid";
 import { EnForm } from "./events";
 import { EngridLogger } from "./logger";
+import { Options } from "./interfaces/options";
 
 // Conditionally validates the postcode field for a US format zip code
 // If US is selected as the country, a country has not been selected yet
@@ -17,8 +18,14 @@ export class PostalCodeValidator {
     "red",
     "📬"
   );
+  private separator: string;
+  private regexSeparator: string;
+  private supportedSeparators = ["+", "-", " "];
 
   constructor() {
+    this.separator = this.getSeparator();
+    this.regexSeparator = this.getRegexSeparator(this.separator);
+
     if (this.shouldRun()) {
       this.postalCodeField?.addEventListener("blur", () => this.validate());
       this.postalCodeField?.addEventListener("input", () =>
@@ -65,11 +72,17 @@ export class PostalCodeValidator {
     if (!zipCodeRequired && this.postalCodeField?.value === "") {
       return true;
     }
-    return !!this.postalCodeField?.value.match(/^\d{5}(-\d{4})?$/);
+
+    const postalCodeRegex = new RegExp(
+      `^\\d{5}(${this.regexSeparator}\\d{4})?$`
+    );
+
+    return !!this.postalCodeField?.value.match(postalCodeRegex);
   }
 
   /**
    * Formats the zip code to #####-####  as the user inputs it
+   * The separator is determined by the TidyContact option, but defaults to "-"
    */
   private liveValidate() {
     if (!this.shouldValidateUSZipCode()) return;
@@ -79,8 +92,8 @@ export class PostalCodeValidator {
     value = value.replace(/[^0-9\s+-]|(?<!^.{5})[\s+-]/g, "");
     //replace + and space with - and insert a dash after the 5th character if a 6th character is entered
     if (value.match(/\d{5}/)) {
-      value = value.replace(/[\s+]/g, "-");
-      value = value.replace(/(\d{5})(\d)/, "$1-$2");
+      value = value.replace(/[\s+]/g, this.separator);
+      value = value.replace(/(\d{5})(\d)/, `$1${this.separator}$2`);
     }
     //set field value with max 10 characters
     this.postalCodeField.value = value.slice(0, 10);
@@ -94,5 +107,37 @@ export class PostalCodeValidator {
       : "US";
 
     return ["US", "United States", ""].includes(country);
+  }
+
+  private getSeparator(): string {
+    const tidyContact = ENGrid.getOption(
+      "TidyContact"
+    ) as Options["TidyContact"];
+
+    if (
+      tidyContact &&
+      tidyContact.us_zip_divider &&
+      this.supportedSeparators.includes(tidyContact.us_zip_divider)
+    ) {
+      return tidyContact.us_zip_divider;
+    }
+
+    return "-";
+  }
+
+  private getRegexSeparator(separator: string): string {
+    switch (separator) {
+      case "+":
+        return "\\+";
+      case "-":
+        return "-";
+      case " ":
+        return "\\s";
+      default:
+        this.logger.log(
+          `Invalid separator "${separator}" provided to PostalCodeValidator, falling back to "-".`
+        );
+        return "-";
+    }
   }
 }
