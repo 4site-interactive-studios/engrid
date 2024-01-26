@@ -1687,11 +1687,6 @@ textarea,
     padding: 0;
   }
 }
-.en__hubMembership__card__update,
-.en__hubUpdateCC__toggle {
-  visibility: hidden;
-}
-
 .en__hubPledge__icon {
   margin-right: 1.5rem;
 }

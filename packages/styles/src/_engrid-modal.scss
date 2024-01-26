@@ -267,22 +267,7 @@
   }
 }
 
-//&[data-engrid-modal="open"] {
-//  overflow: hidden;
-//
-//  //&:not(#en__pagebuilder) .body-bottom {
-//  //  z-index: 7;
-//  //}
-//}
-//
-//&:not([data-engrid-modal="open"]):not(#en__pagebuilder) {
-//  .engrid-modal {
-//    display: none;
-//  }
-//}
-
 // generic modal styles
-
 .engrid-modal {
   position: fixed;
   top: 0;
