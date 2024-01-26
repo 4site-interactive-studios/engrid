@@ -20,6 +20,7 @@ export class PostalCodeValidator {
             this._form.onValidate.subscribe(() => {
                 if (!this._form.validate)
                     return;
+                this.liveValidate();
                 // It seems like we need some delay or EN removes our error message.
                 setTimeout(() => {
                     this.validate();
@@ -40,7 +41,7 @@ export class PostalCodeValidator {
     }
     validate() {
         if (this.shouldValidateUSZipCode() && !this.isValidUSZipCode()) {
-            ENGrid.setError(".en__field--postcode", "Please enter a valid zip code.");
+            ENGrid.setError(".en__field--postcode", `Please enter a valid ZIP Code of ##### or #####${this.separator}####`);
         }
         else {
             ENGrid.removeError(".en__field--postcode");
@@ -81,7 +82,7 @@ export class PostalCodeValidator {
         const country = ENGrid.getField("supporter.country")
             ? ENGrid.getFieldValue("supporter.country")
             : "US";
-        return ["US", "United States", ""].includes(country);
+        return ["us", "united states", "usa", ""].includes(country.toLowerCase());
     }
     getSeparator() {
         const tidyContact = ENGrid.getOption("TidyContact");
