@@ -8,7 +8,6 @@ export class Modal {
             closeButtonLabel: "Okay!",
         };
         this.focusTrapHandler = (e) => {
-            console.log("focusTrapHandler", this, e);
             const modalElement = this.modal;
             const focusableElements = [
                 ...modalElement.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'),

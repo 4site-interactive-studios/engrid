@@ -103,7 +103,6 @@ export abstract class Modal {
   }
 
   private focusTrapHandler = (e: KeyboardEvent) => {
-    console.log("focusTrapHandler", this, e);
     const modalElement = this.modal as HTMLElement;
 
     const focusableElements: Array<HTMLElement> = [
