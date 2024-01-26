@@ -95,8 +95,7 @@
 }
 
 @media only screen and (max-width: 600px),
-only screen and (max-device-width: 600px) {
-
+  only screen and (max-device-width: 600px) {
   .en__component--row,
   .en__component--row.en__component--advrow {
     // display: block
@@ -132,7 +131,7 @@ only screen and (max-device-width: 600px) {
   margin-top: 0.75rem; // 12px
 }
 
-.en__component--hubgadget>img {
+.en__component--hubgadget > img {
   height: auto; // 56px
 }
 
@@ -162,7 +161,7 @@ only screen and (max-device-width: 600px) {
   padding: 0; // 0.375rem 0
 }
 
-.en__field__label--positionabove+.en__field__helpText {
+.en__field__label--positionabove + .en__field__helpText {
   display: block;
 }
 
@@ -599,12 +598,15 @@ only screen and (max-device-width: 600px) {
 }
 
 .en__ticketBlock--recurring .en__ticketRecurring,
-.en__ticketBlock--recurring.en__ticketBlock--recurring--selected .en__occurrenceSummary,
-.en__ticketBlock--recurring.en__ticketBlock--recurring--selected .en__ticketSummary {
+.en__ticketBlock--recurring.en__ticketBlock--recurring--selected
+  .en__occurrenceSummary,
+.en__ticketBlock--recurring.en__ticketBlock--recurring--selected
+  .en__ticketSummary {
   display: flex;
 }
 
-.en__ticketBlock--recurring.en__ticketBlock--recurring--selected .en__ticketRecurring,
+.en__ticketBlock--recurring.en__ticketBlock--recurring--selected
+  .en__ticketRecurring,
 .en__ticketRecurring {
   display: none;
 }
@@ -646,7 +648,8 @@ only screen and (max-device-width: 600px) {
   align-items: center;
 }
 
-.en__eventOccurrencesDateSelector:not(.en__eventOccurrencesDateSelector--selected) .en__eventOccurrencesDateSelector__clear {
+.en__eventOccurrencesDateSelector:not(.en__eventOccurrencesDateSelector--selected)
+  .en__eventOccurrencesDateSelector__clear {
   display: none;
 }
 
@@ -696,7 +699,7 @@ only screen and (max-device-width: 600px) {
   font-family: inherit;
 }
 
-.en__eventOccurrence__select>label {
+.en__eventOccurrence__select > label {
   display: block;
   padding: 0; // 7px 14px;
   cursor: pointer;
@@ -732,8 +735,10 @@ only screen and (max-device-width: 600px) {
   // background-image: url(https://e-activist.com/pageassets/images/en_next.png);
 }
 
-.en__eventOccurrencesPagination--end .en__eventOccurrencesPagination__control--forward,
-.en__eventOccurrencesPagination--start .en__eventOccurrencesPagination__control--back {
+.en__eventOccurrencesPagination--end
+  .en__eventOccurrencesPagination__control--forward,
+.en__eventOccurrencesPagination--start
+  .en__eventOccurrencesPagination__control--back {
   opacity: 0.3;
   cursor: default;
 }
@@ -1146,7 +1151,9 @@ only screen and (max-device-width: 600px) {
   // background: url(https://e-activist.com/pageassets/images/en_message.png) center center no-repeat #dfdfdf;
 }
 
-.en__contacts--singleMessageMode .en__contact--showBackground .en__contactDetails__background {
+.en__contacts--singleMessageMode
+  .en__contact--showBackground
+  .en__contactDetails__background {
   // background: url(https://e-activist.com/pageassets/images/en_backgroundClose.png) center center no-repeat #dfdfdf;
 }
 
@@ -1182,7 +1189,9 @@ only screen and (max-device-width: 600px) {
 }
 
 .en__contact--open.en__contact--showBackground .en__contactBackground,
-.en__contacts--singleMessageMode .en__contact--showBackground .en__contactBackground {
+.en__contacts--singleMessageMode
+  .en__contact--showBackground
+  .en__contactBackground {
   // display: block
 }
 
@@ -1283,7 +1292,9 @@ only screen and (max-device-width: 600px) {
 .en__contacts--singleTweetMode .en__twitterTarget__select {
   // display: block
   flex: 1 0 auto; // Needed to collapse the checkbox area
-  height: var(--checkbox_height); // Matches the pseudo element that adds the checkbox
+  height: var(
+    --checkbox_height
+  ); // Matches the pseudo element that adds the checkbox
   display: grid;
   margin: 0;
 }
@@ -1681,20 +1692,20 @@ only screen and (max-device-width: 600px) {
   max-width: 37.5rem; // 600px @HOLD-TODO Investigate, there has to be a better way to do this
 }
 
-.en__hubOverlay--membership>.en__hubOverlay__popup {
+.en__hubOverlay--membership > .en__hubOverlay__popup {
   max-width: 50rem; // 800px - @HOLD-TODO Investigate, there has to be a better way to do this
 }
 
-.en__hubOverlay--membershipHistory>.en__hubOverlay__popup {
+.en__hubOverlay--membershipHistory > .en__hubOverlay__popup {
   max-width: 37.5rem; // 600px @HOLD-TODO Investigate, there has to be a better way to do this
 }
 
-.en__hubOverlay--memCardUpdate>.en__hubOverlay__popup {
+.en__hubOverlay--memCardUpdate > .en__hubOverlay__popup {
   max-width: 58.125rem; // 930px - @HOLD-TODO Investigate, there has to be a better way to do this
 }
 
-.en__hubOverlay--membershipRenew>.en__hubOverlay__popup,
-.en__hubOverlay--txngiving>.en__hubOverlay__popup {
+.en__hubOverlay--membershipRenew > .en__hubOverlay__popup,
+.en__hubOverlay--txngiving > .en__hubOverlay__popup {
   max-width: 37.5rem; // 600px - @HOLD-TODO Investigate, there has to be a better way to do this
 }
 
@@ -1732,8 +1743,10 @@ only screen and (max-device-width: 600px) {
 }
 
 .en__supporterHubLogin {
-  width: min(100%,
-      26.25rem); // 420px - @HOLD-TODO There has to be a better way to do this than a fixed width
+  width: min(
+    100%,
+    26.25rem
+  ); // 420px - @HOLD-TODO There has to be a better way to do this than a fixed width
   // margin: auto;
   border: 1px solid #bfbfbf;
   border-radius: var(--input_border-radius); // 6px
@@ -1842,12 +1855,12 @@ only screen and (max-device-width: 600px) {
   color: #0070ba;
 }
 
-.en__hubOverlay__impact .en__hubOverlay__content>div {
+.en__hubOverlay__impact .en__hubOverlay__content > div {
   // background: url(https://e-activist.com/pageassets/images/en_thumbsup.png) no-repeat;
   padding: 0 0 0 11.25rem; // 0 0 0 160px
 }
 
-.en__hubOverlay__impact .en__hubOverlay__content.hubdetail>div {
+.en__hubOverlay__impact .en__hubOverlay__content.hubdetail > div {
   // background: 0 0;
   // padding: 0
 }
@@ -1868,7 +1881,9 @@ only screen and (max-device-width: 600px) {
 }
 
 .en__p2phub__site a {
-  color: var(--color_black) !important; // @HOLD-TODO Investigate, there has to be a better way to do this
+  color: var(
+    --color_black
+  ) !important; // @HOLD-TODO Investigate, there has to be a better way to do this
   // text-decoration: none!important;
   // display: block;
   border-radius: var(--input_border-radius); // 3px
@@ -1880,7 +1895,7 @@ only screen and (max-device-width: 600px) {
 }
 
 @media (max-width: 768px) {
-  .en__hubOverlay__impact .en__hubOverlay__content>div {
+  .en__hubOverlay__impact .en__hubOverlay__content > div {
     background: 0 0;
     padding: 0;
   }
@@ -2091,7 +2106,7 @@ only screen and (max-device-width: 600px) {
   // flex-wrap: wrap
 }
 
-.en__hubMembership__membership__details>div {
+.en__hubMembership__membership__details > div {
   // flex: 1 0 50%;
   min-width: initial; // 300px - Set to no min-width
 }
@@ -2289,7 +2304,7 @@ only screen and (max-device-width: 600px) {
   // cursor: pointer
 }
 
-.en__pg__imageSelector input:checked+.en__pg__imageRadio {
+.en__pg__imageSelector input:checked + .en__pg__imageRadio {
   background-color: #bfbfbf;
   border-color: #bfbfbf;
 }
@@ -2411,7 +2426,9 @@ only screen and (max-device-width: 600px) {
   // margin: 6px
 }
 
-.en__component--memordersummary .en__orderSummary__item--total .en__orderSummary__data:first-child {
+.en__component--memordersummary
+  .en__orderSummary__item--total
+  .en__orderSummary__data:first-child {
   // text-align: right
 }
 
@@ -2623,8 +2640,10 @@ only screen and (max-device-width: 600px) {
   // display: none
 }
 
-.en__component--callcontactblock.en__component--callcontactblock--inofficehours .en__contacts,
-.en__component--callcontactblock.en__component--callcontactblock--outofoffice .en__component--callcontactblock__officehours {
+.en__component--callcontactblock.en__component--callcontactblock--inofficehours
+  .en__contacts,
+.en__component--callcontactblock.en__component--callcontactblock--outofoffice
+  .en__component--callcontactblock__officehours {
   // display: block
 }
 
@@ -2681,7 +2700,8 @@ only screen and (max-device-width: 600px) {
 
 .en__component--svblock--displayInOrder .en__field--survey--surveyActive,
 .en__component--svblock--displayInOrder .en__field--survey--surveyDone,
-.en__component--svblock--displayInOrder .en__field--survey[class*="validationFail"],
+.en__component--svblock--displayInOrder
+  .en__field--survey[class*="validationFail"],
 .en__component--svblock--displayInOrder .en__field--survey:first-child {
   // display: block
 }
@@ -2690,7 +2710,7 @@ only screen and (max-device-width: 600px) {
   // counter-reset: surveyFieldNumbering
 }
 
-.en__component--svblock--numbered .en__field>.en__field__label:before {
+.en__component--svblock--numbered .en__field > .en__field__label:before {
   // counter-increment: surveyFieldNumbering;
   content: counter(surveyFieldNumbering) ". "; // @HOLD-TODO - Changed from single quote to double quotes so it work with http://www.css-color-extractor.com/
 }
