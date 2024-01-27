@@ -71,6 +71,7 @@ export * from "./set-attr";
 export * from "./show-if-present";
 export * from "./en-validators";
 export * from "./modal";
+export * from "./postal-code-validator";
 // Events
 export * from "./events";
 // Version

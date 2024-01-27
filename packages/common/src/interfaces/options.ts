@@ -101,7 +101,7 @@ export interface Options {
         default: { [key: string]: string };
         countries?: { [key: string]: { [key: string]: string } };
       };
-
+  PostalCodeValidator?: boolean;
   onLoad?: () => void;
   onResize?: () => void;
   onSubmit?: () => void;
@@ -145,6 +145,7 @@ export const OptionsDefaults: Options = {
   ENValidators: false,
   MobileCTA: false,
   CustomCurrency: false,
+  PostalCodeValidator: false,
   PageLayouts: [
     "leftleft1col",
     "centerleft1col",

@@ -34,6 +34,7 @@ export const OptionsDefaults = {
     ENValidators: false,
     MobileCTA: false,
     CustomCurrency: false,
+    PostalCodeValidator: false,
     PageLayouts: [
         "leftleft1col",
         "centerleft1col",
