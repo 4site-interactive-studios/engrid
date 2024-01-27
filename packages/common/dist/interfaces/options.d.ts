@@ -95,6 +95,7 @@ export interface Options {
             };
         };
     };
+    PostalCodeValidator?: boolean;
     onLoad?: () => void;
     onResize?: () => void;
     onSubmit?: () => void;
