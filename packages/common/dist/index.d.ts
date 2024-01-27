@@ -70,6 +70,7 @@ export * from "./fast-form-fill";
 export * from "./set-attr";
 export * from "./show-if-present";
 export * from "./en-validators";
+export * from "./modal";
 export * from "./postal-code-validator";
 export * from "./events";
 export * from "./version";
