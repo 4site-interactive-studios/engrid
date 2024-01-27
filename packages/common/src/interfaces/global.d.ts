@@ -29,5 +29,6 @@ declare global {
     _nb: any;
     FreshAddress: any;
     FreshAddressStatus: string;
+    enVGSFields: any;
   }
 }

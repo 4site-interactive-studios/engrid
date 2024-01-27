@@ -15,6 +15,10 @@ export class CreditCard {
   );
   private _form: EnForm = EnForm.getInstance();
 
+  private vgsField = document.querySelector(
+    ".en__field--vgs"
+  ) as HTMLDivElement;
+
   private ccField: HTMLInputElement = ENGrid.getField(
     "transaction.ccnumber"
   ) as HTMLInputElement;
@@ -51,6 +55,10 @@ export class CreditCard {
   ) as HTMLSelectElement;
 
   constructor() {
+    if (this.vgsField) {
+      this.logger.log("The Page is Using VGS. Exiting Credit Card Handler");
+      return;
+    }
     if (!this.ccField) return;
     // Set credit card field to type="tel" to prevent mobile browsers from
     //  showing a credit card number keyboard, only if the field is not hidden

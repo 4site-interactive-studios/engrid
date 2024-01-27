@@ -95,6 +95,30 @@ export interface Options {
             };
         };
     };
+    VGS?: false | {
+        "transaction.ccnumber"?: {
+            showCardIcon?: boolean;
+            css?: {
+                [key: string]: string | object;
+            };
+            icons?: {
+                [key: string]: string;
+            };
+            ariaLabel?: string;
+            autoFocus?: boolean;
+            placeholder?: string;
+        };
+        "transaction.ccvv"?: {
+            showCardIcon?: boolean;
+            css?: {
+                [key: string]: string | object;
+            };
+            ariaLabel?: string;
+            autoFocus?: boolean;
+            placeholder?: string;
+            hideValue?: boolean;
+        };
+    };
     PostalCodeValidator?: boolean;
     onLoad?: () => void;
     onResize?: () => void;

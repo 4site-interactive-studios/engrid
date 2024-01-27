@@ -101,6 +101,32 @@ export interface Options {
         default: { [key: string]: string };
         countries?: { [key: string]: { [key: string]: string } };
       };
+  VGS?:
+    | false
+    | {
+        "transaction.ccnumber"?: {
+          showCardIcon?: boolean;
+          css?: {
+            [key: string]: string | object;
+          };
+          icons?: {
+            [key: string]: string;
+          };
+          ariaLabel?: string;
+          autoFocus?: boolean;
+          placeholder?: string;
+        };
+        "transaction.ccvv"?: {
+          showCardIcon?: boolean;
+          css?: {
+            [key: string]: string | object;
+          };
+          ariaLabel?: string;
+          autoFocus?: boolean;
+          placeholder?: string;
+          hideValue?: boolean;
+        };
+      };
   PostalCodeValidator?: boolean;
   onLoad?: () => void;
   onResize?: () => void;
@@ -145,6 +171,7 @@ export const OptionsDefaults: Options = {
   ENValidators: false,
   MobileCTA: false,
   CustomCurrency: false,
+  VGS: false,
   PostalCodeValidator: false,
   PageLayouts: [
     "leftleft1col",

@@ -1,6 +1,7 @@
 export declare class CreditCard {
     private logger;
     private _form;
+    private vgsField;
     private ccField;
     private ccValues;
     private isPotentiallyValid;

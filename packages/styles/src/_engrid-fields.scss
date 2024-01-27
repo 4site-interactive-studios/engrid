@@ -244,7 +244,8 @@
     .en__field__element {
       > input,
       > select,
-      > textarea {
+      > textarea,
+      > .en__field__input--vgs {
         margin-top: calc(var(--fields_spacing-inline) * 0.5);
         margin-bottom: var(--fields_spacing-block);
       }
@@ -1119,7 +1120,9 @@ textarea[readonly] {
 // When live currency is active, hide radio labels until replacement is done
 
 body[data-engrid-live-currency="active"] {
-  .en__field--donationAmt .en__field__item:not([data-engrid-currency-symbol-updated="true"]) label {
-    color: transparent!important;
+  .en__field--donationAmt
+    .en__field__item:not([data-engrid-currency-symbol-updated="true"])
+    label {
+    color: transparent !important;
   }
 }

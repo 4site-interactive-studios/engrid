@@ -7,6 +7,7 @@ export class CreditCard {
     constructor() {
         this.logger = new EngridLogger("CreditCard", "#ccc84a", "#333", "💳");
         this._form = EnForm.getInstance();
+        this.vgsField = document.querySelector(".en__field--vgs");
         this.ccField = ENGrid.getField("transaction.ccnumber");
         this.ccValues = {
             "american-express": [
@@ -78,6 +79,10 @@ export class CreditCard {
                 }
             }
         };
+        if (this.vgsField) {
+            this.logger.log("The Page is Using VGS. Exiting Credit Card Handler");
+            return;
+        }
         if (!this.ccField)
             return;
         // Set credit card field to type="tel" to prevent mobile browsers from

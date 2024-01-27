@@ -83,6 +83,7 @@ export * from "./show-if-present";
 export * from "./en-validators";
 export * from "./modal";
 export * from "./postal-code-validator";
+export * from "./vgs";
 
 // Events
 export * from "./events";
