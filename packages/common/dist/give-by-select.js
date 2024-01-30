@@ -3,13 +3,19 @@ export class GiveBySelect {
     constructor() {
         this.logger = new EngridLogger("GiveBySelect", "#FFF", "#333", "🐇");
         this.transactionGiveBySelect = document.getElementsByName("transaction.giveBySelect");
+        this.vgsField = document.querySelector(".en__field--vgs");
         if (!this.transactionGiveBySelect)
             return;
         this.transactionGiveBySelect.forEach((giveBySelect) => {
             giveBySelect.addEventListener("change", () => {
                 this.logger.log("Changed to " + giveBySelect.value);
                 if (giveBySelect.value.toLowerCase() === "card") {
-                    ENGrid.setPaymentType("");
+                    if (this.vgsField) {
+                        ENGrid.setPaymentType("visa"); // VGS will not change the payment type field, so we have to do it manually to avoid errors
+                    }
+                    else {
+                        ENGrid.setPaymentType("");
+                    }
                 }
                 else {
                     ENGrid.setPaymentType(giveBySelect.value);

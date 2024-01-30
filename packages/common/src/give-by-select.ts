@@ -11,13 +11,21 @@ export class GiveBySelect {
     "transaction.giveBySelect"
   ) as NodeListOf<HTMLInputElement>;
 
+  private vgsField = document.querySelector(
+    ".en__field--vgs"
+  ) as HTMLDivElement;
+
   constructor() {
     if (!this.transactionGiveBySelect) return;
     this.transactionGiveBySelect.forEach((giveBySelect) => {
       giveBySelect.addEventListener("change", () => {
         this.logger.log("Changed to " + giveBySelect.value);
         if (giveBySelect.value.toLowerCase() === "card") {
-          ENGrid.setPaymentType("");
+          if (this.vgsField) {
+            ENGrid.setPaymentType("visa"); // VGS will not change the payment type field, so we have to do it manually to avoid errors
+          } else {
+            ENGrid.setPaymentType("");
+          }
         } else {
           ENGrid.setPaymentType(giveBySelect.value);
         }
