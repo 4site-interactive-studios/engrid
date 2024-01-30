@@ -52,6 +52,7 @@ export interface Options {
         enableIP?: boolean;
         generateFP?: Function;
         generateIP?: Function;
+        defaultFPRemoteURL?: string;
     };
     TidyContact?: false | {
         cid?: string;

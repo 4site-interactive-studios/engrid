@@ -53,7 +53,6 @@ export class RememberMe {
         if (options.encryptWithIP || options.encryptWithFP) {
             this.encryptionEnabled = true;
             window.addEventListener('engrid-ident', ((event) => {
-                console.log('engrid-ident details', event.detail);
                 if (event.detail.type === 'ip') {
                     this.ipKey = event.detail.payload;
                     this.ipReceived = true;
@@ -97,6 +96,9 @@ export class RememberMe {
                     data.key &&
                     data.value !== undefined &&
                     data.key === this.cookieName) {
+                    if (this.encryptionEnabled) {
+                        data.value = this.decryptData(data.value);
+                    }
                     this.updateFieldData(data.value);
                     this.writeFields();
                     let hasFieldData = Object.keys(this.fieldData).length > 0;
@@ -276,12 +278,23 @@ export class RememberMe {
     }
     saveCookieToRemote() {
         if (this.iframe && this.iframe.contentWindow) {
-            this.iframe.contentWindow.postMessage(JSON.stringify({
-                key: this.cookieName,
-                value: this.fieldData,
-                operation: "write",
-                expires: this.cookieExpirationDays,
-            }), "*");
+            if (this.fieldData && this.encryptionEnabled) {
+                let encryptedFieldData = this.encryptData(JSON.stringify(this.fieldData));
+                this.iframe.contentWindow.postMessage(JSON.stringify({
+                    key: this.cookieName,
+                    value: encryptedFieldData,
+                    operation: "write",
+                    expires: this.cookieExpirationDays,
+                }), "*");
+            }
+            else {
+                this.iframe.contentWindow.postMessage(JSON.stringify({
+                    key: this.cookieName,
+                    value: this.fieldData,
+                    operation: "write",
+                    expires: this.cookieExpirationDays,
+                }), "*");
+            }
         }
     }
     encryptionKey() {
@@ -297,15 +310,17 @@ export class RememberMe {
     decryptData(jsonData) {
         const encryptionKey = this.encryptionKey();
         if (encryptionKey) {
+            console.log('jsonData before decrypt', jsonData);
             const decryptedText = CryptoJS.AES.decrypt(jsonData, encryptionKey).toString(CryptoJS.enc.Utf8);
             // check if the text decrypted correctly; if it did not, we'll clear it
+            console.log('jsonData after decrypt', decryptedText);
             try {
                 JSON.parse(decryptedText);
                 jsonData = decryptedText;
             }
             catch (e) {
                 jsonData = '';
-                console.log('Decrypted data isnt valid');
+                console.log('Decrypted data isnt valid', decryptedText);
             }
         }
         return jsonData;
@@ -314,21 +329,21 @@ export class RememberMe {
         console.log('jsonData before encrypt: ', jsonData);
         const encryptionKey = this.encryptionKey();
         if (encryptionKey) {
-            jsonData = CryptoJS.AES.encrypt(jsonData, encryptionKey).toString(CryptoJS.enc.Utf8);
+            jsonData = CryptoJS.AES.encrypt(jsonData, encryptionKey).toString();
             console.log('jsonData after encrypt: ', jsonData);
         }
         return jsonData;
     }
     readCookie() {
         let jsonFieldData = cookie.get(this.cookieName) || "";
-        if (this.encryptionEnabled) {
+        if (jsonFieldData && this.encryptionEnabled) {
             jsonFieldData = this.decryptData(jsonFieldData);
         }
         this.updateFieldData(jsonFieldData);
     }
     saveCookie() {
         let jsonFieldData = JSON.stringify(this.fieldData);
-        if (this.encryptionEnabled) {
+        if (jsonFieldData && this.encryptionEnabled) {
             jsonFieldData = this.encryptData(jsonFieldData);
         }
         cookie.set(this.cookieName, jsonFieldData, {

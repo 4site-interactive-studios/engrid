@@ -5,6 +5,7 @@ export interface EngridIdentData {
 export declare class Identification {
     private generateFP;
     private generateIP;
+    private defaultFPRemoteURL;
     private _fp;
     private _ip;
     constructor(options: {
@@ -12,7 +13,8 @@ export declare class Identification {
         enableIP?: boolean;
         generateFP?: Function;
         generateIP?: Function;
+        defaultFPRemoteURL?: string;
     });
     dispatchEvent(type: string, value: string): void;
-    createIframe(id: string): void;
+    createIframe(id: string, url: string): void;
 }
