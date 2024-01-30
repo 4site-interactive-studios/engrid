@@ -93,13 +93,24 @@ export class PostalCodeValidator {
     if (!this.shouldValidateUSZipCode()) return;
 
     let value = this.postalCodeField?.value;
-    // Removing all non-numeric characters and separators in the wrong position
-    value = value.replace(/[^0-9\s+-]|(?<!^.{5})[\s+-]/g, "");
-    //replace + and space with - and insert a dash after the 5th character if a 6th character is entered
-    if (value.match(/\d{5}/)) {
-      value = value.replace(/[\s+]/g, this.separator);
+    // If the value is 5 characters or less, remove all non-numeric characters
+    if (value.length <= 5) {
+      value = value.replace(/\D/g, "");
+    }
+    // If one of the supported separators is endered as the 6th character, replace it with the official separator
+    else if (
+      value.length === 6 &&
+      this.supportedSeparators.includes(value[5])
+    ) {
+      // Removing all non-numeric characters
+      value = value.replace(/\D/g, "") + this.separator;
+    } else {
+      // Removing all non-numeric characters
+      value = value.replace(/\D/g, "");
+      // Adding the separator after the 5th character
       value = value.replace(/(\d{5})(\d)/, `$1${this.separator}$2`);
     }
+
     //set field value with max 10 characters
     this.postalCodeField.value = value.slice(0, 10);
   }
