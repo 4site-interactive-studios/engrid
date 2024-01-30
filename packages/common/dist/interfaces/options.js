@@ -25,6 +25,7 @@ export const OptionsDefaults = {
     AutoYear: false,
     TranslateFields: true,
     Debug: false,
+    Identification: false,
     RememberMe: false,
     TidyContact: false,
     RegionLongFormat: "",

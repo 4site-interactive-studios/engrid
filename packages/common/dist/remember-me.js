@@ -1,5 +1,6 @@
 import * as cookie from "./cookie";
 import { EnForm, RememberMeEvents } from "./events";
+const CryptoJS = require("crypto-js");
 const tippy = require("tippy.js").default;
 export class RememberMe {
     constructor(options) {
@@ -44,6 +45,36 @@ export class RememberMe {
                 ? options.fieldClearSelectorTargetLocation
                 : "before";
         this.fieldData = {};
+        this.fpKey = '';
+        this.ipKey = '';
+        this.fpReceived = false;
+        this.ipReceived = false;
+        this.encryptionEnabled = false;
+        if (options.encryptWithIP || options.encryptWithFP) {
+            this.encryptionEnabled = true;
+            window.addEventListener('engrid-ident', ((event) => {
+                console.log('engrid-ident details', event.detail);
+                if (event.detail.type === 'ip') {
+                    this.ipKey = event.detail.payload;
+                    this.ipReceived = true;
+                    if (!options.encryptWithFP || this.fpReceived) {
+                        this.completeConfiguration();
+                    }
+                }
+                else if (event.detail.type === 'fp') {
+                    this.fpKey = event.detail.payload;
+                    this.fpReceived = true;
+                    if (!options.encryptWithIP || this.ipReceived) {
+                        this.completeConfiguration();
+                    }
+                }
+            }));
+        }
+        else {
+            this.completeConfiguration();
+        }
+    }
+    completeConfiguration() {
         if (this.useRemote()) {
             this.createIframe(() => {
                 if (this.iframe && this.iframe.contentWindow) {
@@ -253,11 +284,54 @@ export class RememberMe {
             }), "*");
         }
     }
+    encryptionKey() {
+        let encryptionKey = '';
+        if (this.ipReceived && this.ipKey) {
+            encryptionKey += this.ipKey;
+        }
+        if (this.fpReceived && this.fpKey) {
+            encryptionKey += this.fpKey;
+        }
+        return encryptionKey;
+    }
+    decryptData(jsonData) {
+        const encryptionKey = this.encryptionKey();
+        if (encryptionKey) {
+            const decryptedText = CryptoJS.AES.decrypt(jsonData, encryptionKey).toString(CryptoJS.enc.Utf8);
+            // check if the text decrypted correctly; if it did not, we'll clear it
+            try {
+                JSON.parse(decryptedText);
+                jsonData = decryptedText;
+            }
+            catch (e) {
+                jsonData = '';
+                console.log('Decrypted data isnt valid');
+            }
+        }
+        return jsonData;
+    }
+    encryptData(jsonData) {
+        console.log('jsonData before encrypt: ', jsonData);
+        const encryptionKey = this.encryptionKey();
+        if (encryptionKey) {
+            jsonData = CryptoJS.AES.encrypt(jsonData, encryptionKey).toString(CryptoJS.enc.Utf8);
+            console.log('jsonData after encrypt: ', jsonData);
+        }
+        return jsonData;
+    }
     readCookie() {
-        this.updateFieldData(cookie.get(this.cookieName) || "");
+        let jsonFieldData = cookie.get(this.cookieName) || "";
+        if (this.encryptionEnabled) {
+            jsonFieldData = this.decryptData(jsonFieldData);
+        }
+        this.updateFieldData(jsonFieldData);
     }
     saveCookie() {
-        cookie.set(this.cookieName, JSON.stringify(this.fieldData), {
+        let jsonFieldData = JSON.stringify(this.fieldData);
+        if (this.encryptionEnabled) {
+            jsonFieldData = this.encryptData(jsonFieldData);
+        }
+        cookie.set(this.cookieName, jsonFieldData, {
             expires: this.cookieExpirationDays,
         });
     }

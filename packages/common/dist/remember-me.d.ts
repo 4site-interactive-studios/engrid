@@ -17,6 +17,11 @@ export declare class RememberMe {
     private fieldOptInSelectorTargetLocation;
     private fieldClearSelectorTarget;
     private fieldClearSelectorTargetLocation;
+    private fpKey;
+    private ipKey;
+    private fpReceived;
+    private ipReceived;
+    private encryptionEnabled;
     constructor(options: {
         remoteUrl?: string;
         cookieName?: string;
@@ -31,7 +36,10 @@ export declare class RememberMe {
         fieldClearSelectorTarget?: string;
         fieldClearSelectorTargetLocation?: string;
         checked?: boolean;
+        encryptWithIP?: boolean;
+        encryptWithFP?: boolean;
     });
+    private completeConfiguration;
     private updateFieldData;
     private insertClearRememberMeLink;
     private getElementByFirstSelector;
@@ -41,6 +49,9 @@ export declare class RememberMe {
     private clearCookie;
     private clearCookieOnRemote;
     private saveCookieToRemote;
+    private encryptionKey;
+    private decryptData;
+    private encryptData;
     private readCookie;
     private saveCookie;
     private readFields;

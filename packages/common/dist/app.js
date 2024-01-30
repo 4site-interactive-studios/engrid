@@ -1,5 +1,5 @@
 import { DonationAmount, DonationFrequency, EnForm, ProcessingFees, } from "./events";
-import { AmountLabel, Loader, ProgressBar, UpsellLightbox, ENGrid, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, A11y, CapitalizeFields, CreditCard, Ecard, ClickToExpand, Advocacy, DataAttributes, LiveVariables, iFrame, InputPlaceholders, InputHasValueAndFocus, ShowHideRadioCheckboxes, AutoCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce, AutoYear, Autocomplete, RememberMe, TranslateFields, ShowIfAmount, EngridLogger, OtherAmount, MinMaxAmount, Ticker, DataReplace, DataHide, AddNameToMessage, ExpandRegionName, AppVersion, UrlToForm, RequiredIfVisible, TidyContact, DataLayer, LiveCurrency, Autosubmit, EventTickets, SwapAmounts, DebugPanel, DebugHiddenFields, FreshAddress, BrandingHtml, CountryDisable, PremiumGift, DigitalWallets, MobileCTA, LiveFrequency, UniversalOptIn, Plaid, GiveBySelect, UrlParamsToBodyAttrs, ExitIntentLightbox, SupporterHub, FastFormFill, SetAttr, ShowIfPresent, ENValidators, } from "./";
+import { AmountLabel, Loader, ProgressBar, UpsellLightbox, ENGrid, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, A11y, CapitalizeFields, CreditCard, Ecard, ClickToExpand, Advocacy, DataAttributes, LiveVariables, iFrame, InputPlaceholders, InputHasValueAndFocus, ShowHideRadioCheckboxes, AutoCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce, AutoYear, Autocomplete, RememberMe, Identification, TranslateFields, ShowIfAmount, EngridLogger, OtherAmount, MinMaxAmount, Ticker, DataReplace, DataHide, AddNameToMessage, ExpandRegionName, AppVersion, UrlToForm, RequiredIfVisible, TidyContact, DataLayer, LiveCurrency, Autosubmit, EventTickets, SwapAmounts, DebugPanel, DebugHiddenFields, FreshAddress, BrandingHtml, CountryDisable, PremiumGift, DigitalWallets, MobileCTA, LiveFrequency, UniversalOptIn, Plaid, GiveBySelect, UrlParamsToBodyAttrs, ExitIntentLightbox, SupporterHub, FastFormFill, SetAttr, ShowIfPresent, ENValidators, } from "./";
 export class App extends ENGrid {
     constructor(options) {
         super();
@@ -176,6 +176,10 @@ export class App extends ENGrid {
         // Progress Bar
         if (this.options.ProgressBar)
             new ProgressBar();
+        // Browser Fingerprinting & IP Address Fetch
+        if (this.options.Identification && typeof this.options.Identification === "object") {
+            new Identification(this.options.Identification);
+        }
         // RememberMe
         try {
             // Accessing window.localStorage will throw an exception if it isn't permitted due to security reasons

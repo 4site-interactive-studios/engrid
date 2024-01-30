@@ -17,6 +17,7 @@
     "make-feature": "lerna run build && lerna publish --yes --cd-version minor"
   },
   "dependencies": {
+    "crypto-js": "^4.2.0",
     "sanitize.css": "^12.0.1",
     "tippy.js": "^6.3.1"
   }

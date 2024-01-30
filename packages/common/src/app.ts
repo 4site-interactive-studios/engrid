@@ -35,6 +35,7 @@ import {
   AutoYear,
   Autocomplete,
   RememberMe,
+  Identification,
   TranslateFields,
   ShowIfAmount,
   EngridLogger,
@@ -292,6 +293,10 @@ export class App extends ENGrid {
     if (this.options.SrcDefer) new SrcDefer();
     // Progress Bar
     if (this.options.ProgressBar) new ProgressBar();
+    // Browser Fingerprinting & IP Address Fetch
+    if (this.options.Identification && typeof this.options.Identification === "object") {
+        new Identification(this.options.Identification);
+    }
 
     // RememberMe
     try {

@@ -47,6 +47,12 @@ export interface Options {
         fieldClearSelectorTargetLocation?: string;
         checked?: boolean;
     };
+    Identification?: boolean | {
+        enableFP?: boolean;
+        enableIP?: boolean;
+        generateFP?: Function;
+        generateIP?: Function;
+    };
     TidyContact?: false | {
         cid?: string;
         record_field?: string;
