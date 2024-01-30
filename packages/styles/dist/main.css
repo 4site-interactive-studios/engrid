@@ -2693,6 +2693,14 @@ input.en__field__input:hover {
   border-bottom-color: var(--input_border-bottom-color_hover);
 }
 
+.en__field__input--vgs {
+  width: 100%;
+}
+.en__field__input--vgs.vgs-collect-container__focused {
+  border-color: var(--input_border-color_hover);
+  border-bottom-color: var(--input_border-bottom-color_hover);
+}
+
 input[type=text],
 input[type=email],
 input[type=number],
@@ -5409,6 +5417,11 @@ body:not[data-engrid-show-ecard-options] .show-if-ecard {
 
 .radio-to-buttons_donationAmt .en__field--donationAmt.en__field--withOther[class*=validationFail] .en__field__error {
   border-radius: var(--donation-amount__button_border-radius);
+}
+
+.en__field--validationFailed .en__field__input--vgs:not(.vgs-collect-container__empty).vgs-collect-container__invalid {
+  border-color: var(--error__color);
+  background-color: var(--error__color_faded);
 }
 
 .en__additional__amount,
