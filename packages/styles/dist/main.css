@@ -2700,6 +2700,9 @@ input.en__field__input:hover {
   border-color: var(--input_border-color_hover);
   border-bottom-color: var(--input_border-bottom-color_hover);
 }
+.en__field__input--vgs iframe {
+  border-radius: var(--input_border-radius);
+}
 
 input[type=text],
 input[type=email],
