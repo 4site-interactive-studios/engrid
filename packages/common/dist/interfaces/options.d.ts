@@ -105,7 +105,6 @@ export interface Options {
                 [key: string]: string;
             };
             ariaLabel?: string;
-            autoFocus?: boolean;
             placeholder?: string;
         };
         "transaction.ccvv"?: {
@@ -114,7 +113,6 @@ export interface Options {
                 [key: string]: string | object;
             };
             ariaLabel?: string;
-            autoFocus?: boolean;
             placeholder?: string;
             hideValue?: boolean;
         };
