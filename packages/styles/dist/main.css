@@ -2695,8 +2695,15 @@ input.en__field__input:hover {
 
 .en__field__input--vgs {
   width: 100%;
+  transition: box-shadow 0.25s, border-color 0.25s ease-in-out;
+}
+.en__field__input--vgs:hover {
+  background-color: var(--input_background-color_hover);
+  border-color: var(--input_border-color_hover);
+  border-bottom-color: var(--input_border-bottom-color_hover);
 }
 .en__field__input--vgs.vgs-collect-container__focused {
+  background-color: var(--input_background-color_hover);
   border-color: var(--input_border-color_hover);
   border-bottom-color: var(--input_border-bottom-color_hover);
 }
