@@ -73,6 +73,7 @@ export * from "./en-validators";
 export * from "./modal";
 export * from "./postal-code-validator";
 export * from "./vgs";
+export * from "./welcome-back";
 // Events
 export * from "./events";
 // Version

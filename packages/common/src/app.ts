@@ -76,6 +76,7 @@ import {
   CustomCurrency,
   VGS,
   PostalCodeValidator,
+  WelcomeBack,
 } from "./";
 
 export class App extends ENGrid {
@@ -406,6 +407,8 @@ export class App extends ENGrid {
 
     // Very Good Security
     new VGS();
+
+    new WelcomeBack();
 
     //Debug panel
     let showDebugPanel = this.options.Debug;
