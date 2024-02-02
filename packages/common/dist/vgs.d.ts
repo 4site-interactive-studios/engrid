@@ -5,5 +5,6 @@ export declare class VGS {
     constructor();
     shouldRun(): boolean;
     setDefaults(): void;
+    setPaymentType(): void;
     dumpGlobalVar(): void;
 }

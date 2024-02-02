@@ -32,13 +32,7 @@ export class VGS {
   private options = ENGrid.getOption("VGS");
   constructor() {
     if (!this.shouldRun()) return;
-    const paymentTypeField = document.querySelector(
-      "#en__field_transaction_paymenttype"
-    ) as HTMLSelectElement;
-    if (paymentTypeField) {
-      // The VGS iFrame Communication doesn't change the value of the payment type field, so we have to do it manually
-      paymentTypeField.value = "visa";
-    }
+    this.setPaymentType();
     this.setDefaults();
     this.dumpGlobalVar();
   }
@@ -73,6 +67,24 @@ export class VGS {
     this.options = { ...defaultOptions, ...options };
     this.logger.log("Theme Options", options);
     this.logger.log("Merged Options", this.options);
+  }
+  setPaymentType() {
+    // Because the VGS iFrame Communication doesn't change the value of the payment type field, we have to set it to Visa by default
+    const paymentTypeField = document.querySelector(
+      "#en__field_transaction_paymenttype"
+    ) as HTMLSelectElement;
+    if (paymentTypeField) {
+      // Loop through the payment type field options and set the visa card as the default
+      for (let i = 0; i < paymentTypeField.options.length; i++) {
+        if (
+          paymentTypeField.options[i].value.toLowerCase() === "visa" ||
+          paymentTypeField.options[i].value.toLowerCase() === "vi"
+        ) {
+          paymentTypeField.selectedIndex = i;
+          break;
+        }
+      }
+    }
   }
   dumpGlobalVar() {
     // Dump the global variable for the VGS options
