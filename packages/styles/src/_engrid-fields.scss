@@ -423,6 +423,13 @@ input.en__field__input {
     background-color: var(--input_background-color_hover);
     border-color: var(--input_border-color_hover);
     border-bottom-color: var(--input_border-bottom-color_hover);
+    outline-style: auto;
+    outline-color: -webkit-focus-ring-color;
+
+    /* Firefox has its own focus ring styling */
+    @-moz-document url-prefix() {
+      outline: 1px dotted #000000;
+    }
   }
   iframe {
     border-radius: var(--input_border-radius);
