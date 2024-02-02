@@ -36,6 +36,7 @@ export const OptionsDefaults = {
     CustomCurrency: false,
     VGS: false,
     PostalCodeValidator: false,
+    WelcomeBack: false,
     PageLayouts: [
         "leftleft1col",
         "centerleft1col",

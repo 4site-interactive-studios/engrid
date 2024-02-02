@@ -118,6 +118,22 @@ export interface Options {
         };
     };
     PostalCodeValidator?: boolean;
+    WelcomeBack?: false | {
+        welcomeBackMessage: {
+            display: boolean;
+            title: string;
+            editText: string;
+            anchor: string;
+            placement: "beforebegin" | "afterbegin" | "beforeend" | "afterend";
+        };
+        personalDetailsSummary: {
+            display: boolean;
+            title: string;
+            editText: string;
+            anchor: string;
+            placement: "beforebegin" | "afterbegin" | "beforeend" | "afterend";
+        };
+    };
     onLoad?: () => void;
     onResize?: () => void;
     onSubmit?: () => void;

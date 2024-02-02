@@ -1,27 +1,8 @@
 import { ENGrid, EngridLogger } from "./";
 import * as cookie from "./cookie";
-
 export class WelcomeBack {
-  private logger: EngridLogger = new EngridLogger(
-    "WelcomeBack",
-    "white",
-    "magenta",
-    "👋"
-  );
   private supporterDetails: { [key: string]: string } = {};
-
-  /**
-   Options:
-     FALSE
-     OR
-   - add welcome back message
-     welcome back message position
-     welcome back message content
-     add personal information summary
-      personal information summary position
-      personal information summary content
-   -
-   */
+  private options = ENGrid.getOption("WelcomeBack") ?? false;
 
   constructor() {
     if (this.shouldRun()) {
@@ -44,24 +25,40 @@ export class WelcomeBack {
   }
 
   private shouldRun() {
-    return !!document.querySelector(".fast-personal-details");
+    return (
+      !!document.querySelector(".fast-personal-details") &&
+      this.options !== false
+    );
   }
 
   private addWelcomeBack() {
+    if (
+      typeof this.options !== "object" ||
+      !this.options.welcomeBackMessage.display
+    )
+      return;
+
+    const options = this.options.welcomeBackMessage;
+
     const welcomeBack = document.createElement("div");
     welcomeBack.classList.add(
       "engrid-welcome-back",
       "showif-fast-personal-details"
     );
 
+    const title = options.title.replace(
+      "{firstName}",
+      this.supporterDetails["firstName"]
+    );
+
     welcomeBack.innerHTML = `<p>
-      Welcome back, ${this.supporterDetails["firstName"]}! 
-      <span class="engrid-reset-welcome-back">Not you?</span>
+      ${title}
+      <span class="engrid-reset-welcome-back">${options.editText}</span>
     </p>`;
 
     document
-      .querySelector(".body-main")
-      ?.insertAdjacentElement("afterbegin", welcomeBack);
+      .querySelector(options.anchor)
+      ?.insertAdjacentElement(options.placement, welcomeBack);
   }
 
   private resetWelcomeBack() {
@@ -85,13 +82,21 @@ export class WelcomeBack {
   }
 
   private addPersonalDetailsSummary() {
+    if (
+      typeof this.options !== "object" ||
+      !this.options.personalDetailsSummary.display
+    )
+      return;
+
+    let options = this.options.personalDetailsSummary;
+
     const personalDetailsSummary = document.createElement("div");
     personalDetailsSummary.classList.add(
       "engrid-personal-details-summary",
       "showif-fast-personal-details"
     );
 
-    personalDetailsSummary.innerHTML = `<h3>Your information</h3>`;
+    personalDetailsSummary.innerHTML = `<h3>${options.title}</h3>`;
 
     personalDetailsSummary.insertAdjacentHTML(
       "beforeend",
@@ -126,13 +131,13 @@ export class WelcomeBack {
     personalDetailsSummary.insertAdjacentHTML(
       "beforeend",
       `
-      <p class="engrid-reset-welcome-back">Change my info <svg viewbox="0 0 528.899 528.899" width="15px" height="15px" xmlns="http://www.w3.org/2000/svg"> <g> <path d="M328.883,89.125l107.59,107.589l-272.34,272.34L56.604,361.465L328.883,89.125z M518.113,63.177l-47.981-47.981 c-18.543-18.543-48.653-18.543-67.259,0l-45.961,45.961l107.59,107.59l53.611-53.611 C532.495,100.753,532.495,77.559,518.113,63.177z M0.3,512.69c-1.958,8.812,5.998,16.708,14.811,14.565l119.891-29.069 L27.473,390.597L0.3,512.69z"></path></g></svg></p>
+      <p class="engrid-reset-welcome-back">${options.editText}<svg viewbox="0 0 528.899 528.899" xmlns="http://www.w3.org/2000/svg"> <g> <path d="M328.883,89.125l107.59,107.589l-272.34,272.34L56.604,361.465L328.883,89.125z M518.113,63.177l-47.981-47.981 c-18.543-18.543-48.653-18.543-67.259,0l-45.961,45.961l107.59,107.59l53.611-53.611 C532.495,100.753,532.495,77.559,518.113,63.177z M0.3,512.69c-1.958,8.812,5.998,16.708,14.811,14.565l119.891-29.069 L27.473,390.597L0.3,512.69z"></path></g></svg></p>
     `
     );
 
     document
-      .querySelector(".fast-personal-details")
-      ?.insertAdjacentElement("beforebegin", personalDetailsSummary);
+      .querySelector(options.anchor)
+      ?.insertAdjacentElement(options.placement, personalDetailsSummary);
   }
 
   private addEventListeners() {
