@@ -21,17 +21,26 @@
 //
 // The VGS component can also be set at the page level, if necessary
 //
-import { ENGrid, EngridLogger } from ".";
+import { ENGrid, EnForm, EngridLogger } from ".";
 export class VGS {
     constructor() {
         this.logger = new EngridLogger("VGS", "black", "pink", "💳");
         this.vgsField = document.querySelector(".en__field--vgs");
         this.options = ENGrid.getOption("VGS");
+        this.paymentTypeField = document.querySelector("#en__field_transaction_paymenttype");
+        this._form = EnForm.getInstance();
         if (!this.shouldRun())
             return;
         this.setPaymentType();
         this.setDefaults();
         this.dumpGlobalVar();
+        this._form.onValidate.subscribe(() => {
+            if (this._form.validate) {
+                const isValid = this.validate();
+                this.logger.log(`Form Validation: ${isValid}`);
+                this._form.validate = isValid;
+            }
+        });
     }
     shouldRun() {
         // Only run if the vgs field is present
@@ -77,13 +86,12 @@ export class VGS {
     }
     setPaymentType() {
         // Because the VGS iFrame Communication doesn't change the value of the payment type field, we have to set it to Visa by default
-        const paymentTypeField = document.querySelector("#en__field_transaction_paymenttype");
-        if (paymentTypeField) {
+        if (this.paymentTypeField) {
             // Loop through the payment type field options and set the visa card as the default
-            for (let i = 0; i < paymentTypeField.options.length; i++) {
-                if (paymentTypeField.options[i].value.toLowerCase() === "visa" ||
-                    paymentTypeField.options[i].value.toLowerCase() === "vi") {
-                    paymentTypeField.selectedIndex = i;
+            for (let i = 0; i < this.paymentTypeField.options.length; i++) {
+                if (this.paymentTypeField.options[i].value.toLowerCase() === "visa" ||
+                    this.paymentTypeField.options[i].value.toLowerCase() === "vi") {
+                    this.paymentTypeField.selectedIndex = i;
                     break;
                 }
             }
@@ -123,5 +131,31 @@ export class VGS {
                 }
             }
         }, 1000);
+    }
+    validate() {
+        if (this.paymentTypeField.value.toLowerCase() === "visa" ||
+            this.paymentTypeField.value.toLowerCase() === "vi") {
+            const cardContainer = document.querySelector(".en__field--vgs.en__field--ccnumber");
+            const cardEmpty = cardContainer.querySelector(".vgs-collect-container__empty");
+            const cvvContainer = document.querySelector(".en__field--vgs.en__field--ccvv");
+            const cvvEmpty = cvvContainer.querySelector(".vgs-collect-container__empty");
+            if (cardContainer && cardEmpty) {
+                window.setTimeout(() => {
+                    ENGrid.setError(cardContainer, "Please enter a valid card number");
+                    // Scroll to the error
+                    cardContainer.scrollIntoView({ behavior: "smooth" });
+                }, 100);
+                return false;
+            }
+            if (cvvContainer && cvvEmpty) {
+                window.setTimeout(() => {
+                    ENGrid.setError(cvvContainer, "Please enter a valid CVV");
+                    // Scroll to the error
+                    cvvContainer.scrollIntoView({ behavior: "smooth" });
+                }, 100);
+                return false;
+            }
+        }
+        return true;
     }
 }

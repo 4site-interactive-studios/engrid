@@ -85,8 +85,9 @@
 }
 
 .en__field--validationFailed
-  .en__field__input--vgs:not(.vgs-collect-container__empty) {
-  &.vgs-collect-container__invalid {
+  .en__field__input--vgs:not(.vgs-collect-container__focused) {
+  &.vgs-collect-container__invalid,
+  &.vgs-collect-container__empty {
     border-color: var(--error__color);
     background-color: var(--error__color_faded);
   }
