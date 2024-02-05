@@ -59,8 +59,8 @@ export class VGS {
                 autoComplete: "cc-csc",
             },
         };
-        // Merge the default options with the options set in the theme
-        this.options = Object.assign(Object.assign({}, defaultOptions), options);
+        // Deep merge the default options with the options set in the theme
+        this.options = ENGrid.deepMerge(defaultOptions, options);
         this.logger.log("Theme Options", options);
         this.logger.log("Merged Options", this.options);
     }

@@ -374,6 +374,15 @@ export class ENGrid {
         }
         return true;
     }
+    // Deep merge two objects
+    static deepMerge(target, source) {
+        for (const key in source) {
+            if (source[key] instanceof Object)
+                Object.assign(source[key], ENGrid.deepMerge(target[key], source[key]));
+        }
+        Object.assign(target || {}, source);
+        return target;
+    }
     static setError(element, errorMessage) {
         const errorElement = typeof element === "string" ? document.querySelector(element) : element;
         if (errorElement) {
