@@ -77,6 +77,7 @@ import {
   CustomCurrency,
   VGS,
   PostalCodeValidator,
+  CountryRedirect,
 } from "./";
 
 export class App extends ENGrid {
@@ -239,6 +240,9 @@ export class App extends ENGrid {
       this.logger.success("Validation Passed");
       return true;
     };
+
+    // Country Redirect
+    new CountryRedirect();
 
     // iFrame Logic
     new iFrame();
