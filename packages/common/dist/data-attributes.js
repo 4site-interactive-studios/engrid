@@ -1,7 +1,8 @@
 // Component that adds data attributes to the Body
-import { ENGrid } from "./";
+import { ENGrid, Country } from "./";
 export class DataAttributes {
     constructor() {
+        this._country = Country.getInstance();
         this.setDataAttributes();
     }
     setDataAttributes() {
@@ -88,11 +89,10 @@ export class DataAttributes {
             ENGrid.setBodyData("no-page-customCode", "");
         }
         // Add a country data attribute
-        const countrySelect = document.querySelector("#en__field_supporter_country");
-        if (countrySelect) {
-            ENGrid.setBodyData("country", countrySelect.value);
-            countrySelect.addEventListener("change", () => {
-                ENGrid.setBodyData("country", countrySelect.value);
+        if (this._country.country) {
+            ENGrid.setBodyData("country", this._country.country);
+            this._country.onCountryChange.subscribe((country) => {
+                ENGrid.setBodyData("country", country);
             });
         }
         const otherAmountDiv = document.querySelector(".en__field--donationAmt .en__field__item--other");

@@ -53,12 +53,12 @@
 //
 // This will override the default CustomCurrency options for that page.
 //
-import { ENGrid, EngridLogger } from ".";
+import { ENGrid, Country, EngridLogger } from ".";
 export class CustomCurrency {
     constructor() {
         this.logger = new EngridLogger("CustomCurrency", "#1901b1", "#00cc95", "🤑");
         this.currencyElement = document.querySelector("[name='transaction.paycurrency']");
-        this.countryElement = document.getElementById("en__field_supporter_country");
+        this._country = Country.getInstance();
         if (!this.shouldRun())
             return;
         this.addEventListeners();
@@ -72,9 +72,9 @@ export class CustomCurrency {
         return true;
     }
     addEventListeners() {
-        if (this.countryElement) {
-            this.countryElement.addEventListener("change", (e) => {
-                this.loadCurrencies(e.target.value);
+        if (this._country.countryField) {
+            this._country.onCountryChange.subscribe((country) => {
+                this.loadCurrencies(country);
             });
         }
     }

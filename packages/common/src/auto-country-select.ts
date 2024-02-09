@@ -1,13 +1,13 @@
 // This class works when the user has added ".simple_country_select" as a class in page builder for the Country select
 import * as cookie from "./cookie";
-import { ENGrid } from ".";
+import { ENGrid, Country } from ".";
 export class AutoCountrySelect {
+  public _countryEvent: Country = Country.getInstance();
   public countryWrapper: HTMLDivElement = document.querySelector(
     ".simple_country_select"
   ) as HTMLDivElement;
-  public countrySelect: HTMLSelectElement = document.querySelector(
-    "select#en__field_supporter_country"
-  ) as HTMLSelectElement;
+  public countrySelect: HTMLSelectElement = this._countryEvent
+    .countryField as HTMLSelectElement;
 
   private country = null;
   constructor() {

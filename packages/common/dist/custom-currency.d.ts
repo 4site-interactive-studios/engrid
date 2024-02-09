@@ -1,7 +1,7 @@
 export declare class CustomCurrency {
     private logger;
     private currencyElement;
-    private countryElement;
+    private _country;
     constructor();
     shouldRun(): boolean;
     addEventListeners(): void;
