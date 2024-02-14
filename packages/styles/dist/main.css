@@ -7057,17 +7057,19 @@ body[data-engrid-exit-intent-lightbox=open] {
   margin: 0;
   opacity: 0.8;
 }
-.engrid-personal-details-summary .engrid-reset-welcome-back {
+.engrid-personal-details-summary .engrid-welcome-back-clear {
   margin-top: 1rem;
 }
 
-.engrid-reset-welcome-back {
+.engrid-reset-welcome-back,
+.engrid-welcome-back-clear {
   font-weight: bold;
   color: #016da3;
   text-decoration: underline;
   cursor: pointer;
 }
-.engrid-reset-welcome-back svg {
+.engrid-reset-welcome-back svg,
+.engrid-welcome-back-clear svg {
   width: 15px;
   height: 15px;
   margin-left: 5px;

@@ -21,17 +21,18 @@
     font-weight: bold;
   }
 
-  p:not(.engrid-reset-welcome-back) {
+  p:not(.engrid-welcome-back-clear) {
     margin: 0;
     opacity: 0.8;
   }
 
-  .engrid-reset-welcome-back {
+  .engrid-welcome-back-clear {
     margin-top: 1rem;
   }
 }
 
-.engrid-reset-welcome-back {
+.engrid-reset-welcome-back,
+.engrid-welcome-back-clear {
   font-weight: bold;
   color: #016da3;
   text-decoration: underline;
