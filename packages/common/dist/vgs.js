@@ -67,6 +67,7 @@ export class VGS {
                 },
                 // Autocomplete is not customizable
                 autoComplete: "cc-number",
+                validations: ["required", "validCardNumber"],
             },
             "transaction.ccvv": {
                 showCardIcon: false,
@@ -74,6 +75,7 @@ export class VGS {
                 hideValue: false,
                 // Autocomplete is not customizable
                 autoComplete: "cc-csc",
+                validations: ["required", "validCardSecurityCode"],
                 css: {
                     "&::placeholder": placeholderStyles,
                 },
