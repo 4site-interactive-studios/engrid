@@ -1,10 +1,12 @@
 // This class works when the user has added ".simple_country_select" as a class in page builder for the Country select
 import * as cookie from "./cookie";
-import { ENGrid } from ".";
+import { ENGrid, Country } from ".";
 export class AutoCountrySelect {
     constructor() {
+        this._countryEvent = Country.getInstance();
         this.countryWrapper = document.querySelector(".simple_country_select");
-        this.countrySelect = document.querySelector("select#en__field_supporter_country");
+        this.countrySelect = this._countryEvent
+            .countryField;
         this.country = null;
         const engridAutofill = cookie.get("engrid-autofill");
         const submissionFailed = !!(ENGrid.checkNested(window.EngagingNetworks, "require", "_defined", "enjs", "checkSubmissionFailed") && window.EngagingNetworks.require._defined.enjs.checkSubmissionFailed());

@@ -33,6 +33,7 @@ export declare abstract class ENGrid {
      * will return true if EngagingNetworks.require._defined.enjs.checkSubmissionFailed is defined
      */
     static checkNested(obj: any, ...args: string[]): boolean;
+    static deepMerge(target: any, source: any): any;
     static setError(element: string | HTMLElement, errorMessage: string): void;
     static removeError(element: string | HTMLElement): void;
     static isVisible(element: HTMLElement): boolean;

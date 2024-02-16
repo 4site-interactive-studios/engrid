@@ -22,7 +22,7 @@
 // The VGS component can also be set at the page level, if necessary
 //
 
-import { ENGrid, EngridLogger } from ".";
+import { ENGrid, EnForm, EngridLogger } from ".";
 
 export class VGS {
   private logger: EngridLogger = new EngridLogger("VGS", "black", "pink", "💳");
@@ -30,17 +30,22 @@ export class VGS {
     ".en__field--vgs"
   ) as HTMLDivElement;
   private options = ENGrid.getOption("VGS");
+  private paymentTypeField = document.querySelector(
+    "#en__field_transaction_paymenttype"
+  ) as HTMLSelectElement;
+  private _form: EnForm = EnForm.getInstance();
   constructor() {
     if (!this.shouldRun()) return;
-    const paymentTypeField = document.querySelector(
-      "#en__field_transaction_paymenttype"
-    ) as HTMLSelectElement;
-    if (paymentTypeField) {
-      // The VGS iFrame Communication doesn't change the value of the payment type field, so we have to do it manually
-      paymentTypeField.value = "visa";
-    }
+    this.setPaymentType();
     this.setDefaults();
     this.dumpGlobalVar();
+    this._form.onValidate.subscribe(() => {
+      if (this._form.validate) {
+        const isValid = this.validate();
+        this.logger.log(`Form Validation: ${isValid}`);
+        this._form.validate = isValid;
+      }
+    });
   }
 
   shouldRun() {
@@ -49,6 +54,20 @@ export class VGS {
     return true;
   }
   setDefaults() {
+    const placeholderStyles = {
+      color:
+        getComputedStyle(document.body).getPropertyValue(
+          "--input_placeholder-color"
+        ) || "#a9a9a9",
+      opacity:
+        getComputedStyle(document.body).getPropertyValue(
+          "--input_placeholder-opacity"
+        ) || "1",
+      fontWeight:
+        getComputedStyle(document.body).getPropertyValue(
+          "--input_placeholder-font-weight"
+        ) || "normal",
+    };
     const options = this.options;
     const defaultOptions = {
       "transaction.ccnumber": {
@@ -58,8 +77,12 @@ export class VGS {
           cardPlaceholder:
             "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAYAAADHl1ErAAAACXBIWXMAABYlAAAWJQFJUiTwAAAB8ElEQVR4nO2c4W3CMBBGz1H/NyNkAzoCo2SDrkI3YJSOABt0g9IJXBnOqUkMyifUqkrek04RlvMjT2c7sc6EGKPBfBpcaSBMBGEiCBNBmAjCRBAmgjARhIkgTARhIggTQZhK2q0Yh5l1ZrYzs0PqsrI4+LN3VTeThkvntUm6Fbuxn2E/LITQmtm7mW08Sb/MbO9tpxhjui6WEMLWzJKDdO3N7Nmf9ZjaYoyn8y8X1o6GXxLV1lJyDeE+9oWPQ/ZRG4b9WkVVpqe+8LLLo7ErM6t248qllZnWBc+uV5+zumGsQjm3f/ic9tb4JGeeXcga4U723rptilVx0avgg2Q3m/JNn+y6zeAm+GSWUi/c7L5yfB77RJhACOHs6WnuLfmGpTI3YditEEGYCMJEECaCMJHZqySvHRfIMBGEiSBMBGEiCBNBmAjCRBAmgjARhIkgTGT2t+R/59EdYXZcfwmEiSBMBGEiCBNZzCr5VzvCZJjIIMxrPKFC6abMsHbaFcZuGq8StqKwDqZkN8emKBbrvawHCtxJ7y1nVxQF34lxUXBupOy8EtWy88jBhknUDjbkPhyd+Xn2l9lHZ8rgcNZVTA5nTYRFjv/dPf7HvzuJ8C0pgjARhIkgTARhIggTQZgIwkQQJoIwEYSJIEwEYQpm9g2Ro5zhLcuLBwAAAABJRU5ErkJggg==",
         },
+        css: {
+          "&::placeholder": placeholderStyles,
+        },
         // Autocomplete is not customizable
         autoComplete: "cc-number",
+        validations: ["required", "validCardNumber"],
       },
       "transaction.ccvv": {
         showCardIcon: false,
@@ -67,12 +90,31 @@ export class VGS {
         hideValue: false,
         // Autocomplete is not customizable
         autoComplete: "cc-csc",
+        validations: ["required", "validCardSecurityCode"],
+        css: {
+          "&::placeholder": placeholderStyles,
+        },
       },
     };
-    // Merge the default options with the options set in the theme
-    this.options = { ...defaultOptions, ...options };
+    // Deep merge the default options with the options set in the theme
+    this.options = ENGrid.deepMerge(defaultOptions, options);
     this.logger.log("Theme Options", options);
     this.logger.log("Merged Options", this.options);
+  }
+  setPaymentType() {
+    // Because the VGS iFrame Communication doesn't change the value of the payment type field, we have to set it to Visa by default
+    if (this.paymentTypeField) {
+      // Loop through the payment type field options and set the visa card as the default
+      for (let i = 0; i < this.paymentTypeField.options.length; i++) {
+        if (
+          this.paymentTypeField.options[i].value.toLowerCase() === "visa" ||
+          this.paymentTypeField.options[i].value.toLowerCase() === "vi"
+        ) {
+          this.paymentTypeField.selectedIndex = i;
+          break;
+        }
+      }
+    }
   }
   dumpGlobalVar() {
     // Dump the global variable for the VGS options
@@ -120,5 +162,41 @@ export class VGS {
         }
       }
     }, 1000);
+  }
+  private validate() {
+    if (
+      this.paymentTypeField.value.toLowerCase() === "visa" ||
+      this.paymentTypeField.value.toLowerCase() === "vi"
+    ) {
+      const cardContainer = document.querySelector(
+        ".en__field--vgs.en__field--ccnumber"
+      ) as HTMLDivElement;
+      const cardEmpty = cardContainer.querySelector(
+        ".vgs-collect-container__empty"
+      ) as HTMLInputElement;
+      const cvvContainer = document.querySelector(
+        ".en__field--vgs.en__field--ccvv"
+      ) as HTMLDivElement;
+      const cvvEmpty = cvvContainer.querySelector(
+        ".vgs-collect-container__empty"
+      ) as HTMLInputElement;
+      if (cardContainer && cardEmpty) {
+        window.setTimeout(() => {
+          ENGrid.setError(cardContainer, "Please enter a valid card number");
+          // Scroll to the error
+          cardContainer.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+        return false;
+      }
+      if (cvvContainer && cvvEmpty) {
+        window.setTimeout(() => {
+          ENGrid.setError(cvvContainer, "Please enter a valid CVV");
+          // Scroll to the error
+          cvvContainer.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+        return false;
+      }
+    }
+    return true;
   }
 }

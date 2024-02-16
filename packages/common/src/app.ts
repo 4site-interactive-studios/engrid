@@ -3,6 +3,7 @@ import {
   DonationFrequency,
   EnForm,
   ProcessingFees,
+  Country,
 } from "./events";
 import {
   AmountLabel,
@@ -76,6 +77,7 @@ import {
   CustomCurrency,
   VGS,
   PostalCodeValidator,
+  CountryRedirect,
   WelcomeBack,
 } from "./";
 
@@ -88,6 +90,7 @@ export class App extends ENGrid {
     "transaction.donationAmt.other"
   );
   private _frequency: DonationFrequency = DonationFrequency.getInstance();
+  private _country: Country = Country.getInstance();
   private _dataLayer: DataLayer;
 
   private options: Options;
@@ -209,6 +212,9 @@ export class App extends ENGrid {
     this._form.onError.subscribe((s) =>
       this.logger.danger("Error: " + JSON.stringify(s))
     );
+    this._country.onCountryChange.subscribe((s) =>
+      this.logger.success(`Country: ${s}`)
+    );
 
     window.enOnSubmit = () => {
       this._form.submit = true;
@@ -235,6 +241,9 @@ export class App extends ENGrid {
       this.logger.success("Validation Passed");
       return true;
     };
+
+    // Country Redirect
+    new CountryRedirect();
 
     // iFrame Logic
     new iFrame();

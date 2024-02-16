@@ -5437,7 +5437,7 @@ body:not[data-engrid-show-ecard-options] .show-if-ecard {
   border-radius: var(--donation-amount__button_border-radius);
 }
 
-.en__field--validationFailed .en__field__input--vgs:not(.vgs-collect-container__empty).vgs-collect-container__invalid {
+.en__field--validationFailed .en__field__input--vgs:not(.vgs-collect-container__focused).vgs-collect-container__invalid, .en__field--validationFailed .en__field__input--vgs:not(.vgs-collect-container__focused).vgs-collect-container__empty {
   border-color: var(--error__color);
   background-color: var(--error__color_faded);
 }
@@ -7053,7 +7053,7 @@ body[data-engrid-exit-intent-lightbox=open] {
 .engrid-personal-details-summary h6 {
   font-weight: bold;
 }
-.engrid-personal-details-summary p:not(.engrid-reset-welcome-back) {
+.engrid-personal-details-summary p:not(.engrid-welcome-back-clear) {
   margin: 0;
   opacity: 0.8;
 }

@@ -126,6 +126,7 @@ export interface Options {
         };
       };
   PostalCodeValidator?: boolean;
+  CountryRedirect?: false | { [key: string]: string };
   WelcomeBack?:
     | false
     | {
@@ -189,6 +190,7 @@ export const OptionsDefaults: Options = {
   CustomCurrency: false,
   VGS: false,
   PostalCodeValidator: false,
+  CountryRedirect: false,
   WelcomeBack: false,
   PageLayouts: [
     "leftleft1col",

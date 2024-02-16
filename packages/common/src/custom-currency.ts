@@ -55,7 +55,7 @@
 // This will override the default CustomCurrency options for that page.
 //
 
-import { ENGrid, EngridLogger } from ".";
+import { ENGrid, Country, EngridLogger } from ".";
 
 export class CustomCurrency {
   private logger: EngridLogger = new EngridLogger(
@@ -67,9 +67,7 @@ export class CustomCurrency {
   private currencyElement = document.querySelector(
     "[name='transaction.paycurrency']"
   ) as HTMLSelectElement;
-  private countryElement = document.getElementById(
-    "en__field_supporter_country"
-  ) as HTMLSelectElement;
+  private _country = Country.getInstance();
   constructor() {
     if (!this.shouldRun()) return;
     this.addEventListeners();
@@ -84,9 +82,9 @@ export class CustomCurrency {
     return true;
   }
   addEventListeners() {
-    if (this.countryElement) {
-      this.countryElement.addEventListener("change", (e) => {
-        this.loadCurrencies((e.target as HTMLSelectElement).value);
+    if (this._country.countryField) {
+      this._country.onCountryChange.subscribe((country) => {
+        this.loadCurrencies(country);
       });
     }
   }

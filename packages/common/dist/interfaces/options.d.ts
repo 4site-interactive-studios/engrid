@@ -118,6 +118,9 @@ export interface Options {
         };
     };
     PostalCodeValidator?: boolean;
+    CountryRedirect?: false | {
+        [key: string]: string;
+    };
     WelcomeBack?: false | {
         welcomeBackMessage: {
             display: boolean;

@@ -1,8 +1,9 @@
 // Component that adds data attributes to the Body
 
-import { ENGrid } from "./";
+import { ENGrid, Country } from "./";
 
 export class DataAttributes {
+  private _country: Country = Country.getInstance();
   constructor() {
     this.setDataAttributes();
   }
@@ -116,14 +117,10 @@ export class DataAttributes {
     }
 
     // Add a country data attribute
-    const countrySelect: HTMLSelectElement = document.querySelector(
-      "#en__field_supporter_country"
-    ) as HTMLSelectElement;
-
-    if (countrySelect) {
-      ENGrid.setBodyData("country", countrySelect.value);
-      countrySelect.addEventListener("change", () => {
-        ENGrid.setBodyData("country", countrySelect.value);
+    if (this._country.country) {
+      ENGrid.setBodyData("country", this._country.country);
+      this._country.onCountryChange.subscribe((country) => {
+        ENGrid.setBodyData("country", country);
       });
     }
     const otherAmountDiv = document.querySelector(
