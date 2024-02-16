@@ -74,5 +74,6 @@ export * from "./modal";
 export * from "./postal-code-validator";
 export * from "./vgs";
 export * from "./country-redirect";
+export * from "./welcome-back";
 export * from "./events";
 export * from "./version";

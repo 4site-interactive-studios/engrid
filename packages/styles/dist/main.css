@@ -7033,6 +7033,50 @@ body[data-engrid-exit-intent-lightbox=open] {
   display: none !important;
 }
 
+.engrid-personal-details-summary {
+  padding: 1.25rem;
+  border: 2px solid #cccccc;
+  margin: 1rem 0;
+  background-color: #f6f5f3;
+}
+.engrid-personal-details-summary *:first-child {
+  margin-top: 0;
+}
+.engrid-personal-details-summary *:last-child {
+  margin-bottom: 0;
+}
+.engrid-personal-details-summary h1,
+.engrid-personal-details-summary h2,
+.engrid-personal-details-summary h3,
+.engrid-personal-details-summary h4,
+.engrid-personal-details-summary h5,
+.engrid-personal-details-summary h6 {
+  font-weight: bold;
+}
+.engrid-personal-details-summary p:not(.engrid-welcome-back-clear) {
+  margin: 0;
+  opacity: 0.8;
+}
+.engrid-personal-details-summary .engrid-welcome-back-clear {
+  margin-top: 1rem;
+}
+
+.engrid-reset-welcome-back,
+.engrid-welcome-back-clear {
+  font-weight: bold;
+  color: #016da3;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.engrid-reset-welcome-back svg,
+.engrid-welcome-back-clear svg {
+  width: 15px;
+  height: 15px;
+  margin-left: 5px;
+  position: relative;
+  bottom: 2px;
+}
+
 /* ENGRID LAYOUTS */
 /* MUST COME AFTER OTHER ENGRID STYLES WHICH MIGHT DEFINE MIXINS REFERENCED IN THE LAYOUTS */
 [data-engrid-theme] {

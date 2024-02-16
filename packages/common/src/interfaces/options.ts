@@ -127,6 +127,24 @@ export interface Options {
       };
   PostalCodeValidator?: boolean;
   CountryRedirect?: false | { [key: string]: string };
+  WelcomeBack?:
+    | false
+    | {
+        welcomeBackMessage: {
+          display: boolean;
+          title: string;
+          editText: string;
+          anchor: string;
+          placement: "beforebegin" | "afterbegin" | "beforeend" | "afterend";
+        };
+        personalDetailsSummary: {
+          display: boolean;
+          title: string;
+          editText: string;
+          anchor: string;
+          placement: "beforebegin" | "afterbegin" | "beforeend" | "afterend";
+        };
+      };
   onLoad?: () => void;
   onResize?: () => void;
   onSubmit?: () => void;
@@ -173,6 +191,7 @@ export const OptionsDefaults: Options = {
   VGS: false,
   PostalCodeValidator: false,
   CountryRedirect: false,
+  WelcomeBack: false,
   PageLayouts: [
     "leftleft1col",
     "centerleft1col",

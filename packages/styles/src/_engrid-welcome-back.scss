@@ -1,0 +1,48 @@
+.engrid-personal-details-summary {
+  padding: 1.25rem;
+  border: 2px solid #cccccc;
+  margin: 1rem 0;
+  background-color: #f6f5f3;
+
+  *:first-child {
+    margin-top: 0;
+  }
+
+  *:last-child {
+    margin-bottom: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: bold;
+  }
+
+  p:not(.engrid-welcome-back-clear) {
+    margin: 0;
+    opacity: 0.8;
+  }
+
+  .engrid-welcome-back-clear {
+    margin-top: 1rem;
+  }
+}
+
+.engrid-reset-welcome-back,
+.engrid-welcome-back-clear {
+  font-weight: bold;
+  color: #016da3;
+  text-decoration: underline;
+  cursor: pointer;
+
+  svg {
+    width: 15px;
+    height: 15px;
+    margin-left: 5px;
+    position: relative;
+    bottom: 2px;
+  }
+}

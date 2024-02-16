@@ -37,6 +37,7 @@ export const OptionsDefaults = {
     VGS: false,
     PostalCodeValidator: false,
     CountryRedirect: false,
+    WelcomeBack: false,
     PageLayouts: [
         "leftleft1col",
         "centerleft1col",
