@@ -19,6 +19,11 @@
 .en__additional__amount .en__additional__input {
   display: inline;
 }
+
+.en__additional__input {
+  margin-right: 0.25rem;
+}
+
 .en__additional__promo {
   display: flex;
   flex-wrap: wrap;
@@ -32,6 +37,21 @@
 .en__ticket__minus,
 .en__ticket__plus {
   background-color: transparent;
+}
+
+.en__ticket__minus {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAGlJREFUWEftlcENwCAMAzHLJzu3qlF4oapfcB9mAR9HgtHEB+L8ZgAbsAEbsAFExLV+xwBIsgPoJLcbKoD73QfAzD0DkJnPVyGduH3llgEqG1EP8Icn0A6hfA2VAzi3wAA2YAM2YANqAwPwPy7Boa/oUQAAAABJRU5ErkJggg==);
+  background-size: 16px;
+  background-position: right 0.25rem center;
+  width: calc(16px + 0.25rem);
+  margin-left: 2rem;
+}
+
+.en__ticket__plus {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAMBJREFUWEftllEKAyEMRB1pe2ZzguTMbTElRWGRsiVQ1y7E76jjc8yI5BzMrHtTiAieJV3FtnAICAJBIAgEgZ8TYObHtncDUFXNALKqulu1JwesFsz8HCcB732PESAi9ZPqI07fCezGqxept96uYK2Af7iCtSZc/gy9pvnmmfgTBoHpBHrfGFu1hZgZupSSPcZ2p52F1xhWbfOqqomILlMFiMh9jOsW4RVALaXcpgpojQvb/0IXkFJSIrqGgFMReAHAxsrBRHWuKgAAAABJRU5ErkJggg==);
+  background-size: 16px;
+  background-position: left 0.25rem center;
+  width: calc(16px + 0.25rem);
 }
 
 .en__ticket__minus:hover,
@@ -158,4 +178,161 @@ button.en__eventOccurrence__select {
 
 button.en__eventOccurrence__select > label {
   font-family: var(--button_font-family);
+}
+
+.en__tickets {
+  display: block;
+}
+
+.en__ticket {
+  display: grid;
+  grid-template-columns: 1fr minmax(5ch, max-content) min-content;
+  grid-template-rows: 1fr;
+  gap: 1em;
+  grid-auto-flow: column;
+  grid-template-areas: "en__ticket__field--info en__ticket__field--cost en__ticket__field--quantity";
+  border-bottom: 1px solid #bfbfbf;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+}
+
+.en__ticket__field--info {
+  justify-self: start;
+  grid-area: en__ticket__field--info;
+  padding: 0;
+}
+
+.en__ticket__field--cost {
+  justify-self: center;
+  grid-area: en__ticket__field--cost;
+  padding: 0;
+}
+
+.en__ticket__field--quantity {
+  justify-self: end;
+  grid-area: en__ticket__field--quantity;
+  padding: 0;
+}
+
+.en__additional__amount,
+.en__ticket__field--cost {
+  width: max-content;
+}
+
+.en__ticket__field {
+  border-bottom: none;
+}
+
+.en__ticket__selector {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: auto auto;
+  gap: 0px 0px;
+  grid-template-areas:
+    "en__ticket__minus en__ticket__quantity en__ticket__plus"
+    "en__ticket__remaining en__ticket__remaining en__ticket__remaining";
+  width: min-content;
+  margin-left: auto;
+}
+.en__ticket__minus {
+  justify-self: end;
+  grid-area: en__ticket__minus;
+}
+.en__ticket__plus {
+  justify-self: start;
+  grid-area: en__ticket__plus;
+}
+.en__ticket__remaining {
+  grid-area: en__ticket__remaining;
+}
+.en__ticket__quantity {
+  justify-self: center;
+  align-self: center;
+  grid-area: en__ticket__quantity;
+}
+
+.en__ticket__name {
+  word-break: initial;
+}
+
+.en__additional {
+  display: grid;
+  grid-template-columns: 1fr minmax(5ch, max-content) min-content;
+  grid-template-rows: 1fr;
+  gap: 1em;
+  grid-auto-flow: column;
+  grid-template-areas: "en__additional__label en__additional__amount en__additional__promo";
+  border-bottom: 1px solid #bfbfbf;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+}
+
+.en__additional__label {
+  justify-self: start;
+  align-self: center;
+  grid-area: en__additional__label;
+}
+
+.en__additional__amount {
+  justify-self: center;
+  grid-area: en__additional__amount;
+}
+
+.en__additional__promo {
+  justify-self: end;
+  grid-area: en__additional__promo;
+}
+
+@media screen and (max-width: 600px) {
+  .en__ticket {
+    display: flex;
+    flex-direction: column;
+    gap: 1ch;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .en__ticket__name,
+  .en__ticket__desc,
+  .en__ticket__field--cost {
+    text-align: center;
+  }
+
+  .en__ticket__field--cost {
+    width: 100%;
+  }
+
+  .en__ticket__selector {
+    margin-right: auto;
+  }
+
+  .en__ticket__remaining {
+    justify-self: center;
+    padding-top: 0.5rem;
+  }
+
+  .en__additional {
+    display: flex;
+    flex-direction: column;
+    gap: 1ch;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .en__additional__amount,
+  .en__additional__promo {
+    align-self: center;
+  }
+
+  .en__additional__promo {
+    flex-direction: column;
+  }
+
+  .en__additional__promo:before {
+    content: "Promo Code";
+    display: block;
+    margin-bottom: 1ch;
+    margin-top: 1rem;
+    font-weight: 700;
+  }
 }
