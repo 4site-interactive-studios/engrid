@@ -110,7 +110,9 @@ export class VGS {
                 // Create a mutation observer that cleans the VGS Elements before anything is rendered
                 const observer = new MutationObserver((mutations) => {
                     mutations.forEach((mutation) => {
-                        if (mutation.type === "childList" && mutation.addedNodes.length > 0)
+                        var _a;
+                        if (mutation.type === "childList" &&
+                            mutation.addedNodes.length > 0) {
                             mutation.addedNodes.forEach((node) => {
                                 if (node.nodeName === "IFRAME" &&
                                     mutation.previousSibling &&
@@ -119,11 +121,25 @@ export class VGS {
                                     mutation.previousSibling.remove();
                                 }
                             });
+                        }
+                        // Check if the VGS Element is valid, and remove any validation classes and errors
+                        if (mutation.type === "attributes" &&
+                            mutation.attributeName === "class") {
+                            const target = mutation.target;
+                            if (target.classList.contains("vgs-collect-container__valid")) {
+                                const fieldWrapper = target.closest(".en__field--vgs");
+                                fieldWrapper === null || fieldWrapper === void 0 ? void 0 : fieldWrapper.classList.remove("en__field--validationFailed");
+                                (_a = fieldWrapper === null || fieldWrapper === void 0 ? void 0 : fieldWrapper.querySelector(".en__field__error")) === null || _a === void 0 ? void 0 : _a.remove();
+                            }
+                        }
                     });
                 });
                 // Observe the VGS Elements
                 vgsIElements.forEach((vgsIElement) => {
-                    observer.observe(vgsIElement, { childList: true });
+                    observer.observe(vgsIElement, {
+                        childList: true,
+                        attributeFilter: ["class"],
+                    });
                 });
                 if (ENGrid.checkNested(window.EngagingNetworks, "require", "_defined", "enjs", "vgs")) {
                     window.EngagingNetworks.require._defined.enjs.vgs.init();
