@@ -130,7 +130,10 @@ export class VGS {
         // Create a mutation observer that cleans the VGS Elements before anything is rendered
         const observer = new MutationObserver((mutations) => {
           mutations.forEach((mutation) => {
-            if (mutation.type === "childList" && mutation.addedNodes.length > 0)
+            if (
+              mutation.type === "childList" &&
+              mutation.addedNodes.length > 0
+            ) {
               mutation.addedNodes.forEach((node) => {
                 if (
                   node.nodeName === "IFRAME" &&
@@ -141,11 +144,27 @@ export class VGS {
                   (mutation.previousSibling as Element).remove();
                 }
               });
+            }
+            // Check if the VGS Element is valid, and remove any validation classes and errors
+            if (
+              mutation.type === "attributes" &&
+              mutation.attributeName === "class"
+            ) {
+              const target = mutation.target as HTMLDivElement;
+              if (target.classList.contains("vgs-collect-container__valid")) {
+                const fieldWrapper = target.closest(".en__field--vgs");
+                fieldWrapper?.classList.remove("en__field--validationFailed");
+                fieldWrapper?.querySelector(".en__field__error")?.remove();
+              }
+            }
           });
         });
         // Observe the VGS Elements
         vgsIElements.forEach((vgsIElement) => {
-          observer.observe(vgsIElement, { childList: true });
+          observer.observe(vgsIElement, {
+            childList: true,
+            attributeFilter: ["class"],
+          });
         });
         if (
           ENGrid.checkNested(
