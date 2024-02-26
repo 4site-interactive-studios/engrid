@@ -539,15 +539,15 @@
 .en__additional__amount,
 .en__additional__label {
   // display: table-cell;
-  padding: 0.625rem; // 10px
+  padding: 0; // 10px
 }
 
 .en__additional__input {
   padding: 0.6rem 0; // .6em 0;
   width: 4rem; // 4em;
-  margin-right: 0.75rem; // 12px
+  margin-right: 0; // 12px
   // text-align: center;
-  border: 1px solid #bfbfbf;
+  border: var(--input_border-width) solid var(--input_border-color); //1px solid #bfbfbf
   border-radius: var(--input_border-radius); // 3px
 }
 
@@ -559,7 +559,7 @@
   text-align: center;
   width: 8rem; // 8em;
   padding: 0.6rem 0; // .6em 0;
-  border: 1px solid #bfbfbf;
+  border: var(--input_border-width) solid var(--input_border-color); //1px solid #bfbfbf
   border-radius: var(--input_border-radius); // 3px
 }
 
