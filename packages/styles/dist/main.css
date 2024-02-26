@@ -5442,6 +5442,10 @@ body:not[data-engrid-show-ecard-options] .show-if-ecard {
   background-color: var(--error__color_faded);
 }
 
+[data-engrid-theme] {
+  --ticket_selector-top-offset: -4px;
+}
+
 .en__additional__amount,
 .en__additional__label,
 .en__ticket__currency,
@@ -5450,12 +5454,10 @@ body:not[data-engrid-show-ecard-options] .show-if-ecard {
   font-size: inherit;
 }
 
-/* Helps aline the ticket selector with the ticket name */
-/* https://cln.sh/gk8cJwVw */
 .en__ticket__selector {
   display: flex;
   position: relative;
-  top: -4px;
+  top: var(--ticket_selector-top-offset);
 }
 
 .en__additional__amount,

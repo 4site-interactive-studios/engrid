@@ -1,3 +1,7 @@
+[data-engrid-theme] {
+  --ticket_selector-top-offset: -4px; // Helps align the ticket selector with the ticket name and ticket count. REF: https://cln.sh/gk8cJwVw
+}
+
 //Event styling
 .en__additional__amount,
 .en__additional__label,
@@ -7,12 +11,10 @@
   font-size: inherit;
 }
 
-/* Helps aline the ticket selector with the ticket name */
-/* https://cln.sh/gk8cJwVw */
 .en__ticket__selector {
   display: flex;
   position: relative;
-  top: -4px;
+  top: var(--ticket_selector-top-offset);
 }
 
 .en__additional__amount,
