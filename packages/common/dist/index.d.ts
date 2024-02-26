@@ -75,5 +75,6 @@ export * from "./postal-code-validator";
 export * from "./vgs";
 export * from "./country-redirect";
 export * from "./welcome-back";
+export * from "./ecard-to-target";
 export * from "./events";
 export * from "./version";

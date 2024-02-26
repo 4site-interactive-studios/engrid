@@ -79,6 +79,7 @@ import {
   PostalCodeValidator,
   CountryRedirect,
   WelcomeBack,
+  EcardToTarget,
 } from "./";
 
 export class App extends ENGrid {
@@ -418,6 +419,8 @@ export class App extends ENGrid {
     new VGS();
 
     new WelcomeBack();
+
+    new EcardToTarget();
 
     //Debug panel
     let showDebugPanel = this.options.Debug;
