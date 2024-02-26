@@ -5452,6 +5452,8 @@ body:not[data-engrid-show-ecard-options] .show-if-ecard {
 
 .en__ticket__selector {
   display: flex;
+  position: relative;
+  top: -4px;
 }
 
 .en__additional__amount,
@@ -5691,7 +5693,7 @@ button.en__eventOccurrence__select > label {
 
 .en__additional {
   display: grid;
-  grid-template-columns: 1fr minmax(5ch, max-content) min-content;
+  grid-template-columns: minmax(5ch, max-content) min-content auto;
   grid-template-rows: 1fr;
   gap: 1em;
   grid-auto-flow: column;
