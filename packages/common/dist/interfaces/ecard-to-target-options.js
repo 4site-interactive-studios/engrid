@@ -1,7 +1,7 @@
 export const EcardToTargetOptionsDefaults = {
     targetName: "",
     targetEmail: "",
-    hideEcardSendDate: true,
+    hideSendDate: true,
     hideTarget: true,
     hideMessage: true,
     addSupporterNameToMessage: false,

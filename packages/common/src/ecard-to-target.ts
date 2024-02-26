@@ -84,7 +84,7 @@ export class EcardToTarget {
       messageBlock.style.display = "none";
     }
 
-    if (this.options.hideEcardSendDate && sendDateBlock) {
+    if (this.options.hideSendDate && sendDateBlock) {
       sendDateBlock.style.display = "none";
     }
 

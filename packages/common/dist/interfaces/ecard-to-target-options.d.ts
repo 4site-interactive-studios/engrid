@@ -1,7 +1,7 @@
 export interface EcardToTargetOptions {
     targetName: string;
     targetEmail: string;
-    hideEcardSendDate: boolean;
+    hideSendDate: boolean;
     hideTarget: boolean;
     hideMessage: boolean;
     addSupporterNameToMessage: boolean;
