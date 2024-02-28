@@ -8,7 +8,7 @@ export interface ExitIntentOptions {
   cookieDuration: number;
   triggers: {
     [key: string]: boolean;
-  }
+  };
 }
 
 export const ExitIntentOptionsDefaults: ExitIntentOptions = {
@@ -22,5 +22,5 @@ export const ExitIntentOptionsDefaults: ExitIntentOptions = {
   triggers: {
     visibilityState: true,
     mousePosition: true,
-  }
+  },
 };

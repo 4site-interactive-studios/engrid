@@ -1,13 +1,16 @@
 [data-engrid-theme] {
   // CLICK TO EXPAND
   --click-to-expand__copy-area_height: 450px;
-  --click-to-expand__cta-image_url: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAALVBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADBoCg+AAAAD3RSTlMA8fqeDQWopG9ku5d/fFeqbhOLAAAASElEQVQI12PAA9ZBqFcMSRNANKcaA7skiDGxgIHVsJWBIUI4gIHBWYKBodEEKMpieIFX2AEk765zqASskzVJLQBiBvcGBuIAAGXcCweYv+y6AAAAAElFTkSuQmCC');
+  --click-to-expand__cta-image_url: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAALVBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADBoCg+AAAAD3RSTlMA8fqeDQWopG9ku5d/fFeqbhOLAAAASElEQVQI12PAA9ZBqFcMSRNANKcaA7skiDGxgIHVsJWBIUI4gIHBWYKBodEEKMpieIFX2AEk765zqASskzVJLQBiBvcGBuIAAGXcCweYv+y6AAAAAElFTkSuQmCC");
   --click-to-expand__cta-image_width: 16px;
   --click-to-expand__cta-image_height: 16px;
 }
 
 // Depends on click-to-expand.ts
-body:not(#en__pagebuilder) .click-to-expand .click-to-expand-text-wrapper> :first-child {
+body:not(#en__pagebuilder)
+  .click-to-expand
+  .click-to-expand-text-wrapper
+  > :first-child {
   margin-top: 0;
 }
 
@@ -20,17 +23,24 @@ body:not(#en__pagebuilder) .click-to-expand:not(.expanded) {
   // Works with transparent backgrounds for when the ENgrid is in its embedded state
   // REF: https://stackoverflow.com/a/58740440/815683
   .click-to-expand-text-wrapper {
-    max-height: calc(var(--click-to-expand__copy-area_height) - var(--click-to-expand__cta-image_height) - 35px);
-    mask-image: linear-gradient(to bottom,
-        black 50%,
-        rgba(255, 255, 255, 0) calc(100% - var(--click-to-expand__cta-image_height)));
+    max-height: calc(
+      var(--click-to-expand__copy-area_height) -
+        var(--click-to-expand__cta-image_height) - 35px
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      black 50%,
+      rgba(255, 255, 255, 0)
+        calc(100% - var(--click-to-expand__cta-image_height))
+    );
   }
 
   .click-to-expand-cta {
     background: var(--click-to-expand__cta-image_url);
     background-position: center bottom;
     background-repeat: no-repeat;
-    background-size: var(--click-to-expand__cta-image_width) var(--click-to-expand__cta-image_height);
+    background-size: var(--click-to-expand__cta-image_width)
+      var(--click-to-expand__cta-image_height);
     // z-index: 100;
     width: var(--click-to-expand__cta-image_width);
     height: var(--click-to-expand__cta-image_height);

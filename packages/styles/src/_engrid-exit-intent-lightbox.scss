@@ -19,15 +19,21 @@
   --exit-intent__button_padding: var(--button_padding);
   --exit-intent__button_padding-bottom: var(--submit__button_padding-bottom);
   --exit-intent__button_padding-top: var(--submit__button_padding-top);
-  --exit-intent__button_background-color: var(--submit__button_background-color);
+  --exit-intent__button_background-color: var(
+    --submit__button_background-color
+  );
   --exit-intent__button_color: var(--submit__button_color);
   --exit-intent__button_border-radius: var(--submit__button_border-radius);
   --exit-intent__button_border-color: var(--submit__button_border-color);
   --exit-intent__button_border-width: var(--submit__button_border-width);
   // Button hover
-  --exit-intent__button_background-color_hover: var(--submit__button_background-color_hover);
+  --exit-intent__button_background-color_hover: var(
+    --submit__button_background-color_hover
+  );
   --exit-intent__button_color_hover: var(--submit__button_color_hover);
-  --exit-intent__button_border-color_hover: var(--submit__button_border-color_hover);
+  --exit-intent__button_border-color_hover: var(
+    --submit__button_border-color_hover
+  );
 }
 
 .ExitIntent__button:hover {
@@ -68,7 +74,7 @@ body[data-engrid-exit-intent-lightbox="open"] {
   background-color: var(--exit-intent__container_background-color);
   width: var(--exit-intent__container_width);
   height: var(--exit-intent__container_height);
-  padding: var( --exit-intent__container_padding);
+  padding: var(--exit-intent__container_padding);
   box-shadow: var(--exit-intent__container_box-shadow);
   outline: var(--exit-intent__container_outline);
   outline-offset: var(--exit-intent__container_outline-offset);

@@ -1,5 +1,5 @@
 // If someone insert an image into the Body Banner using the WYSIWYG Text Block it will wrap the image in a P tag that has its own margin. This removes the margin in that circumstance.
-.body-banner > .en__component--copyblock > p:only-child{
+.body-banner > .en__component--copyblock > p:only-child {
   margin: 0;
 }
 
@@ -7,7 +7,6 @@
 // @TODO Doesn't actually do what it's supposed to, possibly because of the placeholder transparent data uri
 .body-banner img {
   min-width: 100%; // For images with a native size that is smaller than the area it's being displayed in
-
   &[data-src] {
     background-color: var(--engrid__body-banner_background-color);
   }

@@ -863,14 +863,14 @@ textarea,
 
 .en__additional__amount,
 .en__additional__label {
-  padding: 0.625rem;
+  padding: 0;
 }
 
 .en__additional__input {
   padding: 0.6rem 0;
   width: 4rem;
-  margin-right: 0.75rem;
-  border: 1px solid #bfbfbf;
+  margin-right: 0;
+  border: var(--input_border-width) solid var(--input_border-color);
   border-radius: var(--input_border-radius);
 }
 
@@ -882,7 +882,7 @@ textarea,
   text-align: center;
   width: 8rem;
   padding: 0.6rem 0;
-  border: 1px solid #bfbfbf;
+  border: var(--input_border-width) solid var(--input_border-color);
   border-radius: var(--input_border-radius);
 }
 
@@ -5442,6 +5442,10 @@ body:not[data-engrid-show-ecard-options] .show-if-ecard {
   background-color: var(--error__color_faded);
 }
 
+[data-engrid-theme] {
+  --ticket_selector-top-offset: -4px;
+}
+
 .en__additional__amount,
 .en__additional__label,
 .en__ticket__currency,
@@ -5452,6 +5456,8 @@ body:not[data-engrid-show-ecard-options] .show-if-ecard {
 
 .en__ticket__selector {
   display: flex;
+  position: relative;
+  top: var(--ticket_selector-top-offset);
 }
 
 .en__additional__amount,
@@ -5461,6 +5467,10 @@ body:not[data-engrid-show-ecard-options] .show-if-ecard {
 
 .en__additional__amount .en__additional__input {
   display: inline;
+}
+
+.en__additional__input {
+  margin-right: 0.25rem;
 }
 
 .en__additional__promo {
@@ -5476,6 +5486,21 @@ body:not[data-engrid-show-ecard-options] .show-if-ecard {
 .en__ticket__minus,
 .en__ticket__plus {
   background-color: transparent;
+}
+
+.en__ticket__minus {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAGlJREFUWEftlcENwCAMAzHLJzu3qlF4oapfcB9mAR9HgtHEB+L8ZgAbsAEbsAFExLV+xwBIsgPoJLcbKoD73QfAzD0DkJnPVyGduH3llgEqG1EP8Icn0A6hfA2VAzi3wAA2YAM2YANqAwPwPy7Boa/oUQAAAABJRU5ErkJggg==);
+  background-size: 16px;
+  background-position: right 0.25rem center;
+  width: calc(16px + 0.25rem);
+  margin-left: 2rem;
+}
+
+.en__ticket__plus {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAMBJREFUWEftllEKAyEMRB1pe2ZzguTMbTElRWGRsiVQ1y7E76jjc8yI5BzMrHtTiAieJV3FtnAICAJBIAgEgZ8TYObHtncDUFXNALKqulu1JwesFsz8HCcB732PESAi9ZPqI07fCezGqxept96uYK2Af7iCtSZc/gy9pvnmmfgTBoHpBHrfGFu1hZgZupSSPcZ2p52F1xhWbfOqqomILlMFiMh9jOsW4RVALaXcpgpojQvb/0IXkFJSIrqGgFMReAHAxsrBRHWuKgAAAABJRU5ErkJggg==);
+  background-size: 16px;
+  background-position: left 0.25rem center;
+  width: calc(16px + 0.25rem);
 }
 
 .en__ticket__minus:hover,
@@ -5593,6 +5618,167 @@ button.en__eventOccurrence__select > label {
   font-family: var(--button_font-family);
 }
 
+.en__tickets {
+  display: block;
+}
+
+.en__ticket {
+  display: grid;
+  grid-template-columns: 1fr minmax(5ch, max-content) min-content;
+  grid-template-rows: 1fr;
+  gap: 1em;
+  grid-auto-flow: column;
+  grid-template-areas: "en__ticket__field--info en__ticket__field--cost en__ticket__field--quantity";
+  border-bottom: 1px solid #bfbfbf;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+}
+
+.en__ticket__field--info {
+  justify-self: start;
+  grid-area: en__ticket__field--info;
+  padding: 0;
+}
+
+.en__ticket__field--cost {
+  justify-self: center;
+  grid-area: en__ticket__field--cost;
+  padding: 0;
+}
+
+.en__ticket__field--quantity {
+  justify-self: end;
+  grid-area: en__ticket__field--quantity;
+  padding: 0;
+}
+
+.en__additional__amount,
+.en__ticket__field--cost {
+  width: max-content;
+}
+
+.en__ticket__field {
+  border-bottom: none;
+}
+
+.en__ticket__selector {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: auto auto;
+  gap: 0px 0px;
+  grid-template-areas: "en__ticket__minus en__ticket__quantity en__ticket__plus" "en__ticket__remaining en__ticket__remaining en__ticket__remaining";
+  width: min-content;
+  margin-left: auto;
+}
+
+.en__ticket__minus {
+  justify-self: end;
+  grid-area: en__ticket__minus;
+}
+
+.en__ticket__plus {
+  justify-self: start;
+  grid-area: en__ticket__plus;
+}
+
+.en__ticket__remaining {
+  grid-area: en__ticket__remaining;
+}
+
+.en__ticket__quantity {
+  justify-self: center;
+  align-self: center;
+  grid-area: en__ticket__quantity;
+}
+
+.en__ticket__name {
+  word-break: initial;
+}
+
+.en__additional {
+  display: grid;
+  grid-template-columns: minmax(5ch, max-content) min-content auto;
+  grid-template-rows: 1fr;
+  gap: 1em;
+  grid-auto-flow: column;
+  grid-template-areas: "en__additional__label en__additional__amount en__additional__promo";
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+}
+
+.en__additional__label {
+  justify-self: start;
+  align-self: center;
+  grid-area: en__additional__label;
+}
+
+.en__additional__amount {
+  justify-self: center;
+  grid-area: en__additional__amount;
+}
+
+.en__additional__promo {
+  justify-self: end;
+  grid-area: en__additional__promo;
+}
+
+@media screen and (max-width: 600px) {
+  .en__ticket {
+    display: flex;
+    flex-direction: column;
+    gap: 1ch;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .en__ticket__name,
+.en__ticket__desc,
+.en__ticket__field--cost {
+    text-align: center;
+  }
+
+  .en__ticket__field--cost {
+    width: 100%;
+  }
+
+  .en__ticket__selector {
+    margin-right: auto;
+  }
+
+  .en__ticket__remaining {
+    justify-self: center;
+    padding-top: 0.5rem;
+  }
+
+  .en__additional {
+    display: flex;
+    flex-direction: column;
+    gap: 1ch;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .en__additional__amount,
+.en__additional__promo {
+    align-self: center;
+  }
+
+  .en__additional__promo {
+    flex-direction: column;
+  }
+
+  .en__additional__promo:before {
+    content: "Promo Code";
+    display: block;
+    margin-bottom: 1ch;
+    margin-top: 1rem;
+    font-weight: 700;
+  }
+
+  .en__ticket__plus {
+    margin-right: 2rem;
+  }
+}
 /*
 * ##########################################################
 * # Field Level Inline "Fancy Errors"
@@ -5827,7 +6013,6 @@ figure.media-with-attribution figattribution a,
 figure.media-with-attribution figattribution a:hover,
 figure.media-with-attribution figattribution a:focus {
   font-size: var(--media-attribution__font-size);
-  color: var(--media-attribution__color);
   font-family: var(--media-attribution__font-family);
   color: var(--media-attribution__color);
   font-style: var(--media-attribution__font-style);
@@ -6246,7 +6431,6 @@ div[id^=nb-field-] div.nb-feedback {
   position: absolute !important;
   left: -99999px !important;
   padding: 0.25rem 0.5rem !important;
-  font-size: 1.125em !important;
   font-size: 0.75rem !important;
   font-family: HarmoniaSansStd !important;
   font-weight: 400 !important;
@@ -6345,7 +6529,6 @@ div[id^=nb-field-].nb-success input {
   padding-right: calc(var(--fields_spacing-inline) * 2);
   padding-bottom: calc(var(--fields_spacing-block) * 2);
   padding-left: calc(var(--fields_spacing-inline) * 2);
-  border-radius: var(--fields_border-radius);
   background-color: var(--premium__item_background-color);
   border-radius: var(--premium__border-radius);
 }
@@ -6737,7 +6920,9 @@ div.en__component--ticker {
   --speed-modifier: 1;
 }
 #engrid-ticker .ticker {
-  --calculated-speed: calc((1s * (var(--ticker-size) / 50)) * var(--speed-modifier));
+  --calculated-speed: calc(
+    (1s * (var(--ticker-size) / 50)) * var(--speed-modifier)
+  );
   display: inline-block;
   height: 5rem;
   line-height: 5rem;
@@ -6920,14 +7105,20 @@ body:not(#en__pagebuilder):not([data-engrid-debug]):not([data-engrid-merge-tags-
   --exit-intent__button_padding: var(--button_padding);
   --exit-intent__button_padding-bottom: var(--submit__button_padding-bottom);
   --exit-intent__button_padding-top: var(--submit__button_padding-top);
-  --exit-intent__button_background-color: var(--submit__button_background-color);
+  --exit-intent__button_background-color: var(
+    --submit__button_background-color
+  );
   --exit-intent__button_color: var(--submit__button_color);
   --exit-intent__button_border-radius: var(--submit__button_border-radius);
   --exit-intent__button_border-color: var(--submit__button_border-color);
   --exit-intent__button_border-width: var(--submit__button_border-width);
-  --exit-intent__button_background-color_hover: var(--submit__button_background-color_hover);
+  --exit-intent__button_background-color_hover: var(
+    --submit__button_background-color_hover
+  );
   --exit-intent__button_color_hover: var(--submit__button_color_hover);
-  --exit-intent__button_border-color_hover: var(--submit__button_border-color_hover);
+  --exit-intent__button_border-color_hover: var(
+    --submit__button_border-color_hover
+  );
 }
 
 .ExitIntent__button:hover {

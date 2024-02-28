@@ -49,7 +49,6 @@
       padding-right: calc(var(--fields_spacing-inline) * 2);
       padding-bottom: calc(var(--fields_spacing-block) * 2);
       padding-left: calc(var(--fields_spacing-inline) * 2);
-      border-radius: var(--fields_border-radius);
       background-color: var(--premium__item_background-color);
       border-radius: var(--premium__border-radius);
     }
@@ -117,17 +116,13 @@
   }
 
   // No premium has been selected
-  &:not(#en__pagebuilder):not([data-engrid-debug]):not(
-      [data-engrid-premium-gift-name]
-    )
+  &:not(#en__pagebuilder):not([data-engrid-debug]):not([data-engrid-premium-gift-name])
     .showif-has-premium {
     display: none;
   }
 
   // A premium has been selected
-  &:not(#en__pagebuilder):not(
-      [data-engrid-debug]
-    )[data-engrid-premium-gift-name]
+  &:not(#en__pagebuilder):not([data-engrid-debug])[data-engrid-premium-gift-name]
     .showif-no-premium {
     display: none;
   }

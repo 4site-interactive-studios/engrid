@@ -23,7 +23,6 @@ div[id^="nb-field-"] {
     position: absolute !important;
     left: -99999px !important;
     padding: 0.25rem 0.5rem !important;
-    font-size: 1.125em !important;
     font-size: 0.75rem !important;
     font-family: HarmoniaSansStd !important; //@TODO Update to match the default/theme font
     font-weight: 400 !important;
@@ -76,7 +75,7 @@ div[id^="nb-field-"].nb-success input {
 }
 
 // Styles for our custom NeverBounce implimentation.
-#nb-wrapper{
+#nb-wrapper {
   width: 100%;
 
   div.nb-hidden {

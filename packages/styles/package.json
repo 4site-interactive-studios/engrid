@@ -1,6 +1,6 @@
 {
   "name": "@4site/engrid-styles",
-  "version": "0.17.13",
+  "version": "0.17.16",
   "description": "Main SASS Styles for the ENgrid Project",
   "main": "./src/main.scss",
   "scripts": {
@@ -38,5 +38,5 @@
     "url": "https://github.com/4site-interactive-studios/engrid-scripts.git",
     "directory": "packages/styles"
   },
-  "gitHead": "e08b9894e78cb8ca67c298f7e29b6da709ffe771"
+  "gitHead": "e0fd349643fe075164edfc13fa2005ef164f9f72"
 }
