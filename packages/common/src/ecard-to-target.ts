@@ -81,15 +81,15 @@ export class EcardToTarget {
     ) as HTMLElement;
 
     if (this.options.hideMessage && messageBlock) {
-      messageBlock.style.display = "none";
+      messageBlock.classList.add("hide");
     }
 
     if (this.options.hideSendDate && sendDateBlock) {
-      sendDateBlock.style.display = "none";
+      sendDateBlock.classList.add("hide");
     }
 
     if (this.options.hideTarget && targetBlock) {
-      targetBlock.style.display = "none";
+      targetBlock.classList.add("hide");
     }
   }
 

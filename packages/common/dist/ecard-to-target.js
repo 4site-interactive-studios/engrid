@@ -44,13 +44,13 @@ export class EcardToTarget {
         const sendDateBlock = document.querySelector(".en__ecardrecipients__futureDelivery");
         const targetBlock = document.querySelector(".en__ecardrecipients");
         if (this.options.hideMessage && messageBlock) {
-            messageBlock.style.display = "none";
+            messageBlock.classList.add("hide");
         }
         if (this.options.hideSendDate && sendDateBlock) {
-            sendDateBlock.style.display = "none";
+            sendDateBlock.classList.add("hide");
         }
         if (this.options.hideTarget && targetBlock) {
-            targetBlock.style.display = "none";
+            targetBlock.classList.add("hide");
         }
     }
     addSupporterNameToMessage() {
