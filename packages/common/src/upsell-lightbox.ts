@@ -5,7 +5,7 @@ import {
   ProcessingFees,
   UpsellOptions,
   UpsellOptionsDefaults,
-  DataLayer
+  DataLayer,
 } from "./";
 import { DonationAmount, DonationFrequency, EnForm } from "./events";
 
@@ -30,7 +30,7 @@ export class UpsellLightbox {
     this.options = { ...UpsellOptionsDefaults, ...options };
     //Disable for "applepay" via Vantiv payment method. Adding it to the array like this so it persists
     //even if the client provides custom options.
-    this.options.disablePaymentMethods.push('applepay');
+    this.options.disablePaymentMethods.push("applepay");
     if (!this.shouldRun()) {
       this.logger.log("Upsell script should NOT run");
       // If we're not on a Donation Page, get out
@@ -367,13 +367,22 @@ export class UpsellLightbox {
         frequency: "monthly",
       });
       this._dataLayer.addEndOfGiftProcessVariable("ENGRID_UPSELL", true);
-      this._dataLayer.addEndOfGiftProcessVariable("ENGRID_UPSELL_ORIGINAL_AMOUNT", originalAmount);
-      this._dataLayer.addEndOfGiftProcessVariable("ENGRID_UPSELL_DONATION_FREQUENCY", "MONTHLY");
+      this._dataLayer.addEndOfGiftProcessVariable(
+        "ENGRID_UPSELL_ORIGINAL_AMOUNT",
+        originalAmount
+      );
+      this._dataLayer.addEndOfGiftProcessVariable(
+        "ENGRID_UPSELL_DONATION_FREQUENCY",
+        "MONTHLY"
+      );
     } else {
       this.setOriginalAmount("");
       window.sessionStorage.removeItem("original");
       this._dataLayer.addEndOfGiftProcessVariable("ENGRID_UPSELL", false);
-      this._dataLayer.addEndOfGiftProcessVariable("ENGRID_UPSELL_DONATION_FREQUENCY", "ONE-TIME");
+      this._dataLayer.addEndOfGiftProcessVariable(
+        "ENGRID_UPSELL_DONATION_FREQUENCY",
+        "ONE-TIME"
+      );
     }
     this._form.submitForm();
   }

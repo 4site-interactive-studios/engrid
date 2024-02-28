@@ -68,12 +68,15 @@ export class Ticker {
 
     this.tickerElement?.parentElement?.insertBefore(ticker, this.tickerElement);
     this.tickerElement?.remove();
-    
-    const tickerWidth = (document.querySelector(".ticker") as HTMLElement).offsetWidth.toString();
-    ticker.style.setProperty("--ticker-size", tickerWidth);
-    
-    this.logger.log("Ticker Size: " + ticker.style.getPropertyValue("--ticker-size"));
-    this.logger.log("Ticker Width: " + tickerWidth);
 
+    const tickerWidth = (
+      document.querySelector(".ticker") as HTMLElement
+    ).offsetWidth.toString();
+    ticker.style.setProperty("--ticker-size", tickerWidth);
+
+    this.logger.log(
+      "Ticker Size: " + ticker.style.getPropertyValue("--ticker-size")
+    );
+    this.logger.log("Ticker Width: " + tickerWidth);
   }
 }

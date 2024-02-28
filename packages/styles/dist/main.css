@@ -6013,7 +6013,6 @@ figure.media-with-attribution figattribution a,
 figure.media-with-attribution figattribution a:hover,
 figure.media-with-attribution figattribution a:focus {
   font-size: var(--media-attribution__font-size);
-  color: var(--media-attribution__color);
   font-family: var(--media-attribution__font-family);
   color: var(--media-attribution__color);
   font-style: var(--media-attribution__font-style);
@@ -6432,7 +6431,6 @@ div[id^=nb-field-] div.nb-feedback {
   position: absolute !important;
   left: -99999px !important;
   padding: 0.25rem 0.5rem !important;
-  font-size: 1.125em !important;
   font-size: 0.75rem !important;
   font-family: HarmoniaSansStd !important;
   font-weight: 400 !important;
@@ -6531,7 +6529,6 @@ div[id^=nb-field-].nb-success input {
   padding-right: calc(var(--fields_spacing-inline) * 2);
   padding-bottom: calc(var(--fields_spacing-block) * 2);
   padding-left: calc(var(--fields_spacing-inline) * 2);
-  border-radius: var(--fields_border-radius);
   background-color: var(--premium__item_background-color);
   border-radius: var(--premium__border-radius);
 }
@@ -6923,7 +6920,9 @@ div.en__component--ticker {
   --speed-modifier: 1;
 }
 #engrid-ticker .ticker {
-  --calculated-speed: calc((1s * (var(--ticker-size) / 50)) * var(--speed-modifier));
+  --calculated-speed: calc(
+    (1s * (var(--ticker-size) / 50)) * var(--speed-modifier)
+  );
   display: inline-block;
   height: 5rem;
   line-height: 5rem;
@@ -7106,14 +7105,20 @@ body:not(#en__pagebuilder):not([data-engrid-debug]):not([data-engrid-merge-tags-
   --exit-intent__button_padding: var(--button_padding);
   --exit-intent__button_padding-bottom: var(--submit__button_padding-bottom);
   --exit-intent__button_padding-top: var(--submit__button_padding-top);
-  --exit-intent__button_background-color: var(--submit__button_background-color);
+  --exit-intent__button_background-color: var(
+    --submit__button_background-color
+  );
   --exit-intent__button_color: var(--submit__button_color);
   --exit-intent__button_border-radius: var(--submit__button_border-radius);
   --exit-intent__button_border-color: var(--submit__button_border-color);
   --exit-intent__button_border-width: var(--submit__button_border-width);
-  --exit-intent__button_background-color_hover: var(--submit__button_background-color_hover);
+  --exit-intent__button_background-color_hover: var(
+    --submit__button_background-color_hover
+  );
   --exit-intent__button_color_hover: var(--submit__button_color_hover);
-  --exit-intent__button_border-color_hover: var(--submit__button_border-color_hover);
+  --exit-intent__button_border-color_hover: var(
+    --submit__button_border-color_hover
+  );
 }
 
 .ExitIntent__button:hover {

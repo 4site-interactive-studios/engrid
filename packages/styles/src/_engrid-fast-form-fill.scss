@@ -2,26 +2,26 @@
   &[data-engrid-hide-fast-address-details="true"] {
     .hideif-fast-address-details,
     .fast-address-details {
-      display: none!important;
+      display: none !important;
     }
   }
 
   &[data-engrid-hide-fast-personal-details="true"] {
     .hideif-fast-personal-details,
     .fast-personal-details {
-      display: none!important;
+      display: none !important;
     }
   }
 
   &:not([data-engrid-hide-fast-address-details="true"]) {
     .showif-fast-address-details {
-      display: none!important;
+      display: none !important;
     }
   }
 
   &:not([data-engrid-hide-fast-personal-details="true"]) {
     .showif-fast-personal-details {
-      display: none!important;
+      display: none !important;
     }
   }
 }
