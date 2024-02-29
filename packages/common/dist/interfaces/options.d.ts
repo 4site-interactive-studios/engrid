@@ -55,6 +55,7 @@ export interface Options {
         countries?: string[];
         country_fallback?: string;
         us_zip_divider?: string;
+        address_enable?: boolean;
         address_fields?: {
             address1: string;
             address2: string;

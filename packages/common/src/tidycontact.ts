@@ -310,29 +310,31 @@ export class TidyContact {
     }
   }
   private loadOptions() {
-    if (this.options && !this.options.address_fields) {
-      this.options.address_fields = {
-        address1: "supporter.address1", // Address Field 1
-        address2: "supporter.address2", // Address Field 2
-        address3: "supporter.address3", // Address Field 3 - This is only used for field creation
-        city: "supporter.city", // City field
-        region: "supporter.region", // State field
-        postalCode: "supporter.postcode", // Zipcode field
-        country: "supporter.country", // Country field
-        phone: "supporter.phoneNumber2", // Phone field
-      };
-    }
-    if (this.options && this.options.phone_enable) {
-      this.options.phone_flags = this.options.phone_flags ?? true;
-      this.options.phone_country_from_ip =
-        this.options.phone_country_from_ip ?? true;
-      this.options.phone_preferred_countries =
-        this.options.phone_preferred_countries ?? [];
+    if (this.options) {
+      if (!this.options.address_fields) {
+        this.options.address_fields = {
+          address1: "supporter.address1", // Address Field 1
+          address2: "supporter.address2", // Address Field 2
+          address3: "supporter.address3", // Address Field 3 - This is only used for field creation
+          city: "supporter.city", // City field
+          region: "supporter.region", // State field
+          postalCode: "supporter.postcode", // Zipcode field
+          country: "supporter.country", // Country field
+          phone: "supporter.phoneNumber2", // Phone field
+        };
+      }
+      this.options.address_enable = this.options.address_enable ?? true;
+      if (this.options.phone_enable) {
+        this.options.phone_flags = this.options.phone_flags ?? true;
+        this.options.phone_country_from_ip =
+          this.options.phone_country_from_ip ?? true;
+        this.options.phone_preferred_countries =
+          this.options.phone_preferred_countries ?? [];
+      }
     }
   }
   private createFields() {
-    if (!this.options) return;
-    if (!this.hasAddressFields()) return;
+    if (!this.options || !this.hasAddressFields()) return;
     // Creating Latitude and Longitude fields
     const latitudeField = ENGrid.getField(
       "supporter.geo.latitude"
@@ -485,6 +487,10 @@ export class TidyContact {
   }
   private countryAllowed(country: string): boolean {
     if (!this.options) return false;
+    // If the country list is empty, allow all countries
+    if (!this.options.countries || this.options.countries.length === 0) {
+      return true;
+    }
     return !!this.options.countries?.includes(country.toLowerCase());
   }
   private fetchTimeOut(url: RequestInfo, params?: RequestInit) {
@@ -549,7 +555,7 @@ export class TidyContact {
     }
   }
   private setFields(data: { [key: string]: any }) {
-    if (!this.options) return {};
+    if (!this.options || !this.options.address_enable) return {};
     let response: { [key: string]: {} } = {};
     const country = this.getCountry();
     const postalCodeValue = ENGrid.getFieldValue(
@@ -606,7 +612,7 @@ export class TidyContact {
     return response;
   }
   private hasAddressFields(): boolean {
-    if (!this.options) return false;
+    if (!this.options || !this.options.address_enable) return false;
     const address1 = ENGrid.getField(
       this.options.address_fields?.address1 as string
     );
@@ -626,7 +632,7 @@ export class TidyContact {
     return !!(address1 || address2 || city || region || postalCode || country);
   }
   private canUseAPI(): boolean {
-    if (!this.options) return false;
+    if (!this.options || !this.hasAddressFields()) return false;
     const country = !!this.getCountry();
     const address1 = !!ENGrid.getFieldValue(
       this.options.address_fields?.address1 as string

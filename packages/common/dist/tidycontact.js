@@ -299,32 +299,33 @@ export class TidyContact {
         }
     }
     loadOptions() {
-        var _a, _b, _c;
-        if (this.options && !this.options.address_fields) {
-            this.options.address_fields = {
-                address1: "supporter.address1",
-                address2: "supporter.address2",
-                address3: "supporter.address3",
-                city: "supporter.city",
-                region: "supporter.region",
-                postalCode: "supporter.postcode",
-                country: "supporter.country",
-                phone: "supporter.phoneNumber2", // Phone field
-            };
-        }
-        if (this.options && this.options.phone_enable) {
-            this.options.phone_flags = (_a = this.options.phone_flags) !== null && _a !== void 0 ? _a : true;
-            this.options.phone_country_from_ip =
-                (_b = this.options.phone_country_from_ip) !== null && _b !== void 0 ? _b : true;
-            this.options.phone_preferred_countries =
-                (_c = this.options.phone_preferred_countries) !== null && _c !== void 0 ? _c : [];
+        var _a, _b, _c, _d;
+        if (this.options) {
+            if (!this.options.address_fields) {
+                this.options.address_fields = {
+                    address1: "supporter.address1",
+                    address2: "supporter.address2",
+                    address3: "supporter.address3",
+                    city: "supporter.city",
+                    region: "supporter.region",
+                    postalCode: "supporter.postcode",
+                    country: "supporter.country",
+                    phone: "supporter.phoneNumber2", // Phone field
+                };
+            }
+            this.options.address_enable = (_a = this.options.address_enable) !== null && _a !== void 0 ? _a : true;
+            if (this.options.phone_enable) {
+                this.options.phone_flags = (_b = this.options.phone_flags) !== null && _b !== void 0 ? _b : true;
+                this.options.phone_country_from_ip =
+                    (_c = this.options.phone_country_from_ip) !== null && _c !== void 0 ? _c : true;
+                this.options.phone_preferred_countries =
+                    (_d = this.options.phone_preferred_countries) !== null && _d !== void 0 ? _d : [];
+            }
         }
     }
     createFields() {
         var _a, _b, _c, _d, _e, _f;
-        if (!this.options)
-            return;
-        if (!this.hasAddressFields())
+        if (!this.options || !this.hasAddressFields())
             return;
         // Creating Latitude and Longitude fields
         const latitudeField = ENGrid.getField("supporter.geo.latitude");
@@ -454,6 +455,10 @@ export class TidyContact {
         var _a;
         if (!this.options)
             return false;
+        // If the country list is empty, allow all countries
+        if (!this.options.countries || this.options.countries.length === 0) {
+            return true;
+        }
         return !!((_a = this.options.countries) === null || _a === void 0 ? void 0 : _a.includes(country.toLowerCase()));
     }
     fetchTimeOut(url, params) {
@@ -515,7 +520,7 @@ export class TidyContact {
     }
     setFields(data) {
         var _a, _b, _c, _d, _e;
-        if (!this.options)
+        if (!this.options || !this.options.address_enable)
             return {};
         let response = {};
         const country = this.getCountry();
@@ -565,7 +570,7 @@ export class TidyContact {
     }
     hasAddressFields() {
         var _a, _b, _c, _d, _e, _f;
-        if (!this.options)
+        if (!this.options || !this.options.address_enable)
             return false;
         const address1 = ENGrid.getField((_a = this.options.address_fields) === null || _a === void 0 ? void 0 : _a.address1);
         const address2 = ENGrid.getField((_b = this.options.address_fields) === null || _b === void 0 ? void 0 : _b.address2);
@@ -577,7 +582,7 @@ export class TidyContact {
     }
     canUseAPI() {
         var _a, _b, _c, _d;
-        if (!this.options)
+        if (!this.options || !this.hasAddressFields())
             return false;
         const country = !!this.getCountry();
         const address1 = !!ENGrid.getFieldValue((_a = this.options.address_fields) === null || _a === void 0 ? void 0 : _a.address1);

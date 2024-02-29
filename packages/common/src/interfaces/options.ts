@@ -61,6 +61,7 @@ export interface Options {
         countries?: string[]; // Country that is allowed to use the API, if empty, all countries are allowed. You can use more than one country by separating them with a comma.
         country_fallback?: string; // Fallback country if the country field is not found.
         us_zip_divider?: string; // The divider used in US zip codes.
+        address_enable?: boolean; // Enable address fields (true by default)
         address_fields?: {
           address1: string; // Address Field 1
           address2: string; // Address Field 2
