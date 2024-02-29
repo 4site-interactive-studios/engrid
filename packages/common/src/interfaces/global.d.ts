@@ -2,6 +2,7 @@ import { TranslateOptions } from "./translate-options";
 import { Options } from "./options";
 import { UpsellOptions } from "./upsell-options";
 import { ExitIntentOptions } from "./exit-intent-options";
+import { EcardToTargetOptions } from "./ecard-to-target-options";
 
 export {}; // this file needs to be a module
 declare global {
@@ -17,6 +18,7 @@ declare global {
     EngridUpsell: UpsellOptions;
     EngridExitIntent: ExitIntentOptions;
     EngridTranslate: TranslateOptions;
+    EngridEcardToTarget: EcardToTargetOptions;
     EngridVersion: string;
     EngridLoader: {
       "repo-name"?: string;
