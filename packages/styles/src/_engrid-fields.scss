@@ -412,6 +412,14 @@ input.en__field__input {
   }
 }
 .en__field__input--vgs {
+  --en-vgs-width: 100%;
+  --en-vgs-borderWidth: var(--input_border-width);
+  --en-vgs-borderStyle: solid;
+  --en-vgs-borderColor: var(--input_border-color);
+  --en-vgs-borderRadius: var(--input_border-radius);
+  --en-vgs-backgroundColor: var(--input_background-color);
+  --en-vgs-fontSize: var(--input_font-size);
+
   width: 100%;
   transition: box-shadow 0.25s, border-color 0.25s ease-in-out; // Shared between input, textarea, and select
   &:hover {
