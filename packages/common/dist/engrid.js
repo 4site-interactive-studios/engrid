@@ -324,19 +324,20 @@ export class ENGrid {
     }
     static disableSubmit(label = "") {
         const submit = document.querySelector(".en__submit button");
+        if (!submit)
+            return false;
         submit.dataset.originalText = submit.innerHTML;
         let submitButtonProcessingHTML = "<span class='loader-wrapper'><span class='loader loader-quart'></span><span class='submit-button-text-wrapper'>" +
             label +
             "</span></span>";
-        if (submit) {
-            submit.disabled = true;
-            submit.innerHTML = submitButtonProcessingHTML;
-            return true;
-        }
-        return false;
+        submit.disabled = true;
+        submit.innerHTML = submitButtonProcessingHTML;
+        return true;
     }
     static enableSubmit() {
         const submit = document.querySelector(".en__submit button");
+        if (!submit)
+            return false;
         if (submit.dataset.originalText) {
             submit.disabled = false;
             submit.innerHTML = submit.dataset.originalText;
