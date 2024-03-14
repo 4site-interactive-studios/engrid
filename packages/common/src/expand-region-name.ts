@@ -26,7 +26,7 @@ export class ExpandRegionName {
         ENGrid.createHiddenInput(expandedRegionField);
       }
 
-      this._form.onSubmit.subscribe(() => this.expandRegion());
+      this._form.onValidate.subscribe(() => this.expandRegion());
     }
   }
 
@@ -35,6 +35,7 @@ export class ExpandRegionName {
   }
 
   private expandRegion() {
+    if (!this._form.validate) return;
     const userRegion: HTMLSelectElement | HTMLInputElement | null =
       document.querySelector('[name="supporter.region"]'); // User entered region on the page
     const expandedRegionField = ENGrid.getOption("RegionLongFormat") as string;

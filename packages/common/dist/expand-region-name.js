@@ -13,13 +13,15 @@ export class ExpandRegionName {
                 this.logger.log(`CREATED field ${expandedRegionField}`);
                 ENGrid.createHiddenInput(expandedRegionField);
             }
-            this._form.onSubmit.subscribe(() => this.expandRegion());
+            this._form.onValidate.subscribe(() => this.expandRegion());
         }
     }
     shouldRun() {
         return !!ENGrid.getOption("RegionLongFormat");
     }
     expandRegion() {
+        if (!this._form.validate)
+            return;
         const userRegion = document.querySelector('[name="supporter.region"]'); // User entered region on the page
         const expandedRegionField = ENGrid.getOption("RegionLongFormat");
         const hiddenRegion = document.querySelector(`[name="${expandedRegionField}"]`); // Hidden region long form field
