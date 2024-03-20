@@ -9,7 +9,6 @@ export declare class iFrame {
     private shouldScroll;
     private inIframe;
     private isChained;
-    private hasPayment;
     private hideFormComponents;
     private showFormComponents;
     private addChainedBanner;

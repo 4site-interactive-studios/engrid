@@ -31,9 +31,7 @@ export class InputPlaceholders {
     "input#en__field_supporter_postcode": "ZIP Code",
     ".en__field--donationAmt.en__field--withOther .en__field__input--other":
       "Other",
-    "input#en__field_transaction_ccnumber": "•••• •••• •••• ••••",
     "input#en__field_transaction_ccexpire": "MM / YY",
-    "input#en__field_transaction_ccvv": "CVV",
     "input#en__field_supporter_bankAccountNumber": "Bank Account Number",
     "input#en__field_supporter_bankRoutingNumber": "Bank Routing Number",
     "input#en__field_transaction_honname": "Honoree Name",

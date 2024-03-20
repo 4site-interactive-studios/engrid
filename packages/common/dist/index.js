@@ -10,7 +10,6 @@ export * from "./engrid";
 export * from "./apple-pay";
 export * from "./a11y";
 export * from "./capitalize-fields";
-export * from "./credit-card";
 export * from "./auto-year";
 export * from "./autocomplete";
 export * from "./ecard";
