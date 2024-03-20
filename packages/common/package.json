@@ -25,7 +25,7 @@
     "strongly-typed-events": "^2.0.9"
   },
   "homepage": "https://github.com/4site-interactive-studios/engrid-scripts#readme",
-  "gitHead": "e08b9894e78cb8ca67c298f7e29b6da709ffe771",
+  "gitHead": "8c1fe4f2bb048a5375c11da86e82b5c8b2834907",
   "devDependencies": {
     "nodemon": "^2.0.20"
   }
