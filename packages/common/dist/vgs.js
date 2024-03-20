@@ -29,11 +29,75 @@ export class VGS {
         this.options = ENGrid.getOption("VGS");
         this.paymentTypeField = document.querySelector("#en__field_transaction_paymenttype");
         this._form = EnForm.getInstance();
+        this.field_expiration_month = null;
+        this.field_expiration_year = null;
+        this.handleExpUpdate = (e) => {
+            if (!this.field_expiration_month || !this.field_expiration_year)
+                return;
+            const current_date = new Date();
+            const current_month = current_date.getMonth() + 1;
+            const current_year = parseInt(this.field_expiration_year[this.field_expiration_year.length - 1].value) > 2000
+                ? current_date.getFullYear()
+                : current_date.getFullYear() - 2000;
+            // handle if year is changed to current year (disable all months less than current month)
+            // handle if month is changed to less than current month (disable current year)
+            if (e == "month") {
+                let selected_month = parseInt(this.field_expiration_month.value);
+                let disable = selected_month < current_month;
+                this.logger.log(`month disable ${disable}`);
+                this.logger.log(`selected_month ${selected_month}`);
+                for (let i = 0; i < this.field_expiration_year.options.length; i++) {
+                    // disable or enable current year
+                    if (parseInt(this.field_expiration_year.options[i].value) <= current_year) {
+                        if (disable) {
+                            this.field_expiration_year.options[i].setAttribute("disabled", "disabled");
+                        }
+                        else {
+                            this.field_expiration_year.options[i].disabled = false;
+                        }
+                    }
+                }
+            }
+            else if (e == "year") {
+                let selected_year = parseInt(this.field_expiration_year.value);
+                let disable = selected_year == current_year;
+                this.logger.log(`year disable ${disable}`);
+                this.logger.log(`selected_year ${selected_year}`);
+                for (let i = 0; i < this.field_expiration_month.options.length; i++) {
+                    // disable or enable all months less than current month
+                    if (parseInt(this.field_expiration_month.options[i].value) < current_month) {
+                        if (disable) {
+                            this.field_expiration_month.options[i].setAttribute("disabled", "disabled");
+                        }
+                        else {
+                            this.field_expiration_month.options[i].disabled = false;
+                        }
+                    }
+                }
+            }
+        };
         if (!this.shouldRun())
             return;
         this.setPaymentType();
         this.setDefaults();
         this.dumpGlobalVar();
+        const expireFiels = document.getElementsByName("transaction.ccexpire");
+        if (expireFiels) {
+            this.field_expiration_month = expireFiels[0];
+            this.field_expiration_year = expireFiels[1];
+        }
+        // Add event listeners to the expiration fields
+        if (this.field_expiration_month && this.field_expiration_year) {
+            ["change"].forEach((event) => {
+                var _a, _b;
+                (_a = this.field_expiration_month) === null || _a === void 0 ? void 0 : _a.addEventListener(event, () => {
+                    this.handleExpUpdate("month");
+                });
+                (_b = this.field_expiration_year) === null || _b === void 0 ? void 0 : _b.addEventListener(event, () => {
+                    this.handleExpUpdate("year");
+                });
+            });
+        }
         this._form.onValidate.subscribe(() => {
             if (this._form.validate) {
                 const isValid = this.validate();
@@ -90,15 +154,15 @@ export class VGS {
         };
         // Deep merge the default options with the options set in the theme
         this.options = ENGrid.deepMerge(defaultOptions, options);
-        this.logger.log("Theme Options", options);
-        this.logger.log("Merged Options", this.options);
+        this.logger.log("Options", this.options);
     }
     setPaymentType() {
         // Because the VGS iFrame Communication doesn't change the value of the payment type field, we have to set it to Visa by default
         if (this.paymentTypeField) {
             // Loop through the payment type field options and set the visa card as the default
             for (let i = 0; i < this.paymentTypeField.options.length; i++) {
-                if (this.paymentTypeField.options[i].value.toLowerCase() === "visa" ||
+                if (this.paymentTypeField.options[i].value.toLowerCase() === "card" ||
+                    this.paymentTypeField.options[i].value.toLowerCase() === "visa" ||
                     this.paymentTypeField.options[i].value.toLowerCase() === "vi") {
                     this.paymentTypeField.selectedIndex = i;
                     break;
@@ -158,7 +222,8 @@ export class VGS {
         }, 1000);
     }
     validate() {
-        if (this.paymentTypeField.value.toLowerCase() === "visa" ||
+        if (this.paymentTypeField.value.toLowerCase() === "card" ||
+            this.paymentTypeField.value.toLowerCase() === "visa" ||
             this.paymentTypeField.value.toLowerCase() === "vi") {
             const cardContainer = document.querySelector(".en__field--vgs.en__field--ccnumber");
             const cardEmpty = cardContainer.querySelector(".vgs-collect-container__empty");
