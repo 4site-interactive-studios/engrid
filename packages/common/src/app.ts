@@ -80,6 +80,7 @@ import {
   CountryRedirect,
   WelcomeBack,
   EcardToTarget,
+  EmbeddedEcard,
 } from "./";
 
 export class App extends ENGrid {
@@ -421,6 +422,8 @@ export class App extends ENGrid {
     new WelcomeBack();
 
     new EcardToTarget();
+
+    new EmbeddedEcard();
 
     //Debug panel
     let showDebugPanel = this.options.Debug;
