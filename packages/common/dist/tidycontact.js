@@ -426,6 +426,20 @@ export class TidyContact {
         }
         // Add event listener to submit
         this._form.onSubmit.subscribe(this.callAPI.bind(this));
+        // Attach the API call event to the Give By Select to anticipate the use of Digital Wallets
+        const transactionGiveBySelect = document.getElementsByName("transaction.giveBySelect");
+        if (transactionGiveBySelect) {
+            transactionGiveBySelect.forEach((giveBySelect) => {
+                giveBySelect.addEventListener("change", () => {
+                    if (giveBySelect.value.toLowerCase() === "stripedigitalwallet") {
+                        this.logger.log("Clicked Digital Wallet Button");
+                        window.setTimeout(() => {
+                            this.callAPI();
+                        }, 500);
+                    }
+                });
+            });
+        }
     }
     checkSum(str) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -592,6 +606,7 @@ export class TidyContact {
         if (country && address1) {
             return (city && region) || postalCode;
         }
+        this.logger.log("API cannot be used");
         return false;
     }
     canUsePhoneAPI() {
@@ -603,6 +618,7 @@ export class TidyContact {
             const countryPhone = !!ENGrid.getFieldValue("tc.phone.country");
             return phone && countryPhone;
         }
+        this.logger.log("Phone API is not enabled");
         return false;
     }
     getCountry() {
