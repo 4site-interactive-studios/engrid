@@ -16,23 +16,28 @@ export class EmbeddedEcard {
 
   constructor() {
     // For the page hosting the embedded ecard
-    if (this.isHostPage()) {
-      this.logger.log("Running Embedded Ecard component", this.options);
+    if (this.onHostPage()) {
       this.options = {
         ...EmbeddedEcardOptionsDefaults,
         ...window.EngridEmbeddedEcard,
       };
+      this.logger.log("Running Embedded Ecard component", this.options);
       this.embedEcard();
       this.addEventListeners();
     }
 
+    // For the thank you page - after the host page form has been submitted
+    if (this.onPostActionPage()) {
+      this.submitEcard();
+    }
+
     // For the page that is embedded
-    if (this.pageIsEmbeddedEcard()) {
-      this.addPostMessageListener();
+    if (this.onEmbeddedEcardPage()) {
+      this.setupEmbeddedPage();
     }
   }
 
-  private isHostPage(): boolean {
+  private onHostPage(): boolean {
     return (
       window.hasOwnProperty("EngridEmbeddedEcard") &&
       typeof window.EngridEmbeddedEcard === "object" &&
@@ -41,8 +46,15 @@ export class EmbeddedEcard {
     );
   }
 
-  private pageIsEmbeddedEcard(): boolean {
+  private onEmbeddedEcardPage(): boolean {
     return ENGrid.getPageType() === "ECARD" && ENGrid.hasBodyData("embedded");
+  }
+
+  private onPostActionPage(): boolean {
+    return (
+      sessionStorage.getItem("engrid-embedded-ecard") !== null &&
+      !this.onHostPage()
+    );
   }
 
   private embedEcard() {
@@ -71,15 +83,7 @@ export class EmbeddedEcard {
       </div>`;
     container.appendChild(checkbox);
 
-    const iframe = document.createElement("iframe");
-    iframe.src = this.options.pageUrl;
-    iframe.setAttribute("src", this.options.pageUrl);
-    iframe.setAttribute("width", "100%");
-    iframe.setAttribute("scrolling", "no");
-    iframe.setAttribute("frameborder", "0");
-    iframe.classList.add("engrid-iframe", "engrid-iframe--embedded-ecard");
-    iframe.style.display = "none";
-    container.appendChild(iframe);
+    container.appendChild(this.createIframe(this.options.pageUrl));
 
     document
       .querySelector(this.options.anchor)
@@ -87,6 +91,18 @@ export class EmbeddedEcard {
         this.options.placement as InsertPosition,
         container
       );
+  }
+
+  private createIframe(url: string): HTMLIFrameElement {
+    const iframe = document.createElement("iframe");
+    iframe.src = url;
+    iframe.setAttribute("src", url);
+    iframe.setAttribute("width", "100%");
+    iframe.setAttribute("scrolling", "no");
+    iframe.setAttribute("frameborder", "0");
+    iframe.classList.add("engrid-iframe", "engrid-iframe--embedded-ecard");
+    iframe.style.display = "none";
+    return iframe;
   }
 
   private addEventListeners() {
@@ -107,62 +123,129 @@ export class EmbeddedEcard {
       }
     });
 
-    /*
-    TODO: fix - this is not working. Potential issue with order of operations causing either form to fail to submit or the ecard to not be sent.
-
-    This is a potential solution:
-    - Save ecard data to sessionStorage
-    - Submit form
-    - On thank you page, add ecard iframe, and send ecard data to iframe, submit iframe.
-     */
-
     this._form.onSubmit.subscribe(() => {
-      if (!this._form.submit) return;
-      if (!sendEcardCheckbox || !sendEcardCheckbox?.checked) return;
+      if (
+        !this._form.submit ||
+        !sendEcardCheckbox ||
+        !sendEcardCheckbox?.checked
+      ) {
+        return;
+      }
 
-      const emailField = document.getElementById(
-        "en__field_supporter_emailAddress"
-      ) as HTMLInputElement;
-      const firstNameField = document.getElementById(
-        "en__field_supporter_firstName"
-      ) as HTMLInputElement;
-      const lastNameField = document.getElementById(
-        "en__field_supporter_lastName"
-      ) as HTMLInputElement;
-
-      iframe?.contentWindow?.postMessage(
-        {
-          messageType: "submit_embedded_ecard",
-          email: emailField?.value,
-          firstName: firstNameField?.value,
-          lastName: lastNameField?.value,
-        },
-        location.origin
-      );
-
-      //test dont submit
-      this._form.submit = false;
+      this.sendPostMessage(iframe, "save_form_data");
     });
   }
 
-  private addPostMessageListener() {
+  private setupEmbeddedPage() {
     window.addEventListener("message", (e) => {
-      if (e.origin !== location.origin) return;
+      if (e.origin !== location.origin || !e.data.action) return;
 
-      console.log(e.data);
+      this.logger.log("Received post message", e.data);
 
-      if (e.data.messageType === "submit_embedded_ecard") {
-        document
-          .getElementById("en__field_supporter_emailAddress")
-          ?.setAttribute("value", e.data.email);
-        document
-          .getElementById("en__field_supporter_firstName")
-          ?.setAttribute("value", e.data.firstName);
-        document
-          .getElementById("en__field_supporter_lastName")
-          ?.setAttribute("value", e.data.lastName);
-        this._form.submitForm();
+      let ecardVariant = document.querySelector(
+        "[name='friend.ecard']"
+      ) as HTMLInputElement;
+      let ecardSendDate = document.querySelector(
+        "[name='ecard.schedule']"
+      ) as HTMLInputElement;
+      let ecardMessage = document.querySelector(
+        "[name='transaction.comments']"
+      ) as HTMLInputElement;
+      let recipientName = document.querySelector(
+        ".en__ecardrecipients__name > input"
+      ) as HTMLInputElement;
+      let recipientEmail = document.querySelector(
+        ".en__ecardrecipients__email > input"
+      ) as HTMLInputElement;
+
+      switch (e.data.action) {
+        case "save_form_data":
+          //add "chain" param to window.location.href if it doesnt have it
+          const pageUrl = new URL(window.location.href);
+          if (!pageUrl.searchParams.has("chain")) {
+            pageUrl.searchParams.append("chain", "");
+          }
+
+          sessionStorage.setItem(
+            "engrid-embedded-ecard",
+            JSON.stringify({
+              pageUrl: pageUrl.href,
+              formData: {
+                ecardVariant: ecardVariant?.value || "",
+                ecardSendDate: ecardSendDate?.value || "",
+                ecardMessage: ecardMessage?.value || "",
+                recipientName: recipientName?.value || "",
+                recipientEmail: recipientEmail?.value || "",
+              },
+            })
+          );
+          break;
+        case "submit_form":
+          let embeddedEcardData = JSON.parse(
+            sessionStorage.getItem("engrid-embedded-ecard") || "{}"
+          );
+
+          if (ecardVariant) {
+            ecardVariant.value = embeddedEcardData.formData["ecardVariant"];
+          }
+          if (ecardSendDate) {
+            ecardSendDate.value = embeddedEcardData.formData["ecardSendDate"];
+          }
+          if (ecardMessage) {
+            ecardMessage.value = embeddedEcardData.formData["ecardMessage"];
+          }
+
+          recipientName.value = embeddedEcardData.formData["recipientName"];
+          recipientEmail.value = embeddedEcardData.formData["recipientEmail"];
+
+          const addRecipientButton = document.querySelector(
+            ".en__ecarditems__addrecipient"
+          ) as HTMLButtonElement;
+          addRecipientButton?.click();
+
+          const form = EnForm.getInstance();
+          form.submitForm();
+
+          sessionStorage.removeItem("engrid-embedded-ecard");
+          break;
       }
     });
+
+    this.sendPostMessage("parent", "ecard_form_ready");
+  }
+
+  private submitEcard() {
+    const embeddedEcardData = JSON.parse(
+      sessionStorage.getItem("engrid-embedded-ecard") || "{}"
+    );
+    this.logger.log("Submitting ecard", embeddedEcardData);
+
+    const iframe = this.createIframe(embeddedEcardData.pageUrl);
+    document.querySelector(".body-main")?.appendChild(iframe);
+
+    window.addEventListener("message", (e) => {
+      if (e.origin !== location.origin || !e.data.action) return;
+
+      if (e.data.action === "ecard_form_ready") {
+        this.sendPostMessage(iframe, "submit_form");
+      }
+    });
+  }
+
+  private sendPostMessage(
+    target: HTMLIFrameElement | "parent",
+    action: string,
+    data: object = {}
+  ) {
+    const message = {
+      action,
+      ...data,
+    };
+
+    if (target === "parent") {
+      window.parent.postMessage(message, location.origin);
+    } else {
+      target.contentWindow?.postMessage(message, location.origin);
+    }
   }
 }

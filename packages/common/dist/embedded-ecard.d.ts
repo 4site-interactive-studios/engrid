@@ -3,9 +3,13 @@ export declare class EmbeddedEcard {
     private readonly options;
     private _form;
     constructor();
-    private isHostPage;
-    private pageIsEmbeddedEcard;
+    private onHostPage;
+    private onEmbeddedEcardPage;
+    private onPostActionPage;
     private embedEcard;
+    private createIframe;
     private addEventListeners;
-    private addPostMessageListener;
+    private setupEmbeddedPage;
+    private submitEcard;
+    private sendPostMessage;
 }
