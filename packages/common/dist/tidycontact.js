@@ -431,7 +431,7 @@ export class TidyContact {
         if (transactionGiveBySelect) {
             transactionGiveBySelect.forEach((giveBySelect) => {
                 giveBySelect.addEventListener("change", () => {
-                    if (giveBySelect.value.toLowerCase() === "stripedigitalwallet") {
+                    if (["stripedigitalwallet", "paypaltouch"].includes(giveBySelect.value.toLowerCase())) {
                         this.logger.log("Clicked Digital Wallet Button");
                         window.setTimeout(() => {
                             this.callAPI();
