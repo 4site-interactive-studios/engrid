@@ -7307,6 +7307,10 @@ body[data-engrid-page-type=e-card][data-engrid-embedded-ecard=true] .en__ecardre
   display: none;
 }
 
+body:not([data-engrid-embedded-ecard-sent=true]) .showif-embedded-ecard-sent {
+  display: none;
+}
+
 /* ENGRID LAYOUTS */
 /* MUST COME AFTER OTHER ENGRID STYLES WHICH MIGHT DEFINE MIXINS REFERENCED IN THE LAYOUTS */
 [data-engrid-theme] {

@@ -41,3 +41,9 @@ body[data-engrid-page-type="e-card"][data-engrid-embedded-ecard="true"] {
     display: none;
   }
 }
+
+body:not([data-engrid-embedded-ecard-sent="true"]) {
+  .showif-embedded-ecard-sent {
+    display: none;
+  }
+}

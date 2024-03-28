@@ -168,6 +168,10 @@ export class EmbeddedEcard {
           if (!pageUrl.searchParams.has("chain")) {
             pageUrl.searchParams.append("chain", "");
           }
+          pageUrl.searchParams.append(
+            "data-engrid-embedded-ecard-sent",
+            "true"
+          );
 
           sessionStorage.setItem(
             "engrid-embedded-ecard",
