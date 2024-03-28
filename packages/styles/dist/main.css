@@ -7275,6 +7275,38 @@ body[data-engrid-exit-intent-lightbox=open] {
   bottom: 2px;
 }
 
+body[data-engrid-page-type=e-card][data-engrid-embedded-ecard=true] .en__errorHeader,
+body[data-engrid-page-type=e-card][data-engrid-embedded-ecard=true] .en__errorList {
+  display: none;
+}
+body[data-engrid-page-type=e-card][data-engrid-embedded-ecard=true] .en__component--advrow > div:not(.body-main) {
+  display: none;
+}
+body[data-engrid-page-type=e-card][data-engrid-embedded-ecard=true] .body-main > *:not(.en__component--ecardblock) {
+  display: none;
+}
+body[data-engrid-page-type=e-card][data-engrid-embedded-ecard=true] .body-main {
+  padding: 0;
+  grid-row: 1/-1;
+  width: 100%;
+  max-width: 100%;
+}
+body[data-engrid-page-type=e-card][data-engrid-embedded-ecard=true] .en__component--ecardblock {
+  width: 100%;
+  max-width: 100%;
+}
+body[data-engrid-page-type=e-card][data-engrid-embedded-ecard=true] .en__ecardrecipients__name input,
+body[data-engrid-page-type=e-card][data-engrid-embedded-ecard=true] .en__ecardrecipients__email input {
+  width: 100%;
+}
+body[data-engrid-page-type=e-card][data-engrid-embedded-ecard=true] .en__ecardrecipients__name .en__ecarditems__addrecipient,
+body[data-engrid-page-type=e-card][data-engrid-embedded-ecard=true] .en__ecardrecipients__email .en__ecarditems__addrecipient {
+  display: none;
+}
+body[data-engrid-page-type=e-card][data-engrid-embedded-ecard=true] .en__ecardrecipients__list {
+  display: none;
+}
+
 /* ENGRID LAYOUTS */
 /* MUST COME AFTER OTHER ENGRID STYLES WHICH MIGHT DEFINE MIXINS REFERENCED IN THE LAYOUTS */
 [data-engrid-theme] {

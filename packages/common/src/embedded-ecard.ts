@@ -21,6 +21,9 @@ export class EmbeddedEcard {
         ...EmbeddedEcardOptionsDefaults,
         ...window.EngridEmbeddedEcard,
       };
+      const pageUrl = new URL(this.options.pageUrl);
+      pageUrl.searchParams.append("data-engrid-embedded-ecard", "true");
+      this.options.pageUrl = pageUrl.href;
       this.logger.log("Running Embedded Ecard component", this.options);
       this.embedEcard();
       this.addEventListeners();
