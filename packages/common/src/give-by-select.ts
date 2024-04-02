@@ -67,6 +67,12 @@ export class GiveBySelect {
         this.paymentTypeField.options[i].value.toLowerCase() === "vi"
       ) {
         this.paymentTypeField.selectedIndex = i;
+        // Trigger the change event
+        const event = new Event("change", {
+          bubbles: true,
+          cancelable: true,
+        });
+        this.paymentTypeField.dispatchEvent(event);
         break;
       }
     }
