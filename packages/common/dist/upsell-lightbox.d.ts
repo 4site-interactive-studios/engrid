@@ -8,6 +8,7 @@ export declare class UpsellLightbox {
     _fees: ProcessingFees;
     private _frequency;
     private _dataLayer;
+    private _suggestAmount;
     private logger;
     constructor();
     private renderLightbox;
@@ -26,4 +27,5 @@ export declare class UpsellLightbox {
     private getAmountTxt;
     private getFrequencyTxt;
     private checkOtherAmount;
+    private renderConversionField;
 }

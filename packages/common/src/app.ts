@@ -281,7 +281,7 @@ export class App extends ENGrid {
     // about 20% of the time and we get a race condition if the client is also using the SwapAmounts feature
     window.setTimeout(() => {
       this._frequency.load();
-    }, 150);
+    }, 1000);
 
     // Fast Form Fill
     new FastFormFill();
