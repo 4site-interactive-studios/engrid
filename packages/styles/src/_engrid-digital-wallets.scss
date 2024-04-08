@@ -54,14 +54,17 @@
       &:not([data-engrid-payment-type-option-google-pay="true"]) .showif-google-pay-available,
       &:not([data-engrid-payment-type-option-paypal-one-touch="true"]) .showif-paypal-one-touch-available,
       &:not([data-engrid-payment-type-option-venmo="true"]) .showif-venmo-available,
+      &:not([data-engrid-payment-type-option-daf="true"]) .showif-daf-available,
       &:not([data-engrid-payment-type="stripedigitalwallet"]) .showif-stripedigitalwallet-selected,
-      &:not([data-engrid-payment-type="paypaltouch"]) .showif-paypaltouch-selected {
+      &:not([data-engrid-payment-type="paypaltouch"]) .showif-paypaltouch-selected,
+      &:not([data-engrid-payment-type="daf"]) .showif-daf-selected {
         display: none;
       }
 
       // Hide If
       &[data-engrid-payment-type="stripedigitalwallet"] .hideif-stripedigitalwallet-selected,
-      &[data-engrid-payment-type="paypaltouch"] .hideif-paypaltouch-selected {
+      &[data-engrid-payment-type="paypaltouch"] .hideif-paypaltouch-selected,
+      &[data-engrid-payment-type="daf"] .hideif-daf-selected {
         display: none;
       }
 
