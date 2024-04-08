@@ -1,6 +1,6 @@
 {
   "name": "@4site/engrid-styles",
-  "version": "0.18.1",
+  "version": "0.18.6",
   "description": "Main SASS Styles for the ENgrid Project",
   "main": "./src/main.scss",
   "scripts": {
