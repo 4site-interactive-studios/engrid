@@ -8,6 +8,7 @@ export class DigitalWallets {
       ENGrid.setBodyData("payment-type-option-google-pay", "false");
       ENGrid.setBodyData("payment-type-option-paypal-one-touch", "false");
       ENGrid.setBodyData("payment-type-option-venmo", "false");
+      ENGrid.setBodyData("payment-type-option-daf", "false");
       return;
     }
 
@@ -28,6 +29,13 @@ export class DigitalWallets {
       paypalTouchButtons.classList.add("giveBySelect-paypaltouch");
       paypalTouchButtons.classList.add("showif-paypaltouch-selected");
       // paypalTouchButtons.style.display = "none";
+    }
+    const donorAdvisedFundButtonContainer = document.getElementById(
+      "en__digitalWallet__chariot__container"
+    );
+    if (donorAdvisedFundButtonContainer) {
+      donorAdvisedFundButtonContainer.classList.add("giveBySelect-daf");
+      donorAdvisedFundButtonContainer.classList.add("showif-daf-selected");
     }
 
     /**
@@ -75,6 +83,26 @@ export class DigitalWallets {
         this.checkForWalletsBeingAdded(paypalContainer, "paypalTouch");
       }
     }
+
+    /**
+     * Check for presence of elements that indicate DAF is present, and add functionality for it.
+     * If it hasn't loaded yet, set up a Mutation Observer to check for when it does.
+     */
+    if (
+      document.querySelector("#en__digitalWallet__chariot__container > *")
+    ) {
+      this.addDAF();
+    } else {
+      ENGrid.setBodyData("payment-type-option-daf", "false");
+
+      const donorAdvisedFundButtonContainer = document.getElementById(
+        "en__digitalWallet__chariot__container"
+      );
+
+      if (donorAdvisedFundButtonContainer) {
+        this.checkForWalletsBeingAdded(donorAdvisedFundButtonContainer, "daf");
+      }
+    }
   }
 
   private addStripeDigitalWallets() {
@@ -90,6 +118,11 @@ export class DigitalWallets {
     this.addOptionToPaymentTypeField("paypaltouch", "Paypal / Venmo");
     ENGrid.setBodyData("payment-type-option-paypal-one-touch", "true");
     ENGrid.setBodyData("payment-type-option-venmo", "true");
+  }
+
+  private addDAF() {
+    this.addOptionToPaymentTypeField("daf", "Donor Advised Fund");
+    ENGrid.setBodyData("payment-type-option-daf", "true");
   }
 
   private addOptionToPaymentTypeField(value: string, label: string) {
@@ -120,6 +153,8 @@ export class DigitalWallets {
             this.addStripeDigitalWallets();
           } else if (walletType === "paypalTouch") {
             this.addPaypalTouchDigitalWallets();
+          } else if (walletType === "daf") {
+            this.addDAF();
           }
           //Disconnect observer to prevent multiple additions
           observer.disconnect();
