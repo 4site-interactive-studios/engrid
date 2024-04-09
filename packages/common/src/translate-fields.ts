@@ -19,6 +19,16 @@ export class TranslateFields {
     let options: TranslateOptions =
       "EngridTranslate" in window ? window.EngridTranslate : {};
     this.options = TranslateOptionsDefaults;
+
+    // Don't run this for US-only forms.
+    if (
+      document.querySelector(
+        ".en__component--formblock.us-only-form .en__field--country"
+      )
+    ) {
+      return;
+    }
+
     if (options) {
       for (let key in options) {
         this.options[key] = this.options[key]
