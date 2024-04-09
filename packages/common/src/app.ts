@@ -79,6 +79,7 @@ import {
   CountryRedirect,
   WelcomeBack,
   EcardToTarget,
+  UsOnlyForm,
 } from "./";
 
 export class App extends ENGrid {
@@ -418,6 +419,8 @@ export class App extends ENGrid {
     new WelcomeBack();
 
     new EcardToTarget();
+
+    new UsOnlyForm();
 
     //Debug panel
     let showDebugPanel = this.options.Debug;
