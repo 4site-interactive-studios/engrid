@@ -1,3 +1,9 @@
+/**
+ * This class handles adding a checkbox to a form that, when checked, will display an embedded ecard form.
+ * The embedded ecard form is hosted on a separate page and is displayed in an iframe.
+ * The form data is saved in session storage and is submitted when the thank you page is loaded.
+ * Options can set on the page via window.EngridEmbeddedEcard.
+ */
 import { EnForm, ENGrid, EngridLogger } from "./";
 import { EmbeddedEcardOptionsDefaults, } from "./interfaces/embedded-ecard-options";
 export class EmbeddedEcard {
@@ -16,7 +22,9 @@ export class EmbeddedEcard {
             this.addEventListeners();
         }
         // For the thank you page - after the host page form has been submitted
+        // Only runs if eCard was selected on the main page
         if (this.onPostActionPage()) {
+            ENGrid.setBodyData("embedded-ecard-sent", "true");
             this.submitEcard();
         }
         // For the page that is embedded
@@ -35,7 +43,8 @@ export class EmbeddedEcard {
     }
     onPostActionPage() {
         return (sessionStorage.getItem("engrid-embedded-ecard") !== null &&
-            !this.onHostPage());
+            !this.onHostPage() &&
+            !this.onEmbeddedEcardPage());
     }
     embedEcard() {
         var _a;
@@ -108,7 +117,6 @@ export class EmbeddedEcard {
                     if (!pageUrl.searchParams.has("chain")) {
                         pageUrl.searchParams.append("chain", "");
                     }
-                    pageUrl.searchParams.append("data-engrid-embedded-ecard-sent", "true");
                     sessionStorage.setItem("engrid-embedded-ecard", JSON.stringify({
                         pageUrl: pageUrl.href,
                         formData: {
