@@ -19,7 +19,6 @@ import {
   ApplePay,
   A11y,
   CapitalizeFields,
-  CreditCard,
   Ecard,
   ClickToExpand,
   Advocacy,
@@ -80,6 +79,7 @@ import {
   CountryRedirect,
   WelcomeBack,
   EcardToTarget,
+  UsOnlyForm,
   EmbeddedEcard,
 } from "./";
 
@@ -283,7 +283,7 @@ export class App extends ENGrid {
     // about 20% of the time and we get a race condition if the client is also using the SwapAmounts feature
     window.setTimeout(() => {
       this._frequency.load();
-    }, 150);
+    }, 1000);
 
     // Fast Form Fill
     new FastFormFill();
@@ -303,8 +303,6 @@ export class App extends ENGrid {
     if (this.options.CapitalizeFields) new CapitalizeFields();
     // Auto Year Class
     if (this.options.AutoYear) new AutoYear();
-    // Credit Card Utility
-    new CreditCard();
     // Autocomplete Class
     new Autocomplete();
     // Ecard Class
@@ -422,6 +420,8 @@ export class App extends ENGrid {
     new WelcomeBack();
 
     new EcardToTarget();
+
+    new UsOnlyForm();
 
     new EmbeddedEcard();
 

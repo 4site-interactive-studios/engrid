@@ -8,6 +8,7 @@ export class UpsellLightbox {
         this._fees = ProcessingFees.getInstance();
         this._frequency = DonationFrequency.getInstance();
         this._dataLayer = DataLayer.getInstance();
+        this._suggestAmount = 0;
         this.logger = new EngridLogger("UpsellLightbox", "black", "pink", "🪟");
         let options = "EngridUpsell" in window ? window.EngridUpsell : {};
         this.options = Object.assign(Object.assign({}, UpsellOptionsDefaults), options);
@@ -120,7 +121,6 @@ export class UpsellLightbox {
     }
     // Should we run the script?
     shouldRun() {
-        // const hideModal = cookie.get("hideUpsell"); // Get cookie
         // if it's a first page of a Donation page
         return (
         // !hideModal &&
@@ -192,6 +192,7 @@ export class UpsellLightbox {
     shouldOpen() {
         const upsellAmount = this.getUpsellAmount();
         const paymenttype = ENGrid.getFieldValue("transaction.paymenttype") || "";
+        this._suggestAmount = upsellAmount;
         // If frequency is not onetime or
         // the modal is already opened or
         // there's no suggestion for this donation amount,
@@ -286,22 +287,24 @@ export class UpsellLightbox {
             this._dataLayer.addEndOfGiftProcessVariable("ENGRID_UPSELL", true);
             this._dataLayer.addEndOfGiftProcessVariable("ENGRID_UPSELL_ORIGINAL_AMOUNT", originalAmount);
             this._dataLayer.addEndOfGiftProcessVariable("ENGRID_UPSELL_DONATION_FREQUENCY", "MONTHLY");
+            this.renderConversionField("upsellSuccess", "onetime", originalAmount, "monthly", this._suggestAmount, "monthly", upsoldAmount);
         }
         else {
             this.setOriginalAmount("");
             window.sessionStorage.removeItem("original");
             this._dataLayer.addEndOfGiftProcessVariable("ENGRID_UPSELL", false);
             this._dataLayer.addEndOfGiftProcessVariable("ENGRID_UPSELL_DONATION_FREQUENCY", "ONE-TIME");
+            this.renderConversionField("upsellFail", this._frequency.frequency, this._amount.amount, "monthly", this._suggestAmount, this._frequency.frequency, this._amount.amount);
         }
         this._form.submitForm();
     }
-    // Close the lightbox (no cookies)
+    // Close the lightbox
     close(e) {
         e.preventDefault();
-        // cookie.set("hideUpsell", "1", { expires: 1 }); // Create one day cookie
         this.overlay.classList.add("is-hidden");
         ENGrid.setBodyData("has-lightbox", false);
         if (this.options.submitOnClose) {
+            this.renderConversionField("upsellFail", this._frequency.frequency, this._amount.amount, "monthly", this._suggestAmount, this._frequency.frequency, this._amount.amount);
             this._form.submitForm();
         }
         else {
@@ -336,5 +339,25 @@ export class UpsellLightbox {
                 otherInput.classList.add("is-invalid");
             }
         }
+    }
+    renderConversionField(event, // The event that triggered the conversion
+    freq, // The frequency of the donation (onetime, monthly, annual)
+    amt, // The original amount of the donation (before the upsell)
+    sugFreq, // The suggested frequency of the upsell (monthly)
+    sugAmt, // The suggested amount of the upsell
+    subFreq, // The submitted frequency of the upsell (onetime, monthly, annual)
+    subAmt // The submitted amount of the upsell
+    ) {
+        if (this.options.conversionField === "")
+            return;
+        const conversionField = document.querySelector("input[name='" + this.options.conversionField + "']") ||
+            ENGrid.createHiddenInput(this.options.conversionField);
+        if (!conversionField) {
+            this.logger.error("Could not find or create the conversion field");
+            return;
+        }
+        const conversionValue = `event:${event},freq:${freq},amt:${amt},sugFreq:${sugFreq},sugAmt:${sugAmt},subFreq:${subFreq},subAmt:${subAmt}`;
+        conversionField.value = conversionValue;
+        this.logger.log(`Conversion Field ${event}`, conversionValue);
     }
 }

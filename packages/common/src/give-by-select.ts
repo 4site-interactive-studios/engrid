@@ -10,10 +10,9 @@ export class GiveBySelect {
   private transactionGiveBySelect = document.getElementsByName(
     "transaction.giveBySelect"
   ) as NodeListOf<HTMLInputElement>;
-
-  private vgsField = document.querySelector(
-    ".en__field--vgs"
-  ) as HTMLDivElement;
+  private paymentTypeField = document.querySelector(
+    "select[name='transaction.paymenttype']"
+  ) as HTMLSelectElement;
 
   constructor() {
     if (!this.transactionGiveBySelect) return;
@@ -21,11 +20,7 @@ export class GiveBySelect {
       giveBySelect.addEventListener("change", () => {
         this.logger.log("Changed to " + giveBySelect.value);
         if (giveBySelect.value.toLowerCase() === "card") {
-          if (this.vgsField) {
-            ENGrid.setPaymentType("visa"); // VGS will not change the payment type field, so we have to do it manually to avoid errors
-          } else {
-            ENGrid.setPaymentType("");
-          }
+          this.setCardPaymentType();
         } else {
           ENGrid.setPaymentType(giveBySelect.value);
         }
@@ -36,6 +31,7 @@ export class GiveBySelect {
     if (paymentType) {
       this.logger.log("Setting giveBySelect to " + paymentType);
       const isCard = [
+        "card",
         "visa",
         "mastercard",
         "amex",
@@ -58,6 +54,27 @@ export class GiveBySelect {
           giveBySelect.checked = true;
         }
       });
+    }
+  }
+  setCardPaymentType() {
+    if (!this.paymentTypeField) return;
+    this.logger.log("Change Payment Type to Card or Visa");
+    // Loop through the payment type field options and set the visa card as the default
+    for (let i = 0; i < this.paymentTypeField.options.length; i++) {
+      if (
+        this.paymentTypeField.options[i].value.toLowerCase() === "card" ||
+        this.paymentTypeField.options[i].value.toLowerCase() === "visa" ||
+        this.paymentTypeField.options[i].value.toLowerCase() === "vi"
+      ) {
+        this.paymentTypeField.selectedIndex = i;
+        // Trigger the change event
+        const event = new Event("change", {
+          bubbles: true,
+          cancelable: true,
+        });
+        this.paymentTypeField.dispatchEvent(event);
+        break;
+      }
     }
   }
 }

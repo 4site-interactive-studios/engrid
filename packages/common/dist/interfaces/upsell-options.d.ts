@@ -19,5 +19,6 @@ export interface UpsellOptions {
     annual: boolean;
     disablePaymentMethods: Array<string>;
     skipUpsell: boolean;
+    conversionField: string;
 }
 export declare const UpsellOptionsDefaults: UpsellOptions;

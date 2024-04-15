@@ -51,7 +51,7 @@ export class iFrame {
         this.sendIframeFormStatus("submit");
       });
       // If the iFrame is Chained, check if the form has data
-      if (this.isChained() && this.hasPayment()) {
+      if (this.isChained() && ENGrid.getPaymentType()) {
         this.logger.log("iFrame Event - Chained iFrame");
         this.sendIframeFormStatus("chained");
         this.hideFormComponents();
@@ -191,11 +191,6 @@ export class iFrame {
   }
   private isChained() {
     return !!ENGrid.getUrlParameter("chain");
-  }
-  private hasPayment() {
-    const payment = ENGrid.getFieldValue("transaction.paymenttype");
-    const ccnumber = ENGrid.getFieldValue("transaction.ccnumber");
-    return payment || ccnumber;
   }
   private hideFormComponents() {
     this.logger.log("iFrame Event - Hiding Form Components");

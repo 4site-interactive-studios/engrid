@@ -13,6 +13,10 @@ export class TranslateFields {
         this.countriesSelect = document.querySelectorAll('select[name="supporter.country"], select[name="transaction.shipcountry"], select[name="supporter.billingCountry"], select[name="transaction.infcountry"]');
         let options = "EngridTranslate" in window ? window.EngridTranslate : {};
         this.options = TranslateOptionsDefaults;
+        // Don't run this for US-only forms.
+        if (document.querySelector(".en__component--formblock.us-only-form .en__field--country")) {
+            return;
+        }
         if (options) {
             for (let key in options) {
                 this.options[key] = this.options[key]

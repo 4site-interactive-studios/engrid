@@ -1,5 +1,5 @@
 import { DonationAmount, DonationFrequency, EnForm, ProcessingFees, Country, } from "./events";
-import { AmountLabel, Loader, ProgressBar, UpsellLightbox, ENGrid, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, A11y, CapitalizeFields, CreditCard, Ecard, ClickToExpand, Advocacy, DataAttributes, LiveVariables, iFrame, InputPlaceholders, InputHasValueAndFocus, ShowHideRadioCheckboxes, AutoCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce, AutoYear, Autocomplete, RememberMe, TranslateFields, ShowIfAmount, EngridLogger, OtherAmount, MinMaxAmount, Ticker, DataReplace, DataHide, AddNameToMessage, ExpandRegionName, AppVersion, UrlToForm, RequiredIfVisible, TidyContact, DataLayer, LiveCurrency, Autosubmit, EventTickets, SwapAmounts, DebugPanel, DebugHiddenFields, FreshAddress, BrandingHtml, CountryDisable, PremiumGift, DigitalWallets, MobileCTA, LiveFrequency, UniversalOptIn, Plaid, GiveBySelect, UrlParamsToBodyAttrs, ExitIntentLightbox, SupporterHub, FastFormFill, SetAttr, ShowIfPresent, ENValidators, CustomCurrency, VGS, PostalCodeValidator, CountryRedirect, WelcomeBack, EcardToTarget, EmbeddedEcard, } from "./";
+import { AmountLabel, Loader, ProgressBar, UpsellLightbox, ENGrid, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, A11y, CapitalizeFields, Ecard, ClickToExpand, Advocacy, DataAttributes, LiveVariables, iFrame, InputPlaceholders, InputHasValueAndFocus, ShowHideRadioCheckboxes, AutoCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce, AutoYear, Autocomplete, RememberMe, TranslateFields, ShowIfAmount, EngridLogger, OtherAmount, MinMaxAmount, Ticker, DataReplace, DataHide, AddNameToMessage, ExpandRegionName, AppVersion, UrlToForm, RequiredIfVisible, TidyContact, DataLayer, LiveCurrency, Autosubmit, EventTickets, SwapAmounts, DebugPanel, DebugHiddenFields, FreshAddress, BrandingHtml, CountryDisable, PremiumGift, DigitalWallets, MobileCTA, LiveFrequency, UniversalOptIn, Plaid, GiveBySelect, UrlParamsToBodyAttrs, ExitIntentLightbox, SupporterHub, FastFormFill, SetAttr, ShowIfPresent, ENValidators, CustomCurrency, VGS, PostalCodeValidator, CountryRedirect, WelcomeBack, EcardToTarget, UsOnlyForm, EmbeddedEcard, } from "./";
 export class App extends ENGrid {
     constructor(options) {
         super();
@@ -150,7 +150,7 @@ export class App extends ENGrid {
         // about 20% of the time and we get a race condition if the client is also using the SwapAmounts feature
         window.setTimeout(() => {
             this._frequency.load();
-        }, 150);
+        }, 1000);
         // Fast Form Fill
         new FastFormFill();
         // Currency Related Components
@@ -170,8 +170,6 @@ export class App extends ENGrid {
         // Auto Year Class
         if (this.options.AutoYear)
             new AutoYear();
-        // Credit Card Utility
-        new CreditCard();
         // Autocomplete Class
         new Autocomplete();
         // Ecard Class
@@ -259,6 +257,7 @@ export class App extends ENGrid {
         new VGS();
         new WelcomeBack();
         new EcardToTarget();
+        new UsOnlyForm();
         new EmbeddedEcard();
         //Debug panel
         let showDebugPanel = this.options.Debug;

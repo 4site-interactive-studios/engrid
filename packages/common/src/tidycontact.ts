@@ -459,6 +459,26 @@ export class TidyContact {
     }
     // Add event listener to submit
     this._form.onSubmit.subscribe(this.callAPI.bind(this));
+    // Attach the API call event to the Give By Select to anticipate the use of Digital Wallets
+    const transactionGiveBySelect = document.getElementsByName(
+      "transaction.giveBySelect"
+    ) as NodeListOf<HTMLInputElement>;
+    if (transactionGiveBySelect) {
+      transactionGiveBySelect.forEach((giveBySelect) => {
+        giveBySelect.addEventListener("change", () => {
+          if (
+            ["stripedigitalwallet", "paypaltouch"].includes(
+              giveBySelect.value.toLowerCase()
+            )
+          ) {
+            this.logger.log("Clicked Digital Wallet Button");
+            window.setTimeout(() => {
+              this.callAPI();
+            }, 500);
+          }
+        });
+      });
+    }
   }
   private async checkSum(str: string) {
     // encode as UTF-8
@@ -649,6 +669,7 @@ export class TidyContact {
     if (country && address1) {
       return (city && region) || postalCode;
     }
+    this.logger.log("API cannot be used");
     return false;
   }
   private canUsePhoneAPI(): boolean {
@@ -660,6 +681,7 @@ export class TidyContact {
       const countryPhone = !!ENGrid.getFieldValue("tc.phone.country");
       return phone && countryPhone;
     }
+    this.logger.log("Phone API is not enabled");
     return false;
   }
   private getCountry(): string {

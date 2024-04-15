@@ -29,4 +29,5 @@ export const UpsellOptionsDefaults = {
     annual: false,
     disablePaymentMethods: [],
     skipUpsell: false,
+    conversionField: "",
 };

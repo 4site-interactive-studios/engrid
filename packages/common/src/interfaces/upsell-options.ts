@@ -16,6 +16,7 @@ export interface UpsellOptions {
   annual: boolean;
   disablePaymentMethods: Array<string>;
   skipUpsell: boolean; // Use this to skip the upsell entirely, used to disable the upsell programatically
+  conversionField: string; // The field name to store the upsell conversion data
 }
 
 export const UpsellOptionsDefaults: UpsellOptions = {
@@ -51,4 +52,5 @@ export const UpsellOptionsDefaults: UpsellOptions = {
   annual: false,
   disablePaymentMethods: [],
   skipUpsell: false,
+  conversionField: "",
 };
