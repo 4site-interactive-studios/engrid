@@ -109,11 +109,79 @@ export class ShowHideRadioCheckboxes {
     }
   }
 
+  getSessionState() {
+    try {
+      const plainState =
+        window.sessionStorage.getItem(`engrid_ShowHideRadioCheckboxesState`) ??
+        "";
+      return JSON.parse(plainState);
+    } catch (err) {
+      return [];
+    }
+  }
+
+  storeSessionState() {
+    const state = this.getSessionState();
+
+    [...this.elements].forEach((element) => {
+      if (!(element instanceof HTMLInputElement)) return;
+
+      if (element.type == "radio" && element.checked) {
+        //remove other items that have the same "class" property
+        state.forEach(
+          (item: { page: number; class: string }, index: number) => {
+            if (item.class == this.classes) {
+              state.splice(index, 1);
+            }
+          }
+        );
+
+        //add the current item, with the currently active value
+        state.push({
+          page: ENGrid.getPageID(),
+          class: this.classes,
+          value: element.value,
+        });
+
+        this.logger.log("storing radio state", state[state.length - 1]);
+      }
+
+      if (element.type == "checkbox") {
+        //remove other items that have the same "class" property
+        state.forEach(
+          (item: { page: number; class: string }, index: number) => {
+            if (item.class == this.classes) {
+              state.splice(index, 1);
+            }
+          }
+        );
+
+        //add the current item, with the first checked value or "N" if none are checked
+        state.push({
+          page: ENGrid.getPageID(),
+          class: this.classes,
+          value:
+            [...this.elements].find(
+              (el): el is HTMLInputElement => (el as HTMLInputElement).checked
+            )?.value ?? "N", // First checked value or "N" if none
+        });
+
+        this.logger.log("storing checkbox state", state[state.length - 1]);
+      }
+    });
+
+    window.sessionStorage.setItem(
+      `engrid_ShowHideRadioCheckboxesState`,
+      JSON.stringify(state)
+    );
+  }
+
   constructor(elements: string, classes: string) {
     this.elements = document.getElementsByName(elements);
     this.classes = classes;
     this.createDataAttributes();
     this.hideAll();
+    this.storeSessionState();
     for (let i = 0; i < this.elements.length; i++) {
       let element = <HTMLInputElement>this.elements[i];
       if (element.checked) {
@@ -122,6 +190,7 @@ export class ShowHideRadioCheckboxes {
       element.addEventListener("change", (e: Event) => {
         this.hideAll();
         this.show(element);
+        this.storeSessionState();
       });
     }
   }
