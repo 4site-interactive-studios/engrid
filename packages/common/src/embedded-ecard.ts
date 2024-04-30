@@ -220,6 +220,10 @@ export class EmbeddedEcard {
 
           sessionStorage.removeItem("engrid-embedded-ecard");
           break;
+        case "set_recipient":
+          recipientName.value = e.data.name;
+          recipientEmail.value = e.data.email;
+          break;
       }
     });
 
