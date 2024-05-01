@@ -80,6 +80,7 @@ import {
   WelcomeBack,
   EcardToTarget,
   UsOnlyForm,
+  EmbeddedEcard,
 } from "./";
 
 export class App extends ENGrid {
@@ -421,6 +422,8 @@ export class App extends ENGrid {
     new EcardToTarget();
 
     new UsOnlyForm();
+
+    new EmbeddedEcard();
 
     //Debug panel
     let showDebugPanel = this.options.Debug;

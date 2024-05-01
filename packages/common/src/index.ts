@@ -86,6 +86,7 @@ export * from "./vgs";
 export * from "./country-redirect";
 export * from "./welcome-back";
 export * from "./ecard-to-target";
+export * from "./embedded-ecard";
 export * from "./us-only-form";
 
 // Events
