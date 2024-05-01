@@ -6,6 +6,7 @@ export class ShowHideRadioCheckboxes {
         this.classes = classes;
         this.createDataAttributes();
         this.hideAll();
+        this.storeSessionState();
         for (let i = 0; i < this.elements.length; i++) {
             let element = this.elements[i];
             if (element.checked) {
@@ -14,6 +15,7 @@ export class ShowHideRadioCheckboxes {
             element.addEventListener("change", (e) => {
                 this.hideAll();
                 this.show(element);
+                this.storeSessionState();
             });
         }
     }
@@ -106,5 +108,54 @@ export class ShowHideRadioCheckboxes {
                 }
             });
         }
+    }
+    getSessionState() {
+        var _a;
+        try {
+            const plainState = (_a = window.sessionStorage.getItem(`engrid_ShowHideRadioCheckboxesState`)) !== null && _a !== void 0 ? _a : "";
+            return JSON.parse(plainState);
+        }
+        catch (err) {
+            return [];
+        }
+    }
+    storeSessionState() {
+        const state = this.getSessionState();
+        [...this.elements].forEach((element) => {
+            var _a, _b;
+            if (!(element instanceof HTMLInputElement))
+                return;
+            if (element.type == "radio" && element.checked) {
+                //remove other items that have the same "class" property
+                state.forEach((item, index) => {
+                    if (item.class == this.classes) {
+                        state.splice(index, 1);
+                    }
+                });
+                //add the current item, with the currently active value
+                state.push({
+                    page: ENGrid.getPageID(),
+                    class: this.classes,
+                    value: element.value,
+                });
+                this.logger.log("storing radio state", state[state.length - 1]);
+            }
+            if (element.type == "checkbox") {
+                //remove other items that have the same "class" property
+                state.forEach((item, index) => {
+                    if (item.class == this.classes) {
+                        state.splice(index, 1);
+                    }
+                });
+                //add the current item, with the first checked value or "N" if none are checked
+                state.push({
+                    page: ENGrid.getPageID(),
+                    class: this.classes,
+                    value: (_b = (_a = [...this.elements].find((el) => el.checked)) === null || _a === void 0 ? void 0 : _a.value) !== null && _b !== void 0 ? _b : "N", // First checked value or "N" if none
+                });
+                this.logger.log("storing checkbox state", state[state.length - 1]);
+            }
+        });
+        window.sessionStorage.setItem(`engrid_ShowHideRadioCheckboxesState`, JSON.stringify(state));
     }
 }

@@ -7,5 +7,7 @@ export declare class ShowHideRadioCheckboxes {
     hide(item: HTMLInputElement): void;
     show(item: HTMLInputElement): void;
     private toggleValue;
+    getSessionState(): any;
+    storeSessionState(): void;
     constructor(elements: string, classes: string);
 }

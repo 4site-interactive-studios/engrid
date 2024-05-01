@@ -80,6 +80,7 @@ import {
   WelcomeBack,
   EcardToTarget,
   UsOnlyForm,
+  ThankYouPageConditionalContent,
   EmbeddedEcard,
 } from "./";
 
@@ -423,6 +424,8 @@ export class App extends ENGrid {
 
     new UsOnlyForm();
 
+    new ThankYouPageConditionalContent();
+    
     new EmbeddedEcard();
 
     //Debug panel
