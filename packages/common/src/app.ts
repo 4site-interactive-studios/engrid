@@ -81,6 +81,7 @@ import {
   EcardToTarget,
   UsOnlyForm,
   ThankYouPageConditionalContent,
+  EmbeddedEcard,
 } from "./";
 
 export class App extends ENGrid {
@@ -424,6 +425,8 @@ export class App extends ENGrid {
     new UsOnlyForm();
 
     new ThankYouPageConditionalContent();
+    
+    new EmbeddedEcard();
 
     //Debug panel
     let showDebugPanel = this.options.Debug;
