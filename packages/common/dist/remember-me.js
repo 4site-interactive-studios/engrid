@@ -109,9 +109,10 @@ export class RememberMe {
         }
     }
     insertClearRememberMeLink() {
-        if (!document.getElementById("clear-autofill-data")) {
+        let clearRememberMeField = document.getElementById("clear-autofill-data");
+        if (!clearRememberMeField) {
             const clearAutofillLabel = "clear autofill";
-            const clearRememberMeField = document.createElement("a");
+            clearRememberMeField = document.createElement("a");
             clearRememberMeField.setAttribute("id", "clear-autofill-data");
             clearRememberMeField.classList.add("label-tooltip");
             clearRememberMeField.setAttribute("style", "cursor: pointer;");
@@ -124,27 +125,27 @@ export class RememberMe {
                 else {
                     targetField.prepend(clearRememberMeField);
                 }
-                clearRememberMeField.addEventListener("click", (e) => {
-                    e.preventDefault();
-                    this.clearFields([
-                        "supporter.country" /*, 'supporter.emailAddress'*/,
-                    ]);
-                    if (this.useRemote()) {
-                        this.clearCookieOnRemote();
-                    }
-                    else {
-                        this.clearCookie();
-                    }
-                    let clearAutofillLink = document.getElementById("clear-autofill-data");
-                    if (clearAutofillLink) {
-                        clearAutofillLink.style.display = "none";
-                    }
-                    this.rememberMeOptIn = false;
-                    this._events.dispatchClear();
-                });
             }
         }
+        clearRememberMeField.addEventListener("click", (e) => {
+            e.preventDefault();
+            this.clearFields(["supporter.country" /*, 'supporter.emailAddress'*/]);
+            if (this.useRemote()) {
+                this.clearCookieOnRemote();
+            }
+            else {
+                this.clearCookie();
+            }
+            let clearAutofillLink = document.getElementById("clear-autofill-data");
+            if (clearAutofillLink) {
+                clearAutofillLink.style.display = "none";
+            }
+            this.rememberMeOptIn = false;
+            this._events.dispatchClear();
+            window.dispatchEvent(new CustomEvent("RememberMe_Cleared"));
+        });
         this._events.dispatchLoad(true);
+        window.dispatchEvent(new CustomEvent("RememberMe_Loaded", { detail: { withData: true } }));
     }
     getElementByFirstSelector(selectorsString) {
         // iterate through the selectors until we find one that exists
@@ -210,6 +211,7 @@ export class RememberMe {
             rememberMeOptInField.checked = true;
         }
         this._events.dispatchLoad(false);
+        window.dispatchEvent(new CustomEvent("RememberMe_Loaded", { detail: { withData: false } }));
     }
     useRemote() {
         return (!!this.remoteUrl &&
