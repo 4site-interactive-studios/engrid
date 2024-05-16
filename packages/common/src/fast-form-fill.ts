@@ -37,7 +37,7 @@ export class FastFormFill {
       ".en__component--formblock.fast-personal-details"
     ) as NodeListOf<HTMLElement>;
 
-    if (fastPersonalDetailsFormBlocks) {
+    if (fastPersonalDetailsFormBlocks.length > 0) {
       if (
         [...fastPersonalDetailsFormBlocks].every((formBlock) =>
           FastFormFill.allMandatoryInputsAreFilled(formBlock)
@@ -57,7 +57,7 @@ export class FastFormFill {
       ".en__component--formblock.fast-address-details"
     ) as NodeListOf<HTMLElement>;
 
-    if (fastAddressDetailsFormBlocks) {
+    if (fastAddressDetailsFormBlocks.length > 0) {
       if (
         [...fastAddressDetailsFormBlocks].every((formBlock) =>
           FastFormFill.allMandatoryInputsAreFilled(formBlock)
