@@ -33,13 +33,15 @@ export class FastFormFill {
   }
 
   private run() {
-    const fastPersonalDetailsFormBlock = document.querySelector(
+    const fastPersonalDetailsFormBlocks = document.querySelectorAll(
       ".en__component--formblock.fast-personal-details"
-    ) as HTMLElement;
+    ) as NodeListOf<HTMLElement>;
 
-    if (fastPersonalDetailsFormBlock) {
+    if (fastPersonalDetailsFormBlocks.length > 0) {
       if (
-        FastFormFill.allMandatoryInputsAreFilled(fastPersonalDetailsFormBlock)
+        [...fastPersonalDetailsFormBlocks].every((formBlock) =>
+          FastFormFill.allMandatoryInputsAreFilled(formBlock)
+        )
       ) {
         this.logger.log("Personal details - All mandatory inputs are filled");
         ENGrid.setBodyData("hide-fast-personal-details", "true");
@@ -51,13 +53,15 @@ export class FastFormFill {
       }
     }
 
-    const fastAddressDetailsFormBlock = document.querySelector(
+    const fastAddressDetailsFormBlocks = document.querySelectorAll(
       ".en__component--formblock.fast-address-details"
-    ) as HTMLElement;
+    ) as NodeListOf<HTMLElement>;
 
-    if (fastAddressDetailsFormBlock) {
+    if (fastAddressDetailsFormBlocks.length > 0) {
       if (
-        FastFormFill.allMandatoryInputsAreFilled(fastAddressDetailsFormBlock)
+        [...fastAddressDetailsFormBlocks].every((formBlock) =>
+          FastFormFill.allMandatoryInputsAreFilled(formBlock)
+        )
       ) {
         this.logger.log("Address details - All mandatory inputs are filled");
         ENGrid.setBodyData("hide-fast-address-details", "true");
