@@ -3,13 +3,11 @@
 // 2 - Add a class to body to indicate if the "maximize my impact" is selected (data-engrid-premium-gift-maximize="true|false")
 // 3 - Check the premium gift when click on the title or description
 // 4 - Create new {$PREMIUMTITLE} merge tag that's replaced with the premium gift name
-import { DonationAmount, DonationFrequency, ENGrid, EngridLogger } from ".";
+import { ENGrid, EngridLogger } from ".";
 export class PremiumGift {
     constructor() {
         this.logger = new EngridLogger("PremiumGift", "#232323", "#f7b500", "🎁");
         this.enElements = new Array();
-        this._frequency = DonationFrequency.getInstance();
-        this._amount = DonationAmount.getInstance();
         if (!this.shoudRun())
             return;
         this.searchElements();
@@ -63,20 +61,6 @@ export class PremiumGift {
             });
             observer.observe(premiumGiftsBlock, { attributes: true });
         }
-        // When frequency or amount changes, restore the selected premium gift
-        this._frequency.onFrequencyChange.subscribe(this.restorePremiumGift.bind(this));
-        this._amount.onAmountChange.subscribe(this.restorePremiumGift.bind(this));
-    }
-    restorePremiumGift() {
-        const premiumGiftId = ENGrid.getBodyData("premium-gift-id");
-        setTimeout(() => {
-            const newPremiumGift = document.querySelector('[name="en__pg"][value="' + premiumGiftId + '"]');
-            if (newPremiumGift) {
-                newPremiumGift.checked = true;
-                newPremiumGift.dispatchEvent(new Event("change"));
-                this.logger.log("resetting premium gift after donation frequency/amount change", premiumGiftId);
-            }
-        }, 200);
     }
     checkPremiumGift() {
         const premiumGift = document.querySelector('[name="en__pg"]:checked');
@@ -88,13 +72,11 @@ export class PremiumGift {
                 const premiumGiftName = premiumGiftContainer.querySelector(".en__pg__name");
                 ENGrid.setBodyData("premium-gift-maximize", "false");
                 ENGrid.setBodyData("premium-gift-name", ENGrid.slugify(premiumGiftName.innerText));
-                ENGrid.setBodyData("premium-gift-id", premiumGiftValue);
                 this.setPremiumTitle(premiumGiftName.innerText);
             }
             else {
                 ENGrid.setBodyData("premium-gift-maximize", "true");
                 ENGrid.setBodyData("premium-gift-name", false);
-                ENGrid.setBodyData("premium-gift-id", false);
                 this.setPremiumTitle("");
             }
             if (!premiumGiftContainer.classList.contains("en__pg--selected")) {
