@@ -45,6 +45,11 @@ export class DigitalWallets {
             if (stripeContainer) {
                 this.checkForWalletsBeingAdded(stripeContainer, "stripe");
             }
+            // If the default payment type is Stripe Digital Wallet and the page doesnt support it, set the payment type to Card
+            const paymentType = ENGrid.getPaymentType();
+            if (paymentType.toLowerCase() === "stripedigitalwallet") {
+                ENGrid.setPaymentType("card");
+            }
         }
         /**
          * Check for presence of elements that indicated Paypal digital wallets
@@ -100,6 +105,17 @@ export class DigitalWallets {
             walletOption.value = value;
             walletOption.innerText = label;
             paymentTypeField.appendChild(walletOption);
+        }
+        // If this payment type is set as the default on GiveBySelect, set the payment type to this value
+        // We need to do this here because the digital wallets are sometimes slow to load
+        const giveBySelect = document.querySelector('input[name="transaction.giveBySelect"][value="' + value + '"]');
+        if (giveBySelect && giveBySelect.dataset.default === "true") {
+            giveBySelect.checked = true;
+            const event = new Event("change", {
+                bubbles: true,
+                cancelable: true,
+            });
+            giveBySelect.dispatchEvent(event);
         }
     }
     checkForWalletsBeingAdded(node, walletType) {

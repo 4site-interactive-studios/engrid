@@ -122,6 +122,7 @@ export class App extends ENGrid {
             this.logger.success("Validation Passed");
             return true;
         };
+        new DataAttributes();
         // Country Redirect
         new CountryRedirect();
         // iFrame Logic
@@ -246,7 +247,6 @@ export class App extends ENGrid {
             new Plaid();
         // Give By Select
         new GiveBySelect();
-        new DataAttributes();
         //Exit Intent Lightbox
         new ExitIntentLightbox();
         new UrlParamsToBodyAttrs();

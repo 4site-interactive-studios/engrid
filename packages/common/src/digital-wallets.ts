@@ -59,6 +59,12 @@ export class DigitalWallets {
       if (stripeContainer) {
         this.checkForWalletsBeingAdded(stripeContainer, "stripe");
       }
+
+      // If the default payment type is Stripe Digital Wallet and the page doesnt support it, set the payment type to Card
+      const paymentType = ENGrid.getPaymentType();
+      if (paymentType.toLowerCase() === "stripedigitalwallet") {
+        ENGrid.setPaymentType("card");
+      }
     }
 
     /**
@@ -88,9 +94,7 @@ export class DigitalWallets {
      * Check for presence of elements that indicate DAF is present, and add functionality for it.
      * If it hasn't loaded yet, set up a Mutation Observer to check for when it does.
      */
-    if (
-      document.querySelector("#en__digitalWallet__chariot__container > *")
-    ) {
+    if (document.querySelector("#en__digitalWallet__chariot__container > *")) {
       this.addDAF();
     } else {
       ENGrid.setBodyData("payment-type-option-daf", "false");
@@ -138,6 +142,19 @@ export class DigitalWallets {
       walletOption.value = value;
       walletOption.innerText = label;
       paymentTypeField.appendChild(walletOption);
+    }
+    // If this payment type is set as the default on GiveBySelect, set the payment type to this value
+    // We need to do this here because the digital wallets are sometimes slow to load
+    const giveBySelect = document.querySelector(
+      'input[name="transaction.giveBySelect"][value="' + value + '"]'
+    ) as HTMLInputElement;
+    if (giveBySelect && giveBySelect.dataset.default === "true") {
+      giveBySelect.checked = true;
+      const event = new Event("change", {
+        bubbles: true,
+        cancelable: true,
+      });
+      giveBySelect.dispatchEvent(event);
     }
   }
 

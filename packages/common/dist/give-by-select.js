@@ -9,12 +9,7 @@ export class GiveBySelect {
         this.transactionGiveBySelect.forEach((giveBySelect) => {
             giveBySelect.addEventListener("change", () => {
                 this.logger.log("Changed to " + giveBySelect.value);
-                if (giveBySelect.value.toLowerCase() === "card") {
-                    this.setCardPaymentType();
-                }
-                else {
-                    ENGrid.setPaymentType(giveBySelect.value);
-                }
+                ENGrid.setPaymentType(giveBySelect.value);
             });
         });
         // Set the initial value of giveBySelect to the transaction.paymenttype field
@@ -44,26 +39,6 @@ export class GiveBySelect {
                     giveBySelect.checked = true;
                 }
             });
-        }
-    }
-    setCardPaymentType() {
-        if (!this.paymentTypeField)
-            return;
-        this.logger.log("Change Payment Type to Card or Visa");
-        // Loop through the payment type field options and set the visa card as the default
-        for (let i = 0; i < this.paymentTypeField.options.length; i++) {
-            if (this.paymentTypeField.options[i].value.toLowerCase() === "card" ||
-                this.paymentTypeField.options[i].value.toLowerCase() === "visa" ||
-                this.paymentTypeField.options[i].value.toLowerCase() === "vi") {
-                this.paymentTypeField.selectedIndex = i;
-                // Trigger the change event
-                const event = new Event("change", {
-                    bubbles: true,
-                    cancelable: true,
-                });
-                this.paymentTypeField.dispatchEvent(event);
-                break;
-            }
         }
     }
 }

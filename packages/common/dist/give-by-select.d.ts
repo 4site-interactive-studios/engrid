@@ -3,5 +3,4 @@ export declare class GiveBySelect {
     private transactionGiveBySelect;
     private paymentTypeField;
     constructor();
-    setCardPaymentType(): void;
 }

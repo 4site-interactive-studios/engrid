@@ -604,14 +604,21 @@ export abstract class ENGrid {
     ) as HTMLSelectElement;
     if (enFieldPaymentType) {
       const paymentTypeOption = Array.from(enFieldPaymentType.options).find(
-        (option) => option.value.toLowerCase() === paymentType.toLowerCase()
+        (option) =>
+          paymentType.toLowerCase() === "card"
+            ? ["card", "visa", "vi"].includes(option.value.toLowerCase())
+            : paymentType.toLowerCase() === option.value.toLowerCase()
       );
       if (paymentTypeOption) {
         paymentTypeOption.selected = true;
+        enFieldPaymentType.value = paymentTypeOption.value;
       } else {
         enFieldPaymentType.value = paymentType;
       }
-      const event = new Event("change");
+      const event = new Event("change", {
+        bubbles: true,
+        cancelable: true,
+      });
       enFieldPaymentType.dispatchEvent(event);
     }
   }

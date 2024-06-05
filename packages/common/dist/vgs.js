@@ -157,17 +157,9 @@ export class VGS {
         this.logger.log("Options", this.options);
     }
     setPaymentType() {
-        // Because the VGS iFrame Communication doesn't change the value of the payment type field, we have to set it to Visa by default
-        if (this.paymentTypeField) {
-            // Loop through the payment type field options and set the visa card as the default
-            for (let i = 0; i < this.paymentTypeField.options.length; i++) {
-                if (this.paymentTypeField.options[i].value.toLowerCase() === "card" ||
-                    this.paymentTypeField.options[i].value.toLowerCase() === "visa" ||
-                    this.paymentTypeField.options[i].value.toLowerCase() === "vi") {
-                    this.paymentTypeField.selectedIndex = i;
-                    break;
-                }
-            }
+        // If there's no default payment type, set the default to card
+        if (ENGrid.getPaymentType() === "") {
+            ENGrid.setPaymentType("card");
         }
     }
     dumpGlobalVar() {

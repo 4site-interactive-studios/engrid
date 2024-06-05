@@ -245,6 +245,8 @@ export class App extends ENGrid {
       return true;
     };
 
+    new DataAttributes();
+
     // Country Redirect
     new CountryRedirect();
 
@@ -402,8 +404,6 @@ export class App extends ENGrid {
     // Give By Select
     new GiveBySelect();
 
-    new DataAttributes();
-
     //Exit Intent Lightbox
     new ExitIntentLightbox();
 
@@ -425,7 +425,7 @@ export class App extends ENGrid {
     new UsOnlyForm();
 
     new ThankYouPageConditionalContent();
-    
+
     new EmbeddedEcard();
 
     //Debug panel
