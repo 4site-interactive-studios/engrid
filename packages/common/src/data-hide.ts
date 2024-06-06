@@ -1,3 +1,10 @@
+// Hides elements based on URL arguments.
+//
+// The DataHide class is used to hide elements based on URL arguments.
+// It retrieves the elements to hide from the URL arguments and hides them.
+// If no elements are found, the constructor returns early.
+// Otherwise, it logs the found elements and hides them.
+
 import { ENGrid, EngridLogger } from "./";
 
 export class DataHide {
@@ -8,6 +15,7 @@ export class DataHide {
     "🙈"
   );
   private enElements = new Array<Object>();
+
   constructor() {
     this.logger.log("Constructor");
     this.enElements = ENGrid.getUrlParameter("engrid_hide[]") as Array<Object>;
@@ -19,6 +27,9 @@ export class DataHide {
     this.hideAll();
   }
 
+  /**
+   * Hides all the elements based on the URL arguments.
+   */
   hideAll() {
     this.enElements.forEach((element) => {
       const item = Object.keys(element)[0];
@@ -27,6 +38,12 @@ export class DataHide {
     });
     return;
   }
+
+  /**
+   * Hides a specific element based on the item and type.
+   * @param item - The item to hide (ID or class name).
+   * @param type - The type of the item (either "id" or "class").
+   */
   hideItem(item: string, type: "id" | "class") {
     const regEx = /engrid_hide\[([\w-]+)\]/g;
     const itemData = [...item.matchAll(regEx)].map((match) => match[1])[0];
