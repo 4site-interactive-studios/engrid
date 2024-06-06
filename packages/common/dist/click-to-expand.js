@@ -1,4 +1,5 @@
-// Depends on engrid-click-to-expand.scss to work
+// This class is used to expand content when a user clicks on a div with the class "click-to-expand".
+// The content is shortened by default and will expand when clicked.
 import { ENGrid } from "./";
 // Works when the user has adds ".click-to-expand" as a class to any field
 export class ClickToExpand {

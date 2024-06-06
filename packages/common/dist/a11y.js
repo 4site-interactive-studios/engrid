@@ -1,5 +1,5 @@
 // a11y means accessibility
-// This Component is supposed to be used as a helper for Arria Attributes & Other Accessibility Features
+// This Component is supposed to be used as a helper for Aria Attributes & Other Accessibility Features
 export class A11y {
     constructor() {
         this.addRequired();

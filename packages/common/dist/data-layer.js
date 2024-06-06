@@ -1,4 +1,24 @@
-// This class automatically select other radio input when an amount is entered into it.
+// The DataLayer class is a singleton class that is responsible for managing the data layer events.
+// It listens to the EnForm onSubmit event and the RememberMe onLoad event.
+// It also listens to the blur, change, and submit events of the form fields.
+// It adds the following events to the data layer:
+// - EN_PAGE_VIEW
+// - EN_SUCCESSFUL_DONATION
+// - EN_PAGEJSON_{property}
+// - EN_SUBMISSION_SUCCESS_{pageType}
+// - EN_URLPARAM_{key}-{value}
+// - EN_RECURRING_FREQUENCIES
+// - EN_FASTFORMFILL_PERSONALINFO_SUCCESS
+// - EN_FASTFORMFILL_PERSONALINFO_PARTIALSUCCESS
+// - EN_FASTFORMFILL_PERSONALINFO_FAILURE
+// - EN_FASTFORMFILL_ADDRESS_SUCCESS
+// - EN_FASTFORMFILL_ADDRESS_PARTIALSUCCESS
+// - EN_FASTFORMFILL_ADDRESS_FAILURE
+// - EN_FASTFORMFILL_ALL_SUCCESS
+// - EN_FASTFORMFILL_ALL_FAILURE
+// - EN_SUBMISSION_WITH_EMAIL_OPTIN
+// - EN_SUBMISSION_WITHOUT_EMAIL_OPTIN
+// - EN_FORM_VALUE_UPDATED
 import { EngridLogger, ENGrid, EnForm, FastFormFill, RememberMeEvents, } from ".";
 export class DataLayer {
     constructor() {
