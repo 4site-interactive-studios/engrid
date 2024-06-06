@@ -23,6 +23,22 @@ export class EmbeddedEcard {
   constructor() {
     // For the page hosting the embedded ecard
     if (this.onHostPage()) {
+      // Clean up session variables if the page is reloaded, and it isn't a submission failure
+      const submissionFailed = !!(
+        ENGrid.checkNested(
+          window.EngagingNetworks,
+          "require",
+          "_defined",
+          "enjs",
+          "checkSubmissionFailed"
+        ) &&
+        window.EngagingNetworks.require._defined.enjs.checkSubmissionFailed()
+      );
+      if (!submissionFailed) {
+        sessionStorage.removeItem("engrid-embedded-ecard");
+        sessionStorage.removeItem("engrid-send-embedded-ecard");
+      }
+
       this.options = {
         ...EmbeddedEcardOptionsDefaults,
         ...window.EngridEmbeddedEcard,
@@ -64,6 +80,7 @@ export class EmbeddedEcard {
   private onPostActionPage(): boolean {
     return (
       sessionStorage.getItem("engrid-embedded-ecard") !== null &&
+      sessionStorage.getItem("engrid-send-embedded-ecard") !== null &&
       !this.onHostPage() &&
       !this.onEmbeddedEcardPage()
     );
@@ -126,72 +143,87 @@ export class EmbeddedEcard {
       "en__field_embedded-ecard"
     ) as HTMLInputElement;
 
+    // Initialize based on checkbox's default state
+    if (sendEcardCheckbox?.checked) {
+      iframe?.setAttribute("style", "display: block");
+      sessionStorage.setItem("engrid-send-embedded-ecard", "true");
+    } else {
+      iframe?.setAttribute("style", "display: none");
+      sessionStorage.removeItem("engrid-send-embedded-ecard");
+    }
+
     sendEcardCheckbox?.addEventListener("change", (e) => {
       const checkbox = e.target as HTMLInputElement;
       if (checkbox?.checked) {
         iframe?.setAttribute("style", "display: block");
+        sessionStorage.setItem("engrid-send-embedded-ecard", "true");
       } else {
         iframe?.setAttribute("style", "display: none");
+        sessionStorage.removeItem("engrid-send-embedded-ecard");
       }
-    });
-
-    this._form.onSubmit.subscribe(() => {
-      if (
-        !this._form.submit ||
-        !sendEcardCheckbox ||
-        !sendEcardCheckbox?.checked
-      ) {
-        return;
-      }
-
-      this.sendPostMessage(iframe, "save_form_data");
     });
   }
 
   private setupEmbeddedPage() {
+    let ecardVariant = document.querySelector(
+      "[name='friend.ecard']"
+    ) as HTMLInputElement;
+    let ecardSendDate = document.querySelector(
+      "[name='ecard.schedule']"
+    ) as HTMLInputElement;
+    let ecardMessage = document.querySelector(
+      "[name='transaction.comments']"
+    ) as HTMLInputElement;
+    let recipientName = document.querySelector(
+      ".en__ecardrecipients__name > input"
+    ) as HTMLInputElement;
+    let recipientEmail = document.querySelector(
+      ".en__ecardrecipients__email > input"
+    ) as HTMLInputElement;
+
+    [
+      ecardVariant,
+      ecardSendDate,
+      ecardMessage,
+      recipientName,
+      recipientEmail,
+    ].forEach((el) => {
+      el.addEventListener("input", () => {
+        //add "chain" param to window.location.href if it doesnt have it
+        const pageUrl = new URL(window.location.href);
+        if (!pageUrl.searchParams.has("chain")) {
+          pageUrl.searchParams.append("chain", "");
+        }
+
+        sessionStorage.setItem(
+          "engrid-embedded-ecard",
+          JSON.stringify({
+            pageUrl: pageUrl.href,
+            formData: {
+              ecardVariant: ecardVariant?.value || "",
+              ecardSendDate: ecardSendDate?.value || "",
+              ecardMessage: ecardMessage?.value || "",
+              recipientName: recipientName?.value || "",
+              recipientEmail: recipientEmail?.value || "",
+            },
+          })
+        );
+      });
+    });
+
+    document.querySelectorAll(".en__ecarditems__thumb").forEach((el) => {
+      // Making sure the session value is changed when this is clicked
+      el.addEventListener("click", () => {
+        ecardVariant.dispatchEvent(new Event("input"));
+      });
+    });
+
     window.addEventListener("message", (e) => {
       if (e.origin !== location.origin || !e.data.action) return;
 
       this.logger.log("Received post message", e.data);
 
-      let ecardVariant = document.querySelector(
-        "[name='friend.ecard']"
-      ) as HTMLInputElement;
-      let ecardSendDate = document.querySelector(
-        "[name='ecard.schedule']"
-      ) as HTMLInputElement;
-      let ecardMessage = document.querySelector(
-        "[name='transaction.comments']"
-      ) as HTMLInputElement;
-      let recipientName = document.querySelector(
-        ".en__ecardrecipients__name > input"
-      ) as HTMLInputElement;
-      let recipientEmail = document.querySelector(
-        ".en__ecardrecipients__email > input"
-      ) as HTMLInputElement;
-
       switch (e.data.action) {
-        case "save_form_data":
-          //add "chain" param to window.location.href if it doesnt have it
-          const pageUrl = new URL(window.location.href);
-          if (!pageUrl.searchParams.has("chain")) {
-            pageUrl.searchParams.append("chain", "");
-          }
-
-          sessionStorage.setItem(
-            "engrid-embedded-ecard",
-            JSON.stringify({
-              pageUrl: pageUrl.href,
-              formData: {
-                ecardVariant: ecardVariant?.value || "",
-                ecardSendDate: ecardSendDate?.value || "",
-                ecardMessage: ecardMessage?.value || "",
-                recipientName: recipientName?.value || "",
-                recipientEmail: recipientEmail?.value || "",
-              },
-            })
-          );
-          break;
         case "submit_form":
           let embeddedEcardData = JSON.parse(
             sessionStorage.getItem("engrid-embedded-ecard") || "{}"
@@ -219,10 +251,13 @@ export class EmbeddedEcard {
           form.submitForm();
 
           sessionStorage.removeItem("engrid-embedded-ecard");
+          sessionStorage.removeItem("engrid-send-embedded-ecard");
           break;
         case "set_recipient":
           recipientName.value = e.data.name;
           recipientEmail.value = e.data.email;
+          recipientName.dispatchEvent(new Event("input"));
+          recipientEmail.dispatchEvent(new Event("input"));
           break;
       }
     });
