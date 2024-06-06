@@ -7308,7 +7308,7 @@ body[data-engrid-page-type=e-card][data-engrid-embedded-ecard=true] .en__ecardre
   display: none;
 }
 
-body:not([data-engrid-embedded-ecard-sent=true]) .showif-embedded-ecard-sent {
+body:not(#en__pagebuilder):not([data-engrid-debug]):not([data-engrid-embedded-ecard-sent=true]) .showif-embedded-ecard-sent {
   display: none;
 }
 

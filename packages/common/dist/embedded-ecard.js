@@ -13,6 +13,13 @@ export class EmbeddedEcard {
         this._form = EnForm.getInstance();
         // For the page hosting the embedded ecard
         if (this.onHostPage()) {
+            // Clean up session variables if the page is reloaded, and it isn't a submission failure
+            const submissionFailed = !!(ENGrid.checkNested(window.EngagingNetworks, "require", "_defined", "enjs", "checkSubmissionFailed") &&
+                window.EngagingNetworks.require._defined.enjs.checkSubmissionFailed());
+            if (!submissionFailed) {
+                sessionStorage.removeItem("engrid-embedded-ecard");
+                sessionStorage.removeItem("engrid-send-embedded-ecard");
+            }
             this.options = Object.assign(Object.assign({}, EmbeddedEcardOptionsDefaults), window.EngridEmbeddedEcard);
             const pageUrl = new URL(this.options.pageUrl);
             pageUrl.searchParams.append("data-engrid-embedded-ecard", "true");
@@ -43,6 +50,7 @@ export class EmbeddedEcard {
     }
     onPostActionPage() {
         return (sessionStorage.getItem("engrid-embedded-ecard") !== null &&
+            sessionStorage.getItem("engrid-send-embedded-ecard") !== null &&
             !this.onHostPage() &&
             !this.onEmbeddedEcardPage());
     }
@@ -82,52 +90,69 @@ export class EmbeddedEcard {
     addEventListeners() {
         const iframe = document.querySelector(".engrid-iframe--embedded-ecard");
         const sendEcardCheckbox = document.getElementById("en__field_embedded-ecard");
+        // Initialize based on checkbox's default state
+        if (sendEcardCheckbox === null || sendEcardCheckbox === void 0 ? void 0 : sendEcardCheckbox.checked) {
+            iframe === null || iframe === void 0 ? void 0 : iframe.setAttribute("style", "display: block");
+            sessionStorage.setItem("engrid-send-embedded-ecard", "true");
+        }
+        else {
+            iframe === null || iframe === void 0 ? void 0 : iframe.setAttribute("style", "display: none");
+            sessionStorage.removeItem("engrid-send-embedded-ecard");
+        }
         sendEcardCheckbox === null || sendEcardCheckbox === void 0 ? void 0 : sendEcardCheckbox.addEventListener("change", (e) => {
             const checkbox = e.target;
             if (checkbox === null || checkbox === void 0 ? void 0 : checkbox.checked) {
                 iframe === null || iframe === void 0 ? void 0 : iframe.setAttribute("style", "display: block");
+                sessionStorage.setItem("engrid-send-embedded-ecard", "true");
             }
             else {
                 iframe === null || iframe === void 0 ? void 0 : iframe.setAttribute("style", "display: none");
+                sessionStorage.removeItem("engrid-send-embedded-ecard");
             }
-        });
-        this._form.onSubmit.subscribe(() => {
-            if (!this._form.submit ||
-                !sendEcardCheckbox ||
-                !(sendEcardCheckbox === null || sendEcardCheckbox === void 0 ? void 0 : sendEcardCheckbox.checked)) {
-                return;
-            }
-            this.sendPostMessage(iframe, "save_form_data");
         });
     }
     setupEmbeddedPage() {
+        let ecardVariant = document.querySelector("[name='friend.ecard']");
+        let ecardSendDate = document.querySelector("[name='ecard.schedule']");
+        let ecardMessage = document.querySelector("[name='transaction.comments']");
+        let recipientName = document.querySelector(".en__ecardrecipients__name > input");
+        let recipientEmail = document.querySelector(".en__ecardrecipients__email > input");
+        [
+            ecardVariant,
+            ecardSendDate,
+            ecardMessage,
+            recipientName,
+            recipientEmail,
+        ].forEach((el) => {
+            el.addEventListener("input", () => {
+                //add "chain" param to window.location.href if it doesnt have it
+                const pageUrl = new URL(window.location.href);
+                if (!pageUrl.searchParams.has("chain")) {
+                    pageUrl.searchParams.append("chain", "");
+                }
+                sessionStorage.setItem("engrid-embedded-ecard", JSON.stringify({
+                    pageUrl: pageUrl.href,
+                    formData: {
+                        ecardVariant: (ecardVariant === null || ecardVariant === void 0 ? void 0 : ecardVariant.value) || "",
+                        ecardSendDate: (ecardSendDate === null || ecardSendDate === void 0 ? void 0 : ecardSendDate.value) || "",
+                        ecardMessage: (ecardMessage === null || ecardMessage === void 0 ? void 0 : ecardMessage.value) || "",
+                        recipientName: (recipientName === null || recipientName === void 0 ? void 0 : recipientName.value) || "",
+                        recipientEmail: (recipientEmail === null || recipientEmail === void 0 ? void 0 : recipientEmail.value) || "",
+                    },
+                }));
+            });
+        });
+        document.querySelectorAll(".en__ecarditems__thumb").forEach((el) => {
+            // Making sure the session value is changed when this is clicked
+            el.addEventListener("click", () => {
+                ecardVariant.dispatchEvent(new Event("input"));
+            });
+        });
         window.addEventListener("message", (e) => {
             if (e.origin !== location.origin || !e.data.action)
                 return;
             this.logger.log("Received post message", e.data);
-            let ecardVariant = document.querySelector("[name='friend.ecard']");
-            let ecardSendDate = document.querySelector("[name='ecard.schedule']");
-            let ecardMessage = document.querySelector("[name='transaction.comments']");
-            let recipientName = document.querySelector(".en__ecardrecipients__name > input");
-            let recipientEmail = document.querySelector(".en__ecardrecipients__email > input");
             switch (e.data.action) {
-                case "save_form_data":
-                    //add "chain" param to window.location.href if it doesnt have it
-                    const pageUrl = new URL(window.location.href);
-                    if (!pageUrl.searchParams.has("chain")) {
-                        pageUrl.searchParams.append("chain", "");
-                    }
-                    sessionStorage.setItem("engrid-embedded-ecard", JSON.stringify({
-                        pageUrl: pageUrl.href,
-                        formData: {
-                            ecardVariant: (ecardVariant === null || ecardVariant === void 0 ? void 0 : ecardVariant.value) || "",
-                            ecardSendDate: (ecardSendDate === null || ecardSendDate === void 0 ? void 0 : ecardSendDate.value) || "",
-                            ecardMessage: (ecardMessage === null || ecardMessage === void 0 ? void 0 : ecardMessage.value) || "",
-                            recipientName: (recipientName === null || recipientName === void 0 ? void 0 : recipientName.value) || "",
-                            recipientEmail: (recipientEmail === null || recipientEmail === void 0 ? void 0 : recipientEmail.value) || "",
-                        },
-                    }));
-                    break;
                 case "submit_form":
                     let embeddedEcardData = JSON.parse(sessionStorage.getItem("engrid-embedded-ecard") || "{}");
                     if (ecardVariant) {
@@ -146,10 +171,13 @@ export class EmbeddedEcard {
                     const form = EnForm.getInstance();
                     form.submitForm();
                     sessionStorage.removeItem("engrid-embedded-ecard");
+                    sessionStorage.removeItem("engrid-send-embedded-ecard");
                     break;
                 case "set_recipient":
                     recipientName.value = e.data.name;
                     recipientEmail.value = e.data.email;
+                    recipientName.dispatchEvent(new Event("input"));
+                    recipientEmail.dispatchEvent(new Event("input"));
                     break;
             }
         });
