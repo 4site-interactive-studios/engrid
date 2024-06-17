@@ -107,6 +107,14 @@ export class App extends ENGrid {
     // Add Options to window
     window.EngridOptions = this.options;
     this._dataLayer = DataLayer.getInstance();
+    // If there's a ?pbedit query string, redirect to the page builder to edit on EN
+    if (
+      ENGrid.getUrlParameter("pbedit") === true ||
+      ENGrid.getUrlParameter("pbedit") === "true"
+    ) {
+      window.location.href = `https://${ENGrid.getDataCenter()}.engagingnetworks.app/index.html#pages/${ENGrid.getPageID()}/edit`;
+      return;
+    }
     if (loader.reload()) return;
     // Turn Debug ON if you use local assets
     if (
