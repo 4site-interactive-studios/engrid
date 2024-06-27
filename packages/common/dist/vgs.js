@@ -151,6 +151,13 @@ export class VGS {
                 validations: ["required", "validCardSecurityCode"],
                 css: styles,
             },
+            "transaction.ccexpire": {
+                placeholder: "MM/YY",
+                autoComplete: "cc-exp",
+                validations: ["required", "validCardExpirationDate"],
+                css: styles,
+                yearLength: 2,
+            },
         };
         // Deep merge the default options with the options set in the theme
         this.options = ENGrid.deepMerge(defaultOptions, options);
