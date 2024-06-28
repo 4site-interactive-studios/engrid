@@ -1,4 +1,4 @@
-import { ENGrid, EngridLogger } from "./";
+import { ENGrid, EngridLogger, DonationFrequency } from "./";
 
 export class GiveBySelect {
   private logger: EngridLogger = new EngridLogger(
@@ -13,9 +13,13 @@ export class GiveBySelect {
   private paymentTypeField = document.querySelector(
     "select[name='transaction.paymenttype']"
   ) as HTMLSelectElement;
+  private _frequency: DonationFrequency = DonationFrequency.getInstance();
 
   constructor() {
     if (!this.transactionGiveBySelect) return;
+    this._frequency.onFrequencyChange.subscribe(() =>
+      this.checkPaymentTypeVisibility()
+    );
     this.transactionGiveBySelect.forEach((giveBySelect) => {
       giveBySelect.addEventListener("change", () => {
         this.logger.log("Changed to " + giveBySelect.value);
@@ -51,5 +55,49 @@ export class GiveBySelect {
         }
       });
     }
+  }
+  // Returns true if the selected payment type is visible
+  // Returns false if the selected payment type is not visible
+  isSelectedPaymentVisible(): boolean {
+    let visible = true;
+    this.transactionGiveBySelect.forEach((giveBySelect) => {
+      const container = giveBySelect.closest(
+        ".en__field--giveBySelect"
+      ) as HTMLDivElement;
+      if (giveBySelect.checked && !ENGrid.isVisible(container)) {
+        this.logger.log(
+          `Selected Payment Type is not visible: ${giveBySelect.value}`
+        );
+        visible = false;
+      }
+    });
+    return visible;
+  }
+  // Checks if the selected payment type is visible
+  // If the selected payment type is not visible, it sets the payment type to the first visible option
+  checkPaymentTypeVisibility() {
+    window.setTimeout(() => {
+      if (!this.isSelectedPaymentVisible()) {
+        this.logger.log("Setting payment type to first visible option");
+        const firstVisible = Array.from(this.transactionGiveBySelect).find(
+          (giveBySelect) => {
+            const container = giveBySelect.closest(
+              ".en__field--giveBySelect"
+            ) as HTMLDivElement;
+            return ENGrid.isVisible(container);
+          }
+        );
+        if (firstVisible) {
+          this.logger.log("Setting payment type to ", firstVisible.value);
+          const container = firstVisible.closest(
+            ".en__field--giveBySelect"
+          ) as HTMLDivElement;
+          container.querySelector("label")?.click();
+          ENGrid.setPaymentType(firstVisible.value);
+        }
+      } else {
+        this.logger.log("Selected Payment Type is visible");
+      }
+    }, 300);
   }
 }
