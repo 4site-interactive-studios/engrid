@@ -61,9 +61,7 @@ export class GiveBySelect {
   isSelectedPaymentVisible(): boolean {
     let visible = true;
     this.transactionGiveBySelect.forEach((giveBySelect) => {
-      const container = giveBySelect.closest(
-        ".en__field--giveBySelect"
-      ) as HTMLDivElement;
+      const container = giveBySelect.parentElement as HTMLDivElement;
       if (giveBySelect.checked && !ENGrid.isVisible(container)) {
         this.logger.log(
           `Selected Payment Type is not visible: ${giveBySelect.value}`
@@ -81,17 +79,13 @@ export class GiveBySelect {
         this.logger.log("Setting payment type to first visible option");
         const firstVisible = Array.from(this.transactionGiveBySelect).find(
           (giveBySelect) => {
-            const container = giveBySelect.closest(
-              ".en__field--giveBySelect"
-            ) as HTMLDivElement;
+            const container = giveBySelect.parentElement as HTMLDivElement;
             return ENGrid.isVisible(container);
           }
         );
         if (firstVisible) {
           this.logger.log("Setting payment type to ", firstVisible.value);
-          const container = firstVisible.closest(
-            ".en__field--giveBySelect"
-          ) as HTMLDivElement;
+          const container = firstVisible.parentElement as HTMLDivElement;
           container.querySelector("label")?.click();
           ENGrid.setPaymentType(firstVisible.value);
         }
