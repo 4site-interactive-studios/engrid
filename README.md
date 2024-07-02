@@ -36,7 +36,7 @@ Designed and Developed by [4Site Studios](http://4sitestudios.com/en?ms=github) 
 ### Giving Pages
 - Comma and non-number handling in Other Donation Amount input field
 - Automatically change the Credit Card Expiration Year Field Options to include the current year and the next 19 years, removing past years
-- 
+- Full VGS support with custom styling and error handling
 - Tip Jar / Additional Gift Checkbox that works in addition to ENs native processing fee checkbox
 - Donation Upsell Lightbox, an alternative to EN's native upsell lightbox that can be further customized
 - Conditional Hide/Show fields (e.g., In Honor of Giving Fields)
@@ -83,6 +83,7 @@ Designed and Developed by [4Site Studios](http://4sitestudios.com/en?ms=github) 
 - Support for custom merge tags in the page content, that can be replaced with dynamic values passed in the URL
 - Adjust an ecard form to target a specific recipient, defined in a code block
 - Ability to embed an ecard form into Donation/Advocacy pages
+- Easily get redirected to the page builder from any page by adding `?pbedit` to the URL
 
 ### Improvements for Developers
 - 30+ data attributes added to the body tag for more control over the styling and functionality of the page
