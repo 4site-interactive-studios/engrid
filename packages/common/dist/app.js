@@ -57,6 +57,12 @@ export class App extends ENGrid {
             // Add Options to window
             window.EngridOptions = this.options;
         }
+        // If there's no pageJson.pageType, add a big red warning to the console
+        if (!ENGrid.checkNested(window, "pageJson", "pageType")) {
+            window.setTimeout(() => {
+                console.log("%c ⛔️ pageJson.pageType NOT FOUND - Go to the Account Settings and Expose the Transaction Details %s", "background-color: red; color: white; font-size: 22px; font-weight: bold;", "https://knowledge.engagingnetworks.net/datareports/expose-transaction-details-pagejson");
+            }, 2000);
+        }
         if (this.options.Debug || App.getUrlParameter("debug") == "true")
             // Enable debug if available is the first thing
             App.setBodyData("debug", "");
