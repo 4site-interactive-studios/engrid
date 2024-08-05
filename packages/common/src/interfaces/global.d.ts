@@ -20,7 +20,7 @@ declare global {
     EngridExitIntent: ExitIntentOptions;
     EngridTranslate: TranslateOptions;
     EngridEcardToTarget: EcardToTargetOptions;
-    EngridEmbeddedEcard: EmbeddedEcardOptions
+    EngridEmbeddedEcard: EmbeddedEcardOptions;
     EngridVersion: string;
     EngridLoader: {
       "repo-name"?: string;
