@@ -19,6 +19,7 @@ export class EmbeddedEcard {
   );
   private readonly options: EmbeddedEcardOptions = EmbeddedEcardOptionsDefaults;
   private _form: EnForm = EnForm.getInstance();
+  public isSubmitting: boolean = false;
 
   constructor() {
     // For the page hosting the embedded ecard
@@ -164,6 +165,91 @@ export class EmbeddedEcard {
     });
   }
 
+  private setEmbeddedEcardSessionData() {
+    let ecardVariant = document.querySelector(
+      "[name='friend.ecard']"
+    ) as HTMLInputElement;
+    let ecardSendDate = document.querySelector(
+      "[name='ecard.schedule']"
+    ) as HTMLInputElement;
+    let ecardMessage = document.querySelector(
+      "[name='transaction.comments']"
+    ) as HTMLInputElement;
+
+    //add "chain" param to window.location.href if it doesnt have it
+    const pageUrl = new URL(window.location.href);
+    if (!pageUrl.searchParams.has("chain")) {
+      pageUrl.searchParams.append("chain", "");
+    }
+
+    const embeddedEcardData = {
+      pageUrl: pageUrl.href,
+      formData: {
+        ecardVariant: ecardVariant?.value || "",
+        ecardSendDate: ecardSendDate?.value || "",
+        ecardMessage: ecardMessage?.value || "",
+        recipients: this.getEcardRecipients(),
+      },
+    };
+
+    sessionStorage.setItem(
+      "engrid-embedded-ecard",
+      JSON.stringify(embeddedEcardData)
+    );
+  }
+
+  private getEcardRecipients() {
+    const recipients: { name: string; email: string }[] = [];
+
+    const addRecipientButton: HTMLElement | null = document.querySelector(
+      ".en__ecarditems__addrecipient"
+    );
+    //Single recipient form where the "add recipient" button is hidden, and we use the recipient name and email fields
+    const isSingleRecipientForm =
+      !addRecipientButton || addRecipientButton.offsetHeight === 0;
+
+    if (isSingleRecipientForm) {
+      // When it is a single recipient form, we only need to get the recipient name and email from the input fields
+      let recipientName = document.querySelector(
+        ".en__ecardrecipients__name > input"
+      ) as HTMLInputElement;
+      let recipientEmail = document.querySelector(
+        ".en__ecardrecipients__email > input"
+      ) as HTMLInputElement;
+
+      if (recipientName && recipientEmail) {
+        recipients.push({
+          name: recipientName.value,
+          email: recipientEmail.value,
+        });
+      }
+
+      return recipients;
+    }
+
+    // For multiple recipient forms, we need to get the recipient name and email from each recipient in the recipient list
+    const recipientList = document.querySelector(".en__ecardrecipients__list");
+
+    recipientList
+      ?.querySelectorAll(".en__ecardrecipients__recipient")
+      .forEach((el) => {
+        const recipientName = el.querySelector(
+          ".ecardrecipient__name"
+        ) as HTMLInputElement;
+        const recipientEmail = el.querySelector(
+          ".ecardrecipient__email"
+        ) as HTMLInputElement;
+        if (recipientName && recipientEmail) {
+          recipients.push({
+            name: recipientName.value,
+            email: recipientEmail.value,
+          });
+        }
+      });
+
+    return recipients;
+  }
+
   private setupEmbeddedPage() {
     let ecardVariant = document.querySelector(
       "[name='friend.ecard']"
@@ -189,27 +275,25 @@ export class EmbeddedEcard {
       recipientEmail,
     ].forEach((el) => {
       el.addEventListener("input", () => {
-        //add "chain" param to window.location.href if it doesnt have it
-        const pageUrl = new URL(window.location.href);
-        if (!pageUrl.searchParams.has("chain")) {
-          pageUrl.searchParams.append("chain", "");
-        }
-
-        sessionStorage.setItem(
-          "engrid-embedded-ecard",
-          JSON.stringify({
-            pageUrl: pageUrl.href,
-            formData: {
-              ecardVariant: ecardVariant?.value || "",
-              ecardSendDate: ecardSendDate?.value || "",
-              ecardMessage: ecardMessage?.value || "",
-              recipientName: recipientName?.value || "",
-              recipientEmail: recipientEmail?.value || "",
-            },
-          })
-        );
+        if (this.isSubmitting) return;
+        this.setEmbeddedEcardSessionData();
       });
     });
+
+    // MutationObserver to detect changes in the recipient list and update the session data
+    const observer = new MutationObserver((mutationsList) => {
+      for (let mutation of mutationsList) {
+        if (mutation.type === "childList") {
+          if (this.isSubmitting) return;
+          this.setEmbeddedEcardSessionData();
+        }
+      }
+    });
+
+    const recipientList = document.querySelector(".en__ecardrecipients__list");
+    if (recipientList) {
+      observer.observe(recipientList, { childList: true });
+    }
 
     document.querySelectorAll(".en__ecarditems__thumb").forEach((el) => {
       // Making sure the session value is changed when this is clicked
@@ -225,6 +309,8 @@ export class EmbeddedEcard {
 
       switch (e.data.action) {
         case "submit_form":
+          this.isSubmitting = true;
+
           let embeddedEcardData = JSON.parse(
             sessionStorage.getItem("engrid-embedded-ecard") || "{}"
           );
@@ -239,13 +325,17 @@ export class EmbeddedEcard {
             ecardMessage.value = embeddedEcardData.formData["ecardMessage"];
           }
 
-          recipientName.value = embeddedEcardData.formData["recipientName"];
-          recipientEmail.value = embeddedEcardData.formData["recipientEmail"];
-
           const addRecipientButton = document.querySelector(
             ".en__ecarditems__addrecipient"
           ) as HTMLButtonElement;
-          addRecipientButton?.click();
+
+          embeddedEcardData.formData.recipients.forEach(
+            (recipient: { name: string; email: string }) => {
+              recipientName.value = recipient.name;
+              recipientEmail.value = recipient.email;
+              addRecipientButton?.click();
+            }
+          );
 
           const form = EnForm.getInstance();
           form.submitForm();
