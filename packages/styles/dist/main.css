@@ -3619,6 +3619,7 @@ a.button:focus, a.button:hover, a.button:active, a.button.active {
   width: 100%;
 }
 
+.eaSubmitButton,
 button.primary,
 .en__submit button,
 .en__submit .button,
@@ -3634,7 +3635,9 @@ button.primary,
   width: 100%;
   max-width: var(--submit__button_max-width);
 }
-button.primary:focus, button.primary:hover,
+.eaSubmitButton:focus, .eaSubmitButton:hover,
+button.primary:focus,
+button.primary:hover,
 .en__submit button:focus,
 .en__submit button:hover,
 .en__submit .button:focus,
@@ -3645,6 +3648,7 @@ button.primary:focus, button.primary:hover,
   background-color: var(--submit__button_background-color_hover);
   border-color: var(--submit__button_border-color_hover);
 }
+.eaSubmitButton:active,
 button.primary:active,
 .en__submit button:active,
 .en__submit .button:active,
