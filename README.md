@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/4site-interactive-studios/engrid-scripts/master/reference-materials/repo/repo-hero.jpg">
+<img src="https://raw.githubusercontent.com/4site-interactive-studios/engrid/master/reference-materials/repo/repo-hero.jpg">
 
 # 4Site's ENgrid Page Template Framework
 

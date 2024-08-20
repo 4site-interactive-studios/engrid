@@ -21,10 +21,10 @@
   "author": "4Site Studios",
   "license": "Unlicense",
   "bugs": {
-    "url": "https://github.com/4site-interactive-studios/engrid-scripts/issues"
+    "url": "https://github.com/4site-interactive-studios/engrid/issues"
   },
-  "homepage": "https://github.com/4site-interactive-studios/engrid-scripts#readme",
-  "url": "https://github.com/4site-interactive-studios/engrid-scripts",
+  "homepage": "https://github.com/4site-interactive-studios/engrid#readme",
+  "url": "https://github.com/4site-interactive-studios/engrid",
   "devDependencies": {
     "nodemon": "^2.0.22",
     "sass": "^1.45.2"
@@ -35,7 +35,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/4site-interactive-studios/engrid-scripts.git",
+    "url": "https://github.com/4site-interactive-studios/engrid.git",
     "directory": "packages/styles"
   },
   "gitHead": "8c1fe4f2bb048a5375c11da86e82b5c8b2834907"

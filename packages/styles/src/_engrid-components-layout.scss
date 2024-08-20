@@ -182,7 +182,7 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) {
   // Hide Hidden Fields
   /* prettier-ignore */
   [hidden-via-url-argument],
-  &:not([data-engrid-scripts-js-loading="finished"]) .hide-until-engrid-js-loading-finished,
+  &:not([data-engrid-js-loading="finished"]) .hide-until-engrid-js-loading-finished,
   &:not([data-engrid-client-js-loading="finished"]) .hide-until-client-js-loading-finished,
   .i1-hide .en__field:not(.en__field--validationFailed):nth-of-type(1),
   .i2-hide .en__field:not(.en__field--validationFailed):nth-of-type(2),

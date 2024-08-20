@@ -1,6 +1,6 @@
 **RememberMe Configuration**
 
-If configured, engrid-scripts will embed a 'RememberMe' opt-in checkbox that, if checked, will save the user's form details (address, name, email, etc) into a cookie and restore it whenever that user returns to an EN form. If details are saved and being auto-filled, instead of a 'RememberMe' opt-in checkbox, a 'Clear Autofill' link is shown that the use can click to make it 'forget' their details.
+If configured, engrid will embed a 'RememberMe' opt-in checkbox that, if checked, will save the user's form details (address, name, email, etc) into a cookie and restore it whenever that user returns to an EN form. If details are saved and being auto-filled, instead of a 'RememberMe' opt-in checkbox, a 'Clear Autofill' link is shown that the use can click to make it 'forget' their details.
 
 ---
 
