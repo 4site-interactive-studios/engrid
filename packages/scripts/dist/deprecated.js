@@ -1,6 +1,6 @@
 // A way to gracefully handle deprecation.
 // Find and replace HTML Elements, Classes, and more after the DOM is loaded but before any other Javascript fires.
-import { ENGrid } from "./";
+import { ENGrid } from ".";
 export class Deprecated {
     constructor() {
         let deprecated;

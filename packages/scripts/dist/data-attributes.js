@@ -1,5 +1,5 @@
 // Component that adds data attributes to the Body
-import { ENGrid, Country } from "./";
+import { ENGrid, Country } from ".";
 export class DataAttributes {
     constructor() {
         this._country = Country.getInstance();

@@ -9,7 +9,7 @@
 //     }
 //   };
 // </script>
-import { ENGrid } from "./";
+import { ENGrid } from ".";
 export class InputPlaceholders {
     constructor() {
         this.defaultPlaceholders = {

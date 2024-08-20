@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { EnForm, ENGrid, EngridLogger } from "./";
+import { EnForm, ENGrid, EngridLogger } from ".";
 export class TidyContact {
     constructor() {
         var _a, _b, _c, _d, _e;

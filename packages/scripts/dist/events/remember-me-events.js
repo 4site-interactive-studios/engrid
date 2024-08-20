@@ -4,7 +4,7 @@
  * It provides methods for dispatching load and clear events, and getters for accessing these events.
  */
 import { SignalDispatcher, SimpleEventDispatcher } from "strongly-typed-events";
-import { EngridLogger } from "../";
+import { EngridLogger } from "..";
 export class RememberMeEvents {
     constructor() {
         this.logger = new EngridLogger("RememberMeEvents");

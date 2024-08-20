@@ -1,4 +1,4 @@
-import { ENGrid } from "./";
+import { ENGrid } from ".";
 export class ProgressBar {
     constructor() {
         var _a, _b;

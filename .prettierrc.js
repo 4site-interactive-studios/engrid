@@ -85,7 +85,7 @@ module.exports = {
    * trailingComma: "<es5|none|all>"
    * default: 'es5'
    */
-  trailingComma: "es5",
+  trailingComma: "es6",
 
   /**
    * Bracket Spacing

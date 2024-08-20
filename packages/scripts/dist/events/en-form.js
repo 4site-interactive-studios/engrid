@@ -1,5 +1,5 @@
 import { SignalDispatcher } from "strongly-typed-events";
-import { EngridLogger } from "../";
+import { EngridLogger } from "..";
 export class EnForm {
     constructor() {
         this.logger = new EngridLogger("EnForm");

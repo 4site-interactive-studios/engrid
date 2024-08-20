@@ -1,4 +1,4 @@
-import { ENGrid, EngridLogger, BrandingHtml } from "./";
+import { ENGrid, EngridLogger, BrandingHtml } from ".";
 export class DebugPanel {
     constructor(pageLayouts) {
         var _a, _b;

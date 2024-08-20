@@ -5,7 +5,7 @@
 // If no value is found, the default value is used.
 // The default value is the value inside the merge tag, example: {engrid_data~key~default}.
 // If no default value is set, an empty string is used.
-import { ENGrid, EngridLogger } from "./";
+import { ENGrid, EngridLogger } from ".";
 export class DataReplace {
     constructor() {
         this.logger = new EngridLogger("DataReplace", "#333333", "#00f3ff", "⤵️");

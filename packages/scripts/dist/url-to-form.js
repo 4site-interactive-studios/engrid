@@ -3,7 +3,7 @@
 // 1. Loop through all the URL parameters
 // 2. Check if there's a match with the field name
 // 3. If there's a match AND the field is empty, set the value
-import { ENGrid, EngridLogger } from "./";
+import { ENGrid, EngridLogger } from ".";
 export class UrlToForm {
     constructor() {
         this.logger = new EngridLogger("UrlToForm", "white", "magenta", "🔗");

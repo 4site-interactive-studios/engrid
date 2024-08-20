@@ -7,7 +7,7 @@
  *
  * All the text content and positioning is configurable through the "WelcomeBack" option.
  */
-import { ENGrid } from "./";
+import { ENGrid } from ".";
 import * as cookie from "./cookie";
 export class WelcomeBack {
     constructor() {

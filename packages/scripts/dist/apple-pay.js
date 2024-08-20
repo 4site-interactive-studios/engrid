@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { EnForm, DonationAmount, ENGrid, ProcessingFees } from "./";
+import { EnForm, DonationAmount, ENGrid, ProcessingFees } from ".";
 /*global window */
 const ApplePaySession = window.ApplePaySession;
 const merchantIdentifier = window.merchantIdentifier;

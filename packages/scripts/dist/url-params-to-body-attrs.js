@@ -1,5 +1,5 @@
 //This component adds any url parameters that begin with "data-engrid-" to the body as attributes.
-import { ENGrid, EngridLogger } from "./";
+import { ENGrid, EngridLogger } from ".";
 export class UrlParamsToBodyAttrs {
     constructor() {
         this.logger = new EngridLogger("UrlParamsToBodyAttrs", "white", "magenta", "📌");

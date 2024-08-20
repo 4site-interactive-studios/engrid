@@ -1,4 +1,4 @@
-import { ENGrid, EngridLogger } from "./";
+import { ENGrid, EngridLogger } from ".";
 export class Ticker {
     constructor() {
         this.shuffleSeed = require("shuffle-seed");

@@ -1,4 +1,4 @@
-import { ENGrid, EnForm, EngridLogger } from "./";
+import { ENGrid, EnForm, EngridLogger } from ".";
 export class Ecard {
     constructor() {
         this._form = EnForm.getInstance();

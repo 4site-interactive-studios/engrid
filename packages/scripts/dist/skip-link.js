@@ -2,7 +2,7 @@
 // the first <title> or <h1> field in a "body-" section, or the first <h1> if none are found
 // in those sections
 // Depends on _engrid-skip-link.scss
-import { ENGrid } from "./";
+import { ENGrid } from ".";
 export class SkipToMainContentLink {
     constructor() {
         const firstTitleInEngridBody = document.querySelector("div[class*='body-'] title");

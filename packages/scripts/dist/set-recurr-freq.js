@@ -1,4 +1,4 @@
-import { ENGrid } from "./";
+import { ENGrid } from ".";
 import { DonationFrequency, DonationAmount } from "./events";
 export class setRecurrFreq {
     constructor() {

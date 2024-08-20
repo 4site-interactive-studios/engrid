@@ -1,5 +1,5 @@
 // This script adds an erros message to the page if the amount is greater than the max amount or less than the min amount.
-import { DonationAmount, EnForm, ENGrid, EngridLogger } from "./";
+import { DonationAmount, EnForm, ENGrid, EngridLogger } from ".";
 export class MinMaxAmount {
     constructor() {
         var _a, _b;

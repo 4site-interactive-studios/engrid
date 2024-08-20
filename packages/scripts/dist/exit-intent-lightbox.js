@@ -1,4 +1,4 @@
-import { ENGrid, EngridLogger, ExitIntentOptionsDefaults, } from "./";
+import { ENGrid, EngridLogger, ExitIntentOptionsDefaults, } from ".";
 import { get as getCookie, set as setCookie } from "./cookie";
 export class ExitIntentLightbox {
     constructor() {

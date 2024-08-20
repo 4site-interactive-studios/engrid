@@ -1,5 +1,5 @@
 import { SimpleEventDispatcher } from "strongly-typed-events";
-import { ENGrid } from "../";
+import { ENGrid } from "..";
 export class DonationAmount {
     constructor(radios = "transaction.donationAmt", other = "transaction.donationAmt.other") {
         this._onAmountChange = new SimpleEventDispatcher();

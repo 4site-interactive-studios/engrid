@@ -1,24 +1,5 @@
 import { ENGrid, EngridLogger } from ".";
 export class ShowHideRadioCheckboxes {
-    constructor(elements, classes) {
-        this.logger = new EngridLogger("ShowHideRadioCheckboxes", "black", "lightblue", "👁");
-        this.elements = document.getElementsByName(elements);
-        this.classes = classes;
-        this.createDataAttributes();
-        this.hideAll();
-        this.storeSessionState();
-        for (let i = 0; i < this.elements.length; i++) {
-            let element = this.elements[i];
-            if (element.checked) {
-                this.show(element);
-            }
-            element.addEventListener("change", (e) => {
-                this.hideAll();
-                this.show(element);
-                this.storeSessionState();
-            });
-        }
-    }
     // Create default data attributes on all fields
     createDataAttributes() {
         this.elements.forEach((item) => {
@@ -157,5 +138,24 @@ export class ShowHideRadioCheckboxes {
             }
         });
         window.sessionStorage.setItem(`engrid_ShowHideRadioCheckboxesState`, JSON.stringify(state));
+    }
+    constructor(elements, classes) {
+        this.logger = new EngridLogger("ShowHideRadioCheckboxes", "black", "lightblue", "👁");
+        this.elements = document.getElementsByName(elements);
+        this.classes = classes;
+        this.createDataAttributes();
+        this.hideAll();
+        this.storeSessionState();
+        for (let i = 0; i < this.elements.length; i++) {
+            let element = this.elements[i];
+            if (element.checked) {
+                this.show(element);
+            }
+            element.addEventListener("change", (e) => {
+                this.hideAll();
+                this.show(element);
+                this.storeSessionState();
+            });
+        }
     }
 }

@@ -1,5 +1,5 @@
 // This component adds a floating CTA button to the page, which can be used to scroll to the top of the form
-import { ENGrid } from "./";
+import { ENGrid } from ".";
 export class MobileCTA {
     constructor() {
         var _a, _b, _c;

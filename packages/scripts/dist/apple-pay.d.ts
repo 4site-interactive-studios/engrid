@@ -1,4 +1,4 @@
-import { EnForm, DonationAmount, ProcessingFees } from "./";
+import { EnForm, DonationAmount, ProcessingFees } from ".";
 export declare class ApplePay {
     applePay: HTMLInputElement;
     _amount: DonationAmount;

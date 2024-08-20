@@ -1,6 +1,6 @@
 // This class adds the autocomplete attribute to
 // the most common input elements
-import { EngridLogger } from "./";
+import { EngridLogger } from ".";
 export class Autocomplete {
     constructor() {
         this.logger = new EngridLogger("Autocomplete", "#330033", "#f0f0f0", "📇");

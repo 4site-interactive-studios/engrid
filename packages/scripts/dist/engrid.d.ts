@@ -1,4 +1,4 @@
-import { Options } from "./";
+import { Options } from ".";
 export declare abstract class ENGrid {
     constructor();
     static get enForm(): HTMLFormElement;

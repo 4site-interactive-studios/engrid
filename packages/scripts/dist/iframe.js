@@ -1,4 +1,4 @@
-import { ENGrid, EngridLogger } from "./";
+import { ENGrid, EngridLogger } from ".";
 import { EnForm } from "./events";
 export class iFrame {
     constructor() {

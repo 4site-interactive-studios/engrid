@@ -1,6 +1,6 @@
 // CapitalizeFields is a class that capitalizes the first letter of the fields passed to it.
 // It subscribes to the onSubmit event of the EnForm class and capitalizes the fields on submit.
-import { ENGrid } from "./";
+import { ENGrid } from ".";
 import { EnForm } from "./events";
 export class CapitalizeFields {
     constructor() {

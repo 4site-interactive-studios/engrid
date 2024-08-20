@@ -1,4 +1,4 @@
-import { ENGrid, EngridLogger, DonationFrequency } from "./";
+import { ENGrid, EngridLogger, DonationFrequency } from ".";
 export class GiveBySelect {
     constructor() {
         this.logger = new EngridLogger("GiveBySelect", "#FFF", "#333", "🐇");

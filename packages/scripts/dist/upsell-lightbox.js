@@ -1,4 +1,4 @@
-import { ENGrid, EngridLogger, ProcessingFees, UpsellOptionsDefaults, DataLayer, } from "./";
+import { ENGrid, EngridLogger, ProcessingFees, UpsellOptionsDefaults, DataLayer, } from ".";
 import { DonationAmount, DonationFrequency, EnForm } from "./events";
 export class UpsellLightbox {
     constructor() {

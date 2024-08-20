@@ -1,7 +1,7 @@
 /*
  * This class disables the country field and fixes the country to "United States"
  */
-import { ENGrid } from "./";
+import { ENGrid } from ".";
 export class UsOnlyForm {
     constructor() {
         if (!this.shouldRun())

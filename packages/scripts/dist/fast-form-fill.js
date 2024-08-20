@@ -5,7 +5,7 @@
  * To activate: add the custom class "fast-personal-details" or "fast-address-details"
  * to the relevant form block.
  */
-import { ENGrid, EngridLogger, RememberMeEvents } from "./";
+import { ENGrid, EngridLogger, RememberMeEvents } from ".";
 export class FastFormFill {
     constructor() {
         this.logger = new EngridLogger("FastFormFill", "white", "magenta", "📌");

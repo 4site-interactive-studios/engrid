@@ -4,7 +4,7 @@
  * The form data is saved in session storage and is submitted when the thank you page is loaded.
  * Options can set on the page via window.EngridEmbeddedEcard.
  */
-import { EnForm, ENGrid, EngridLogger } from "./";
+import { EnForm, ENGrid, EngridLogger } from ".";
 import { EmbeddedEcardOptionsDefaults, } from "./interfaces/embedded-ecard-options";
 export class EmbeddedEcard {
     constructor() {

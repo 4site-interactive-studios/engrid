@@ -1,4 +1,4 @@
-import { ProcessingFees } from "./";
+import { ProcessingFees } from ".";
 import { DonationAmount } from "./events";
 export declare class UpsellLightbox {
     private options;

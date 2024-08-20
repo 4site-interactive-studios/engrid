@@ -2,7 +2,7 @@
 // It's currently behind a feature flag, so it's not enabled by default.
 // To enable it, add the following to your options:
 // ENValidators: true
-import { EnForm, ENGrid, EngridLogger } from "./";
+import { EnForm, ENGrid, EngridLogger } from ".";
 export class ENValidators {
     constructor() {
         this._form = EnForm.getInstance();

@@ -3,7 +3,7 @@
   The format is "setattr--{attribute}--{value}".
   e.g. setattr--data-engrid-hide-fast-address-details--true
  */
-import { ENGrid, EngridLogger } from "./";
+import { ENGrid, EngridLogger } from ".";
 export class SetAttr {
     constructor() {
         this.logger = new EngridLogger("SetAttr", "black", "yellow", "📌");

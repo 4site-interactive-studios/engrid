@@ -1,5 +1,5 @@
 // Component that adds 4Site Special Features to the Supporter Hub Page
-import { ENGrid, EngridLogger, EnForm } from "./";
+import { ENGrid, EngridLogger, EnForm } from ".";
 export class SupporterHub {
     constructor() {
         this.logger = new EngridLogger("SupporterHub", "black", "pink", "🛖");

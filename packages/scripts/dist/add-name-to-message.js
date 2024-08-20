@@ -1,7 +1,7 @@
 /*
  Adds first and last name when First Name and Last Name fields lose focus if name shortcodes aren't present
 */
-import { ENGrid } from "./";
+import { ENGrid } from ".";
 export class AddNameToMessage {
     constructor() {
         if (!this.shouldRun()) {

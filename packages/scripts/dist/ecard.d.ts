@@ -1,4 +1,4 @@
-import { EnForm } from "./";
+import { EnForm } from ".";
 export declare class Ecard {
     _form: EnForm;
     private logger;

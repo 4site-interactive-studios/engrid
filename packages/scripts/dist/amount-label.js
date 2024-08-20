@@ -1,5 +1,5 @@
 // This script checks if the donations amounts are numbers and if they are, appends the correct currency symbol
-import { DonationFrequency, ENGrid } from "./";
+import { DonationFrequency, ENGrid } from ".";
 export class AmountLabel {
     constructor() {
         this._frequency = DonationFrequency.getInstance();

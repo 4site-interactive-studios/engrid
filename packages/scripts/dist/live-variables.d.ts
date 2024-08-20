@@ -1,5 +1,5 @@
 import { DonationAmount, ProcessingFees } from "./events";
-import { Options } from "./";
+import { Options } from ".";
 export declare class LiveVariables {
     _amount: DonationAmount;
     _fees: ProcessingFees;

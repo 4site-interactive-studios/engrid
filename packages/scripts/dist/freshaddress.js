@@ -5,7 +5,7 @@
 // <script src="//api.freshaddress.biz/js/lib/freshaddress-client-7.0.min.js?token=[TOKEN HERE]"></script>
 //
 // I know. jQuery. But it's not my fault. It's FreshAddress's fault.
-import { ENGrid, EngridLogger } from "./";
+import { ENGrid, EngridLogger } from ".";
 import { EnForm } from "./events";
 export class FreshAddress {
     constructor() {

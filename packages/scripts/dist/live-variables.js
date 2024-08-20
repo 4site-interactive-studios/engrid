@@ -1,5 +1,5 @@
 import { DonationAmount, EnForm, DonationFrequency, ProcessingFees, } from "./events";
-import { ENGrid, OptionsDefaults } from "./";
+import { ENGrid, OptionsDefaults } from ".";
 export class LiveVariables {
     constructor(options) {
         var _a;

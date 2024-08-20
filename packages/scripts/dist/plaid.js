@@ -1,6 +1,6 @@
 // Component with a helper to auto-click on the Plaid link
 // when that payment method is selected
-import { ENGrid, EngridLogger, EnForm } from "./";
+import { ENGrid, EngridLogger, EnForm } from ".";
 export class Plaid {
     constructor() {
         this.logger = new EngridLogger("Plaid", "peru", "yellow", "🔗");

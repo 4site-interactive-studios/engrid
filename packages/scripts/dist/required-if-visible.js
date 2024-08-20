@@ -1,4 +1,4 @@
-import { EnForm, ENGrid, EngridLogger } from "./";
+import { EnForm, ENGrid, EngridLogger } from ".";
 export class RequiredIfVisible {
     constructor() {
         this.logger = new EngridLogger("RequiredIfVisible", "#FFFFFF", "#811212", "🚥");
