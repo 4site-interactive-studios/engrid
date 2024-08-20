@@ -10,7 +10,7 @@
 //       srcDefer[i].setAttribute("decoding", "async"); // Gets image processing off the main working thread
 //       srcDefer[i].setAttribute("loading", "lazy"); // Lets the browser determine when the asset should be downloaded
 //       srcDefer[i].setAttribute("src", dataSrc); // Sets the src which will cause the browser to retrieve the asset
-//       srcDefer[i].setAttribute("data-engrid-data-src-processed", "true"); // Sets an attribute to mark that it has been processed by ENGrid
+//       srcDefer[i].setAttribute("data-engrid-data-src-processed", "true"); // Sets an attribute to mark that it has been processed by ENgrid
 //       srcDefer[i].removeAttribute("data-src"); // Removes the data-source
 //     }
 //   }
@@ -38,7 +38,7 @@ export class SrcDefer {
         if (imgDataSrc) {
           img.setAttribute("src", imgDataSrc); // Sets the src which will cause the browser to retrieve the asset
         }
-        img.setAttribute("data-engrid-data-src-processed", "true"); // Sets an attribute to mark that it has been processed by ENGrid
+        img.setAttribute("data-engrid-data-src-processed", "true"); // Sets an attribute to mark that it has been processed by ENgrid
         img.removeAttribute("data-src"); // Removes the data-source
       }
     }
@@ -62,7 +62,7 @@ export class SrcDefer {
               videoSource.setAttribute(
                 "data-engrid-data-src-processed",
                 "true"
-              ); // Sets an attribute to mark that it has been processed by ENGrid
+              ); // Sets an attribute to mark that it has been processed by ENgrid
               videoSource.removeAttribute("data-src"); // Removes the data-source
             }
           }
