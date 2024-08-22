@@ -4921,6 +4921,7 @@ body:not(#en__pagebuilder):not([data-engrid-debug])[data-engrid-transaction-recu
 [data-engrid-theme] {
   /* If the Double the Donation search widget is displayed outside of page builder or debug mode, hide it */
   /* If the Double the Donation search widget is displayed in page builder or debug mode, style it as a hidden element */
+  /* If we don't change the position of the dropdown, it will be positioned relative to the page builder container, and underflow behind parts of the page https://cln.sh/Flk2gn3w */
 }
 [data-engrid-theme] #dd-container .dtd-callout,
 [data-engrid-theme] .dtd-plugin .dtd-callout {
@@ -5175,6 +5176,10 @@ body:not(#en__pagebuilder):not([data-engrid-debug])[data-engrid-transaction-recu
 }
 [data-engrid-theme]#en__pagebuilder .en__component--dd360search .en__placeholder, [data-engrid-theme][data-engrid-debug] .en__component--dd360search {
   background-color: rgba(255, 0, 0, 0.102) !important;
+}
+[data-engrid-theme] #dd-company-name-input .Select-menu-outer,
+[data-engrid-theme] .dtd-streamlined-plugin .Select-menu-outer {
+  position: relative;
 }
 
 [data-engrid-theme] {
