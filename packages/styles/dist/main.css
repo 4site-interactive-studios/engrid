@@ -4918,6 +4918,10 @@ body:not(#en__pagebuilder):not([data-engrid-debug])[data-engrid-transaction-recu
   background-color: rgba(0, 0, 255, 0.1019607843) !important;
 }
 
+[data-engrid-theme] {
+  /* If the Double the Donation search widget is displayed outside of page builder or debug mode, hide it */
+  /* If the Double the Donation search widget is displayed in page builder or debug mode, style it as a hidden element */
+}
 [data-engrid-theme] #dd-container .dtd-callout,
 [data-engrid-theme] .dtd-plugin .dtd-callout {
   padding: 0;
@@ -5165,6 +5169,12 @@ body:not(#en__pagebuilder):not([data-engrid-debug])[data-engrid-transaction-recu
 }
 [data-engrid-theme] .dtd-company-selected .wrongcompany a {
   margin-top: var(--fields_spacing-block);
+}
+[data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug]) .en__component--dd360search {
+  display: none;
+}
+[data-engrid-theme]#en__pagebuilder .en__component--dd360search .en__placeholder, [data-engrid-theme][data-engrid-debug] .en__component--dd360search {
+  background-color: rgba(255, 0, 0, 0.102) !important;
 }
 
 [data-engrid-theme] {
