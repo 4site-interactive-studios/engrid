@@ -154,5 +154,35 @@ export class DataAttributes {
 
     // Add demo data attribute
     if (ENGrid.demo) ENGrid.setBodyData("demo", "");
+
+    // New code to add all pageJson values to the body tag, along with data-first-page and data-last-page
+    try {
+      // Check if pageJson is defined and is an object
+      if (typeof window.pageJson === 'object' && window.pageJson !== null) {
+        const body = document.body;
+
+        // Safely set data attributes for existing key-value pairs in pageJson
+        Object.entries(window.pageJson).forEach(([key, value]) => {
+          if (value !== undefined && value !== null) {
+            const dataKey = `pagejson${key.charAt(0).toUpperCase()}${key.slice(1)}`;
+            body.dataset[dataKey] = String(value);
+          }
+        });
+
+        // Safely check and add data-is-first-page attribute if applicable
+        if (window.pageJson.pageNumber === 1) {
+          body.setAttribute('data-first-page', '');
+        }
+
+        // Safely check and add data-is-last-page attribute if applicable
+        if (window.pageJson.pageNumber === window.pageJson.pageCount) {
+          body.setAttribute('data-last-page', '');
+        }
+      } else {
+        // console.warn("pageJson is not defined or is not an object.");
+      }
+    } catch (error) {
+      // console.error("Error setting pageJson data attributes:", error);
+    }
   }
 }
