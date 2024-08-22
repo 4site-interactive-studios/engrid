@@ -55,7 +55,7 @@ export class iFrame {
         this.logger.log("iFrame Event - Chained iFrame");
         this.sendIframeFormStatus("chained");
         this.hideFormComponents();
-        this.addChainedBanner();
+        // this.addChainedBanner();
       }
 
       // Remove the skip link markup when inside an iFrame
@@ -205,8 +205,13 @@ export class iFrame {
           false &&
         index < en__component.length - 1
       ) {
-        component.classList.add("hide-iframe");
-        component.classList.add("hide-chained");
+        const excludeClasses = ["giveBySelect-Card", "en__field--ccnumber", "give-by-select", "give-by-select-header", "en__submit", "en__captcha", "force-visibility"];
+        const excludeIds = ["en__digitalWallet"];
+        const shouldExclude = excludeClasses.some(cls => component.classList.contains(cls) || component.querySelector(`:scope > .${cls}`)) || excludeIds.some(id => component.querySelector(`#${id}`));
+
+        if (!shouldExclude) {
+          component.classList.add("hide-iframe", "hide-chained");
+        }
       }
     });
     this.sendIframeHeight();
@@ -222,32 +227,30 @@ export class iFrame {
     });
     this.sendIframeHeight();
   }
-  private addChainedBanner() {
-    this.logger.log("iFrame Event - Adding Chained Banner");
-    const banner = document.createElement("div");
-    const lastComponent = document.querySelector(
-      ".body-main > div:last-of-type"
-    ) as HTMLDivElement;
-    banner.classList.add("en__component");
-    banner.classList.add("en__component--banner");
-    banner.classList.add("en__component--banner--chained");
-    banner.innerHTML = `<div class="en__component__content"><div class="en__component__content__inner"><div class="en__component__content__text"><p>
-      Giving as <strong>${ENGrid.getFieldValue(
-        "supporter.firstName"
-      )} ${ENGrid.getFieldValue("supporter.lastName")}</strong> 
-      with <strong>${ENGrid.getFieldValue(
-        "transaction.paymenttype"
-      ).toUpperCase()}</strong>
-      (<a href="#" class="en__component__content__link">change</a>)</p></div></div></div>`;
-    lastComponent?.parentNode?.insertBefore(banner, lastComponent);
-    banner
-      .querySelector(".en__component__content__link")
-      ?.addEventListener("click", (e) => {
-        e.preventDefault();
-        this.showFormComponents();
-        banner.remove();
-      });
-  }
+  // private addChainedBanner() {
+  //   this.logger.log("iFrame Event - Adding Chained Banner");
+  //   const banner = document.createElement("div");
+  //   const lastComponent = document.querySelector(
+  //     ".body-main > div:last-of-type"
+  //   ) as HTMLDivElement;
+  //   banner.classList.add("en__component");
+  //   banner.classList.add("en__component--banner");
+  //   banner.classList.add("en__component--banner--chained");
+  //   banner.innerHTML = `<div class="en__component__content"><div class="en__component__content__inner"><div class="en__component__content__text"><p>
+  //     ${ENGrid.getFieldValue("supporter.firstName") ? `Giving as <strong>${ENGrid.getFieldValue("supporter.firstName")} ${ENGrid.getFieldValue("supporter.lastName")}</strong>` : "<strong>Testing as </strong>"}
+  //     with <strong>${ENGrid.getFieldValue(
+  //       "transaction.paymenttype"
+  //     ).toUpperCase()}</strong>
+  //     (<a href="#" class="en__component__content__link">change</a>)</p></div></div></div>`;
+  //   lastComponent?.parentNode?.insertBefore(banner, lastComponent);
+  //   banner
+  //     .querySelector(".en__component__content__link")
+  //     ?.addEventListener("click", (e) => {
+  //       e.preventDefault();
+  //       this.showFormComponents();
+  //       banner.remove();
+  //     });
+  // }
 
   private debounceWithImmediate(func: Function, timeout: number = 1000) {
     let timer: ReturnType<typeof setTimeout>;

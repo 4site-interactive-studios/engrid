@@ -11,6 +11,5 @@ export declare class iFrame {
     private isChained;
     private hideFormComponents;
     private showFormComponents;
-    private addChainedBanner;
     private debounceWithImmediate;
 }
