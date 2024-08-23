@@ -25,9 +25,10 @@ export class iFrame {
       };
 
       const parentUrl = getParentUrl();
-      const thankYouPageRegex = /\/page\/\d{2,}($|\?)/;
-      if (thankYouPageRegex.test(parentUrl)) {
-        const pageNumber = parseInt(parentUrl.split('/').pop()?.split('?')[0] || '0', 10);
+      const thankYouPageRegex = /\/page\/\d+\/[^\/]+\/(\d+)(\?|$)/;
+      const match = parentUrl.match(thankYouPageRegex);
+      if (match) {
+        const pageNumber = parseInt(match[1], 10);
         if (pageNumber > 1) {
           ENGrid.setBodyData("embedded", "thank-you-page-donation");
           this.logger.log("iFrame Event - Set embedded attribute to thank-you-page-donation");
