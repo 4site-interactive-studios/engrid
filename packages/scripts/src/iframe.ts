@@ -14,6 +14,25 @@ export class iFrame {
     if (this.inIframe()) {
       // Add the data-engrid-embedded attribute when inside an iFrame if it wasn't already added by a script in the Page Template
       ENGrid.setBodyData("embedded", "");
+      // Check if the parent page URL matches the criteria for a thank you page donation
+      const getParentUrl = () => {
+        try {
+          return window.parent.location.href;
+        } catch (e) {
+          // If we can't access parent location due to same-origin policy, fall back to referrer
+          return document.referrer;
+        }
+      };
+
+      const parentUrl = getParentUrl();
+      const thankYouPageRegex = /\/page\/\d{2,}($|\?)/;
+      if (thankYouPageRegex.test(parentUrl)) {
+        const pageNumber = parseInt(parentUrl.split('/').pop()?.split('?')[0] || '0', 10);
+        if (pageNumber > 1) {
+          ENGrid.setBodyData("embedded", "thank-you-page-donation");
+          this.logger.log("iFrame Event - Set embedded attribute to thank-you-page-donation");
+        }
+      }
       // Fire the resize event
       this.logger.log("iFrame Event - Begin Resizing");
       window.addEventListener("load", (event) => {
@@ -194,26 +213,21 @@ export class iFrame {
   }
   private hideFormComponents() {
     this.logger.log("iFrame Event - Hiding Form Components");
-    const en__component = document.querySelectorAll(
-      ".body-main > div"
-    ) as NodeListOf<HTMLDivElement>;
-    en__component.forEach((component, index) => {
-      if (
-        component.classList.contains("hide") === false &&
-        component.classList.contains("hide-iframe") === false &&
-        component.classList.contains("radio-to-buttons_donationAmt") ===
-          false &&
-        index < en__component.length - 1
-      ) {
-        const excludeClasses = ["giveBySelect-Card", "en__field--ccnumber", "give-by-select", "give-by-select-header", "en__submit", "en__captcha", "force-visibility"];
-        const excludeIds = ["en__digitalWallet"];
-        const shouldExclude = excludeClasses.some(cls => component.classList.contains(cls) || component.querySelector(`:scope > .${cls}`)) || excludeIds.some(id => component.querySelector(`#${id}`));
+    const excludeClasses = ["giveBySelect-Card", "en__field--ccnumber", "give-by-select", "give-by-select-header", "en__submit", "en__captcha", "force-visibility", "hide", "hide-iframe", "radio-to-buttons_donationAmt"];
+    const excludeIds = ["en__digitalWallet"];
 
-        if (!shouldExclude) {
-          component.classList.add("hide-iframe", "hide-chained");
-        }
+    const components = Array.from(document.querySelectorAll(".body-main > div:not(:last-child)") as NodeListOf<HTMLDivElement>);
+    
+    components.forEach(component => {
+      const shouldExclude = 
+        excludeClasses.some(cls => component.classList.contains(cls) || component.querySelector(`:scope > .${cls}`)) ||
+        excludeIds.some(id => component.querySelector(`#${id}`));
+
+      if (!shouldExclude) {
+        component.classList.add("hide-iframe", "hide-chained");
       }
     });
+
     this.sendIframeHeight();
   }
   private showFormComponents() {
