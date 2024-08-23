@@ -31,6 +31,7 @@ export class iFrame {
         const pageNumber = parseInt(match[1], 10);
         if (pageNumber > 1) {
           ENGrid.setBodyData("embedded", "thank-you-page-donation");
+          this.hideFormComponents();
           this.logger.log("iFrame Event - Set embedded attribute to thank-you-page-donation");
         }
       }
@@ -74,7 +75,6 @@ export class iFrame {
       if (this.isChained() && ENGrid.getPaymentType()) {
         this.logger.log("iFrame Event - Chained iFrame");
         this.sendIframeFormStatus("chained");
-        this.hideFormComponents();
         // this.addChainedBanner();
       }
 
@@ -209,6 +209,7 @@ export class iFrame {
       return true;
     }
   }
+  // This method checks if the URL has a parameter named "chain" and returns true if it exists, otherwise false.
   private isChained() {
     return !!ENGrid.getUrlParameter("chain");
   }

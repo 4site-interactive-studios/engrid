@@ -35,6 +35,10 @@ export abstract class ENGrid {
     if (searchParams.has(name)) {
       return searchParams.get(name) || true;
     }
+    // Add this check for parameters without values
+    if (window.location.search.includes(`${name}&`) || window.location.search.endsWith(name)) {
+      return true;
+    }
     return null;
   }
   static getField(name: string) {
