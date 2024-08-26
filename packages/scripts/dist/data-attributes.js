@@ -118,5 +118,12 @@ export class DataAttributes {
         // Add demo data attribute
         if (ENGrid.demo)
             ENGrid.setBodyData("demo", "");
+        // Add data-first-page and data-last-page
+        if (ENGrid.getPageNumber() === 1) {
+            ENGrid.setBodyData("first-page", "");
+        }
+        if (ENGrid.getPageNumber() === ENGrid.getPageCount()) {
+            ENGrid.setBodyData("last-page", "");
+        }
     }
 }
