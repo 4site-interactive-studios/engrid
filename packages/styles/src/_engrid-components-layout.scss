@@ -253,7 +253,6 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) {
     height: 1px;
     width: 1px; /* Nearly collapsed */
     overflow: hidden;
-    clip: rect(1px 1px 1px 1px); /* IE 7+ only support clip without commas */
     clip: rect(1px, 1px, 1px, 1px); /* All other browsers */
   }
 }
