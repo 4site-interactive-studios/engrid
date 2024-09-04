@@ -4169,6 +4169,9 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) {
   /* REF: https://stackoverflow.com/questions/42143275/css-supports-mixing-not-with-and-or-or */
   /* prettier-ignore */
 }
+body:not(#en__pagebuilder):not([data-engrid-debug]):not([data-engrid-js-loading=finished]) .en__field--donationAmt .en__field__item label {
+  color: transparent !important;
+}
 body:not(#en__pagebuilder):not([data-engrid-debug]) [hidden-via-url-argument], body:not(#en__pagebuilder):not([data-engrid-debug]):not([data-engrid-js-loading=finished]) .hide-until-engrid-js-loading-finished, body:not(#en__pagebuilder):not([data-engrid-debug]):not([data-engrid-client-js-loading=finished]) .hide-until-client-js-loading-finished,
 body:not(#en__pagebuilder):not([data-engrid-debug]) .i1-hide .en__field:not(.en__field--validationFailed):nth-of-type(1),
 body:not(#en__pagebuilder):not([data-engrid-debug]) .i2-hide .en__field:not(.en__field--validationFailed):nth-of-type(2),
