@@ -30,21 +30,13 @@ export class iFrame {
             }
             // Fire the resize event
             this.logger.log("iFrame Event - Begin Resizing");
-            window.addEventListener("load", (event) => {
-                // Scroll to top of iFrame
-                this.logger.log("iFrame Event - window.onload");
-                this.sendIframeHeight();
-                window.parent.postMessage({
-                    scroll: this.shouldScroll(),
-                }, "*");
-                // On click fire the resize event
-                document.addEventListener("click", (e) => {
-                    this.logger.log("iFrame Event - click");
-                    setTimeout(() => {
-                        this.sendIframeHeight();
-                    }, 100);
-                });
-            });
+            // Run onLoaded function
+            if (document.readyState === "complete") {
+                this.onLoaded();
+            }
+            else {
+                window.addEventListener("load", this.onLoaded.bind(this));
+            }
             window.setTimeout(() => {
                 this.sendIframeHeight();
             }, 300);
@@ -124,6 +116,21 @@ export class iFrame {
             });
         }
     }
+    onLoaded() {
+        // Scroll to top of iFrame
+        this.logger.log("iFrame Event - window.onload");
+        this.sendIframeHeight();
+        window.parent.postMessage({
+            scroll: this.shouldScroll(),
+        }, "*");
+        // On click fire the resize event
+        document.addEventListener("click", (e) => {
+            this.logger.log("iFrame Event - click");
+            setTimeout(() => {
+                this.sendIframeHeight();
+            }, 100);
+        });
+    }
     sendIframeHeight() {
         let height = document.body.offsetHeight;
         this.logger.log("iFrame Event - Sending iFrame height of: " + height + "px"); // check the message is being sent correctly
@@ -178,12 +185,23 @@ export class iFrame {
     }
     hideFormComponents() {
         this.logger.log("iFrame Event - Hiding Form Components");
-        const excludeClasses = ["giveBySelect-Card", "en__field--ccnumber", "give-by-select", "give-by-select-header", "en__submit", "en__captcha", "force-visibility", "hide", "hide-iframe", "radio-to-buttons_donationAmt"];
+        const excludeClasses = [
+            "giveBySelect-Card",
+            "en__field--ccnumber",
+            "give-by-select",
+            "give-by-select-header",
+            "en__submit",
+            "en__captcha",
+            "force-visibility",
+            "hide",
+            "hide-iframe",
+            "radio-to-buttons_donationAmt",
+        ];
         const excludeIds = ["en__digitalWallet"];
         const components = Array.from(document.querySelectorAll(".body-main > div:not(:last-child)"));
-        components.forEach(component => {
-            const shouldExclude = excludeClasses.some(cls => component.classList.contains(cls) || component.querySelector(`:scope > .${cls}`)) ||
-                excludeIds.some(id => component.querySelector(`#${id}`));
+        components.forEach((component) => {
+            const shouldExclude = excludeClasses.some((cls) => component.classList.contains(cls) ||
+                component.querySelector(`:scope > .${cls}`)) || excludeIds.some((id) => component.querySelector(`#${id}`));
             if (!shouldExclude) {
                 component.classList.add("hide-iframe", "hide-chained");
             }

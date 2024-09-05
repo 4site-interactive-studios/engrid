@@ -32,30 +32,19 @@ export class iFrame {
         if (pageNumber > 1) {
           ENGrid.setBodyData("embedded", "thank-you-page-donation");
           this.hideFormComponents();
-          this.logger.log("iFrame Event - Set embedded attribute to thank-you-page-donation");
+          this.logger.log(
+            "iFrame Event - Set embedded attribute to thank-you-page-donation"
+          );
         }
       }
       // Fire the resize event
       this.logger.log("iFrame Event - Begin Resizing");
-      window.addEventListener("load", (event) => {
-        // Scroll to top of iFrame
-        this.logger.log("iFrame Event - window.onload");
-        this.sendIframeHeight();
-        window.parent.postMessage(
-          {
-            scroll: this.shouldScroll(),
-          },
-          "*"
-        );
-
-        // On click fire the resize event
-        document.addEventListener("click", (e: Event) => {
-          this.logger.log("iFrame Event - click");
-          setTimeout(() => {
-            this.sendIframeHeight();
-          }, 100);
-        });
-      });
+      // Run onLoaded function
+      if (document.readyState === "complete") {
+        this.onLoaded();
+      } else {
+        window.addEventListener("load", this.onLoaded.bind(this));
+      }
       window.setTimeout(() => {
         this.sendIframeHeight();
       }, 300);
@@ -153,6 +142,26 @@ export class iFrame {
     }
   }
 
+  private onLoaded() {
+    // Scroll to top of iFrame
+    this.logger.log("iFrame Event - window.onload");
+    this.sendIframeHeight();
+    window.parent.postMessage(
+      {
+        scroll: this.shouldScroll(),
+      },
+      "*"
+    );
+
+    // On click fire the resize event
+    document.addEventListener("click", (e: Event) => {
+      this.logger.log("iFrame Event - click");
+      setTimeout(() => {
+        this.sendIframeHeight();
+      }, 100);
+    });
+  }
+
   private sendIframeHeight() {
     let height = document.body.offsetHeight;
     this.logger.log(
@@ -215,15 +224,33 @@ export class iFrame {
   }
   private hideFormComponents() {
     this.logger.log("iFrame Event - Hiding Form Components");
-    const excludeClasses = ["giveBySelect-Card", "en__field--ccnumber", "give-by-select", "give-by-select-header", "en__submit", "en__captcha", "force-visibility", "hide", "hide-iframe", "radio-to-buttons_donationAmt"];
+    const excludeClasses = [
+      "giveBySelect-Card",
+      "en__field--ccnumber",
+      "give-by-select",
+      "give-by-select-header",
+      "en__submit",
+      "en__captcha",
+      "force-visibility",
+      "hide",
+      "hide-iframe",
+      "radio-to-buttons_donationAmt",
+    ];
     const excludeIds = ["en__digitalWallet"];
 
-    const components = Array.from(document.querySelectorAll(".body-main > div:not(:last-child)") as NodeListOf<HTMLDivElement>);
-    
-    components.forEach(component => {
-      const shouldExclude = 
-        excludeClasses.some(cls => component.classList.contains(cls) || component.querySelector(`:scope > .${cls}`)) ||
-        excludeIds.some(id => component.querySelector(`#${id}`));
+    const components = Array.from(
+      document.querySelectorAll(
+        ".body-main > div:not(:last-child)"
+      ) as NodeListOf<HTMLDivElement>
+    );
+
+    components.forEach((component) => {
+      const shouldExclude =
+        excludeClasses.some(
+          (cls) =>
+            component.classList.contains(cls) ||
+            component.querySelector(`:scope > .${cls}`)
+        ) || excludeIds.some((id) => component.querySelector(`#${id}`));
 
       if (!shouldExclude) {
         component.classList.add("hide-iframe", "hide-chained");
