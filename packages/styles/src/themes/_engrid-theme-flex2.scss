@@ -30,13 +30,15 @@
   }
 
   @mixin client_under_layout_breakpoint {
-    --engrid__body_padding: 0 1.5rem;
-    --engrid__body_border-radius: 0px;
-    --engrid__body-header_margin: 0px;
-    --engrid__body-footer_margin: 0px;
+    &{
+      --engrid__body_padding: 0 1.5rem;
+      --engrid__body_border-radius: 0px;
+      --engrid__body-header_margin: 0px;
+      --engrid__body-footer_margin: 0px;
 
-    // Set the background color to whatever the body main is using
-    --engrid__page_background-color: var(--engrid__body-main_background-color);
+      // Set the background color to whatever the body main is using
+      --engrid__page_background-color: var(--engrid__body-main_background-color);
+    }
 
     // Remove the box shadow
     div:not(.pboAdvancedRow__preview)

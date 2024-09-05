@@ -14,27 +14,37 @@ export class iFrame {
     if (this.inIframe()) {
       // Add the data-engrid-embedded attribute when inside an iFrame if it wasn't already added by a script in the Page Template
       ENGrid.setBodyData("embedded", "");
+      // Check if the parent page URL matches the criteria for a thank you page donation
+      const getParentUrl = () => {
+        try {
+          return window.parent.location.href;
+        } catch (e) {
+          // If we can't access parent location due to same-origin policy, fall back to referrer
+          return document.referrer;
+        }
+      };
+
+      const parentUrl = getParentUrl();
+      const thankYouPageRegex = /\/page\/\d+\/[^\/]+\/(\d+)(\?|$)/;
+      const match = parentUrl.match(thankYouPageRegex);
+      if (match) {
+        const pageNumber = parseInt(match[1], 10);
+        if (pageNumber > 1) {
+          ENGrid.setBodyData("embedded", "thank-you-page-donation");
+          this.hideFormComponents();
+          this.logger.log(
+            "iFrame Event - Set embedded attribute to thank-you-page-donation"
+          );
+        }
+      }
       // Fire the resize event
       this.logger.log("iFrame Event - Begin Resizing");
-      window.addEventListener("load", (event) => {
-        // Scroll to top of iFrame
-        this.logger.log("iFrame Event - window.onload");
-        this.sendIframeHeight();
-        window.parent.postMessage(
-          {
-            scroll: this.shouldScroll(),
-          },
-          "*"
-        );
-
-        // On click fire the resize event
-        document.addEventListener("click", (e: Event) => {
-          this.logger.log("iFrame Event - click");
-          setTimeout(() => {
-            this.sendIframeHeight();
-          }, 100);
-        });
-      });
+      // Run onLoaded function
+      if (document.readyState === "complete") {
+        this.onLoaded();
+      } else {
+        window.addEventListener("load", this.onLoaded.bind(this));
+      }
       window.setTimeout(() => {
         this.sendIframeHeight();
       }, 300);
@@ -54,8 +64,7 @@ export class iFrame {
       if (this.isChained() && ENGrid.getPaymentType()) {
         this.logger.log("iFrame Event - Chained iFrame");
         this.sendIframeFormStatus("chained");
-        this.hideFormComponents();
-        this.addChainedBanner();
+        // this.addChainedBanner();
       }
 
       // Remove the skip link markup when inside an iFrame
@@ -133,6 +142,26 @@ export class iFrame {
     }
   }
 
+  private onLoaded() {
+    // Scroll to top of iFrame
+    this.logger.log("iFrame Event - window.onload");
+    this.sendIframeHeight();
+    window.parent.postMessage(
+      {
+        scroll: this.shouldScroll(),
+      },
+      "*"
+    );
+
+    // On click fire the resize event
+    document.addEventListener("click", (e: Event) => {
+      this.logger.log("iFrame Event - click");
+      setTimeout(() => {
+        this.sendIframeHeight();
+      }, 100);
+    });
+  }
+
   private sendIframeHeight() {
     let height = document.body.offsetHeight;
     this.logger.log(
@@ -189,26 +218,45 @@ export class iFrame {
       return true;
     }
   }
+  // This method checks if the URL has a parameter named "chain" and returns true if it exists, otherwise false.
   private isChained() {
     return !!ENGrid.getUrlParameter("chain");
   }
   private hideFormComponents() {
     this.logger.log("iFrame Event - Hiding Form Components");
-    const en__component = document.querySelectorAll(
-      ".body-main > div"
-    ) as NodeListOf<HTMLDivElement>;
-    en__component.forEach((component, index) => {
-      if (
-        component.classList.contains("hide") === false &&
-        component.classList.contains("hide-iframe") === false &&
-        component.classList.contains("radio-to-buttons_donationAmt") ===
-          false &&
-        index < en__component.length - 1
-      ) {
-        component.classList.add("hide-iframe");
-        component.classList.add("hide-chained");
+    const excludeClasses = [
+      "giveBySelect-Card",
+      "en__field--ccnumber",
+      "give-by-select",
+      "give-by-select-header",
+      "en__submit",
+      "en__captcha",
+      "force-visibility",
+      "hide",
+      "hide-iframe",
+      "radio-to-buttons_donationAmt",
+    ];
+    const excludeIds = ["en__digitalWallet"];
+
+    const components = Array.from(
+      document.querySelectorAll(
+        ".body-main > div:not(:last-child)"
+      ) as NodeListOf<HTMLDivElement>
+    );
+
+    components.forEach((component) => {
+      const shouldExclude =
+        excludeClasses.some(
+          (cls) =>
+            component.classList.contains(cls) ||
+            component.querySelector(`:scope > .${cls}`)
+        ) || excludeIds.some((id) => component.querySelector(`#${id}`));
+
+      if (!shouldExclude) {
+        component.classList.add("hide-iframe", "hide-chained");
       }
     });
+
     this.sendIframeHeight();
   }
   private showFormComponents() {
@@ -222,32 +270,30 @@ export class iFrame {
     });
     this.sendIframeHeight();
   }
-  private addChainedBanner() {
-    this.logger.log("iFrame Event - Adding Chained Banner");
-    const banner = document.createElement("div");
-    const lastComponent = document.querySelector(
-      ".body-main > div:last-of-type"
-    ) as HTMLDivElement;
-    banner.classList.add("en__component");
-    banner.classList.add("en__component--banner");
-    banner.classList.add("en__component--banner--chained");
-    banner.innerHTML = `<div class="en__component__content"><div class="en__component__content__inner"><div class="en__component__content__text"><p>
-      Giving as <strong>${ENGrid.getFieldValue(
-        "supporter.firstName"
-      )} ${ENGrid.getFieldValue("supporter.lastName")}</strong> 
-      with <strong>${ENGrid.getFieldValue(
-        "transaction.paymenttype"
-      ).toUpperCase()}</strong>
-      (<a href="#" class="en__component__content__link">change</a>)</p></div></div></div>`;
-    lastComponent?.parentNode?.insertBefore(banner, lastComponent);
-    banner
-      .querySelector(".en__component__content__link")
-      ?.addEventListener("click", (e) => {
-        e.preventDefault();
-        this.showFormComponents();
-        banner.remove();
-      });
-  }
+  // private addChainedBanner() {
+  //   this.logger.log("iFrame Event - Adding Chained Banner");
+  //   const banner = document.createElement("div");
+  //   const lastComponent = document.querySelector(
+  //     ".body-main > div:last-of-type"
+  //   ) as HTMLDivElement;
+  //   banner.classList.add("en__component");
+  //   banner.classList.add("en__component--banner");
+  //   banner.classList.add("en__component--banner--chained");
+  //   banner.innerHTML = `<div class="en__component__content"><div class="en__component__content__inner"><div class="en__component__content__text"><p>
+  //     ${ENGrid.getFieldValue("supporter.firstName") ? `Giving as <strong>${ENGrid.getFieldValue("supporter.firstName")} ${ENGrid.getFieldValue("supporter.lastName")}</strong>` : "<strong>Testing as </strong>"}
+  //     with <strong>${ENGrid.getFieldValue(
+  //       "transaction.paymenttype"
+  //     ).toUpperCase()}</strong>
+  //     (<a href="#" class="en__component__content__link">change</a>)</p></div></div></div>`;
+  //   lastComponent?.parentNode?.insertBefore(banner, lastComponent);
+  //   banner
+  //     .querySelector(".en__component__content__link")
+  //     ?.addEventListener("click", (e) => {
+  //       e.preventDefault();
+  //       this.showFormComponents();
+  //       banner.remove();
+  //     });
+  // }
 
   private debounceWithImmediate(func: Function, timeout: number = 1000) {
     let timer: ReturnType<typeof setTimeout>;

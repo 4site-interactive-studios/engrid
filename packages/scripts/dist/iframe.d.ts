@@ -3,6 +3,7 @@ export declare class iFrame {
     _form: EnForm;
     private logger;
     constructor();
+    private onLoaded;
     private sendIframeHeight;
     private sendIframeFormStatus;
     private getIFrameByEvent;
@@ -11,6 +12,5 @@ export declare class iFrame {
     private isChained;
     private hideFormComponents;
     private showFormComponents;
-    private addChainedBanner;
     private debounceWithImmediate;
 }
