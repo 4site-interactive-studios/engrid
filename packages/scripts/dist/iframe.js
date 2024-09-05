@@ -31,11 +31,15 @@ export class iFrame {
             // Fire the resize event
             this.logger.log("iFrame Event - Begin Resizing");
             // Run onLoaded function
-            if (document.readyState === "complete") {
+            console.log("document.readyState", document.readyState);
+            // Document Load
+            if (document.readyState !== "loading") {
                 this.onLoaded();
             }
             else {
-                window.addEventListener("load", this.onLoaded.bind(this));
+                document.addEventListener("DOMContentLoaded", () => {
+                    this.onLoaded();
+                });
             }
             window.setTimeout(() => {
                 this.sendIframeHeight();
@@ -130,6 +134,8 @@ export class iFrame {
                 this.sendIframeHeight();
             }, 100);
         });
+        // Watch for errors and send the height
+        ENGrid.watchForError(this.sendIframeHeight.bind(this));
     }
     sendIframeHeight() {
         let height = document.body.offsetHeight;
