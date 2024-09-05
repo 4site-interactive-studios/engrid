@@ -211,5 +211,22 @@
     .wrongcompany a {
       margin-top: var(--fields_spacing-block);
     }
+  } 
+
+  /* If the Double the Donation search widget is displayed outside of page builder or debug mode, hide it */
+  &:not(#en__pagebuilder):not([data-engrid-debug]) .en__component--dd360search{
+    display: none;
+  }
+
+  /* If the Double the Donation search widget is displayed in page builder or debug mode, style it as a hidden element */
+  &#en__pagebuilder .en__component--dd360search .en__placeholder,
+  &[data-engrid-debug] .en__component--dd360search{
+    background-color: rgba(255, 0, 0, .102) !important;
+  } 
+  
+  /* If we don't change the position of the dropdown, it will be positioned relative to the page builder container, and underflow behind parts of the page https://cln.sh/Flk2gn3w */
+  #dd-company-name-input .Select-menu-outer,
+  .dtd-streamlined-plugin .Select-menu-outer{
+    position: relative;
   }
 }

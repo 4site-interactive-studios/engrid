@@ -466,7 +466,7 @@ export class App extends ENGrid {
       new BrandingHtml().show();
     }
 
-    ENGrid.setBodyData("data-engrid-js-loading", "finished");
+    ENGrid.setBodyData("js-loading", "finished");
 
     window.EngridVersion = AppVersion;
     this.logger.success(`VERSION: ${AppVersion}`);

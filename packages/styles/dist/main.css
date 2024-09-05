@@ -4169,6 +4169,9 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) {
   /* REF: https://stackoverflow.com/questions/42143275/css-supports-mixing-not-with-and-or-or */
   /* prettier-ignore */
 }
+body:not(#en__pagebuilder):not([data-engrid-debug]):not([data-engrid-js-loading=finished]) .en__field--donationAmt .en__field__item label {
+  color: transparent !important;
+}
 body:not(#en__pagebuilder):not([data-engrid-debug]) [hidden-via-url-argument], body:not(#en__pagebuilder):not([data-engrid-debug]):not([data-engrid-js-loading=finished]) .hide-until-engrid-js-loading-finished, body:not(#en__pagebuilder):not([data-engrid-debug]):not([data-engrid-client-js-loading=finished]) .hide-until-client-js-loading-finished,
 body:not(#en__pagebuilder):not([data-engrid-debug]) .i1-hide .en__field:not(.en__field--validationFailed):nth-of-type(1),
 body:not(#en__pagebuilder):not([data-engrid-debug]) .i2-hide .en__field:not(.en__field--validationFailed):nth-of-type(2),
@@ -4207,7 +4210,6 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) .i11-hide-label .en__field:n
   height: 1px;
   width: 1px; /* Nearly collapsed */
   overflow: hidden;
-  clip: rect(1px 1px 1px 1px); /* IE 7+ only support clip without commas */
   clip: rect(1px, 1px, 1px, 1px); /* All other browsers */
 }
 
@@ -4918,6 +4920,11 @@ body:not(#en__pagebuilder):not([data-engrid-debug])[data-engrid-transaction-recu
   background-color: rgba(0, 0, 255, 0.1019607843) !important;
 }
 
+[data-engrid-theme] {
+  /* If the Double the Donation search widget is displayed outside of page builder or debug mode, hide it */
+  /* If the Double the Donation search widget is displayed in page builder or debug mode, style it as a hidden element */
+  /* If we don't change the position of the dropdown, it will be positioned relative to the page builder container, and underflow behind parts of the page https://cln.sh/Flk2gn3w */
+}
 [data-engrid-theme] #dd-container .dtd-callout,
 [data-engrid-theme] .dtd-plugin .dtd-callout {
   padding: 0;
@@ -5165,6 +5172,16 @@ body:not(#en__pagebuilder):not([data-engrid-debug])[data-engrid-transaction-recu
 }
 [data-engrid-theme] .dtd-company-selected .wrongcompany a {
   margin-top: var(--fields_spacing-block);
+}
+[data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug]) .en__component--dd360search {
+  display: none;
+}
+[data-engrid-theme]#en__pagebuilder .en__component--dd360search .en__placeholder, [data-engrid-theme][data-engrid-debug] .en__component--dd360search {
+  background-color: rgba(255, 0, 0, 0.102) !important;
+}
+[data-engrid-theme] #dd-company-name-input .Select-menu-outer,
+[data-engrid-theme] .dtd-streamlined-plugin .Select-menu-outer {
+  position: relative;
 }
 
 [data-engrid-theme] {
