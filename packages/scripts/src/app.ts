@@ -82,6 +82,7 @@ import {
   UsOnlyForm,
   ThankYouPageConditionalContent,
   EmbeddedEcard,
+  CheckboxLabel,
 } from ".";
 
 export class App extends ENGrid {
@@ -446,6 +447,8 @@ export class App extends ENGrid {
     new ThankYouPageConditionalContent();
 
     new EmbeddedEcard();
+
+    new CheckboxLabel();
 
     //Debug panel
     let showDebugPanel = this.options.Debug;

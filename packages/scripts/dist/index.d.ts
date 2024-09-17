@@ -78,5 +78,6 @@ export * from "./ecard-to-target";
 export * from "./embedded-ecard";
 export * from "./us-only-form";
 export * from "./thank-you-page-conditional-content";
+export * from "./checkbox-label";
 export * from "./events";
 export * from "./version";

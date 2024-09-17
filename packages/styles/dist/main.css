@@ -7240,6 +7240,27 @@ body:not(#en__pagebuilder):not([data-engrid-debug]):not([data-engrid-embedded-ec
   display: none;
 }
 
+#en__pagebuilder .checkbox-label {
+  display: block;
+  position: relative;
+  background-color: rgba(0, 0, 255, 0.1019607843);
+}
+#en__pagebuilder .checkbox-label::after {
+  content: "Checkbox Label";
+  display: block;
+  color: lightgoldenrodyellow;
+  background-color: lightcoral;
+  padding: 5px;
+  border-radius: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+body:not(#en__pagebuilder) .checkbox-label {
+  display: none;
+}
+
 /* ENGRID LAYOUTS */
 /* MUST COME AFTER OTHER ENGRID STYLES WHICH MIGHT DEFINE MIXINS REFERENCED IN THE LAYOUTS */
 [data-engrid-theme] {
