@@ -179,8 +179,11 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) {
 
 // When outside page builder and not debugging,
 body:not(#en__pagebuilder):not([data-engrid-debug]) {
-  &:not([data-engrid-js-loading="finished"]) .en__field--donationAmt .en__field__item label{
-      color: transparent !important;
+  &:not([data-engrid-js-loading="finished"])
+    .en__field--donationAmt
+    .en__field__item
+    label {
+    color: transparent !important;
   }
   // Hide Hidden Fields
   /* prettier-ignore */
@@ -211,6 +214,17 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) {
   @supports (not selector(:has(*))) {
     .hide:not(.en__field--validationFailed),
     div:not(.en__field--validationFailed) .hide:not(.en__field--validationFailed) {
+      display: none;
+    }
+  }
+
+  /* For browsers without @support support, we are using JS to detect :has() support in order to provide additional fallback coverage. */
+  /* Productive Task Comment (Bryan): https://app.productive.io/2650-4site-interactive-studios-inc/projects/237652/tasks/task/9161786?filter=MjgyMTMz&taskActivityId=135957818 */
+
+  &[data-engrid-css-has-selector="false"] {
+    .hide:not(.en__field--validationFailed),
+    div:not(.en__field--validationFailed)
+      .hide:not(.en__field--validationFailed) {
       display: none;
     }
   }

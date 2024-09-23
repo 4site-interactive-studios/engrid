@@ -125,5 +125,13 @@ export class DataAttributes {
         if (ENGrid.getPageNumber() === ENGrid.getPageCount()) {
             ENGrid.setBodyData("last-page", "");
         }
+        // "Temporary solutions are forever, you know..."
+        // - Fernando Santos
+        // "I know, but what if we just..."
+        // - Bryan Casler
+        // Add data attribute if browser does not support :has selector
+        if (!CSS.supports("selector(:has(*))")) {
+            ENGrid.setBodyData("css-has-selector", "false");
+        }
     }
 }

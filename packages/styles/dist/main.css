@@ -4168,6 +4168,8 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) {
   /* REF: https://www.bram.us/2023/01/04/css-has-feature-detection-with-supportsselector-you-want-has-not-has/ */
   /* REF: https://stackoverflow.com/questions/42143275/css-supports-mixing-not-with-and-or-or */
   /* prettier-ignore */
+  /* For browsers without @support support, we are using JS to detect :has() support in order to provide additional fallback coverage. */
+  /* Productive Task Comment (Bryan): https://app.productive.io/2650-4site-interactive-studios-inc/projects/237652/tasks/task/9161786?filter=MjgyMTMz&taskActivityId=135957818 */
 }
 body:not(#en__pagebuilder):not([data-engrid-debug]):not([data-engrid-js-loading=finished]) .en__field--donationAmt .en__field__item label {
   color: transparent !important;
@@ -4192,6 +4194,10 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) .en__field--plaid {
   body:not(#en__pagebuilder):not([data-engrid-debug]) div:not(.en__field--validationFailed) .hide:not(.en__field--validationFailed) {
     display: none;
   }
+}
+body:not(#en__pagebuilder):not([data-engrid-debug])[data-engrid-css-has-selector=false] .hide:not(.en__field--validationFailed),
+body:not(#en__pagebuilder):not([data-engrid-debug])[data-engrid-css-has-selector=false] div:not(.en__field--validationFailed) .hide:not(.en__field--validationFailed) {
+  display: none;
 }
 body:not(#en__pagebuilder):not([data-engrid-debug]) .hide-labels .en__field:not(.en__field--validationFailed) > label,
 body:not(#en__pagebuilder):not([data-engrid-debug]) div:not(.en__field--validationFailed) label.hide-label,
