@@ -3,7 +3,6 @@ export class GiveBySelect {
     constructor() {
         this.logger = new EngridLogger("GiveBySelect", "#FFF", "#333", "🐇");
         this.transactionGiveBySelect = document.getElementsByName("transaction.giveBySelect");
-        this.paymentTypeField = document.querySelector("select[name='transaction.paymenttype']");
         this._frequency = DonationFrequency.getInstance();
         if (!this.transactionGiveBySelect)
             return;

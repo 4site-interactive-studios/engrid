@@ -10,9 +10,6 @@ export class GiveBySelect {
   private transactionGiveBySelect = document.getElementsByName(
     "transaction.giveBySelect"
   ) as NodeListOf<HTMLInputElement>;
-  private paymentTypeField = document.querySelector(
-    "select[name='transaction.paymenttype']"
-  ) as HTMLSelectElement;
   private _frequency: DonationFrequency = DonationFrequency.getInstance();
 
   constructor() {
