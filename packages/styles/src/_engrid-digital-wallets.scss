@@ -64,7 +64,8 @@
       // Hide If
       &[data-engrid-payment-type="stripedigitalwallet"] .hideif-stripedigitalwallet-selected,
       &[data-engrid-payment-type="paypaltouch"] .hideif-paypaltouch-selected,
-      &[data-engrid-payment-type="daf"] .hideif-daf-selected {
+      &[data-engrid-payment-type="daf"] .hideif-daf-selected,
+      &[data-engrid-payment-type="daf"] .hideif-daf-selected_hide-vanilla-submit-button .en__submit {
         display: none;
       }
 
