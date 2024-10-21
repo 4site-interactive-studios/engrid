@@ -194,6 +194,7 @@ export class iFrame {
         const excludeClasses = [
             "giveBySelect-Card",
             "en__field--ccnumber",
+            "en__field--survey",
             "give-by-select",
             "give-by-select-header",
             "en__submit",
