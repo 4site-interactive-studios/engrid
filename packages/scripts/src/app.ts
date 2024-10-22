@@ -83,6 +83,7 @@ import {
   ThankYouPageConditionalContent,
   EmbeddedEcard,
   CheckboxLabel,
+  UpsellCheckbox,
 } from ".";
 
 export class App extends ENGrid {
@@ -278,6 +279,9 @@ export class App extends ENGrid {
 
     // Dynamically set Recurrency Frequency
     new setRecurrFreq();
+
+    // Upsell Checkbox
+    new UpsellCheckbox();
 
     // Upsell Lightbox
     new UpsellLightbox();

@@ -20,5 +20,10 @@ export interface UpsellOptions {
     disablePaymentMethods: Array<string>;
     skipUpsell: boolean;
     conversionField: string;
+    upsellCheckbox: false | {
+        label: string;
+        location: string;
+        cssClass: string;
+    };
 }
 export declare const UpsellOptionsDefaults: UpsellOptions;

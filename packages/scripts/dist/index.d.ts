@@ -22,6 +22,7 @@ export * from "./input-placeholders";
 export * from "./media-attribution";
 export * from "./live-variables";
 export * from "./upsell-lightbox";
+export * from "./upsell-checkbox";
 export * from "./show-hide-radio-checkboxes";
 export * from "./translate-fields";
 export * from "./auto-country-select";
