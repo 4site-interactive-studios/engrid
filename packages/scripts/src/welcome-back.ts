@@ -7,31 +7,45 @@
  *
  * All the text content and positioning is configurable through the "WelcomeBack" option.
  */
-import { ENGrid } from ".";
+import { ENGrid, RememberMeEvents } from ".";
 import * as cookie from "./cookie";
 
 export class WelcomeBack {
   private supporterDetails: { [key: string]: string } = {};
   private options = ENGrid.getOption("WelcomeBack") ?? false;
+  private rememberMeEvents: RememberMeEvents = RememberMeEvents.getInstance();
 
   constructor() {
-    if (this.shouldRun()) {
-      this.supporterDetails = {
-        firstName: ENGrid.getFieldValue("supporter.firstName"),
-        lastName: ENGrid.getFieldValue("supporter.lastName"),
-        emailAddress: ENGrid.getFieldValue("supporter.emailAddress"),
-        address1: ENGrid.getFieldValue("supporter.address1"),
-        address2: ENGrid.getFieldValue("supporter.address2"),
-        city: ENGrid.getFieldValue("supporter.city"),
-        region: ENGrid.getFieldValue("supporter.region"),
-        postcode: ENGrid.getFieldValue("supporter.postcode"),
-        country: ENGrid.getFieldValue("supporter.country"),
-      };
+    if (!this.shouldRun()) return;
 
-      this.addWelcomeBack();
-      this.addPersonalDetailsSummary();
-      this.addEventListeners();
+    if (ENGrid.getOption("RememberMe")) {
+      this.rememberMeEvents.onLoad.subscribe(() => {
+        this.run();
+      });
+      this.rememberMeEvents.onClear.subscribe(() => {
+        this.resetWelcomeBack();
+      });
+    } else {
+      this.run();
     }
+  }
+
+  private run() {
+    this.supporterDetails = {
+      firstName: ENGrid.getFieldValue("supporter.firstName"),
+      lastName: ENGrid.getFieldValue("supporter.lastName"),
+      emailAddress: ENGrid.getFieldValue("supporter.emailAddress"),
+      address1: ENGrid.getFieldValue("supporter.address1"),
+      address2: ENGrid.getFieldValue("supporter.address2"),
+      city: ENGrid.getFieldValue("supporter.city"),
+      region: ENGrid.getFieldValue("supporter.region"),
+      postcode: ENGrid.getFieldValue("supporter.postcode"),
+      country: ENGrid.getFieldValue("supporter.country"),
+    };
+
+    this.addWelcomeBack();
+    this.addPersonalDetailsSummary();
+    this.addEventListeners();
   }
 
   private shouldRun() {
