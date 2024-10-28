@@ -14,6 +14,7 @@ export class WelcomeBack {
   private supporterDetails: { [key: string]: string } = {};
   private options = ENGrid.getOption("WelcomeBack") ?? false;
   private rememberMeEvents: RememberMeEvents = RememberMeEvents.getInstance();
+  private hasRun: boolean = false;
 
   constructor() {
     if (!this.shouldRun()) return;
@@ -31,6 +32,10 @@ export class WelcomeBack {
   }
 
   private run() {
+    if (this.hasRun) return;
+
+    this.hasRun = true;
+
     this.supporterDetails = {
       firstName: ENGrid.getFieldValue("supporter.firstName"),
       lastName: ENGrid.getFieldValue("supporter.lastName"),
