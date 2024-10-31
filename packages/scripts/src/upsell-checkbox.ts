@@ -27,6 +27,7 @@ export class UpsellCheckbox {
   private checkboxContainer: HTMLElement | null = null;
   private oldAmount: number = 0;
   private oldFrequency: string = "one-time";
+  private resetCheckbox: boolean = false;
 
   private logger: EngridLogger = new EngridLogger(
     "UpsellCheckbox",
@@ -44,8 +45,8 @@ export class UpsellCheckbox {
       return;
     }
 
-    // If window.EngridUpsell has only the upsellCheckbox property, set window.EngridUpsell.skipUpsell to true
-    if (Object.keys(options).length === 1 && "upsellCheckbox" in options) {
+    // To avoid using both UpsellLightbox and UpsellCheckbox at the same time, set window.EngridUpsell.skipUpsell to true if there's an upsellCheckbox
+    if ("upsellCheckbox" in options && options.upsellCheckbox !== false) {
       window.EngridUpsell.skipUpsell = true; // Skip the upsell lightbox
     }
 
@@ -62,12 +63,34 @@ export class UpsellCheckbox {
     this.renderCheckbox();
     this.updateLiveData();
     this._frequency.onFrequencyChange.subscribe(() => this.updateLiveData());
+    this._frequency.onFrequencyChange.subscribe(() =>
+      this.resetUpsellCheckbox()
+    );
     this._amount.onAmountChange.subscribe(() => this.updateLiveData());
+    this._amount.onAmountChange.subscribe(() => this.resetUpsellCheckbox());
     this._fees.onFeeChange.subscribe(() => this.updateLiveData());
   }
   private updateLiveData() {
     this.liveAmounts();
     this.liveFrequency();
+  }
+  private resetUpsellCheckbox() {
+    // Only reset the upsell checkbox if it has been checked
+    if (!this.resetCheckbox) return;
+    this.logger.log("Reset");
+    // Uncheck the upsell checkbox
+    const checkbox =
+      this.checkboxContainer?.querySelector<HTMLInputElement>(
+        "#upsellCheckbox"
+      );
+    if (checkbox) {
+      checkbox.checked = false;
+    }
+    // Hide the upsell checkbox
+    this.checkboxContainer?.classList.add("recurring-frequency-y-hide");
+    this.oldAmount = 0;
+    this.oldFrequency = "one-time";
+    this.resetCheckbox = false;
   }
   private renderCheckbox() {
     if (this.checkboxOptions === false) return;
@@ -235,7 +258,12 @@ export class UpsellCheckbox {
         "monthly",
         upsoldAmount
       );
+      // Set the resetCheckbox flag to true so it will reset if the user changes the amount or frequency
+      window.setTimeout(() => {
+        this.resetCheckbox = true;
+      }, 500);
     } else {
+      this.resetCheckbox = false;
       this.logger.success("Not Upsold");
       this._amount.setAmount(this.oldAmount);
       this._frequency.setFrequency(this.oldFrequency);

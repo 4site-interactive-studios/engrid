@@ -11,9 +11,11 @@ export declare class UpsellCheckbox {
     private checkboxContainer;
     private oldAmount;
     private oldFrequency;
+    private resetCheckbox;
     private logger;
     constructor();
     private updateLiveData;
+    private resetUpsellCheckbox;
     private renderCheckbox;
     private shouldRun;
     private showCheckbox;

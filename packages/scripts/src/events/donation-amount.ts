@@ -126,6 +126,12 @@ export class DonationAmount {
     if (found.length) {
       const amountField = found[0] as HTMLInputElement;
       amountField.checked = true;
+      // Change Event
+      const event = new Event("change", {
+        bubbles: true,
+        cancelable: true,
+      });
+      amountField.dispatchEvent(event);
       // Clear OTHER text field
       this.clearOther();
     } else {
@@ -140,6 +146,12 @@ export class DonationAmount {
           enFieldOtherAmountRadio.checked = true;
         }
         otherField.value = parseFloat(amount.toString()).toFixed(2);
+        // Change Event
+        const event = new Event("change", {
+          bubbles: true,
+          cancelable: true,
+        });
+        otherField.dispatchEvent(event);
         const otherWrapper = otherField.parentNode as HTMLElement;
         otherWrapper.classList.remove("en__field__item--hidden");
       }
