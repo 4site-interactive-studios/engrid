@@ -28,7 +28,7 @@
 
   // TYPOGRAPHY H3
   --h3_font-family: var(--h1_font-family);
-  // --h3_color: initial;
+  --h3_color: initial;
   --h3_font-size: calc(var(--default_font-size) * var(--scale-up_40pct));
   --h3_font-weight: initial;
   --h3_line-height: initial;
@@ -36,7 +36,7 @@
 
   // TYPOGRAPHY H4
   --h4_font-family: var(--h1_font-family);
-  // --h4_color: initial;
+  --h4_color: initial;
   --h4_font-size: calc(var(--default_font-size) * var(--scale-up_40pct));
   --h4_font-weight: initial;
   --h4_line-height: initial;
@@ -44,7 +44,7 @@
 
   // TYPOGRAPHY H5
   --h5_font-family: var(--h1_font-family);
-  // --h5_color: initial;
+  --h5_color: initial;
   --h5_font-size: calc(var(--default_font-size) * var(--scale-up_40pct));
   --h5_font-weight: initial;
   --h5_line-height: initial;
@@ -52,7 +52,7 @@
 
   // TYPOGRAPHY H6
   --h6_font-family: var(--h1_font-family);
-  // --h6_color: initial;
+  --h6_color: initial;
   --h6_font-size: calc(var(--default_font-size) * var(--scale-up_40pct));
   --h6_font-weight: initial;
   --h6_line-height: initial;
@@ -121,17 +121,35 @@ h3 {
   text-transform: var(--h3_text-transform);
 }
 
-h4,
-h5,
-h6 {
-  font-family: var(--h3_font-family);
-  color: var(--h3_color);
-  font-size: calc(var(--h3_font-size) * var(--scale-down_20pct));
-  font-weight: var(--h3_font-weight);
-  line-height: var(--h3_line-height);
-  margin-top: calc(2rem * var(--scale-down_80pct));
-  margin-bottom: calc(1rem * var(--scale-down_80pct));
+h4 {
+  font-family: var(--h4_font-family);
+  color: var(--h4_color);
+  font-size: var(--h4_font-size);
+  font-weight: var(--h4_font-weight);
+  line-height: var(--h4_line-height);
+  margin-top: calc(2rem * var(--scale-down_60pct));
+  margin-bottom: calc(1rem * var(--scale-down_60pct));
   text-transform: var(--h4_text-transform);
+}
+h5 {
+  font-family: var(--h5_font-family);
+  color: var(--h5_color);
+  font-size: var(--h5_font-size);
+  font-weight: var(--h5_font-weight);
+  line-height: var(--h5_line-height);
+  margin-top: calc(2rem * var(--scale-down_60pct));
+  margin-bottom: calc(1rem * var(--scale-down_60pct));
+  text-transform: var(--h5_text-transform);
+}
+h6 {
+  font-family: var(--h6_font-family);
+  color: var(--h6_color);
+  font-size: var(--h6_font-size);
+  font-weight: var(--h6_font-weight);
+  line-height: var(--h6_line-height);
+  margin-top: calc(2rem * var(--scale-down_60pct));
+  margin-bottom: calc(1rem * var(--scale-down_60pct));
+  text-transform: var(--h6_text-transform);
 }
 
 p {
