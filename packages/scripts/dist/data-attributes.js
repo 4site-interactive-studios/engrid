@@ -133,5 +133,19 @@ export class DataAttributes {
         if (!CSS.supports("selector(:has(*))")) {
             ENGrid.setBodyData("css-has-selector", "false");
         }
+        if (ENGrid.getPageType() === "DONATION") {
+            this.addFrequencyDataAttribute();
+        }
+    }
+    // Add a data attribute to the body tag with how many visible frequency options there are
+    addFrequencyDataAttribute() {
+        const frequencyOptions = document.querySelectorAll(".en__field--recurrfreq .en__field__item label.en__field__label");
+        let visibleFrequencyOptions = 0;
+        frequencyOptions.forEach((option) => {
+            if (ENGrid.isVisible(option)) {
+                visibleFrequencyOptions++;
+            }
+        });
+        ENGrid.setBodyData("visible-frequency", visibleFrequencyOptions.toString());
     }
 }
