@@ -56,6 +56,7 @@ export class WelcomeBack {
   private shouldRun() {
     return (
       !!document.querySelector(".fast-personal-details") &&
+      ENGrid.getBodyData("embedded") !== "thank-you-page-donation" &&
       this.options !== false
     );
   }
