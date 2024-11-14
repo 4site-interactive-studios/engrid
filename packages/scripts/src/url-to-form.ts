@@ -20,7 +20,10 @@ export class UrlToForm {
     this.urlParams.forEach((value, key) => {
       const field = document.getElementsByName(key)[0] as HTMLInputElement;
       if (field) {
-        if (!["text", "textarea"].includes(field.type) || !field.value) {
+        if (
+          !["text", "textarea", "email"].includes(field.type) ||
+          !field.value
+        ) {
           ENGrid.setFieldValue(key, value);
           this.logger.log(`Set: ${key} to ${value}`);
         }
