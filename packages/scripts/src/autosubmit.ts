@@ -25,6 +25,11 @@ export class Autosubmit {
       ENGrid.getUrlParameter("autosubmit") === "Y"
     ) {
       this.logger.log("Autosubmitting Form");
+      // Fix EN ?chain parameter not working with email addresses with + in them
+      ENGrid.setFieldValue(
+        "supporter.emailAddress",
+        ENGrid.getFieldValue("supporter.emailAddress").replace(/\s/g, "+")
+      );
       this._form.submitForm();
     }
   }
