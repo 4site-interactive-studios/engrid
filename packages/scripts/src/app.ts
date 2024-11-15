@@ -183,6 +183,9 @@ export class App extends ENGrid {
     new InputPlaceholders();
     new InputHasValueAndFocus();
 
+    // Give By Select
+    new GiveBySelect();
+
     new ShowHideRadioCheckboxes("transaction.giveBySelect", "giveBySelect-");
     new ShowHideRadioCheckboxes("transaction.inmem", "inmem-");
     new ShowHideRadioCheckboxes("transaction.recurrpay", "recurrpay-");
@@ -424,9 +427,6 @@ export class App extends ENGrid {
 
     // Plaid
     if (this.options.Plaid) new Plaid();
-
-    // Give By Select
-    new GiveBySelect();
 
     //Exit Intent Lightbox
     new ExitIntentLightbox();
