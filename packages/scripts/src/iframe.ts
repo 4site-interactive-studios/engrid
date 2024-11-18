@@ -91,6 +91,10 @@ export class iFrame {
           `iFrame Event 'scrollTo' - Position of top of first error ${scrollTo} px`
         ); // check the message is being sent correctly
         window.parent.postMessage({ scrollTo }, "*");
+        // Send the height of the iFrame
+        window.setTimeout(() => {
+          this.sendIframeHeight();
+        }, 100);
       });
     } else {
       // When not in iframe, default behaviour, smooth scroll to first error
@@ -110,6 +114,11 @@ export class iFrame {
         if (iframe) {
           if (event.data.hasOwnProperty("frameHeight")) {
             iframe.style.height = event.data.frameHeight + "px";
+            if (event.data.frameHeight > 0) {
+              iframe.classList.add("loaded");
+            } else {
+              iframe.classList.remove("loaded");
+            }
           }
           // Old scroll event logic "scroll", scrolls to correct iframe?
           else if (
