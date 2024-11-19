@@ -21,12 +21,10 @@ export class InputPlaceholders {
     "input#en__field_supporter_emailAddress": "Email Address",
     "input#en__field_supporter_phoneNumber": "Phone Number (Optional)",
     ".en__mandatory input#en__field_supporter_phoneNumber": "Phone Number",
-    ".required-if-visible input#en__field_supporter_phoneNumber":
-      "Phone Number",
+    ".i-required input#en__field_supporter_phoneNumber": "Phone Number",
     "input#en__field_supporter_phoneNumber2": "000-000-0000 (Optional)",
     ".en__mandatory input#en__field_supporter_phoneNumber2": "000-000-0000",
-    ".required-if-visible input#en__field_supporter_phoneNumber2":
-      "000-000-0000",
+    ".i-required input#en__field_supporter_phoneNumber2": "000-000-0000",
     "input#en__field_supporter_country": "Country",
     "input#en__field_supporter_address1": "Street Address",
     "input#en__field_supporter_address2": "Apt., Ste., Bldg.",
