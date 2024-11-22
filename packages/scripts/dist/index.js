@@ -80,6 +80,7 @@ export * from "./embedded-ecard";
 export * from "./us-only-form";
 export * from "./thank-you-page-conditional-content";
 export * from "./checkbox-label";
+export * from "./optin-ladder";
 // Events
 export * from "./events";
 // Version
