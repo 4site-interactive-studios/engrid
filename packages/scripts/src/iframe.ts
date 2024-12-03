@@ -243,6 +243,7 @@ export class iFrame {
       "giveBySelect-Card",
       "en__field--ccnumber",
       "en__field--survey",
+      "en__component--ecardblock",
       "give-by-select",
       "give-by-select-header",
       "en__submit",
@@ -256,7 +257,7 @@ export class iFrame {
 
     const components = Array.from(
       document.querySelectorAll(
-        ".body-main > div:not(:last-child)"
+        ".body-main:not(.force-visibility) > div:not(:last-child)"
       ) as NodeListOf<HTMLDivElement>
     );
 

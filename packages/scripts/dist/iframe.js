@@ -205,6 +205,7 @@ export class iFrame {
             "giveBySelect-Card",
             "en__field--ccnumber",
             "en__field--survey",
+            "en__component--ecardblock",
             "give-by-select",
             "give-by-select-header",
             "en__submit",
@@ -215,7 +216,7 @@ export class iFrame {
             "radio-to-buttons_donationAmt",
         ];
         const excludeIds = ["en__digitalWallet"];
-        const components = Array.from(document.querySelectorAll(".body-main > div:not(:last-child)"));
+        const components = Array.from(document.querySelectorAll(".body-main:not(.force-visibility) > div:not(:last-child)"));
         components.forEach((component) => {
             const shouldExclude = excludeClasses.some((cls) => component.classList.contains(cls) ||
                 component.querySelector(`:scope > .${cls}`)) || excludeIds.some((id) => component.querySelector(`#${id}`));
