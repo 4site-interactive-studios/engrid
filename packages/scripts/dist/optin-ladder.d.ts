@@ -11,4 +11,5 @@ export declare class OptInLadder {
     private saveOptInsToSessionStorage;
     private isEmbeddedThankYouPage;
     private hidePage;
+    private clearSessionStorage;
 }

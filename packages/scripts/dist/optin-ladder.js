@@ -27,12 +27,12 @@ export class OptInLadder {
         }
         this._form.onSubmit.subscribe(() => {
             // Save the checkbox values to sessionStorage
-            this.saveOptInsToSessionStorage();
+            this.saveOptInsToSessionStorage("parent");
         });
         this.logger.log("Running as Parent");
         if (ENGrid.getPageNumber() === 1) {
-            // Delete supporter.questions from sessionStorage
-            sessionStorage.removeItem("engrid.supporter.questions");
+            // Delete items from sessionStorage
+            this.clearSessionStorage();
         }
     }
     runAsChildRegular() {
@@ -123,7 +123,7 @@ export class OptInLadder {
         this.saveStepToSessionStorage(currentStep, totalSteps);
         // On form submit, save the checkbox values to sessionStorage
         this._form.onSubmit.subscribe(() => {
-            this.saveOptInsToSessionStorage();
+            this.saveOptInsToSessionStorage("child");
             // Save the current step to sessionStorage
             currentStep++;
             this.saveStepToSessionStorage(currentStep, totalSteps);
@@ -134,19 +134,25 @@ export class OptInLadder {
             this.logger.log("Not Embedded on a Thank You Page");
             return;
         }
+        const hasOptInLadderStop = sessionStorage.getItem("engrid.optin-ladder-stop");
+        if (hasOptInLadderStop) {
+            this.logger.log("OptInLadder has been stopped");
+            return;
+        }
         const sessionStorageOptInLadder = JSON.parse(sessionStorage.getItem("engrid.optin-ladder") || "{}");
         const currentStep = sessionStorageOptInLadder.step || 0;
         const totalSteps = sessionStorageOptInLadder.totalSteps || 0;
-        if (currentStep < totalSteps) {
-            this.logger.log(`Current step ${currentStep} is less than total steps ${totalSteps}`);
+        if (currentStep <= totalSteps) {
+            this.logger.log(`Current step ${currentStep} is less or equal to total steps ${totalSteps}`);
+            this.hidePage();
             // Redirect to the first page
             window.location.href = this.getFirstPageUrl();
             return;
         }
         else {
-            this.logger.log(`Current step ${currentStep} is equal to total steps ${totalSteps}`);
+            this.logger.log(`Current step ${currentStep} is greater than total steps ${totalSteps}`);
             // Remove the session storage
-            sessionStorage.removeItem("engrid.optin-ladder");
+            this.clearSessionStorage();
         }
     }
     inIframe() {
@@ -169,7 +175,7 @@ export class OptInLadder {
         path.push("1");
         return url.origin + path.join("/") + "?chain";
     }
-    saveOptInsToSessionStorage() {
+    saveOptInsToSessionStorage(type = "parent") {
         // Grab all the checkboxes with the name starting with "supporter.questions"
         const checkboxes = document.querySelectorAll('input[name^="supporter.questions"]');
         if (checkboxes.length === 0) {
@@ -177,15 +183,23 @@ export class OptInLadder {
             return;
         }
         const sessionStorageCheckboxValues = JSON.parse(sessionStorage.getItem("engrid.supporter.questions") || "{}");
+        let hasDeny = false;
         // Loop through all the checkboxes and store the value in sessionStorage
         checkboxes.forEach((checkbox) => {
             if (checkbox.checked) {
                 const index = checkbox.name.split(".")[2];
                 sessionStorageCheckboxValues[index] = "Y";
             }
+            else {
+                hasDeny = true;
+            }
         });
         sessionStorage.setItem("engrid.supporter.questions", JSON.stringify(sessionStorageCheckboxValues));
         this.logger.log(`Saved checkbox values to sessionStorage: ${JSON.stringify(sessionStorageCheckboxValues)}`);
+        if (type === "child" && hasDeny) {
+            // Add a deny value to the sessionStorage to stop the ladder
+            sessionStorage.setItem("engrid.optin-ladder-stop", "Y");
+        }
     }
     isEmbeddedThankYouPage() {
         return ENGrid.getBodyData("embedded") === "thank-you-page-donation";
@@ -195,5 +209,10 @@ export class OptInLadder {
         if (engridPage) {
             engridPage.classList.add("hide");
         }
+    }
+    clearSessionStorage() {
+        sessionStorage.removeItem("engrid.supporter.questions");
+        sessionStorage.removeItem("engrid.optin-ladder");
+        sessionStorage.removeItem("engrid.optin-ladder-stop");
     }
 }
