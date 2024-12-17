@@ -1,9 +1,17 @@
 // Component that adds data attributes to the Body
 
-import { ENGrid, Country } from ".";
+import { ENGrid, Country, DonationFrequency, EngridLogger } from ".";
 
 export class DataAttributes {
+  private logger: EngridLogger = new EngridLogger(
+    "Data Attribute Changed",
+    "#FFFFFF",
+    "#4d9068",
+    "🛠️"
+  );
+
   private _country: Country = Country.getInstance();
+  private _frequency: DonationFrequency = DonationFrequency.getInstance();
   constructor() {
     this.setDataAttributes();
   }
@@ -191,15 +199,40 @@ export class DataAttributes {
   }
   // Add a data attribute to the body tag with how many visible gift amount options there are
   private addGiftAmountDataAttribute() {
-    const giftAmountOptions = document.querySelectorAll(
-      ".en__field--donationAmt .en__field__element .en__field__item"
-    ) as NodeListOf<HTMLElement>;
-    let visibleGiftAmountOptions = 0;
-    giftAmountOptions.forEach((option) => {
-      if (ENGrid.isVisible(option)) {
-        visibleGiftAmountOptions++;
-      }
+    const updateGiftAmountData = () => {
+      const giftAmountOptions = document.querySelectorAll(
+        ".en__field--donationAmt .en__field__element .en__field__item"
+      ) as NodeListOf<HTMLElement>;
+      let visibleGiftAmountOptions = 0;
+      giftAmountOptions.forEach((option) => {
+        if (ENGrid.isVisible(option)) {
+          visibleGiftAmountOptions++;
+        }
+      });
+      ENGrid.setBodyData("visible-gift-amount", visibleGiftAmountOptions.toString());
+      this.logger.log("Visible Gift Amount Changed to: " + visibleGiftAmountOptions.toString());
+    };
+
+    // Initial update
+    updateGiftAmountData();
+
+    // Observe changes in the donation amount section
+    const observer = new MutationObserver(updateGiftAmountData);
+    const targetNode = document.querySelector(".en__field--donationAmt");
+    
+    if (targetNode) {
+      observer.observe(targetNode, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+      });
+    }
+
+    // Run update updateGiftAmountData when frequency changes
+    this._frequency.onFrequencyChange.subscribe(() => {
+      setTimeout(() => {
+        updateGiftAmountData();
+      }, 10);
     });
-    ENGrid.setBodyData("visible-gift-amount", visibleGiftAmountOptions.toString());
   }
 }
