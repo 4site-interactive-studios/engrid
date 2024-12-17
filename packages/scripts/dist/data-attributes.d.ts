@@ -3,4 +3,5 @@ export declare class DataAttributes {
     constructor();
     private setDataAttributes;
     private addFrequencyDataAttribute;
+    private addGiftAmountDataAttribute;
 }

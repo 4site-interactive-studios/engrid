@@ -135,6 +135,7 @@ export class DataAttributes {
         }
         if (ENGrid.getPageType() === "DONATION") {
             this.addFrequencyDataAttribute();
+            this.addGiftAmountDataAttribute();
         }
     }
     // Add a data attribute to the body tag with how many visible frequency options there are
@@ -147,5 +148,16 @@ export class DataAttributes {
             }
         });
         ENGrid.setBodyData("visible-frequency", visibleFrequencyOptions.toString());
+    }
+    // Add a data attribute to the body tag with how many visible gift amount options there are
+    addGiftAmountDataAttribute() {
+        const giftAmountOptions = document.querySelectorAll(".en__field--donationAmt .en__field__element .en__field__item");
+        let visibleGiftAmountOptions = 0;
+        giftAmountOptions.forEach((option) => {
+            if (ENGrid.isVisible(option)) {
+                visibleGiftAmountOptions++;
+            }
+        });
+        ENGrid.setBodyData("visible-gift-amount", visibleGiftAmountOptions.toString());
     }
 }
