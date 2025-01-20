@@ -146,6 +146,13 @@ export interface Options {
           placement: "beforebegin" | "afterbegin" | "beforeend" | "afterend";
         };
       };
+  OptInLadder?:
+    | false
+    | {
+        iframeUrl: string;
+        placementQuerySelector?: string | null;
+        excludePageIDs?: string[];
+      };
   onLoad?: () => void;
   onResize?: () => void;
   onSubmit?: () => void;
@@ -193,6 +200,7 @@ export const OptionsDefaults: Options = {
   PostalCodeValidator: false,
   CountryRedirect: false,
   WelcomeBack: false,
+  OptInLadder: false,
   PageLayouts: [
     "leftleft1col",
     "centerleft1col",
