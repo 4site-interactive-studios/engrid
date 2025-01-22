@@ -138,6 +138,11 @@ export interface Options {
             placement: "beforebegin" | "afterbegin" | "beforeend" | "afterend";
         };
     };
+    OptInLadder?: false | {
+        iframeUrl: string;
+        placementQuerySelector?: string | null;
+        excludePageIDs?: string[];
+    };
     onLoad?: () => void;
     onResize?: () => void;
     onSubmit?: () => void;
