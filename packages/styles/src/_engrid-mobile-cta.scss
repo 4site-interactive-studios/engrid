@@ -4,10 +4,20 @@
   bottom: 1rem;
   width: calc(100% - 4rem);
   z-index: 9999;
+  transition: bottom 0.4s ease-out;
+  color: white;
 
   .primary {
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 0;
+
+    svg {
+      margin-left: 10px;
+      width: 24px;
+      height: 24px;
+    }
   }
 }
 
@@ -15,4 +25,8 @@
   .engrid-mobile-cta-container {
     display: none !important;
   }
+}
+
+.engrid-mobile-cta-container.hide-cta {
+  bottom: -100px;
 }

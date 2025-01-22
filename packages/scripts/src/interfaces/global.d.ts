@@ -34,5 +34,6 @@ declare global {
     FreshAddress: any;
     FreshAddressStatus: string;
     enVGSFields: any;
+    mobileCTAButtonLabel: string;
   }
 }

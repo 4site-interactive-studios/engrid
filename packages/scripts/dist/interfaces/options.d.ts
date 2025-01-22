@@ -75,9 +75,9 @@ export interface Options {
         phone_status_field?: string;
     };
     MobileCTA?: false | {
-        label?: string;
-        pages?: string[];
-    };
+        pageType: string;
+        label: string;
+    }[];
     PageLayouts?: string[];
     CountryDisable?: string[];
     Plaid?: boolean;

@@ -7034,10 +7034,19 @@ body:not(#en__pagebuilder):not([data-engrid-debug]):not([data-engrid-merge-tags-
   bottom: 1rem;
   width: calc(100% - 4rem);
   z-index: 9999;
+  transition: bottom 0.4s ease-out;
+  color: white;
 }
 .engrid-mobile-cta-container .primary {
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 0;
+}
+.engrid-mobile-cta-container .primary svg {
+  margin-left: 10px;
+  width: 24px;
+  height: 24px;
 }
 
 @media screen and (min-width: 768px) {
@@ -7045,6 +7054,10 @@ body:not(#en__pagebuilder):not([data-engrid-debug]):not([data-engrid-merge-tags-
     display: none !important;
   }
 }
+.engrid-mobile-cta-container.hide-cta {
+  bottom: -100px;
+}
+
 [data-engrid-theme] {
   --exit-intent__overlay_background-color: rgba(0, 0, 0, 0.5);
   --exit-intent__overlay_padding: 0 20px;

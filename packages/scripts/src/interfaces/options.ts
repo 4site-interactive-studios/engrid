@@ -82,10 +82,7 @@ export interface Options {
       };
   MobileCTA?:
     | false
-    | {
-        label?: string;
-        pages?: string[];
-      };
+   | { pageType: string; label: string; }[];
   PageLayouts?: string[];
   CountryDisable?: string[];
   Plaid?: boolean;

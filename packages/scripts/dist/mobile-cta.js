@@ -2,17 +2,19 @@
 import { ENGrid } from ".";
 export class MobileCTA {
     constructor() {
-        var _a, _b, _c;
+        var _a;
         // Initialize options with the MobileCTA value or false
         this.options = (_a = ENGrid.getOption("MobileCTA")) !== null && _a !== void 0 ? _a : false;
         this.buttonLabel = "";
         // Return early if the options object is falsy or the current page type is not in the options.pages array
-        if (!this.options ||
-            !((_b = this.options.pages) === null || _b === void 0 ? void 0 : _b.includes(ENGrid.getPageType())) ||
-            ENGrid.getPageNumber() !== 1)
+        if (!this.options || ENGrid.getPageNumber() !== 1) {
             return;
-        // Set the button label using the options.label or the default value "Take Action"
-        this.buttonLabel = (_c = this.options.label) !== null && _c !== void 0 ? _c : "Take Action";
+        }
+        const labelForPageType = this.options.find((option) => option.pageType === ENGrid.getPageType());
+        if (!labelForPageType)
+            return;
+        // Set the button label to the window.mobileCTAButtonLabel value or the label for the current page type
+        this.buttonLabel = window.mobileCTAButtonLabel || labelForPageType.label;
         this.renderButton();
         this.addEventListeners();
     }
@@ -25,11 +27,12 @@ export class MobileCTA {
         const buttonContainer = document.createElement("div");
         const button = document.createElement("button");
         // Add necessary classes and set the initial display style for the button container
-        buttonContainer.classList.add("engrid-mobile-cta-container");
-        buttonContainer.style.display = "none";
+        buttonContainer.classList.add("engrid-mobile-cta-container", "hide-cta");
         button.classList.add("primary");
         // Set the button's innerHTML and add a click event listener
-        button.innerHTML = this.buttonLabel;
+        button.innerHTML =
+            this.buttonLabel +
+                '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>';
         button.addEventListener("click", () => {
             formBlock.scrollIntoView({ behavior: "smooth" });
         });
@@ -51,6 +54,7 @@ export class MobileCTA {
                 this.showButton();
             }
         };
+        toggleButton();
         // Add event listeners for load, resize, and scroll events to toggle the button visibility
         window.addEventListener("load", toggleButton);
         window.addEventListener("resize", toggleButton);
@@ -60,12 +64,12 @@ export class MobileCTA {
     hideButton() {
         const buttonContainer = document.querySelector(".engrid-mobile-cta-container");
         if (buttonContainer)
-            buttonContainer.style.display = "none";
+            buttonContainer.classList.add("hide-cta");
     }
     // Show the button by setting the container's display style to "block"
     showButton() {
         const buttonContainer = document.querySelector(".engrid-mobile-cta-container");
         if (buttonContainer)
-            buttonContainer.style.display = "block";
+            buttonContainer.classList.remove("hide-cta");
     }
 }
