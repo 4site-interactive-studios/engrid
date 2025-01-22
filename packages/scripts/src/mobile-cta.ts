@@ -9,19 +9,18 @@ export class MobileCTA {
 
   constructor() {
     // Return early if the options object is falsy or the current page type is not in the options.pages array
-    if (
-      !this.options ||
-      ENGrid.getPageNumber() !== 1
-    ) {
+    if (!this.options || ENGrid.getPageNumber() !== 1) {
       return;
     }
 
-    const labelForPageType = this.options.find(option => option.pageType === ENGrid.getPageType());
+    const labelForPageType = this.options.find(
+      (option) => option.pageType === ENGrid.getPageType()
+    );
 
     if (!labelForPageType) return;
 
-    // Set the button label using the options.label or the default value "Take Action"
-    this.buttonLabel = window.mobileCTAButtonLabel || labelForPageType.label || "Take Action";
+    // Set the button label to the window.mobileCTAButtonLabel value or the label for the current page type
+    this.buttonLabel = window.mobileCTAButtonLabel || labelForPageType.label;
     this.renderButton();
     this.addEventListeners();
   }
@@ -43,7 +42,9 @@ export class MobileCTA {
     button.classList.add("primary");
 
     // Set the button's innerHTML and add a click event listener
-    button.innerHTML = this.buttonLabel + '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>';
+    button.innerHTML =
+      this.buttonLabel +
+      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>';
     button.addEventListener("click", () => {
       formBlock.scrollIntoView({ behavior: "smooth" });
     });
