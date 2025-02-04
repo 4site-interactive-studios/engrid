@@ -26,7 +26,10 @@ export class OptInLadder {
 
   private runAsParent() {
     this.logger.log("Running as Parent");
-    if (ENGrid.getPageNumber() === ENGrid.getPageCount()) {
+    if (
+      ENGrid.getPageNumber() > 1 &&
+      ENGrid.getPageNumber() === ENGrid.getPageCount()
+    ) {
       // We are on the Thank You Page as a Parent
       // Check autoinject iFrame
       const optInLadderOptions = ENGrid.getOption("OptInLadder");
