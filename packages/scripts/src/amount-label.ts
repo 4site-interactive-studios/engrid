@@ -28,7 +28,8 @@ export class AmountLabel {
     ) as NodeListOf<HTMLLabelElement>;
     const currencySymbol = ENGrid.getCurrencySymbol() || "";
     amounts.forEach((element) => {
-      if (!isNaN(element.innerText as any)) {
+      const amountText = element.innerText.replace(/,/g, "").replace(/\./g, "");
+      if (!isNaN(amountText as any)) {
         element.innerText = currencySymbol + element.innerText;
       }
     });
