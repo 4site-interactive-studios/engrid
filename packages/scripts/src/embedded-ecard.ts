@@ -20,6 +20,8 @@ export class EmbeddedEcard {
   private readonly options: EmbeddedEcardOptions = EmbeddedEcardOptionsDefaults;
   private _form: EnForm = EnForm.getInstance();
   public isSubmitting: boolean = false;
+  public ecardFormActive: boolean = false;
+  public iframe: HTMLIFrameElement | null = null;
 
   constructor() {
     // For the page hosting the embedded ecard
@@ -113,7 +115,8 @@ export class EmbeddedEcard {
       </div>`;
     container.appendChild(checkbox);
 
-    container.appendChild(this.createIframe(this.options.pageUrl));
+    this.iframe = this.createIframe(this.options.pageUrl);
+    container.appendChild(this.iframe);
 
     document
       .querySelector(this.options.anchor)
@@ -136,33 +139,85 @@ export class EmbeddedEcard {
   }
 
   private addEventListeners() {
-    const iframe = document.querySelector(
-      ".engrid-iframe--embedded-ecard"
-    ) as HTMLIFrameElement;
-
     const sendEcardCheckbox = document.getElementById(
       "en__field_embedded-ecard"
     ) as HTMLInputElement;
 
-    // Initialize based on checkbox's default state
-    if (sendEcardCheckbox?.checked) {
-      iframe?.setAttribute("style", "display: block");
-      sessionStorage.setItem("engrid-send-embedded-ecard", "true");
-    } else {
-      iframe?.setAttribute("style", "display: none");
-      sessionStorage.removeItem("engrid-send-embedded-ecard");
-    }
+    this.toggleEcardForm(sendEcardCheckbox.checked);
 
     sendEcardCheckbox?.addEventListener("change", (e) => {
       const checkbox = e.target as HTMLInputElement;
-      if (checkbox?.checked) {
-        iframe?.setAttribute("style", "display: block");
-        sessionStorage.setItem("engrid-send-embedded-ecard", "true");
-      } else {
-        iframe?.setAttribute("style", "display: none");
-        sessionStorage.removeItem("engrid-send-embedded-ecard");
-      }
+      this.toggleEcardForm(checkbox.checked);
     });
+
+    this._form.onValidate.subscribe(this.validateRecipients.bind(this));
+  }
+
+  private validateRecipients() {
+    if (!this.ecardFormActive || !this._form.validate) return;
+
+    this.logger.log("Validating ecard");
+
+    let embeddedEcardData = JSON.parse(
+      sessionStorage.getItem("engrid-embedded-ecard") || "{}"
+    );
+
+    // Testing if the ecard recipient data is set and valid
+    if (
+      !embeddedEcardData.formData ||
+      !embeddedEcardData.formData.recipients ||
+      embeddedEcardData.formData.recipients.length == 0 ||
+      embeddedEcardData.formData.recipients.some(
+        (recipient: { name: string; email: string }) => {
+          const recipientName = recipient.name;
+          const recipientEmail = recipient.email;
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+          return (
+            recipientName === "" ||
+            recipientEmail === "" ||
+            !emailRegex.test(recipientEmail)
+          );
+        }
+      )
+    ) {
+      this.logger.log("Ecard recipients validation failed");
+      this._form.validate = false;
+
+      this.sendPostMessage(this.iframe, "recipient_error");
+
+      const iframeDoc =
+        this.iframe?.contentDocument || this.iframe?.contentWindow?.document;
+      if (!iframeDoc) return;
+      const scrollTarget = iframeDoc.querySelector(".en__ecardrecipients");
+      if (!scrollTarget) return;
+      const iframeRect = this.iframe?.getBoundingClientRect();
+      if (!iframeRect) return;
+      const elementRect = scrollTarget.getBoundingClientRect();
+
+      window.scrollTo({
+        top: iframeRect.top + elementRect.top + window.scrollY - 10,
+        behavior: "smooth",
+      });
+    }
+  }
+
+  private toggleEcardForm(visible: boolean) {
+    const iframe = document.querySelector(
+      ".engrid-iframe--embedded-ecard"
+    ) as HTMLIFrameElement;
+
+    this.ecardFormActive = visible;
+
+    if (visible) {
+      iframe?.setAttribute("style", "display: block");
+      sessionStorage.setItem("engrid-send-embedded-ecard", "true");
+      this.logger.log("Ecard form is visible");
+    } else {
+      iframe?.setAttribute("style", "display: none");
+      sessionStorage.removeItem("engrid-send-embedded-ecard");
+      this.logger.log("Ecard form is hidden");
+    }
   }
 
   private setEmbeddedEcardSessionData() {
@@ -302,6 +357,18 @@ export class EmbeddedEcard {
       });
     });
 
+    // Remove the recipient error message when the user starts typing in the recipient fields
+    [recipientName, recipientEmail].forEach((el) => {
+      el.addEventListener("input", () => {
+        const recipientDetails = document.querySelector(
+          ".en__ecardrecipients__detail"
+        );
+        const error = document.querySelector(".engrid__recipient__error");
+        recipientDetails?.classList.remove("validationFail");
+        error?.classList.add("hide");
+      });
+    });
+
     window.addEventListener("message", (e) => {
       if (e.origin !== location.origin || !e.data.action) return;
 
@@ -349,6 +416,22 @@ export class EmbeddedEcard {
           recipientName.dispatchEvent(new Event("input"));
           recipientEmail.dispatchEvent(new Event("input"));
           break;
+        case "recipient_error":
+          const recipientDetails = document.querySelector(
+            ".en__ecardrecipients__detail"
+          );
+          const error = document.querySelector(".engrid__recipient__error");
+          if (error) {
+            error.classList.remove("hide");
+          } else {
+            recipientDetails?.insertAdjacentHTML(
+              "afterend",
+              "<div class='en__field__error engrid__recipient__error'>Please provide the details for your eCard recipient</div>"
+            );
+          }
+          recipientDetails?.classList.add("validationFail");
+          window.dispatchEvent(new Event("resize"));
+          break;
       }
     });
 
@@ -374,10 +457,12 @@ export class EmbeddedEcard {
   }
 
   private sendPostMessage(
-    target: HTMLIFrameElement | "parent",
+    target: HTMLIFrameElement | "parent" | null,
     action: string,
     data: object = {}
   ) {
+    if (!target) return;
+
     const message = {
       action,
       ...data,
