@@ -3,6 +3,8 @@ export declare class EmbeddedEcard {
     private readonly options;
     private _form;
     isSubmitting: boolean;
+    ecardFormActive: boolean;
+    iframe: HTMLIFrameElement | null;
     constructor();
     private onHostPage;
     private onEmbeddedEcardPage;
@@ -10,6 +12,8 @@ export declare class EmbeddedEcard {
     private embedEcard;
     private createIframe;
     private addEventListeners;
+    private validateRecipients;
+    private toggleEcardForm;
     private setEmbeddedEcardSessionData;
     private getEcardRecipients;
     private setupEmbeddedPage;
