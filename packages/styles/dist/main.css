@@ -5880,6 +5880,11 @@ video.grayscale-video {
   margin-bottom: var(--fields_spacing-block);
 }
 
+/* EN's CSS applies a white background to the parent wrapping element, rather than the Input and Textarea inside it. This removes it since we already apply a background color to Inputs and Textareas. */
+.en__singleMessage {
+  background: none;
+}
+
 /************************************
  * Loading spinner that gets added to the submit button on form submission
  * Depends on "loadingSubmitButton" in live-variables.ts

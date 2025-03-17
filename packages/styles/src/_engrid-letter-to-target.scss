@@ -24,3 +24,8 @@
   margin-top: calc(var(--fields_spacing-inline) * 0.5);
   margin-bottom: var(--fields_spacing-block);
 }
+
+/* EN's CSS applies a white background to the parent wrapping element, rather than the Input and Textarea inside it. This removes it since we already apply a background color to Inputs and Textareas. */
+.en__singleMessage {
+  background: none;
+}
