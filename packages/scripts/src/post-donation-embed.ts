@@ -1,4 +1,4 @@
-// This component only works on Thank You pages
+// This component only works on Thank You pages and the current page IS NOT embedded as an iframe.
 // It searches for a post-donation tag (engrid-post-donation)
 // and if it exists, it will replace it with an iframe of the current donation page, replacing the
 // "/donate/2" with "/donate/1" and adding a ?chain.
@@ -56,7 +56,11 @@ export class PostDonationEmbed {
     postDonationTag.replaceWith(iframe);
   }
   shouldRun() {
-    return ENGrid.isThankYouPage() && this.hasPostDonationTag();
+    return (
+      ENGrid.isThankYouPage() &&
+      this.hasPostDonationTag() &&
+      ENGrid.getBodyData("embedded") === null
+    );
   }
   hasPostDonationTag() {
     return !!document.querySelector("engrid-post-donation");
