@@ -369,6 +369,30 @@
   .fast-personal-details {
     background-color: #0000ff1a !important;
   }
+  .showif-iframe {
+    &::after {
+      content: "Show If Iframe";
+      font-size: 10px;
+      padding-left: 5px;
+      padding-right: 5px;
+      color: #0000ff;
+      position: absolute;
+      top: 0;
+      right: 4px;
+    }
+  }
+  .hideif-iframe {
+    &::after {
+      content: "Hide If Iframe";
+      font-size: 10px;
+      padding-left: 5px;
+      padding-right: 5px;
+      color: #0000ff;
+      position: absolute;
+      top: 0;
+      right: 4px;
+    }
+  }
 }
 
 //Style interactive content

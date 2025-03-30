@@ -4,7 +4,15 @@
 * ####################################################################################################################
 */
 
-[data-engrid-embedded] {
+:not([data-engrid-embedded]):not(#en__pagebuilder) {
+  .showif-iframe {
+    display: none !important;
+  }
+  .hideif-iframe {
+    display: block !important;
+  }
+}
+[data-engrid-embedded]:not(#en__pagebuilder) {
   background-image: none;
   min-height: 0;
 
@@ -100,6 +108,12 @@
   .page-backgroundImage,
   .page-backgroundImageOverlay,
   .hide-iframe {
+    display: none !important;
+  }
+  .showif-iframe {
+    display: block !important;
+  }
+  .hideif-iframe {
     display: none !important;
   }
 }

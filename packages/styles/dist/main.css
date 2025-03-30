@@ -7686,7 +7686,14 @@ body:not(#en__pagebuilder)[data-engrid-no-page-customCode] .en__component--advro
 * # ENGRID Layout - Embedded Layout for Seamless Embedding
 * ####################################################################################################################
 */
-[data-engrid-embedded] {
+:not([data-engrid-embedded]):not(#en__pagebuilder) .showif-iframe {
+  display: none !important;
+}
+:not([data-engrid-embedded]):not(#en__pagebuilder) .hideif-iframe {
+  display: block !important;
+}
+
+[data-engrid-embedded]:not(#en__pagebuilder) {
   background-image: none;
   min-height: 0;
   --engrid__embedded_page_background-color: transparent !important;
@@ -7762,13 +7769,19 @@ body:not(#en__pagebuilder)[data-engrid-no-page-customCode] .en__component--advro
   --engrid__embedded_body_margin: 0px;
   /* prettier-ignore */
 }
-[data-engrid-embedded] .en__component--advrow,
-[data-engrid-embedded] .en__component--advrow > * {
+[data-engrid-embedded]:not(#en__pagebuilder) .en__component--advrow,
+[data-engrid-embedded]:not(#en__pagebuilder) .en__component--advrow > * {
   grid-template-columns: [pc-start lpc-start] minmax(0px, 0px) [lpc-end cc-start lcc-start] minmax(0px, 0px) [lcc-end bc-start lbc-start] minmax(0px, 50vw) [lbc-end rbc-start] minmax(0px, 50vw) [rbc-end bc-end rcc-start] minmax(0px, 0px) [rcc-end cc-end rpc-start] minmax(0px, 0px) [rpc-end pc-end] !important;
 }
-[data-engrid-embedded] .page-backgroundImage,
-[data-engrid-embedded] .page-backgroundImageOverlay,
-[data-engrid-embedded] .hide-iframe {
+[data-engrid-embedded]:not(#en__pagebuilder) .page-backgroundImage,
+[data-engrid-embedded]:not(#en__pagebuilder) .page-backgroundImageOverlay,
+[data-engrid-embedded]:not(#en__pagebuilder) .hide-iframe {
+  display: none !important;
+}
+[data-engrid-embedded]:not(#en__pagebuilder) .showif-iframe {
+  display: block !important;
+}
+[data-engrid-embedded]:not(#en__pagebuilder) .hideif-iframe {
   display: none !important;
 }
 
@@ -9604,6 +9617,28 @@ body:not([data-engrid-debug]) #debug-bar {
 [data-engrid-debug] .fast-address-details,
 [data-engrid-debug] .fast-personal-details {
   background-color: rgba(0, 0, 255, 0.1019607843) !important;
+}
+#en__pagebuilder .showif-iframe::after,
+[data-engrid-debug] .showif-iframe::after {
+  content: "Show If Iframe";
+  font-size: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #0000ff;
+  position: absolute;
+  top: 0;
+  right: 4px;
+}
+#en__pagebuilder .hideif-iframe::after,
+[data-engrid-debug] .hideif-iframe::after {
+  content: "Hide If Iframe";
+  font-size: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #0000ff;
+  position: absolute;
+  top: 0;
+  right: 4px;
 }
 
 #en__pagebuilder [class*=setattr],

@@ -1,4 +1,4 @@
-// This component works only on Donation Thank You pages
+// This component only works on Thank You pages
 // It searches for a post-donation tag (engrid-post-donation)
 // and if it exists, it will replace it with an iframe of the current donation page, replacing the
 // "/donate/2" with "/donate/1" and adding a ?chain.
