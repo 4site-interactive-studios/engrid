@@ -31,6 +31,7 @@ export declare class SwapAmounts {
     private defaultChange;
     private swapped;
     constructor();
+    loadAmountsFromUrl(): void;
     swapAmounts(): void;
     loadEnAmounts(amountArray: {
         amounts: [string, number];

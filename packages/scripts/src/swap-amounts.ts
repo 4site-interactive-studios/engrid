@@ -1,5 +1,8 @@
 // This script allows you to override the default donation amounts in Engaging Networks
 // with a custom list of amounts.
+// If the URL contains a query parameter "engrid-amounts" with a comma separated values, the script will load the
+// amounts from the parameter and set them as the default amounts for the donation
+// form.
 /**
  * Example:
  * window.EngridAmounts = {
@@ -39,6 +42,7 @@ export class SwapAmounts {
   private defaultChange: boolean = false;
   private swapped: boolean = false;
   constructor() {
+    this.loadAmountsFromUrl();
     if (!this.shouldRun()) return;
     this._frequency.onFrequencyChange.subscribe(() => this.swapAmounts());
     this._amount.onAmountChange.subscribe(() => {
@@ -54,6 +58,31 @@ export class SwapAmounts {
       }
     });
   }
+  loadAmountsFromUrl() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const amounts = urlParams.get("engrid-amounts");
+    if (amounts) {
+      const amountArray = amounts.split(",").map((amt) => amt.trim());
+      const defaultAmount =
+        parseFloat(
+          ENGrid.getUrlParameter("transaction.donationAmt") as string
+        ) || parseFloat(amountArray[0]);
+      const amountsObj: { [key: string]: number | string } = {};
+      for (let i = 0; i < amountArray.length; i++) {
+        amountsObj[amountArray[i].toString()] = isNaN(
+          parseFloat(amountArray[i])
+        )
+          ? amountArray[i]
+          : parseFloat(amountArray[i]);
+      }
+      amountsObj["Other"] = "other";
+      window.EngridAmounts = {
+        onetime: { amounts: amountsObj, default: defaultAmount },
+        monthly: { amounts: amountsObj, default: defaultAmount },
+      };
+    }
+  }
+
   swapAmounts() {
     if (this._frequency.frequency in window.EngridAmounts) {
       window.EngagingNetworks.require._defined.enjs.swapList(
