@@ -216,6 +216,10 @@ export abstract class ENGrid {
     return null;
   }
 
+  static isThankYouPage() {
+    return this.getPageNumber() === this.getPageCount();
+  }
+
   // Return the current page ID
   static getPageID() {
     if ("pageJson" in window) return window.pageJson.campaignPageId;

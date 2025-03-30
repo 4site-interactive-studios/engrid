@@ -81,6 +81,7 @@ export * from "./us-only-form";
 export * from "./thank-you-page-conditional-content";
 export * from "./checkbox-label";
 export * from "./optin-ladder";
+export * from "./post-donation-embed";
 // Events
 export * from "./events";
 // Version

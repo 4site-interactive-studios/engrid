@@ -13,6 +13,7 @@ export declare abstract class ENGrid {
     static getGiftProcess(): any;
     static getPageCount(): any;
     static getPageNumber(): any;
+    static isThankYouPage(): boolean;
     static getPageID(): any;
     static getClientID(): any;
     static getDataCenter(): "us" | "ca";

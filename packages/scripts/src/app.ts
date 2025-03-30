@@ -84,6 +84,7 @@ import {
   EmbeddedEcard,
   CheckboxLabel,
   UpsellCheckbox,
+  PostDonationEmbed,
 } from ".";
 
 export class App extends ENGrid {
@@ -453,6 +454,8 @@ export class App extends ENGrid {
     new EmbeddedEcard();
 
     new CheckboxLabel();
+
+    new PostDonationEmbed();
 
     //Debug panel
     let showDebugPanel = this.options.Debug;

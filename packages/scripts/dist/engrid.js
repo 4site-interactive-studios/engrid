@@ -169,6 +169,9 @@ export class ENGrid {
             return window.pageJson.pageNumber;
         return null;
     }
+    static isThankYouPage() {
+        return this.getPageNumber() === this.getPageCount();
+    }
     // Return the current page ID
     static getPageID() {
         if ("pageJson" in window)
