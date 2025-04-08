@@ -128,7 +128,6 @@ export class VGS {
         autoComplete: "cc-exp",
         validations: ["required", "validCardExpirationDate"],
         css: styles,
-        yearLength: 2,
       },
     };
     // Deep merge the default options with the options set in the theme
