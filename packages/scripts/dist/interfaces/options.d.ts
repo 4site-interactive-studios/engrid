@@ -117,6 +117,13 @@ export interface Options {
             placeholder?: string;
             hideValue?: boolean;
         };
+        "transaction.ccexpire"?: {
+            css?: {
+                [key: string]: string | object;
+            };
+            placeholder?: string;
+            yearLength?: number;
+        };
     };
     PostalCodeValidator?: boolean;
     CountryRedirect?: false | {

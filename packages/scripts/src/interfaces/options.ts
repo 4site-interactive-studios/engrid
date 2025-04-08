@@ -80,9 +80,7 @@ export interface Options {
         phone_date_field?: string; // TidyContact Date
         phone_status_field?: string; // TidyContact Status
       };
-  MobileCTA?:
-    | false
-   | { pageType: string; label: string; }[];
+  MobileCTA?: false | { pageType: string; label: string }[];
   PageLayouts?: string[];
   CountryDisable?: string[];
   Plaid?: boolean;
@@ -121,6 +119,13 @@ export interface Options {
           ariaLabel?: string;
           placeholder?: string;
           hideValue?: boolean;
+        };
+        "transaction.ccexpire"?: {
+          css?: {
+            [key: string]: string | object;
+          };
+          placeholder?: string;
+          yearLength?: number;
         };
       };
   PostalCodeValidator?: boolean;
