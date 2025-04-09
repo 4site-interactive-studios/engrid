@@ -155,8 +155,8 @@ export class PremiumGift {
   }
 
   altsAndArias() {
-    console.log('altsAndArias running');
     const premiumTitle = document.querySelectorAll(".en__pg__detail h2.en__pg__name");
+    const multistepBackButton = document.querySelectorAll('.multistep-button-container button.btn-back')
 
     premiumTitle.forEach((item) => {
       if (item) {
@@ -181,7 +181,12 @@ export class PremiumGift {
             radioInput.setAttribute('aria-label', titleText);
           } 
         }
-      } 
+      }
+
+      multistepBackButton.forEach((item) => {
+        item.setAttribute('aria-label', 'Back');
+      });
+
     });
   }
 

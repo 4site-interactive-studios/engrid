@@ -117,8 +117,8 @@ export class PremiumGift {
         });
     }
     altsAndArias() {
-        console.log('altsAndArias running');
         const premiumTitle = document.querySelectorAll(".en__pg__detail h2.en__pg__name");
+        const multistepBackButton = document.querySelectorAll('.multistep-button-container button.btn-back');
         premiumTitle.forEach((item) => {
             if (item) {
                 const titleText = item.innerHTML;
@@ -141,8 +141,12 @@ export class PremiumGift {
                     }
                 }
             }
+            multistepBackButton.forEach((item) => {
+                item.setAttribute('aria-label', 'Back');
+            });
         });
     }
+    // This is for the Maximize My Donation aria-label - the tree structure is different than above
     maxDonationAria() {
         const maxDonationTitle = Array.from(document.querySelectorAll(".en__pg__detail"))
             .filter(el => !el.querySelector("h2"));
@@ -150,12 +154,8 @@ export class PremiumGift {
             var _a;
             if (item) {
                 const titleText = ((_a = item.querySelector('.en__pg__description')) === null || _a === void 0 ? void 0 : _a.innerHTML) || '';
-                const parent = item.parentElement;
-                console.log('parent', parent);
                 const prevSibling = item.previousElementSibling;
-                console.log('prevSibling', prevSibling);
                 const radioInputSibling = prevSibling === null || prevSibling === void 0 ? void 0 : prevSibling.previousElementSibling;
-                console.log('radioInputSibling', radioInputSibling);
                 if (radioInputSibling) {
                     const radioInput = radioInputSibling.querySelector('input[type="radio"]');
                     if (radioInput) {
