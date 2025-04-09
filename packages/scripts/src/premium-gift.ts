@@ -193,13 +193,9 @@ export class PremiumGift {
 
       if (item) {
         const titleText = item.querySelector('.en__pg__description')?.innerHTML || '';
-        const parent = item.parentElement;
-        console.log('parent', parent);
         const prevSibling = item.previousElementSibling;
-        console.log('prevSibling', prevSibling);
         const radioInputSibling = prevSibling?.previousElementSibling;
-        console.log('radioInputSibling', radioInputSibling);
-
+        
         if (radioInputSibling) {
           const radioInput = radioInputSibling.querySelector('input[type="radio"]');
           if (radioInput) {
