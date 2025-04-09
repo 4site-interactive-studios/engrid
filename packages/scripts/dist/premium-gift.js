@@ -14,7 +14,7 @@ export class PremiumGift {
         this.addEventListeners();
         this.checkPremiumGift();
         setTimeout(() => {
-            this.getAltTags();
+            this.altsAndArias();
         }, 1000);
     }
     shoudRun() {
@@ -115,33 +115,34 @@ export class PremiumGift {
             }
         });
     }
-    getAltTags() {
-        console.log('getAltTags running');
+    altsAndArias() {
+        console.log('altsAndArias running');
         const premiumTitle = document.querySelectorAll(".en__pg__detail h2.en__pg__name");
         premiumTitle.forEach((item) => {
             if (item) {
-                const titleText = item.innerHTML;
-                console.log('titleText: ', titleText);
+                let titleText = item.innerHTML;
+                if (!titleText || !titleText.trim()) {
+                    titleText = "Maximize My Donation";
+                }
                 const parent = item.parentElement;
-                console.log('parent: ', parent);
                 const prevSibling = parent === null || parent === void 0 ? void 0 : parent.previousElementSibling;
-                console.log('prevSibling: ', prevSibling);
+                const radioInputSibling = prevSibling === null || prevSibling === void 0 ? void 0 : prevSibling.previousElementSibling;
                 if (prevSibling) {
                     const imageDiv = prevSibling.querySelector('.en__pg__images');
                     if (imageDiv) {
-                        console.log('imageDiv: ', imageDiv);
                         const img = imageDiv.querySelector('img');
                         if (img) {
-                            console.log('img: ', img);
                             img.setAttribute('alt', titleText);
-                            console.log('img with alt: ', img);
                         }
                     }
                 }
+                if (radioInputSibling) {
+                    const radioInput = radioInputSibling.querySelector('input[type="radio"]');
+                    if (radioInput) {
+                        radioInput.setAttribute('aria-label', titleText);
+                    }
+                }
             }
-        });
-        document.addEventListener('DOMContentLoaded', () => {
-            this.getAltTags();
         });
     }
 }

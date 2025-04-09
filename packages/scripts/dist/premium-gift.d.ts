@@ -7,5 +7,5 @@ export declare class PremiumGift {
     checkPremiumGift(): void;
     searchElements(): void;
     setPremiumTitle(title: string): void;
-    getAltTags(): void;
+    altsAndArias(): void;
 }
