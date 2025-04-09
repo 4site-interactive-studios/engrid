@@ -13,6 +13,9 @@ export class PremiumGift {
         this.searchElements();
         this.addEventListeners();
         this.checkPremiumGift();
+        setTimeout(() => {
+            this.getAltTags();
+        }, 1000);
     }
     shoudRun() {
         return ("pageJson" in window &&
@@ -110,6 +113,35 @@ export class PremiumGift {
             if (premiumTitle) {
                 premiumTitle.innerHTML = title;
             }
+        });
+    }
+    getAltTags() {
+        console.log('getAltTags running');
+        const premiumTitle = document.querySelectorAll(".en__pg__detail h2.en__pg__name");
+        premiumTitle.forEach((item) => {
+            if (item) {
+                const titleText = item.innerHTML;
+                console.log('titleText: ', titleText);
+                const parent = item.parentElement;
+                console.log('parent: ', parent);
+                const prevSibling = parent === null || parent === void 0 ? void 0 : parent.previousElementSibling;
+                console.log('prevSibling: ', prevSibling);
+                if (prevSibling) {
+                    const imageDiv = prevSibling.querySelector('.en__pg__images');
+                    if (imageDiv) {
+                        console.log('imageDiv: ', imageDiv);
+                        const img = imageDiv.querySelector('img');
+                        if (img) {
+                            console.log('img: ', img);
+                            img.setAttribute('alt', titleText);
+                            console.log('img with alt: ', img);
+                        }
+                    }
+                }
+            }
+        });
+        document.addEventListener('DOMContentLoaded', () => {
+            this.getAltTags();
         });
     }
 }
