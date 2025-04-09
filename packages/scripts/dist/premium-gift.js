@@ -15,6 +15,7 @@ export class PremiumGift {
         this.checkPremiumGift();
         setTimeout(() => {
             this.altsAndArias();
+            this.maxDonationAria();
         }, 1000);
     }
     shoudRun() {
@@ -120,10 +121,7 @@ export class PremiumGift {
         const premiumTitle = document.querySelectorAll(".en__pg__detail h2.en__pg__name");
         premiumTitle.forEach((item) => {
             if (item) {
-                let titleText = item.innerHTML;
-                if (!titleText || !titleText.trim()) {
-                    titleText = "Maximize My Donation";
-                }
+                const titleText = item.innerHTML;
                 const parent = item.parentElement;
                 const prevSibling = parent === null || parent === void 0 ? void 0 : parent.previousElementSibling;
                 const radioInputSibling = prevSibling === null || prevSibling === void 0 ? void 0 : prevSibling.previousElementSibling;
@@ -136,6 +134,28 @@ export class PremiumGift {
                         }
                     }
                 }
+                if (radioInputSibling) {
+                    const radioInput = radioInputSibling.querySelector('input[type="radio"]');
+                    if (radioInput) {
+                        radioInput.setAttribute('aria-label', titleText);
+                    }
+                }
+            }
+        });
+    }
+    maxDonationAria() {
+        const maxDonationTitle = Array.from(document.querySelectorAll(".en__pg__detail"))
+            .filter(el => !el.querySelector("h2"));
+        maxDonationTitle.forEach((item) => {
+            var _a;
+            if (item) {
+                const titleText = ((_a = item.querySelector('.en__pg__description')) === null || _a === void 0 ? void 0 : _a.innerHTML) || '';
+                const parent = item.parentElement;
+                console.log('parent', parent);
+                const prevSibling = item.previousElementSibling;
+                console.log('prevSibling', prevSibling);
+                const radioInputSibling = prevSibling === null || prevSibling === void 0 ? void 0 : prevSibling.previousElementSibling;
+                console.log('radioInputSibling', radioInputSibling);
                 if (radioInputSibling) {
                     const radioInput = radioInputSibling.querySelector('input[type="radio"]');
                     if (radioInput) {

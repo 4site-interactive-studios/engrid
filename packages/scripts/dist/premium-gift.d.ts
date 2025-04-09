@@ -8,4 +8,5 @@ export declare class PremiumGift {
     searchElements(): void;
     setPremiumTitle(title: string): void;
     altsAndArias(): void;
+    maxDonationAria(): void;
 }

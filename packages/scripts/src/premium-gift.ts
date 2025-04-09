@@ -21,6 +21,7 @@ export class PremiumGift {
     this.checkPremiumGift();
     setTimeout(() => {
       this.altsAndArias();
+      this.maxDonationAria();
     }, 1000);
   }
   shoudRun() {
@@ -159,10 +160,7 @@ export class PremiumGift {
 
     premiumTitle.forEach((item) => {
       if (item) {
-        let titleText = item.innerHTML;
-        if (!titleText || !titleText.trim()) {
-          titleText = "Maximize My Donation";
-        }
+        const titleText = item.innerHTML;
         const parent = item.parentElement;
         const prevSibling = parent?.previousElementSibling;
         const radioInputSibling = prevSibling?.previousElementSibling;
@@ -176,6 +174,31 @@ export class PremiumGift {
             } 
           } 
         }
+
+        if (radioInputSibling) {
+          const radioInput = radioInputSibling.querySelector('input[type="radio"]');
+          if (radioInput) {
+            radioInput.setAttribute('aria-label', titleText);
+          } 
+        }
+      } 
+    });
+  }
+
+  // This is for the Maximize My Donation aria-label - the tree structure is different than above
+  maxDonationAria() {
+    const maxDonationTitle = Array.from(document.querySelectorAll(".en__pg__detail"))
+  .filter(el => !el.querySelector("h2"));
+    maxDonationTitle.forEach((item) => {
+
+      if (item) {
+        const titleText = item.querySelector('.en__pg__description')?.innerHTML || '';
+        const parent = item.parentElement;
+        console.log('parent', parent);
+        const prevSibling = item.previousElementSibling;
+        console.log('prevSibling', prevSibling);
+        const radioInputSibling = prevSibling?.previousElementSibling;
+        console.log('radioInputSibling', radioInputSibling);
 
         if (radioInputSibling) {
           const radioInput = radioInputSibling.querySelector('input[type="radio"]');
