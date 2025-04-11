@@ -3,6 +3,8 @@
 // 2 - Add a class to body to indicate if the "maximize my impact" is selected (data-engrid-premium-gift-maximize="true|false")
 // 3 - Check the premium gift when click on the title or description
 // 4 - Create new {$PREMIUMTITLE} merge tag that's replaced with the premium gift name
+// 5 - Add aria-label to the radio inputs and alt tags to the images
+// 6 - Update frequency label when clicking on the frequency radio inputs (this should probably be moved to another file)
 
 import { ENGrid, EngridLogger } from ".";
 
@@ -23,6 +25,7 @@ export class PremiumGift {
       this.altsAndArias();
       this.maxDonationAria();
     }, 1000);
+    this.updateFrequencyLabel();
   }
   shoudRun() {
     return (
@@ -145,6 +148,7 @@ export class PremiumGift {
       });
     }
   }
+
   setPremiumTitle(title: string) {
     this.enElements.forEach((item) => {
       const premiumTitle = item.querySelector(".engrid_premium_title");
@@ -154,6 +158,7 @@ export class PremiumGift {
     });
   }
 
+  // Sets alt tags for premium gift images and aria tags for premium gift radio inputs
   altsAndArias() {
     const premiumTitle = document.querySelectorAll(".en__pg__detail h2.en__pg__name");
     const multistepBackButton = document.querySelectorAll('.multistep-button-container button.btn-back')
@@ -170,7 +175,10 @@ export class PremiumGift {
           if (imageDiv) {
             const img = imageDiv.querySelector('img');
             if (img) {
+              console.log('setting image alt, width, height');
               img.setAttribute('alt', titleText);
+              img.style.width = '125px';
+              img.style.height = '100px'; 
             } 
           } 
         }
@@ -190,7 +198,7 @@ export class PremiumGift {
     });
   }
 
-  // This is for the Maximize My Donation aria-label - the tree structure is different than above
+  // This is for the Maximize My Donation aria-label - the tree structure for it is slightly different.
   maxDonationAria() {
     const maxDonationTitle = Array.from(document.querySelectorAll(".en__pg__detail"))
   .filter(el => !el.querySelector("h2"));
@@ -209,5 +217,19 @@ export class PremiumGift {
         }
       } 
     });
+  }
+
+  updateFrequencyLabel() {
+    const frequencyLabels = document.querySelectorAll('div.en__field__item input[id^="en__field_transaction_recurrfreq"]')
+    const frequencyMainLabel = document.querySelector('label[for="en__field_transaction_recurrfreq"]');
+
+    frequencyLabels.forEach((item) => {
+      if (item) {
+        item.addEventListener('click', () => {
+          let frequencyId = item.id;
+          frequencyMainLabel?.setAttribute('for', frequencyId);
+        });
+      }
+    })
   }
 }

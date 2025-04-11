@@ -87,6 +87,7 @@ export class EmbeddedEcard {
         iframe.setAttribute("width", "100%");
         iframe.setAttribute("scrolling", "no");
         iframe.setAttribute("frameborder", "0");
+        iframe.setAttribute("title", "Ecard iframe");
         iframe.classList.add("engrid-iframe", "engrid-iframe--embedded-ecard");
         iframe.style.display = "none";
         return iframe;
