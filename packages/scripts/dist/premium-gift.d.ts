@@ -9,5 +9,4 @@ export declare class PremiumGift {
     setPremiumTitle(title: string): void;
     altsAndArias(): void;
     maxDonationAria(): void;
-    updateFrequencyLabel(): void;
 }

@@ -5,6 +5,7 @@ export class A11y {
         this.addRequired();
         this.addLabel();
         this.addGroupRole();
+        this.updateFrequencyLabel();
     }
     addGroupRole() {
         // Add role="group" to all EN Radio fields
@@ -40,6 +41,19 @@ export class A11y {
                 !((_b = (_a = firstOption.textContent) === null || _a === void 0 ? void 0 : _a.toLowerCase()) === null || _b === void 0 ? void 0 : _b.includes("select")) &&
                 !((_d = (_c = firstOption.textContent) === null || _c === void 0 ? void 0 : _c.toLowerCase()) === null || _d === void 0 ? void 0 : _d.includes("choose"))) {
                 select.setAttribute("aria-label", firstOption.textContent || "");
+            }
+        });
+    }
+    // Update the label for the frequency field based on the selected radio button
+    updateFrequencyLabel() {
+        const frequencyLabels = document.querySelectorAll('div.en__field__item input[id^="en__field_transaction_recurrfreq"]');
+        const frequencyMainLabel = document.querySelector('label[for="en__field_transaction_recurrfreq"]');
+        frequencyLabels.forEach((item) => {
+            if (item) {
+                item.addEventListener('click', () => {
+                    let frequencyId = item.id;
+                    frequencyMainLabel === null || frequencyMainLabel === void 0 ? void 0 : frequencyMainLabel.setAttribute('for', frequencyId);
+                });
             }
         });
     }

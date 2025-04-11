@@ -3,4 +3,5 @@ export declare class A11y {
     private addGroupRole;
     private addRequired;
     private addLabel;
+    private updateFrequencyLabel;
 }

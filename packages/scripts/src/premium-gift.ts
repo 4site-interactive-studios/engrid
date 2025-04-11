@@ -4,7 +4,6 @@
 // 3 - Check the premium gift when click on the title or description
 // 4 - Create new {$PREMIUMTITLE} merge tag that's replaced with the premium gift name
 // 5 - Add aria-label to the radio inputs and alt tags to the images
-// 6 - Update frequency label when clicking on the frequency radio inputs (this should probably be moved to another file)
 
 import { ENGrid, EngridLogger } from ".";
 
@@ -25,7 +24,6 @@ export class PremiumGift {
       this.altsAndArias();
       this.maxDonationAria();
     }, 1000);
-    this.updateFrequencyLabel();
   }
   shoudRun() {
     return (
@@ -217,19 +215,5 @@ export class PremiumGift {
         }
       } 
     });
-  }
-
-  updateFrequencyLabel() {
-    const frequencyLabels = document.querySelectorAll('div.en__field__item input[id^="en__field_transaction_recurrfreq"]')
-    const frequencyMainLabel = document.querySelector('label[for="en__field_transaction_recurrfreq"]');
-
-    frequencyLabels.forEach((item) => {
-      if (item) {
-        item.addEventListener('click', () => {
-          let frequencyId = item.id;
-          frequencyMainLabel?.setAttribute('for', frequencyId);
-        });
-      }
-    })
   }
 }
