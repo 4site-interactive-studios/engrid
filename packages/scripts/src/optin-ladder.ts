@@ -48,6 +48,7 @@ export class OptInLadder {
       iframe.allow = "payment";
       iframe.classList.add("opt-in-ladder-iframe");
       iframe.classList.add("engrid-iframe");
+      iframe.setAttribute("title", "Optin Ladder iframe");
       // If the page already has an iFrame with the same class, we don't need to add another one
       const existingIframe = document.querySelector(".opt-in-ladder-iframe");
       if (existingIframe) {

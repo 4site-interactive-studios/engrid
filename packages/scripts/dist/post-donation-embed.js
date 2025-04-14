@@ -42,6 +42,7 @@ export class PostDonationEmbed {
         iframe.setAttribute("allowfullscreen", "");
         iframe.setAttribute("allowpaymentrequest", "true");
         iframe.setAttribute("allow", "payment");
+        iframe.setAttribute("title", "Post Donation iframe");
         // Replace <engrid-post-donation> with the iframe
         postDonationTag.replaceWith(iframe);
     }
