@@ -20,6 +20,10 @@ export class RequiredIfVisible {
         if (!this.shouldRun())
             return;
         this._form.onValidate.subscribe(this.validate.bind(this));
+        this.requiredIfVisibleElements.forEach((element) => {
+            element.setAttribute('aria-required', 'true');
+            //this.logger.log(`${element.tagName}.${element.className} aria-required set`);
+        });
     }
     shouldRun() {
         return this.requiredIfVisibleElements.length > 0;
