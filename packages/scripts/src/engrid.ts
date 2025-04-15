@@ -261,6 +261,9 @@ export abstract class ENGrid {
         case "emailsubscribeform":
           return "SUBSCRIBEFORM";
           break;
+        case "event":
+          return "EVENT";  
+          break;
         case "supporterhub":
           return "SUPPORTERHUB";
           break;
