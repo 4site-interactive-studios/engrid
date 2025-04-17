@@ -275,13 +275,13 @@ export class VGS {
       const cardContainer = document.querySelector(
         ".en__field--vgs.en__field--ccnumber"
       ) as HTMLDivElement;
-      const cardEmpty = cardContainer.querySelector(
+      const cardEmpty = cardContainer?.querySelector(
         ".vgs-collect-container__empty"
       ) as HTMLInputElement;
       const cvvContainer = document.querySelector(
         ".en__field--vgs.en__field--ccvv"
       ) as HTMLDivElement;
-      const cvvEmpty = cvvContainer.querySelector(
+      const cvvEmpty = cvvContainer?.querySelector(
         ".vgs-collect-container__empty"
       ) as HTMLInputElement;
       if (cardContainer && cardEmpty) {
