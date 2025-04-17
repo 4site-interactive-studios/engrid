@@ -71,6 +71,13 @@ export class A11y {
 
     frequencyLabels.forEach((item) => {
       if (item) {
+
+        // Set the label for the checked item on load
+        if ((item as HTMLInputElement).checked) {
+          frequencyMainLabel?.setAttribute('for', item.id);
+        }
+
+        // Then, detect if it changes with the click event
         item.addEventListener('click', () => {
           let frequencyId = item.id;
           frequencyMainLabel?.setAttribute('for', frequencyId);
