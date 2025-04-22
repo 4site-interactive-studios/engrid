@@ -1,10 +1,11 @@
 // This component only works on Thank You pages and the current page IS NOT embedded as an iframe.
 // It searches for a post-donation tag (engrid-post-donation)
-// and if it exists, it will replace it with an iframe of the current donation page, replacing the
-// "/donate/2" with "/donate/1" and adding a ?chain.
-// It has 2 parameters:
-// 1. params: the URL parameters to pass to the iframe
-// 2. amounts: comma separated list of amounts to pass to the iframe
+// and if it exists, it will replace it with an iframe of the chained `src` attribute (or the current donation page, replacing the
+// "/donate/2" with "/donate/1").
+// The engrid-post-donation tag has 3 attributes:
+// 1. src: the URL of the iframe to load (optional)
+// 2. params: the URL parameters to pass to the iframe
+// 3. amounts: comma separated list of amounts to pass to the iframe
 import { ENGrid, EngridLogger } from ".";
 export class PostDonationEmbed {
     constructor() {
@@ -13,10 +14,17 @@ export class PostDonationEmbed {
             return;
         this.logger.log("Post Donation Tag found");
         const postDonationTag = document.querySelector("engrid-post-donation");
-        // Get current page URL
-        let currentUrl = new URL(window.location.href);
-        // Modify the path: replace "/donate/2" with "/donate/1"
-        currentUrl.pathname = currentUrl.pathname.replace("/donate/2", "/donate/1");
+        // Get `src` attribute from the <engrid-post-donation> tag if it exists
+        // If not, use the current page URL as the base URL
+        let iFrameSRC;
+        if (!postDonationTag.getAttribute("src")) {
+            iFrameSRC = new URL(window.location.href);
+            // Modify the path: replace "/donate/2" with "/donate/1"
+            iFrameSRC.pathname = iFrameSRC.pathname.replace("/donate/2", "/donate/1");
+        }
+        else {
+            iFrameSRC = new URL(postDonationTag.getAttribute("src") || "");
+        }
         // Extract parameters from the <engrid-post-donation> tag
         let params = postDonationTag.getAttribute("params") || "";
         let amounts = postDonationTag.getAttribute("amounts");
@@ -27,7 +35,7 @@ export class PostDonationEmbed {
             .replace(/%5B/g, "[")
             .replace(/%5D/g, "]");
         // Construct new URL with "chain" parameter
-        let newUrl = `${currentUrl.origin}${currentUrl.pathname}?chain&${paramString}`;
+        let newUrl = `${iFrameSRC.origin}${iFrameSRC.pathname}?chain&${paramString}`;
         if (amounts) {
             newUrl += `&engrid-amounts=${amounts}`;
         }
