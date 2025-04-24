@@ -4,7 +4,7 @@
 * ####################################################################################################################
 */
 
-:not([data-engrid-embedded]):not(#en__pagebuilder) {
+body:not([data-engrid-embedded]):not(#en__pagebuilder) {
   .showif-iframe {
     display: none !important;
   }
@@ -12,7 +12,7 @@
     display: block !important;
   }
 }
-[data-engrid-embedded]:not(#en__pagebuilder) {
+body[data-engrid-embedded]:not(#en__pagebuilder) {
   background-image: none;
   min-height: 0;
 
@@ -119,7 +119,7 @@
 }
 
 @mixin engrid_embedded-mobile-body {
-  [data-engrid-embedded] {
+  body[data-engrid-embedded] {
     #engrid > .en__component--advrow > *,
     form > .en__component--advrow > * {
       --engrid__body_border-radius: 0px;
