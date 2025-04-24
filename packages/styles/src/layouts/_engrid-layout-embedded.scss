@@ -119,34 +119,36 @@ body[data-engrid-embedded]:not(#en__pagebuilder) {
 }
 
 @mixin engrid_embedded-mobile-body {
-  body[data-engrid-embedded] {
-    #engrid > .en__component--advrow > *,
-    form > .en__component--advrow > * {
-      --engrid__body_border-radius: 0px;
+  @if & {
+    &[data-engrid-embedded] {
+      #engrid > .en__component--advrow > *,
+      form > .en__component--advrow > * {
+        --engrid__body_border-radius: 0px;
 
-      --engrid__body_padding: var(--engrid__embedded_body_padding);
-      --engrid__body-headerOutside_padding: var(--engrid__body_padding);
-      --engrid__body-header_padding: var(--engrid__body_padding);
-      --engrid__body-title_padding: var(--engrid__body_padding);
-      --engrid__body-banner_padding: var(--engrid__body_padding);
-      --engrid__body-bannerOverlay_padding: var(--engrid__body_padding);
-      --engrid__body-top_padding: var(--engrid__body_padding);
-      --engrid__body-main_padding: var(--engrid__body_padding);
-      --engrid__body-bottom_padding: var(--engrid__body_padding);
-      --engrid__body-footer_padding: var(--engrid__body_padding);
-      --engrid__body-footerOutside_padding: var(--engrid__body_padding);
+        --engrid__body_padding: var(--engrid__embedded_body_padding);
+        --engrid__body-headerOutside_padding: var(--engrid__body_padding);
+        --engrid__body-header_padding: var(--engrid__body_padding);
+        --engrid__body-title_padding: var(--engrid__body_padding);
+        --engrid__body-banner_padding: var(--engrid__body_padding);
+        --engrid__body-bannerOverlay_padding: var(--engrid__body_padding);
+        --engrid__body-top_padding: var(--engrid__body_padding);
+        --engrid__body-main_padding: var(--engrid__body_padding);
+        --engrid__body-bottom_padding: var(--engrid__body_padding);
+        --engrid__body-footer_padding: var(--engrid__body_padding);
+        --engrid__body-footerOutside_padding: var(--engrid__body_padding);
 
-      --engrid__body_margin: var(--engrid__embedded_body_margin);
-      --engrid__body-headerOutside_margin: var(--engrid__body_margin);
-      --engrid__body-header_margin: var(--engrid__body_margin);
-      --engrid__body-title_margin: var(--engrid__body_margin);
-      --engrid__body-banner_margin: var(--engrid__body_margin);
-      --engrid__body-bannerOverlay_margin: var(--engrid__body_margin);
-      --engrid__body-top_margin: var(--engrid__body_margin);
-      --engrid__body-main_margin: var(--engrid__body_margin);
-      --engrid__body-bottom_margin: var(--engrid__body_margin);
-      --engrid__body-footer_margin: var(--engrid__body_margin);
-      --engrid__body-footerOutside_margin: var(--engrid__body_margin);
+        --engrid__body_margin: var(--engrid__embedded_body_margin);
+        --engrid__body-headerOutside_margin: var(--engrid__body_margin);
+        --engrid__body-header_margin: var(--engrid__body_margin);
+        --engrid__body-title_margin: var(--engrid__body_margin);
+        --engrid__body-banner_margin: var(--engrid__body_margin);
+        --engrid__body-bannerOverlay_margin: var(--engrid__body_margin);
+        --engrid__body-top_margin: var(--engrid__body_margin);
+        --engrid__body-main_margin: var(--engrid__body_margin);
+        --engrid__body-bottom_margin: var(--engrid__body_margin);
+        --engrid__body-footer_margin: var(--engrid__body_margin);
+        --engrid__body-footerOutside_margin: var(--engrid__body_margin);
+      }
     }
   }
 }
