@@ -62,6 +62,7 @@ export class SwapAmounts {
     const urlParams = new URLSearchParams(window.location.search);
     const amounts = urlParams.get("engrid-amounts");
     if (amounts) {
+      this.defaultChange = true;
       const amountArray = amounts.split(",").map((amt) => amt.trim());
       const defaultAmount =
         parseFloat(
@@ -95,7 +96,10 @@ export class SwapAmounts {
       this._amount.load();
       this.logger.log(
         "Amounts Swapped To",
-        window.EngridAmounts[this._frequency.frequency]
+        window.EngridAmounts[this._frequency.frequency],
+        {
+          ignoreCurrentValue: this.ignoreCurrentValue(),
+        }
       );
       this.swapped = true;
     }
@@ -115,9 +119,14 @@ export class SwapAmounts {
     return "EngridAmounts" in window;
   }
   ignoreCurrentValue() {
+    if (ENGrid.getUrlParameter("transaction.donationAmt") !== null) {
+      return this._amount.amount ===
+        parseFloat(ENGrid.getUrlParameter("transaction.donationAmt") as string)
+        ? false
+        : true;
+    }
     return !(
       window.EngagingNetworks.require._defined.enjs.checkSubmissionFailed() ||
-      ENGrid.getUrlParameter("transaction.donationAmt") !== null ||
       this.defaultChange
     );
   }
