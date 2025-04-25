@@ -13,7 +13,12 @@ export class UrlToForm {
         this.urlParams.forEach((value, key) => {
             const field = document.getElementsByName(key)[0];
             if (field) {
-                if (!["text", "textarea", "email"].includes(field.type) ||
+                if (field.type === "checkbox") {
+                    field.checked = value === "true" || value === "Y" || value === "1";
+                    ENGrid.setFieldValue(key, field.checked);
+                    this.logger.log(`Set: ${key} to ${field.checked}`);
+                }
+                else if (!["text", "textarea", "email"].includes(field.type) ||
                     !field.value) {
                     ENGrid.setFieldValue(key, value);
                     this.logger.log(`Set: ${key} to ${value}`);
