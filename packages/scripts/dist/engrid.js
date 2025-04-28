@@ -192,6 +192,8 @@ export class ENGrid {
     static getPageType() {
         if ("pageJson" in window && "pageType" in window.pageJson) {
             switch (window.pageJson.pageType) {
+                case "p2pcheckout":
+                case "p2pdonation":
                 case "donation":
                 case "premiumgift":
                     return "DONATION";
@@ -211,6 +213,9 @@ export class ENGrid {
                     break;
                 case "emailsubscribeform":
                     return "SUBSCRIBEFORM";
+                    break;
+                case "event":
+                    return "EVENT";
                     break;
                 case "supporterhub":
                     return "SUPPORTERHUB";

@@ -7686,14 +7686,14 @@ body:not(#en__pagebuilder)[data-engrid-no-page-customCode] .en__component--advro
 * # ENGRID Layout - Embedded Layout for Seamless Embedding
 * ####################################################################################################################
 */
-:not([data-engrid-embedded]):not(#en__pagebuilder) .showif-iframe {
+body:not([data-engrid-embedded]):not(#en__pagebuilder) .showif-iframe {
   display: none !important;
 }
-:not([data-engrid-embedded]):not(#en__pagebuilder) .hideif-iframe {
+body:not([data-engrid-embedded]):not(#en__pagebuilder) .hideif-iframe {
   display: block !important;
 }
 
-[data-engrid-embedded]:not(#en__pagebuilder) {
+body[data-engrid-embedded]:not(#en__pagebuilder) {
   background-image: none;
   min-height: 0;
   --engrid__embedded_page_background-color: transparent !important;
@@ -7769,19 +7769,19 @@ body:not(#en__pagebuilder)[data-engrid-no-page-customCode] .en__component--advro
   --engrid__embedded_body_margin: 0px;
   /* prettier-ignore */
 }
-[data-engrid-embedded]:not(#en__pagebuilder) .en__component--advrow,
-[data-engrid-embedded]:not(#en__pagebuilder) .en__component--advrow > * {
+body[data-engrid-embedded]:not(#en__pagebuilder) .en__component--advrow,
+body[data-engrid-embedded]:not(#en__pagebuilder) .en__component--advrow > * {
   grid-template-columns: [pc-start lpc-start] minmax(0px, 0px) [lpc-end cc-start lcc-start] minmax(0px, 0px) [lcc-end bc-start lbc-start] minmax(0px, 50vw) [lbc-end rbc-start] minmax(0px, 50vw) [rbc-end bc-end rcc-start] minmax(0px, 0px) [rcc-end cc-end rpc-start] minmax(0px, 0px) [rpc-end pc-end] !important;
 }
-[data-engrid-embedded]:not(#en__pagebuilder) .page-backgroundImage,
-[data-engrid-embedded]:not(#en__pagebuilder) .page-backgroundImageOverlay,
-[data-engrid-embedded]:not(#en__pagebuilder) .hide-iframe {
+body[data-engrid-embedded]:not(#en__pagebuilder) .page-backgroundImage,
+body[data-engrid-embedded]:not(#en__pagebuilder) .page-backgroundImageOverlay,
+body[data-engrid-embedded]:not(#en__pagebuilder) .hide-iframe {
   display: none !important;
 }
-[data-engrid-embedded]:not(#en__pagebuilder) .showif-iframe {
+body[data-engrid-embedded]:not(#en__pagebuilder) .showif-iframe {
   display: block !important;
 }
-[data-engrid-embedded]:not(#en__pagebuilder) .hideif-iframe {
+body[data-engrid-embedded]:not(#en__pagebuilder) .hideif-iframe {
   display: none !important;
 }
 
@@ -7859,8 +7859,8 @@ body:not(#en__pagebuilder)[data-engrid-no-page-customCode] .en__component--advro
     padding: var(--engrid__body-top_padding);
     width: 100%;
   }
-  [data-engrid-layout=centercenter1col] [data-engrid-embedded] #engrid > .en__component--advrow > *,
-  [data-engrid-layout=centercenter1col] [data-engrid-embedded] form > .en__component--advrow > * {
+  [data-engrid-layout=centercenter1col][data-engrid-embedded] #engrid > .en__component--advrow > *,
+  [data-engrid-layout=centercenter1col][data-engrid-embedded] form > .en__component--advrow > * {
     --engrid__body_border-radius: 0px;
     --engrid__body_padding: var(--engrid__embedded_body_padding);
     --engrid__body-headerOutside_padding: var(--engrid__body_padding);
@@ -7996,8 +7996,8 @@ body:not(#en__pagebuilder)[data-engrid-no-page-customCode] .en__component--advro
     padding: var(--engrid__body-top_padding);
     width: 100%;
   }
-  [data-engrid-layout=centercenter2col] [data-engrid-embedded] #engrid > .en__component--advrow > *,
-  [data-engrid-layout=centercenter2col] [data-engrid-embedded] form > .en__component--advrow > * {
+  [data-engrid-layout=centercenter2col][data-engrid-embedded] #engrid > .en__component--advrow > *,
+  [data-engrid-layout=centercenter2col][data-engrid-embedded] form > .en__component--advrow > * {
     --engrid__body_border-radius: 0px;
     --engrid__body_padding: var(--engrid__embedded_body_padding);
     --engrid__body-headerOutside_padding: var(--engrid__body_padding);
@@ -8094,8 +8094,8 @@ body:not(#en__pagebuilder)[data-engrid-no-page-customCode] .en__component--advro
     padding: var(--engrid__body-top_padding);
     width: 100%;
   }
-  [data-engrid-layout=centerleft1col] [data-engrid-embedded] #engrid > .en__component--advrow > *,
-  [data-engrid-layout=centerleft1col] [data-engrid-embedded] form > .en__component--advrow > * {
+  [data-engrid-layout=centerleft1col][data-engrid-embedded] #engrid > .en__component--advrow > *,
+  [data-engrid-layout=centerleft1col][data-engrid-embedded] form > .en__component--advrow > * {
     --engrid__body_border-radius: 0px;
     --engrid__body_padding: var(--engrid__embedded_body_padding);
     --engrid__body-headerOutside_padding: var(--engrid__body_padding);
@@ -8195,32 +8195,6 @@ body:not(#en__pagebuilder)[data-engrid-no-page-customCode] .en__component--advro
     padding: var(--engrid__body-top_padding);
     width: 100%;
   }
-  [data-engrid-embedded] #engrid > .en__component--advrow > *,
-  [data-engrid-embedded] form > .en__component--advrow > * {
-    --engrid__body_border-radius: 0px;
-    --engrid__body_padding: var(--engrid__embedded_body_padding);
-    --engrid__body-headerOutside_padding: var(--engrid__body_padding);
-    --engrid__body-header_padding: var(--engrid__body_padding);
-    --engrid__body-title_padding: var(--engrid__body_padding);
-    --engrid__body-banner_padding: var(--engrid__body_padding);
-    --engrid__body-bannerOverlay_padding: var(--engrid__body_padding);
-    --engrid__body-top_padding: var(--engrid__body_padding);
-    --engrid__body-main_padding: var(--engrid__body_padding);
-    --engrid__body-bottom_padding: var(--engrid__body_padding);
-    --engrid__body-footer_padding: var(--engrid__body_padding);
-    --engrid__body-footerOutside_padding: var(--engrid__body_padding);
-    --engrid__body_margin: var(--engrid__embedded_body_margin);
-    --engrid__body-headerOutside_margin: var(--engrid__body_margin);
-    --engrid__body-header_margin: var(--engrid__body_margin);
-    --engrid__body-title_margin: var(--engrid__body_margin);
-    --engrid__body-banner_margin: var(--engrid__body_margin);
-    --engrid__body-bannerOverlay_margin: var(--engrid__body_margin);
-    --engrid__body-top_margin: var(--engrid__body_margin);
-    --engrid__body-main_margin: var(--engrid__body_margin);
-    --engrid__body-bottom_margin: var(--engrid__body_margin);
-    --engrid__body-footer_margin: var(--engrid__body_margin);
-    --engrid__body-footerOutside_margin: var(--engrid__body_margin);
-  }
   [data-engrid-layout=centerright1col] {
     --engrid__body_box-shadow: none;
   }
@@ -8295,8 +8269,8 @@ body:not(#en__pagebuilder)[data-engrid-no-page-customCode] .en__component--advro
     padding: var(--engrid__body-top_padding);
     width: 100%;
   }
-  [data-engrid-layout=leftleft1col] [data-engrid-embedded] #engrid > .en__component--advrow > *,
-  [data-engrid-layout=leftleft1col] [data-engrid-embedded] form > .en__component--advrow > * {
+  [data-engrid-layout=leftleft1col][data-engrid-embedded] #engrid > .en__component--advrow > *,
+  [data-engrid-layout=leftleft1col][data-engrid-embedded] form > .en__component--advrow > * {
     --engrid__body_border-radius: 0px;
     --engrid__body_padding: var(--engrid__embedded_body_padding);
     --engrid__body-headerOutside_padding: var(--engrid__body_padding);
@@ -8396,8 +8370,8 @@ body:not(#en__pagebuilder)[data-engrid-no-page-customCode] .en__component--advro
     padding: var(--engrid__body-top_padding);
     width: 100%;
   }
-  [data-engrid-layout=rightright1col] [data-engrid-embedded] #engrid > .en__component--advrow > *,
-  [data-engrid-layout=rightright1col] [data-engrid-embedded] form > .en__component--advrow > * {
+  [data-engrid-layout=rightright1col][data-engrid-embedded] #engrid > .en__component--advrow > *,
+  [data-engrid-layout=rightright1col][data-engrid-embedded] form > .en__component--advrow > * {
     --engrid__body_border-radius: 0px;
     --engrid__body_padding: var(--engrid__embedded_body_padding);
     --engrid__body-headerOutside_padding: var(--engrid__body_padding);

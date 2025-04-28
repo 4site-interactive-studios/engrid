@@ -10,6 +10,8 @@ export class DebugHiddenFields {
     "🫣"
   );
 
+  private ignoreFields: string[] = ["transaction.paycurrency"];
+
   constructor() {
     // Query all hidden input elements within the specified selectors
     const fields = document.querySelectorAll(
@@ -29,6 +31,13 @@ export class DebugHiddenFields {
 
       // Iterate through each hidden input element
       fields.forEach((el) => {
+        // Check if the field name is in the ignore list
+        if (this.ignoreFields.includes(el.name)) {
+          this.logger.log(
+            `Ignoring field: ${el.name} because it is in the ignore list`
+          );
+          return;
+        }
         // Change the input type to 'text' and add the required classes
         el.type = "text";
         el.classList.add("en__field__input", "en__field__input--text");

@@ -224,9 +224,9 @@ export class VGS {
             this.paymentTypeField.value.toLowerCase() === "visa" ||
             this.paymentTypeField.value.toLowerCase() === "vi") {
             const cardContainer = document.querySelector(".en__field--vgs.en__field--ccnumber");
-            const cardEmpty = cardContainer.querySelector(".vgs-collect-container__empty");
+            const cardEmpty = cardContainer === null || cardContainer === void 0 ? void 0 : cardContainer.querySelector(".vgs-collect-container__empty");
             const cvvContainer = document.querySelector(".en__field--vgs.en__field--ccvv");
-            const cvvEmpty = cvvContainer.querySelector(".vgs-collect-container__empty");
+            const cvvEmpty = cvvContainer === null || cvvContainer === void 0 ? void 0 : cvvContainer.querySelector(".vgs-collect-container__empty");
             if (cardContainer && cardEmpty) {
                 window.setTimeout(() => {
                     ENGrid.setError(cardContainer, "Please enter a valid card number");
