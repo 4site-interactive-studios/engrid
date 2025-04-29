@@ -7,10 +7,11 @@
  *
  * All the text content and positioning is configurable through the "WelcomeBack" option.
  */
-import { ENGrid, RememberMeEvents } from ".";
+import { ENGrid, EnForm, RememberMeEvents } from ".";
 import * as cookie from "./cookie";
 
 export class WelcomeBack {
+  private _form: EnForm = EnForm.getInstance();
   private supporterDetails: { [key: string]: string } = {};
   private options = ENGrid.getOption("WelcomeBack") ?? false;
   private rememberMeEvents: RememberMeEvents = RememberMeEvents.getInstance();
@@ -29,6 +30,8 @@ export class WelcomeBack {
     } else {
       this.run();
     }
+
+    this._form.onValidate.subscribe(this.enOnValidate.bind(this));
   }
 
   private run() {
@@ -178,5 +181,17 @@ export class WelcomeBack {
           this.resetWelcomeBack();
         });
       });
+  }
+
+  enOnValidate() {
+    if (!this._form.validate) return;
+    const fastPersonalDetails = document.querySelector(".fast-personal-details") as HTMLDivElement;
+    const regionField = document.querySelector('#en__field_supporter_region') as HTMLSelectElement;
+
+    if (regionField && regionField.value === '') {
+      console.log('Nothing selected');
+      fastPersonalDetails.style.setProperty('display', 'block', 'important');
+      this._form.validate = false;
+    }
   }
 }
