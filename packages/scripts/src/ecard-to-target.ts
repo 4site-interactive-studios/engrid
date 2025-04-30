@@ -34,8 +34,10 @@ export class EcardToTarget {
     return (
       window.hasOwnProperty("EngridEcardToTarget") &&
       typeof window.EngridEcardToTarget === "object" &&
-      window.EngridEcardToTarget.hasOwnProperty("targetName") &&
-      window.EngridEcardToTarget.hasOwnProperty("targetEmail")
+      ((window.EngridEcardToTarget.hasOwnProperty("targetName") &&
+        window.EngridEcardToTarget.hasOwnProperty("targetEmail")) ||
+        (window.EngridEcardToTarget.hasOwnProperty("targets") &&
+          window.EngridEcardToTarget.targets.length > 0))
     );
   }
 
@@ -57,16 +59,45 @@ export class EcardToTarget {
       return;
     }
 
-    targetNameField.value = this.options.targetName;
-    targetEmailField.value = this.options.targetEmail;
+    let targets = this.options.targets;
 
-    addRecipientButton?.click();
+    // BC support for targetName and targetEmail
+    if (this.options.targetName && this.options.targetEmail) {
+      targets.push({
+        targetName: this.options.targetName,
+        targetEmail: this.options.targetEmail,
+      });
+    }
 
-    this.logger.log(
-      "Added recipient",
-      this.options.targetName,
-      this.options.targetEmail
+    // Remove duplicates from targets array
+    targets = targets.filter(
+      (target, index, self) =>
+        index ===
+        self.findIndex(
+          (t) =>
+            t.targetName === target.targetName &&
+            t.targetEmail === target.targetEmail
+        )
     );
+
+    targets.forEach((target) => {
+      const targetName = target.targetName;
+      const targetEmail = target.targetEmail;
+
+      if (!targetName || !targetEmail) {
+        this.logger.error(
+          "Could not add recipient. Target name or email is empty."
+        );
+        return;
+      }
+
+      targetNameField.value = targetName;
+      targetEmailField.value = targetEmail;
+
+      addRecipientButton?.click();
+
+      this.logger.log("Added recipient", targetName, targetEmail);
+    });
   }
 
   private hideElements() {

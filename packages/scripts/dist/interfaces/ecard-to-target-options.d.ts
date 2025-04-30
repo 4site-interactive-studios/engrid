@@ -5,5 +5,9 @@ export interface EcardToTargetOptions {
     hideTarget: boolean;
     hideMessage: boolean;
     addSupporterNameToMessage: boolean;
+    targets: {
+        targetName: string;
+        targetEmail: string;
+    }[];
 }
 export declare const EcardToTargetOptionsDefaults: EcardToTargetOptions;
