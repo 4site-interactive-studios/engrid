@@ -1,4 +1,5 @@
 export declare class WelcomeBack {
+    private _form;
     private supporterDetails;
     private options;
     private rememberMeEvents;
@@ -10,4 +11,5 @@ export declare class WelcomeBack {
     private resetWelcomeBack;
     private addPersonalDetailsSummary;
     private addEventListeners;
+    enOnValidate(): void;
 }
