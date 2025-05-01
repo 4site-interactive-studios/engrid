@@ -173,7 +173,6 @@ export class PremiumGift {
           if (imageDiv) {
             const img = imageDiv.querySelector('img');
             if (img) {
-              console.log('setting image alt, width, height');
               img.setAttribute('alt', titleText);
               img.style.width = '125px';
               img.style.height = '100px'; 
