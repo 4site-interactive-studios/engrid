@@ -133,11 +133,14 @@ export class WelcomeBack {
     enOnValidate() {
         if (!this._form.validate)
             return;
-        const fastPersonalDetails = document.querySelector(".fast-personal-details");
+        const regionDiv = document.querySelector('.en__field--region');
+        const fastPersonalDetails = document.querySelector('.fast-personal-details');
         const regionField = document.querySelector('#en__field_supporter_region');
         if (regionField && regionField.value === '') {
-            console.log('Nothing selected');
+            console.log('No region selected');
             fastPersonalDetails.style.setProperty('display', 'block', 'important');
+            regionDiv === null || regionDiv === void 0 ? void 0 : regionDiv.classList.add('en__field--validationFailed');
+            regionDiv === null || regionDiv === void 0 ? void 0 : regionDiv.insertAdjacentHTML('afterbegin', '<div class="en__field__error">Province / Territory is required</div>');
             this._form.validate = false;
         }
     }
