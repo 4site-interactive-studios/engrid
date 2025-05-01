@@ -5,7 +5,7 @@
 // 4 - Create new {$PREMIUMTITLE} merge tag that's replaced with the premium gift name
 // 5 - Add aria-label to the radio inputs and alt tags to the images
 
-import { ENGrid, EngridLogger } from ".";
+import { ENGrid, DonationFrequency, DonationAmount, EngridLogger } from ".";
 
 export class PremiumGift {
   private logger: EngridLogger = new EngridLogger(
@@ -15,12 +15,14 @@ export class PremiumGift {
     "🎁"
   );
   private enElements: Array<HTMLElement> = new Array<HTMLElement>();
+  private _frequency: DonationFrequency = DonationFrequency.getInstance();
+  private _amount: DonationAmount = DonationAmount.getInstance();
   constructor() {
     if (!this.shoudRun()) return;
     this.searchElements();
     this.addEventListeners();
     this.checkPremiumGift();
-    setTimeout(() => {
+    window.setTimeout(() => {
       this.altsAndArias();
       this.maxDonationAria();
     }, 1000);
@@ -85,6 +87,17 @@ export class PremiumGift {
       });
       observer.observe(premiumGiftsBlock, { attributes: true });
     }
+    this._frequency.onFrequencyChange.subscribe(() => {
+      window.setTimeout(() => {
+        this.altsAndArias();
+      }, 1000);
+    });
+
+    this._amount.onAmountChange.subscribe(() => {
+      window.setTimeout(() => {
+        this.altsAndArias();
+      }, 1000);
+    });
   }
 
   checkPremiumGift() {
@@ -158,8 +171,13 @@ export class PremiumGift {
 
   // Sets alt tags for premium gift images and aria tags for premium gift radio inputs
   altsAndArias() {
-    const premiumTitle = document.querySelectorAll(".en__pg__detail h2.en__pg__name");
-    const multistepBackButton = document.querySelectorAll('.multistep-button-container button.btn-back')
+    console.log("alts and arias running");
+    const premiumTitle = document.querySelectorAll(
+      ".en__pg__detail h2.en__pg__name"
+    );
+    const multistepBackButton = document.querySelectorAll(
+      ".multistep-button-container button.btn-back"
+    );
 
     premiumTitle.forEach((item) => {
       if (item) {
@@ -169,50 +187,55 @@ export class PremiumGift {
         const radioInputSibling = prevSibling?.previousElementSibling;
 
         if (prevSibling) {
-          const imageDiv = prevSibling.querySelector('.en__pg__images');
+          const imageDiv = prevSibling.querySelector(".en__pg__images");
           if (imageDiv) {
-            const img = imageDiv.querySelector('img');
+            const img = imageDiv.querySelector("img");
             if (img) {
-              img.setAttribute('alt', titleText);
-              img.style.width = '125px';
-              img.style.height = '100px'; 
-            } 
-          } 
+              img.setAttribute("alt", titleText);
+              img.style.width = "125px";
+              img.style.height = "100px";
+            }
+          }
         }
 
         if (radioInputSibling) {
-          const radioInput = radioInputSibling.querySelector('input[type="radio"]');
+          const radioInput = radioInputSibling.querySelector(
+            'input[type="radio"]'
+          );
           if (radioInput) {
-            radioInput.setAttribute('aria-label', titleText);
-          } 
+            radioInput.setAttribute("aria-label", titleText);
+          }
         }
       }
 
       multistepBackButton.forEach((item) => {
-        item.setAttribute('aria-label', 'Back');
+        item.setAttribute("aria-label", "Back");
       });
-
     });
+    console.log("alts updated");
   }
 
   // This is for the Maximize My Donation aria-label - the tree structure for it is slightly different.
   maxDonationAria() {
-    const maxDonationTitle = Array.from(document.querySelectorAll(".en__pg__detail"))
-  .filter(el => !el.querySelector("h2"));
+    const maxDonationTitle = Array.from(
+      document.querySelectorAll(".en__pg__detail")
+    ).filter((el) => !el.querySelector("h2"));
     maxDonationTitle.forEach((item) => {
-
       if (item) {
-        const titleText = item.querySelector('.en__pg__description')?.innerHTML || '';
+        const titleText =
+          item.querySelector(".en__pg__description")?.innerHTML || "";
         const prevSibling = item.previousElementSibling;
         const radioInputSibling = prevSibling?.previousElementSibling;
-        
+
         if (radioInputSibling) {
-          const radioInput = radioInputSibling.querySelector('input[type="radio"]');
+          const radioInput = radioInputSibling.querySelector(
+            'input[type="radio"]'
+          );
           if (radioInput) {
-            radioInput.setAttribute('aria-label', titleText);
-          } 
+            radioInput.setAttribute("aria-label", titleText);
+          }
         }
-      } 
+      }
     });
   }
 }

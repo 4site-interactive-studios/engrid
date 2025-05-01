@@ -4,17 +4,19 @@
 // 3 - Check the premium gift when click on the title or description
 // 4 - Create new {$PREMIUMTITLE} merge tag that's replaced with the premium gift name
 // 5 - Add aria-label to the radio inputs and alt tags to the images
-import { ENGrid, EngridLogger } from ".";
+import { ENGrid, DonationFrequency, DonationAmount, EngridLogger } from ".";
 export class PremiumGift {
     constructor() {
         this.logger = new EngridLogger("PremiumGift", "#232323", "#f7b500", "🎁");
         this.enElements = new Array();
+        this._frequency = DonationFrequency.getInstance();
+        this._amount = DonationAmount.getInstance();
         if (!this.shoudRun())
             return;
         this.searchElements();
         this.addEventListeners();
         this.checkPremiumGift();
-        setTimeout(() => {
+        window.setTimeout(() => {
             this.altsAndArias();
             this.maxDonationAria();
         }, 1000);
@@ -66,6 +68,16 @@ export class PremiumGift {
             });
             observer.observe(premiumGiftsBlock, { attributes: true });
         }
+        this._frequency.onFrequencyChange.subscribe(() => {
+            window.setTimeout(() => {
+                this.altsAndArias();
+            }, 1000);
+        });
+        this._amount.onAmountChange.subscribe(() => {
+            window.setTimeout(() => {
+                this.altsAndArias();
+            }, 1000);
+        });
     }
     checkPremiumGift() {
         const premiumGift = document.querySelector('[name="en__pg"]:checked');
@@ -119,8 +131,9 @@ export class PremiumGift {
     }
     // Sets alt tags for premium gift images and aria tags for premium gift radio inputs
     altsAndArias() {
+        console.log("alts and arias running");
         const premiumTitle = document.querySelectorAll(".en__pg__detail h2.en__pg__name");
-        const multistepBackButton = document.querySelectorAll('.multistep-button-container button.btn-back');
+        const multistepBackButton = document.querySelectorAll(".multistep-button-container button.btn-back");
         premiumTitle.forEach((item) => {
             if (item) {
                 const titleText = item.innerHTML;
@@ -128,42 +141,42 @@ export class PremiumGift {
                 const prevSibling = parent === null || parent === void 0 ? void 0 : parent.previousElementSibling;
                 const radioInputSibling = prevSibling === null || prevSibling === void 0 ? void 0 : prevSibling.previousElementSibling;
                 if (prevSibling) {
-                    const imageDiv = prevSibling.querySelector('.en__pg__images');
+                    const imageDiv = prevSibling.querySelector(".en__pg__images");
                     if (imageDiv) {
-                        const img = imageDiv.querySelector('img');
+                        const img = imageDiv.querySelector("img");
                         if (img) {
-                            img.setAttribute('alt', titleText);
-                            img.style.width = '125px';
-                            img.style.height = '100px';
+                            img.setAttribute("alt", titleText);
+                            img.style.width = "125px";
+                            img.style.height = "100px";
                         }
                     }
                 }
                 if (radioInputSibling) {
                     const radioInput = radioInputSibling.querySelector('input[type="radio"]');
                     if (radioInput) {
-                        radioInput.setAttribute('aria-label', titleText);
+                        radioInput.setAttribute("aria-label", titleText);
                     }
                 }
             }
             multistepBackButton.forEach((item) => {
-                item.setAttribute('aria-label', 'Back');
+                item.setAttribute("aria-label", "Back");
             });
         });
+        console.log("alts updated");
     }
     // This is for the Maximize My Donation aria-label - the tree structure for it is slightly different.
     maxDonationAria() {
-        const maxDonationTitle = Array.from(document.querySelectorAll(".en__pg__detail"))
-            .filter(el => !el.querySelector("h2"));
+        const maxDonationTitle = Array.from(document.querySelectorAll(".en__pg__detail")).filter((el) => !el.querySelector("h2"));
         maxDonationTitle.forEach((item) => {
             var _a;
             if (item) {
-                const titleText = ((_a = item.querySelector('.en__pg__description')) === null || _a === void 0 ? void 0 : _a.innerHTML) || '';
+                const titleText = ((_a = item.querySelector(".en__pg__description")) === null || _a === void 0 ? void 0 : _a.innerHTML) || "";
                 const prevSibling = item.previousElementSibling;
                 const radioInputSibling = prevSibling === null || prevSibling === void 0 ? void 0 : prevSibling.previousElementSibling;
                 if (radioInputSibling) {
                     const radioInput = radioInputSibling.querySelector('input[type="radio"]');
                     if (radioInput) {
-                        radioInput.setAttribute('aria-label', titleText);
+                        radioInput.setAttribute("aria-label", titleText);
                     }
                 }
             }
