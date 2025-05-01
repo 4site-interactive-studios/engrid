@@ -5,4 +5,5 @@ export const EcardToTargetOptionsDefaults = {
     hideTarget: true,
     hideMessage: true,
     addSupporterNameToMessage: false,
+    targets: [],
 };
