@@ -131,7 +131,6 @@ export class PremiumGift {
     }
     // Sets alt tags for premium gift images and aria tags for premium gift radio inputs
     altsAndArias() {
-        console.log("alts and arias running");
         const premiumTitle = document.querySelectorAll(".en__pg__detail h2.en__pg__name");
         const multistepBackButton = document.querySelectorAll(".multistep-button-container button.btn-back");
         premiumTitle.forEach((item) => {
@@ -162,7 +161,6 @@ export class PremiumGift {
                 item.setAttribute("aria-label", "Back");
             });
         });
-        console.log("alts updated");
     }
     // This is for the Maximize My Donation aria-label - the tree structure for it is slightly different.
     maxDonationAria() {
