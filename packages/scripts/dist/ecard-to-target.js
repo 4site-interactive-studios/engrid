@@ -37,6 +37,7 @@ export class EcardToTarget {
             return;
         }
         let targets = this.options.targets;
+        // BC support for targetName and targetEmail
         if (this.options.targetName && this.options.targetEmail) {
             targets.push({
                 targetName: this.options.targetName,
