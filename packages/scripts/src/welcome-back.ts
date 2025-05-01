@@ -30,8 +30,6 @@ export class WelcomeBack {
     } else {
       this.run();
     }
-
-    this._form.onValidate.subscribe(this.enOnValidate.bind(this));
   }
 
   private run() {
@@ -181,6 +179,7 @@ export class WelcomeBack {
           this.resetWelcomeBack();
         });
       });
+    this._form.onValidate.subscribe(this.enOnValidate.bind(this));
   }
 
   enOnValidate() {
