@@ -31,6 +31,9 @@ export class WelcomeBack {
             this.run();
         }
         this._form.onValidate.subscribe(this.enOnValidate.bind(this));
+        this._form.onValidate.subscribe(() => {
+            window.setTimeout(this.doubleCheckValidation.bind(this), 50);
+        });
     }
     run() {
         if (this.hasRun)
@@ -142,6 +145,18 @@ export class WelcomeBack {
             regionDiv === null || regionDiv === void 0 ? void 0 : regionDiv.classList.add('en__field--validationFailed');
             regionDiv === null || regionDiv === void 0 ? void 0 : regionDiv.insertAdjacentHTML('afterbegin', '<div class="en__field__error">Province / Territory is required</div>');
             this._form.validate = false;
+        }
+    }
+    doubleCheckValidation() {
+        console.log("Double-checking validation...");
+        const fieldContainer = document.querySelector('.fast-personal-details');
+        const validationError = document.querySelector('.fast-personal-details .en__field--validationFailed');
+        if (validationError) {
+            console.log('Validation error found!');
+            if (fieldContainer) {
+                fieldContainer.style.setProperty('display', 'block', 'important');
+                fieldContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         }
     }
 }

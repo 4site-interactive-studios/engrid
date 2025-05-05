@@ -32,6 +32,9 @@ export class WelcomeBack {
     }
 
     this._form.onValidate.subscribe(this.enOnValidate.bind(this));
+    this._form.onValidate.subscribe(() => {
+      window.setTimeout(this.doubleCheckValidation.bind(this), 50);
+    });
   }
 
   private run() {
@@ -197,4 +200,18 @@ export class WelcomeBack {
       this._form.validate = false;
     }
   }
+
+  doubleCheckValidation() {
+    console.log("Double-checking validation...");
+    const fieldContainer = document.querySelector('.fast-personal-details') as HTMLElement;
+    const validationError = document.querySelector('.fast-personal-details .en__field--validationFailed');
+
+    if (validationError) {
+      console.log('Validation error found!');
+      if (fieldContainer) {
+        fieldContainer.style.setProperty('display', 'block', 'important');
+        fieldContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  } 
 }

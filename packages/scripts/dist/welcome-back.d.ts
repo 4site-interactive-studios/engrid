@@ -12,4 +12,5 @@ export declare class WelcomeBack {
     private addPersonalDetailsSummary;
     private addEventListeners;
     enOnValidate(): void;
+    doubleCheckValidation(): void;
 }
