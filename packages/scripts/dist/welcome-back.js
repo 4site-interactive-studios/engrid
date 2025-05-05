@@ -132,18 +132,16 @@ export class WelcomeBack {
                 this.resetWelcomeBack();
             });
         });
+        this._form.onValidate.subscribe(this.enOnValidate.bind(this));
     }
     enOnValidate() {
         if (!this._form.validate)
             return;
-        const regionDiv = document.querySelector('.en__field--region');
-        const fastPersonalDetails = document.querySelector('.fast-personal-details');
-        const regionField = document.querySelector('#en__field_supporter_region');
-        if (regionField && regionField.value === '') {
-            console.log('No region selected');
-            fastPersonalDetails.style.setProperty('display', 'block', 'important');
-            regionDiv === null || regionDiv === void 0 ? void 0 : regionDiv.classList.add('en__field--validationFailed');
-            regionDiv === null || regionDiv === void 0 ? void 0 : regionDiv.insertAdjacentHTML('afterbegin', '<div class="en__field__error">Province / Territory is required</div>');
+        const regionFieldValue = ENGrid.getFieldValue("supporter.region");
+        const regionFieldLabel = document.querySelector(".en__field--region label");
+        if (regionFieldLabel && regionFieldValue === "") {
+            ENGrid.setError(".en__field--region", `${regionFieldLabel.innerText} is required`);
+            ENGrid.setBodyData("hide-fast-personal-details", false);
             this._form.validate = false;
         }
     }

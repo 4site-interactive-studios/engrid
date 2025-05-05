@@ -10,19 +10,19 @@ export class SkipToMainContentLink {
         const firstTitle = document.querySelector("title");
         const firstH1 = document.querySelector("h1");
         if (firstTitleInEngridBody && firstTitleInEngridBody.parentElement) {
-            firstTitleInEngridBody.parentElement.insertAdjacentHTML("beforebegin", '<span id="skip-link"></span>');
+            firstTitleInEngridBody.parentElement.id = "skip-link";
             this.insertSkipLinkSpan();
         }
         else if (firstH1InEngridBody && firstH1InEngridBody.parentElement) {
-            firstH1InEngridBody.parentElement.insertAdjacentHTML("beforebegin", '<span id="skip-link"></span>');
+            firstH1InEngridBody.parentElement.id = "skip-link";
             this.insertSkipLinkSpan();
         }
         else if (firstTitle && firstTitle.parentElement) {
-            firstTitle.parentElement.insertAdjacentHTML("beforebegin", '<span id="skip-link"></span>');
+            firstTitle.parentElement.id = "skip-link";
             this.insertSkipLinkSpan();
         }
         else if (firstH1 && firstH1.parentElement) {
-            firstH1.parentElement.insertAdjacentHTML("beforebegin", '<span id="skip-link"></span>');
+            firstH1.parentElement.id = "skip-link";
             this.insertSkipLinkSpan();
         }
         else {

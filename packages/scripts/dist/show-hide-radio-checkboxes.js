@@ -45,6 +45,11 @@ export class ShowHideRadioCheckboxes {
                 this.toggleValue(el, "hide");
                 el.style.display = "none";
                 this.logger.log("Hiding", el);
+                const input = el.querySelector("input");
+                if (input instanceof HTMLInputElement) {
+                    input.setAttribute("aria-required", "false");
+                    this.logger.log("aria-required set to FALSE", input);
+                }
             }
         });
     }
@@ -57,6 +62,11 @@ export class ShowHideRadioCheckboxes {
                 this.toggleValue(el, "show");
                 el.style.display = "";
                 this.logger.log("Showing", el);
+                const input = el.querySelector("input");
+                if (input instanceof HTMLInputElement) {
+                    input.setAttribute("aria-required", "true");
+                    this.logger.log("aria-required set to TRUE", input);
+                }
             }
         });
         if (item.type == "checkbox" && !item.checked) {
