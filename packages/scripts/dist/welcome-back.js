@@ -129,10 +129,16 @@ export class WelcomeBack {
             });
         });
         this._form.onValidate.subscribe(this.enOnValidate.bind(this));
+        this._form.onValidate.subscribe(() => {
+            window.setTimeout(this.doubleCheckValidation.bind(this), 150);
+        });
     }
     enOnValidate() {
-        if (!this._form.validate)
+        if (!this._form.validate) {
+            // Disable the fast personal details if the form is invalidated by other components running before
+            ENGrid.setBodyData("hide-fast-personal-details", false);
             return;
+        }
         const regionFieldValue = ENGrid.getFieldValue("supporter.region");
         const regionFieldLabel = document.querySelector(".en__field--region label");
         if (regionFieldLabel && regionFieldValue === "") {
@@ -140,5 +146,18 @@ export class WelcomeBack {
             ENGrid.setBodyData("hide-fast-personal-details", false);
             this._form.validate = false;
         }
+    }
+    doubleCheckValidation() {
+        // Disable the fast personal details if the form is invalidated by other components running AFTER
+        // the fast personal details component
+        const validationError = document.querySelector(".fast-personal-details .en__field--validationFailed");
+        if (validationError) {
+            ENGrid.setBodyData("hide-fast-personal-details", false);
+            validationError.scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+            });
+        }
+        return;
     }
 }
