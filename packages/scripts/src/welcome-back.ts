@@ -30,11 +30,6 @@ export class WelcomeBack {
     } else {
       this.run();
     }
-
-    this._form.onValidate.subscribe(this.enOnValidate.bind(this));
-    this._form.onValidate.subscribe(() => {
-      window.setTimeout(this.doubleCheckValidation.bind(this), 50);
-    });
   }
 
   private run() {
@@ -185,10 +180,17 @@ export class WelcomeBack {
         });
       });
     this._form.onValidate.subscribe(this.enOnValidate.bind(this));
+    this._form.onValidate.subscribe(() => {
+      window.setTimeout(this.doubleCheckValidation.bind(this), 150);
+    });
   }
 
   enOnValidate() {
-    if (!this._form.validate) return;
+    if (!this._form.validate) {
+      // Disable the fast personal details if the form is invalidated by other components running before
+      ENGrid.setBodyData("hide-fast-personal-details", false);
+      return;
+    }
     const regionFieldValue = ENGrid.getFieldValue("supporter.region");
     const regionFieldLabel = document.querySelector(
       ".en__field--region label"
@@ -204,16 +206,18 @@ export class WelcomeBack {
   }
 
   doubleCheckValidation() {
-    console.log("Double-checking validation...");
-    const fieldContainer = document.querySelector('.fast-personal-details') as HTMLElement;
-    const validationError = document.querySelector('.fast-personal-details .en__field--validationFailed');
-
+    // Disable the fast personal details if the form is invalidated by other components running AFTER
+    // the fast personal details component
+    const validationError = document.querySelector(
+      ".fast-personal-details .en__field--validationFailed"
+    );
     if (validationError) {
-      console.log('Validation error found!');
-      if (fieldContainer) {
-        fieldContainer.style.setProperty('display', 'block', 'important');
-        fieldContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      ENGrid.setBodyData("hide-fast-personal-details", false);
+      validationError.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
     }
-  } 
+    return;
+  }
 }
