@@ -150,6 +150,10 @@ export class WelcomeBack {
             ENGrid.setBodyData("hide-fast-personal-details", false);
             this._form.validate = false;
         }
+        else {
+            // Remove the error message if the region field is filled
+            ENGrid.removeError(".en__field--region");
+        }
     }
     doubleCheckValidation() {
         // Disable the fast personal details if the form is invalidated by other components running AFTER
