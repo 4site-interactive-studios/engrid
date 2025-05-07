@@ -139,9 +139,13 @@ export class WelcomeBack {
             ENGrid.setBodyData("hide-fast-personal-details", false);
             return;
         }
-        const regionFieldValue = ENGrid.getFieldValue("supporter.region");
+        const regionField = ENGrid.getField("supporter.region");
+        const regionFieldValue = regionField ? regionField.value : "";
+        const regionFieldType = regionField === null || regionField === void 0 ? void 0 : regionField.tagName.toLowerCase();
         const regionFieldLabel = document.querySelector(".en__field--region label");
-        if (regionFieldLabel && regionFieldValue === "") {
+        if (regionFieldType === "select" &&
+            regionFieldLabel &&
+            regionFieldValue === "") {
             ENGrid.setError(".en__field--region", `${regionFieldLabel.innerText} is required`);
             ENGrid.setBodyData("hide-fast-personal-details", false);
             this._form.validate = false;

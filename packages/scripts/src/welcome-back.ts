@@ -191,11 +191,19 @@ export class WelcomeBack {
       ENGrid.setBodyData("hide-fast-personal-details", false);
       return;
     }
-    const regionFieldValue = ENGrid.getFieldValue("supporter.region");
+    const regionField = ENGrid.getField(
+      "supporter.region"
+    ) as HTMLSelectElement;
+    const regionFieldValue = regionField ? regionField.value : "";
+    const regionFieldType = regionField?.tagName.toLowerCase();
     const regionFieldLabel = document.querySelector(
       ".en__field--region label"
     ) as HTMLLabelElement;
-    if (regionFieldLabel && regionFieldValue === "") {
+    if (
+      regionFieldType === "select" &&
+      regionFieldLabel &&
+      regionFieldValue === ""
+    ) {
       ENGrid.setError(
         ".en__field--region",
         `${regionFieldLabel.innerText} is required`
