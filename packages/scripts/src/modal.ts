@@ -8,7 +8,7 @@ interface ModalOptions {
 
 export abstract class Modal {
   public modalContent: NodeListOf<Element> | HTMLElement | String;
-  private modal: HTMLDivElement | null = null;
+  public modal: HTMLDivElement | null = null;
   private defaultOptions: ModalOptions = {
     onClickOutside: "close",
     addCloseButton: false,

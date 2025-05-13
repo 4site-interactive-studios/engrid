@@ -1,0 +1,11 @@
+export interface FrequencyUpsellOptions {
+    content: string;
+    yesButton: string;
+    noButton: string;
+    upsellFrequency: "monthly" | "quarterly" | "semi_annual" | "annual";
+    upsellAmount: (currentAmount: number) => number;
+    upsellFromFrequency: Array<"onetime" | "monthly" | "quarterly" | "semi_annual" | "annual">;
+    onAccept: () => void;
+    onDecline: () => void;
+}
+export declare const FrequencyUpsellOptionsDefaults: FrequencyUpsellOptions;

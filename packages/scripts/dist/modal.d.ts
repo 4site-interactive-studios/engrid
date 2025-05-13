@@ -5,7 +5,7 @@ interface ModalOptions {
 }
 export declare abstract class Modal {
     modalContent: NodeListOf<Element> | HTMLElement | String;
-    private modal;
+    modal: HTMLDivElement | null;
     private defaultOptions;
     private options;
     protected constructor(options: ModalOptions);

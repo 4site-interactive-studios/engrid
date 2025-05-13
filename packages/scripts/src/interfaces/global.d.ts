@@ -4,6 +4,7 @@ import { UpsellOptions } from "./upsell-options";
 import { ExitIntentOptions } from "./exit-intent-options";
 import { EcardToTargetOptions } from "./ecard-to-target-options";
 import { EmbeddedEcardOptions } from "./embedded-ecard-options";
+import { FrequencyUpsellOptions } from "./frequency-upsell-options";
 
 export {}; // this file needs to be a module
 declare global {
@@ -21,6 +22,7 @@ declare global {
     EngridTranslate: TranslateOptions;
     EngridEcardToTarget: EcardToTargetOptions;
     EngridEmbeddedEcard: EmbeddedEcardOptions;
+    EngridFrequencyUpsell: FrequencyUpsellOptions;
     EngridVersion: string;
     EngridLoader: {
       "repo-name"?: string;

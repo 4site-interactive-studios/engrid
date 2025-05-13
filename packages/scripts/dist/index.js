@@ -3,6 +3,7 @@ export { OptionsDefaults } from "./interfaces/options";
 export { UpsellOptionsDefaults, } from "./interfaces/upsell-options";
 export { TranslateOptionsDefaults, } from "./interfaces/translate-options";
 export { ExitIntentOptionsDefaults, } from "./interfaces/exit-intent-options";
+export { FrequencyUpsellOptionsDefaults, } from "./interfaces/frequency-upsell-options";
 export * from "./loader";
 export * from "./app";
 export * from "./amount-label";
@@ -82,6 +83,8 @@ export * from "./thank-you-page-conditional-content";
 export * from "./checkbox-label";
 export * from "./optin-ladder";
 export * from "./post-donation-embed";
+export * from "./frequency-upsell-modal";
+export * from "./frequency-upsell";
 // Events
 export * from "./events";
 // Version
