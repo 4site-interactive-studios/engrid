@@ -6,6 +6,8 @@ export class Modal {
             onClickOutside: "close",
             addCloseButton: false,
             closeButtonLabel: "Okay!",
+            customClass: "",
+            showCloseX: true,
         };
         this.focusTrapHandler = (e) => {
             const modalElement = this.modal;
@@ -39,6 +41,12 @@ export class Modal {
         var _a;
         this.modal = document.createElement("div");
         this.modal.classList.add("engrid-modal", "modal--hidden");
+        if (this.options.customClass && this.options.customClass !== "") {
+            this.modal.classList.add(this.options.customClass);
+        }
+        if (this.options.showCloseX) {
+            this.modal.classList.add("engrid-modal--close-x");
+        }
         this.modal.setAttribute("aria-hidden", "true");
         this.modal.setAttribute("role", "dialog");
         this.modal.setAttribute("aria-modal", "true");
@@ -46,7 +54,7 @@ export class Modal {
         this.modal.innerHTML = `
       <div class="engrid-modal__overlay" tabindex="-1">
         <div class="engrid-modal__container" tabindex="0">
-          <div class="engrid-modal__close" role="button" tabindex="0" aria-label="Close">
+          <div class="engrid-modal__close engrid-modal__close-x" role="button" tabindex="0" aria-label="Close">
             X
           </div>
           <div class="engrid-modal__body"></div>

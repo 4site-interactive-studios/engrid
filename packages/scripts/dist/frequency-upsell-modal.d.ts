@@ -1,11 +1,11 @@
 import { FrequencyUpsellOptions, Modal } from ".";
 export declare class FrequencyUpsellModal extends Modal {
     private readonly upsellOptions;
-    private _amount;
-    private _upsellAmount;
+    private _amountWithFees;
+    private _upsellAmountWithFees;
     constructor(upsellOptions: FrequencyUpsellOptions);
-    set amount(value: number);
-    set upsellAmount(value: number);
+    set amountWithFees(value: number);
+    set upsellAmountWithFees(value: number);
     updateModalContent(): void;
     getModalContent(): NodeListOf<Element> | HTMLElement | string;
     replaceAmountTokens(string: string): string;

@@ -1,7 +1,9 @@
 interface ModalOptions {
-    onClickOutside: "close" | "bounce";
-    addCloseButton: boolean;
-    closeButtonLabel: string;
+    onClickOutside?: "close" | "bounce";
+    addCloseButton?: boolean;
+    closeButtonLabel?: string;
+    customClass?: string;
+    showCloseX?: boolean;
 }
 export declare abstract class Modal {
     modalContent: NodeListOf<Element> | HTMLElement | String;

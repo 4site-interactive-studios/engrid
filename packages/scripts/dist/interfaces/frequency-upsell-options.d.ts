@@ -1,5 +1,6 @@
 export interface FrequencyUpsellOptions {
-    content: string;
+    title: string;
+    paragraph: string;
     yesButton: string;
     noButton: string;
     upsellFrequency: "monthly" | "quarterly" | "semi_annual" | "annual";

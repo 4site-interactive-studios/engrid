@@ -1,21 +1,26 @@
+/*
+ * FrequencyUpsellModal - this is class that creates the modal for the frequency upsell.
+ * This component is intentionally "dumb" and only creates the modal renders its content.
+ * Logic for showing the modal and handling the upsell is in the FrequencyUpsell class.
+ */
 import { ENGrid, Modal } from ".";
 export class FrequencyUpsellModal extends Modal {
     constructor(upsellOptions) {
         super({
             onClickOutside: "bounce",
-            addCloseButton: false,
-            closeButtonLabel: "",
+            customClass: "engrid--frequency-upsell-modal",
+            showCloseX: false,
         });
-        this._amount = 0;
-        this._upsellAmount = 0;
+        this._amountWithFees = 0;
+        this._upsellAmountWithFees = 0;
         this.upsellOptions = upsellOptions;
         this.updateModalContent();
     }
-    set amount(value) {
-        this._amount = value;
+    set amountWithFees(value) {
+        this._amountWithFees = value;
     }
-    set upsellAmount(value) {
-        this._upsellAmount = value;
+    set upsellAmountWithFees(value) {
+        this._upsellAmountWithFees = value;
     }
     updateModalContent() {
         var _a;
@@ -30,20 +35,25 @@ export class FrequencyUpsellModal extends Modal {
         if (!this.upsellOptions)
             return "";
         return `
-    <h2>${this.replaceAmountTokens(this.upsellOptions.content)}</h2>
-    <div class="upsell-buttons">
-      <button class="primary" id="frequency-upsell-yes">
-        ${this.replaceAmountTokens(this.upsellOptions.yesButton)}
-      </button>
-      <button class="primary" id="frequency-upsell-no">
-         ${this.replaceAmountTokens(this.upsellOptions.noButton)}
-      </button>
+    <div class="frequency-upsell-modal__content">
+      <div class="frequency-upsell-modal__text">
+        <h2 class="frequency-upsell-modal__title">${this.replaceAmountTokens(this.upsellOptions.title)}</h2>
+        <p class="frequency-upsell-modal__para">${this.replaceAmountTokens(this.upsellOptions.paragraph)}</p>
+      </div>
+      <div class="frequency-upsell-modal__buttons">
+        <button class="primary frequency-upsell-modal__button" id="frequency-upsell-yes">
+          ${this.replaceAmountTokens(this.upsellOptions.yesButton)}
+        </button>
+        <button class="primary frequency-upsell-modal__button" id="frequency-upsell-no">
+           ${this.replaceAmountTokens(this.upsellOptions.noButton)}
+        </button>
+      </div>
     </div>
     `;
     }
     replaceAmountTokens(string) {
-        const amount = ENGrid.formatNumber(this._amount, this._amount % 1 == 0 ? 0 : 2, ".", "");
-        const upsellAmount = ENGrid.formatNumber(this._upsellAmount, this._upsellAmount % 1 == 0 ? 0 : 2, ".", "");
+        const amount = ENGrid.formatNumber(this._amountWithFees, this._amountWithFees % 1 == 0 ? 0 : 2, ".", "");
+        const upsellAmount = ENGrid.formatNumber(this._upsellAmountWithFees, this._upsellAmountWithFees % 1 == 0 ? 0 : 2, ".", "");
         return string
             .replace(/{current_amount}/g, amount)
             .replace(/{upsell_amount}/g, upsellAmount);
