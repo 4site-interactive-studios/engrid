@@ -7,11 +7,12 @@
  *
  * All the text content and positioning is configurable through the "WelcomeBack" option.
  */
-import { ENGrid, RememberMeEvents } from ".";
+import { ENGrid, EnForm, RememberMeEvents } from ".";
 import * as cookie from "./cookie";
 export class WelcomeBack {
     constructor() {
         var _a;
+        this._form = EnForm.getInstance();
         this.supporterDetails = {};
         this.options = (_a = ENGrid.getOption("WelcomeBack")) !== null && _a !== void 0 ? _a : false;
         this.rememberMeEvents = RememberMeEvents.getInstance();
@@ -127,5 +128,44 @@ export class WelcomeBack {
                 this.resetWelcomeBack();
             });
         });
+        this._form.onValidate.subscribe(this.enOnValidate.bind(this));
+        this._form.onValidate.subscribe(() => {
+            window.setTimeout(this.doubleCheckValidation.bind(this), 150);
+        });
+    }
+    enOnValidate() {
+        if (!this._form.validate) {
+            // Disable the fast personal details if the form is invalidated by other components running before
+            ENGrid.setBodyData("hide-fast-personal-details", false);
+            return;
+        }
+        const regionField = ENGrid.getField("supporter.region");
+        const regionFieldValue = regionField ? regionField.value : "";
+        const regionFieldType = regionField === null || regionField === void 0 ? void 0 : regionField.tagName.toLowerCase();
+        const regionFieldLabel = document.querySelector(".en__field--region label");
+        if (regionFieldType === "select" &&
+            regionFieldLabel &&
+            regionFieldValue === "") {
+            ENGrid.setError(".en__field--region", `${regionFieldLabel.innerText} is required`);
+            ENGrid.setBodyData("hide-fast-personal-details", false);
+            this._form.validate = false;
+        }
+        else {
+            // Remove the error message if the region field is filled
+            ENGrid.removeError(".en__field--region");
+        }
+    }
+    doubleCheckValidation() {
+        // Disable the fast personal details if the form is invalidated by other components running AFTER
+        // the fast personal details component
+        const validationError = document.querySelector(".fast-personal-details .en__field--validationFailed");
+        if (validationError) {
+            ENGrid.setBodyData("hide-fast-personal-details", false);
+            validationError.scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+            });
+        }
+        return;
     }
 }
