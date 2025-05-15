@@ -13,6 +13,10 @@ export {
   ExitIntentOptions,
   ExitIntentOptionsDefaults,
 } from "./interfaces/exit-intent-options";
+export {
+  FrequencyUpsellOptions,
+  FrequencyUpsellOptionsDefaults,
+} from "./interfaces/frequency-upsell-options";
 
 export * from "./loader";
 export * from "./app";
@@ -93,6 +97,8 @@ export * from "./thank-you-page-conditional-content";
 export * from "./checkbox-label";
 export * from "./optin-ladder";
 export * from "./post-donation-embed";
+export * from "./frequency-upsell-modal";
+export * from "./frequency-upsell";
 
 // Events
 export * from "./events";
