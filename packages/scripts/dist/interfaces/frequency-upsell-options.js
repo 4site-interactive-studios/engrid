@@ -5,6 +5,7 @@ export const FrequencyUpsellOptionsDefaults = {
     noButton: "NO! Process my gift as a one-time gift of ${upsell_amount}",
     upsellFrequency: "annual",
     upsellFromFrequency: ["onetime"],
+    customClass: "",
     upsellAmount: (currentAmount) => currentAmount,
     onAccept: () => { },
     onDecline: () => { },

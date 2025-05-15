@@ -42,7 +42,11 @@ export class Modal {
         this.modal = document.createElement("div");
         this.modal.classList.add("engrid-modal", "modal--hidden");
         if (this.options.customClass && this.options.customClass !== "") {
-            this.modal.classList.add(this.options.customClass);
+            this.options.customClass.split(" ").forEach((customClass) => {
+                if (!customClass)
+                    return;
+                this.modal.classList.add(customClass);
+            });
         }
         if (this.options.showCloseX) {
             this.modal.classList.add("engrid-modal--close-x");

@@ -13,7 +13,7 @@ export class FrequencyUpsellModal extends Modal {
   constructor(upsellOptions: FrequencyUpsellOptions) {
     super({
       onClickOutside: "bounce",
-      customClass: "engrid--frequency-upsell-modal",
+      customClass: `engrid--frequency-upsell-modal ${upsellOptions.customClass}`,
       showCloseX: false,
     });
     this.upsellOptions = upsellOptions;
@@ -41,6 +41,7 @@ export class FrequencyUpsellModal extends Modal {
     if (!this.upsellOptions) return "";
 
     return `
+    <div class="frequency-upsell-modal__secondary-content"></div>
     <div class="frequency-upsell-modal__content">
       <div class="frequency-upsell-modal__text">
         <h2 class="frequency-upsell-modal__title">${this.replaceAmountTokens(

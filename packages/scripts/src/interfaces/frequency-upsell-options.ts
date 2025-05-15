@@ -8,6 +8,7 @@ export interface FrequencyUpsellOptions {
   upsellFromFrequency: Array<
     "onetime" | "monthly" | "quarterly" | "semi_annual" | "annual"
   >;
+  customClass: string;
   onAccept: () => void;
   onDecline: () => void;
 }
@@ -19,6 +20,7 @@ export const FrequencyUpsellOptionsDefaults: FrequencyUpsellOptions = {
   noButton: "NO! Process my gift as a one-time gift of ${upsell_amount}",
   upsellFrequency: "annual",
   upsellFromFrequency: ["onetime"],
+  customClass: "",
   upsellAmount: (currentAmount) => currentAmount,
   onAccept: () => {},
   onDecline: () => {},
