@@ -334,10 +334,11 @@ export class ENGrid {
         const submit = document.querySelector(".en__submit button");
         if (!submit)
             return false;
+        let submitButtonProcessingHTML = `<span class='loader-wrapper'><span class='loader loader-quart'></span><span class='submit-button-text-wrapper'>${label}</span></span>`;
+        if (submit.dataset.originalText === submitButtonProcessingHTML) {
+            return false;
+        }
         submit.dataset.originalText = submit.innerHTML;
-        let submitButtonProcessingHTML = "<span class='loader-wrapper'><span class='loader loader-quart'></span><span class='submit-button-text-wrapper'>" +
-            label +
-            "</span></span>";
         submit.disabled = true;
         submit.innerHTML = submitButtonProcessingHTML;
         return true;
