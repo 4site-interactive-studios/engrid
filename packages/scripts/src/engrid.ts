@@ -399,11 +399,12 @@ export abstract class ENGrid {
       ".en__submit button"
     ) as HTMLButtonElement;
     if (!submit) return false;
+    let submitButtonProcessingHTML = `<span class='loader-wrapper'><span class='loader loader-quart'></span><span class='submit-button-text-wrapper'>${label}</span></span>`;
+    if ("originalText" in submit.dataset && submit.disabled) {
+      // If the original text is already set and the button is disabled, that means this function was called before
+      return false;
+    }
     submit.dataset.originalText = submit.innerHTML;
-    let submitButtonProcessingHTML =
-      "<span class='loader-wrapper'><span class='loader loader-quart'></span><span class='submit-button-text-wrapper'>" +
-      label +
-      "</span></span>";
     submit.disabled = true;
     submit.innerHTML = submitButtonProcessingHTML;
     return true;
