@@ -335,8 +335,8 @@ export class ENGrid {
         if (!submit)
             return false;
         let submitButtonProcessingHTML = `<span class='loader-wrapper'><span class='loader loader-quart'></span><span class='submit-button-text-wrapper'>${label}</span></span>`;
-        if ("originalText" in submit.dataset && submit.disabled) {
-            // If the original text is already set and the button is disabled, that means this function was called before
+        if (submit.innerHTML.includes("loader-wrapper")) {
+            // If we are already processing, don't override the originalText again
             return false;
         }
         submit.dataset.originalText = submit.innerHTML;
