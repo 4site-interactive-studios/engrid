@@ -26,7 +26,7 @@ export class TranslateFields {
         }
         //Storing these values on load so we can set them back after the translation/swap.
         let countryAndStateValuesOnLoad = {};
-        if (this.countriesSelect) {
+        if (this.countriesSelect && this.countriesSelect.length > 0) {
             this.countriesSelect.forEach((select) => {
                 select.addEventListener("change", this.translateFields.bind(this, select.name));
                 if (select.value) {

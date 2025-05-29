@@ -40,7 +40,7 @@ export class TranslateFields {
     //Storing these values on load so we can set them back after the translation/swap.
     let countryAndStateValuesOnLoad: Record<string, string | null> = {};
 
-    if (this.countriesSelect) {
+    if (this.countriesSelect && this.countriesSelect.length > 0) {
       this.countriesSelect.forEach((select: HTMLSelectElement) => {
         select.addEventListener(
           "change",
