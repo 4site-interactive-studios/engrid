@@ -85,6 +85,7 @@ import {
   CheckboxLabel,
   UpsellCheckbox,
   PostDonationEmbed,
+  detectGateway,
 } from ".";
 
 export class App extends ENGrid {
@@ -378,6 +379,7 @@ export class App extends ENGrid {
 
     new Ticker();
     new A11y();
+    new detectGateway();
 
     new AddNameToMessage();
     new ExpandRegionName();

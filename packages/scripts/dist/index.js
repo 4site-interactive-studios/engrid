@@ -9,6 +9,7 @@ export * from "./amount-label";
 export * from "./engrid";
 export * from "./apple-pay";
 export * from "./a11y";
+export * from "./detect-gateway";
 export * from "./capitalize-fields";
 export * from "./auto-year";
 export * from "./autocomplete";
