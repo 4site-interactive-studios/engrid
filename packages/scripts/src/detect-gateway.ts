@@ -15,15 +15,21 @@ export class detectGateway {
   }
 
   private gatewayDetection() {
-    this.logger.log("Detecting payment gateway...");
+    const alertBox = document.querySelector('.page-alert') as HTMLDivElement;
     const env = window?.EngagingNetworks?.vault?.environment;
+    this.logger.log("Gateway is: ", env);
 
-    if (env === "PRODUCTION") {
+    if (env === "live" || env === "production") {
       this.logger.log("Live gateway in use.");
-    } else if (env === "SANDBOX" || env === "TEST") {
-      this.logger.log("Test gateway in use.");
+    } else if (env === "sandbox" || env === "test") {
+      if (alertBox) {
+        alertBox.setAttribute("style", "display: block !important;");
+        alertBox.innerHTML = `<div class="alert alert-warning" role="alert" style="padding: 5px; background-color: #f7e6ed;
+border-radius: 4px; color: #c60060; text-align: center; width: 100%;"><p><strong>Warning:</strong> You are currently using a test payment gateway.</p><p>Please ensure you switch to the live gateway before going live.</p></div>`;
+        
+      }
     } else {
-      this.logger.log("Unknown or undefined gateway environment:", env); 
+      this.logger.log("Gateway is unknown."); 
     }
   }
 }
