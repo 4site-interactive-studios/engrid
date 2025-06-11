@@ -6332,6 +6332,10 @@ body:not(#en__pagebuilder) img:not([src]):not([srcset]) {
   outline: none;
 }
 
+.engrid-modal:not(.engrid-modal--close-x) .engrid-modal__close-x {
+  display: none;
+}
+
 .engrid-modal__close {
   position: absolute;
   right: 15px;
@@ -6368,6 +6372,19 @@ body:not(#en__pagebuilder) img:not([src]):not([srcset]) {
 .engrid-modal--scale {
   animation: scaleAnimation 0.5s ease-in-out;
   transform-origin: center;
+}
+
+[data-engrid-theme] .engrid--frequency-upsell-modal .engrid-modal__container {
+  max-width: 700px;
+  --submit__button_text-transform: none;
+}
+
+.frequency-upsell-modal__title {
+  margin-top: 0;
+}
+
+#frequency-upsell-no {
+  margin-bottom: 0;
 }
 
 /* Utilizes the standard NeverBounce Implimentation but styles it to match the client brand */

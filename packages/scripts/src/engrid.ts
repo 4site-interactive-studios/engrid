@@ -399,11 +399,12 @@ export abstract class ENGrid {
       ".en__submit button"
     ) as HTMLButtonElement;
     if (!submit) return false;
+    let submitButtonProcessingHTML = `<span class='loader-wrapper'><span class='loader loader-quart'></span><span class='submit-button-text-wrapper'>${label}</span></span>`;
+    if (submit.innerHTML.includes("loader-wrapper")) {
+      // If we are already processing, don't override the originalText again
+      return false;
+    }
     submit.dataset.originalText = submit.innerHTML;
-    let submitButtonProcessingHTML =
-      "<span class='loader-wrapper'><span class='loader loader-quart'></span><span class='submit-button-text-wrapper'>" +
-      label +
-      "</span></span>";
     submit.disabled = true;
     submit.innerHTML = submitButtonProcessingHTML;
     return true;
