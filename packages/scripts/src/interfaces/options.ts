@@ -101,7 +101,7 @@ export interface Options {
     | false
     | {
         "transaction.ccnumber"?: {
-          showCardIcon?: boolean;
+          showCardIcon?: boolean | object;
           css?: {
             [key: string]: string | object;
           };
@@ -112,7 +112,7 @@ export interface Options {
           placeholder?: string;
         };
         "transaction.ccvv"?: {
-          showCardIcon?: boolean;
+          showCardIcon?: boolean | object;
           css?: {
             [key: string]: string | object;
           };
