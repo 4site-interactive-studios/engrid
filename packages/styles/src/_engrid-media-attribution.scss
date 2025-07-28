@@ -119,3 +119,84 @@ figure.media-with-attribution {
     }
   }
 }
+
+// Attribution Image Positioning
+body:not(#en__pagebuilder) .page-backgroundImage.attribution-topleft:before,
+body:not(#en__pagebuilder)
+  .page-backgroundImage.attribution-topleft
+  figure.media-with-attribution {
+  background-position: top left; // Pinned to Top Left
+}
+
+body:not(#en__pagebuilder) .page-backgroundImage.attribution-topright:before,
+body:not(#en__pagebuilder)
+  .page-backgroundImage.attribution-topright
+  figure.media-with-attribution {
+  background-position: top right; // Pinned to Top Right
+}
+
+body:not(#en__pagebuilder) .page-backgroundImage.attribution-bottomright:before,
+body:not(#en__pagebuilder)
+  .page-backgroundImage.attribution-bottomright
+  figure.media-with-attribution {
+  background-position: bottom right; // Pinned to Bottom Right
+}
+
+body:not(#en__pagebuilder) .page-backgroundImage.attribution-bottomleft:before,
+body:not(#en__pagebuilder)
+  .page-backgroundImage.attribution-bottomleft
+  figure.media-with-attribution {
+  background-position: bottom left; // Pinned to Bottom Left
+}
+
+body:not(#en__pagebuilder) .page-backgroundImage.attribution-top:before,
+body:not(#en__pagebuilder)
+  .page-backgroundImage.attribution-top
+  figure.media-with-attribution,
+body:not(#en__pagebuilder) .page-backgroundImage.attribution-topcenter:before,
+body:not(#en__pagebuilder)
+  .page-backgroundImage.attribution-topcenter
+  figure.media-with-attribution {
+  background-position: top; // Pinned to Top Center
+}
+
+body:not(#en__pagebuilder)
+  .page-backgroundImage.attribution-bottomcenter:before,
+body:not(#en__pagebuilder)
+  .page-backgroundImage.attribution-bottomcenter
+  figure.media-with-attribution,
+body:not(#en__pagebuilder) .page-backgroundImage.attribution-bottom:before,
+body:not(#en__pagebuilder)
+  .page-backgroundImage.attribution-bottom
+  figure.media-with-attribution {
+  background-position: bottom; // Pinned to Bottom Center
+}
+
+body:not(#en__pagebuilder) .page-backgroundImage.attribution-left:before,
+body:not(#en__pagebuilder)
+  .page-backgroundImage.attribution-left
+  figure.media-with-attribution,
+body:not(#en__pagebuilder) .page-backgroundImage.attribution-leftcenter:before,
+body:not(#en__pagebuilder)
+  .page-backgroundImage.attribution-leftcenter
+  figure.media-with-attribution {
+  background-position: left; // Pinned to Top Center
+}
+
+body:not(#en__pagebuilder) .page-backgroundImage.attribution-right:before,
+body:not(#en__pagebuilder)
+  .page-backgroundImage.attribution-right
+  figure.media-with-attribution,
+body:not(#en__pagebuilder) .page-backgroundImage.attribution-rightcenter:before,
+body:not(#en__pagebuilder)
+  .page-backgroundImage.attribution-rightcenter
+  figure.media-with-attribution {
+  background-position: right; // Pinned to Right Center
+}
+
+body:not(#en__pagebuilder) .page-backgroundImage.attribution-center:before,
+body:not(#en__pagebuilder)
+  .page-backgroundImage.attribution-center
+  figure.media-with-attribution {
+  background-position: center; // Pinned to Right Center
+}

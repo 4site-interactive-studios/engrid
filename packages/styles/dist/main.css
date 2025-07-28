@@ -6037,6 +6037,59 @@ figure.media-with-attribution figattribution.attribution-topleft {
   text-align: left;
 }
 
+body:not(#en__pagebuilder) .page-backgroundImage.attribution-topleft:before,
+body:not(#en__pagebuilder) .page-backgroundImage.attribution-topleft figure.media-with-attribution {
+  background-position: top left;
+}
+
+body:not(#en__pagebuilder) .page-backgroundImage.attribution-topright:before,
+body:not(#en__pagebuilder) .page-backgroundImage.attribution-topright figure.media-with-attribution {
+  background-position: top right;
+}
+
+body:not(#en__pagebuilder) .page-backgroundImage.attribution-bottomright:before,
+body:not(#en__pagebuilder) .page-backgroundImage.attribution-bottomright figure.media-with-attribution {
+  background-position: bottom right;
+}
+
+body:not(#en__pagebuilder) .page-backgroundImage.attribution-bottomleft:before,
+body:not(#en__pagebuilder) .page-backgroundImage.attribution-bottomleft figure.media-with-attribution {
+  background-position: bottom left;
+}
+
+body:not(#en__pagebuilder) .page-backgroundImage.attribution-top:before,
+body:not(#en__pagebuilder) .page-backgroundImage.attribution-top figure.media-with-attribution,
+body:not(#en__pagebuilder) .page-backgroundImage.attribution-topcenter:before,
+body:not(#en__pagebuilder) .page-backgroundImage.attribution-topcenter figure.media-with-attribution {
+  background-position: top;
+}
+
+body:not(#en__pagebuilder) .page-backgroundImage.attribution-bottomcenter:before,
+body:not(#en__pagebuilder) .page-backgroundImage.attribution-bottomcenter figure.media-with-attribution,
+body:not(#en__pagebuilder) .page-backgroundImage.attribution-bottom:before,
+body:not(#en__pagebuilder) .page-backgroundImage.attribution-bottom figure.media-with-attribution {
+  background-position: bottom;
+}
+
+body:not(#en__pagebuilder) .page-backgroundImage.attribution-left:before,
+body:not(#en__pagebuilder) .page-backgroundImage.attribution-left figure.media-with-attribution,
+body:not(#en__pagebuilder) .page-backgroundImage.attribution-leftcenter:before,
+body:not(#en__pagebuilder) .page-backgroundImage.attribution-leftcenter figure.media-with-attribution {
+  background-position: left;
+}
+
+body:not(#en__pagebuilder) .page-backgroundImage.attribution-right:before,
+body:not(#en__pagebuilder) .page-backgroundImage.attribution-right figure.media-with-attribution,
+body:not(#en__pagebuilder) .page-backgroundImage.attribution-rightcenter:before,
+body:not(#en__pagebuilder) .page-backgroundImage.attribution-rightcenter figure.media-with-attribution {
+  background-position: right;
+}
+
+body:not(#en__pagebuilder) .page-backgroundImage.attribution-center:before,
+body:not(#en__pagebuilder) .page-backgroundImage.attribution-center figure.media-with-attribution {
+  background-position: center;
+}
+
 img,
 video {
   max-width: 100%;
