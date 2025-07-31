@@ -12,6 +12,7 @@ export declare class NeverBounce {
     private logger;
     private shouldRun;
     private nbLoaded;
+    private bypassEmails;
     constructor(apiKey: string, dateField: string | null, statusField: string | null, dateFormat: string | undefined);
     private init;
     private clearStatus;
@@ -19,5 +20,6 @@ export declare class NeverBounce {
     private setEmailStatus;
     private insertAfter;
     private wrap;
+    private isBypassEmail;
     private validate;
 }
