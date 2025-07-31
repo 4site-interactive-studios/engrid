@@ -19,7 +19,7 @@ export class CheckboxLabel {
             var _a;
             const labelText = (_a = checkboxLabel.textContent) === null || _a === void 0 ? void 0 : _a.trim();
             const checkboxContainer = checkboxLabel.nextElementSibling;
-            const checkboxLabelElement = checkboxContainer.querySelector("label");
+            const checkboxLabelElement = checkboxContainer.querySelector("label:last-child");
             if (!checkboxLabelElement || !labelText)
                 return;
             checkboxLabelElement.textContent = labelText;

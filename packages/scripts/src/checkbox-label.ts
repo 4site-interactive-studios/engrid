@@ -27,7 +27,7 @@ export class CheckboxLabel {
       const checkboxContainer =
         checkboxLabel.nextElementSibling as HTMLDivElement;
       const checkboxLabelElement = checkboxContainer.querySelector(
-        "label"
+        "label:last-child"
       ) as HTMLLabelElement;
       if (!checkboxLabelElement || !labelText) return;
       checkboxLabelElement.textContent = labelText;
