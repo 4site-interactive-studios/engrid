@@ -14,6 +14,14 @@ export class NeverBounce {
         this.logger = new EngridLogger("NeverBounce", "#039bc4", "#dfdfdf", "📧");
         this.shouldRun = true;
         this.nbLoaded = false;
+        this.bypassEmails = [
+            "noaddress.ea",
+        ];
+        const searchParams = new URLSearchParams(window.location.search);
+        if (searchParams.has("bypassemailvalidation")) {
+            this.logger.log("Bypass Email Validation Enabled - not running NeverBounce");
+            return;
+        }
         this.emailField = document.getElementById("en__field_supporter_emailAddress");
         window._NBSettings = {
             apiKey: this.apiKey,
@@ -154,6 +162,10 @@ export class NeverBounce {
             this.logger.log("E-mail Field Not Found");
             return;
         }
+        if (this.isBypassEmail()) {
+            this.logger.log("Bypass email detected. Skipping status update.");
+            return;
+        }
         // Search page for the NB Wrapper div and set as variable
         const nb_email_field_wrapper = (document.getElementById("nb-wrapper"));
         // Search page for the NB Feedback div and set as variable
@@ -222,6 +234,12 @@ export class NeverBounce {
         (_a = el.parentNode) === null || _a === void 0 ? void 0 : _a.insertBefore(wrapper, el);
         wrapper.appendChild(el);
     }
+    isBypassEmail() {
+        if (!this.emailField || !this.emailField.value)
+            return false;
+        const email = this.emailField.value.toLowerCase();
+        return this.bypassEmails.some((bypassEmail) => email.includes(bypassEmail.toLowerCase()));
+    }
     validate() {
         var _a;
         if (!this.form.validate)
@@ -229,6 +247,10 @@ export class NeverBounce {
         const nbResult = ENGrid.getFieldValue("nb-result");
         if (!this.emailField || !this.shouldRun || !this.nbLoaded || !nbResult) {
             this.logger.log("validate(): Should Not Run. Returning true.");
+            return;
+        }
+        if (this.isBypassEmail()) {
+            this.logger.log("Bypass email detected. Skipping validation.");
             return;
         }
         if (this.nbStatus) {
