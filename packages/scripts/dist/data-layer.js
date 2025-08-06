@@ -86,68 +86,50 @@ export class DataLayer {
         return "";
     }
     onLoad() {
+        // Collect all data layer events and variables to push at once
+        const dataLayerData = {};
+        const dataLayerEvents = [];
         if (ENGrid.getGiftProcess()) {
             this.logger.log("EN_SUCCESSFUL_DONATION");
-            this.dataLayer.push({
-                event: "EN_SUCCESSFUL_DONATION",
-            });
+            dataLayerEvents.push("EN_SUCCESSFUL_DONATION");
             this.addEndOfGiftProcessEventsToDataLayer();
         }
         else {
             this.logger.log("EN_PAGE_VIEW");
-            this.dataLayer.push({
-                event: "EN_PAGE_VIEW",
-            });
+            dataLayerEvents.push("EN_PAGE_VIEW");
         }
         if (window.pageJson) {
             const pageJson = window.pageJson;
             for (const property in pageJson) {
                 if (!Number.isNaN(pageJson[property])) {
-                    this.dataLayer.push({
-                        event: `EN_PAGEJSON_${property.toUpperCase()}-${pageJson[property]}`,
-                    });
-                    this.dataLayer.push({
-                        [`'EN_PAGEJSON_${property.toUpperCase()}'`]: pageJson[property],
-                    });
+                    dataLayerEvents.push(`EN_PAGEJSON_${property.toUpperCase()}-${pageJson[property]}`);
+                    dataLayerData[`'EN_PAGEJSON_${property.toUpperCase()}'`] =
+                        pageJson[property];
                 }
                 else {
-                    this.dataLayer.push({
-                        event: `EN_PAGEJSON_${property.toUpperCase()}-${this.transformJSON(pageJson[property])}`,
-                    });
-                    this.dataLayer.push({
-                        [`'EN_PAGEJSON_${property.toUpperCase()}'`]: this.transformJSON(pageJson[property]),
-                    });
+                    dataLayerEvents.push(`EN_PAGEJSON_${property.toUpperCase()}-${this.transformJSON(pageJson[property])}`);
+                    dataLayerData[`'EN_PAGEJSON_${property.toUpperCase()}'`] =
+                        this.transformJSON(pageJson[property]);
                 }
-                this.dataLayer.push({
-                    event: "EN_PAGEJSON_" + property.toUpperCase(),
-                    eventValue: pageJson[property],
-                });
+                dataLayerEvents.push("EN_PAGEJSON_" + property.toUpperCase());
+                dataLayerData.eventValue = pageJson[property];
             }
             if (ENGrid.getPageCount() === ENGrid.getPageNumber()) {
-                this.dataLayer.push({
-                    event: "EN_SUBMISSION_SUCCESS_" + pageJson.pageType.toUpperCase(),
-                });
-                this.dataLayer.push({
-                    [`'EN_SUBMISSION_SUCCESS_${pageJson.pageType.toUpperCase()}'`]: "TRUE",
-                });
+                dataLayerEvents.push("EN_SUBMISSION_SUCCESS_" + pageJson.pageType.toUpperCase());
+                dataLayerData[`'EN_SUBMISSION_SUCCESS_${pageJson.pageType.toUpperCase()}'`] = "TRUE";
             }
         }
         const urlParams = new URLSearchParams(window.location.search);
         urlParams.forEach((value, key) => {
-            this.dataLayer.push({
-                event: `EN_URLPARAM_${key.toUpperCase()}-${this.transformJSON(value)}`,
-            });
-            this.dataLayer.push({
-                [`'EN_URLPARAM_${key.toUpperCase()}'`]: this.transformJSON(value),
-            });
+            dataLayerEvents.push(`EN_URLPARAM_${key.toUpperCase()}-${this.transformJSON(value)}`);
+            dataLayerData[`'EN_URLPARAM_${key.toUpperCase()}'`] =
+                this.transformJSON(value);
         });
         if (ENGrid.getPageType() === "DONATION") {
             const recurrFreqEls = document.querySelectorAll('[name="transaction.recurrfreq"]');
             const recurrValues = [...recurrFreqEls].map((el) => el.value);
-            this.dataLayer.push({
-                event: "EN_RECURRING_FREQUENCIES",
-                [`'EN_RECURRING_FREQEUENCIES'`]: recurrValues,
-            });
+            dataLayerEvents.push("EN_RECURRING_FREQUENCIES");
+            dataLayerData[`'EN_RECURRING_FREQEUENCIES'`] = recurrValues;
         }
         let fastFormFill = false;
         // Fast Form Fill - Personal Details
@@ -156,20 +138,14 @@ export class DataLayer {
             const allPersonalMandatoryInputsAreFilled = FastFormFill.allMandatoryInputsAreFilled(fastPersonalDetailsFormBlock);
             const somePersonalMandatoryInputsAreFilled = FastFormFill.someMandatoryInputsAreFilled(fastPersonalDetailsFormBlock);
             if (allPersonalMandatoryInputsAreFilled) {
-                this.dataLayer.push({
-                    event: "EN_FASTFORMFILL_PERSONALINFO_SUCCESS",
-                });
+                dataLayerEvents.push("EN_FASTFORMFILL_PERSONALINFO_SUCCESS");
                 fastFormFill = true;
             }
             else if (somePersonalMandatoryInputsAreFilled) {
-                this.dataLayer.push({
-                    event: "EN_FASTFORMFILL_PERSONALINFO_PARTIALSUCCESS",
-                });
+                dataLayerEvents.push("EN_FASTFORMFILL_PERSONALINFO_PARTIALSUCCESS");
             }
             else {
-                this.dataLayer.push({
-                    event: "EN_FASTFORMFILL_PERSONALINFO_FAILURE",
-                });
+                dataLayerEvents.push("EN_FASTFORMFILL_PERSONALINFO_FAILURE");
             }
         }
         // Fast Form Fill - Address Details
@@ -178,31 +154,29 @@ export class DataLayer {
             const allAddressMandatoryInputsAreFilled = FastFormFill.allMandatoryInputsAreFilled(fastAddressDetailsFormBlock);
             const someAddressMandatoryInputsAreFilled = FastFormFill.someMandatoryInputsAreFilled(fastAddressDetailsFormBlock);
             if (allAddressMandatoryInputsAreFilled) {
-                this.dataLayer.push({
-                    event: "EN_FASTFORMFILL_ADDRESS_SUCCESS",
-                });
+                dataLayerEvents.push("EN_FASTFORMFILL_ADDRESS_SUCCESS");
                 fastFormFill = fastFormFill ? true : false; // Only set to true if it was true before
             }
             else if (someAddressMandatoryInputsAreFilled) {
-                this.dataLayer.push({
-                    event: "EN_FASTFORMFILL_ADDRESS_PARTIALSUCCESS",
-                });
+                dataLayerEvents.push("EN_FASTFORMFILL_ADDRESS_PARTIALSUCCESS");
             }
             else {
-                this.dataLayer.push({
-                    event: "EN_FASTFORMFILL_ADDRESS_FAILURE",
-                });
+                dataLayerEvents.push("EN_FASTFORMFILL_ADDRESS_FAILURE");
             }
         }
         if (fastFormFill) {
-            this.dataLayer.push({
-                event: "EN_FASTFORMFILL_ALL_SUCCESS",
-            });
+            dataLayerEvents.push("EN_FASTFORMFILL_ALL_SUCCESS");
         }
         else {
-            this.dataLayer.push({
-                event: "EN_FASTFORMFILL_ALL_FAILURE",
-            });
+            dataLayerEvents.push("EN_FASTFORMFILL_ALL_FAILURE");
+        }
+        // Push all collected events individually (GTM requirement)
+        dataLayerEvents.forEach((event) => {
+            this.dataLayer.push({ event });
+        });
+        // Push all collected variables at once
+        if (Object.keys(dataLayerData).length > 0) {
+            this.dataLayer.push(dataLayerData);
         }
         this.attachEventListeners();
     }
