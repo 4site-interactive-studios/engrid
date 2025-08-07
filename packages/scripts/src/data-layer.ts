@@ -220,16 +220,16 @@ export class DataLayer {
       dataLayerEvents.push("EN_FASTFORMFILL_ALL_FAILURE");
     }
 
-    // Push all collected events individually (GTM requirement)
-    dataLayerEvents.forEach((event) => {
-      this.dataLayer.push({ event });
-    });
-
     // Push all collected variables at once
     if (Object.keys(dataLayerData).length > 0) {
       dataLayerData.event = "pageJsonVariablesReady";
       this.dataLayer.push(dataLayerData);
     }
+
+    // Push all collected events individually (GTM requirement)
+    dataLayerEvents.forEach((event) => {
+      this.dataLayer.push({ event });
+    });
 
     this.attachEventListeners();
   }
