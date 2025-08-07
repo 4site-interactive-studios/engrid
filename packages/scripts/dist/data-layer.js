@@ -176,6 +176,7 @@ export class DataLayer {
         });
         // Push all collected variables at once
         if (Object.keys(dataLayerData).length > 0) {
+            dataLayerData.event = "pageJsonVariablesReady";
             this.dataLayer.push(dataLayerData);
         }
         this.attachEventListeners();
