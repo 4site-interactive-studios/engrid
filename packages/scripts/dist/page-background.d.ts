@@ -1,7 +1,16 @@
 export declare class PageBackground {
     private pageBackground;
     private mutationObserver;
+    private logger;
     constructor();
+    /**
+     * Initialize background image by finding and setting CSS custom property
+     */
+    private initializeBackgroundImage;
+    /**
+     * Set the background image URL as a CSS custom property
+     */
+    private setBackgroundImageUrl;
     /**
      * Processes attribution positioning for background images by moving positioning classes
      * and data attributes from images to their parent column containers.
@@ -32,8 +41,24 @@ export declare class PageBackground {
      * - topleft
      */
     private processAttributionPositioning;
+    /**
+     * Process attribution for a single image
+     */
+    private processImageAttribution;
+    /**
+     * Handle class-based attribution positioning
+     */
+    private handleClassBasedAttribution;
+    /**
+     * Handle data attribute-based attribution positioning
+     */
+    private handleDataAttributeAttribution;
     private setupMutationObserver;
     reprocessAttributionPositioning(): void;
+    /**
+     * Clean up resources and observers
+     */
+    destroy(): void;
     private setDataAttributes;
     private hasVideoBackground;
     private hasImageBackground;
