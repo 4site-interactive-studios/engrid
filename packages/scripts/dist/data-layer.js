@@ -103,12 +103,12 @@ export class DataLayer {
             for (const property in pageJson) {
                 if (!Number.isNaN(pageJson[property])) {
                     dataLayerEvents.push(`EN_PAGEJSON_${property.toUpperCase()}-${pageJson[property]}`);
-                    dataLayerData[`'EN_PAGEJSON_${property.toUpperCase()}'`] =
+                    dataLayerData[`EN_PAGEJSON_${property.toUpperCase()}`] =
                         pageJson[property];
                 }
                 else {
                     dataLayerEvents.push(`EN_PAGEJSON_${property.toUpperCase()}-${this.transformJSON(pageJson[property])}`);
-                    dataLayerData[`'EN_PAGEJSON_${property.toUpperCase()}'`] =
+                    dataLayerData[`EN_PAGEJSON_${property.toUpperCase()}`] =
                         this.transformJSON(pageJson[property]);
                 }
                 dataLayerEvents.push("EN_PAGEJSON_" + property.toUpperCase());
@@ -116,13 +116,13 @@ export class DataLayer {
             }
             if (ENGrid.getPageCount() === ENGrid.getPageNumber()) {
                 dataLayerEvents.push("EN_SUBMISSION_SUCCESS_" + pageJson.pageType.toUpperCase());
-                dataLayerData[`'EN_SUBMISSION_SUCCESS_${pageJson.pageType.toUpperCase()}'`] = "TRUE";
+                dataLayerData[`EN_SUBMISSION_SUCCESS_${pageJson.pageType.toUpperCase()}`] = "TRUE";
             }
         }
         const urlParams = new URLSearchParams(window.location.search);
         urlParams.forEach((value, key) => {
             dataLayerEvents.push(`EN_URLPARAM_${key.toUpperCase()}-${this.transformJSON(value)}`);
-            dataLayerData[`'EN_URLPARAM_${key.toUpperCase()}'`] =
+            dataLayerData[`EN_URLPARAM_${key.toUpperCase()}`] =
                 this.transformJSON(value);
         });
         if (ENGrid.getPageType() === "DONATION") {

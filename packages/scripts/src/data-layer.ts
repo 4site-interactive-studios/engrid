@@ -130,7 +130,7 @@ export class DataLayer {
           dataLayerEvents.push(
             `EN_PAGEJSON_${property.toUpperCase()}-${pageJson[property]}`
           );
-          dataLayerData[`'EN_PAGEJSON_${property.toUpperCase()}'`] =
+          dataLayerData[`EN_PAGEJSON_${property.toUpperCase()}`] =
             pageJson[property];
         } else {
           dataLayerEvents.push(
@@ -138,7 +138,7 @@ export class DataLayer {
               pageJson[property]
             )}`
           );
-          dataLayerData[`'EN_PAGEJSON_${property.toUpperCase()}'`] =
+          dataLayerData[`EN_PAGEJSON_${property.toUpperCase()}`] =
             this.transformJSON(pageJson[property]);
         }
 
@@ -151,7 +151,7 @@ export class DataLayer {
           "EN_SUBMISSION_SUCCESS_" + pageJson.pageType.toUpperCase()
         );
         dataLayerData[
-          `'EN_SUBMISSION_SUCCESS_${pageJson.pageType.toUpperCase()}'`
+          `EN_SUBMISSION_SUCCESS_${pageJson.pageType.toUpperCase()}`
         ] = "TRUE";
       }
     }
@@ -161,7 +161,7 @@ export class DataLayer {
       dataLayerEvents.push(
         `EN_URLPARAM_${key.toUpperCase()}-${this.transformJSON(value)}`
       );
-      dataLayerData[`'EN_URLPARAM_${key.toUpperCase()}'`] =
+      dataLayerData[`EN_URLPARAM_${key.toUpperCase()}`] =
         this.transformJSON(value);
     });
 
