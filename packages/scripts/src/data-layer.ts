@@ -221,15 +221,10 @@ export class DataLayer {
     }
 
     // Push all collected variables at once
-    // if (Object.keys(dataLayerData).length > 0) {
-    //   dataLayerData.event = "pageJsonVariablesReady";
-    //   this.dataLayer.push(dataLayerData);
-    // }
-
-    // Push all collected variables individually
-    Object.keys(dataLayerData).forEach((key) => {
-      this.dataLayer.push({ [key]: dataLayerData[key] });
-    });
+    if (Object.keys(dataLayerData).length > 0) {
+      dataLayerData.event = "pageJsonVariablesReady";
+      this.dataLayer.push(dataLayerData);
+    }
 
     // Push all collected events individually (GTM requirement)
     dataLayerEvents.forEach((event) => {
