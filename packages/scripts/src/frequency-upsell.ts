@@ -118,6 +118,7 @@ export class FrequencyUpsell {
         this.upsellModal!.updateModalContent();
         this.logger.log("Frequency upsell modal opened");
         this.upsellModal?.open();
+        this.options!.onOpen();
         this.modalSeen = true;
         this._form.submit = false;
         return false;

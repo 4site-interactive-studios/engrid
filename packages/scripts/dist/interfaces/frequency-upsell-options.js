@@ -7,6 +7,7 @@ export const FrequencyUpsellOptionsDefaults = {
     upsellFromFrequency: ["onetime"],
     customClass: "",
     upsellAmount: (currentAmount) => currentAmount,
+    onOpen: () => { },
     onAccept: () => { },
     onDecline: () => { },
 };

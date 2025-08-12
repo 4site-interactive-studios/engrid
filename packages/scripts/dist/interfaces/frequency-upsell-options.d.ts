@@ -7,6 +7,7 @@ export interface FrequencyUpsellOptions {
     upsellAmount: (currentAmount: number) => number;
     upsellFromFrequency: Array<"onetime" | "monthly" | "quarterly" | "semi_annual" | "annual">;
     customClass: string;
+    onOpen: () => void;
     onAccept: () => void;
     onDecline: () => void;
 }
