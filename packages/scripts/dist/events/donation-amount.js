@@ -33,6 +33,8 @@ export class DonationAmount {
                 this.amount = ENGrid.cleanAmount(otherField.value);
             });
         }
+        // Load the current amount
+        this.load();
     }
     static getInstance(radios = "transaction.donationAmt", other = "transaction.donationAmt.other") {
         if (!DonationAmount.instance) {

@@ -40,6 +40,8 @@ export class DonationAmount {
         this.amount = ENGrid.cleanAmount(otherField.value);
       });
     }
+    // Load the current amount
+    this.load();
   }
 
   public static getInstance(

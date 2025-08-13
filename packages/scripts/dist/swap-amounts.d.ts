@@ -33,14 +33,10 @@ export declare class SwapAmounts {
     constructor();
     loadAmountsFromUrl(): void;
     swapAmounts(): void;
-    loadEnAmounts(amountArray: {
-        amounts: [string, number];
-        default: number;
-    }): {
-        selected: boolean;
-        label: string;
-        value: string;
-    }[];
+    /**
+     * Convert the internal config object into the structure Engaging Networks expects
+     */
+    private toEnAmountList;
     shouldRun(): boolean;
     ignoreCurrentValue(): boolean;
 }

@@ -30,6 +30,14 @@
  */
 import { DonationAmount, DonationFrequency, ENGrid, EngridLogger } from ".";
 
+/**
+ * Shape of the frequency amounts configuration expected on window.EngridAmounts
+ */
+interface FrequencyAmountsConfig {
+  amounts: Record<string, number | string>; // label => numeric value or 'other'
+  default: number; // numeric default amount
+}
+
 export class SwapAmounts {
   private logger: EngridLogger = new EngridLogger(
     "SwapAmounts",
@@ -39,95 +47,102 @@ export class SwapAmounts {
   );
   public _amount: DonationAmount = DonationAmount.getInstance();
   private _frequency: DonationFrequency = DonationFrequency.getInstance();
-  private defaultChange: boolean = false;
-  private swapped: boolean = false;
+  private defaultChange = false; // Tracks if user changed away from default after swap
+  private swapped = false; // Tracks if we've already executed at least one swap
   constructor() {
     this.loadAmountsFromUrl();
     if (!this.shouldRun()) return;
+
+    // Respond when frequency changes
     this._frequency.onFrequencyChange.subscribe(() => this.swapAmounts());
+
+    // Track if donor moves away from the swapped default amount
     this._amount.onAmountChange.subscribe(() => {
-      if (this._frequency.frequency in window.EngridAmounts === false) return;
-      this.defaultChange = false;
-      if (!this.swapped) return;
-      // Check if the amount is not default amount for the frequency
-      if (
-        this._amount.amount !=
-        window.EngridAmounts[this._frequency.frequency].default
-      ) {
-        this.defaultChange = true;
-      }
+      const configs = window.EngridAmounts;
+      if (!configs) return;
+      const freq = this._frequency.frequency;
+      if (!(freq in configs)) return;
+      if (!this.swapped) return; // ignore early changes before initial swap
+
+      const currentConfig = configs[freq];
+      this.defaultChange = this._amount.amount !== currentConfig.default;
     });
   }
   loadAmountsFromUrl() {
     const urlParams = new URLSearchParams(window.location.search);
     const amounts = urlParams.get("engrid-amounts");
     if (amounts) {
-      this.defaultChange = true;
-      const amountArray = amounts.split(",").map((amt) => amt.trim());
+      this.defaultChange = true; // if amounts come from URL, treat as user-set
+      const amountArray = amounts
+        .split(",")
+        .map((amt) => amt.trim())
+        .filter(Boolean);
+      if (!amountArray.length) return;
+
+      const urlDefaultParam = ENGrid.getUrlParameter("transaction.donationAmt");
+      const parsedFirst = parseFloat(amountArray[0]);
       const defaultAmount =
-        parseFloat(
-          ENGrid.getUrlParameter("transaction.donationAmt") as string
-        ) || parseFloat(amountArray[0]);
-      const amountsObj: { [key: string]: number | string } = {};
-      for (let i = 0; i < amountArray.length; i++) {
-        amountsObj[amountArray[i].toString()] = isNaN(
-          parseFloat(amountArray[i])
-        )
-          ? amountArray[i]
-          : parseFloat(amountArray[i]);
-      }
+        (urlDefaultParam && parseFloat(urlDefaultParam as string)) ||
+        parsedFirst;
+
+      const amountsObj: Record<string, number | string> = {};
+      amountArray.forEach((raw) => {
+        const numeric = parseFloat(raw);
+        amountsObj[raw] = isNaN(numeric) ? raw : numeric;
+      });
+      // Ensure Other choice always present at the end
       amountsObj["Other"] = "other";
+
+      const config: FrequencyAmountsConfig = {
+        amounts: amountsObj,
+        default: defaultAmount,
+      };
       window.EngridAmounts = {
-        onetime: { amounts: amountsObj, default: defaultAmount },
-        monthly: { amounts: amountsObj, default: defaultAmount },
+        onetime: config,
+        monthly: config,
       };
     }
   }
 
   swapAmounts() {
-    if (this._frequency.frequency in window.EngridAmounts) {
-      window.EngagingNetworks.require._defined.enjs.swapList(
-        "donationAmt",
-        this.loadEnAmounts(window.EngridAmounts[this._frequency.frequency]),
-        {
-          ignoreCurrentValue: this.ignoreCurrentValue(),
-        }
-      );
-      this._amount.load();
-      this.logger.log(
-        "Amounts Swapped To",
-        window.EngridAmounts[this._frequency.frequency],
-        {
-          ignoreCurrentValue: this.ignoreCurrentValue(),
-        }
-      );
-      this.swapped = true;
-    }
+    const configs = window.EngridAmounts;
+    if (!configs) return;
+    const freq = this._frequency.frequency;
+    const config = configs[freq];
+    if (!config) return;
+    const ignoreCurrentValue = this.ignoreCurrentValue();
+
+    window.EngagingNetworks.require._defined.enjs.swapList(
+      "donationAmt",
+      this.toEnAmountList(config),
+      { ignoreCurrentValue }
+    );
+    this._amount.load();
+    this.logger.log("Amounts Swapped To", config, { ignoreCurrentValue });
+    this.swapped = true;
   }
-  loadEnAmounts(amountArray: { amounts: [string, number]; default: number }) {
-    let ret = [];
-    for (let amount in amountArray.amounts) {
-      ret.push({
-        selected: amountArray.amounts[amount] === amountArray.default,
-        label: amount,
-        value: amountArray.amounts[amount].toString(),
-      });
-    }
-    return ret;
+  /**
+   * Convert the internal config object into the structure Engaging Networks expects
+   */
+  private toEnAmountList(config: FrequencyAmountsConfig) {
+    return Object.entries(config.amounts).map(([label, value]) => ({
+      selected: value === config.default,
+      label,
+      value: value.toString(),
+    }));
   }
   shouldRun() {
-    return "EngridAmounts" in window;
+    return !!window.EngridAmounts;
   }
   ignoreCurrentValue() {
-    if (ENGrid.getUrlParameter("transaction.donationAmt") !== null) {
-      return this._amount.amount ===
-        parseFloat(ENGrid.getUrlParameter("transaction.donationAmt") as string)
-        ? false
-        : true;
+    const urlParam = ENGrid.getUrlParameter("transaction.donationAmt");
+    if (urlParam !== null) {
+      const urlAmount = parseFloat(urlParam as string);
+      return this._amount.amount !== urlAmount;
     }
-    return !(
-      window.EngagingNetworks.require._defined.enjs.checkSubmissionFailed() ||
-      this.defaultChange
-    );
+    // If submission failed or donor manually changed away from default, respect current value
+    const submissionFailed =
+      window.EngagingNetworks.require._defined.enjs.checkSubmissionFailed();
+    return !(submissionFailed || this.defaultChange);
   }
 }
