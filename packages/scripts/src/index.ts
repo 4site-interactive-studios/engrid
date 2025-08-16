@@ -16,6 +16,8 @@ export {
 export {
   FrequencyUpsellOptions,
   FrequencyUpsellOptionsDefaults,
+  FrequencyUpsellABTestConfig,
+  FrequencyUpsellConfig,
 } from "./interfaces/frequency-upsell-options";
 
 export * from "./loader";

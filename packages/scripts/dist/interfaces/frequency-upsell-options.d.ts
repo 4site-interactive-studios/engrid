@@ -11,4 +11,11 @@ export interface FrequencyUpsellOptions {
     onAccept: () => void;
     onDecline: () => void;
 }
+export interface FrequencyUpsellABTestConfig {
+    abTest: true;
+    options: FrequencyUpsellOptions[];
+    cookieName?: string;
+    cookieDurationDays?: number;
+}
+export type FrequencyUpsellConfig = FrequencyUpsellOptions | FrequencyUpsellABTestConfig;
 export declare const FrequencyUpsellOptionsDefaults: FrequencyUpsellOptions;

@@ -14,6 +14,23 @@ export interface FrequencyUpsellOptions {
   onDecline: () => void;
 }
 
+// A/B Test configuration wrapper. When the page editor sets window.EngridFrequencyUpsell
+// to an object containing { abTest: true, options: [...] }, one of the provided
+// FrequencyUpsellOptions variants will be randomly (but persistently) chosen.
+export interface FrequencyUpsellABTestConfig {
+  abTest: true;
+  // The variants to test
+  options: FrequencyUpsellOptions[];
+  // Optional custom cookie name (defaults to engrid_frequency_upsell_variant)
+  cookieName?: string;
+  // Optional cookie duration in days (defaults to 1)
+  cookieDurationDays?: number;
+}
+
+export type FrequencyUpsellConfig =
+  | FrequencyUpsellOptions
+  | FrequencyUpsellABTestConfig;
+
 export const FrequencyUpsellOptionsDefaults: FrequencyUpsellOptions = {
   title: "Before we process your donation...",
   paragraph: "Would you like to make it an annual gift?",

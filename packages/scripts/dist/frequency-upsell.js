@@ -5,6 +5,7 @@
  * See FrequencyUpsellOptions for more details.
  */
 import { DonationAmount, DonationFrequency, EnForm, EngridLogger, FrequencyUpsellModal, FrequencyUpsellOptionsDefaults, ProcessingFees, } from ".";
+import * as cookie from "./cookie";
 export class FrequencyUpsell {
     constructor() {
         this.logger = new EngridLogger("FrequencyUpsell", "lightgray", "darkblue", "🏦");
@@ -19,11 +20,54 @@ export class FrequencyUpsell {
             this.logger.log("FrequencyUpsell not running");
             return;
         }
-        this.options = Object.assign(Object.assign({}, FrequencyUpsellOptionsDefaults), window.EngridFrequencyUpsell);
+        this.options = this.selectOptions(window.EngridFrequencyUpsell);
         this.logger.log("FrequencyUpsell initialized", this.options);
         this.upsellModal = new FrequencyUpsellModal(this.options);
         this.createFrequencyField();
         this.addEventListeners();
+    }
+    /**
+     * Select the proper options (single config or A/B variant) and return a concrete FrequencyUpsellOptions object.
+     * If an A/B test config is provided (abTest: true, options: [...]) a random variant is chosen and stored
+     * in a 1-day cookie so subsequent visits get the same variant.
+     */
+    selectOptions(config) {
+        // Simple (non AB) case
+        if (!config.abTest) {
+            return Object.assign(Object.assign({}, FrequencyUpsellOptionsDefaults), config);
+        }
+        const abConfig = config;
+        const cookieName = abConfig.cookieName || "engrid_frequency_upsell_variant";
+        const existing = cookie.get(cookieName);
+        let index;
+        if (existing !== undefined) {
+            const parsed = parseInt(existing, 10);
+            if (!isNaN(parsed) && parsed >= 0 && parsed < abConfig.options.length) {
+                index = parsed;
+            }
+            else {
+                index = this.randomIndex(abConfig.options.length);
+            }
+        }
+        else {
+            index = this.randomIndex(abConfig.options.length);
+        }
+        // Persist for configured duration
+        const duration = abConfig.cookieDurationDays || 1;
+        cookie.set(cookieName, index.toString(), { expires: duration });
+        const chosen = abConfig.options[index];
+        // Push variant info to dataLayer if available
+        if (window.dataLayer) {
+            window.dataLayer.push({
+                event: "frequency_upsell_ab_variant",
+                frequencyUpsellVariantIndex: index,
+                frequencyUpsellVariantTitle: chosen.title,
+            });
+        }
+        return Object.assign(Object.assign({}, FrequencyUpsellOptionsDefaults), chosen);
+    }
+    randomIndex(length) {
+        return Math.floor(Math.random() * length);
     }
     /**
      * Check if the FrequencyUpsell should run:

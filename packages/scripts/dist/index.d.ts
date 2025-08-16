@@ -3,7 +3,7 @@ export { Options, OptionsDefaults } from "./interfaces/options";
 export { UpsellOptions, UpsellOptionsDefaults, } from "./interfaces/upsell-options";
 export { TranslateOptions, TranslateOptionsDefaults, } from "./interfaces/translate-options";
 export { ExitIntentOptions, ExitIntentOptionsDefaults, } from "./interfaces/exit-intent-options";
-export { FrequencyUpsellOptions, FrequencyUpsellOptionsDefaults, } from "./interfaces/frequency-upsell-options";
+export { FrequencyUpsellOptions, FrequencyUpsellOptionsDefaults, FrequencyUpsellABTestConfig, FrequencyUpsellConfig, } from "./interfaces/frequency-upsell-options";
 export * from "./loader";
 export * from "./app";
 export * from "./amount-label";

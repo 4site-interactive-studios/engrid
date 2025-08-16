@@ -9,6 +9,13 @@ export declare class FrequencyUpsell {
     private modalSeen;
     constructor();
     /**
+     * Select the proper options (single config or A/B variant) and return a concrete FrequencyUpsellOptions object.
+     * If an A/B test config is provided (abTest: true, options: [...]) a random variant is chosen and stored
+     * in a 1-day cookie so subsequent visits get the same variant.
+     */
+    private selectOptions;
+    private randomIndex;
+    /**
      * Check if the FrequencyUpsell should run:
      * - Check if the FrequencyUpsell is enabled in the window object
      * - Check that we don't have an EngridUpsell active on this page
