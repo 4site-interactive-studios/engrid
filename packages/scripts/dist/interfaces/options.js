@@ -14,6 +14,7 @@ export const OptionsDefaults = {
     MaxAmount: 100000,
     MinAmountMessage: "Amount must be at least $1",
     MaxAmountMessage: "Amount must be less than $100,000",
+    UseAmountValidatorFromEN: false,
     SkipToMainContentLink: true,
     SrcDefer: true,
     NeverBounceAPI: null,

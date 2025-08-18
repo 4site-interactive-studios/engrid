@@ -15,6 +15,7 @@ export interface Options {
     MaxAmount?: number;
     MinAmountMessage?: string;
     MaxAmountMessage?: string;
+    UseAmountValidatorFromEN?: boolean;
     SkipToMainContentLink?: boolean;
     SrcDefer?: boolean;
     NeverBounceAPI?: string | null;
