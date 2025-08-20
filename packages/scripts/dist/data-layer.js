@@ -1,25 +1,13 @@
-// The DataLayer class is a singleton class that is responsible for managing the data layer events.
-// It listens to the EnForm onSubmit event and the RememberMe onLoad event.
-// It also listens to the blur, change, and submit events of the form fields.
-// It adds the following events to the data layer:
-// - EN_PAGE_VIEW
-// - EN_SUCCESSFUL_DONATION
-// - EN_PAGEJSON_{property}
-// - EN_SUBMISSION_SUCCESS_{pageType}
-// - EN_URLPARAM_{key}-{value}
-// - EN_RECURRING_FREQUENCIES
-// - EN_FASTFORMFILL_PERSONALINFO_SUCCESS
-// - EN_FASTFORMFILL_PERSONALINFO_PARTIALSUCCESS
-// - EN_FASTFORMFILL_PERSONALINFO_FAILURE
-// - EN_FASTFORMFILL_ADDRESS_SUCCESS
-// - EN_FASTFORMFILL_ADDRESS_PARTIALSUCCESS
-// - EN_FASTFORMFILL_ADDRESS_FAILURE
-// - EN_FASTFORMFILL_ALL_SUCCESS
-// - EN_FASTFORMFILL_ALL_FAILURE
-// - EN_SUBMISSION_WITH_EMAIL_OPTIN
-// - EN_SUBMISSION_WITHOUT_EMAIL_OPTIN
-// - EN_FORM_VALUE_UPDATED
-import { EngridLogger, ENGrid, EnForm, FastFormFill, RememberMeEvents, } from ".";
+// DataLayer: singleton helper for pushing structured analytics events/vars to window.dataLayer.
+// On load it emits one aggregated event `pageJsonVariablesReady` with:
+//   EN_PAGEJSON_* (normalized pageJson), EN_URLPARAM_*, EN_RECURRING_FREQUENCIES (donation pages),
+//   and EN_SUBMISSION_SUCCESS_{PAGETYPE} when on the final page.
+// User actions emit: EN_FORM_VALUE_UPDATED (field changes) and submission opt‑in/out events.
+// Queued end‑of‑gift events/variables (via addEndOfGiftProcessEvent / addEndOfGiftProcessVariable)
+// are replayed after a successful gift process load.
+// Sensitive payment/bank fields are excluded; selected PII fields are Base64 “hashed” (btoa — not cryptographic).
+// Replace with a real hash (e.g., SHA‑256) if required.
+import { EngridLogger, ENGrid, EnForm, RememberMeEvents } from ".";
 export class DataLayer {
     constructor() {
         this.logger = new EngridLogger("DataLayer", "#f1e5bc", "#009cdc", "📊");
@@ -77,108 +65,53 @@ export class DataLayer {
     }
     transformJSON(value) {
         if (typeof value === "string") {
-            return value.toUpperCase().split(" ").join("-").replace(":-", "-");
+            return value
+                .toUpperCase()
+                .trim()
+                .replace(/\s+/g, "-")
+                .replace(/:-/g, "-");
         }
-        else if (typeof value === "boolean") {
-            value = value ? "TRUE" : "FALSE";
-            return value;
+        if (typeof value === "boolean") {
+            return value ? "TRUE" : "FALSE";
+        }
+        if (typeof value === "number") {
+            return value; // Preserve numeric type for analytics platforms that infer number vs string
         }
         return "";
     }
     onLoad() {
-        // Collect all data layer events and variables to push at once
+        // Collect all data layer variables to push at once
         const dataLayerData = {};
-        const dataLayerEvents = [];
         if (ENGrid.getGiftProcess()) {
             this.logger.log("EN_SUCCESSFUL_DONATION");
-            dataLayerEvents.push("EN_SUCCESSFUL_DONATION");
             this.addEndOfGiftProcessEventsToDataLayer();
-        }
-        else {
-            this.logger.log("EN_PAGE_VIEW");
-            dataLayerEvents.push("EN_PAGE_VIEW");
         }
         if (window.pageJson) {
             const pageJson = window.pageJson;
             for (const property in pageJson) {
-                if (!Number.isNaN(pageJson[property])) {
-                    dataLayerEvents.push(`EN_PAGEJSON_${property.toUpperCase()}-${pageJson[property]}`);
-                    dataLayerData[`EN_PAGEJSON_${property.toUpperCase()}`] =
-                        pageJson[property];
-                }
-                else {
-                    dataLayerEvents.push(`EN_PAGEJSON_${property.toUpperCase()}-${this.transformJSON(pageJson[property])}`);
-                    dataLayerData[`EN_PAGEJSON_${property.toUpperCase()}`] =
-                        this.transformJSON(pageJson[property]);
-                }
-                dataLayerEvents.push("EN_PAGEJSON_" + property.toUpperCase());
-                dataLayerData.eventValue = pageJson[property];
+                const key = `EN_PAGEJSON_${property.toUpperCase()}`;
+                const value = pageJson[property];
+                dataLayerData[key] = this.transformJSON(value);
             }
             if (ENGrid.getPageCount() === ENGrid.getPageNumber()) {
-                dataLayerEvents.push("EN_SUBMISSION_SUCCESS_" + pageJson.pageType.toUpperCase());
                 dataLayerData[`EN_SUBMISSION_SUCCESS_${pageJson.pageType.toUpperCase()}`] = "TRUE";
             }
         }
         const urlParams = new URLSearchParams(window.location.search);
         urlParams.forEach((value, key) => {
-            dataLayerEvents.push(`EN_URLPARAM_${key.toUpperCase()}-${this.transformJSON(value)}`);
             dataLayerData[`EN_URLPARAM_${key.toUpperCase()}`] =
                 this.transformJSON(value);
         });
         if (ENGrid.getPageType() === "DONATION") {
             const recurrFreqEls = document.querySelectorAll('[name="transaction.recurrfreq"]');
             const recurrValues = [...recurrFreqEls].map((el) => el.value);
-            dataLayerEvents.push("EN_RECURRING_FREQUENCIES");
-            dataLayerData[`'EN_RECURRING_FREQEUENCIES'`] = recurrValues;
-        }
-        let fastFormFill = false;
-        // Fast Form Fill - Personal Details
-        const fastPersonalDetailsFormBlock = document.querySelector(".en__component--formblock.fast-personal-details");
-        if (fastPersonalDetailsFormBlock) {
-            const allPersonalMandatoryInputsAreFilled = FastFormFill.allMandatoryInputsAreFilled(fastPersonalDetailsFormBlock);
-            const somePersonalMandatoryInputsAreFilled = FastFormFill.someMandatoryInputsAreFilled(fastPersonalDetailsFormBlock);
-            if (allPersonalMandatoryInputsAreFilled) {
-                dataLayerEvents.push("EN_FASTFORMFILL_PERSONALINFO_SUCCESS");
-                fastFormFill = true;
-            }
-            else if (somePersonalMandatoryInputsAreFilled) {
-                dataLayerEvents.push("EN_FASTFORMFILL_PERSONALINFO_PARTIALSUCCESS");
-            }
-            else {
-                dataLayerEvents.push("EN_FASTFORMFILL_PERSONALINFO_FAILURE");
-            }
-        }
-        // Fast Form Fill - Address Details
-        const fastAddressDetailsFormBlock = document.querySelector(".en__component--formblock.fast-address-details");
-        if (fastAddressDetailsFormBlock) {
-            const allAddressMandatoryInputsAreFilled = FastFormFill.allMandatoryInputsAreFilled(fastAddressDetailsFormBlock);
-            const someAddressMandatoryInputsAreFilled = FastFormFill.someMandatoryInputsAreFilled(fastAddressDetailsFormBlock);
-            if (allAddressMandatoryInputsAreFilled) {
-                dataLayerEvents.push("EN_FASTFORMFILL_ADDRESS_SUCCESS");
-                fastFormFill = fastFormFill ? true : false; // Only set to true if it was true before
-            }
-            else if (someAddressMandatoryInputsAreFilled) {
-                dataLayerEvents.push("EN_FASTFORMFILL_ADDRESS_PARTIALSUCCESS");
-            }
-            else {
-                dataLayerEvents.push("EN_FASTFORMFILL_ADDRESS_FAILURE");
-            }
-        }
-        if (fastFormFill) {
-            dataLayerEvents.push("EN_FASTFORMFILL_ALL_SUCCESS");
-        }
-        else {
-            dataLayerEvents.push("EN_FASTFORMFILL_ALL_FAILURE");
+            dataLayerData[`EN_RECURRING_FREQUENCIES`] = recurrValues;
         }
         // Push all collected variables at once
         if (Object.keys(dataLayerData).length > 0) {
             dataLayerData.event = "pageJsonVariablesReady";
             this.dataLayer.push(dataLayerData);
         }
-        // Push all collected events individually (GTM requirement)
-        dataLayerEvents.forEach((event) => {
-            this.dataLayer.push({ event });
-        });
         this.attachEventListeners();
     }
     onSubmit() {
@@ -266,7 +199,7 @@ export class DataLayer {
     }
     addEndOfGiftProcessVariable(variableName, variableValue = "") {
         this.storeEndOfGiftProcessData({
-            [`'${variableName.toUpperCase()}'`]: variableValue,
+            [variableName.toUpperCase()]: variableValue,
         });
     }
     storeEndOfGiftProcessData(data) {
