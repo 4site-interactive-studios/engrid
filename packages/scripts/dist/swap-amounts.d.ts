@@ -10,6 +10,7 @@
  *       "Other": "other",
  *     },
  *     default: 30,
+ *     stickyDefault: false, // Optional. When true, every swap forces the default amount to be (re)selected
  *   },
  *   "monthly": {
  *     amounts: {
@@ -20,6 +21,7 @@
  *       "Other": "other",
  *     },
  *     default: 15,
+ *     stickyDefault: true, // Example forcing default on each frequency swap
  *   },
  * };
  */

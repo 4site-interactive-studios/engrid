@@ -15,6 +15,7 @@
  *       "Other": "other",
  *     },
  *     default: 30,
+ *     stickyDefault: false, // Optional. When true, every swap forces the default amount to be (re)selected
  *   },
  *   "monthly": {
  *     amounts: {
@@ -25,6 +26,7 @@
  *       "Other": "other",
  *     },
  *     default: 15,
+ *     stickyDefault: true, // Example forcing default on each frequency swap
  *   },
  * };
  */
@@ -80,6 +82,7 @@ export class SwapAmounts {
             const config = {
                 amounts: amountsObj,
                 default: defaultAmount,
+                // stickyDefault omitted so it defaults to false behavior
             };
             window.EngridAmounts = {
                 onetime: config,
@@ -95,7 +98,9 @@ export class SwapAmounts {
         const config = configs[freq];
         if (!config)
             return;
-        const ignoreCurrentValue = this.ignoreCurrentValue();
+        const stickyDefault = !!config.stickyDefault;
+        // If stickyDefault, always ignore current value so selected flag in list enforces default
+        const ignoreCurrentValue = stickyDefault ? true : this.ignoreCurrentValue();
         window.EngagingNetworks.require._defined.enjs.swapList("donationAmt", this.toEnAmountList(config), { ignoreCurrentValue });
         this._amount.load();
         this.logger.log("Amounts Swapped To", config, { ignoreCurrentValue });
