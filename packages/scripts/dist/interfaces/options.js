@@ -35,6 +35,7 @@ export const OptionsDefaults = {
     ENValidators: false,
     MobileCTA: false,
     CustomCurrency: false,
+    CustomPremium: false,
     VGS: false,
     PostalCodeValidator: false,
     CountryRedirect: false,

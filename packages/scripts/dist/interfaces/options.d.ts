@@ -151,6 +151,16 @@ export interface Options {
         placementQuerySelector?: string | null;
         excludePageIDs?: string[];
     };
+    CustomPremium?: false | {
+        [frequency: string]: ({
+            products?: {
+                [productId: string]: number;
+            };
+            default?: number | string;
+        } & {
+            [productId: string]: number;
+        });
+    };
     onLoad?: () => void;
     onResize?: () => void;
     onSubmit?: () => void;

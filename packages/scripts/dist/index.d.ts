@@ -58,6 +58,7 @@ export * from "./debug-hidden-fields";
 export * from "./branding-html";
 export * from "./country-disable";
 export * from "./premium-gift";
+export * from "./custom-premium";
 export * from "./digital-wallets";
 export * from "./mobile-cta";
 export * from "./live-frequency";
