@@ -1,0 +1,30 @@
+export declare class CustomPremium {
+    private logger;
+    private _amount;
+    private _frequency;
+    private _enForm;
+    private debounceTimer;
+    private stylesInjected;
+    private pendingFrequencyChange;
+    constructor();
+    private shouldRun;
+    private get config();
+    private get premiumContainer();
+    private get giftItems();
+    private getFrequencyConfig;
+    private getProductsMap;
+    private getConfiguredDefaultPid;
+    private injectStyles;
+    private startProcessingVisual;
+    private endProcessingVisual;
+    private scheduleRun;
+    private getCurrentFreq;
+    private getCurrentAmount;
+    private getAllowedProductIds;
+    private getProductId;
+    private showItem;
+    private selectByProductId;
+    private clearVariantField;
+    private hasVisiblePremiumItems;
+    private run;
+}

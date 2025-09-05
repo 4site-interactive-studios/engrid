@@ -156,6 +156,19 @@ export interface Options {
         placementQuerySelector?: string | null;
         excludePageIDs?: string[];
       };
+  // CustomPremium filters premium gifts per frequency based on minimum amounts
+  // Supports two shapes per frequency:
+  //  - Flat map: { 3759: 10, 3760: 25 }
+  //  - Object with products/default: { products: { 3759: 10 }, default: 3759 }
+  CustomPremium?:
+    | false
+    | {
+        [frequency: string]:
+          | {
+              products?: { [productId: string]: number };
+              default?: number | string;
+            } & { [productId: string]: number };
+      };
   onLoad?: () => void;
   onResize?: () => void;
   onSubmit?: () => void;
@@ -200,6 +213,7 @@ export const OptionsDefaults: Options = {
   ENValidators: false,
   MobileCTA: false,
   CustomCurrency: false,
+  CustomPremium: false,
   VGS: false,
   PostalCodeValidator: false,
   CountryRedirect: false,

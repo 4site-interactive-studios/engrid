@@ -86,6 +86,7 @@ import {
   UpsellCheckbox,
   PostDonationEmbed,
   FrequencyUpsell,
+  CustomPremium,
 } from ".";
 
 export class App extends ENGrid {
@@ -409,6 +410,8 @@ export class App extends ENGrid {
 
     // Premium Gift Features
     new PremiumGift();
+    // Custom Premium filtering (frequency/amount-based visibility)
+    new CustomPremium();
 
     // Supporter Hub Features
     new SupporterHub();
