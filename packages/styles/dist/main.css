@@ -7371,6 +7371,17 @@ body:not(#en__pagebuilder) .checkbox-label {
   display: none;
 }
 
+.engrid-custom-checkbox-label {
+  width: 100%;
+  box-sizing: border-box;
+}
+.engrid-custom-checkbox-label p:first-child {
+  margin-top: 0;
+}
+.engrid-custom-checkbox-label p:last-child {
+  margin-bottom: 0;
+}
+
 /* ENGRID LAYOUTS */
 /* MUST COME AFTER OTHER ENGRID STYLES WHICH MIGHT DEFINE MIXINS REFERENCED IN THE LAYOUTS */
 [data-engrid-theme] {

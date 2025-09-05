@@ -20,3 +20,13 @@
 body:not(#en__pagebuilder) .checkbox-label {
   display: none;
 }
+.engrid-custom-checkbox-label {
+  width: 100%;
+  box-sizing: border-box;
+  p:first-child {
+    margin-top: 0;
+  }
+  p:last-child {
+    margin-bottom: 0;
+  }
+}

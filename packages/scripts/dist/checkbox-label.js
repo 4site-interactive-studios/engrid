@@ -16,15 +16,15 @@ export class CheckboxLabel {
     }
     run() {
         this.checkBoxesLabels.forEach((checkboxLabel) => {
-            var _a;
-            const labelText = (_a = checkboxLabel.textContent) === null || _a === void 0 ? void 0 : _a.trim();
+            const labelHTML = checkboxLabel.innerHTML.trim();
             const checkboxContainer = checkboxLabel.nextElementSibling;
             const checkboxLabelElement = checkboxContainer.querySelector("label:last-child");
-            if (!checkboxLabelElement || !labelText)
+            if (!checkboxLabelElement || !labelHTML)
                 return;
-            checkboxLabelElement.textContent = labelText;
+            checkboxLabelElement.innerHTML = `<div class="engrid-custom-checkbox-label">${labelHTML}</div>`;
+            // Remove the original label element
             checkboxLabel.remove();
-            this.logger.log(`Set checkbox label to "${labelText}"`);
+            this.logger.log(`Set checkbox label to "${labelHTML}"`);
         });
     }
 }

@@ -23,16 +23,17 @@ export class CheckboxLabel {
   }
   run() {
     this.checkBoxesLabels.forEach((checkboxLabel) => {
-      const labelText = checkboxLabel.textContent?.trim();
+      const labelHTML = checkboxLabel.innerHTML.trim();
       const checkboxContainer =
         checkboxLabel.nextElementSibling as HTMLDivElement;
       const checkboxLabelElement = checkboxContainer.querySelector(
         "label:last-child"
       ) as HTMLLabelElement;
-      if (!checkboxLabelElement || !labelText) return;
-      checkboxLabelElement.textContent = labelText;
+      if (!checkboxLabelElement || !labelHTML) return;
+      checkboxLabelElement.innerHTML = `<div class="engrid-custom-checkbox-label">${labelHTML}</div>`;
+      // Remove the original label element
       checkboxLabel.remove();
-      this.logger.log(`Set checkbox label to "${labelText}"`);
+      this.logger.log(`Set checkbox label to "${labelHTML}"`);
     });
   }
 }
