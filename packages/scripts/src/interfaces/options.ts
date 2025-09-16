@@ -22,6 +22,7 @@ export interface Options {
   NeverBounceDateField?: string | null;
   NeverBounceDateFormat?: string;
   NeverBounceStatusField?: string | null;
+  NeverBounceTimeout?: number | null;
   FreshAddress?:
     | false
     | {
@@ -199,6 +200,7 @@ export const OptionsDefaults: Options = {
   NeverBounceDateField: null,
   NeverBounceStatusField: null,
   NeverBounceDateFormat: "MM/DD/YYYY",
+  NeverBounceTimeout: 10000,
   FreshAddress: false,
   ProgressBar: false,
   AutoYear: false,

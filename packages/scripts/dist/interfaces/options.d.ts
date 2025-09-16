@@ -22,6 +22,7 @@ export interface Options {
     NeverBounceDateField?: string | null;
     NeverBounceDateFormat?: string;
     NeverBounceStatusField?: string | null;
+    NeverBounceTimeout?: number | null;
     FreshAddress?: false | {
         dateField?: string;
         dateFieldFormat?: string;
