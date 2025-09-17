@@ -45,7 +45,7 @@ export class StickyNSG {
                 amounts: (_a = nsg.single) === null || _a === void 0 ? void 0 : _a.reduce((acc, curr) => {
                     acc[curr.value] = curr.value;
                     return acc;
-                }, {}),
+                }, { "Other": "other" }),
                 default: (_b = nsg.single) === null || _b === void 0 ? void 0 : _b.find((gift) => gift.nextSuggestedGift).value,
                 stickyDefault: false,
             },
@@ -53,7 +53,7 @@ export class StickyNSG {
                 amounts: (_c = nsg.recurring) === null || _c === void 0 ? void 0 : _c.reduce((acc, curr) => {
                     acc[curr.value] = curr.value;
                     return acc;
-                }, {}),
+                }, { "Other": "other" }),
                 default: (_d = nsg.recurring) === null || _d === void 0 ? void 0 : _d.find((gift) => gift.nextSuggestedGift).value,
                 stickyDefault: false,
             },
