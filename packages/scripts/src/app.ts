@@ -86,7 +86,7 @@ import {
   UpsellCheckbox,
   PostDonationEmbed,
   FrequencyUpsell,
-  CustomPremium,
+  CustomPremium, StickyNSG,
 } from ".";
 
 export class App extends ENGrid {
@@ -307,6 +307,8 @@ export class App extends ENGrid {
     // Adjust display of event tickets.
     new EventTickets();
 
+    // StickyNSG - Must load before SwapAmounts
+    new StickyNSG();
     // Swap Amounts
     new SwapAmounts();
 

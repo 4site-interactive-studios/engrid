@@ -52,6 +52,7 @@ export interface Options {
         fieldClearSelectorTargetLocation?: string;
         checked?: boolean;
       };
+  StickyNSG?: boolean;
   TidyContact?:
     | false
     | {
@@ -219,6 +220,7 @@ export const OptionsDefaults: Options = {
   CountryRedirect: false,
   WelcomeBack: false,
   OptInLadder: false,
+  StickyNSG: false,
   PageLayouts: [
     "leftleft1col",
     "centerleft1col",

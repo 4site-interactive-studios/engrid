@@ -48,6 +48,7 @@ export interface Options {
         fieldClearSelectorTargetLocation?: string;
         checked?: boolean;
     };
+    StickyNSG?: boolean;
     TidyContact?: false | {
         cid?: string;
         record_field?: string;
