@@ -41,6 +41,8 @@ export const OptionsDefaults = {
     CountryRedirect: false,
     WelcomeBack: false,
     OptInLadder: false,
+    StickyNSG: false,
+    StickyPrepopulation: false,
     PageLayouts: [
         "leftleft1col",
         "centerleft1col",
