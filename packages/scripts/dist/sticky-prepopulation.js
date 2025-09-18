@@ -19,7 +19,14 @@ export class StickyPrepopulation {
             return;
         }
         this.logger.log("StickyPrepopulation initialized");
-        this.deleteCookieIfGiftProcessComplete();
+        if (ENGrid.getGiftProcess()) {
+            this.deleteCookie();
+            return;
+        }
+        if (ENGrid.getPageNumber() !== 1 || !ENGrid.getField("supporter.emailAddress")) {
+            this.logger.log("Not on page 1 or email field not present, not creating cookie or applying pre-population.");
+            return;
+        }
         this.createCookie();
         this.applyPrepopulation();
     }
@@ -44,11 +51,9 @@ export class StickyPrepopulation {
     /*
       * Delete the cookie if the gift process is complete
      */
-    deleteCookieIfGiftProcessComplete() {
-        if (ENGrid.getGiftProcess()) {
-            this.logger.log("Gift process complete, removing sticky prepopulation cookie if it exists");
-            cookie.remove(this.cookieName);
-        }
+    deleteCookie() {
+        this.logger.log("Gift process complete, removing sticky prepopulation cookie if it exists");
+        cookie.remove(this.cookieName);
     }
     /*
      * Create the cookie if we're coming from a campaign link and supporterId is present

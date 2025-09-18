@@ -4,7 +4,7 @@ export declare class StickyPrepopulation {
     private cookieName;
     constructor();
     private shouldRun;
-    private deleteCookieIfGiftProcessComplete;
+    private deleteCookie;
     private createCookie;
     private applyPrepopulation;
     private getSupporterDetailsFromFields;
