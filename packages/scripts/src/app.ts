@@ -86,7 +86,9 @@ import {
   UpsellCheckbox,
   PostDonationEmbed,
   FrequencyUpsell,
-  CustomPremium, StickyNSG,
+  CustomPremium,
+  StickyNSG,
+  StickyPrepopulation,
 } from ".";
 
 export class App extends ENGrid {
@@ -464,6 +466,8 @@ export class App extends ENGrid {
     new PostDonationEmbed();
 
     new FrequencyUpsell();
+
+    new StickyPrepopulation();
 
     //Debug panel
     let showDebugPanel = this.options.Debug;

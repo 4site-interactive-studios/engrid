@@ -53,6 +53,7 @@ export interface Options {
         checked?: boolean;
       };
   StickyNSG?: boolean;
+  StickyPrepopulation?: false | { fields: string[] };
   TidyContact?:
     | false
     | {
@@ -221,6 +222,7 @@ export const OptionsDefaults: Options = {
   WelcomeBack: false,
   OptInLadder: false,
   StickyNSG: false,
+  StickyPrepopulation: false,
   PageLayouts: [
     "leftleft1col",
     "centerleft1col",

@@ -23,6 +23,9 @@ export class StickyNSG {
     return ENGrid.getOption("StickyNSG") === true;
   }
 
+  /*
+    * Determine if NSG provided by EN is active on the page
+   */
   private nsgActiveOnPage(): boolean {
     return (
       window.EngagingNetworks &&
@@ -32,6 +35,9 @@ export class StickyNSG {
     );
   }
 
+  /*
+   * Delete the cookie if the gift process is complete
+   */
   private deleteCookieIfGiftProcessComplete() {
     if (ENGrid.getGiftProcess()) {
       this.logger.log(
@@ -41,6 +47,9 @@ export class StickyNSG {
     }
   }
 
+  /*
+    * Create the sticky NSG cookie if NSG is active on the page
+   */
   private createStickyNSGCookie() {
     if (!this.nsgActiveOnPage()) {
       this.logger.log("No NSG active on page, not creating sticky NSG cookie");
@@ -53,6 +62,8 @@ export class StickyNSG {
       return;
     }
 
+    // We do some reformating to match the EngridAmounts format
+    // We also add "Other" to the amounts list
     const nsg = window.EngagingNetworks.suggestedGift;
     this.logger.log("Creating sticky NSG cookie", nsg);
     const cookieValue = JSON.stringify({
@@ -77,6 +88,9 @@ export class StickyNSG {
     this.logger.log("Sticky NSG cookie created", cookieValue);
   }
 
+  /*
+   * Apply the sticky NSG cookie values to window.EngridAmounts if NSG is not active on the page
+   */
   private applyStickyNSGCookie() {
     if (this.nsgActiveOnPage()) {
       this.logger.log("NSG active on page, not applying sticky NSG cookie, leaving the EN NSG values.");

@@ -87,6 +87,7 @@ export * from "./post-donation-embed";
 export * from "./frequency-upsell-modal";
 export * from "./frequency-upsell";
 export * from "./sticky-nsg";
+export * from "./sticky-prepopulation";
 // Events
 export * from "./events";
 // Version
