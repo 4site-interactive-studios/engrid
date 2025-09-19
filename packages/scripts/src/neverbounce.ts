@@ -20,7 +20,8 @@ export class NeverBounce {
   private bypassEmails: string[] = [
     "noaddress.ea",
   ];
-
+  private neverBounceTimeout: number = ENGrid.getOption("NeverBounceTimeout") || 10000;
+  private neverBounceTimeoutFunc: ReturnType<typeof setTimeout> | null = null;
   constructor(
     private apiKey: string,
     public dateField: string | null = null,
@@ -45,6 +46,8 @@ export class NeverBounce {
       softRejectMessage: "Invalid email",
       acceptedMessage: "Email validated!",
       feedback: false,
+      // Set NB timeout 1 second than our timeout. Ensures NB response will always be before our timeout if there is not a server error.
+      timeout: Math.floor((this.neverBounceTimeout - 1000) / 1000),
     };
     ENGrid.loadJS("https://cdn.neverbounce.com/widget/dist/NeverBounce.js");
     if (this.emailField) {
@@ -118,10 +121,30 @@ export class NeverBounce {
 
       field.addEventListener("nb:loading", function (e) {
         ENGrid.disableSubmit("Validating Your Email");
+        NBClass.setEmailStatus("loading");
+        NBClass.clearTimeout();
+        NBClass.neverBounceTimeoutFunc = setTimeout(() => {
+          NBClass.setEmailStatus("unknown");
+          if (NBClass.nbDate) {
+            NBClass.nbDate.value = ENGrid.formatDate(
+              new Date(),
+              NBClass.dateFormat
+            );
+          }
+          if (NBClass.nbStatus) {
+            NBClass.nbStatus.value = "unknown";
+          }
+          ENGrid.enableSubmit();
+          window._nb.fields.unregisterListener(NBClass.emailField);
+          NBClass.nbLoaded = false;
+          NBClass.logger.log("NeverBounce Timeout Reached. Bypassing validation, setting unknown status and removing NB.");
+        }, NBClass.neverBounceTimeout);
       });
 
       // Never Bounce: Do work when input changes or when API responds with an error
       field.addEventListener("nb:clear", function (e) {
+        if (!NBClass.nbLoaded) return;
+        NBClass.clearTimeout();
         NBClass.setEmailStatus("clear");
         ENGrid.enableSubmit();
         if (NBClass.nbDate) NBClass.nbDate.value = "";
@@ -130,6 +153,8 @@ export class NeverBounce {
 
       // Never Bounce: Do work when results have an input that does not look like an email (i.e. missing @ or no .com/.net/etc...)
       field.addEventListener("nb:soft-result", function (e) {
+        if (!NBClass.nbLoaded) return;
+        NBClass.clearTimeout();
         NBClass.setEmailStatus("soft-result");
         if (NBClass.nbDate) NBClass.nbDate.value = "";
         if (NBClass.nbStatus) NBClass.nbStatus.value = "";
@@ -138,6 +163,8 @@ export class NeverBounce {
 
       // Never Bounce: When results have been received
       field.addEventListener("nb:result", function (e) {
+        if (!NBClass.nbLoaded) return;
+        NBClass.clearTimeout();
         if (
           (<CustomEvent>e).detail.result.is(
             window._nb.settings.getAcceptedStatusCodes()
@@ -314,6 +341,17 @@ export class NeverBounce {
       this.emailField?.focus();
       this.logger.log("NB-Result:", ENGrid.getFieldValue("nb-result"));
       this.form.validate = false;
+    }
+  }
+
+  /**
+   * Clears the backup timeout function if it exists.
+   * @private
+   */
+  private clearTimeout() {
+    if (this.neverBounceTimeoutFunc) {
+      clearTimeout(this.neverBounceTimeoutFunc);
+      this.neverBounceTimeoutFunc = null;
     }
   }
 }
