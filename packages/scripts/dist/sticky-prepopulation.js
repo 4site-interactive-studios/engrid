@@ -33,14 +33,16 @@ export class StickyPrepopulation {
     /*
       * Determine if we should run the script
       * Do not run if RememberMe is active
+      * Do not run if on a chain link
       * Only run if StickyPrepopulation option is set with fields
      */
     shouldRun() {
         if (ENGrid.getOption("RememberMe")) {
             return false;
         }
+        const url = new URL(window.location.href);
         const options = ENGrid.getOption("StickyPrepopulation");
-        if (options && (options === null || options === void 0 ? void 0 : options.fields.length) > 0) {
+        if (options && (options === null || options === void 0 ? void 0 : options.fields.length) > 0 && !url.searchParams.has("chain")) {
             this.options = options;
             return true;
         }
@@ -97,13 +99,13 @@ export class StickyPrepopulation {
                 this.logger.log("SupporterId present, not applying sticky prepopulation");
                 return;
             }
-            const encryptedSupporterDetails = JSON.parse(window.atob(cookieData));
-            if (!encryptedSupporterDetails || (encryptedSupporterDetails === null || encryptedSupporterDetails === void 0 ? void 0 : encryptedSupporterDetails.pageId) !== ENGrid.getPageID()) {
-                this.logger.log("No encrypted supporter details found in cookie, or page ID does not match");
-                return;
-            }
             let supporterDetails = {};
             try {
+                const encryptedSupporterDetails = JSON.parse(window.atob(cookieData));
+                if (!encryptedSupporterDetails || (encryptedSupporterDetails === null || encryptedSupporterDetails === void 0 ? void 0 : encryptedSupporterDetails.pageId) !== ENGrid.getPageID()) {
+                    this.logger.log("No encrypted supporter details found in cookie, or page ID does not match");
+                    return;
+                }
                 supporterDetails = JSON.parse(yield this.decryptSupporterDetails(this.base64ToArrayBuffer(encryptedSupporterDetails.encryptedData), new Uint8Array(this.base64ToArrayBuffer(encryptedSupporterDetails.iv))));
             }
             catch (e) {

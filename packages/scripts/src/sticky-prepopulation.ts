@@ -32,14 +32,16 @@ export class StickyPrepopulation {
   /*
     * Determine if we should run the script
     * Do not run if RememberMe is active
+    * Do not run if on a chain link
     * Only run if StickyPrepopulation option is set with fields
    */
   private shouldRun(): boolean {
     if (ENGrid.getOption("RememberMe")) {
       return false;
     }
+    const url = new URL(window.location.href);
     const options = ENGrid.getOption("StickyPrepopulation");
-    if (options && options?.fields.length > 0) {
+    if (options && options?.fields.length > 0 && !url.searchParams.has("chain")) {
       this.options = options;
       return true;
     } else {
@@ -102,18 +104,18 @@ export class StickyPrepopulation {
       return;
     }
 
-    const encryptedSupporterDetails = JSON.parse(
-      window.atob(cookieData)
-    );
-
-    if (!encryptedSupporterDetails || encryptedSupporterDetails?.pageId !== ENGrid.getPageID()) {
-      this.logger.log("No encrypted supporter details found in cookie, or page ID does not match");
-      return;
-    }
-
     let supporterDetails: { [key: string]: string } = {};
 
     try {
+      const encryptedSupporterDetails = JSON.parse(
+        window.atob(cookieData)
+      );
+
+      if (!encryptedSupporterDetails || encryptedSupporterDetails?.pageId !== ENGrid.getPageID()) {
+        this.logger.log("No encrypted supporter details found in cookie, or page ID does not match");
+        return;
+      }
+
       supporterDetails = JSON.parse(
         await this.decryptSupporterDetails(
           this.base64ToArrayBuffer(encryptedSupporterDetails.encryptedData),
