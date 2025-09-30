@@ -13,10 +13,11 @@ Designed and Developed by [4Site Studios](http://4sitestudios.com/en?ms=github) 
 - Amnesty International USA (AIUSA)
 - Catholic Extension
 - Earth Island Institute
+- Food and Water Watch (FWW)
 - Human Rights Campaign (HRC) via Lautman Maska Neill & Company
 - International Fund for Animal Welfare (IFAW)
 - Mercy for Animals
-- National Trust for Historic Preservation
+- National Trust for Historic Preservation (NTHP) via Avalon Consulting
 - National Wildlife Federation (NWF)
 - Oceana
 - Ocean Conservancy
@@ -27,7 +28,9 @@ Designed and Developed by [4Site Studios](http://4sitestudios.com/en?ms=github) 
 - Polaris Project
 - Rainforest Action Network (RAN)
 - Saint Anthony's Guild (Friar Works)
+- Save the Children Action Network (SCAN)
 - Save Tibet via Schultz and Williams
+- Shatterproof
 - The Nature Conservancy (TNC)
 - World Wildlife Fund (WWF)
 
