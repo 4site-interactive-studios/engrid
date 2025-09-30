@@ -10,34 +10,33 @@ Since then, we've continued to enhance and refine our work, culminating in a com
 
 Designed and Developed by [4Site Studios](http://4sitestudios.com/en?ms=github) while working with:
 
-- American Technion Society (ATS) - Launching Q4, 2025
-- Amnesty International USA (AIUSA)
-- Catholic Extension
-- Earth Island Institute
-- Engaging Networks - Free & Flexible templates
-- Evangelical Lutheran Church in America (ELCA) - Launching Q4, 2025
-- Food and Water Watch (FWW)
-- Human Rights Campaign (HRC) via Lautman Maska Neill & Company
-- International Fund for Animal Welfare (IFAW)
-- Mercy for Animals
-- National Parks Conservation Association (NPCA) via Avalon Consulting
-- National Trust for Historic Preservation (NTHP) via Avalon Consulting
-- National Wildlife Federation (NWF)
-- Oceana
-- Ocean Conservancy
-- Organic Consumers
-- Oxfam America
-- Oxfam Canada
-- People for the Ethical Treatment of Animals (PETA)
-- Polaris Project
-- Rainforest Action Network (RAN)
-- Saint Anthony's Guild (Friar Works)
-- Save the Children Action Network (SCAN)
-- Save Tibet via Schultz and Williams
-- Shatterproof
-- SPCA International (SPCAI) - Launching Q4, 2025
-- The Nature Conservancy (TNC)
-- World Wildlife Fund (WWF)
+1. American Technion Society (ATS) - Launching Q4, 2025- Amnesty International USA (AIUSA)
+2. Catholic Extension
+3. Earth Island Institute
+4. Engaging Networks - Free & Flexible templates
+5. Evangelical Lutheran Church in America (ELCA) - Launching Q4, 2025
+6. Food and Water Watch (FWW)
+7. Human Rights Campaign (HRC) via Lautman Maska Neill & Company
+8. International Fund for Animal Welfare (IFAW)
+9. Mercy for Animals
+10. National Parks Conservation Association (NPCA) via Avalon Consulting
+11. National Trust for Historic Preservation (NTHP) via Avalon Consulting
+12. National Wildlife Federation (NWF)
+13. Oceana
+14. Ocean Conservancy
+15. Organic Consumers
+16. Oxfam America
+17. Oxfam Canada
+18. People for the Ethical Treatment of Animals (PETA)
+19. Polaris Project
+20. Rainforest Action Network (RAN)
+21. Saint Anthony's Guild (Friar Works)
+22. Save the Children Action Network (SCAN)
+23. Save Tibet via Schultz and Williams
+24. Shatterproof
+25. SPCA International (SPCAI) - Launching Q4, 2025
+26. The Nature Conservancy (TNC)
+27. World Wildlife Fund (WWF)
 
 ## ENgrid Features
 
