@@ -10,6 +10,7 @@ Since then, we've continued to enhance and refine our work, culminating in a com
 
 Designed and Developed by [4Site Studios](http://4sitestudios.com/en?ms=github) while working with:
 
+- American Technion Society (ATS) - Launching Q4, 2025
 - Amnesty International USA (AIUSA)
 - Catholic Extension
 - Earth Island Institute
