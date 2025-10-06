@@ -48,6 +48,7 @@ export class EmbeddedEcard {
       };
       const pageUrl = new URL(this.options.pageUrl);
       pageUrl.searchParams.append("data-engrid-embedded-ecard", "true");
+      pageUrl.searchParams.append("chain", "");
       this.options.pageUrl = pageUrl.href;
       this.logger.log("Running Embedded Ecard component", this.options);
       this.embedEcard();
@@ -77,7 +78,7 @@ export class EmbeddedEcard {
   }
 
   private onEmbeddedEcardPage(): boolean {
-    return ENGrid.getPageType() === "ECARD" && ENGrid.hasBodyData("embedded");
+    return ENGrid.getPageType() === "ECARD" && ENGrid.hasBodyData("embedded") && ENGrid.getPageNumber() === 1;
   }
 
   private onPostActionPage(): boolean {
