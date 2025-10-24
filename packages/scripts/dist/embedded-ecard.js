@@ -95,10 +95,10 @@ export class EmbeddedEcard {
     }
     addEventListeners() {
         var _a;
-        const inMemoryCheckbox = document.getElementById("en__field_transaction_inmem");
+        const inMemoriamCheckbox = document.getElementById("en__field_transaction_inmem");
         const sendEcardCheckbox = document.getElementById("en__field_embedded-ecard");
-        this.toggleEcardForm(((_a = inMemoryCheckbox === null || inMemoryCheckbox === void 0 ? void 0 : inMemoryCheckbox.checked) !== null && _a !== void 0 ? _a : true) && sendEcardCheckbox.checked);
-        inMemoryCheckbox === null || inMemoryCheckbox === void 0 ? void 0 : inMemoryCheckbox.addEventListener("change", (e) => {
+        this.toggleEcardForm(((_a = inMemoriamCheckbox === null || inMemoriamCheckbox === void 0 ? void 0 : inMemoriamCheckbox.checked) !== null && _a !== void 0 ? _a : true) && sendEcardCheckbox.checked);
+        inMemoriamCheckbox === null || inMemoriamCheckbox === void 0 ? void 0 : inMemoriamCheckbox.addEventListener("change", (e) => {
             const checkbox = e.target;
             const _sendEcardCheckbox = document.getElementById("en__field_embedded-ecard");
             this.toggleEcardForm(checkbox.checked && _sendEcardCheckbox.checked);
