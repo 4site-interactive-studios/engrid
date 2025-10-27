@@ -94,8 +94,15 @@ export class EmbeddedEcard {
         return iframe;
     }
     addEventListeners() {
+        var _a;
+        const inMemoriamCheckbox = document.getElementById("en__field_transaction_inmem");
         const sendEcardCheckbox = document.getElementById("en__field_embedded-ecard");
-        this.toggleEcardForm(sendEcardCheckbox.checked);
+        this.toggleEcardForm(((_a = inMemoriamCheckbox === null || inMemoriamCheckbox === void 0 ? void 0 : inMemoriamCheckbox.checked) !== null && _a !== void 0 ? _a : true) && sendEcardCheckbox.checked);
+        inMemoriamCheckbox === null || inMemoriamCheckbox === void 0 ? void 0 : inMemoriamCheckbox.addEventListener("change", (e) => {
+            const checkbox = e.target;
+            const _sendEcardCheckbox = document.getElementById("en__field_embedded-ecard");
+            this.toggleEcardForm(checkbox.checked && _sendEcardCheckbox.checked);
+        });
         sendEcardCheckbox === null || sendEcardCheckbox === void 0 ? void 0 : sendEcardCheckbox.addEventListener("change", (e) => {
             const checkbox = e.target;
             this.toggleEcardForm(checkbox.checked);
