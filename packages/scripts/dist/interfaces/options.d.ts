@@ -152,6 +152,10 @@ export interface Options {
         placementQuerySelector?: string | null;
         excludePageIDs?: string[];
     };
+    PreferredPaymentMethod?: false | {
+        preferredPaymentMethodField?: string;
+        defaultPaymentMethod?: string[];
+    };
     CustomPremium?: false | {
         [frequency: string]: ({
             products?: {

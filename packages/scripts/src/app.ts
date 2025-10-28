@@ -87,6 +87,7 @@ import {
   PostDonationEmbed,
   FrequencyUpsell,
   CustomPremium,
+  PreferredPaymentMethod,
 } from ".";
 
 export class App extends ENGrid {
@@ -419,6 +420,7 @@ export class App extends ENGrid {
     // Digital Wallets Features
     if (ENGrid.getPageType() === "DONATION") {
       new DigitalWallets();
+      new PreferredPaymentMethod();
     }
 
     // Mobile CTA
