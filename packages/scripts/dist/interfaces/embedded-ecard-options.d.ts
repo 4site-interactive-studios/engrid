@@ -4,5 +4,6 @@ export interface EmbeddedEcardOptions {
     checkboxText: string;
     anchor: string;
     placement: string;
+    requireInMemCheckbox: boolean;
 }
 export declare const EmbeddedEcardOptionsDefaults: EmbeddedEcardOptions;

@@ -4,6 +4,7 @@ export interface EmbeddedEcardOptions {
   checkboxText: string;
   anchor: string;
   placement: string;
+  requireInMemCheckbox: boolean;
 }
 
 export const EmbeddedEcardOptionsDefaults: EmbeddedEcardOptions = {
@@ -12,4 +13,5 @@ export const EmbeddedEcardOptionsDefaults: EmbeddedEcardOptions = {
   checkboxText: "Yes, I would like to send an ecard to announce my gift.",
   anchor: ".en__field--donationAmt",
   placement: "afterend",
+  requireInMemCheckbox: false,
 };
