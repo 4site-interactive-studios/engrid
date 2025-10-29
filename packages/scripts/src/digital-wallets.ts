@@ -1,9 +1,12 @@
 import { ENGrid } from "./engrid";
 
 export class DigitalWallets {
+  private static isApplePayAvailable: boolean =
+    !!window.hasOwnProperty("ApplePaySession");
   constructor() {
     //digital wallets not enabled.
     if (!document.getElementById("en__digitalWallet")) {
+      ENGrid.setBodyData("payment-type-option-stripedigitalwallet", "false");
       ENGrid.setBodyData("payment-type-option-apple-pay", "false");
       ENGrid.setBodyData("payment-type-option-google-pay", "false");
       ENGrid.setBodyData("payment-type-option-paypal-one-touch", "false");
@@ -51,6 +54,7 @@ export class DigitalWallets {
     } else {
       ENGrid.setBodyData("payment-type-option-apple-pay", "false");
       ENGrid.setBodyData("payment-type-option-google-pay", "false");
+      ENGrid.setBodyData("payment-type-option-stripedigitalwallet", "false");
 
       const stripeContainer = document.getElementById(
         "en__digitalWallet__stripeButtons__container"
@@ -114,8 +118,15 @@ export class DigitalWallets {
       "stripedigitalwallet",
       "GooglePay / ApplePay"
     );
-    ENGrid.setBodyData("payment-type-option-apple-pay", "true");
-    ENGrid.setBodyData("payment-type-option-google-pay", "true");
+    ENGrid.setBodyData(
+      "payment-type-option-apple-pay",
+      DigitalWallets.isApplePayAvailable.toString()
+    );
+    ENGrid.setBodyData(
+      "payment-type-option-google-pay",
+      !DigitalWallets.isApplePayAvailable.toString()
+    );
+    ENGrid.setBodyData("payment-type-option-stripedigitalwallet", "true");
   }
 
   private addPaypalTouchDigitalWallets() {
