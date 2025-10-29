@@ -1,14 +1,18 @@
 import { ENGrid, EngridLogger } from ".";
 export class PreferredPaymentMethod {
     constructor() {
+        var _a;
         this.logger = new EngridLogger("PreferredPaymentMethod", "#ffffff", "#1f2933", "⭐️");
         this.availabilityTimeoutMs = 4000;
         this.cleanupHandlers = [];
         this.selectionFinalized = false;
+        this.listenersAttached = false;
         this.config = this.resolveConfig();
+        this.preferredFieldName = ((_a = this.config.preferredPaymentMethodField) === null || _a === void 0 ? void 0 : _a.trim()) || "";
         if (!this.shouldRun()) {
             return;
         }
+        this.attachGiveBySelectListeners();
         const candidates = this.buildCandidateList();
         if (candidates.length === 0) {
             this.logger.log("No payment methods to evaluate. Skipping.");
@@ -67,18 +71,48 @@ export class PreferredPaymentMethod {
         this.config.defaultPaymentMethod.forEach(pushCandidate);
         return candidates;
     }
+    hasPreferredField() {
+        if (!this.preferredFieldName)
+            return false;
+        const field = ENGrid.getField(this.preferredFieldName);
+        return !!field;
+    }
+    attachGiveBySelectListeners() {
+        if (this.listenersAttached)
+            return;
+        if (!this.preferredFieldName)
+            return;
+        if (!this.hasPreferredField()) {
+            this.logger.log(`Preferred payment field "${this.preferredFieldName}" not found. Field sync disabled.`);
+            return;
+        }
+        const inputs = this.getGiveBySelectInputs();
+        inputs.forEach((input) => {
+            input.addEventListener("change", () => {
+                if (input.checked) {
+                    this.syncPreferredField(input.value);
+                }
+            });
+        });
+        this.listenersAttached = true;
+    }
+    syncPreferredField(value) {
+        if (!this.preferredFieldName)
+            return;
+        if (!this.hasPreferredField())
+            return;
+        ENGrid.setFieldValue(this.preferredFieldName, value, false, true);
+    }
     getFieldPreference() {
-        var _a;
-        const fieldName = (_a = this.config.preferredPaymentMethodField) === null || _a === void 0 ? void 0 : _a.trim();
-        if (!fieldName) {
+        if (!this.preferredFieldName) {
             return null;
         }
-        const fieldValue = ENGrid.getFieldValue(fieldName);
+        const fieldValue = ENGrid.getFieldValue(this.preferredFieldName);
         if (!fieldValue) {
-            this.logger.log(`Preferred payment field "${fieldName}" is empty. Moving on.`);
+            this.logger.log(`Preferred payment field "${this.preferredFieldName}" is empty. Moving on.`);
             return null;
         }
-        this.logger.log(`Preferred payment from field "${fieldName}" resolved to "${fieldValue}".`);
+        this.logger.log(`Preferred payment from field "${this.preferredFieldName}" resolved to "${fieldValue}".`);
         return fieldValue;
     }
     getUrlPreference() {
@@ -187,6 +221,7 @@ export class PreferredPaymentMethod {
             input.dispatchEvent(new Event("change", { bubbles: true, cancelable: true }));
         }
         ENGrid.setPaymentType(method);
+        this.syncPreferredField(input.value);
         this.selectionFinalized = true;
         this.cleanupAllObservers();
     }

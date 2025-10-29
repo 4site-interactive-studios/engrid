@@ -3,11 +3,16 @@ export declare class PreferredPaymentMethod {
     private readonly availabilityTimeoutMs;
     private cleanupHandlers;
     private selectionFinalized;
+    private listenersAttached;
     private config;
+    private preferredFieldName;
     constructor();
     private shouldRun;
     private resolveConfig;
     private buildCandidateList;
+    private hasPreferredField;
+    private attachGiveBySelectListeners;
+    private syncPreferredField;
     private getFieldPreference;
     private getUrlPreference;
     private tryCandidateAtIndex;

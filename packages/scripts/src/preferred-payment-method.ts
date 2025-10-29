@@ -16,13 +16,18 @@ export class PreferredPaymentMethod {
   private readonly availabilityTimeoutMs = 4000;
   private cleanupHandlers: Array<() => void> = [];
   private selectionFinalized = false;
+  private listenersAttached = false;
 
   private config: PreferredPaymentMethodConfig = this.resolveConfig();
+  private preferredFieldName =
+    this.config.preferredPaymentMethodField?.trim() || "";
 
   constructor() {
     if (!this.shouldRun()) {
       return;
     }
+
+    this.attachGiveBySelectListeners();
 
     const candidates = this.buildCandidateList();
     if (candidates.length === 0) {
@@ -97,20 +102,54 @@ export class PreferredPaymentMethod {
     return candidates;
   }
 
+  private hasPreferredField(): boolean {
+    if (!this.preferredFieldName) return false;
+    const field = ENGrid.getField(this.preferredFieldName);
+    return !!field;
+  }
+
+  private attachGiveBySelectListeners() {
+    if (this.listenersAttached) return;
+    if (!this.preferredFieldName) return;
+
+    if (!this.hasPreferredField()) {
+      this.logger.log(
+        `Preferred payment field "${this.preferredFieldName}" not found. Field sync disabled.`
+      );
+      return;
+    }
+
+    const inputs = this.getGiveBySelectInputs();
+    inputs.forEach((input) => {
+      input.addEventListener("change", () => {
+        if (input.checked) {
+          this.syncPreferredField(input.value);
+        }
+      });
+    });
+
+    this.listenersAttached = true;
+  }
+
+  private syncPreferredField(value: string) {
+    if (!this.preferredFieldName) return;
+    if (!this.hasPreferredField()) return;
+    ENGrid.setFieldValue(this.preferredFieldName, value, false, true);
+  }
+
   private getFieldPreference(): string | null {
-    const fieldName = this.config.preferredPaymentMethodField?.trim();
-    if (!fieldName) {
+    if (!this.preferredFieldName) {
       return null;
     }
-    const fieldValue = ENGrid.getFieldValue(fieldName);
+    const fieldValue = ENGrid.getFieldValue(this.preferredFieldName);
     if (!fieldValue) {
       this.logger.log(
-        `Preferred payment field "${fieldName}" is empty. Moving on.`
+        `Preferred payment field "${this.preferredFieldName}" is empty. Moving on.`
       );
       return null;
     }
     this.logger.log(
-      `Preferred payment from field "${fieldName}" resolved to "${fieldValue}".`
+      `Preferred payment from field "${this.preferredFieldName}" resolved to "${fieldValue}".`
     );
     return fieldValue;
   }
@@ -257,6 +296,7 @@ export class PreferredPaymentMethod {
     }
 
     ENGrid.setPaymentType(method);
+    this.syncPreferredField(input.value);
     this.selectionFinalized = true;
     this.cleanupAllObservers();
   }
