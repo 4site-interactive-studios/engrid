@@ -17,7 +17,7 @@ export class DataLayer {
     "#009cdc",
     "📊"
   );
-  private dataLayer = (window as any).dataLayer || [];
+  private dataLayer = DataLayer.getOrCreateDataLayer();
   private _form: EnForm = EnForm.getInstance();
   private static instance: DataLayer;
   private endOfGiftProcessStorageKey = "ENGRID_END_OF_GIFT_PROCESS_EVENTS";
@@ -245,6 +245,16 @@ export class DataLayer {
     el: HTMLInputElement | HTMLSelectElement
   ): string | null {
     return el.closest(".en__field")?.querySelector("label")?.textContent || "";
+  }
+
+  private static getOrCreateDataLayer(): any[] {
+    const existing = (window as any).dataLayer;
+    if (Array.isArray(existing)) {
+      return existing;
+    }
+    const dataLayer: any[] = [];
+    (window as any).dataLayer = dataLayer;
+    return dataLayer;
   }
 
   public addEndOfGiftProcessEvent(
