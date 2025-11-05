@@ -26,11 +26,15 @@ export class PreferredPaymentMethod {
             this.logger.log("Not a donation page. Skipping preferred payment selection.");
             return false;
         }
+        // If there's a "payment" URL parameter, we can proceed
+        if (ENGrid.getUrlParameter("payment")) {
+            return true;
+        }
         if (!this.getGiveBySelectInputs().length) {
             this.logger.log("No give-by-select inputs found. Skipping.");
             return false;
         }
-        const config = ENGrid.getOption("PreferredPaymentMethod");
+        const config = ENGrid.getOption("PreferredPaymentMethod") || false;
         if (config === false) {
             this.logger.log("PreferredPaymentMethod option disabled.");
             return false;
@@ -38,7 +42,7 @@ export class PreferredPaymentMethod {
         return true;
     }
     resolveConfig() {
-        const option = ENGrid.getOption("PreferredPaymentMethod");
+        const option = ENGrid.getOption("PreferredPaymentMethod") || false;
         if (option && typeof option === "object") {
             const preferredPaymentMethodField = option.preferredPaymentMethodField || "";
             const defaultPaymentMethod = Array.isArray(option.defaultPaymentMethod)
@@ -212,14 +216,8 @@ export class PreferredPaymentMethod {
             this.logger.log(`Payment method "${method}" is not available to select.`);
             return;
         }
-        const label = this.findLabelForInput(input);
-        if (label) {
-            label.click();
-        }
-        else {
-            input.checked = true;
-            input.dispatchEvent(new Event("change", { bubbles: true, cancelable: true }));
-        }
+        input.checked = true;
+        input.dispatchEvent(new Event("change", { bubbles: true, cancelable: true }));
         ENGrid.setPaymentType(method);
         this.syncPreferredField(input.value);
         this.selectionFinalized = true;
