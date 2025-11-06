@@ -1,5 +1,4 @@
 export declare class DigitalWallets {
-    private static isApplePayAvailable;
     constructor();
     private addStripeDigitalWallets;
     private addPaypalTouchDigitalWallets;

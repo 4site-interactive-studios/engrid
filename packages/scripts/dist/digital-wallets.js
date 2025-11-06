@@ -87,8 +87,17 @@ export class DigitalWallets {
     }
     addStripeDigitalWallets() {
         this.addOptionToPaymentTypeField("stripedigitalwallet", "GooglePay / ApplePay");
-        ENGrid.setBodyData("payment-type-option-apple-pay", DigitalWallets.isApplePayAvailable.toString());
-        ENGrid.setBodyData("payment-type-option-google-pay", !DigitalWallets.isApplePayAvailable.toString());
+        // ENGrid.setBodyData(
+        //   "payment-type-option-apple-pay",
+        //   DigitalWallets.isApplePayAvailable.toString()
+        // );
+        // ENGrid.setBodyData(
+        //   "payment-type-option-google-pay",
+        //   !DigitalWallets.isApplePayAvailable.toString()
+        // );
+        // TODO: Change to trustworthy detection of Google Pay & Apple Pay availability
+        ENGrid.setBodyData("payment-type-option-apple-pay", "true");
+        ENGrid.setBodyData("payment-type-option-google-pay", "true");
         ENGrid.setBodyData("payment-type-option-stripedigitalwallet", "true");
     }
     addPaypalTouchDigitalWallets() {
@@ -144,4 +153,3 @@ export class DigitalWallets {
         observer.observe(node, { childList: true, subtree: true });
     }
 }
-DigitalWallets.isApplePayAvailable = !!window.hasOwnProperty("ApplePaySession");

@@ -1,8 +1,6 @@
 import { ENGrid } from "./engrid";
 
 export class DigitalWallets {
-  private static isApplePayAvailable: boolean =
-    !!window.hasOwnProperty("ApplePaySession");
   constructor() {
     //digital wallets not enabled.
     if (!document.getElementById("en__digitalWallet")) {
@@ -118,14 +116,17 @@ export class DigitalWallets {
       "stripedigitalwallet",
       "GooglePay / ApplePay"
     );
-    ENGrid.setBodyData(
-      "payment-type-option-apple-pay",
-      DigitalWallets.isApplePayAvailable.toString()
-    );
-    ENGrid.setBodyData(
-      "payment-type-option-google-pay",
-      !DigitalWallets.isApplePayAvailable.toString()
-    );
+    // ENGrid.setBodyData(
+    //   "payment-type-option-apple-pay",
+    //   DigitalWallets.isApplePayAvailable.toString()
+    // );
+    // ENGrid.setBodyData(
+    //   "payment-type-option-google-pay",
+    //   !DigitalWallets.isApplePayAvailable.toString()
+    // );
+    // TODO: Change to trustworthy detection of Google Pay & Apple Pay availability
+    ENGrid.setBodyData("payment-type-option-apple-pay", "true");
+    ENGrid.setBodyData("payment-type-option-google-pay", "true");
     ENGrid.setBodyData("payment-type-option-stripedigitalwallet", "true");
   }
 
