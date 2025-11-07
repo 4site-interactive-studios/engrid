@@ -407,7 +407,19 @@ export class DataLayer {
 
   /**
    * Synchronous hash method for backward compatibility
-   * Uses btoa for now, but should be replaced with async sha256Hash where possible
+   * 
+   * NOTE: This method uses btoa (Base64) for existing EN_FORM_VALUE_UPDATED events.
+   * Enhanced Conversions uses the async sha256Hash() method which provides proper
+   * SHA-256 hashing for Google Analytics Enhanced Conversions.
+   * 
+   * Design decision:
+   * - Enhanced Conversions: Uses async sha256Hash() for proper SHA-256 hashing
+   * - Existing events (EN_FORM_VALUE_UPDATED): Uses btoa() for backward compatibility
+   * - The hash() method remains synchronous to avoid breaking existing synchronous code
+   * 
+   * If you need SHA-256 hashing for hashedFields in EN_FORM_VALUE_UPDATED events,
+   * you would need to refactor handleFieldValueChange() to be async, which may
+   * have broader implications for the codebase.
    */
   private hash(value: string): string {
     // For enhanced conversions, we use async sha256Hash
