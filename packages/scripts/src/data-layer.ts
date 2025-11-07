@@ -10,6 +10,22 @@
 
 import { EngridLogger, ENGrid, EnForm, RememberMeEvents } from ".";
 
+interface UserData {
+  email_address?: string;
+  phone_number?: string;
+  first_name?: string;
+  last_name?: string;
+  street_address?: string;
+  city?: string;
+  region?: string;
+  postal_code?: string;
+  country?: string;
+}
+
+interface EnhancedConversionsData {
+  user_data: UserData;
+}
+
 export class DataLayer {
   private logger: EngridLogger = new EngridLogger(
     "DataLayer",
@@ -21,6 +37,9 @@ export class DataLayer {
   private _form: EnForm = EnForm.getInstance();
   private static instance: DataLayer;
   private endOfGiftProcessStorageKey = "ENGRID_END_OF_GIFT_PROCESS_EVENTS";
+  private enhancedConversionsStorageKey = "ENGRID_ENHANCED_CONVERSIONS_DATA";
+  private fieldChangeDebounceTimer: number | null = null;
+  private fieldChangeDebounceDelay = 500; // ms
 
   private excludedFields = [
     // Credit Card
@@ -60,7 +79,7 @@ export class DataLayer {
 
   constructor() {
     if (ENGrid.getOption("RememberMe")) {
-      RememberMeEvents.getInstance().onLoad.subscribe((hasData) => {
+      RememberMeEvents.getInstance().onLoad.subscribe((hasData: boolean) => {
         this.logger.log("Remember me - onLoad", hasData);
         this.onLoad();
       });
@@ -142,9 +161,15 @@ export class DataLayer {
     }
 
     this.attachEventListeners();
+
+    // Push enhanced conversions on page load
+    this.pushEnhancedConversions();
   }
 
   private onSubmit() {
+    // Push enhanced conversions before form submission
+    this.pushEnhancedConversions();
+
     const optIn = document.querySelector(
       ".en__field__item:not(.en__field--question) input[name^='supporter.questions'][type='checkbox']:checked"
     );
@@ -226,6 +251,8 @@ export class DataLayer {
           });
         }
       }
+      // Check if this is a user data field for enhanced conversions
+      this.debouncedPushEnhancedConversions();
       return;
     }
 
@@ -235,10 +262,348 @@ export class DataLayer {
       enFieldLabel: this.getFieldLabel(el),
       enFieldValue: value,
     });
+
+    // Check if this is a user data field for enhanced conversions
+    const userDataFields = [
+      "supporter.emailAddress",
+      "supporter.phoneNumber",
+      "supporter.firstName",
+      "supporter.lastName",
+      "supporter.address1",
+      "supporter.address2",
+      "supporter.address3",
+      "supporter.city",
+      "supporter.region",
+      "supporter.postcode",
+      "supporter.country",
+    ];
+    if (userDataFields.includes(el.name)) {
+      this.debouncedPushEnhancedConversions();
+    }
   }
 
+  /**
+   * Debounced push of enhanced conversions to avoid excessive pushes on rapid field changes
+   */
+  private debouncedPushEnhancedConversions(): void {
+    if (this.fieldChangeDebounceTimer !== null) {
+      window.clearTimeout(this.fieldChangeDebounceTimer);
+    }
+    this.fieldChangeDebounceTimer = window.setTimeout(() => {
+      this.pushEnhancedConversions();
+      this.fieldChangeDebounceTimer = null;
+    }, this.fieldChangeDebounceDelay);
+  }
+
+  /**
+   * Hash a value using SHA-256
+   * Falls back to btoa if crypto.subtle is not available
+   */
+  private async sha256Hash(value: string): Promise<string> {
+    if (!value) return "";
+
+    // Check if crypto.subtle is available (HTTPS or localhost)
+    if (
+      typeof window !== "undefined" &&
+      window.crypto &&
+      window.crypto.subtle
+    ) {
+      try {
+        const encoder = new TextEncoder();
+        const data = encoder.encode(value);
+        const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        const hashHex = hashArray
+          .map((b) => b.toString(16).padStart(2, "0"))
+          .join("");
+        return hashHex;
+      } catch (error) {
+        this.logger.error("SHA-256 hashing failed, falling back to btoa", error);
+        return btoa(value);
+      }
+    } else {
+      // Fallback for non-HTTPS contexts
+      this.logger.warn(
+        "crypto.subtle not available, using btoa fallback for hashing"
+      );
+      return btoa(value);
+    }
+  }
+
+  /**
+   * Synchronous hash method for backward compatibility
+   * Uses btoa for now, but should be replaced with async sha256Hash where possible
+   */
   private hash(value: string): string {
+    // For enhanced conversions, we use async sha256Hash
+    // This method is kept for backward compatibility with existing code
     return btoa(value);
+  }
+
+  /**
+   * Normalize email address: lowercase, trim whitespace
+   */
+  private normalizeEmail(email: string): string {
+    if (!email) return "";
+    return email.toLowerCase().trim();
+  }
+
+  /**
+   * Normalize phone number: remove non-digit characters, keep leading +
+   */
+  private normalizePhone(phone: string): string {
+    if (!phone) return "";
+    // Remove all non-digit characters except leading +
+    const cleaned = phone.trim();
+    if (cleaned.startsWith("+")) {
+      return "+" + cleaned.slice(1).replace(/\D/g, "");
+    }
+    return cleaned.replace(/\D/g, "");
+  }
+
+  /**
+   * Normalize address: trim whitespace, remove extra spaces
+   */
+  private normalizeAddress(address: string): string {
+    if (!address) return "";
+    return address.trim().replace(/\s+/g, " ");
+  }
+
+  /**
+   * Normalize name: trim whitespace, capitalize first letter of each word
+   */
+  private normalizeName(name: string): string {
+    if (!name) return "";
+    return name
+      .trim()
+      .split(/\s+/)
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
+  }
+
+  /**
+   * Normalize postal code: uppercase, remove spaces
+   */
+  private normalizePostalCode(postalCode: string): string {
+    if (!postalCode) return "";
+    return postalCode.toUpperCase().trim().replace(/\s+/g, "");
+  }
+
+  /**
+   * Normalize region/state: uppercase, trim
+   */
+  private normalizeRegion(region: string): string {
+    if (!region) return "";
+    return region.toUpperCase().trim();
+  }
+
+  /**
+   * Normalize country: uppercase, trim
+   */
+  private normalizeCountry(country: string): string {
+    if (!country) return "";
+    return country.toUpperCase().trim();
+  }
+
+  /**
+   * Collect user data from form fields
+   */
+  private collectUserData(): UserData {
+    const userData: UserData = {};
+
+    // Email
+    const email = ENGrid.getFieldValue("supporter.emailAddress");
+    if (email) {
+      userData.email_address = this.normalizeEmail(email);
+    }
+
+    // Phone
+    const phone = ENGrid.getFieldValue("supporter.phoneNumber");
+    if (phone) {
+      userData.phone_number = this.normalizePhone(phone);
+    }
+
+    // First Name
+    const firstName = ENGrid.getFieldValue("supporter.firstName");
+    if (firstName) {
+      userData.first_name = this.normalizeName(firstName);
+    }
+
+    // Last Name
+    const lastName = ENGrid.getFieldValue("supporter.lastName");
+    if (lastName) {
+      userData.last_name = this.normalizeName(lastName);
+    }
+
+    // Street Address (combine address1, address2, address3)
+    const address1 = ENGrid.getFieldValue("supporter.address1");
+    const address2 = ENGrid.getFieldValue("supporter.address2");
+    const address3 = ENGrid.getFieldValue("supporter.address3");
+    const streetParts: string[] = [];
+    if (address1) streetParts.push(this.normalizeAddress(address1));
+    if (address2) streetParts.push(this.normalizeAddress(address2));
+    if (address3) streetParts.push(this.normalizeAddress(address3));
+    if (streetParts.length > 0) {
+      userData.street_address = streetParts.join(" ");
+    }
+
+    // City
+    const city = ENGrid.getFieldValue("supporter.city");
+    if (city) {
+      userData.city = this.normalizeAddress(city);
+    }
+
+    // Region/State
+    const region = ENGrid.getFieldValue("supporter.region");
+    if (region) {
+      userData.region = this.normalizeRegion(region);
+    }
+
+    // Postal Code
+    const postalCode = ENGrid.getFieldValue("supporter.postcode");
+    if (postalCode) {
+      userData.postal_code = this.normalizePostalCode(postalCode);
+    }
+
+    // Country
+    const country = ENGrid.getFieldValue("supporter.country");
+    if (country) {
+      userData.country = this.normalizeCountry(country);
+    }
+
+    return userData;
+  }
+
+  /**
+   * Merge user data, preferring new data over cached data
+   */
+  private mergeUserData(
+    existing: UserData,
+    newData: UserData
+  ): UserData {
+    return {
+      ...existing,
+      ...newData,
+    };
+  }
+
+  /**
+   * Hash user data fields according to Google Analytics Enhanced Conversions spec
+   */
+  private async hashUserData(userData: UserData): Promise<UserData> {
+    const hashedData: UserData = {};
+
+    if (userData.email_address) {
+      hashedData.email_address = await this.sha256Hash(userData.email_address);
+    }
+    if (userData.phone_number) {
+      hashedData.phone_number = await this.sha256Hash(userData.phone_number);
+    }
+    if (userData.first_name) {
+      hashedData.first_name = await this.sha256Hash(userData.first_name);
+    }
+    if (userData.last_name) {
+      hashedData.last_name = await this.sha256Hash(userData.last_name);
+    }
+    if (userData.street_address) {
+      hashedData.street_address = await this.sha256Hash(
+        userData.street_address
+      );
+    }
+    if (userData.city) {
+      hashedData.city = await this.sha256Hash(userData.city);
+    }
+    if (userData.region) {
+      hashedData.region = await this.sha256Hash(userData.region);
+    }
+    if (userData.postal_code) {
+      hashedData.postal_code = await this.sha256Hash(userData.postal_code);
+    }
+    if (userData.country) {
+      hashedData.country = await this.sha256Hash(userData.country);
+    }
+
+    return hashedData;
+  }
+
+  /**
+   * Get cached user data from sessionStorage
+   */
+  private getCachedUserData(): UserData {
+    try {
+      if (typeof window !== "undefined" && window.sessionStorage) {
+        const cached = window.sessionStorage.getItem(
+          this.enhancedConversionsStorageKey
+        );
+        if (cached) {
+          return JSON.parse(cached);
+        }
+      }
+    } catch (error) {
+      this.logger.error("Failed to get cached user data", error);
+    }
+    return {};
+  }
+
+  /**
+   * Cache user data to sessionStorage
+   */
+  private cacheUserData(userData: UserData): void {
+    try {
+      if (typeof window !== "undefined" && window.sessionStorage) {
+        window.sessionStorage.setItem(
+          this.enhancedConversionsStorageKey,
+          JSON.stringify(userData)
+        );
+      }
+    } catch (error) {
+      this.logger.error("Failed to cache user data", error);
+    }
+  }
+
+  /**
+   * Push enhanced conversions data to dataLayer
+   */
+  private async pushEnhancedConversions(): Promise<void> {
+    try {
+      // Collect current user data
+      const currentData = this.collectUserData();
+
+      // Check if we have any data
+      if (Object.keys(currentData).length === 0) {
+        return;
+      }
+
+      // Merge with cached data
+      const cachedData = this.getCachedUserData();
+      const mergedData = this.mergeUserData(cachedData, currentData);
+
+      // Check if data has changed
+      const cachedString = JSON.stringify(cachedData);
+      const mergedString = JSON.stringify(mergedData);
+      if (cachedString === mergedString && Object.keys(cachedData).length > 0) {
+        // Data hasn't changed, skip push
+        return;
+      }
+
+      // Hash the merged data
+      const hashedData = await this.hashUserData(mergedData);
+
+      // Cache the unhashed merged data for future merges
+      this.cacheUserData(mergedData);
+
+      // Push to dataLayer in Google Analytics Enhanced Conversions format
+      const enhancedConversionsData: EnhancedConversionsData = {
+        user_data: hashedData,
+      };
+
+      this.dataLayer.push(enhancedConversionsData);
+      this.logger.log("Enhanced conversions data pushed", {
+        fields: Object.keys(hashedData),
+      });
+    } catch (error) {
+      this.logger.error("Failed to push enhanced conversions", error);
+    }
   }
 
   private getFieldLabel(

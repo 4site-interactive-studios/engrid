@@ -6,7 +6,7 @@ export declare class Country {
     constructor();
     static getInstance(): Country;
     get countryField(): HTMLElement | null;
-    get onCountryChange(): import("strongly-typed-events").ISimpleEvent<string>;
+    get onCountryChange(): any;
     get country(): string;
     set country(value: string);
 }

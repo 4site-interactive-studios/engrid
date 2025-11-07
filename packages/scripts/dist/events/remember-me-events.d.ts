@@ -13,6 +13,6 @@ export declare class RememberMeEvents {
     static getInstance(): RememberMeEvents;
     dispatchLoad(hasData: boolean): void;
     dispatchClear(): void;
-    get onLoad(): import("strongly-typed-events").ISimpleEvent<boolean>;
-    get onClear(): import("strongly-typed-events").ISignal;
+    get onLoad(): any;
+    get onClear(): any;
 }
