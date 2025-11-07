@@ -204,8 +204,41 @@ export class DataLayer {
   }
 
   private onSubmit() {
-    // Push enhanced conversions before form submission
-    this.pushEnhancedConversions();
+    // TidyContact integration: Wait for TidyContact to standardize address/phone before pushing enhanced conversions
+    // TidyContact sets _form.submitPromise during onSubmit, so we need to check it after a brief delay
+    // to ensure it's been set by the time we check
+    window.setTimeout(() => {
+      // Check if TidyContact (or other services) will update fields via submitPromise
+      // If submitPromise exists, wait for it to complete before pushing enhanced conversions
+      // This ensures we capture standardized/validated data from TidyContact
+      if (
+        this._form.submitPromise &&
+        typeof this._form.submitPromise === "object" &&
+        "then" in this._form.submitPromise
+      ) {
+        // Wait for TidyContact API to complete and update fields
+        (this._form.submitPromise as Promise<any>)
+          .then(() => {
+            // Push enhanced conversions after TidyContact standardizes address/phone
+            // TidyContact updates fields via setFields() and setPhoneDataFromAPI()
+            // which standardizes addresses (CASS format) and phone numbers (E.164 format)
+            this.logger.log(
+              "Pushing enhanced conversions after TidyContact standardization"
+            );
+            this.pushEnhancedConversions();
+          })
+          .catch(() => {
+            // Even if TidyContact fails, push with current data
+            this.logger.log(
+              "TidyContact failed, pushing enhanced conversions with current data"
+            );
+            this.pushEnhancedConversions();
+          });
+      } else {
+        // No async operations (TidyContact not enabled or no data to standardize), push immediately
+        this.pushEnhancedConversions();
+      }
+    }, 0); // Use setTimeout(0) to check submitPromise after all onSubmit subscribers have run
 
     const optIn = document.querySelector(
       ".en__field__item:not(.en__field--question) input[name^='supporter.questions'][type='checkbox']:checked"
@@ -784,6 +817,10 @@ export class DataLayer {
    * Integration points:
    * - ENGrid: uses ENGrid.getFieldValue() to collect form data
    * - Remember Me: pushes after Remember Me loads (if enabled)
+   * - TidyContact: waits for TidyContact to standardize address/phone before pushing on form submit
+   *   - Addresses are standardized to CASS format
+   *   - Phone numbers are standardized to E.164 format
+   *   - Enhanced conversions captures the standardized values, not raw user input
    * - dataLayer: pushes to window.dataLayer for GTM processing
    */
   private async pushEnhancedConversions(): Promise<void> {
