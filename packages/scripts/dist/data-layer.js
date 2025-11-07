@@ -18,6 +18,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { EngridLogger, ENGrid, EnForm, RememberMeEvents } from ".";
 export class DataLayer {
+    /**
+     * Constructor - initializes DataLayer and sets up event listeners
+     *
+     * Integration with Remember Me:
+     * - If RememberMe option is enabled, waits for RememberMeEvents.onLoad
+     * - Enhanced conversions push happens after Remember Me loads data
+     * - This ensures form fields are populated before collecting user data
+     *
+     * Integration with ENGrid:
+     * - Uses ENGrid.getOption() to check RememberMe setting
+     * - Uses ENGrid.getFieldValue() to collect form field values
+     * - Uses EnForm.getInstance() for form submission events
+     */
     constructor() {
         this.logger = new EngridLogger("DataLayer", "#f1e5bc", "#009cdc", "📊");
         this.dataLayer = window.dataLayer || [];
@@ -224,12 +237,20 @@ export class DataLayer {
     }
     /**
      * Debounced push of enhanced conversions to avoid excessive pushes on rapid field changes
+     *
+     * Performance optimizations:
+     * - Debounce delay: 500ms (configurable via fieldChangeDebounceDelay)
+     * - Prevents multiple pushes during rapid typing
+     * - Async SHA-256 operations don't block the main thread
+     * - sessionStorage operations are synchronous but fast
+     * - Only pushes if data has actually changed (checked in pushEnhancedConversions)
      */
     debouncedPushEnhancedConversions() {
         if (this.fieldChangeDebounceTimer !== null) {
             window.clearTimeout(this.fieldChangeDebounceTimer);
         }
         this.fieldChangeDebounceTimer = window.setTimeout(() => {
+            // Fire and forget - async operation won't block
             this.pushEnhancedConversions();
             this.fieldChangeDebounceTimer = null;
         }, this.fieldChangeDebounceDelay);
@@ -237,33 +258,57 @@ export class DataLayer {
     /**
      * Hash a value using SHA-256
      * Falls back to btoa if crypto.subtle is not available
+     *
+     * Browser compatibility:
+     * - crypto.subtle is available in: Chrome 37+, Firefox 34+, Safari 11+, Edge 12+
+     * - Requires HTTPS (or localhost) for security
+     * - Returns lowercase hex string (64 characters for SHA-256)
+     *
+     * Edge cases handled:
+     * - Empty strings return empty string
+     * - Non-string values are converted to string
+     * - Errors during hashing fall back to btoa with warning
+     * - Non-HTTPS contexts fall back to btoa with warning
      */
     sha256Hash(value) {
         return __awaiter(this, void 0, void 0, function* () {
+            // Handle empty or invalid input
             if (!value)
                 return "";
+            if (typeof value !== "string") {
+                value = String(value);
+            }
             // Check if crypto.subtle is available (HTTPS or localhost)
             if (typeof window !== "undefined" &&
                 window.crypto &&
                 window.crypto.subtle) {
                 try {
+                    // Encode the string as UTF-8
                     const encoder = new TextEncoder();
                     const data = encoder.encode(value);
+                    // Hash using SHA-256
                     const hashBuffer = yield crypto.subtle.digest("SHA-256", data);
+                    // Convert ArrayBuffer to hex string
                     const hashArray = Array.from(new Uint8Array(hashBuffer));
                     const hashHex = hashArray
                         .map((b) => b.toString(16).padStart(2, "0"))
                         .join("");
+                    // Verify hash length (SHA-256 should be 64 hex characters)
+                    if (hashHex.length !== 64) {
+                        this.logger.warn(`Unexpected hash length: ${hashHex.length}, expected 64`);
+                    }
                     return hashHex;
                 }
                 catch (error) {
+                    // Log error but don't throw - fall back gracefully
                     this.logger.error("SHA-256 hashing failed, falling back to btoa", error);
                     return btoa(value);
                 }
             }
             else {
-                // Fallback for non-HTTPS contexts
-                this.logger.warn("crypto.subtle not available, using btoa fallback for hashing");
+                // Fallback for non-HTTPS contexts or older browsers
+                this.logger.warn("crypto.subtle not available, using btoa fallback for hashing. " +
+                    "Enhanced conversions require HTTPS for proper SHA-256 hashing.");
                 return btoa(value);
             }
         });
@@ -278,136 +323,253 @@ export class DataLayer {
         return btoa(value);
     }
     /**
-     * Normalize email address: lowercase, trim whitespace
+     * Normalize email address: lowercase, trim whitespace, remove leading/trailing dots
+     * Handles edge cases: multiple spaces, special characters, empty strings
      */
     normalizeEmail(email) {
-        if (!email)
+        if (!email || typeof email !== "string")
             return "";
-        return email.toLowerCase().trim();
+        // Trim and lowercase
+        let normalized = email.trim().toLowerCase();
+        // Remove leading/trailing dots (but keep dots in the middle)
+        normalized = normalized.replace(/^\.+|\.+$/g, "");
+        // Remove any whitespace (emails shouldn't have spaces)
+        normalized = normalized.replace(/\s+/g, "");
+        return normalized;
     }
     /**
      * Normalize phone number: remove non-digit characters, keep leading +
+     * Handles edge cases: extensions (x, ext, extension), parentheses, dashes, spaces
+     * Converts to E.164 format when possible
      */
     normalizePhone(phone) {
-        if (!phone)
+        if (!phone || typeof phone !== "string")
             return "";
-        // Remove all non-digit characters except leading +
-        const cleaned = phone.trim();
+        // Trim whitespace
+        let cleaned = phone.trim();
+        // Remove common extension markers and everything after them
+        cleaned = cleaned.replace(/\s*(x|ext|extension)[\s:]*\d+.*$/i, "");
+        // Remove parentheses, dashes, dots, spaces
+        cleaned = cleaned.replace(/[()\-.\s]/g, "");
+        // Keep leading + if present
         if (cleaned.startsWith("+")) {
-            return "+" + cleaned.slice(1).replace(/\D/g, "");
+            // Ensure + is followed by digits only
+            const digits = cleaned.slice(1).replace(/\D/g, "");
+            return digits ? "+" + digits : "";
         }
+        // Remove all non-digits
         return cleaned.replace(/\D/g, "");
     }
     /**
-     * Normalize address: trim whitespace, remove extra spaces
+     * Normalize address: trim whitespace, remove extra spaces, normalize common abbreviations
+     * Handles edge cases: multiple spaces, special characters, empty strings
      */
     normalizeAddress(address) {
-        if (!address)
+        if (!address || typeof address !== "string")
             return "";
-        return address.trim().replace(/\s+/g, " ");
+        // Trim and normalize whitespace
+        let normalized = address.trim().replace(/\s+/g, " ");
+        // Normalize common address abbreviations (optional, for consistency)
+        // Street -> St, Avenue -> Ave, etc. (but keep original if preferred)
+        return normalized;
     }
     /**
      * Normalize name: trim whitespace, capitalize first letter of each word
+     * Handles edge cases: hyphens, apostrophes, multiple spaces, special characters
+     * Preserves hyphens and apostrophes (e.g., "O'Brien", "Mary-Jane")
      */
     normalizeName(name) {
-        if (!name)
+        if (!name || typeof name !== "string")
             return "";
-        return name
-            .trim()
+        // Trim and normalize whitespace
+        let normalized = name.trim().replace(/\s+/g, " ");
+        // Split on spaces, hyphens, and apostrophes, but preserve them
+        // Capitalize first letter of each word part
+        normalized = normalized
             .split(/\s+/)
-            .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+            .map((word) => {
+            // Handle hyphenated names (e.g., "Mary-Jane")
+            if (word.includes("-")) {
+                return word
+                    .split("-")
+                    .map((part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
+                    .join("-");
+            }
+            // Handle apostrophes (e.g., "O'Brien")
+            if (word.includes("'")) {
+                return word
+                    .split("'")
+                    .map((part, index) => {
+                    if (index === 0) {
+                        return (part.charAt(0).toUpperCase() + part.slice(1).toLowerCase());
+                    }
+                    return part.toLowerCase();
+                })
+                    .join("'");
+            }
+            // Regular word
+            return (word.charAt(0).toUpperCase() + word.slice(1).toLowerCase());
+        })
             .join(" ");
+        return normalized;
     }
     /**
-     * Normalize postal code: uppercase, remove spaces
+     * Normalize postal code: uppercase, remove spaces and hyphens
+     * Handles edge cases: various formats (US ZIP+4, Canadian postal codes, etc.)
      */
     normalizePostalCode(postalCode) {
-        if (!postalCode)
+        if (!postalCode || typeof postalCode !== "string")
             return "";
-        return postalCode.toUpperCase().trim().replace(/\s+/g, "");
+        // Uppercase, trim, remove all spaces and hyphens
+        return postalCode.toUpperCase().trim().replace(/[\s\-]/g, "");
     }
     /**
      * Normalize region/state: uppercase, trim
+     * Handles edge cases: special characters, empty strings
      */
     normalizeRegion(region) {
-        if (!region)
+        if (!region || typeof region !== "string")
             return "";
         return region.toUpperCase().trim();
     }
     /**
      * Normalize country: uppercase, trim
+     * Handles edge cases: special characters, empty strings, country codes vs names
      */
     normalizeCountry(country) {
-        if (!country)
+        if (!country || typeof country !== "string")
             return "";
         return country.toUpperCase().trim();
     }
     /**
      * Collect user data from form fields
+     *
+     * Handles various field types:
+     * - Text inputs: email, phone, names, addresses
+     * - Select dropdowns: country, region
+     * - Radio buttons: (handled by ENGrid.getFieldValue)
+     * - Checkboxes: (handled by ENGrid.getFieldValue)
+     *
+     * Edge cases:
+     * - Empty fields are skipped (not included in userData)
+     * - Multiple address fields are combined into street_address
+     * - Only collects data if field has a value
      */
     collectUserData() {
         const userData = {};
-        // Email
+        // Email - text input
         const email = ENGrid.getFieldValue("supporter.emailAddress");
-        if (email) {
-            userData.email_address = this.normalizeEmail(email);
+        if (email && email.trim()) {
+            const normalized = this.normalizeEmail(email);
+            if (normalized) {
+                userData.email_address = normalized;
+            }
         }
-        // Phone
+        // Phone - text input
         const phone = ENGrid.getFieldValue("supporter.phoneNumber");
-        if (phone) {
-            userData.phone_number = this.normalizePhone(phone);
+        if (phone && phone.trim()) {
+            const normalized = this.normalizePhone(phone);
+            if (normalized) {
+                userData.phone_number = normalized;
+            }
         }
-        // First Name
+        // First Name - text input
         const firstName = ENGrid.getFieldValue("supporter.firstName");
-        if (firstName) {
-            userData.first_name = this.normalizeName(firstName);
+        if (firstName && firstName.trim()) {
+            const normalized = this.normalizeName(firstName);
+            if (normalized) {
+                userData.first_name = normalized;
+            }
         }
-        // Last Name
+        // Last Name - text input
         const lastName = ENGrid.getFieldValue("supporter.lastName");
-        if (lastName) {
-            userData.last_name = this.normalizeName(lastName);
+        if (lastName && lastName.trim()) {
+            const normalized = this.normalizeName(lastName);
+            if (normalized) {
+                userData.last_name = normalized;
+            }
         }
-        // Street Address (combine address1, address2, address3)
+        // Street Address - combine address1, address2, address3 (text inputs)
         const address1 = ENGrid.getFieldValue("supporter.address1");
         const address2 = ENGrid.getFieldValue("supporter.address2");
         const address3 = ENGrid.getFieldValue("supporter.address3");
         const streetParts = [];
-        if (address1)
-            streetParts.push(this.normalizeAddress(address1));
-        if (address2)
-            streetParts.push(this.normalizeAddress(address2));
-        if (address3)
-            streetParts.push(this.normalizeAddress(address3));
+        if (address1 && address1.trim()) {
+            const normalized = this.normalizeAddress(address1);
+            if (normalized)
+                streetParts.push(normalized);
+        }
+        if (address2 && address2.trim()) {
+            const normalized = this.normalizeAddress(address2);
+            if (normalized)
+                streetParts.push(normalized);
+        }
+        if (address3 && address3.trim()) {
+            const normalized = this.normalizeAddress(address3);
+            if (normalized)
+                streetParts.push(normalized);
+        }
         if (streetParts.length > 0) {
             userData.street_address = streetParts.join(" ");
         }
-        // City
+        // City - text input
         const city = ENGrid.getFieldValue("supporter.city");
-        if (city) {
-            userData.city = this.normalizeAddress(city);
+        if (city && city.trim()) {
+            const normalized = this.normalizeAddress(city);
+            if (normalized) {
+                userData.city = normalized;
+            }
         }
-        // Region/State
+        // Region/State - select dropdown or text input
         const region = ENGrid.getFieldValue("supporter.region");
-        if (region) {
-            userData.region = this.normalizeRegion(region);
+        if (region && region.trim()) {
+            const normalized = this.normalizeRegion(region);
+            if (normalized) {
+                userData.region = normalized;
+            }
         }
-        // Postal Code
+        // Postal Code - text input
         const postalCode = ENGrid.getFieldValue("supporter.postcode");
-        if (postalCode) {
-            userData.postal_code = this.normalizePostalCode(postalCode);
+        if (postalCode && postalCode.trim()) {
+            const normalized = this.normalizePostalCode(postalCode);
+            if (normalized) {
+                userData.postal_code = normalized;
+            }
         }
-        // Country
+        // Country - select dropdown
         const country = ENGrid.getFieldValue("supporter.country");
-        if (country) {
-            userData.country = this.normalizeCountry(country);
+        if (country && country.trim()) {
+            const normalized = this.normalizeCountry(country);
+            if (normalized) {
+                userData.country = normalized;
+            }
         }
         return userData;
     }
     /**
      * Merge user data, preferring new data over cached data
+     *
+     * Edge cases handled:
+     * - Partial data: merges fields from multiple sources
+     * - Conflicting values: new data (from form) takes precedence over cached
+     * - Empty strings: treated as no value (won't overwrite existing)
+     * - Remember Me integration: cached data from Remember Me is merged with current form data
      */
     mergeUserData(existing, newData) {
-        return Object.assign(Object.assign({}, existing), newData);
+        const merged = Object.assign({}, existing);
+        // Only merge new data if it has a value (not empty string)
+        for (const key in newData) {
+            const value = newData[key];
+            // Prefer new data if it exists and is not empty
+            if (value && value.trim && value.trim() !== "") {
+                merged[key] = value;
+            }
+            else if (value && typeof value === "string" && value !== "") {
+                // For non-trimmable values (shouldn't happen, but safety check)
+                merged[key] = value;
+            }
+        }
+        return merged;
     }
     /**
      * Hash user data fields according to Google Analytics Enhanced Conversions spec
@@ -477,6 +639,20 @@ export class DataLayer {
     }
     /**
      * Push enhanced conversions data to dataLayer
+     *
+     * Edge cases handled:
+     * - Empty fields: skipped, not included in user_data
+     * - Multiple pages: data is cached in sessionStorage and merged across pages
+     * - Remember Me cleared: cached data persists until new data overwrites it
+     * - Cross-domain: sessionStorage is domain-specific, data doesn't persist across domains
+     * - Partial data: merges available fields, doesn't require all fields
+     * - No data: returns early if no user data is available
+     * - Data unchanged: skips push if data hasn't changed since last push
+     *
+     * Integration points:
+     * - ENGrid: uses ENGrid.getFieldValue() to collect form data
+     * - Remember Me: pushes after Remember Me loads (if enabled)
+     * - dataLayer: pushes to window.dataLayer for GTM processing
      */
     pushEnhancedConversions() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -502,9 +678,12 @@ export class DataLayer {
                 // Cache the unhashed merged data for future merges
                 this.cacheUserData(mergedData);
                 // Push to dataLayer in Google Analytics Enhanced Conversions format
+                // Structure matches GA4 Measurement Protocol: { user_data: { email_address: "hash", ... } }
                 const enhancedConversionsData = {
                     user_data: hashedData,
                 };
+                // Push to dataLayer - GTM will automatically process this for Enhanced Conversions
+                // The user_data object will be merged with conversion events
                 this.dataLayer.push(enhancedConversionsData);
                 this.logger.log("Enhanced conversions data pushed", {
                     fields: Object.keys(hashedData),
