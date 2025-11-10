@@ -9427,7 +9427,9 @@ body:not([data-engrid-debug]) #debug-bar {
 #en__pagebuilder [class*=giveBySelect-stripedigitalwallet i],
 #en__pagebuilder [class*=giveBySelect-paypaltouch i],
 #en__pagebuilder [class*=giveBySelect-digitalwallet i],
-#en__pagebuilder [class*=engrid__supporter i] {
+#en__pagebuilder [class*=engrid__supporter i],
+#en__pagebuilder [class*=shipenabled-y i],
+#en__pagebuilder [class*=shipenabled-n i] {
   background-color: rgba(0, 0, 255, 0.1019607843) !important;
 }
 #en__pagebuilder [class*=inmem-y i].pboAdvancedRow__preview .en__component--column,
@@ -9439,7 +9441,9 @@ body:not([data-engrid-debug]) #debug-bar {
 #en__pagebuilder [class*=giveBySelect-stripedigitalwallet i].pboAdvancedRow__preview .en__component--column,
 #en__pagebuilder [class*=giveBySelect-paypaltouch i].pboAdvancedRow__preview .en__component--column,
 #en__pagebuilder [class*=giveBySelect-digitalwallet i].pboAdvancedRow__preview .en__component--column,
-#en__pagebuilder [class*=engrid__supporter i].pboAdvancedRow__preview .en__component--column {
+#en__pagebuilder [class*=engrid__supporter i].pboAdvancedRow__preview .en__component--column,
+#en__pagebuilder [class*=shipenabled-y i].pboAdvancedRow__preview .en__component--column,
+#en__pagebuilder [class*=shipenabled-n i].pboAdvancedRow__preview .en__component--column {
   outline-color: #0000ff !important;
   z-index: 1;
 }
@@ -9452,7 +9456,9 @@ body:not([data-engrid-debug]) #debug-bar {
 #en__pagebuilder [class*=giveBySelect-stripedigitalwallet i] .en__mandatory,
 #en__pagebuilder [class*=giveBySelect-paypaltouch i] .en__mandatory,
 #en__pagebuilder [class*=giveBySelect-digitalwallet i] .en__mandatory,
-#en__pagebuilder [class*=engrid__supporter i] .en__mandatory {
+#en__pagebuilder [class*=engrid__supporter i] .en__mandatory,
+#en__pagebuilder [class*=shipenabled-y i] .en__mandatory,
+#en__pagebuilder [class*=shipenabled-n i] .en__mandatory {
   outline: 5px solid #f12222;
 }
 #en__pagebuilder .live-giving-amount,
