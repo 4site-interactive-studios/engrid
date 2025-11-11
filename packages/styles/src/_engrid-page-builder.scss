@@ -92,7 +92,9 @@
   [class*="giveBySelect-stripedigitalwallet" i],
   [class*="giveBySelect-paypaltouch" i],
   [class*="giveBySelect-digitalwallet" i],
-  [class*="engrid__supporter" i] {
+  [class*="engrid__supporter" i],
+  [class*="shipenabled-y" i],
+  [class*="shipenabled-n" i],{
     background-color: #0000ff1a !important;
 
     &.pboAdvancedRow__preview .en__component--column {
