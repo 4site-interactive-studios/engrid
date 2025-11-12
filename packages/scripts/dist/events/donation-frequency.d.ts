@@ -10,7 +10,7 @@ export declare class DonationFrequency {
     set frequency(value: string);
     get recurring(): string;
     set recurring(value: string);
-    get onFrequencyChange(): import("strongly-typed-events").ISimpleEvent<string>;
+    get onFrequencyChange(): any;
     load(): void;
     setRecurrency(recurr: string, dispatch?: boolean): void;
     setFrequency(freq: string, dispatch?: boolean): void;

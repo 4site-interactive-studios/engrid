@@ -9,7 +9,7 @@ export declare class DonationAmount {
     static getInstance(radios?: string, other?: string): DonationAmount;
     get amount(): number;
     set amount(value: number);
-    get onAmountChange(): import("strongly-typed-events").ISimpleEvent<number>;
+    get onAmountChange(): any;
     load(): void;
     setAmount(amount: number, dispatch?: boolean): void;
     clearOther(): void;

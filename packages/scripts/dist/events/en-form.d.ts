@@ -14,7 +14,7 @@ export declare class EnForm {
     dispatchValidate(): void;
     dispatchError(): void;
     submitForm(): void;
-    get onSubmit(): import("strongly-typed-events").ISignal;
-    get onError(): import("strongly-typed-events").ISignal;
-    get onValidate(): import("strongly-typed-events").ISignal;
+    get onSubmit(): any;
+    get onError(): any;
+    get onValidate(): any;
 }

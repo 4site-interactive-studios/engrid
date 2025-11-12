@@ -10,7 +10,7 @@ export declare class ProcessingFees {
     private static instance;
     constructor();
     static getInstance(): ProcessingFees;
-    get onFeeChange(): import("strongly-typed-events").ISimpleEvent<number>;
+    get onFeeChange(): any;
     get fee(): number;
     set fee(value: number);
     calculateFees(amount?: number): any;
