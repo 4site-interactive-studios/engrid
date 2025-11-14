@@ -50,6 +50,7 @@
   &:not(#en__pagebuilder):not([data-engrid-debug])[data-conditonally-hide-show-digital-wallet-elements]{
 
       // Show If
+      &:not([data-engrid-payment-type-option-stripedigitalwallet="true"]) .showif-stripedigitalwallet-available,
       &:not([data-engrid-payment-type-option-apple-pay="true"]) .showif-apple-pay-available,
       &:not([data-engrid-payment-type-option-google-pay="true"]) .showif-google-pay-available,
       &:not([data-engrid-payment-type-option-paypal-one-touch="true"]) .showif-paypal-one-touch-available,

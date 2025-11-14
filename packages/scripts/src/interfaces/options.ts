@@ -157,6 +157,12 @@ export interface Options {
         placementQuerySelector?: string | null;
         excludePageIDs?: string[];
       };
+  PreferredPaymentMethod?:
+    | false
+    | {
+        preferredPaymentMethodField?: string;
+        defaultPaymentMethod?: string[];
+      };
   // CustomPremium filters premium gifts per frequency based on minimum amounts
   // Supports two shapes per frequency:
   //  - Flat map: { 3759: 10, 3760: 25 }
@@ -221,6 +227,7 @@ export const OptionsDefaults: Options = {
   CountryRedirect: false,
   WelcomeBack: false,
   OptInLadder: false,
+  PreferredPaymentMethod: false,
   PageLayouts: [
     "leftleft1col",
     "centerleft1col",

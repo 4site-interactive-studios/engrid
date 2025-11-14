@@ -4388,7 +4388,7 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) .i11-hide-label .en__field:n
   margin-top: 2rem !important;
   margin-bottom: 1rem !important;
 }
-[data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug])[data-conditonally-hide-show-digital-wallet-elements]:not([data-engrid-payment-type-option-apple-pay=true]) .showif-apple-pay-available, [data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug])[data-conditonally-hide-show-digital-wallet-elements]:not([data-engrid-payment-type-option-google-pay=true]) .showif-google-pay-available, [data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug])[data-conditonally-hide-show-digital-wallet-elements]:not([data-engrid-payment-type-option-paypal-one-touch=true]) .showif-paypal-one-touch-available, [data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug])[data-conditonally-hide-show-digital-wallet-elements]:not([data-engrid-payment-type-option-venmo=true]) .showif-venmo-available, [data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug])[data-conditonally-hide-show-digital-wallet-elements]:not([data-engrid-payment-type-option-daf=true]) .showif-daf-available, [data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug])[data-conditonally-hide-show-digital-wallet-elements]:not([data-engrid-payment-type=stripedigitalwallet]) .showif-stripedigitalwallet-selected, [data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug])[data-conditonally-hide-show-digital-wallet-elements]:not([data-engrid-payment-type=paypaltouch]) .showif-paypaltouch-selected, [data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug])[data-conditonally-hide-show-digital-wallet-elements]:not([data-engrid-payment-type=daf]) .showif-daf-selected {
+[data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug])[data-conditonally-hide-show-digital-wallet-elements]:not([data-engrid-payment-type-option-stripedigitalwallet=true]) .showif-stripedigitalwallet-available, [data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug])[data-conditonally-hide-show-digital-wallet-elements]:not([data-engrid-payment-type-option-apple-pay=true]) .showif-apple-pay-available, [data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug])[data-conditonally-hide-show-digital-wallet-elements]:not([data-engrid-payment-type-option-google-pay=true]) .showif-google-pay-available, [data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug])[data-conditonally-hide-show-digital-wallet-elements]:not([data-engrid-payment-type-option-paypal-one-touch=true]) .showif-paypal-one-touch-available, [data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug])[data-conditonally-hide-show-digital-wallet-elements]:not([data-engrid-payment-type-option-venmo=true]) .showif-venmo-available, [data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug])[data-conditonally-hide-show-digital-wallet-elements]:not([data-engrid-payment-type-option-daf=true]) .showif-daf-available, [data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug])[data-conditonally-hide-show-digital-wallet-elements]:not([data-engrid-payment-type=stripedigitalwallet]) .showif-stripedigitalwallet-selected, [data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug])[data-conditonally-hide-show-digital-wallet-elements]:not([data-engrid-payment-type=paypaltouch]) .showif-paypaltouch-selected, [data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug])[data-conditonally-hide-show-digital-wallet-elements]:not([data-engrid-payment-type=daf]) .showif-daf-selected {
   display: none;
 }
 [data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug])[data-conditonally-hide-show-digital-wallet-elements][data-engrid-payment-type=stripedigitalwallet] .hideif-stripedigitalwallet-selected, [data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug])[data-conditonally-hide-show-digital-wallet-elements][data-engrid-payment-type=paypaltouch] .hideif-paypaltouch-selected, [data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug])[data-conditonally-hide-show-digital-wallet-elements][data-engrid-payment-type=daf] .hideif-daf-selected, [data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug])[data-conditonally-hide-show-digital-wallet-elements][data-engrid-payment-type=daf] .hideif-daf-selected_hide-vanilla-submit-button .en__submit {
@@ -9427,7 +9427,9 @@ body:not([data-engrid-debug]) #debug-bar {
 #en__pagebuilder [class*=giveBySelect-stripedigitalwallet i],
 #en__pagebuilder [class*=giveBySelect-paypaltouch i],
 #en__pagebuilder [class*=giveBySelect-digitalwallet i],
-#en__pagebuilder [class*=engrid__supporter i] {
+#en__pagebuilder [class*=engrid__supporter i],
+#en__pagebuilder [class*=shipenabled-y i],
+#en__pagebuilder [class*=shipenabled-n i] {
   background-color: rgba(0, 0, 255, 0.1019607843) !important;
 }
 #en__pagebuilder [class*=inmem-y i].pboAdvancedRow__preview .en__component--column,
@@ -9439,7 +9441,9 @@ body:not([data-engrid-debug]) #debug-bar {
 #en__pagebuilder [class*=giveBySelect-stripedigitalwallet i].pboAdvancedRow__preview .en__component--column,
 #en__pagebuilder [class*=giveBySelect-paypaltouch i].pboAdvancedRow__preview .en__component--column,
 #en__pagebuilder [class*=giveBySelect-digitalwallet i].pboAdvancedRow__preview .en__component--column,
-#en__pagebuilder [class*=engrid__supporter i].pboAdvancedRow__preview .en__component--column {
+#en__pagebuilder [class*=engrid__supporter i].pboAdvancedRow__preview .en__component--column,
+#en__pagebuilder [class*=shipenabled-y i].pboAdvancedRow__preview .en__component--column,
+#en__pagebuilder [class*=shipenabled-n i].pboAdvancedRow__preview .en__component--column {
   outline-color: #0000ff !important;
   z-index: 1;
 }
@@ -9452,7 +9456,9 @@ body:not([data-engrid-debug]) #debug-bar {
 #en__pagebuilder [class*=giveBySelect-stripedigitalwallet i] .en__mandatory,
 #en__pagebuilder [class*=giveBySelect-paypaltouch i] .en__mandatory,
 #en__pagebuilder [class*=giveBySelect-digitalwallet i] .en__mandatory,
-#en__pagebuilder [class*=engrid__supporter i] .en__mandatory {
+#en__pagebuilder [class*=engrid__supporter i] .en__mandatory,
+#en__pagebuilder [class*=shipenabled-y i] .en__mandatory,
+#en__pagebuilder [class*=shipenabled-n i] .en__mandatory {
   outline: 5px solid #f12222;
 }
 #en__pagebuilder .live-giving-amount,

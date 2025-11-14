@@ -87,6 +87,7 @@ import {
   PostDonationEmbed,
   FrequencyUpsell,
   CustomPremium,
+  PreferredPaymentMethod,
 } from ".";
 
 export class App extends ENGrid {
@@ -192,6 +193,7 @@ export class App extends ENGrid {
     new ShowHideRadioCheckboxes("transaction.giveBySelect", "giveBySelect-");
     new ShowHideRadioCheckboxes("transaction.inmem", "inmem-");
     new ShowHideRadioCheckboxes("transaction.recurrpay", "recurrpay-");
+    new ShowHideRadioCheckboxes("transaction.shipenabled", "shipenabled-");
 
     // Automatically show/hide all radios
     let radioFields: string[] = [];
@@ -419,6 +421,7 @@ export class App extends ENGrid {
     // Digital Wallets Features
     if (ENGrid.getPageType() === "DONATION") {
       new DigitalWallets();
+      new PreferredPaymentMethod();
     }
 
     // Mobile CTA

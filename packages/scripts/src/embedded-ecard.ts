@@ -148,15 +148,22 @@ export class EmbeddedEcard {
       "en__field_embedded-ecard"
     ) as HTMLInputElement;
 
-    this.toggleEcardForm((inMemoryCheckbox?.checked ?? true) && sendEcardCheckbox.checked);
+    if(this.options.requireInMemCheckbox) {
+      const inMemoriamCheckbox = document.getElementById(
+        "en__field_transaction_inmem"
+      ) as HTMLInputElement;
 
-    inMemoryCheckbox?.addEventListener("change", (e) => {
-      const checkbox = e.target as HTMLInputElement;
-      if( !checkbox.checked ) {
-        sendEcardCheckbox.checked = false;
-      }
-    });
-    
+      inMemoriamCheckbox?.addEventListener("change", (e) => {
+        const checkbox = e.target as HTMLInputElement;
+        const _sendEcardCheckbox = document.getElementById("en__field_embedded-ecard") as HTMLInputElement;
+        this.toggleEcardForm(checkbox.checked && _sendEcardCheckbox.checked);
+      });
+      
+      this.toggleEcardForm((inMemoriamCheckbox?.checked ?? true) && sendEcardCheckbox.checked);
+    } else {
+      this.toggleEcardForm(sendEcardCheckbox.checked);
+    }
+
     sendEcardCheckbox?.addEventListener("change", (e) => {
       const checkbox = e.target as HTMLInputElement;
       this.toggleEcardForm(checkbox.checked);
