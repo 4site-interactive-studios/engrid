@@ -3,9 +3,11 @@ export declare class DataLayer {
     private dataLayer;
     private _form;
     private static instance;
+    private encoder;
     private endOfGiftProcessStorageKey;
     private excludedFields;
     private hashedFields;
+    private retainedFields;
     constructor();
     static getInstance(): DataLayer;
     private transformJSON;
@@ -14,6 +16,7 @@ export declare class DataLayer {
     private attachEventListeners;
     private handleFieldValueChange;
     private hash;
+    private shaHash;
     private getFieldLabel;
     addEndOfGiftProcessEvent(eventName: string, eventProperties?: object): void;
     addEndOfGiftProcessVariable(variableName: string, variableValue?: any): void;

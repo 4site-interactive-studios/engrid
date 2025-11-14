@@ -20,6 +20,7 @@ export class DataLayer {
   private dataLayer = (window as any).dataLayer || [];
   private _form: EnForm = EnForm.getInstance();
   private static instance: DataLayer;
+  private encoder = new TextEncoder();
   private endOfGiftProcessStorageKey = "ENGRID_END_OF_GIFT_PROCESS_EVENTS";
 
   private excludedFields = [
@@ -56,6 +57,15 @@ export class DataLayer {
     "supporter.billingAddress1",
     "supporter.billingAddress2",
     "supporter.billingAddress3",
+  ];
+
+  private retainedFields = [
+    // Supporter Address, Phone Numbers, and Address
+    "supporter.emailAddress",
+    "supporter.phoneNumber2",
+    "supporter.address1",
+    "supporter.address2",
+    "supporter.address3",
   ];
 
   constructor() {
@@ -123,6 +133,16 @@ export class DataLayer {
     urlParams.forEach((value, key) => {
       dataLayerData[`EN_URLPARAM_${key.toUpperCase()}`] =
         this.transformJSON(value);
+    });
+
+    this.retainedFields.forEach((fieldName) => {
+      const storedValue = localStorage.getItem(
+        `EN_RETAINED_FIELD_${fieldName.toUpperCase()}`
+      );
+      if (storedValue) {
+        dataLayerData[`EN_RETAINED_FIELD_${fieldName.toUpperCase()}`] =
+          storedValue;
+      }
     });
 
     if (ENGrid.getPageType() === "DONATION") {
@@ -193,7 +213,7 @@ export class DataLayer {
     });
   }
 
-  private handleFieldValueChange(el: HTMLInputElement | HTMLSelectElement) {
+  private async handleFieldValueChange(el: HTMLInputElement | HTMLSelectElement) {
     if (el.value === "" || this.excludedFields.includes(el.name)) return;
 
     const value = this.hashedFields.includes(el.name)
@@ -229,6 +249,14 @@ export class DataLayer {
       return;
     }
 
+    if (this.retainedFields.includes(el.name)) {
+      const sha256value = await this.shaHash(el.value);
+      localStorage.setItem(
+        `EN_RETAINED_FIELD_${el.name.toUpperCase()}`,
+        sha256value
+      );
+    }
+
     this.dataLayer.push({
       event: "EN_FORM_VALUE_UPDATED",
       enFieldName: el.name,
@@ -239,6 +267,18 @@ export class DataLayer {
 
   private hash(value: string): string {
     return btoa(value);
+  }
+
+  // TODO: Replace the hash function with this secure SHA-256 implementation later
+  private async shaHash(value: string): Promise<string> {
+    const data = this.encoder.encode(value);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    return Array.from(new Uint8Array(hashBuffer))
+      .map((byte) => {
+        const hex = byte.toString(16);
+        return hex.length === 1 ? "0" + hex : hex;
+      })
+      .join("");
   }
 
   private getFieldLabel(
