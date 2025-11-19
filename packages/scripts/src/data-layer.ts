@@ -255,6 +255,12 @@ export class DataLayer {
         `EN_RETAINED_FIELD_${el.name.toUpperCase()}`,
         sha256value
       );
+      this.dataLayer.push({
+        event: "EN_RETAINED_VALUE_UPDATED",
+        enFieldName: el.name,
+        enFieldLabel: this.getFieldLabel(el),
+        enFieldValue: sha256value,
+      });
     }
 
     this.dataLayer.push({
