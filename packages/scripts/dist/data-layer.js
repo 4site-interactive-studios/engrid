@@ -209,6 +209,12 @@ export class DataLayer {
             if (this.retainedFields.includes(el.name)) {
                 const sha256value = yield this.shaHash(el.value);
                 localStorage.setItem(`EN_RETAINED_FIELD_${el.name.toUpperCase()}`, sha256value);
+                this.dataLayer.push({
+                    event: "EN_RETAINED_VALUE_UPDATED",
+                    enFieldName: el.name,
+                    enFieldLabel: this.getFieldLabel(el),
+                    enFieldValue: sha256value,
+                });
             }
             this.dataLayer.push({
                 event: "EN_FORM_VALUE_UPDATED",
