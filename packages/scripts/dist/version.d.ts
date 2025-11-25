@@ -1,1 +1,1 @@
-export declare const AppVersion = "0.23.5";
+export declare const AppVersion = "0.23.6";
