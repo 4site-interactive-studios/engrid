@@ -55,13 +55,15 @@ export class DataLayer {
             "supporter.billingAddress2",
             "supporter.billingAddress3",
         ];
-        this.retainedFields = [
-            // Supporter Address, Phone Numbers, and Address
-            "supporter.emailAddress",
-            "supporter.phoneNumber2",
+        this.retainedEmailField = "supporter.emailAddress";
+        this.retainedAddressFields = [
             "supporter.address1",
             "supporter.address2",
             "supporter.address3",
+        ];
+        this.retainedPhoneFields = [
+            "supporter.phoneNumber2",
+            "supporter.phoneNumber",
         ];
         if (ENGrid.getOption("RememberMe")) {
             RememberMeEvents.getInstance().onLoad.subscribe((hasData) => {
@@ -120,13 +122,7 @@ export class DataLayer {
             dataLayerData[`EN_URLPARAM_${key.toUpperCase()}`] =
                 this.transformJSON(value);
         });
-        this.retainedFields.forEach((fieldName) => {
-            const storedValue = localStorage.getItem(`EN_RETAINED_FIELD_${fieldName.toUpperCase()}`);
-            if (storedValue) {
-                dataLayerData[`EN_RETAINED_FIELD_${fieldName.toUpperCase()}`] =
-                    storedValue;
-            }
-        });
+        this.addRetainedHashesToDataLayer(dataLayerData);
         if (ENGrid.getPageType() === "DONATION") {
             const recurrFreqEls = document.querySelectorAll('[name="transaction.recurrfreq"]');
             const recurrValues = [...recurrFreqEls].map((el) => el.value);
@@ -138,6 +134,18 @@ export class DataLayer {
             this.dataLayer.push(dataLayerData);
         }
         this.attachEventListeners();
+    }
+    addRetainedHashesToDataLayer(dataLayerData) {
+        if (typeof window === "undefined" || !window.localStorage) {
+            return;
+        }
+        ["EMAIL", "ADDRESS", "PHONE"].forEach((suffix) => {
+            const storageKey = `EN_HASH_${suffix}`;
+            const storedValue = window.localStorage.getItem(storageKey);
+            if (storedValue) {
+                dataLayerData[storageKey] = storedValue;
+            }
+        });
     }
     onSubmit() {
         const optIn = document.querySelector(".en__field__item:not(.en__field--question) input[name^='supporter.questions'][type='checkbox']:checked");
@@ -206,13 +214,37 @@ export class DataLayer {
                 }
                 return;
             }
-            if (this.retainedFields.includes(el.name)) {
-                const sha256value = yield this.shaHash(el.value);
-                localStorage.setItem(`EN_RETAINED_FIELD_${el.name.toUpperCase()}`, sha256value);
+            if (el.name === this.retainedEmailField) {
+                const retainedEmailValue = this.geRetainedFieldsValue("email");
+                const sha256value = yield this.shaHash(retainedEmailValue);
+                localStorage.setItem(`EN_HASH_EMAIL`, sha256value);
                 this.dataLayer.push({
-                    event: "EN_RETAINED_VALUE_UPDATED",
-                    enFieldName: el.name,
+                    event: "EN_HASH_VALUE_UPDATED",
+                    enFieldName: "email",
                     enFieldLabel: this.getFieldLabel(el),
+                    enFieldValue: sha256value,
+                });
+                return;
+            }
+            else if (this.retainedAddressFields.includes(el.name)) {
+                const retainedAddressValue = this.geRetainedFieldsValue("address");
+                const sha256value = yield this.shaHash(retainedAddressValue);
+                localStorage.setItem(`EN_HASH_ADDRESS`, sha256value);
+                this.dataLayer.push({
+                    event: "EN_HASH_VALUE_UPDATED",
+                    enFieldName: "address",
+                    enFieldLabel: "Supporter Address",
+                    enFieldValue: sha256value,
+                });
+            }
+            else if (this.retainedPhoneFields.includes(el.name)) {
+                const retainedPhoneValue = this.geRetainedFieldsValue("phone");
+                const sha256value = yield this.shaHash(retainedPhoneValue);
+                localStorage.setItem(`EN_HASH_PHONE`, sha256value);
+                this.dataLayer.push({
+                    event: "EN_HASH_VALUE_UPDATED",
+                    enFieldName: "phone",
+                    enFieldLabel: "Supporter Phone",
                     enFieldValue: sha256value,
                 });
             }
@@ -224,6 +256,30 @@ export class DataLayer {
             });
         });
     }
+    geRetainedFieldsValue(kind) {
+        switch (kind) {
+            case "email":
+                return ENGrid.getFieldValue(this.retainedEmailField);
+            case "address":
+                return this.retainedAddressFields
+                    .map((field) => ENGrid.getFieldValue(field))
+                    .filter((value) => value !== "")
+                    .join("")
+                    .toLocaleLowerCase()
+                    .replace(/\s+/g, "");
+            case "phone":
+                // Only return the first phone number found - prioritize phoneNumber2 over phoneNumber and remove non-numeric characters
+                for (const field of this.retainedPhoneFields) {
+                    const value = ENGrid.getFieldValue(field);
+                    if (value !== "") {
+                        return value.replace(/\D/g, "");
+                    }
+                }
+                return "";
+            default:
+                return "";
+        }
+    }
     hash(value) {
         return btoa(value);
     }
@@ -231,7 +287,7 @@ export class DataLayer {
     shaHash(value) {
         return __awaiter(this, void 0, void 0, function* () {
             const data = this.encoder.encode(value);
-            const hashBuffer = yield crypto.subtle.digest('SHA-256', data);
+            const hashBuffer = yield crypto.subtle.digest("SHA-256", data);
             return Array.from(new Uint8Array(hashBuffer))
                 .map((byte) => {
                 const hex = byte.toString(16);
