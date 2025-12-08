@@ -1,0 +1,31 @@
+export declare class PreferredPaymentMethod {
+    private logger;
+    private readonly availabilityTimeoutMs;
+    private cleanupHandlers;
+    private selectionFinalized;
+    private listenersAttached;
+    private config;
+    private preferredFieldName;
+    constructor();
+    private shouldRun;
+    private resolveConfig;
+    private buildCandidateList;
+    private hasPreferredField;
+    private attachGiveBySelectListeners;
+    private syncPreferredField;
+    private getFieldPreference;
+    private getUrlPreference;
+    private tryCandidateAtIndex;
+    private waitForAvailability;
+    private applySelection;
+    private paymentMethodExists;
+    private isPaymentMethodAvailable;
+    private findPaymentInput;
+    private getGiveBySelectInputs;
+    private getGiveBySelectContainer;
+    private getInputContainer;
+    private findLabelForInput;
+    private normalizePaymentValue;
+    private getAvailabilityAttributeFilters;
+    private cleanupAllObservers;
+}

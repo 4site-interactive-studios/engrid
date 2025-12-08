@@ -3,6 +3,7 @@ export class DigitalWallets {
     constructor() {
         //digital wallets not enabled.
         if (!document.getElementById("en__digitalWallet")) {
+            ENGrid.setBodyData("payment-type-option-stripedigitalwallet", "false");
             ENGrid.setBodyData("payment-type-option-apple-pay", "false");
             ENGrid.setBodyData("payment-type-option-google-pay", "false");
             ENGrid.setBodyData("payment-type-option-paypal-one-touch", "false");
@@ -41,6 +42,7 @@ export class DigitalWallets {
         else {
             ENGrid.setBodyData("payment-type-option-apple-pay", "false");
             ENGrid.setBodyData("payment-type-option-google-pay", "false");
+            ENGrid.setBodyData("payment-type-option-stripedigitalwallet", "false");
             const stripeContainer = document.getElementById("en__digitalWallet__stripeButtons__container");
             if (stripeContainer) {
                 this.checkForWalletsBeingAdded(stripeContainer, "stripe");
@@ -85,8 +87,18 @@ export class DigitalWallets {
     }
     addStripeDigitalWallets() {
         this.addOptionToPaymentTypeField("stripedigitalwallet", "GooglePay / ApplePay");
+        // ENGrid.setBodyData(
+        //   "payment-type-option-apple-pay",
+        //   DigitalWallets.isApplePayAvailable.toString()
+        // );
+        // ENGrid.setBodyData(
+        //   "payment-type-option-google-pay",
+        //   !DigitalWallets.isApplePayAvailable.toString()
+        // );
+        // TODO: Change to trustworthy detection of Google Pay & Apple Pay availability
         ENGrid.setBodyData("payment-type-option-apple-pay", "true");
         ENGrid.setBodyData("payment-type-option-google-pay", "true");
+        ENGrid.setBodyData("payment-type-option-stripedigitalwallet", "true");
     }
     addPaypalTouchDigitalWallets() {
         this.addOptionToPaymentTypeField("paypaltouch", "Paypal / Venmo");

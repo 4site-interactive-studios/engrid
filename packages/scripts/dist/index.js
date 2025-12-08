@@ -88,6 +88,7 @@ export * from "./frequency-upsell-modal";
 export * from "./frequency-upsell";
 export * from "./sticky-nsg";
 export * from "./sticky-prepopulation";
+export * from "./preferred-payment-method";
 // Events
 export * from "./events";
 // Version

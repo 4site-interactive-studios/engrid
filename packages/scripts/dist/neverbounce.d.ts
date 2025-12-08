@@ -13,6 +13,8 @@ export declare class NeverBounce {
     private shouldRun;
     private nbLoaded;
     private bypassEmails;
+    private neverBounceTimeout;
+    private neverBounceTimeoutFunc;
     constructor(apiKey: string, dateField: string | null, statusField: string | null, dateFormat: string | undefined);
     private init;
     private clearStatus;
@@ -22,4 +24,9 @@ export declare class NeverBounce {
     private wrap;
     private isBypassEmail;
     private validate;
+    /**
+     * Clears the backup timeout function if it exists.
+     * @private
+     */
+    private clearTimeout;
 }

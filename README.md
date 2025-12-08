@@ -4,32 +4,44 @@
 
 <!--- <img align="right" width="200" height="200" src="https://engagingnetworks.academy/wp-content/uploads/2019/09/D-D-Partner.png"> -->
 
-This project started as a labor of love for our clients and ourselves. Originating in 2017 as a partnership between Engaging Networks and 4Site Studios to create the first freely available page templates for their platform, we created [Engaging Networks Page Template](https://github.com/4site-interactive-studios/Engaging-Networks-Page-Template). That project was incredibly successful, and those templates are still used today for all new Engaging Networks clients. They're easy for junior developers and code dabblers to ease into, and they include Internet Explorer 11 support.
+This project started as a labor of love for our clients and ourselves. Originating in 2017 as a partnership between Engaging Networks and 4Site Studios to create the first freely available page templates for their platform, we created our first resuable Engaging Networks Page Template. That project was incredibly successful, and those templates are still used today for all new Engaging Networks clients. They're easy for junior developers and code dabblers to ease into, and they included Internet Explorer 11 support.
 
 Since then, we've continued to enhance and refine our work, culminating in a complete re-write in late 2019 that was named "ENgrid". Using today's latest web technologies, Webpack, Typescript, ES6, SCSS, and CSS Grids, we've created a new framework for marketers, fundraisers, and everyone in between that will ensure your pages stand out and deliver the performance you're looking for.
 
-Designed and Developed by [4Site Studios](http://4sitestudios.com/en?ms=github) while working with:
+Designed and Developed by [4Site Studios](https://www.4sitestudios.com/engaging-networks/?ms=github) while working with:
 
-- Amnesty International USA (AIUSA)
-- Catholic Extension
-- Earth Island Institute
-- Human Rights Campaign (HRC) via Lautman Maska Neill & Company
-- International Fund for Animal Welfare (IFAW)
-- Mercy for Animals
-- National Trust for Historic Preservation
-- National Wildlife Federation (NWF)
-- Oceana
-- Ocean Conservancy
-- Organic Consumers
-- Oxfam America
-- Oxfam Canada
-- People for the Ethical Treatment of Animals (PETA)
-- Polaris Project
-- Rainforest Action Network (RAN)
-- Saint Anthony's Guild (Friar Works)
-- Save Tibet via Schultz and Williams
-- The Nature Conservancy (TNC)
-- World Wildlife Fund (WWF)
+1. American Technion Society (ATS) - Launching Q4, 2025- Amnesty International USA (AIUSA)
+2. Catholic Extension
+3. Center for Science in Public Interest (CSPI)
+4. Earth Island Institute
+5. Engaging Networks - Free & Flexible templates
+6. Evangelical Lutheran Church in America (ELCA) - Launching Q4, 2025
+7. Food and Water Watch (FWW)
+8. Friends of Canadian Broadcasting
+9. Human Rights Campaign (HRC) via Lautman Maska Neill & Company
+10. International Fund for Animal Welfare (IFAW)
+11. Just Liberty
+12. Mercy for Animals
+13. National Parks Conservation Association (NPCA) via Avalon Consulting
+14. National Trust for Historic Preservation (NTHP) via Avalon Consulting
+15. National Wildlife Federation (NWF)
+16. Oceana
+17. Ocean Conservancy
+18. Organic Consumers
+19. Oxfam America
+20. Oxfam Canada
+21. People for the Ethical Treatment of Animals (PETA)
+22. Polaris Project
+23. Rainforest Action Network (RAN)
+24. Saint Anthony's Guild (Friar Works)
+25. Save the Children Action Network (SCAN)
+26. Save Tibet via Schultz and Williams
+27. Shatterproof
+28. SPCA International (SPCAI) - Launching Q4, 2025
+29. The Nature Conservancy (TNC)
+30. Turtle Island Restoration Network
+31. Van Andel Institute
+32. World Wildlife Fund (WWF)
 
 ## ENgrid Features
 

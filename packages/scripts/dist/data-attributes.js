@@ -8,6 +8,13 @@ export class DataAttributes {
         this.setDataAttributes();
     }
     setDataAttributes() {
+        // Apple Pay Availability
+        if (window.hasOwnProperty("ApplePaySession")) {
+            ENGrid.setBodyData("apple-pay-available", "true");
+        }
+        else {
+            ENGrid.setBodyData("apple-pay-available", "false");
+        }
         // Add the Page Type as a Data Attribute on the Body Tag
         if (ENGrid.checkNested(window, "pageJson", "pageType")) {
             ENGrid.setBodyData("page-type", window.pageJson.pageType);

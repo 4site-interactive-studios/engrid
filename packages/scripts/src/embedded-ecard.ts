@@ -48,6 +48,7 @@ export class EmbeddedEcard {
       };
       const pageUrl = new URL(this.options.pageUrl);
       pageUrl.searchParams.append("data-engrid-embedded-ecard", "true");
+      pageUrl.searchParams.append("chain", "");
       this.options.pageUrl = pageUrl.href;
       this.logger.log("Running Embedded Ecard component", this.options);
       this.embedEcard();
@@ -77,7 +78,7 @@ export class EmbeddedEcard {
   }
 
   private onEmbeddedEcardPage(): boolean {
-    return ENGrid.getPageType() === "ECARD" && ENGrid.hasBodyData("embedded");
+    return ENGrid.getPageType() === "ECARD" && ENGrid.hasBodyData("embedded") && ENGrid.getPageNumber() === 1;
   }
 
   private onPostActionPage(): boolean {
@@ -144,7 +145,21 @@ export class EmbeddedEcard {
       "en__field_embedded-ecard"
     ) as HTMLInputElement;
 
-    this.toggleEcardForm(sendEcardCheckbox.checked);
+    if(this.options.requireInMemCheckbox) {
+      const inMemoriamCheckbox = document.getElementById(
+        "en__field_transaction_inmem"
+      ) as HTMLInputElement;
+
+      inMemoriamCheckbox?.addEventListener("change", (e) => {
+        const checkbox = e.target as HTMLInputElement;
+        const _sendEcardCheckbox = document.getElementById("en__field_embedded-ecard") as HTMLInputElement;
+        this.toggleEcardForm(checkbox.checked && _sendEcardCheckbox.checked);
+      });
+      
+      this.toggleEcardForm((inMemoriamCheckbox?.checked ?? true) && sendEcardCheckbox.checked);
+    } else {
+      this.toggleEcardForm(sendEcardCheckbox.checked);
+    }
 
     sendEcardCheckbox?.addEventListener("change", (e) => {
       const checkbox = e.target as HTMLInputElement;

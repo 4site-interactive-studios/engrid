@@ -21,6 +21,7 @@ export const OptionsDefaults = {
     NeverBounceDateField: null,
     NeverBounceStatusField: null,
     NeverBounceDateFormat: "MM/DD/YYYY",
+    NeverBounceTimeout: 10000,
     FreshAddress: false,
     ProgressBar: false,
     AutoYear: false,
@@ -43,6 +44,7 @@ export const OptionsDefaults = {
     OptInLadder: false,
     StickyNSG: false,
     StickyPrepopulation: false,
+    PreferredPaymentMethod: false,
     PageLayouts: [
         "leftleft1col",
         "centerleft1col",

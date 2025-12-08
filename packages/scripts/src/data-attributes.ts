@@ -17,6 +17,12 @@ export class DataAttributes {
   }
 
   private setDataAttributes() {
+    // Apple Pay Availability
+    if (window.hasOwnProperty("ApplePaySession")) {
+      ENGrid.setBodyData("apple-pay-available", "true");
+    } else {
+      ENGrid.setBodyData("apple-pay-available", "false");
+    }
     // Add the Page Type as a Data Attribute on the Body Tag
     if (ENGrid.checkNested(window, "pageJson", "pageType")) {
       ENGrid.setBodyData("page-type", window.pageJson.pageType);
@@ -209,8 +215,13 @@ export class DataAttributes {
           visibleGiftAmountOptions++;
         }
       });
-      ENGrid.setBodyData("visible-gift-amount", visibleGiftAmountOptions.toString());
-      this.logger.log("Visible Gift Amount Changed to: " + visibleGiftAmountOptions.toString());
+      ENGrid.setBodyData(
+        "visible-gift-amount",
+        visibleGiftAmountOptions.toString()
+      );
+      this.logger.log(
+        "Visible Gift Amount Changed to: " + visibleGiftAmountOptions.toString()
+      );
     };
 
     // Initial update
@@ -219,7 +230,7 @@ export class DataAttributes {
     // Observe changes in the donation amount section
     const observer = new MutationObserver(updateGiftAmountData);
     const targetNode = document.querySelector(".en__field--donationAmt");
-    
+
     if (targetNode) {
       observer.observe(targetNode, {
         childList: true,

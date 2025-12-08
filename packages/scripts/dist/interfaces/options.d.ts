@@ -22,6 +22,7 @@ export interface Options {
     NeverBounceDateField?: string | null;
     NeverBounceDateFormat?: string;
     NeverBounceStatusField?: string | null;
+    NeverBounceTimeout?: number | null;
     FreshAddress?: false | {
         dateField?: string;
         dateFieldFormat?: string;
@@ -154,6 +155,10 @@ export interface Options {
         iframeUrl: string;
         placementQuerySelector?: string | null;
         excludePageIDs?: string[];
+    };
+    PreferredPaymentMethod?: false | {
+        preferredPaymentMethodField?: string;
+        defaultPaymentMethod?: string[];
     };
     CustomPremium?: false | {
         [frequency: string]: ({

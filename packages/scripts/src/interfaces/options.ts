@@ -22,6 +22,7 @@ export interface Options {
   NeverBounceDateField?: string | null;
   NeverBounceDateFormat?: string;
   NeverBounceStatusField?: string | null;
+  NeverBounceTimeout?: number | null;
   FreshAddress?:
     | false
     | {
@@ -158,6 +159,12 @@ export interface Options {
         placementQuerySelector?: string | null;
         excludePageIDs?: string[];
       };
+  PreferredPaymentMethod?:
+    | false
+    | {
+        preferredPaymentMethodField?: string;
+        defaultPaymentMethod?: string[];
+      };
   // CustomPremium filters premium gifts per frequency based on minimum amounts
   // Supports two shapes per frequency:
   //  - Flat map: { 3759: 10, 3760: 25 }
@@ -201,6 +208,7 @@ export const OptionsDefaults: Options = {
   NeverBounceDateField: null,
   NeverBounceStatusField: null,
   NeverBounceDateFormat: "MM/DD/YYYY",
+  NeverBounceTimeout: 10000,
   FreshAddress: false,
   ProgressBar: false,
   AutoYear: false,
@@ -223,6 +231,7 @@ export const OptionsDefaults: Options = {
   OptInLadder: false,
   StickyNSG: false,
   StickyPrepopulation: false,
+  PreferredPaymentMethod: false,
   PageLayouts: [
     "leftleft1col",
     "centerleft1col",

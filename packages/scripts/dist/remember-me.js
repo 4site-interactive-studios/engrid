@@ -283,6 +283,7 @@ export class RememberMe {
         }
     }
     setFieldValue(field, value, overwrite = false) {
+        value = decodeURIComponent(value || "");
         if (field && value !== undefined) {
             if ((field.value && overwrite) || !field.value) {
                 field.value = value;
