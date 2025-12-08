@@ -24,7 +24,7 @@ export class StickyNSG {
   }
 
   /*
-    * Determine if NSG provided by EN is active on the page
+   * Determine if NSG provided by EN is active on the page
    */
   private nsgActiveOnPage(): boolean {
     return (
@@ -48,7 +48,7 @@ export class StickyNSG {
   }
 
   /*
-    * Create the sticky NSG cookie if NSG is active on the page
+   * Create the sticky NSG cookie if NSG is active on the page
    */
   private createStickyNSGCookie() {
     if (!this.nsgActiveOnPage()) {
@@ -58,7 +58,9 @@ export class StickyNSG {
 
     const url = new URL(window.location.href);
     if (url.searchParams.get("skipstickynsg") === "true") {
-      this.logger.log("'skipstickynsg' param present, not creating sticky NSG cookie");
+      this.logger.log(
+        "'skipstickynsg' param present, not creating sticky NSG cookie"
+      );
       return;
     }
 
@@ -71,7 +73,7 @@ export class StickyNSG {
         amounts: nsg.single?.reduce((acc: any, curr: any) => {
           acc[curr.value] = curr.value;
           return acc;
-        }, {"Other": "other"}),
+        }, {}),
         default: nsg.single?.find((gift: any) => gift.nextSuggestedGift).value,
         stickyDefault: false,
       },
@@ -79,8 +81,9 @@ export class StickyNSG {
         amounts: nsg.recurring?.reduce((acc: any, curr: any) => {
           acc[curr.value] = curr.value;
           return acc;
-        }, {"Other": "other"}),
-        default: nsg.recurring?.find((gift: any) => gift.nextSuggestedGift).value,
+        }, {}),
+        default: nsg.recurring?.find((gift: any) => gift.nextSuggestedGift)
+          .value,
         stickyDefault: false,
       },
     });
@@ -93,7 +96,9 @@ export class StickyNSG {
    */
   private applyStickyNSGCookie() {
     if (this.nsgActiveOnPage()) {
-      this.logger.log("NSG active on page, not applying sticky NSG cookie, leaving the EN NSG values.");
+      this.logger.log(
+        "NSG active on page, not applying sticky NSG cookie, leaving the EN NSG values."
+      );
       return;
     }
 
