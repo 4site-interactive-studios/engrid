@@ -11,7 +11,7 @@
   },
   "scripts": {
     "watch": "lerna run watch",
-    "build": "lerna bootstrap & lerna run build",
+    "build": "lerna bootstrap && lerna run build",
     "version": "node ./write-version.js && npm run build && git add .",
     "make": "lerna run build && lerna publish --yes --cd-version patch",
     "make-feature": "lerna run build && lerna publish --yes --cd-version minor"
