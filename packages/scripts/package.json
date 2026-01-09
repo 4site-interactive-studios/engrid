@@ -1,26 +1,32 @@
 {
-	"name": "@4site/engrid-scripts",
-	"version": "0.23.7",
-	"description": "Scripts for the ENGRID Project",
-	"main": "./dist/index.js",
-	"types": "./dist/index.d.ts",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/4site-interactive-studios/engrid.git",
-		"directory": "packages/scripts"
-	},
-	"author": "4Site Studios",
-	"license": "Unlicense",
-	"bugs": {
-		"url": "https://github.com/4site-interactive-studios/engrid/issues"
-	},
-	"dependencies": {
-		"shuffle-seed": "^1.1.6",
-		"strongly-typed-events": "^2.0.9"
-	},
-	"homepage": "https://github.com/4site-interactive-studios/engrid#readme",
-	"gitHead": "f72c96b7127b4aad91d5a33a2fa0a29a5122e08e",
-	"devDependencies": {
-		"nodemon": "^2.0.20"
-	}
+  "name": "@4site/engrid-scripts",
+  "version": "0.23.7",
+  "description": "Scripts for the ENGRID Project",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "postpublish": "git push origin --tags",
+    "watch": "nodemon -w src -e json,ts -x npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/4site-interactive-studios/engrid.git",
+    "directory": "packages/scripts"
+  },
+  "author": "4Site Studios",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/4site-interactive-studios/engrid/issues"
+  },
+  "dependencies": {
+    "shuffle-seed": "^1.1.6",
+    "strongly-typed-events": "^2.0.9"
+  },
+  "homepage": "https://github.com/4site-interactive-studios/engrid#readme",
+  "gitHead": "f72c96b7127b4aad91d5a33a2fa0a29a5122e08e",
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
 }
