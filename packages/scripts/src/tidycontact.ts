@@ -292,9 +292,9 @@ export class TidyContact {
       this.isDirty = true;
     }
     if (this.phoneEnabled()) {
-      this.createPhoneMarginVariable();
       this.createPhoneFields(1);
       this.createPhoneFields(2);
+      this.createPhoneMarginVariable();
       this.logger.log("Phone Standardization is enabled");
       if (this.countryDropDownEnabled()) {
         this.renderFlagsDropDown(1);
