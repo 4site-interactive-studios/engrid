@@ -73,9 +73,9 @@ export interface Options {
         phone_flags?: boolean;
         phone_country_from_ip?: boolean;
         phone_preferred_countries?: string[];
-        phone1_record_field?: string;
-        phone1_date_field?: string;
-        phone1_status_field?: string;
+        phone_record_field?: string;
+        phone_date_field?: string;
+        phone_status_field?: string;
         phone2_record_field?: string;
         phone2_date_field?: string;
         phone2_status_field?: string;

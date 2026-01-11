@@ -79,9 +79,9 @@ export interface Options {
         phone_flags?: boolean; // Phone flags
         phone_country_from_ip?: boolean; // Phone country from IP
         phone_preferred_countries?: string[]; // Prioritize some countries on the list
-        phone1_record_field?: string; // TidyContact Record
-        phone1_date_field?: string; // TidyContact Date
-        phone1_status_field?: string; // TidyContact Status
+        phone_record_field?: string; // TidyContact Record
+        phone_date_field?: string; // TidyContact Date
+        phone_status_field?: string; // TidyContact Status
         phone2_record_field?: string; // TidyContact Record
         phone2_date_field?: string; // TidyContact Date
         phone2_status_field?: string; // TidyContact Status

@@ -283,9 +283,9 @@ export class TidyContact {
             this.isDirty = true;
         }
         if (this.phoneEnabled()) {
-            this.createPhoneMarginVariable();
             this.createPhoneFields(1);
             this.createPhoneFields(2);
+            this.createPhoneMarginVariable();
             this.logger.log("Phone Standardization is enabled");
             if (this.countryDropDownEnabled()) {
                 this.renderFlagsDropDown(1);
@@ -387,25 +387,28 @@ export class TidyContact {
         }
         ENGrid.createHiddenInput(`tc.phone${phoneIndex}.country`, "");
         this.logger.log(`Creating hidden field: tc.phone${phoneIndex}.country`);
-        if (this.options[`phone${phoneIndex}_record_field`]) {
-            const recordField = ENGrid.getField(this.options[`phone${phoneIndex}_record_field`]);
+        if (this.options[`phone${phoneIndex === 1 ? "" : phoneIndex}_record_field`]) {
+            const recordField = ENGrid.getField(this.options[`phone${phoneIndex === 1 ? "" : phoneIndex}_record_field`]);
             if (!recordField) {
-                ENGrid.createHiddenInput(this.options[`phone${phoneIndex}_record_field`], "");
-                this.logger.log("Creating hidden field: " + this.options[`phone${phoneIndex}_record_field`]);
+                ENGrid.createHiddenInput(this.options[`phone${phoneIndex === 1 ? "" : phoneIndex}_record_field`], "");
+                this.logger.log("Creating hidden field: " +
+                    this.options[`phone${phoneIndex === 1 ? "" : phoneIndex}_record_field`]);
             }
         }
-        if (this.options[`phone${phoneIndex}_date_field`]) {
-            const dateField = ENGrid.getField(this.options[`phone${phoneIndex}_date_field`]);
+        if (this.options[`phone${phoneIndex === 1 ? "" : phoneIndex}_date_field`]) {
+            const dateField = ENGrid.getField(this.options[`phone${phoneIndex === 1 ? "" : phoneIndex}_date_field`]);
             if (!dateField) {
-                ENGrid.createHiddenInput(this.options[`phone${phoneIndex}_date_field`], "");
-                this.logger.log("Creating hidden field: " + this.options[`phone${phoneIndex}_date_field`]);
+                ENGrid.createHiddenInput(this.options[`phone${phoneIndex === 1 ? "" : phoneIndex}_date_field`], "");
+                this.logger.log("Creating hidden field: " +
+                    this.options[`phone${phoneIndex === 1 ? "" : phoneIndex}_date_field`]);
             }
         }
-        if (this.options[`phone${phoneIndex}_status_field`]) {
-            const statusField = ENGrid.getField(this.options[`phone${phoneIndex}_status_field`]);
+        if (this.options[`phone${phoneIndex === 1 ? "" : phoneIndex}_status_field`]) {
+            const statusField = ENGrid.getField(this.options[`phone${phoneIndex === 1 ? "" : phoneIndex}_status_field`]);
             if (!statusField) {
-                ENGrid.createHiddenInput(this.options[`phone${phoneIndex}_status_field`], "");
-                this.logger.log("Creating hidden field: " + this.options[`phone${phoneIndex}_status_field`]);
+                ENGrid.createHiddenInput(this.options[`phone${phoneIndex === 1 ? "" : phoneIndex}_status_field`], "");
+                this.logger.log("Creating hidden field: " +
+                    this.options[`phone${phoneIndex === 1 ? "" : phoneIndex}_status_field`]);
             }
         }
     }
@@ -416,7 +419,7 @@ export class TidyContact {
         const phone1 = ENGrid.getField((_a = this.options.address_fields) === null || _a === void 0 ? void 0 : _a.phone1);
         const phone2 = ENGrid.getField((_b = this.options.address_fields) === null || _b === void 0 ? void 0 : _b.phone2);
         const phoneField = phone1 || phone2;
-        console.log('createPhoneMarginVariable', phoneField);
+        console.log("createPhoneMarginVariable", phoneField);
         if (phoneField) {
             const phoneStyle = window.getComputedStyle(phoneField);
             const marginTop = phoneStyle.marginTop;
@@ -1043,9 +1046,9 @@ export class TidyContact {
                 throw new Error("phoneIndex must be an integer value of 1 or 2");
             }
             const phoneField = ENGrid.getField((_a = this.options.address_fields) === null || _a === void 0 ? void 0 : _a[`phone${phoneIndex}`]);
-            const recordField = ENGrid.getField(this.options[`phone${phoneIndex}_record_field`]);
-            const dateField = ENGrid.getField(this.options[`phone${phoneIndex}_date_field`]);
-            const statusField = ENGrid.getField(this.options[`phone${phoneIndex}_status_field`]);
+            const recordField = ENGrid.getField(this.options[`phone${phoneIndex === 1 ? "" : phoneIndex}_record_field`]);
+            const dateField = ENGrid.getField(this.options[`phone${phoneIndex === 1 ? "" : phoneIndex}_date_field`]);
+            const statusField = ENGrid.getField(this.options[`phone${phoneIndex === 1 ? "" : phoneIndex}_status_field`]);
             let record = {};
             record["formData"] = { [phoneField.name]: phoneField.value };
             record["formatted"] = data.formatted;

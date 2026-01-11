@@ -412,30 +412,70 @@ export class TidyContact {
     }
     ENGrid.createHiddenInput(`tc.phone${phoneIndex}.country`, "");
     this.logger.log(`Creating hidden field: tc.phone${phoneIndex}.country`);
-    if (this.options[`phone${phoneIndex}_record_field`]) {
-      const recordField = ENGrid.getField(this.options[`phone${phoneIndex}_record_field`] as string);
+    if (
+      this.options[`phone${phoneIndex === 1 ? "" : phoneIndex}_record_field`]
+    ) {
+      const recordField = ENGrid.getField(
+        this.options[
+          `phone${phoneIndex === 1 ? "" : phoneIndex}_record_field`
+        ] as string
+      );
       if (!recordField) {
-        ENGrid.createHiddenInput(this.options[`phone${phoneIndex}_record_field`] as string, "");
+        ENGrid.createHiddenInput(
+          this.options[
+            `phone${phoneIndex === 1 ? "" : phoneIndex}_record_field`
+          ] as string,
+          ""
+        );
         this.logger.log(
-          "Creating hidden field: " + this.options[`phone${phoneIndex}_record_field`]
+          "Creating hidden field: " +
+            this.options[
+              `phone${phoneIndex === 1 ? "" : phoneIndex}_record_field`
+            ]
         );
       }
     }
-    if (this.options[`phone${phoneIndex}_date_field`]) {
-      const dateField = ENGrid.getField(this.options[`phone${phoneIndex}_date_field`] as string);
+    if (this.options[`phone${phoneIndex === 1 ? "" : phoneIndex}_date_field`]) {
+      const dateField = ENGrid.getField(
+        this.options[
+          `phone${phoneIndex === 1 ? "" : phoneIndex}_date_field`
+        ] as string
+      );
       if (!dateField) {
-        ENGrid.createHiddenInput(this.options[`phone${phoneIndex}_date_field`] as string, "");
+        ENGrid.createHiddenInput(
+          this.options[
+            `phone${phoneIndex === 1 ? "" : phoneIndex}_date_field`
+          ] as string,
+          ""
+        );
         this.logger.log(
-          "Creating hidden field: " + this.options[`phone${phoneIndex}_date_field`]
+          "Creating hidden field: " +
+            this.options[
+              `phone${phoneIndex === 1 ? "" : phoneIndex}_date_field`
+            ]
         );
       }
     }
-    if (this.options[`phone${phoneIndex}_status_field`]) {
-      const statusField = ENGrid.getField(this.options[`phone${phoneIndex}_status_field`] as string);
+    if (
+      this.options[`phone${phoneIndex === 1 ? "" : phoneIndex}_status_field`]
+    ) {
+      const statusField = ENGrid.getField(
+        this.options[
+          `phone${phoneIndex === 1 ? "" : phoneIndex}_status_field`
+        ] as string
+      );
       if (!statusField) {
-        ENGrid.createHiddenInput(this.options[`phone${phoneIndex}_status_field`] as string, "");
+        ENGrid.createHiddenInput(
+          this.options[
+            `phone${phoneIndex === 1 ? "" : phoneIndex}_status_field`
+          ] as string,
+          ""
+        );
         this.logger.log(
-          "Creating hidden field: " + this.options[`phone${phoneIndex}_status_field`]
+          "Creating hidden field: " +
+            this.options[
+              `phone${phoneIndex === 1 ? "" : phoneIndex}_status_field`
+            ]
         );
       }
     }
@@ -449,7 +489,7 @@ export class TidyContact {
       this.options.address_fields?.phone2 as string
     ) as HTMLInputElement | null;
     const phoneField = phone1 || phone2;
-    console.log('createPhoneMarginVariable', phoneField);
+    console.log("createPhoneMarginVariable", phoneField);
     if (phoneField) {
       const phoneStyle = window.getComputedStyle(phoneField);
       const marginTop = phoneStyle.marginTop;
@@ -949,7 +989,7 @@ export class TidyContact {
     }
   }
   private handleEnterKey(phoneIndex: number = 1) {
-    if( phoneIndex !== 1 && phoneIndex !== 2) {
+    if (phoneIndex !== 1 && phoneIndex !== 2) {
       throw new Error("phoneIndex must be an integer value of 1 or 2");
     }
     const highlightedCountry =
@@ -962,7 +1002,7 @@ export class TidyContact {
     }
   }
   private handlePhoneInputKeydown(e: Event, phoneIndex: number = 1) {
-    if( phoneIndex !== 1 && phoneIndex !== 2) {
+    if (phoneIndex !== 1 && phoneIndex !== 2) {
       throw new Error("phoneIndex must be an integer value of 1 or 2");
     }
     const phoneInput = e.target as HTMLInputElement;
@@ -1065,7 +1105,7 @@ export class TidyContact {
   }
   private setDefaultPhoneCountry(phoneIndex: number = 1) {
     if (!this.options) return;
-    if( phoneIndex !== 1 && phoneIndex !== 2) {
+    if (phoneIndex !== 1 && phoneIndex !== 2) {
       throw new Error("phoneIndex must be an integer value of 1 or 2");
     }
     // First, try to get the country from IP
@@ -1117,9 +1157,10 @@ export class TidyContact {
       dialCode: string;
       placeholder: string;
     } | null,
-  phoneIndex: number = 1) {
+    phoneIndex: number = 1
+  ) {
     if (!this.options || !country) return;
-    if( phoneIndex !== 1 && phoneIndex !== 2) {
+    if (phoneIndex !== 1 && phoneIndex !== 2) {
       throw new Error("phoneIndex must be an integer value of 1 or 2");
     }
     const countryInput = ENGrid.getField(
@@ -1189,7 +1230,11 @@ export class TidyContact {
       }
     }
   }
-  private async setPhoneDataFromAPI(data: any, id: string, phoneIndex: number = 1) {
+  private async setPhoneDataFromAPI(
+    data: any,
+    id: string,
+    phoneIndex: number = 1
+  ) {
     if (!this.options) return;
     if (phoneIndex !== 1 && phoneIndex !== 2) {
       throw new Error("phoneIndex must be an integer value of 1 or 2");
@@ -1198,13 +1243,19 @@ export class TidyContact {
       this.options.address_fields?.[`phone${phoneIndex}`] as string
     ) as HTMLInputElement;
     const recordField = ENGrid.getField(
-      this.options[`phone${phoneIndex}_record_field`] as string
+      this.options[
+        `phone${phoneIndex === 1 ? "" : phoneIndex}_record_field`
+      ] as string
     ) as HTMLInputElement;
     const dateField = ENGrid.getField(
-      this.options[`phone${phoneIndex}_date_field`] as string
+      this.options[
+        `phone${phoneIndex === 1 ? "" : phoneIndex}_date_field`
+      ] as string
     ) as HTMLInputElement;
     const statusField = ENGrid.getField(
-      this.options[`phone${phoneIndex}_status_field`] as string
+      this.options[
+        `phone${phoneIndex === 1 ? "" : phoneIndex}_status_field`
+      ] as string
     ) as HTMLInputElement;
     let record: any = {};
     record["formData"] = { [phoneField.name]: phoneField.value };
@@ -1429,10 +1480,10 @@ export class TidyContact {
           }
         }
         if (this.phoneEnabled()) {
-          if("phone1" in data) {
+          if ("phone1" in data) {
             await this.setPhoneDataFromAPI(data.phone1, data.requestId, 1);
           }
-          if("phone2" in data) {
+          if ("phone2" in data) {
             await this.setPhoneDataFromAPI(data.phone2, data.requestId, 2);
           }
         }
