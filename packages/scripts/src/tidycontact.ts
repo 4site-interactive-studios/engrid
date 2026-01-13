@@ -1403,8 +1403,8 @@ export class TidyContact {
       const phone1Country = ENGrid.getFieldValue("tc.phone1.country");
       const phone2Country = ENGrid.getFieldValue("tc.phone2.country");
       if (phone1 && phone1Country) {
-        formData.phone1 = phone1;
-        formData.phone1Country = phone1Country;
+        formData.phone = phone1;
+        formData.phoneCountry = phone1Country;
       }
       if (phone2 && phone2Country) {
         formData.phone2 = phone2;
@@ -1480,8 +1480,8 @@ export class TidyContact {
           }
         }
         if (this.phoneEnabled()) {
-          if ("phone1" in data) {
-            await this.setPhoneDataFromAPI(data.phone1, data.requestId, 1);
+          if ("phone" in data) {
+            await this.setPhoneDataFromAPI(data.phone, data.requestId, 1);
           }
           if ("phone2" in data) {
             await this.setPhoneDataFromAPI(data.phone2, data.requestId, 2);
