@@ -331,8 +331,8 @@ export class TidyContact {
           region: "supporter.region", // State field
           postalCode: "supporter.postcode", // Zipcode field
           country: "supporter.country", // Country field
-          phone1: "supporter.phoneNumber", // Phone field
-          phone2: "supporter.phoneNumber2", // Phone 2 field
+          phone1: "supporter.phoneNumber2", // Primary Phone field
+          phone2: "supporter.phoneNumber", // Secondary Phone field
         };
       }
       this.options.address_enable = this.options.address_enable ?? true;
