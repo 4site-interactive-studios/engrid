@@ -109,6 +109,9 @@ export interface Options {
             };
             ariaLabel?: string;
             placeholder?: string;
+            validCardBrands?: {
+                type: string;
+            }[] | null;
         };
         "transaction.ccvv"?: {
             showCardIcon?: boolean | object;
