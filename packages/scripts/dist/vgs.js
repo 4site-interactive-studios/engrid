@@ -141,6 +141,7 @@ export class VGS {
                 // Autocomplete is not customizable
                 autoComplete: "cc-number",
                 validations: ["required", "validCardNumber"],
+                validCardBrands: null
             },
             "transaction.ccvv": {
                 showCardIcon: false,
@@ -158,6 +159,12 @@ export class VGS {
                 css: styles,
             },
         };
+        // Override the validCardBrands if set in the theme options, as this should not be deep merged.
+        if (options &&
+            options["transaction.ccnumber"] &&
+            options["transaction.ccnumber"].validCardBrands) {
+            defaultOptions["transaction.ccnumber"].validCardBrands = options["transaction.ccnumber"].validCardBrands;
+        }
         // Deep merge the default options with the options set in the theme
         this.options = ENGrid.deepMerge(defaultOptions, options);
         this.logger.log("Options", this.options);
