@@ -20,7 +20,6 @@ export declare class DataLayer {
     private handleFieldValueChange;
     private geRetainedFieldsValue;
     private hash;
-    private shaHash;
     private getFieldLabel;
     addEndOfGiftProcessEvent(eventName: string, eventProperties?: object): void;
     addEndOfGiftProcessVariable(variableName: string, variableValue?: any): void;
