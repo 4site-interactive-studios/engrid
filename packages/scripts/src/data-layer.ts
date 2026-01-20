@@ -229,7 +229,7 @@ export class DataLayer {
     if (el.value === "" || this.excludedFields.includes(el.name)) return;
 
     const value = this.hashedFields.includes(el.name)
-      ? this.hash(el.value)
+      ? await this.hash(el.value)
       : el.value;
 
     if (["checkbox", "radio"].includes(el.type)) {
