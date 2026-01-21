@@ -72,7 +72,8 @@ export interface Options {
           region: string; // State field
           postalCode: string; // Zipcode field
           country: string; // Country field
-          phone: string; // Phone field
+          phone1: string; // Phone field
+          phone2: string; // Phone 2 field
         };
         phone_enable?: boolean; // Enable phone field
         phone_flags?: boolean; // Phone flags
@@ -81,6 +82,9 @@ export interface Options {
         phone_record_field?: string; // TidyContact Record
         phone_date_field?: string; // TidyContact Date
         phone_status_field?: string; // TidyContact Status
+        phone2_record_field?: string; // TidyContact Record
+        phone2_date_field?: string; // TidyContact Date
+        phone2_status_field?: string; // TidyContact Status
       };
   MobileCTA?: false | { pageType: string; label: string }[];
   PageLayouts?: string[];

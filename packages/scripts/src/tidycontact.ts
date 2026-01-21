@@ -263,7 +263,7 @@ export class TidyContact {
     ["Zimbabwe", "zw", "263", "071 234 5678"],
     ["Åland Islands", "ax", "358", "041 2345678"],
   ];
-  private countries_dropdown: HTMLDivElement | null = null;
+  private countries_dropdown: Array<HTMLDivElement | null> = [null, null];
   private country_ip = null;
 
   constructor() {
@@ -292,20 +292,31 @@ export class TidyContact {
       this.isDirty = true;
     }
     if (this.phoneEnabled()) {
-      this.createPhoneFields();
+      this.createPhoneFields(1);
+      this.createPhoneFields(2);
       this.createPhoneMarginVariable();
       this.logger.log("Phone Standardization is enabled");
       if (this.countryDropDownEnabled()) {
-        this.renderFlagsDropDown();
+        this.renderFlagsDropDown(1);
+        this.renderFlagsDropDown(2);
       }
-      const phoneField = ENGrid.getField(
-        this.options?.address_fields?.phone as string
+      const phone1Field = ENGrid.getField(
+        this.options?.address_fields?.phone1 as string
       );
-      if (phoneField) {
-        phoneField.addEventListener("keyup", (e) => {
-          this.handlePhoneInputKeydown(e);
+      const phone2Field = ENGrid.getField(
+        this.options?.address_fields?.phone2 as string
+      );
+      if (phone1Field) {
+        phone1Field.addEventListener("keyup", (e) => {
+          this.handlePhoneInputKeydown(e, 1);
         });
-        this.setDefaultPhoneCountry();
+        this.setDefaultPhoneCountry(1);
+      }
+      if (phone2Field) {
+        phone2Field.addEventListener("keyup", (e) => {
+          this.handlePhoneInputKeydown(e, 2);
+        });
+        this.setDefaultPhoneCountry(2);
       }
     }
   }
@@ -320,7 +331,8 @@ export class TidyContact {
           region: "supporter.region", // State field
           postalCode: "supporter.postcode", // Zipcode field
           country: "supporter.country", // Country field
-          phone: "supporter.phoneNumber2", // Phone field
+          phone1: "supporter.phoneNumber2", // Primary Phone field
+          phone2: "supporter.phoneNumber", // Secondary Phone field
         };
       }
       this.options.address_enable = this.options.address_enable ?? true;
@@ -393,45 +405,93 @@ export class TidyContact {
       );
     }
   }
-  private createPhoneFields() {
+  private createPhoneFields(phoneIndex: number = 1) {
     if (!this.options) return;
-    ENGrid.createHiddenInput("tc.phone.country", "");
-    this.logger.log("Creating hidden field: tc.phone.country");
-    if (this.options.phone_record_field) {
-      const recordField = ENGrid.getField(this.options.phone_record_field);
+    if (phoneIndex !== 1 && phoneIndex !== 2) {
+      throw new Error("phoneIndex must be an integer value of 1 or 2");
+    }
+    ENGrid.createHiddenInput(`tc.phone${phoneIndex}.country`, "");
+    this.logger.log(`Creating hidden field: tc.phone${phoneIndex}.country`);
+    if (
+      this.options[`phone${phoneIndex === 1 ? "" : phoneIndex}_record_field`]
+    ) {
+      const recordField = ENGrid.getField(
+        this.options[
+          `phone${phoneIndex === 1 ? "" : phoneIndex}_record_field`
+        ] as string
+      );
       if (!recordField) {
-        ENGrid.createHiddenInput(this.options.phone_record_field, "");
+        ENGrid.createHiddenInput(
+          this.options[
+            `phone${phoneIndex === 1 ? "" : phoneIndex}_record_field`
+          ] as string,
+          ""
+        );
         this.logger.log(
-          "Creating hidden field: " + this.options.phone_record_field
+          "Creating hidden field: " +
+            this.options[
+              `phone${phoneIndex === 1 ? "" : phoneIndex}_record_field`
+            ]
         );
       }
     }
-    if (this.options.phone_date_field) {
-      const dateField = ENGrid.getField(this.options.phone_date_field);
+    if (this.options[`phone${phoneIndex === 1 ? "" : phoneIndex}_date_field`]) {
+      const dateField = ENGrid.getField(
+        this.options[
+          `phone${phoneIndex === 1 ? "" : phoneIndex}_date_field`
+        ] as string
+      );
       if (!dateField) {
-        ENGrid.createHiddenInput(this.options.phone_date_field, "");
+        ENGrid.createHiddenInput(
+          this.options[
+            `phone${phoneIndex === 1 ? "" : phoneIndex}_date_field`
+          ] as string,
+          ""
+        );
         this.logger.log(
-          "Creating hidden field: " + this.options.phone_date_field
+          "Creating hidden field: " +
+            this.options[
+              `phone${phoneIndex === 1 ? "" : phoneIndex}_date_field`
+            ]
         );
       }
     }
-    if (this.options.phone_status_field) {
-      const statusField = ENGrid.getField(this.options.phone_status_field);
+    if (
+      this.options[`phone${phoneIndex === 1 ? "" : phoneIndex}_status_field`]
+    ) {
+      const statusField = ENGrid.getField(
+        this.options[
+          `phone${phoneIndex === 1 ? "" : phoneIndex}_status_field`
+        ] as string
+      );
       if (!statusField) {
-        ENGrid.createHiddenInput(this.options.phone_status_field, "");
+        ENGrid.createHiddenInput(
+          this.options[
+            `phone${phoneIndex === 1 ? "" : phoneIndex}_status_field`
+          ] as string,
+          ""
+        );
         this.logger.log(
-          "Creating hidden field: " + this.options.phone_status_field
+          "Creating hidden field: " +
+            this.options[
+              `phone${phoneIndex === 1 ? "" : phoneIndex}_status_field`
+            ]
         );
       }
     }
   }
   private createPhoneMarginVariable() {
     if (!this.options) return;
-    const phone = ENGrid.getField(
-      this.options.address_fields?.phone as string
-    ) as HTMLInputElement;
-    if (phone) {
-      const phoneStyle = window.getComputedStyle(phone);
+    const phone1 = ENGrid.getField(
+      this.options.address_fields?.phone1 as string
+    ) as HTMLInputElement | null;
+    const phone2 = ENGrid.getField(
+      this.options.address_fields?.phone2 as string
+    ) as HTMLInputElement | null;
+    const phoneField = phone1 || phone2;
+    console.log("createPhoneMarginVariable", phoneField);
+    if (phoneField) {
+      const phoneStyle = window.getComputedStyle(phoneField);
       const marginTop = phoneStyle.marginTop;
       const marginBottom = phoneStyle.marginBottom;
       document.documentElement.style.setProperty(
@@ -675,11 +735,15 @@ export class TidyContact {
   private canUsePhoneAPI(): boolean {
     if (!this.options) return false;
     if (this.phoneEnabled()) {
-      const phone = !!ENGrid.getFieldValue(
-        this.options.address_fields?.phone as string
+      const phone1 = !!ENGrid.getFieldValue(
+        this.options.address_fields?.phone1 as string
       );
-      const countryPhone = !!ENGrid.getFieldValue("tc.phone.country");
-      return phone && countryPhone;
+      const phone2 = !!ENGrid.getFieldValue(
+        this.options.address_fields?.phone2 as string
+      );
+      const countryPhone1 = !!ENGrid.getFieldValue("tc.phone1.country");
+      const countryPhone2 = !!ENGrid.getFieldValue("tc.phone2.country");
+      return (phone1 && countryPhone1) || (phone2 && countryPhone2);
     }
     this.logger.log("Phone API is not enabled");
     return false;
@@ -723,14 +787,21 @@ export class TidyContact {
         return this.country_ip;
       });
   }
-  private renderFlagsDropDown() {
+  private renderFlagsDropDown(phoneIndex: number = 1) {
     if (!this.options) return;
+    if (phoneIndex !== 1 && phoneIndex !== 2) {
+      throw new Error("phoneIndex must be an integer value of 1 or 2");
+    }
     const phoneInput = ENGrid.getField(
-      this.options.address_fields?.phone as string
+      this.options.address_fields?.[`phone${phoneIndex}`] as string
     );
     if (!phoneInput) return;
-    this.countries_dropdown = document.createElement("div") as HTMLDivElement;
-    this.countries_dropdown.classList.add("tc-flags-container");
+    this.countries_dropdown[phoneIndex - 1] = document.createElement(
+      "div"
+    ) as HTMLDivElement;
+    this.countries_dropdown[phoneIndex - 1]!.classList.add(
+      "tc-flags-container"
+    );
     const selectedFlag = document.createElement("div");
     selectedFlag.classList.add("tc-selected-flag");
     selectedFlag.setAttribute("role", "combobox");
@@ -751,9 +822,9 @@ export class TidyContact {
       e.preventDefault();
       e.stopPropagation();
       if (selectedFlag.classList.contains("tc-open")) {
-        this.closeCountryDropDown();
+        this.closeCountryDropDown(phoneIndex);
       } else {
-        this.openCountryDropDown();
+        this.openCountryDropDown(phoneIndex);
       }
     });
     const countryList = document.createElement("ul");
@@ -822,7 +893,7 @@ export class TidyContact {
           target.getAttribute("data-country-code") as string
         );
         if (countryItem) {
-          this.setPhoneCountry(countryItem);
+          this.setPhoneCountry(countryItem, phoneIndex);
         }
       }
     });
@@ -833,40 +904,46 @@ export class TidyContact {
         "li.tc-country-list-item"
       ) as HTMLLIElement;
       if (target) {
-        this.highlightCountry(target.getAttribute("data-country-code"));
+        this.highlightCountry(
+          target.getAttribute("data-country-code"),
+          phoneIndex
+        );
       }
     });
-    this.countries_dropdown.appendChild(selectedFlag);
-    this.countries_dropdown.appendChild(countryList);
-    (phoneInput.parentNode as HTMLElement).insertBefore(
-      this.countries_dropdown,
-      phoneInput
-    );
+    this.countries_dropdown[phoneIndex - 1]!.appendChild(selectedFlag);
+    this.countries_dropdown[phoneIndex - 1]!.appendChild(countryList);
+    const dropdown = this.countries_dropdown[phoneIndex - 1];
+    if (!dropdown) return;
+    (phoneInput.parentNode as HTMLElement).insertBefore(dropdown, phoneInput);
     (phoneInput.parentNode as HTMLElement).classList.add(
       "tc-has-country-flags"
     );
-    this.countries_dropdown.addEventListener("keydown", (e) => {
-      const isDropdownHidden = this.countries_dropdown
-        ?.querySelector(".tc-country-list")
-        ?.classList.contains("tc-hide");
+    this.countries_dropdown[phoneIndex - 1]!.addEventListener(
+      "keydown",
+      (e) => {
+        const isDropdownHidden = this.countries_dropdown[phoneIndex - 1]
+          ?.querySelector(".tc-country-list")
+          ?.classList.contains("tc-hide");
 
-      if (
-        isDropdownHidden &&
-        ["ArrowUp", "Up", "ArrowDown", "Down", " ", "Enter"].indexOf(e.key) !==
-          -1
-      ) {
-        // prevent form from being submitted if "ENTER" was pressed
-        e.preventDefault();
-        // prevent event from being handled again by document
-        e.stopPropagation();
-        this.openCountryDropDown();
+        if (
+          isDropdownHidden &&
+          ["ArrowUp", "Up", "ArrowDown", "Down", " ", "Enter"].indexOf(
+            e.key
+          ) !== -1
+        ) {
+          // prevent form from being submitted if "ENTER" was pressed
+          e.preventDefault();
+          // prevent event from being handled again by document
+          e.stopPropagation();
+          this.openCountryDropDown();
+        }
+
+        // allow navigation from dropdown to input on TAB
+        if (e.key === "Tab") this.closeCountryDropDown(phoneIndex);
       }
-
-      // allow navigation from dropdown to input on TAB
-      if (e.key === "Tab") this.closeCountryDropDown();
-    });
+    );
     document.addEventListener("keydown", (e) => {
-      const isDropdownHidden = this.countries_dropdown
+      const isDropdownHidden = this.countries_dropdown[phoneIndex - 1]
         ?.querySelector(".tc-country-list")
         ?.classList.contains("tc-hide");
       if (!isDropdownHidden) {
@@ -881,28 +958,31 @@ export class TidyContact {
           e.key === "ArrowDown" ||
           e.key === "Down"
         )
-          this.handleUpDownKey(e.key);
+          this.handleUpDownKey(e.key, phoneIndex);
         // enter to select
-        else if (e.key === "Enter") this.handleEnterKey();
+        else if (e.key === "Enter") this.handleEnterKey(phoneIndex);
         // esc to close
-        else if (e.key === "Escape") this.closeCountryDropDown();
+        else if (e.key === "Escape") this.closeCountryDropDown(phoneIndex);
       }
     });
     document.addEventListener("click", (e) => {
-      const isDropdownHidden = this.countries_dropdown
+      const isDropdownHidden = this.countries_dropdown[phoneIndex - 1]
         ?.querySelector(".tc-country-list")
         ?.classList.contains("tc-hide");
       if (
         !isDropdownHidden &&
         !(e.target as HTMLElement).closest(".tc-country-list")
       ) {
-        this.closeCountryDropDown();
+        this.closeCountryDropDown(phoneIndex);
       }
     });
   }
-  private handleUpDownKey(key: string) {
+  private handleUpDownKey(key: string, phoneIndex: number = 1) {
+    if (phoneIndex !== 1 && phoneIndex !== 2) {
+      throw new Error("phoneIndex must be an integer value of 1 or 2");
+    }
     const highlightedCountry =
-      this.countries_dropdown?.querySelector(".tc-highlight");
+      this.countries_dropdown[phoneIndex - 1]?.querySelector(".tc-highlight");
     if (highlightedCountry) {
       let next =
         key === "ArrowUp" || key === "Up"
@@ -916,41 +996,55 @@ export class TidyContact {
               : next.nextElementSibling;
         }
         this.highlightCountry(
-          next?.getAttribute("data-country-code") as string
+          next?.getAttribute("data-country-code") as string,
+          phoneIndex
         );
       }
     }
   }
-  private handleEnterKey() {
+  private handleEnterKey(phoneIndex: number = 1) {
+    if (phoneIndex !== 1 && phoneIndex !== 2) {
+      throw new Error("phoneIndex must be an integer value of 1 or 2");
+    }
     const highlightedCountry =
-      this.countries_dropdown?.querySelector(".tc-highlight");
+      this.countries_dropdown[phoneIndex - 1]?.querySelector(".tc-highlight");
     if (highlightedCountry) {
       const countryItem = this.getCountryByCode(
         highlightedCountry?.getAttribute("data-country-code") as string
       );
-      this.setPhoneCountry(countryItem);
+      this.setPhoneCountry(countryItem, phoneIndex);
     }
   }
-  private handlePhoneInputKeydown(e: Event) {
+  private handlePhoneInputKeydown(e: Event, phoneIndex: number = 1) {
+    if (phoneIndex !== 1 && phoneIndex !== 2) {
+      throw new Error("phoneIndex must be an integer value of 1 or 2");
+    }
     const phoneInput = e.target as HTMLInputElement;
     const phoneNumber = phoneInput.value;
     if (phoneNumber.charAt(0) === "+") {
       if (phoneNumber.length > 2) {
         const countryItem = this.getCountryByCode(phoneNumber.substring(1, 3));
         if (countryItem) {
-          this.setPhoneCountry(countryItem);
+          this.setPhoneCountry(countryItem, phoneIndex);
         } else {
-          this.setDefaultPhoneCountry();
+          this.setDefaultPhoneCountry(phoneIndex);
         }
       }
     }
   }
-  private openCountryDropDown() {
-    if (!this.countries_dropdown) return;
+  private openCountryDropDown(phoneIndex: number = 1) {
+    if (phoneIndex !== 1 && phoneIndex !== 2) {
+      throw new Error("phoneIndex must be an integer value of 1 or 2");
+    }
+    if (!this.countries_dropdown[phoneIndex - 1]) return;
     const countryList =
-      this.countries_dropdown.querySelector(".tc-country-list");
+      this.countries_dropdown[phoneIndex - 1]!.querySelector(
+        ".tc-country-list"
+      );
     const selectedFlag =
-      this.countries_dropdown.querySelector(".tc-selected-flag");
+      this.countries_dropdown[phoneIndex - 1]!.querySelector(
+        ".tc-selected-flag"
+      );
 
     if (countryList && selectedFlag) {
       countryList.classList.remove("tc-hide");
@@ -958,13 +1052,20 @@ export class TidyContact {
       selectedFlag.classList.add("tc-open");
     }
   }
-  private closeCountryDropDown() {
+  private closeCountryDropDown(phoneIndex: number = 1) {
+    if (phoneIndex !== 1 && phoneIndex !== 2) {
+      throw new Error("phoneIndex must be an integer value of 1 or 2");
+    }
     if (!this.options) return;
-    if (!this.countries_dropdown) return;
+    if (!this.countries_dropdown[phoneIndex - 1]) return;
     const countryList =
-      this.countries_dropdown.querySelector(".tc-country-list");
+      this.countries_dropdown[phoneIndex - 1]!.querySelector(
+        ".tc-country-list"
+      );
     const selectedFlag =
-      this.countries_dropdown.querySelector(".tc-selected-flag");
+      this.countries_dropdown[phoneIndex - 1]!.querySelector(
+        ".tc-selected-flag"
+      );
 
     if (countryList && selectedFlag) {
       countryList.classList.add("tc-hide");
@@ -972,7 +1073,7 @@ export class TidyContact {
       selectedFlag.classList.remove("tc-open");
     }
     const phoneInput = ENGrid.getField(
-      this.options.address_fields?.phone as string
+      this.options.address_fields?.[`phone${phoneIndex}`] as string
     ) as HTMLInputElement;
     phoneInput.focus();
   }
@@ -1027,19 +1128,23 @@ export class TidyContact {
     }
     countryContainer.insertAdjacentHTML("beforeend", html);
   }
-  private setDefaultPhoneCountry() {
+  private setDefaultPhoneCountry(phoneIndex: number = 1) {
     if (!this.options) return;
+    if (phoneIndex !== 1 && phoneIndex !== 2) {
+      throw new Error("phoneIndex must be an integer value of 1 or 2");
+    }
     // First, try to get the country from IP
     if (this.options.phone_country_from_ip) {
       this.getCountryFromIP()
         .then((country) => {
           this.logger.log("Country from IP:", country);
           this.setPhoneCountry(
-            this.getCountryByCode((country ?? "us").toLowerCase())
+            this.getCountryByCode((country ?? "us").toLowerCase()),
+            phoneIndex
           );
         })
         .catch((error) => {
-          this.setPhoneCountry(this.getCountryByCode("us"));
+          this.setPhoneCountry(this.getCountryByCode("us"), phoneIndex);
         });
       return;
     }
@@ -1052,7 +1157,7 @@ export class TidyContact {
       // Then, get the country code from the Text
       const countryData = this.getCountryByCode(countryText);
       if (countryData) {
-        this.setPhoneCountry(countryData);
+        this.setPhoneCountry(countryData, phoneIndex);
         return;
       } else if (
         (this.options.phone_preferred_countries as string[]).length > 0
@@ -1061,13 +1166,14 @@ export class TidyContact {
         this.setPhoneCountry(
           this.getCountryByCode(
             (this.options.phone_preferred_countries as string[])[0]
-          )
+          ),
+          phoneIndex
         );
         return;
       }
     }
     // If nothing works, GO USA!
-    this.setPhoneCountry(this.getCountryByCode("us"));
+    this.setPhoneCountry(this.getCountryByCode("us"), phoneIndex);
   }
   private setPhoneCountry(
     country: {
@@ -1075,38 +1181,46 @@ export class TidyContact {
       code: string;
       dialCode: string;
       placeholder: string;
-    } | null
+    } | null,
+    phoneIndex: number = 1
   ) {
     if (!this.options || !country) return;
-
+    if (phoneIndex !== 1 && phoneIndex !== 2) {
+      throw new Error("phoneIndex must be an integer value of 1 or 2");
+    }
     const countryInput = ENGrid.getField(
-      "tc.phone.country"
+      `tc.phone${phoneIndex}.country`
     ) as HTMLInputElement;
     if (countryInput.value === country.code) return;
     const phoneInput = ENGrid.getField(
-      this.options.address_fields?.phone as string
+      this.options.address_fields?.[`phone${phoneIndex}`] as string
     ) as HTMLInputElement;
     if (this.countryDropDownEnabled()) {
       const selectedFlag =
-        this.countries_dropdown?.querySelector(".tc-selected-flag");
-      const flagElement = this.countries_dropdown?.querySelector(".tc-flag");
+        this.countries_dropdown[phoneIndex - 1]?.querySelector(
+          ".tc-selected-flag"
+        );
+      const flagElement =
+        this.countries_dropdown[phoneIndex - 1]?.querySelector(".tc-flag");
       if (selectedFlag && flagElement) {
         flagElement.innerHTML = this.getFlagImage(country.code, country.name);
         selectedFlag.setAttribute("data-country", country.code);
       }
-      const currentSelectedCountry = this.countries_dropdown?.querySelector(
-        ".tc-country-list-item[aria-selected='true']"
-      );
+      const currentSelectedCountry = this.countries_dropdown[
+        phoneIndex - 1
+      ]?.querySelector(".tc-country-list-item[aria-selected='true']");
       if (currentSelectedCountry) {
         currentSelectedCountry.classList.remove("tc-selected");
         currentSelectedCountry.setAttribute("aria-selected", "false");
       }
       const currentHighlightedCountry =
-        this.countries_dropdown?.querySelector(".tc-highlight");
+        this.countries_dropdown[phoneIndex - 1]?.querySelector(".tc-highlight");
       if (currentHighlightedCountry) {
         currentHighlightedCountry.classList.remove("tc-highlight");
       }
-      const countryListItem = this.countries_dropdown?.querySelector(
+      const countryListItem = this.countries_dropdown[
+        phoneIndex - 1
+      ]?.querySelector(
         `.tc-country-list-item[data-country-code='${country.code}']`
       );
       if (countryListItem) {
@@ -1115,23 +1229,28 @@ export class TidyContact {
         countryListItem.classList.add("tc-highlight");
       }
       if (selectedFlag?.classList.contains("tc-open"))
-        this.closeCountryDropDown();
+        this.closeCountryDropDown(phoneIndex);
     }
     phoneInput.setAttribute("placeholder", country.placeholder);
     countryInput.value = country.code;
     this.logger.log(
-      `Setting phone country to ${country.code} -  ${country.name}`
+      `Setting phone${phoneIndex} country to ${country.code} -  ${country.name}`
     );
   }
-  private highlightCountry(countryCode: string | null) {
+  private highlightCountry(countryCode: string | null, phoneIndex: number = 1) {
+    if (phoneIndex !== 1 && phoneIndex !== 2) {
+      throw new Error("phoneIndex must be an integer value of 1 or 2");
+    }
     if (!countryCode) return;
     const currentHighlightedCountry =
-      this.countries_dropdown?.querySelector(".tc-highlight");
+      this.countries_dropdown[phoneIndex - 1]?.querySelector(".tc-highlight");
     if (currentHighlightedCountry) {
       currentHighlightedCountry.classList.remove("tc-highlight");
     }
     const countryList =
-      this.countries_dropdown?.querySelector(".tc-country-list");
+      this.countries_dropdown[phoneIndex - 1]?.querySelector(
+        ".tc-country-list"
+      );
     if (countryList) {
       const country = countryList.querySelector(
         `.tc-country[data-country-code='${countryCode}']`
@@ -1146,19 +1265,32 @@ export class TidyContact {
       }
     }
   }
-  private async setPhoneDataFromAPI(data: any, id: string) {
+  private async setPhoneDataFromAPI(
+    data: any,
+    id: string,
+    phoneIndex: number = 1
+  ) {
     if (!this.options) return;
+    if (phoneIndex !== 1 && phoneIndex !== 2) {
+      throw new Error("phoneIndex must be an integer value of 1 or 2");
+    }
     const phoneField = ENGrid.getField(
-      this.options.address_fields?.phone as string
+      this.options.address_fields?.[`phone${phoneIndex}`] as string
     ) as HTMLInputElement;
     const recordField = ENGrid.getField(
-      this.options.phone_record_field as string
+      this.options[
+        `phone${phoneIndex === 1 ? "" : phoneIndex}_record_field`
+      ] as string
     ) as HTMLInputElement;
     const dateField = ENGrid.getField(
-      this.options.phone_date_field as string
+      this.options[
+        `phone${phoneIndex === 1 ? "" : phoneIndex}_date_field`
+      ] as string
     ) as HTMLInputElement;
     const statusField = ENGrid.getField(
-      this.options.phone_status_field as string
+      this.options[
+        `phone${phoneIndex === 1 ? "" : phoneIndex}_status_field`
+      ] as string
     ) as HTMLInputElement;
     let record: any = {};
     record["formData"] = { [phoneField.name]: phoneField.value };
@@ -1297,10 +1429,22 @@ export class TidyContact {
       });
     }
     if (this.canUsePhoneAPI()) {
-      formData.phone = ENGrid.getFieldValue(
-        this.options.address_fields?.phone as string
+      const phone1 = ENGrid.getFieldValue(
+        this.options.address_fields?.phone1 as string
       );
-      formData.phoneCountry = ENGrid.getFieldValue("tc.phone.country");
+      const phone2 = ENGrid.getFieldValue(
+        this.options.address_fields?.phone2 as string
+      );
+      const phone1Country = ENGrid.getFieldValue("tc.phone1.country");
+      const phone2Country = ENGrid.getFieldValue("tc.phone2.country");
+      if (phone1 && phone1Country) {
+        formData.phone = phone1;
+        formData.phoneCountry = phone1Country;
+      }
+      if (phone2 && phone2Country) {
+        formData.phone2 = phone2;
+        formData.phone2Country = phone2Country;
+      }
     }
     this.wasCalled = true;
     this.logger.log("FormData", JSON.parse(JSON.stringify(formData)));
@@ -1370,8 +1514,13 @@ export class TidyContact {
               "error" in data ? `ERROR: ` + data.error : "INVALIDADDRESS";
           }
         }
-        if (this.phoneEnabled() && "phone" in data) {
-          await this.setPhoneDataFromAPI(data.phone, data.requestId);
+        if (this.phoneEnabled()) {
+          if ("phone" in data) {
+            await this.setPhoneDataFromAPI(data.phone, data.requestId, 1);
+          }
+          if ("phone2" in data) {
+            await this.setPhoneDataFromAPI(data.phone2, data.requestId, 2);
+          }
         }
       })
       .catch((error) => {
