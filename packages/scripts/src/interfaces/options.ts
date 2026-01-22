@@ -53,6 +53,8 @@ export interface Options {
         fieldClearSelectorTargetLocation?: string;
         checked?: boolean;
       };
+  StickyNSG?: boolean;
+  StickyPrepopulation?: false | { fields: string[] };
   TidyContact?:
     | false
     | {
@@ -230,6 +232,8 @@ export const OptionsDefaults: Options = {
   CountryRedirect: false,
   WelcomeBack: false,
   OptInLadder: false,
+  StickyNSG: false,
+  StickyPrepopulation: false,
   PreferredPaymentMethod: false,
   PageLayouts: [
     "leftleft1col",
