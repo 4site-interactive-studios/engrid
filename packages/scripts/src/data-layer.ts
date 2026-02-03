@@ -229,7 +229,7 @@ export class DataLayer {
     if (el.value === "" || this.excludedFields.includes(el.name)) return;
 
     const value = this.hashedFields.includes(el.name)
-      ? this.hash(el.value)
+      ? await this.hash(el.value)
       : el.value;
 
     if (["checkbox", "radio"].includes(el.type)) {
@@ -263,7 +263,7 @@ export class DataLayer {
 
     if (el.name === this.retainedEmailField) {
       const retainedEmailValue = this.geRetainedFieldsValue("email");
-      const sha256value = await this.shaHash(retainedEmailValue);
+      const sha256value = await this.hash(retainedEmailValue);
       localStorage.setItem(`EN_HASH_EMAIL`, sha256value);
       this.dataLayer.push({
         event: "EN_HASH_VALUE_UPDATED",
@@ -274,7 +274,7 @@ export class DataLayer {
       return;
     } else if (this.retainedAddressFields.includes(el.name)) {
       const retainedAddressValue = this.geRetainedFieldsValue("address");
-      const sha256value = await this.shaHash(retainedAddressValue);
+      const sha256value = await this.hash(retainedAddressValue);
       localStorage.setItem(`EN_HASH_ADDRESS`, sha256value);
       this.dataLayer.push({
         event: "EN_HASH_VALUE_UPDATED",
@@ -284,7 +284,7 @@ export class DataLayer {
       });
     } else if (this.retainedPhoneFields.includes(el.name)) {
       const retainedPhoneValue = this.geRetainedFieldsValue("phone");
-      const sha256value = await this.shaHash(retainedPhoneValue);
+      const sha256value = await this.hash(retainedPhoneValue);
       localStorage.setItem(`EN_HASH_PHONE`, sha256value);
       this.dataLayer.push({
         event: "EN_HASH_VALUE_UPDATED",
@@ -327,12 +327,7 @@ export class DataLayer {
     }
   }
 
-  private hash(value: string): string {
-    return btoa(value);
-  }
-
-  // TODO: Replace the hash function with this secure SHA-256 implementation later
-  private async shaHash(value: string): Promise<string> {
+  private async hash(value: string): Promise<string> {
     const data = this.encoder.encode(value);
     const hashBuffer = await crypto.subtle.digest("SHA-256", data);
     return Array.from(new Uint8Array(hashBuffer))

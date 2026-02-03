@@ -188,7 +188,7 @@ export class DataLayer {
             if (el.value === "" || this.excludedFields.includes(el.name))
                 return;
             const value = this.hashedFields.includes(el.name)
-                ? this.hash(el.value)
+                ? yield this.hash(el.value)
                 : el.value;
             if (["checkbox", "radio"].includes(el.type)) {
                 if (el.checked) {
@@ -216,7 +216,7 @@ export class DataLayer {
             }
             if (el.name === this.retainedEmailField) {
                 const retainedEmailValue = this.geRetainedFieldsValue("email");
-                const sha256value = yield this.shaHash(retainedEmailValue);
+                const sha256value = yield this.hash(retainedEmailValue);
                 localStorage.setItem(`EN_HASH_EMAIL`, sha256value);
                 this.dataLayer.push({
                     event: "EN_HASH_VALUE_UPDATED",
@@ -228,7 +228,7 @@ export class DataLayer {
             }
             else if (this.retainedAddressFields.includes(el.name)) {
                 const retainedAddressValue = this.geRetainedFieldsValue("address");
-                const sha256value = yield this.shaHash(retainedAddressValue);
+                const sha256value = yield this.hash(retainedAddressValue);
                 localStorage.setItem(`EN_HASH_ADDRESS`, sha256value);
                 this.dataLayer.push({
                     event: "EN_HASH_VALUE_UPDATED",
@@ -239,7 +239,7 @@ export class DataLayer {
             }
             else if (this.retainedPhoneFields.includes(el.name)) {
                 const retainedPhoneValue = this.geRetainedFieldsValue("phone");
-                const sha256value = yield this.shaHash(retainedPhoneValue);
+                const sha256value = yield this.hash(retainedPhoneValue);
                 localStorage.setItem(`EN_HASH_PHONE`, sha256value);
                 this.dataLayer.push({
                     event: "EN_HASH_VALUE_UPDATED",
@@ -281,10 +281,6 @@ export class DataLayer {
         }
     }
     hash(value) {
-        return btoa(value);
-    }
-    // TODO: Replace the hash function with this secure SHA-256 implementation later
-    shaHash(value) {
         return __awaiter(this, void 0, void 0, function* () {
             const data = this.encoder.encode(value);
             const hashBuffer = yield crypto.subtle.digest("SHA-256", data);
