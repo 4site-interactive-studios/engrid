@@ -45,6 +45,7 @@ export class WelcomeBack {
             region: ENGrid.getFieldValue("supporter.region"),
             postcode: ENGrid.getFieldValue("supporter.postcode"),
             country: ENGrid.getFieldValue("supporter.country"),
+            mobilePhone: ENGrid.getFieldValue("supporter.phoneNumber2"),
         };
         this.addWelcomeBack();
         this.addPersonalDetailsSummary();
@@ -99,6 +100,9 @@ export class WelcomeBack {
         ${this.supporterDetails["firstName"]} ${this.supporterDetails["lastName"]}
         <br>
         ${this.supporterDetails["emailAddress"]}
+        ${this.supporterDetails["mobilePhone"]
+            ? `<br>${this.supporterDetails["mobilePhone"]}`
+            : ""}
      </p>
     `);
         if (this.supporterDetails["address1"] &&
