@@ -85,7 +85,6 @@ export interface Options {
   MobileCTA?: false | { pageType: string; label: string }[];
   PageLayouts?: string[];
   CountryDisable?: string[];
-  Plaid?: boolean;
   Placeholders?: false | { [key: string]: string };
   ENValidators?: boolean;
   // CustomCurrency is either false or an object with the following properties:
@@ -112,9 +111,11 @@ export interface Options {
           };
           ariaLabel?: string;
           placeholder?: string;
-          validCardBrands?: {
-            type: string;
-          }[] | null;
+          validCardBrands?:
+            | {
+                type: string;
+              }[]
+            | null;
         };
         "transaction.ccvv"?: {
           showCardIcon?: boolean | object;
@@ -219,7 +220,6 @@ export const OptionsDefaults: Options = {
   TidyContact: false,
   RegionLongFormat: "",
   CountryDisable: [],
-  Plaid: false,
   Placeholders: false,
   ENValidators: false,
   MobileCTA: false,

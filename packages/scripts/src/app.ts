@@ -64,7 +64,7 @@ import {
   MobileCTA,
   LiveFrequency,
   UniversalOptIn,
-  Plaid,
+  StripeFinancialConnections,
   GiveBySelect,
   UrlParamsToBodyAttrs,
   ExitIntentLightbox,
@@ -433,8 +433,7 @@ export class App extends ENGrid {
     // Universal Opt In
     new UniversalOptIn();
 
-    // Plaid
-    if (this.options.Plaid) new Plaid();
+    new StripeFinancialConnections();
 
     //Exit Intent Lightbox
     new ExitIntentLightbox();

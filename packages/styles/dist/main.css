@@ -4123,7 +4123,6 @@ body:not(#en__pagebuilder) .en__component--column:last-of-type,
 #en__pagebuilder .i9-hide .en__field:nth-of-type(9),
 #en__pagebuilder .i10-hide .en__field:nth-of-type(10),
 #en__pagebuilder .i11-hide .en__field:nth-of-type(11),
-#en__pagebuilder .en__field--plaid,
 [data-engrid-debug] [hidden-via-url-argument],
 [data-engrid-debug] .hide,
 [data-engrid-debug] .hide-until-engrid-js-loading-finished,
@@ -4138,8 +4137,7 @@ body:not(#en__pagebuilder) .en__component--column:last-of-type,
 [data-engrid-debug] .i8-hide .en__field:nth-of-type(8),
 [data-engrid-debug] .i9-hide .en__field:nth-of-type(9),
 [data-engrid-debug] .i10-hide .en__field:nth-of-type(10),
-[data-engrid-debug] .i11-hide .en__field:nth-of-type(11),
-[data-engrid-debug] .en__field--plaid {
+[data-engrid-debug] .i11-hide .en__field:nth-of-type(11) {
   background-color: rgba(255, 0, 0, 0.1019607843) !important;
 }
 #en__pagebuilder .hide-labels .en__field > label,
@@ -4205,8 +4203,7 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) .i7-hide .en__field:not(.en_
 body:not(#en__pagebuilder):not([data-engrid-debug]) .i8-hide .en__field:not(.en__field--validationFailed):nth-of-type(8),
 body:not(#en__pagebuilder):not([data-engrid-debug]) .i9-hide .en__field:not(.en__field--validationFailed):nth-of-type(9),
 body:not(#en__pagebuilder):not([data-engrid-debug]) .i10-hide .en__field:not(.en__field--validationFailed):nth-of-type(10),
-body:not(#en__pagebuilder):not([data-engrid-debug]) .i11-hide .en__field:not(.en__field--validationFailed):nth-of-type(11),
-body:not(#en__pagebuilder):not([data-engrid-debug]) .en__field--plaid {
+body:not(#en__pagebuilder):not([data-engrid-debug]) .i11-hide .en__field:not(.en__field--validationFailed):nth-of-type(11) {
   display: none;
 }
 @supports not selector(:has(*)) {
@@ -4349,7 +4346,6 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) .i11-hide-label .en__field:n
 
 [data-engrid-theme] {
   /* prettier-ignore */
-  /* Mattch the Plaid iFrame so we can apply a background color as soon as it appears on screen, normally there is a slight delay. We use the same background color that Plaid natively uses. */
 }
 [data-engrid-theme] #en__digitalWallet,
 [data-engrid-theme] .en__digitalWallet__container {
@@ -4399,10 +4395,6 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) .i11-hide-label .en__field:n
 }
 [data-engrid-theme]:not(#en__pagebuilder):not([data-engrid-debug])[data-conditonally-hide-show-digital-wallet-elements][data-engrid-transaction-recurring=n][data-engrid-payment-type-option-paypal-one-touch=true] .en__field--giveBySelect.paypal {
   display: none;
-}
-[data-engrid-theme] iframe.plaid-link-iframe,
-[data-engrid-theme] iframe[id^=plaid-link-iframe] {
-  background-color: rgba(144, 144, 144, 0.98);
 }
 
 [data-engrid-theme] {

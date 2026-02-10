@@ -26,7 +26,7 @@
 - Tip: when debugging, `?debug=true` sets body `data-engrid-debug`, unlocking debug panels and conditional UI.
 
 ## When in Doubt
-- Search in `packages/scripts/src` before creating new utilities; most EN behaviours already exist (currency, remember-me, plaid, vgs).
+- Search in `packages/scripts/src` before creating new utilities; most EN behaviours already exist (currency, remember-me, stripe financial connections, vgs).
 - Do not hand-edit files under any `dist/` directory—run the relevant build instead.
 - Follow repo Prettier config (`.prettierrc.js`); formatting is enforced even though there are no automated tests.
 - Document new options by updating the interfaces in `packages/scripts/src/interfaces` and exposing them through `OptionsDefaults`.
