@@ -9,8 +9,18 @@ export class iFrame {
     "gray",
     "📡"
   );
+  private parentOrigin: string;
+
 
   constructor() {
+    // Derive parent origin from referrer for postMessage security
+    try {
+      this.parentOrigin = document.referrer
+        ? new URL(document.referrer).origin
+        : "*";
+    } catch (e) {
+      this.parentOrigin = "*";
+    }
     if (this.inIframe()) {
       // Add the data-engrid-embedded attribute when inside an iFrame if it wasn't already added by a script in the Page Template
       ENGrid.setBodyData("embedded", "");
@@ -90,7 +100,7 @@ export class iFrame {
         this.logger.log(
           `iFrame Event 'scrollTo' - Position of top of first error ${scrollTo} px`
         ); // check the message is being sent correctly
-        window.parent.postMessage({ scrollTo }, "*");
+        window.parent.postMessage({ scrollTo }, this.parentOrigin);
         // Send the height of the iFrame
         window.setTimeout(() => {
           this.sendIframeHeight();
@@ -163,7 +173,7 @@ export class iFrame {
       {
         scroll: this.shouldScroll(),
       },
-      "*"
+      this.parentOrigin
     );
 
     // On click fire the resize event
@@ -189,7 +199,7 @@ export class iFrame {
         pageCount: ENGrid.getPageCount(),
         giftProcess: ENGrid.getGiftProcess(),
       },
-      "*"
+      this.parentOrigin
     );
   }
   private sendIframeFormStatus(status: string) {
@@ -200,7 +210,7 @@ export class iFrame {
         pageCount: ENGrid.getPageCount(),
         giftProcess: ENGrid.getGiftProcess(),
       },
-      "*"
+      this.parentOrigin
     );
   }
   private getIFrameByEvent(event: MessageEvent) {

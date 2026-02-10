@@ -138,12 +138,12 @@ export class ShowHideRadioCheckboxes {
 
       if (element.type == "radio" && element.checked) {
         //remove other items that have the same "class" property
-        state.forEach(
-          (item: { page: number; class: string }, index: number) => {
-            if (item.class == this.classes) {
-              state.splice(index, 1);
-            }
-          }
+        const filteredRadioState = state.filter(
+          (item: { page: number; class: string }) => item.class !== this.classes
+        );
+        state.length = 0;
+        filteredRadioState.forEach((item: { page: number; class: string }) =>
+          state.push(item)
         );
 
         //add the current item, with the currently active value
@@ -158,12 +158,12 @@ export class ShowHideRadioCheckboxes {
 
       if (element.type == "checkbox") {
         //remove other items that have the same "class" property
-        state.forEach(
-          (item: { page: number; class: string }, index: number) => {
-            if (item.class == this.classes) {
-              state.splice(index, 1);
-            }
-          }
+        const filteredCheckboxState = state.filter(
+          (item: { page: number; class: string }) => item.class !== this.classes
+        );
+        state.length = 0;
+        filteredCheckboxState.forEach(
+          (item: { page: number; class: string }) => state.push(item)
         );
 
         //add the current item, with the first checked value or "N" if none are checked

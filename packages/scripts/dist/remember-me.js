@@ -47,7 +47,7 @@ export class RememberMe {
         if (this.useRemote()) {
             this.createIframe(() => {
                 if (this.iframe && this.iframe.contentWindow) {
-                    this.iframe.contentWindow.postMessage(JSON.stringify({ key: this.cookieName, operation: "read" }), "*");
+                    this.iframe.contentWindow.postMessage(JSON.stringify({ key: this.cookieName, operation: "read" }), this.getRemoteOrigin());
                     this._form.onSubmit.subscribe(() => {
                         if (this.rememberMeOptIn) {
                             this.readFields();
@@ -100,11 +100,16 @@ export class RememberMe {
     }
     updateFieldData(jsonData) {
         if (jsonData) {
-            let data = JSON.parse(jsonData);
-            for (let i = 0; i < this.fieldNames.length; i++) {
-                if (data[this.fieldNames[i]] !== undefined) {
-                    this.fieldData[this.fieldNames[i]] = decodeURIComponent(data[this.fieldNames[i]]);
+            try {
+                let data = JSON.parse(jsonData);
+                for (let i = 0; i < this.fieldNames.length; i++) {
+                    if (data[this.fieldNames[i]] !== undefined) {
+                        this.fieldData[this.fieldNames[i]] = decodeURIComponent(data[this.fieldNames[i]]);
+                    }
                 }
+            }
+            catch (e) {
+                // Malformed cookie/postMessage data; ignore and start fresh
             }
         }
     }
@@ -213,6 +218,17 @@ export class RememberMe {
         this._events.dispatchLoad(false);
         window.dispatchEvent(new CustomEvent("RememberMe_Loaded", { detail: { withData: false } }));
     }
+    getRemoteOrigin() {
+        if (this.remoteUrl) {
+            try {
+                return new URL(this.remoteUrl).origin;
+            }
+            catch (e) {
+                // Fall back to wildcard if URL parsing fails
+            }
+        }
+        return "*";
+    }
     useRemote() {
         return (!!this.remoteUrl &&
             typeof window.postMessage === "function" &&
@@ -253,7 +269,7 @@ export class RememberMe {
                 value: this.fieldData,
                 operation: "write",
                 expires: this.cookieExpirationDays,
-            }), "*");
+            }), this.getRemoteOrigin());
         }
     }
     readCookie() {

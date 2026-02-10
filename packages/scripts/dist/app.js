@@ -9,6 +9,7 @@ export class App extends ENGrid {
         this._amount = DonationAmount.getInstance("transaction.donationAmt", "transaction.donationAmt.other");
         this._frequency = DonationFrequency.getInstance();
         this._country = Country.getInstance();
+        this._runRetries = 0;
         this.logger = new EngridLogger("App", "black", "white", "🍏");
         const loader = new Loader();
         this.options = Object.assign(Object.assign({}, OptionsDefaults), options);
@@ -45,6 +46,11 @@ export class App extends ENGrid {
     }
     run() {
         if (!ENGrid.checkNested(window.EngagingNetworks, "require", "_defined", "enjs")) {
+            this._runRetries++;
+            if (this._runRetries > 50) {
+                this.logger.danger("Engaging Networks JS Framework NOT FOUND after 50 retries. Giving up.");
+                return;
+            }
             this.logger.danger("Engaging Networks JS Framework NOT FOUND");
             setTimeout(() => {
                 this.run();
@@ -309,7 +315,7 @@ export class App extends ENGrid {
             window.onload = (e) => {
                 this.onLoad();
                 if (onLoad) {
-                    onLoad.bind(window, e);
+                    onLoad.call(window, e);
                 }
             };
         }

@@ -2,6 +2,7 @@ import { EnForm } from "./events";
 export declare class iFrame {
     _form: EnForm;
     private logger;
+    private parentOrigin;
     constructor();
     private onLoaded;
     private sendIframeHeight;

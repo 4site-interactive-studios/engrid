@@ -83,8 +83,10 @@ export class DonationAmount {
         const otherField = document.querySelector(
           'input[name="' + this._other + '"]'
         ) as HTMLInputElement;
-        currentAmountValue = ENGrid.cleanAmount(otherField.value);
-        this.amount = currentAmountValue;
+        if (otherField) {
+          currentAmountValue = ENGrid.cleanAmount(otherField.value);
+          this.amount = currentAmountValue;
+        }
       }
     } else if (
       ENGrid.checkNested(
@@ -118,58 +120,64 @@ export class DonationAmount {
     }
     // Set dispatch to be checked by the SET method
     this._dispatch = dispatch;
-    // Search for the current amount on radio boxes
-    let found = Array.from(
-      document.querySelectorAll('input[name="' + this._radios + '"]')
-    ).filter(
-      (el) => el instanceof HTMLInputElement && parseInt(el.value) == amount
-    );
-    // We found the amount on the radio boxes, so check it
-    if (found.length) {
-      const amountField = found[0] as HTMLInputElement;
-      amountField.checked = true;
-      // Change Event
-      const event = new Event("change", {
-        bubbles: true,
-        cancelable: true,
-      });
-      amountField.dispatchEvent(event);
-      // Clear OTHER text field
-      this.clearOther();
-    } else {
-      const otherField = document.querySelector(
-        'input[name="' + this._other + '"]'
-      ) as HTMLInputElement;
-      if (otherField) {
-        const enFieldOtherAmountRadio = document.querySelector(
-          `.en__field--donationAmt.en__field--withOther .en__field__item:nth-last-child(2) input[name="${this._radios}"]`
-        ) as HTMLInputElement;
-        if (enFieldOtherAmountRadio) {
-          enFieldOtherAmountRadio.checked = true;
-        }
-        otherField.value = parseFloat(amount.toString()).toFixed(2);
+    try {
+      // Search for the current amount on radio boxes
+      let found = Array.from(
+        document.querySelectorAll('input[name="' + this._radios + '"]')
+      ).filter(
+        (el) => el instanceof HTMLInputElement && parseInt(el.value) == amount
+      );
+      // We found the amount on the radio boxes, so check it
+      if (found.length) {
+        const amountField = found[0] as HTMLInputElement;
+        amountField.checked = true;
         // Change Event
         const event = new Event("change", {
           bubbles: true,
           cancelable: true,
         });
-        otherField.dispatchEvent(event);
-        const otherWrapper = otherField.parentNode as HTMLElement;
-        otherWrapper.classList.remove("en__field__item--hidden");
+        amountField.dispatchEvent(event);
+        // Clear OTHER text field
+        this.clearOther();
+      } else {
+        const otherField = document.querySelector(
+          'input[name="' + this._other + '"]'
+        ) as HTMLInputElement;
+        if (otherField) {
+          const enFieldOtherAmountRadio = document.querySelector(
+            `.en__field--donationAmt.en__field--withOther .en__field__item:nth-last-child(2) input[name="${this._radios}"]`
+          ) as HTMLInputElement;
+          if (enFieldOtherAmountRadio) {
+            enFieldOtherAmountRadio.checked = true;
+          }
+          otherField.value = parseFloat(amount.toString()).toFixed(2);
+          // Change Event
+          const event = new Event("change", {
+            bubbles: true,
+            cancelable: true,
+          });
+          otherField.dispatchEvent(event);
+          const otherWrapper = otherField.parentNode as HTMLElement;
+          otherWrapper.classList.remove("en__field__item--hidden");
+        }
       }
+      // Set the new amount and trigger all live variables
+      this.amount = amount;
+    } finally {
+      // Revert dispatch to default value (true)
+      this._dispatch = true;
     }
-    // Set the new amount and trigger all live variables
-    this.amount = amount;
-    // Revert dispatch to default value (true)
-    this._dispatch = true;
   }
   // Clear Other Field
   public clearOther() {
     const otherField = document.querySelector(
       'input[name="' + this._other + '"]'
     ) as HTMLInputElement;
+    if (!otherField) return;
     otherField.value = "";
     const otherWrapper = otherField.parentNode as HTMLElement;
-    otherWrapper.classList.add("en__field__item--hidden");
+    if (otherWrapper) {
+      otherWrapper.classList.add("en__field__item--hidden");
+    }
   }
 }

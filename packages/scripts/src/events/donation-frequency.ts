@@ -31,11 +31,13 @@ export class DonationFrequency {
     });
     //Thank you page handling for utility classes
     if (ENGrid.getGiftProcess()) {
-      ENGrid.setBodyData(
-        "transaction-recurring-frequency",
-        sessionStorage.getItem("engrid-transaction-recurring-frequency") ||
-          "onetime"
-      );
+      let storedFrequency = "onetime";
+      try {
+        storedFrequency =
+          sessionStorage.getItem("engrid-transaction-recurring-frequency") ||
+          "onetime";
+      } catch (e) {}
+      ENGrid.setBodyData("transaction-recurring-frequency", storedFrequency);
       ENGrid.setBodyData(
         "transaction-recurring",
         window.pageJson.recurring ? "y" : "n"
@@ -60,10 +62,12 @@ export class DonationFrequency {
     this._frequency = value.toLowerCase() || "onetime";
     if (this._dispatch) this._onFrequencyChange.dispatch(this._frequency);
     ENGrid.setBodyData("transaction-recurring-frequency", this._frequency);
-    sessionStorage.setItem(
-      "engrid-transaction-recurring-frequency",
-      this._frequency
-    );
+    try {
+      sessionStorage.setItem(
+        "engrid-transaction-recurring-frequency",
+        this._frequency
+      );
+    } catch (e) {}
   }
 
   get recurring(): string {
@@ -81,9 +85,14 @@ export class DonationFrequency {
 
   // Set amount var with currently selected amount
   public load() {
+    let storedFrequency = "";
+    try {
+      storedFrequency =
+        sessionStorage.getItem("engrid-transaction-recurring-frequency") || "";
+    } catch (e) {}
     this.frequency =
       ENGrid.getFieldValue("transaction.recurrfreq") ||
-      sessionStorage.getItem("engrid-transaction-recurring-frequency") ||
+      storedFrequency ||
       "onetime";
     const recurrField = ENGrid.getField("transaction.recurrpay");
     if (recurrField) {
@@ -112,9 +121,12 @@ export class DonationFrequency {
     }
     // Set dispatch to be checked by the SET method
     this._dispatch = dispatch;
-    ENGrid.setFieldValue("transaction.recurrpay", recurr.toUpperCase());
-    // Revert dispatch to default value (true)
-    this._dispatch = true;
+    try {
+      ENGrid.setFieldValue("transaction.recurrpay", recurr.toUpperCase());
+    } finally {
+      // Revert dispatch to default value (true)
+      this._dispatch = true;
+    }
   }
   // Force a new frequency
   public setFrequency(freq: string, dispatch: boolean = true) {
@@ -124,24 +136,27 @@ export class DonationFrequency {
     }
     // Set dispatch to be checked by the SET method
     this._dispatch = dispatch;
-    // Search for the current amount on radio boxes
-    let found = Array.from(
-      document.querySelectorAll('input[name="transaction.recurrfreq"]')
-    ).filter(
-      (el) => el instanceof HTMLInputElement && el.value == freq.toUpperCase()
-    );
-    // We found the amount on the radio boxes, so check it
-    if (found.length) {
-      const freqField = found[0] as HTMLInputElement;
-      freqField.checked = true;
-      this.frequency = freq.toLowerCase();
-      if (this.frequency === "onetime") {
-        this.setRecurrency("N", dispatch);
-      } else {
-        this.setRecurrency("Y", dispatch);
+    try {
+      // Search for the current amount on radio boxes
+      let found = Array.from(
+        document.querySelectorAll('input[name="transaction.recurrfreq"]')
+      ).filter(
+        (el) => el instanceof HTMLInputElement && el.value == freq.toUpperCase()
+      );
+      // We found the amount on the radio boxes, so check it
+      if (found.length) {
+        const freqField = found[0] as HTMLInputElement;
+        freqField.checked = true;
+        this.frequency = freq.toLowerCase();
+        if (this.frequency === "onetime") {
+          this.setRecurrency("N", dispatch);
+        } else {
+          this.setRecurrency("Y", dispatch);
+        }
       }
+    } finally {
+      // Revert dispatch to default value (true)
+      this._dispatch = true;
     }
-    // Revert dispatch to default value (true)
-    this._dispatch = true;
   }
 }

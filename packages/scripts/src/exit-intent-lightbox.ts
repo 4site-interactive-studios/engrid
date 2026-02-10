@@ -83,17 +83,10 @@ export class ExitIntentLightbox {
       // user switching active program
       const from = e.relatedTarget;
 
-      if (!from) {
-        this.logger.log("Triggered by mouse position");
-        this.open();
-      }
-
-      if (!this.triggerTimeout) {
+      if (!from && !this.triggerTimeout) {
         this.triggerTimeout = window.setTimeout(() => {
-          if (!from) {
-            this.logger.log("Triggered by mouse position");
-            this.open();
-          }
+          this.logger.log("Triggered by mouse position");
+          this.open();
           this.triggerTimeout = null;
         }, this.triggerDelay);
       }

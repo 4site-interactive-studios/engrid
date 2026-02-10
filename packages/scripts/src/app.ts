@@ -103,6 +103,7 @@ export class App extends ENGrid {
   private _dataLayer: DataLayer;
 
   private options: Options;
+  private _runRetries: number = 0;
 
   private logger = new EngridLogger("App", "black", "white", "🍏");
 
@@ -154,6 +155,13 @@ export class App extends ENGrid {
         "enjs"
       )
     ) {
+      this._runRetries++;
+      if (this._runRetries > 50) {
+        this.logger.danger(
+          "Engaging Networks JS Framework NOT FOUND after 50 retries. Giving up."
+        );
+        return;
+      }
       this.logger.danger("Engaging Networks JS Framework NOT FOUND");
       setTimeout(() => {
         this.run();
@@ -498,7 +506,7 @@ export class App extends ENGrid {
       window.onload = (e: Event) => {
         this.onLoad();
         if (onLoad) {
-          onLoad.bind(window, e);
+          onLoad.call(window, e);
         }
       };
     }
