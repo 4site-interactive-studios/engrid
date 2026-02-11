@@ -281,7 +281,12 @@ export class RememberMe {
         tippy("#rememberme-learn-more-toggle", { content: rememberMeInfo });
       }
     } else if (this.rememberMeOptIn) {
-      rememberMeOptInField.checked = true;
+      const rememberMeCheckbox = document.getElementById(
+        "remember-me-checkbox"
+      ) as HTMLInputElement;
+      if (rememberMeCheckbox) {
+        rememberMeCheckbox.checked = true;
+      }
     }
     this._events.dispatchLoad(false);
     window.dispatchEvent(

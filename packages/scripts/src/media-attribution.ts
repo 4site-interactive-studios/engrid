@@ -55,12 +55,12 @@ export class MediaAttribution {
                 decodeURIComponent(attributionSourceLink) +
                 '" target="_blank" tabindex="-1">' +
                 attributionSource +
-                "</a></figure>"
+                "</a></figattribution>"
             );
           } else {
             mediaWithAttributionElement.insertAdjacentHTML(
               "afterend",
-              "<figattribution>" + attributionSource + "</figure>"
+              "<figattribution>" + attributionSource + "</figattribution>"
             );
           }
           const attributionSourceTooltip =
