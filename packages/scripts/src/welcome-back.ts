@@ -94,23 +94,38 @@ export class WelcomeBack {
   }
 
   private resetWelcomeBack() {
-    const inputs = document.querySelectorAll(
-      ".fast-personal-details .en__field__input"
-    ) as NodeListOf<HTMLInputElement>;
-
-    inputs.forEach((input: HTMLInputElement) => {
-      if (input.type === "checkbox" || input.type === "radio") {
-        input.checked = false;
-      } else {
-        input.value = "";
-      }
-    });
-
+    const clearAutofillLink = document.getElementById("clear-autofill-data") as HTMLAnchorElement;
+    if (clearAutofillLink) {
+      clearAutofillLink.click();
+    }
     this.supporterDetails = {};
 
     ENGrid.setBodyData("hide-fast-personal-details", false);
 
     cookie.remove("engrid-autofill");
+    this.removeAutoFillWithIframe();
+  }
+
+  private removeAutoFillWithIframe() {
+    const rememberMeOptions = ENGrid.getOption("RememberMe");
+    const iframe = document.querySelector('iframe[title="Remember Me iframe"]') as HTMLIFrameElement;
+
+    if (rememberMeOptions && iframe && iframe.contentWindow) {
+      const cookieName = typeof rememberMeOptions === "object" && rememberMeOptions.cookieName
+        ? rememberMeOptions.cookieName
+        : "engrid-autofill";
+
+
+      iframe.contentWindow.postMessage(
+        JSON.stringify({
+          key: cookieName,
+          value: {},
+          operation: "write",
+          expires: 1,
+        }),
+        "*"
+      );
+    }
   }
 
   private addPersonalDetailsSummary() {
@@ -134,16 +149,14 @@ export class WelcomeBack {
       "beforeend",
       `
      <p>
-        ${this.supporterDetails["firstName"]} ${
-        this.supporterDetails["lastName"]
+        ${this.supporterDetails["firstName"]} ${this.supporterDetails["lastName"]
       }
         <br>
         ${this.supporterDetails["emailAddress"]}
-        ${
-          this.supporterDetails["mobilePhone"]
-            ? `<br>${this.supporterDetails["mobilePhone"]}`
-            : ""
-        }
+        ${this.supporterDetails["mobilePhone"]
+        ? `<br>${this.supporterDetails["mobilePhone"]}`
+        : ""
+      }
      </p>
     `
     );
@@ -180,6 +193,7 @@ export class WelcomeBack {
   }
 
   private addEventListeners() {
+    // Add listener for "Not you?" link in welcome message
     document
       .querySelectorAll(".engrid-reset-welcome-back")
       .forEach((element) => {
@@ -187,6 +201,16 @@ export class WelcomeBack {
           this.resetWelcomeBack();
         });
       });
+
+    // Add listener for "Change" button in personal details summary
+    document
+      .querySelectorAll(".engrid-welcome-back-clear")
+      .forEach((element) => {
+        element.addEventListener("click", () => {
+          this.resetWelcomeBack();
+        });
+      });
+
     this._form.onValidate.subscribe(this.enOnValidate.bind(this));
     this._form.onValidate.subscribe(() => {
       window.setTimeout(this.doubleCheckValidation.bind(this), 150);
