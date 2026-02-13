@@ -13,7 +13,7 @@ export class OtherAmount {
   constructor() {
     "focusin input".split(" ").forEach((e) => {
       // We're attaching this event to the body because sometimes the other amount input is not in the DOM yet and comes via AJAX.
-      document.querySelector("body")?.addEventListener(e, (event) => {
+      document.querySelector("body")?.addEventListener(e as string, (event: Event) => {
         const target = event.target as HTMLInputElement;
         if (target.classList.contains("en__field__input--other")) {
           this.logger.log("Other Amount Field Focused");
@@ -81,7 +81,9 @@ export class OtherAmount {
         const lastRadioInput = targetWrapper.parentNode.querySelector(
           ".en__field__item:nth-last-child(2) input"
         ) as HTMLInputElement;
-        lastRadioInput.checked = !0;
+        if (lastRadioInput) {
+          lastRadioInput.checked = true;
+        }
       }
     }
   }

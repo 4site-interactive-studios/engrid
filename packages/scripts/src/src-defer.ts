@@ -70,16 +70,17 @@ export class SrcDefer {
 
         // To get the browser to request the video asset defined we need to remove the <video> tag and re-add it
         let videoBackgroundParent = video.parentNode; // Determine the parent of the <video> tag
-        let copyOfVideoBackground = video; // Copy the <video> tag
-        if (videoBackgroundParent && copyOfVideoBackground) {
-          videoBackgroundParent.replaceChild(copyOfVideoBackground, video); // Replace the <video> with the copy of itself
+        if (videoBackgroundParent && video) {
+          // Remove the video element and re-add it to trigger the browser to request the video asset
+          const videoClone = video.cloneNode(true) as HTMLVideoElement;
+          videoBackgroundParent.replaceChild(videoClone, video);
 
-          // Update the video to auto play, mute, loop
-          video.muted = true; // Mute the video by default
-          video.controls = false; // Hide the browser controls
-          video.loop = true; // Loop the video
-          video.playsInline = true; // Encourage the user agent to display video content within the element's playback area
-          video.play(); // Plays the video
+          // Update the cloned video to auto play, mute, loop
+          videoClone.muted = true; // Mute the video by default
+          videoClone.controls = false; // Hide the browser controls
+          videoClone.loop = true; // Loop the video
+          videoClone.playsInline = true; // Encourage the user agent to display video content within the element's playback area
+          videoClone.play(); // Plays the video
         }
       }
     }

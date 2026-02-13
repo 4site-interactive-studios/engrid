@@ -63,7 +63,9 @@ export class OtherAmount {
             targetWrapper.classList.remove("en__field__item--hidden");
             if (targetWrapper.parentNode) {
                 const lastRadioInput = targetWrapper.parentNode.querySelector(".en__field__item:nth-last-child(2) input");
-                lastRadioInput.checked = !0;
+                if (lastRadioInput) {
+                    lastRadioInput.checked = true;
+                }
             }
         }
     }
