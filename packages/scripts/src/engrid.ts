@@ -25,8 +25,9 @@ export abstract class ENGrid {
     // Add support for array on the name ending with []
     if (name.endsWith("[]")) {
       let values: Object[] = [];
+      const arrayPrefix = `${name.replace("[]", "")}[`;
       searchParams.forEach((value, key) => {
-        if (key.startsWith(name.replace("[]", ""))) {
+        if (key.startsWith(arrayPrefix)) {
           values.push(new Object({ [key]: value }));
         }
       });
@@ -307,7 +308,10 @@ export abstract class ENGrid {
 
   // Return the option value
   static getOption<K extends keyof Options>(key: K): Options[K] | null {
-    return window.EngridOptions[key] || null;
+    if (window.EngridOptions && key in window.EngridOptions) {
+      return window.EngridOptions[key];
+    }
+    return null;
   }
   // Load an external script
   static loadJS(
@@ -454,11 +458,12 @@ export abstract class ENGrid {
 
   // Deep merge two objects
   static deepMerge(target: any, source: any) {
+    target = target || {};
     for (const key in source) {
       if (source[key] instanceof Object)
         Object.assign(source[key], ENGrid.deepMerge(target[key], source[key]));
     }
-    Object.assign(target || {}, source);
+    Object.assign(target, source);
     return target;
   }
   static setError(element: string | HTMLElement, errorMessage: string) {

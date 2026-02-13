@@ -208,7 +208,10 @@ export class RememberMe {
             }
         }
         else if (this.rememberMeOptIn) {
-            rememberMeOptInField.checked = true;
+            const rememberMeCheckbox = document.getElementById("remember-me-checkbox");
+            if (rememberMeCheckbox) {
+                rememberMeCheckbox.checked = true;
+            }
         }
         this._events.dispatchLoad(false);
         window.dispatchEvent(new CustomEvent("RememberMe_Loaded", { detail: { withData: false } }));
