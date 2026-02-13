@@ -82,7 +82,6 @@ export interface Options {
     }[];
     PageLayouts?: string[];
     CountryDisable?: string[];
-    Plaid?: boolean;
     Placeholders?: false | {
         [key: string]: string;
     };

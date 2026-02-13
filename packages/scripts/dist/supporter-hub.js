@@ -34,7 +34,7 @@ export class SupporterHub {
                 }
             });
         });
-        // Start observing the Link ID #plaid-link-button
+        // Start observing the Link ID
         observer.observe(form, {
             childList: true,
             subtree: true,
