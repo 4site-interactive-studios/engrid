@@ -118,11 +118,9 @@ export class ShowHideRadioCheckboxes {
                 return;
             if (element.type == "radio" && element.checked) {
                 //remove other items that have the same "class" property
-                state.forEach((item, index) => {
-                    if (item.class == this.classes) {
-                        state.splice(index, 1);
-                    }
-                });
+                const filteredRadioState = state.filter((item) => item.class !== this.classes);
+                state.length = 0;
+                filteredRadioState.forEach((item) => state.push(item));
                 //add the current item, with the currently active value
                 state.push({
                     page: ENGrid.getPageID(),
@@ -133,11 +131,9 @@ export class ShowHideRadioCheckboxes {
             }
             if (element.type == "checkbox") {
                 //remove other items that have the same "class" property
-                state.forEach((item, index) => {
-                    if (item.class == this.classes) {
-                        state.splice(index, 1);
-                    }
-                });
+                const filteredCheckboxState = state.filter((item) => item.class !== this.classes);
+                state.length = 0;
+                filteredCheckboxState.forEach((item) => state.push(item));
                 //add the current item, with the first checked value or "N" if none are checked
                 state.push({
                     page: ENGrid.getPageID(),
