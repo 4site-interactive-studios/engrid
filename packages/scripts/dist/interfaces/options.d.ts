@@ -28,6 +28,7 @@ export interface Options {
         dateFieldFormat?: string;
         statusField?: string;
         messageField?: string;
+        proxyUrl?: string;
     };
     ProgressBar?: boolean | null;
     AutoYear?: boolean;

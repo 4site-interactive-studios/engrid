@@ -30,7 +30,12 @@ export class FreshAddress {
 
   constructor() {
     this.options = ENGrid.getOption("FreshAddress") as Options["FreshAddress"];
-    if (this.options === false || !window.FreshAddress) return;
+    if (
+      this.options === false ||
+      (!window.FreshAddress && !this.options?.proxyUrl)
+    ) {
+      return;
+    }
     this.emailField = document.getElementById(
       "en__field_supporter_emailAddress"
     ) as HTMLInputElement;
@@ -111,7 +116,12 @@ export class FreshAddress {
         return;
       }
       this.logger.log("Validating " + this.emailField?.value);
-      this.callAPI();
+
+      if (this.options && this.options.proxyUrl) {
+        this.callProxy();
+      } else {
+        this.callAPI();
+      }
     });
 
     // Add event listener to submit
@@ -135,6 +145,7 @@ export class FreshAddress {
       }
     );
   }
+
   private validateResponse(data: any) {
     /* ERROR HANDLING: Let through in case of a service error. Enable form submission. */
     if (data.isServiceError()) {
@@ -188,6 +199,7 @@ export class FreshAddress {
     window.FreshAddressStatus = "idle";
     ENGrid.enableSubmit();
   }
+
   private validate() {
     ENGrid.removeError(this.emailWrapper);
     if (!this.form.validate) return;
@@ -220,7 +232,7 @@ export class FreshAddress {
     } else if (this.faStatus!.value === "Invalid") {
       this.form.validate = false;
       window.setTimeout(() => {
-        ENGrid.setError(this.emailWrapper, this.faMessage!.value);
+        ENGrid.setError(this.emailWrapper, "This email address is not valid.");
       }, 100);
       this.emailField?.focus();
       ENGrid.enableSubmit();
@@ -228,5 +240,76 @@ export class FreshAddress {
     }
     this.form.validate = true;
     return true;
+  }
+
+  private callProxy() {
+    if (!this.options || !this.shouldRun) return;
+
+    window.FreshAddressStatus = "validating";
+    ENGrid.disableSubmit("Validating Email Address...");
+
+    fetch(this.options!.proxyUrl!, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email: this.emailField?.value }),
+      signal: AbortSignal.timeout(5000),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        this.logger.log("Proxy API Response", data);
+        this.validateProxyResponse(data);
+      })
+      .catch((error) => {
+        if (error.name === "AbortError") {
+          this.logger.log("Proxy API request timed out");
+          this.writeToFields("Request Timeout", "The request took too long.");
+        } else {
+          this.logger.log("Proxy API Error", error);
+          this.writeToFields("Service Error", error.toString());
+        }
+      })
+      .finally(() => {
+        window.FreshAddressStatus = "idle";
+        ENGrid.enableSubmit();
+      });
+  }
+
+  /*
+   * Validate a request proxied to AtData's Safe To Send API.
+   * https://docs.atdata.com/reference/safe-to-send
+   * https://docs.atdata.com/reference/email-status
+   * https://docs.atdata.com/reference/status-codes-safe-to-send
+   */
+  private validateProxyResponse(data: any) {
+    // If response is not in expected format, log error and let through.
+    if (!data.safe_to_send) {
+      this.logger.log("Invalid Proxy Response");
+      this.writeToFields("Service Error", "Invalid Proxy Response");
+      return true;
+    }
+
+    const res = data.safe_to_send;
+
+    ENGrid.removeError(this.emailWrapper);
+    this.writeToFields(res.status, res.status_code);
+
+    if (["invalid", "trap"].includes(res.status)) {
+      this.writeToFields("Invalid", res.status_code); // Must be "Invalid" to trigger validation error on submit
+      ENGrid.setError(this.emailWrapper, "This email address is not valid.");
+      this.emailField?.focus();
+      if (res.email_corrections && res.email_corrections.length > 0) {
+        ENGrid.setError(
+          this.emailWrapper,
+          `This email address is not valid. Did you mean ${res.email_corrections[0]}?`
+        );
+      }
+    }
   }
 }
