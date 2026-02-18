@@ -273,7 +273,5 @@ export class FreshAddress {
                 ENGrid.setError(this.emailWrapper, `This email address is not valid. Did you mean ${res.email_corrections[0]}?`);
             }
         }
-        window.FreshAddressStatus = "idle";
-        ENGrid.enableSubmit();
     }
 }

@@ -311,8 +311,5 @@ export class FreshAddress {
         );
       }
     }
-
-    window.FreshAddressStatus = "idle";
-    ENGrid.enableSubmit();
   }
 }
