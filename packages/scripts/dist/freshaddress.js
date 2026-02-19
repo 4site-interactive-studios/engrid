@@ -210,17 +210,28 @@ export class FreshAddress {
         return true;
     }
     callProxy() {
-        var _a;
+        var _a, _b;
         if (!this.options || !this.shouldRun)
             return;
         window.FreshAddressStatus = "validating";
         ENGrid.disableSubmit("Validating Email Address...");
+        // Before calling the API, do a basic check to see if the email is in a valid format.
+        // This is to prevent unnecessary API calls.
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(this.emailField.value)) {
+            this.logger.log("Invalid Email Format from Basic Check");
+            this.writeToFields("Invalid", "Invalid Email Format");
+            ENGrid.setError(this.emailWrapper, "This email address is not valid.");
+            (_a = this.emailField) === null || _a === void 0 ? void 0 : _a.focus();
+            ENGrid.enableSubmit();
+            return;
+        }
         fetch(this.options.proxyUrl, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ email: (_a = this.emailField) === null || _a === void 0 ? void 0 : _a.value }),
+            body: JSON.stringify({ email: (_b = this.emailField) === null || _b === void 0 ? void 0 : _b.value }),
             signal: AbortSignal.timeout(5000),
         })
             .then((response) => {
@@ -234,14 +245,20 @@ export class FreshAddress {
             this.validateProxyResponse(data);
         })
             .catch((error) => {
+            // 422 (Unprocessable Content) - This means the email is in an invalid format.
+            if (error.message.includes("422")) {
+                this.logger.log("Invalid Email Format");
+                this.writeToFields("Invalid", "Invalid Email Format");
+                ENGrid.setError(this.emailWrapper, "This email address is not valid.");
+                return;
+            }
             if (error.name === "AbortError") {
                 this.logger.log("Proxy API request timed out");
                 this.writeToFields("Request Timeout", "The request took too long.");
+                return;
             }
-            else {
-                this.logger.log("Proxy API Error", error);
-                this.writeToFields("Service Error", error.toString());
-            }
+            this.logger.log("Proxy API Error", error);
+            this.writeToFields("Service Error", error.toString());
         })
             .finally(() => {
             window.FreshAddressStatus = "idle";
