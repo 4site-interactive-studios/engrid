@@ -329,6 +329,7 @@ export class FreshAddress {
       ENGrid.setError(this.emailWrapper, "This email address is not valid.");
       this.emailField?.focus();
       if (res.email_corrections && res.email_corrections.length > 0) {
+        this.emailField!.value = res.email_corrections[0];
         ENGrid.setError(
           this.emailWrapper,
           `This email address is not valid. Did you mean ${res.email_corrections[0]}?`
