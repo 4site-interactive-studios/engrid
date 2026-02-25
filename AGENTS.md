@@ -5,7 +5,7 @@
 - **File naming**: Use lowercase with hyphens (kebab-case), e.g., frequency-upsell.md, custom-lightboxes.md
 - **Format**: Markdown (`.md`) files
 - **Working area**: The documentation you create should be placed in `reference-materials/docs/generated`
-- **Work stack**: All typescript files in `packages/scripts/src/` that do not have a `Docs: <link>` in the javadoc at the start of the file. 
+- **Work stack**: All typescript files in `packages/scripts/src/` that do not have a `Docs: <link>` in the javadoc at the start of the file. Only these files should have documentation written about them. Files that closely share implementation can share a documentation md file (for example "upsell-checkbox" and "upsell-lightbox")
   * Interfaces in `packages/scripts/src/interfaces` should be used to aid you in writing documentation for the files that import them, they do not need documentation themselves
   * Events in `packages/scripts/src/events` should be used to aid you in writing documentation for the files that import them, they do not need documentation themselves
   * Exclusions: app.ts
