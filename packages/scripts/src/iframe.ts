@@ -1,3 +1,6 @@
+/**
+ * Docs: https://engrid.4sitestudios.com/docs/v2/embedding-engrid
+ */
 import { ENGrid, EngridLogger } from ".";
 import { EnForm } from "./events";
 

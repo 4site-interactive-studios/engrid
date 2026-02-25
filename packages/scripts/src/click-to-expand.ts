@@ -1,6 +1,8 @@
-// This class is used to expand content when a user clicks on a div with the class "click-to-expand".
-// The content is shortened by default and will expand when clicked.
-
+/**
+ * Docs: https://engrid.4sitestudios.com/docs/v2/click-to-expand
+ * This class is used to expand content when a user clicks on a div with the class "click-to-expand".
+ * The content is shortened by default and will expand when clicked.
+ */
 import { ENGrid } from ".";
 
 // Works when the user has adds ".click-to-expand" as a class to any field

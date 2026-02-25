@@ -1,4 +1,5 @@
-/*
+/**
+ * Docs: https://engrid.4sitestudios.com/docs/v2/frequency-upsell
  * FrequencyUpsellModal - this is class that creates the modal for the frequency upsell.
  * This component is intentionally "dumb" and only creates the modal renders its content.
  * Logic for showing the modal and handling the upsell is in the FrequencyUpsell class.

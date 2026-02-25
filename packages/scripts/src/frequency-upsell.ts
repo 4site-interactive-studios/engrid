@@ -1,4 +1,5 @@
-/*
+/**
+ * Docs: https://engrid.4sitestudios.com/docs/v2/frequency-upsell
  * FrequencyUpsell component which creates a modal to upsell the frequency of the donation
  * This is typically used to upsell a single donation into an annual donation, but the component
  * options can be configured to upsell any frequency to any other frequency. The upsell amount can also be configured

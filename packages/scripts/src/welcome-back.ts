@@ -1,4 +1,5 @@
 /**
+ * Docs: https://engrid.4sitestudios.com/docs/v2/welcome-back
  * This component adds a welcome back message and a personal details summary to the page.
  * It depends on the "fast-personal-details" functionality from the FastFormFill component.
  * The component will only run, when the "WelcomeBack" option is set,

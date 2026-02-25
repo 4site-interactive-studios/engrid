@@ -1,5 +1,8 @@
-// Component to translate fields based on the country selected
-// It will also adapt the state field to the country selected
+/**
+ * Docs: https://engrid.4sitestudios.com/docs/v2/international-form-addresses
+ * Component to translate fields based on the country selected
+ * It will also adapt the state field to the country selected
+ */
 import { ENGrid, TranslateOptions, TranslateOptionsDefaults } from ".";
 import * as cookie from "./cookie";
 

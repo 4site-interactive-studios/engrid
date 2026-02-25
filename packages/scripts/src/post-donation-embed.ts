@@ -1,11 +1,14 @@
-// This component only works on Thank You pages and the current page IS NOT embedded as an iframe.
-// It searches for a post-donation tag (engrid-post-donation)
-// and if it exists, it will replace it with an iframe of the chained `src` attribute (or the current donation page, replacing the
-// "/donate/2" with "/donate/1").
-// The engrid-post-donation tag has 3 attributes:
-// 1. src: the URL of the iframe to load (optional)
-// 2. params: the URL parameters to pass to the iframe
-// 3. amounts: comma separated list of amounts to pass to the iframe
+/**
+ * Docs: https://engrid.4sitestudios.com/docs/v2/post-donation-embed
+ * This component only works on Thank You pages and the current page IS NOT embedded as an iframe.
+ * It searches for a post-donation tag (engrid-post-donation)
+ * and if it exists, it will replace it with an iframe of the chained `src` attribute (or the current donation page, replacing the
+ * "/donate/2" with "/donate/1").
+ * The engrid-post-donation tag has 3 attributes:
+ * 1. src: the URL of the iframe to load (optional)
+ * 2. params: the URL parameters to pass to the iframe
+ * 3. amounts: comma separated list of amounts to pass to the iframe
+ */
 import { ENGrid, EngridLogger } from ".";
 
 export class PostDonationEmbed {

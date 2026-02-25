@@ -1,3 +1,7 @@
+/**
+ * Docs: https://engrid.4sitestudios.com/docs/v2/upsells#donation-upsell-lightbox
+ * This class creates a lightbox on the first page of the donation flow that suggests the supporter to increase their donation amount.
+ */
 import {
   ENGrid,
   EngridLogger,

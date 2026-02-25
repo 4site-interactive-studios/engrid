@@ -1,3 +1,7 @@
+/**
+ * Docs: https://engrid.4sitestudios.com/docs/v2/remember-me
+ * This component adds a "Remember Me" functionality to the form, allowing supporters to save their information for future visits.
+ */
 import * as cookie from "./cookie";
 import { EnForm, RememberMeEvents } from "./events";
 const tippy = require("tippy.js").default;

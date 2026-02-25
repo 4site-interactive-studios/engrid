@@ -1,4 +1,5 @@
 /**
+ * Docs: https://engrid.4sitestudios.com/docs/v2/ecard-to-target
  * This component adjusts an ecard form to target a specific recipient,
  * defined in a code block
  */

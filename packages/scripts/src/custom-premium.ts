@@ -1,13 +1,16 @@
-// ENgrid component: CustomPremium
-// Filters premium gifts based on window.EngridPageOptions.CustomPremium configuration
-// Rules:
-// - Config shape: window.EngridPageOptions.CustomPremium[frequency][productId] = minimumAmount
-// - On frequency or amount change, wait 500ms (allow EN to re-render), then:
-//   - Show only gifts whose minimumAmount <= current amount; hide others
-//   - If none visible, hide entire .en__component--premiumgiftblock
-//   - If current selection becomes invalid, select default; if default not visible, select "No Premium" and clear transaction.selprodvariantid
-// - Run once 500ms after page load
-// - Add EnForm onSubmit hook to clear transaction.selprodvariantid when no visible premium items
+/**
+ * Docs: https://engrid.4sitestudios.com/docs/v2/custom-premium
+ * ENgrid component: CustomPremium
+ * Filters premium gifts based on window.EngridPageOptions.CustomPremium configuration
+ * Rules:
+ * - Config shape: window.EngridPageOptions.CustomPremium[frequency][productId] = minimumAmount
+ * - On frequency or amount change, wait 500ms (allow EN to re-render), then:
+ *   - Show only gifts whose minimumAmount <= current amount; hide others
+ *   - If none visible, hide entire .en__component--premiumgiftblock
+ *   - If current selection becomes invalid, select default; if default not visible, select "No Premium" and clear transaction.selprodvariantid
+ * - Run once 500ms after page load
+ * - Add EnForm onSubmit hook to clear transaction.selprodvariantid when no visible premium items
+ */
 
 import {
   ENGrid,

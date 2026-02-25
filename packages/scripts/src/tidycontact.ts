@@ -1,3 +1,6 @@
+/**
+ * Docs: https://engrid.4sitestudios.com/docs/v2/tidycontact
+ */
 import { EnForm, ENGrid, EngridLogger } from ".";
 import { Options } from "./interfaces/options";
 

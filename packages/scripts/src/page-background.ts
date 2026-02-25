@@ -1,3 +1,6 @@
+/**
+ * Docs: https://engrid.4sitestudios.com/docs/v2/background-image-positioning
+ */
 import { ENGrid, EngridLogger } from ".";
 
 export class PageBackground {
