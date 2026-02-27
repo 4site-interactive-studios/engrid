@@ -36,6 +36,7 @@ export declare class RememberMe {
     private insertClearRememberMeLink;
     private getElementByFirstSelector;
     private insertRememberMeOptin;
+    private getRemoteOrigin;
     private useRemote;
     private createIframe;
     private clearCookie;

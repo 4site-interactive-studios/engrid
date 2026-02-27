@@ -7,6 +7,7 @@ export declare class App extends ENGrid {
     private _country;
     private _dataLayer;
     private options;
+    private _runRetries;
     private logger;
     constructor(options: Options);
     private run;
