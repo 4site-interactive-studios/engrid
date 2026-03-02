@@ -1,5 +1,7 @@
-// This class automatically select other radio input when an amount is entered into it.
-
+/**
+ * Docs: https://engrid.4sitestudios.com/component/other-amount
+ * This class automatically selects the "other" radio input when an amount is entered into it.
+ */
 import { EngridLogger, ENGrid, DonationAmount } from ".";
 
 export class OtherAmount {
@@ -26,7 +28,7 @@ export class OtherAmount {
     ) as HTMLInputElement;
     if (otherAmountField) {
       otherAmountField.setAttribute("inputmode", "decimal");
-      // ADD THE MISSING LABEL FOR IMPROVED ACCESSABILITY
+      // ADD THE MISSING LABEL FOR IMPROVED ACCESSIBILITY
       otherAmountField.setAttribute(
         "aria-label",
         "Enter your custom donation amount"

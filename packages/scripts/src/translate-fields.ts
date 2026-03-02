@@ -1,5 +1,5 @@
 /**
- * Docs: https://engrid.4sitestudios.com/docs/v2/international-form-addresses
+ * Docs: https://engrid.4sitestudios.com/component/translate-fields
  * Component to translate fields based on the country selected
  * It will also adapt the state field to the country selected
  */

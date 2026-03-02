@@ -1,3 +1,6 @@
+/**
+ * Docs: https://engrid.4sitestudios.com/component/modal
+ */
 import { ENGrid } from "./engrid";
 
 interface ModalOptions {

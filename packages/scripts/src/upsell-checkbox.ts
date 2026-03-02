@@ -1,5 +1,5 @@
 /**
- * Docs: https://engrid.4sitestudios.com/docs/v2/upsells#donation-upsell-checkbox
+ * Docs: https://engrid.4sitestudios.com/component/upsell-checkbox
  * This component will add a checkbox to the donation form that will allow the user to upgrade their donation to a monthly donation.
  */
 import {

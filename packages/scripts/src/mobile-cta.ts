@@ -1,4 +1,8 @@
-// This component adds a floating CTA button to the page, which can be used to scroll to the top of the form
+/**
+ * Docs: https://engrid.4sitestudios.com/component/mobile-cta
+ * This component adds a floating CTA button to the page, which can be used to scroll to the top 
+ * of the form
+ */
 import { ENGrid, Options } from ".";
 
 export class MobileCTA {

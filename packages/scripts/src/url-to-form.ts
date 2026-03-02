@@ -1,4 +1,7 @@
-// Component that allows to set a field value from URL parameters
+/**
+ * Docs: https://engrid.4sitestudios.com/component/url-to-form
+ * Component that allows to set a field value from URL parameters
+ */
 // Workflow:
 // 1. Loop through all the URL parameters
 // 2. Check if there's a match with the field name

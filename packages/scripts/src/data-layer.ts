@@ -1,13 +1,15 @@
-// DataLayer: singleton helper for pushing structured analytics events/vars to window.dataLayer.
-// On load it emits one aggregated event `pageJsonVariablesReady` with:
-//   EN_PAGEJSON_* (normalized pageJson), EN_URLPARAM_*, EN_RECURRING_FREQUENCIES (donation pages),
-//   and EN_SUBMISSION_SUCCESS_{PAGETYPE} when on the final page.
-// User actions emit: EN_FORM_VALUE_UPDATED (field changes) and submission opt‑in/out events.
-// Queued end‑of‑gift events/variables (via addEndOfGiftProcessEvent / addEndOfGiftProcessVariable)
-// are replayed after a successful gift process load.
-// Sensitive payment/bank fields are excluded; selected PII fields are Base64 “hashed” (btoa — not cryptographic).
-// Replace with a real hash (e.g., SHA‑256) if required.
-
+/**
+ * Docs: https://engrid.4sitestudios.com/component/data-layer
+ * DataLayer: singleton helper for pushing structured analytics events/vars to window.dataLayer.
+ * On load it emits one aggregated event `pageJsonVariablesReady` with:
+ *   EN_PAGEJSON_* (normalized pageJson), EN_URLPARAM_*, EN_RECURRING_FREQUENCIES (donation pages),
+ *   and EN_SUBMISSION_SUCCESS_{PAGETYPE} when on the final page.
+ * User actions emit: EN_FORM_VALUE_UPDATED (field changes) and submission opt‑in/out events.
+ * Queued end‑of‑gift events/variables (via addEndOfGiftProcessEvent / addEndOfGiftProcessVariable)
+ * are replayed after a successful gift process load.
+ * Sensitive payment/bank fields are excluded; selected PII fields are Base64 “hashed” (btoa — not cryptographic).
+ * Replace with a real hash (e.g., SHA‑256) if required.
+ */
 import { EngridLogger, ENGrid, EnForm, RememberMeEvents } from ".";
 
 export class DataLayer {

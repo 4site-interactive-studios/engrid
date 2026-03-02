@@ -1,4 +1,8 @@
-// This class works when the user has added ".simple_country_select" as a class in page builder for the Country select
+/**
+ * Docs: https://engrid.4sitestudios.com/component/auto-country-select
+ * This class automatically selects the user's country in a country select field based on their IP address.
+ * Works when the user has added ".simple_country_select" as a class in page builder for the Country select
+ */
 import * as cookie from "./cookie";
 import { ENGrid, Country } from ".";
 export class AutoCountrySelect {

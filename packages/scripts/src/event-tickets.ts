@@ -1,3 +1,6 @@
+/**
+ * Docs: https://engrid.4sitestudios.com/component/event-tickets
+ */
 export class EventTickets {
   constructor() {
     // --------------------------------------------

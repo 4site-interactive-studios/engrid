@@ -1,5 +1,8 @@
-// This class changes the Credit Card Expiration Year Field Options to
-// include the current year and the next 19 years.
+/**
+ * Docs: https://engrid.4sitestudios.com/component/auto-year
+ * This class changes the Credit Card Expiration Year Field Options to
+ * include the current year and the next 19 years.
+ */
 export class AutoYear {
   private yearField: HTMLSelectElement | null = document.querySelector(
     "select[name='transaction.ccexpire']:not(#en__field_transaction_ccexpire)"

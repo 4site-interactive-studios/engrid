@@ -1,6 +1,8 @@
-// A way to gracefully handle deprecation.
-// Find and replace HTML Elements, Classes, and more after the DOM is loaded but before any other Javascript fires.
-
+/**
+ * Docs: https://engrid.4sitestudios.com/component/deprecated
+ * This component is a way to gracefully handle deprecation.
+ * Find and replace HTML Elements, Classes, and more after the DOM is loaded but before any other Javascript fires.
+ */
 import { ENGrid } from ".";
 
 export class Deprecated {

@@ -1,3 +1,7 @@
+/**
+ * Docs: https://engrid.4sitestudios.com/component/progress-bar
+ * This class handles the logic for a progress bar that can be used on multi-page forms or to indicate progress towards a goal.
+ */
 import { ENGrid } from ".";
 
 export class ProgressBar {

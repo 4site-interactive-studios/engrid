@@ -1,3 +1,6 @@
+/**
+ * Docs: https://engrid.4sitestudios.com/component/show-hide-radio-checkboxes
+ */
 import { ENGrid, EngridLogger } from ".";
 
 export class ShowHideRadioCheckboxes {

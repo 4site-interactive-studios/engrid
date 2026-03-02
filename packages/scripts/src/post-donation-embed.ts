@@ -1,5 +1,5 @@
 /**
- * Docs: https://engrid.4sitestudios.com/docs/v2/post-donation-embed
+ * Docs: https://engrid.4sitestudios.com/component/post-donation-embed
  * This component only works on Thank You pages and the current page IS NOT embedded as an iframe.
  * It searches for a post-donation tag (engrid-post-donation)
  * and if it exists, it will replace it with an iframe of the chained `src` attribute (or the current donation page, replacing the

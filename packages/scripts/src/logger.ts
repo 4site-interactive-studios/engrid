@@ -1,7 +1,8 @@
-import { ENGrid } from ".";
 /**
+ * Docs: https://engrid.4sitestudios.com/component/logger
  * A better logger. It only works if debug is enabled.
  */
+import { ENGrid } from ".";
 export class EngridLogger {
   public prefix = "";
   public color = "black";

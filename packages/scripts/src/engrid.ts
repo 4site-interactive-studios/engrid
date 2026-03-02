@@ -1,3 +1,6 @@
+/**
+ * Docs: https://engrid.4sitestudios.com/component/engrid
+ */
 import { Options } from ".";
 
 export abstract class ENGrid {

@@ -1,4 +1,7 @@
-// This script enables live currency symbol and code to the page.
+/**
+ * Docs: https://engrid.4sitestudios.com/component/live-currency
+ * This script enables live currency symbol and code to the page.
+ */
 import {
   DonationAmount,
   DonationFrequency,

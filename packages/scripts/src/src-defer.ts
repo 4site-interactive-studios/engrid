@@ -1,3 +1,6 @@
+/**
+ * Docs: https://engrid.4sitestudios.com/component/src-defer
+ */
 // Build Notes: Add the vanilla Javascript version inline inside the page template right before </body>
 // In the event the vanilla javascript is not inlined we should still process any assets with a data-src still defined on it. Plus we only process background video via this JS file as to not block the page with a large video file downloading.
 

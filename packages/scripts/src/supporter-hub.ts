@@ -1,5 +1,7 @@
-// Component that adds 4Site Special Features to the Supporter Hub Page
-
+/**
+ * Docs: https://engrid.4sitestudios.com/component/supporter-hub
+ * This component adds 4Site Special Features to the Supporter Hub Page
+ */
 import { ENGrid, EngridLogger, EnForm } from ".";
 
 export class SupporterHub {

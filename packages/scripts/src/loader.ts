@@ -1,3 +1,6 @@
+/**
+ * Docs: https://engrid.4sitestudios.com/component/loader
+ */
 // Ref: https://app.getguru.com/card/iMgx968T/ENgrid-Loader
 import { ENGrid, EngridLogger } from ".";
 export class Loader {

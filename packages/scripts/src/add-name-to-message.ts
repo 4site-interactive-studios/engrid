@@ -1,7 +1,8 @@
-/*
- Adds first and last name when First Name and Last Name fields lose focus if name shortcodes aren't present
-*/
-
+/**
+ * Docs: https://engrid.4sitestudios.com/component/add-name-to-message
+ * This class adds the first and last name of the supporter to the message field on email to target pages if the shortcodes aren't present.
+ * It listens for the blur event on the first name and last name fields and appends the values to the message field.
+ */
 import { ENGrid } from ".";
 
 export class AddNameToMessage {

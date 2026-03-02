@@ -1,4 +1,7 @@
-// This component allows you to customize the VGS theme options
+/**
+ * Docs: https://engrid.4sitestudios.com/component/vgs
+ * This component allows you to customize the VGS theme options
+ */
 //
 // It is used in the following way:
 //

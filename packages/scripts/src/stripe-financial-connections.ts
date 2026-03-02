@@ -1,4 +1,5 @@
 /**
+ * Docs: https://engrid.4sitestudios.com/component/stripe-financial-connections
  * This component improves EN's implementation of Stripe Financial Connections.
  * Enhancements:
  *  - When the modal is closed, it re-enables the submit button.

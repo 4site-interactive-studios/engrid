@@ -1,3 +1,6 @@
+/**
+ * Docs: https://engrid.4sitestudios.com/component/neverbounce
+ */
 import { ENGrid, EngridLogger } from ".";
 import { EnForm } from "./events";
 

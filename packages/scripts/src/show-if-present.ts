@@ -1,4 +1,5 @@
 /**
+ * Docs: https://engrid.4sitestudios.com/component/show-if-present
  * This class contains the logic for special classes that can be used to hide elements if
  * certain supporter questions are present or absent.
  * Typically, this can be used to hide elements when an opt in question is not rendered on the page

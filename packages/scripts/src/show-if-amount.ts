@@ -1,3 +1,7 @@
+/**
+ * Docs: https://engrid.4sitestudios.com/component/show-if-amount
+ * This class contains the logic for special classes that can be used to show or hide elements based on the current donation amount.
+ */
 import { ENGrid, EngridLogger } from ".";
 import { DonationAmount } from "./events";
 

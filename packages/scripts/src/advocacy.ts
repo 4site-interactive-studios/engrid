@@ -1,6 +1,7 @@
-// Component to handle advocacy features
-// 1 - Adds EN Polyfill to support "label" clicking on Advocacy Recipient "labels"
-
+/**
+ * Docs: https://engrid.4sitestudios.com/component/advocacy
+ * This class adds functionality to advocacy pages, such as making the recipient labels clickable to toggle the checkboxes.
+ */
 import { ENGrid, EngridLogger } from ".";
 
 export class Advocacy {

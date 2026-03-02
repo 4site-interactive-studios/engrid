@@ -1,10 +1,10 @@
-// Hides elements based on URL arguments.
-//
-// The DataHide class is used to hide elements based on URL arguments.
-// It retrieves the elements to hide from the URL arguments and hides them.
-// If no elements are found, the constructor returns early.
-// Otherwise, it logs the found elements and hides them.
-
+/**
+ * Docs: https://engrid.4sitestudios.com/component/data-hide
+ * This script is used to hide elements based on URL arguments.
+ * It retrieves the elements to hide from the URL arguments and hides them.
+ * If no elements are found, the constructor returns early.
+ * Otherwise, it logs the found elements and hides them.
+ */
 import { ENGrid, EngridLogger } from ".";
 
 export class DataHide {

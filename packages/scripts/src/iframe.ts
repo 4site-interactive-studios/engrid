@@ -1,5 +1,5 @@
 /**
- * Docs: https://engrid.4sitestudios.com/docs/v2/embedding-engrid
+ * Docs: https://engrid.4sitestudios.com/component/iframe
  */
 import { ENGrid, EngridLogger } from ".";
 import { EnForm } from "./events";

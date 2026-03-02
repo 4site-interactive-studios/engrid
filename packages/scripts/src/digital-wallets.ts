@@ -1,3 +1,6 @@
+/**
+ * Docs: https://engrid.4sitestudios.com/component/digital-wallets
+ */
 import { ENGrid } from "./engrid";
 
 export class DigitalWallets {

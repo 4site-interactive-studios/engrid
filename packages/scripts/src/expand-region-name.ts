@@ -1,5 +1,7 @@
-// Populates hidden supporter field "Region Long Format" with expanded name (e.g FL becomes Florida)
-
+/**
+ * Docs: https://engrid.4sitestudios.com/component/expand-region-name
+ * Populates hidden supporter field "Region Long Format" with expanded name (e.g FL becomes Florida)
+ */
 import { ENGrid, EngridLogger } from ".";
 import { EnForm } from "./events";
 

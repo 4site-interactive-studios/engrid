@@ -1,5 +1,7 @@
-// Component that adds data attributes to the Body
-
+/**
+ * Docs: https://engrid.4sitestudios.com/component/data-attributes
+ * Component that adds data attributes to the Body
+ */
 import { ENGrid, Country, DonationFrequency, EngridLogger } from ".";
 
 export class DataAttributes {

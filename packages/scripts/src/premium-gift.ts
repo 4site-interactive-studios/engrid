@@ -1,4 +1,7 @@
-// Component to handle premium gift features
+/**
+ * Docs: https://engrid.4sitestudios.com/component/premium-gift
+ * Component to handle premium gift features
+ */
 // 1 - Add a class to body to indicate which premium gift is selected (data-engrid-premium-gift-name="item-name-slugged")
 // 2 - Add a class to body to indicate if the "maximize my impact" is selected (data-engrid-premium-gift-maximize="true|false")
 // 3 - Check the premium gift when click on the title or description

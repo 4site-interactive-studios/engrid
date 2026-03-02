@@ -1,6 +1,8 @@
-// a11y means accessibility
-// This Component is supposed to be used as a helper for Aria Attributes & Other Accessibility Features
-
+/**
+ * Docs: https://engrid.4sitestudios.com/component/a11y
+ * a11y means accessibility.
+ * This class adds various accessibility features to the form, such as aria-required to mandatory fields, role="group" to radio button groups, and auto-generated alt tags for ecard images.
+ */
 export class A11y {
   constructor() {
     this.addRequired();

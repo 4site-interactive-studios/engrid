@@ -1,5 +1,5 @@
 /**
- * Docs: https://engrid.4sitestudios.com/docs/v2/background-image-positioning
+ * Docs: https://engrid.4sitestudios.com/component/page-background
  */
 import { ENGrid, EngridLogger } from ".";
 

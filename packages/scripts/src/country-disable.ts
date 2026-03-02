@@ -1,5 +1,7 @@
-// This class allows you to disable some countries from the country dropdown list.
-
+/**
+ * Docs: https://engrid.4sitestudios.com/component/country-disable
+ * This class allows you to disable some countries from the country dropdown list.
+ */
 import { ENGrid, EngridLogger } from ".";
 
 export class CountryDisable {

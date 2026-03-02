@@ -1,5 +1,5 @@
 /**
- * Docs: https://engrid.4sitestudios.com/docs/v2/conditionally-require-fields
+ * Docs: https://engrid.4sitestudios.com/component/required-if-visible
  * This class handles conditionally requiring fields based on their visibility.
  */
 import { EnForm, ENGrid, EngridLogger } from ".";

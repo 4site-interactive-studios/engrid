@@ -1,7 +1,10 @@
-// This component uses EN's Custom Validators on the client side to validate form fields.
-// It's currently behind a feature flag, so it's not enabled by default.
-// To enable it, add the following to your options:
-// ENValidators: true
+/**
+ * Docs: https://engrid.4sitestudios.com/component/en-validators
+ * This component uses EN's Custom Validators on the client side to validate form fields.
+ * It's currently behind a feature flag, so it's not enabled by default.
+ * To enable it, add the following to your options:
+ * ENValidators: true
+ */
 import { EnForm, ENGrid, EngridLogger } from ".";
 export class ENValidators {
   private _form: EnForm = EnForm.getInstance();

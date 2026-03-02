@@ -1,4 +1,7 @@
-// This script checks if the donations amounts are numbers and if they are, appends the correct currency symbol
+/**
+ * Docs: https://engrid.4sitestudios.com/component/amount-label
+ * This script checks if the donations amounts are numbers and if they are, appends the correct currency symbol
+ */
 import { DonationFrequency, ENGrid } from ".";
 export class AmountLabel {
   private _frequency: DonationFrequency = DonationFrequency.getInstance();

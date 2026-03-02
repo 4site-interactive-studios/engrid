@@ -1,6 +1,9 @@
-// This component allows you to redirect the user to a different page based on their country.
-// It works by checking the country field on the page and comparing it to the list of countries in the CountryRedirect option.
-// If the country matches one of the countries in the list, the user is redirected to the specified URL only if the URL is not the same as the current page.
+/**
+ * Docs: https://engrid.4sitestudios.com/component/country-redirect
+ * This component allows you to redirect the user to a different page based on their country.
+ * It works by checking the country field on the page and comparing it to the list of countries in the CountryRedirect option.
+ * If the country matches one of the countries in the list, the user is redirected to the specified URL only if the URL is not the same as the current page.
+ */
 // The CountryRedirect option is an object with the country as the key and the URL as the value.
 // Example:
 //

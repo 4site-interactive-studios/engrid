@@ -1,6 +1,9 @@
-// Component that adds input placeholders
-// You can override the default placeholders by adding a Placeholders option to the EngridOptions on the client theme.
-// You can also add an EngridPageOptions override to the page, if you want to override the placeholders on a specific page. Example:
+/**
+ * Docs: https://engrid.4sitestudios.com/component/input-placeholders
+ * This component adds input placeholders to the form fields.
+ * You can override the default placeholders by adding a Placeholders option to the EngridOptions on the client theme.
+ * You can also add an EngridPageOptions override to the page, if you want to override the placeholders on a specific page. Example:
+ */
 // <script type="text/javascript">
 //   EngridPageOptions = {
 //     Placeholders: {

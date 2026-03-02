@@ -1,6 +1,9 @@
-// This script creates merge tags: [[frequency]], [[Frequency]], or [[FREQUENCY]]
-// that gets replaced with the donation frequency
-// and can be used on any Code Block, Text Block, or Form Block
+/**
+ * Docs: https://engrid.4sitestudios.com/component/live-frequency
+ * This script creates merge tags: [[frequency]], [[Frequency]], or [[FREQUENCY]]
+ * that gets replaced with the donation frequency
+ * and can be used on any Code Block, Text Block, or Form Block
+ */
 import { DonationAmount, DonationFrequency, EngridLogger } from ".";
 
 export class LiveFrequency {

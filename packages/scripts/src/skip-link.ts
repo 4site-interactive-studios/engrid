@@ -1,8 +1,10 @@
-// Javascript that adds an accessible "Skip Link" button after the <body> opening that jumps to
-// the first <title> or <h1> field in a "body-" section, or the first <h1> if none are found
-// in those sections
-// Depends on _engrid-skip-link.scss
-
+/**
+ * Docs: https://engrid.4sitestudios.com/component/skip-link
+ * This component adds an accessible "Skip Link" button after the <body> opening that jumps to
+ * the first <title> or <h1> field in a "body-" section, or the first <h1> if none are found
+ * in those sections
+ * Depends on _engrid-skip-link.scss
+ */
 import { ENGrid } from ".";
 
 export class SkipToMainContentLink {

@@ -1,5 +1,5 @@
 /**
- * Docs: https://engrid.4sitestudios.com/docs/v2/exit-intent-lightbox
+ * Docs: https://engrid.4sitestudios.com/component/exit-intent-lightbox
  * Creates a lightbox that asks the user to confirm exiting the page
  */
 import {

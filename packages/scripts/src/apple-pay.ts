@@ -1,3 +1,8 @@
+/**
+ * Docs: https://engrid.4sitestudios.com/component/apple-pay
+ * This class adds support for Apple Pay on Engaging Networks forms.
+ * It checks if Apple Pay is available and sets up the necessary event listeners to handle the payment process.
+ */
 import { EnForm, DonationAmount, ENGrid, ProcessingFees } from ".";
 
 /*global window */

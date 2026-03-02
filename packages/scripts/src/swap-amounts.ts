@@ -1,5 +1,8 @@
-// This script allows you to override the default donation amounts in Engaging Networks
-// with a custom list of amounts.
+/**
+ * Docs: https://engrid.4sitestudios.com/component/swap-amounts
+ * This script allows you to override the default donation amounts in Engaging Networks
+ * with a custom list of amounts.
+ */
 // If the URL contains a query parameter "engrid-amounts" with a comma separated values, the script will load the
 // amounts from the parameter and set them as the default amounts for the donation
 // form.

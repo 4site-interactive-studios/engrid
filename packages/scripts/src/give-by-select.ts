@@ -1,3 +1,6 @@
+/**
+ * Docs: https://engrid.4sitestudios.com/component/give-by-select
+ */
 import { ENGrid, EngridLogger, DonationFrequency } from ".";
 
 export class GiveBySelect {

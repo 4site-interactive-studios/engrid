@@ -1,5 +1,5 @@
 /**
- * Docs: https://engrid.4sitestudios.com/docs/v2/preferred-payment-method
+ * Docs: https://engrid.4sitestudios.com/component/preferred-payment-method
  * This class centralizes logic for selecting a preferred payment method on the donation page.
  */
 import { ENGrid, EngridLogger } from ".";

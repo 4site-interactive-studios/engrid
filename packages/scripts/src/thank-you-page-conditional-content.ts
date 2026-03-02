@@ -1,3 +1,6 @@
+/**
+ * Docs: https://engrid.4sitestudios.com/component/thank-you-page-conditional-content
+ */
 import { ENGrid, EngridLogger } from ".";
 
 interface ShowHideRadioCheckboxesStateItem {

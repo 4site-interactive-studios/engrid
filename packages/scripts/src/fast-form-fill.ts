@@ -1,4 +1,5 @@
 /**
+ * Docs: https://engrid.4sitestudios.com/component/fast-form-fill
  * This class adds body data attributes if all mandatory inputs, on specific form blocks, are filled.
  * Related styling (to hide elements) can be found in "fast-form-fill.scss".
  *

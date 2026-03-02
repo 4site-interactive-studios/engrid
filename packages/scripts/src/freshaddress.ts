@@ -1,3 +1,7 @@
+/**
+ * Docs: https://engrid.4sitestudios.com/component/freshaddress
+ * This component integrates FreshAddress's email validation service into the form.
+ */
 // According to the FreshAddress documentation, you need to add the following code to your page:
 // jQuery library.
 // <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>

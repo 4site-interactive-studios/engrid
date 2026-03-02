@@ -1,5 +1,5 @@
 /**
- * Docs: https://engrid.4sitestudios.com/docs/v2/custom-premium
+ * Docs: https://engrid.4sitestudios.com/component/custom-premium
  * ENgrid component: CustomPremium
  * Filters premium gifts based on window.EngridPageOptions.CustomPremium configuration
  * Rules:

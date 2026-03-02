@@ -1,5 +1,7 @@
-// Switches hidden fields to be type text when debug mode is enabled.
-
+/**
+ * Docs: https://engrid.4sitestudios.com/component/debug-hidden-fields
+ * This component switches hidden fields to be type text when debug mode is enabled.
+ */
 import { EngridLogger } from ".";
 
 export class DebugHiddenFields {

@@ -1,4 +1,7 @@
-// This script adds an erros message to the page if the amount is greater than the max amount or less than the min amount.
+/**
+ * Docs: https://engrid.4sitestudios.com/component/min-max-amount
+ * This script adds an error message to the page if the amount is greater than the max amount or less than the min amount.
+ */
 import {
   DonationAmount,
   DonationFrequency,

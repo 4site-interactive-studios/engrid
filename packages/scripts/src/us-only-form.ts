@@ -1,4 +1,5 @@
-/*
+/**
+ * Docs: https://engrid.4sitestudios.com/component/us-only-form
  * This class disables the country field and fixes the country to "United States"
  */
 import { ENGrid } from ".";

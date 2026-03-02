@@ -1,3 +1,6 @@
+/**
+ * Docs: https://engrid.4sitestudios.com/component/set-recurr-freq
+ */
 import { ENGrid } from ".";
 import { DonationFrequency, DonationAmount } from "./events";
 

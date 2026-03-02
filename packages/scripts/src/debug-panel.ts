@@ -1,3 +1,8 @@
+/**
+ * Docs: https://engrid.4sitestudios.com/component/debug-panel
+ * This component adds a debug panel to the page that allows you to quickly switch between layouts, themes, and sub-themes, as well as quick-fill form fields and submit the form.
+ * It also creates a debug session that can be ended by clicking the "End debug" link in the panel, which will remove the panel from the page and clear the debug session.
+ */
 import { ENGrid, EngridLogger, BrandingHtml } from ".";
 
 interface QuickfillData {

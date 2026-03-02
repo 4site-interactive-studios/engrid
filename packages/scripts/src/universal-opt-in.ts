@@ -1,4 +1,5 @@
 /**
+ * Docs: https://engrid.4sitestudios.com/component/universal-opt-in
  * This class will add event listeners to every yes/no radio button or checkbox
  * inside a universal opt-in element (any form block with the CSS class universal-opt-in). When the user clicks on a radio/checkbox
  * button, we will search for every other radio/checkbox button inside the same

@@ -1,3 +1,6 @@
+/**
+ * Docs: https://engrid.4sitestudios.com/component/live-variables
+ */
 import {
   DonationAmount,
   EnForm,

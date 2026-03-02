@@ -1,4 +1,7 @@
-//This component adds any url parameters that begin with "data-engrid-" to the body as attributes.
+/**
+ * Docs: https://engrid.4sitestudios.com/component/url-params-to-body-attrs
+ * This component adds any url parameters that begin with "data-engrid-" to the body as attributes.
+ */
 import { ENGrid, EngridLogger } from ".";
 
 export class UrlParamsToBodyAttrs {

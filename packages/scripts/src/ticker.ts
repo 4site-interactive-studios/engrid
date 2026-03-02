@@ -1,3 +1,8 @@
+/**
+ * Docs: https://engrid.4sitestudios.com/component/ticker
+ * This class creates a ticker component that will show a list of items in a random order.
+ * The order will change every 5 minutes and it will be based on a seed that is generated from the current date and the page ID.
+ */
 import { ENGrid, EngridLogger } from ".";
 
 export class Ticker {

@@ -1,3 +1,6 @@
+/**
+ * Docs: https://engrid.4sitestudios.com/component/postal-code-validator
+ */
 import { ENGrid } from "./engrid";
 import { EnForm } from "./events";
 import { EngridLogger } from "./logger";

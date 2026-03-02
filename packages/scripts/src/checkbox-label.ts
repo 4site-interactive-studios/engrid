@@ -1,7 +1,9 @@
-// Component to allow the user to set custom labels for the checkboxes,
-// you can customize the checkbox label on a per-page basis, which is not possible with Engaging Networks
-// The .checkbox-label element should be placed right before the checkbox form block
-
+/**
+ * Docs: https://engrid.4sitestudios.com/component/checkbox-label
+ * Component to allow the user to set custom labels for the checkboxes,
+ * you can customize the checkbox label on a per-page basis, which is not possible with Engaging Networks
+ * The .checkbox-label element should be placed right before the checkbox form block
+ */
 import { EngridLogger } from ".";
 
 export class CheckboxLabel {

@@ -1,5 +1,7 @@
-// Automatically submits the page if a URL argument is present
-
+/**
+ * Docs: https://engrid.4sitestudios.com/component/autosubmit
+ * Automatically submits the page if a URL argument is present.
+ */
 import { ENGrid, EngridLogger, EnForm } from ".";
 
 export class Autosubmit {

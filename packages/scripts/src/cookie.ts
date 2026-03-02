@@ -1,14 +1,16 @@
 /**
-Example:
-import * as cookie from "./cookie";
-
-cookie.set('name', 'value');
-cookie.get('name'); // => 'value'
-cookie.remove('name');
-cookie.set('name', 'value', { expires: 7 }); // 7 Days cookie
-cookie.set('name', 'value', { expires: 7, path: '' }); // Set Path
-cookie.remove('name', { path: '' });
+ * Docs: https://engrid.4sitestudios.com/component/cookie
+ * This component provides utility functions for working with cookies, including setting, getting, and removing cookies with various attributes.
  */
+// Example:
+// import * as cookie from "./cookie";
+// 
+// cookie.set('name', 'value');
+// cookie.get('name'); // => 'value'
+// cookie.remove('name');
+// cookie.set('name', 'value', { expires: 7 }); // 7 Days cookie
+// cookie.set('name', 'value', { expires: 7, path: '' }); // Set Path
+// cookie.remove('name', { path: '' });
 
 export interface CookieAttributes {
   /**

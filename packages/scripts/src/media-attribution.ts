@@ -1,4 +1,5 @@
 /*
+  Docs: https://engrid.4sitestudios.com/component/media-attribution
   Looks for specially crafted <img> links and will transform its markup to display an attribution overlay on top of the image
   Depends on "_engrid-media-attribution.scss" for styling
 

@@ -1,7 +1,8 @@
-/*+
-  The class is used to set body attributes via click handlers.
-  The format is "setattr--{attribute}--{value}".
-  e.g. setattr--data-engrid-hide-fast-address-details--true
+/**
+ * Docs: https://engrid.4sitestudios.com/component/set-attr
+ * The class is used to set body attributes via click handlers.
+ * The format is "setattr--{attribute}--{value}".
+ * e.g. setattr--data-engrid-hide-fast-address-details--true
  */
 
 import { ENGrid, EngridLogger } from ".";

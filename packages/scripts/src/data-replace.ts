@@ -1,11 +1,13 @@
-// This script is used to replace merge tags in the EN Blocks of the page.
-// It searches for HTML elements containing the data to be replaced and replaces it.
-// The data to be replaced is passed as URL parameters, example: ?engrid_data[key]=value.
-// The merge tag, if found, is replaced with the value from the URL parameter.
-// If no value is found, the default value is used.
-// The default value is the value inside the merge tag, example: {engrid_data~key~default}.
-// If no default value is set, an empty string is used.
-
+/**
+ * Docs: https://engrid.4sitestudios.com/component/data-replace
+ * This script is used to replace merge tags in the EN Blocks of the page.
+ * It searches for HTML elements containing the data to be replaced and replaces it.
+ * The data to be replaced is passed as URL parameters, example: ?engrid_data[key]=value.
+ * The merge tag, if found, is replaced with the value from the URL parameter.
+ * If no value is found, the default value is used.
+ * The default value is the value inside the merge tag, example: {engrid_data~key~default}.
+ * If no default value is set, an empty string is used.
+ */
 import { ENGrid, EngridLogger } from ".";
 
 export class DataReplace {

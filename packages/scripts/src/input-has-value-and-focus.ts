@@ -1,4 +1,7 @@
-// Component that adds has-value and has-focus classes to form inputs
+/**
+ * Docs: https://engrid.4sitestudios.com/component/input-has-value-and-focus
+ * This component adds has-value and has-focus classes to form inputs.
+ */
 import { EngridLogger } from ".";
 
 export class InputHasValueAndFocus {

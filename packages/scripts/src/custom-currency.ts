@@ -1,4 +1,8 @@
-// This component allows you to customize the currency options in the currency field
+/**
+ * Docs: https://engrid.4sitestudios.com/component/custom-currency
+ * This component allows you to customize the currency options in the currency field based on the selected country.
+ * It is integrated with the AutoCountrySelect component, so it will automatically update the currency options when the country changes.
+ */
 // It is used in the following way:
 //
 // CustomCurrency: {
