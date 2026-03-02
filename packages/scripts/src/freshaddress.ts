@@ -252,6 +252,18 @@ export class FreshAddress {
     window.FreshAddressStatus = "validating";
     ENGrid.disableSubmit("Validating Email Address...");
 
+    // Before calling the API, do a basic check to see if the email is in a valid format.
+    // This is to prevent unnecessary API calls.
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(this.emailField!.value)) {
+      this.logger.log("Invalid Email Format from Basic Check");
+      this.writeToFields("Invalid", "Invalid Email Format");
+      ENGrid.setError(this.emailWrapper, "This email address is not valid.");
+      this.emailField?.focus();
+      ENGrid.enableSubmit();
+      return;
+    }
+
     fetch(this.options!.proxyUrl!, {
       method: "POST",
       headers: {
@@ -271,13 +283,25 @@ export class FreshAddress {
         this.validateProxyResponse(data);
       })
       .catch((error) => {
+        // 422 (Unprocessable Content) - This means the email is in an invalid format.
+        if (error.message.includes("422")) {
+          this.logger.log("Invalid Email Format");
+          this.writeToFields("Invalid", "Invalid Email Format");
+          ENGrid.setError(
+            this.emailWrapper,
+            "This email address is not valid."
+          );
+          return;
+        }
+
         if (error.name === "AbortError") {
           this.logger.log("Proxy API request timed out");
           this.writeToFields("Request Timeout", "The request took too long.");
-        } else {
-          this.logger.log("Proxy API Error", error);
-          this.writeToFields("Service Error", error.toString());
+          return;
         }
+
+        this.logger.log("Proxy API Error", error);
+        this.writeToFields("Service Error", error.toString());
       })
       .finally(() => {
         window.FreshAddressStatus = "idle";
@@ -309,6 +333,7 @@ export class FreshAddress {
       ENGrid.setError(this.emailWrapper, "This email address is not valid.");
       this.emailField?.focus();
       if (res.email_corrections && res.email_corrections.length > 0) {
+        this.emailField!.value = res.email_corrections[0];
         ENGrid.setError(
           this.emailWrapper,
           `This email address is not valid. Did you mean ${res.email_corrections[0]}?`
