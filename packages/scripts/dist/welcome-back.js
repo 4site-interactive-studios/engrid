@@ -100,7 +100,7 @@ export class WelcomeBack {
         ${this.supporterDetails["firstName"]} ${this.supporterDetails["lastName"]}
         <br>
         ${this.supporterDetails["emailAddress"]}
-        ${this.supporterDetails["mobilePhone"]
+        ${this.supporterDetails["mobilePhone"] && options.showPhoneNumber
             ? `<br>${this.supporterDetails["mobilePhone"]}`
             : ""}
      </p>
