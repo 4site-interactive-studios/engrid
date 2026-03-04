@@ -140,7 +140,7 @@ export class WelcomeBack {
         <br>
         ${this.supporterDetails["emailAddress"]}
         ${
-          this.supporterDetails["mobilePhone"]
+          this.supporterDetails["mobilePhone"] && options.showPhoneNumber
             ? `<br>${this.supporterDetails["mobilePhone"]}`
             : ""
         }

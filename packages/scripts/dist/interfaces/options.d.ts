@@ -148,6 +148,7 @@ export interface Options {
             editText: string;
             anchor: string;
             placement: "beforebegin" | "afterbegin" | "beforeend" | "afterend";
+            showPhoneNumber?: boolean;
         };
     };
     OptInLadder?: false | {
