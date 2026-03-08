@@ -40,6 +40,35 @@
   background: #ffff00;
 }
 
+// Thermometer mode styles
+.indicator__wrap--thermometer {
+  flex-direction: column;
+  height: auto;
+  min-height: 54px;
+  padding: 8px 12px;
+  gap: 4px;
+}
+
+.indicator__wrap--thermometer .indicator__progress {
+  height: 100%;
+  top: 0;
+}
+
+.indicator__amounts {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: normal;
+  z-index: 10;
+}
+
+.indicator__raised,
+.indicator__goal {
+  font-weight: bold;
+}
+
 header {
   span[data-engrid-progress-indicator] {
     flex: 1;

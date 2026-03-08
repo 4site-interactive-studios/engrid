@@ -33,6 +33,7 @@ export interface Options {
         proxyUrl?: string;
       };
   ProgressBar?: boolean | null;
+  ProgressBarToken?: string | null;
   AutoYear?: boolean;
   TranslateFields?: boolean;
   Debug?: boolean;
@@ -215,6 +216,7 @@ export const OptionsDefaults: Options = {
   NeverBounceTimeout: 10000,
   FreshAddress: false,
   ProgressBar: false,
+  ProgressBarToken: null,
   AutoYear: false,
   TranslateFields: true,
   Debug: false,
