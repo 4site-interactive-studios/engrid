@@ -132,10 +132,10 @@ export class DataLayer {
       // firing for both the donation and the ecard on the same page.
       if(ENGrid.getPageType() === "ECARD" && ENGrid.getOption("SuppressPurchaseEcard")) {
         this.logger.log("⛔ Gift process was detected BUT suppressing EN_SUCCESSFUL_DONATION event due to SuppressPurchaseEcard option enabled");
-        return;
+      } else {
+        this.logger.log("EN_SUCCESSFUL_DONATION");
+        this.addEndOfGiftProcessEventsToDataLayer();
       }
-      this.logger.log("EN_SUCCESSFUL_DONATION");
-      this.addEndOfGiftProcessEventsToDataLayer();
     }
 
     if (window.pageJson) {
