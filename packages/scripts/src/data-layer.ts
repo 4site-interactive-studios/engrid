@@ -131,7 +131,7 @@ export class DataLayer {
       // Since the ecard page can be embedded on the thank you page of a donation, this can cause confusion in the data layer with events 
       // firing for both the donation and the ecard on the same page.
       if(ENGrid.getPageType() === "ECARD" && ENGrid.getOption("SupressPurchaseEcard")) {
-        this.logger.log("⛔ Gift process was detected BUT supressing EN_SUCCESSFUL_DONATIO event due to SupressPurchaseEcard option enabled");
+        this.logger.log("⛔ Gift process was detected BUT supressing EN_SUCCESSFUL_DONATION event due to SupressPurchaseEcard option enabled");
         return;
       }
       this.logger.log("EN_SUCCESSFUL_DONATION");
