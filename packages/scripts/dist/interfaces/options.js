@@ -17,7 +17,7 @@ export const OptionsDefaults = {
     UseAmountValidatorFromEN: false,
     SkipToMainContentLink: true,
     SrcDefer: true,
-    SupressPurchaseEcard: false,
+    SuppressPurchaseEcard: false,
     NeverBounceAPI: null,
     NeverBounceDateField: null,
     NeverBounceStatusField: null,

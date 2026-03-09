@@ -119,8 +119,8 @@ export class DataLayer {
             // EN will chain together gift process data on the page json when redirecting from a completed donation to an ecard.
             // Since the ecard page can be embedded on the thank you page of a donation, this can cause confusion in the data layer with events 
             // firing for both the donation and the ecard on the same page.
-            if (ENGrid.getPageType() === "ECARD" && ENGrid.getOption("SupressPurchaseEcard")) {
-                this.logger.log("⛔ Gift process was detected BUT supressing EN_SUCCESSFUL_DONATIO event due to SupressPurchaseEcard option enabled");
+            if (ENGrid.getPageType() === "ECARD" && ENGrid.getOption("SuppressPurchaseEcard")) {
+                this.logger.log("⛔ Gift process was detected BUT suppressing EN_SUCCESSFUL_DONATION event due to SuppressPurchaseEcard option enabled");
                 return;
             }
             this.logger.log("EN_SUCCESSFUL_DONATION");
@@ -128,7 +128,7 @@ export class DataLayer {
         }
         if (window.pageJson) {
             let pageJson = window.pageJson;
-            if (ENGrid.getPageType() === "ECARD" && ENGrid.getOption("SupressPurchaseEcard")) {
+            if (ENGrid.getPageType() === "ECARD" && ENGrid.getOption("SuppressPurchaseEcard")) {
                 pageJson = pageJson.filter((entry) => !this.giftFields.includes(entry.key));
             }
             for (const property in pageJson) {
