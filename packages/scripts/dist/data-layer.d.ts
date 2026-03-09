@@ -5,6 +5,7 @@ export declare class DataLayer {
     private static instance;
     private encoder;
     private endOfGiftProcessStorageKey;
+    private giftFields;
     private excludedFields;
     private hashedFields;
     private retainedEmailField;

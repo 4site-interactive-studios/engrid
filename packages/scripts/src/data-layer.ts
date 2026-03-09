@@ -23,6 +23,20 @@ export class DataLayer {
   private encoder = new TextEncoder();
   private endOfGiftProcessStorageKey = "ENGRID_END_OF_GIFT_PROCESS_EVENTS";
 
+  // pageJson entries related to the gift process
+  private giftFields = [
+    "amount",
+    "currency",
+    "donationLogId",
+    "feeCover",
+    "giftProcess",
+    "paymentType",
+    "receiptNumber",
+    "recurring",
+    "transactionId",
+    "transactionType"
+  ]
+
   private excludedFields = [
     // Credit Card
     "transaction.ccnumber",
@@ -113,12 +127,22 @@ export class DataLayer {
     const dataLayerData: { [key: string]: any } = {};
 
     if (ENGrid.getGiftProcess()) {
+      // EN will chain together gift process data on the page json when redirecting from a completed donation to an ecard.
+      // Since the ecard page can be embedded on the thank you page of a donation, this can cause confusion in the data layer with events 
+      // firing for both the donation and the ecard on the same page.
+      if(ENGrid.getPageType() === "ECARD" && ENGrid.getOption("SupressPurchaseEcard")) {
+        this.logger.log("⛔ Gift process was detected BUT supressing EN_SUCCESSFUL_DONATIO event due to SupressPurchaseEcard option enabled");
+        return;
+      }
       this.logger.log("EN_SUCCESSFUL_DONATION");
       this.addEndOfGiftProcessEventsToDataLayer();
     }
 
     if (window.pageJson) {
-      const pageJson = window.pageJson as Record<string, any>;
+      let pageJson = window.pageJson as Record<string, any>;
+      if(ENGrid.getPageType() === "ECARD" && ENGrid.getOption("SupressPurchaseEcard")) {
+        pageJson = pageJson.filter((entry: Record<string,any>) => !this.giftFields.includes(entry.key));
+      }
       for (const property in pageJson) {
         const key = `EN_PAGEJSON_${property.toUpperCase()}`;
         const value = pageJson[property];
