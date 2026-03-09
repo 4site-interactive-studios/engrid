@@ -140,10 +140,10 @@ export class DataLayer {
 
     if (window.pageJson) {
       let pageJson = window.pageJson as Record<string, any>;
-      if(ENGrid.getPageType() === "ECARD" && ENGrid.getOption("SuppressPurchaseEcard")) {
-        pageJson = pageJson.filter((entry: Record<string,any>) => !this.giftFields.includes(entry.key));
-      }
       for (const property in pageJson) {
+        if(ENGrid.getPageType() === "ECARD" && ENGrid.getOption("SuppressPurchaseEcard") && this.giftFields.includes(property) ) {
+          continue;
+        }
         const key = `EN_PAGEJSON_${property.toUpperCase()}`;
         const value = pageJson[property];
         dataLayerData[key] = this.transformJSON(value);
