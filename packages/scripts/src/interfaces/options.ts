@@ -18,6 +18,7 @@ export interface Options {
   UseAmountValidatorFromEN?: boolean;
   SkipToMainContentLink?: boolean;
   SrcDefer?: boolean;
+  SuppressPurchaseEcard?: boolean;
   NeverBounceAPI?: string | null;
   NeverBounceDateField?: string | null;
   NeverBounceDateFormat?: string;
@@ -208,6 +209,7 @@ export const OptionsDefaults: Options = {
   UseAmountValidatorFromEN: false,
   SkipToMainContentLink: true,
   SrcDefer: true,
+  SuppressPurchaseEcard: false,
   NeverBounceAPI: null,
   NeverBounceDateField: null,
   NeverBounceStatusField: null,

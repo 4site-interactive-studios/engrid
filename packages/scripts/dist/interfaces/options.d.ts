@@ -18,6 +18,7 @@ export interface Options {
     UseAmountValidatorFromEN?: boolean;
     SkipToMainContentLink?: boolean;
     SrcDefer?: boolean;
+    SuppressPurchaseEcard?: boolean;
     NeverBounceAPI?: string | null;
     NeverBounceDateField?: string | null;
     NeverBounceDateFormat?: string;
