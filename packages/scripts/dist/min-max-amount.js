@@ -71,6 +71,27 @@ export class MinMaxAmount {
             ENGrid.removeError(".en__field--withOther");
         }
     }
+    updateFamntRange(freq) {
+        if (!this.enAmountValidator || !this.enAmountValidator.format)
+            return;
+        // In the validator, "onetime" is written as "SINGLE"
+        // Validator format for FAMNT is like SINGLE:10~100000|MONTHLY:5~100000|QUARTERLY:25~100000|ANNUAL:25~100000
+        const frequency = freq === "onetime" ? "SINGLE" : freq.toUpperCase();
+        const validationRange = this.enAmountValidator.format
+            .split("|")
+            .find((range) => range.startsWith(frequency));
+        if (!validationRange) {
+            this.logger.log(`No validation range found for frequency: ${frequency}`);
+            return;
+        }
+        const amounts = validationRange.split(":")[1].split("~");
+        this.minAmount = Number(amounts[0]);
+        this.maxAmount = Number(amounts[1]);
+        this.minAmountMessage = this.enAmountValidator.errorMessage;
+        this.maxAmountMessage = this.enAmountValidator.errorMessage;
+        this.logger.log(`Frequency changed to ${frequency}, updating min and max amounts`, validationRange);
+        this.logger.log(`Setting new values - Min Amount: ${this.minAmount}, Max Amount: ${this.maxAmount}, Error Message: ${this.minAmountMessage}`);
+    }
     setValidationConfigFromEN() {
         if (!ENGrid.getOption("UseAmountValidatorFromEN") ||
             !window.EngagingNetworks.validators) {
@@ -101,26 +122,9 @@ export class MinMaxAmount {
         // Frequency-based amount validator
         if (this.enAmountValidator.type === "FAMNT") {
             this._frequency.onFrequencyChange.subscribe((freq) => {
-                if (!this.enAmountValidator || !this.enAmountValidator.format)
-                    return;
-                // In the validator, "onetime" is written as "SINGLE"
-                // Validator format for FAMNT is like SINGLE:10~100000|MONTHLY:5~100000|QUARTERLY:25~100000|ANNUAL:25~100000
-                const frequency = freq === "onetime" ? "SINGLE" : freq.toUpperCase();
-                const validationRange = this.enAmountValidator.format
-                    .split("|")
-                    .find((range) => range.startsWith(frequency));
-                if (!validationRange) {
-                    this.logger.log(`No validation range found for frequency: ${frequency}`);
-                    return;
-                }
-                const amounts = validationRange.split(":")[1].split("~");
-                this.minAmount = Number(amounts[0]);
-                this.maxAmount = Number(amounts[1]);
-                this.minAmountMessage = this.enAmountValidator.errorMessage;
-                this.maxAmountMessage = this.enAmountValidator.errorMessage;
-                this.logger.log(`Frequency changed to ${frequency}, updating min and max amounts`, validationRange);
-                this.logger.log(`Setting new values - Min Amount: ${this.minAmount}, Max Amount: ${this.maxAmount}, Error Message: ${this.minAmountMessage}`);
+                this.updateFamntRange(freq);
             });
+            this.updateFamntRange(this._frequency.frequency);
         }
     }
 }

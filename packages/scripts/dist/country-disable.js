@@ -4,10 +4,13 @@ export class CountryDisable {
     constructor() {
         this.logger = new EngridLogger("CountryDisable", "#f0f0f0", "#333333", "🌎");
         const countries = document.querySelectorAll('select[name="supporter.country"], select[name="transaction.shipcountry"], select[name="supporter.billingCountry"], select[name="transaction.infcountry"]');
-        const CountryDisable = ENGrid.getOption("CountryDisable");
+        const countryDisable = ENGrid.getOption("CountryDisable");
+        const disabledCountries = Array.isArray(countryDisable)
+            ? countryDisable
+            : [];
         // Remove the countries from the dropdown list
-        if (countries.length > 0 && CountryDisable.length > 0) {
-            const countriesLower = CountryDisable.map((country) => country.toLowerCase());
+        if (countries.length > 0 && disabledCountries.length > 0) {
+            const countriesLower = disabledCountries.map((country) => country.toLowerCase());
             countries.forEach((country) => {
                 country.querySelectorAll("option").forEach((option) => {
                     if (countriesLower.includes(option.value.toLowerCase()) ||
