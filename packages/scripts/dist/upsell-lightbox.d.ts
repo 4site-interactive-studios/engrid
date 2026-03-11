@@ -18,6 +18,7 @@ export declare class UpsellLightbox {
     private liveAmounts;
     private liveFrequency;
     private getUpsellAmount;
+    private evaluateSuggestion;
     private shouldOpen;
     private freqAllowed;
     private open;

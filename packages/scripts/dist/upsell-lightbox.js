@@ -179,8 +179,7 @@ export class UpsellLightbox {
                 if (upsellAmount === 0)
                     return 0;
                 if (typeof upsellAmount !== "number") {
-                    const suggestionMath = upsellAmount.replace("amount", amount.toFixed(2));
-                    upsellAmount = parseFloat(Function('"use strict";return (' + suggestionMath + ")")());
+                    upsellAmount = this.evaluateSuggestion(upsellAmount, amount);
                 }
                 break;
             }
@@ -188,6 +187,49 @@ export class UpsellLightbox {
         return upsellAmount > this.options.minAmount
             ? upsellAmount
             : this.options.minAmount;
+    }
+    // Safe arithmetic evaluator for suggestion expressions like "amount / 12" or "amount * 0.1"
+    evaluateSuggestion(expression, amount) {
+        const sanitized = expression.replace(/amount/g, amount.toFixed(2));
+        // Only allow digits, decimal points, whitespace, and basic math operators
+        if (!/^[\d\s.+\-*/()]+$/.test(sanitized)) {
+            this.logger.error("Invalid upsell suggestion expression: " + expression);
+            return 0;
+        }
+        try {
+            // Parse simple binary expressions: "number operator number"
+            const result = sanitized
+                .split(/([+\-*/])/)
+                .map((s) => s.trim())
+                .filter((s) => s.length > 0)
+                .reduce((acc, token) => {
+                if (["+", "-", "*", "/"].includes(token)) {
+                    return { value: acc.value, op: token };
+                }
+                const num = parseFloat(token);
+                if (isNaN(num))
+                    return acc;
+                if (acc.op === null)
+                    return { value: num, op: null };
+                switch (acc.op) {
+                    case "+":
+                        return { value: acc.value + num, op: null };
+                    case "-":
+                        return { value: acc.value - num, op: null };
+                    case "*":
+                        return { value: acc.value * num, op: null };
+                    case "/":
+                        return { value: num !== 0 ? acc.value / num : 0, op: null };
+                    default:
+                        return { value: num, op: null };
+                }
+            }, { value: 0, op: null });
+            return isFinite(result.value) ? result.value : 0;
+        }
+        catch (e) {
+            this.logger.error("Failed to evaluate upsell suggestion: " + expression);
+            return 0;
+        }
     }
     shouldOpen() {
         const upsellAmount = this.getUpsellAmount();
