@@ -269,6 +269,10 @@ export class TidyContact {
   constructor() {
     this.options = ENGrid.getOption("TidyContact") as Options["TidyContact"];
     if (this.options === false || !this.options?.cid) return;
+    if (!this.shouldRun()) {
+      this.logger.log("TidyContact is disabled on this page type");
+      return;
+    }
     this.loadOptions();
     if (!this.hasAddressFields() && !this.phoneEnabled()) {
       this.logger.log("No address fields found");
@@ -308,6 +312,16 @@ export class TidyContact {
         this.setDefaultPhoneCountry();
       }
     }
+  }
+  private shouldRun(): boolean {
+    if (
+      this.options &&
+      this.options.page_types &&
+      this.options.page_types.length > 0
+    ) {
+      return this.options.page_types.includes(ENGrid.getPageType());
+    }
+    return true;
   }
   private loadOptions() {
     if (this.options) {
