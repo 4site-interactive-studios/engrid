@@ -94,19 +94,40 @@ ENgrid is an open-source page template framework built by [4Site Studios](https:
 
 ## Organizations Using ENgrid
 
-| | | |
-|---|---|---|
-| Amnesty International USA (AIUSA) | American Technion Society (ATS) | Catholic Extension |
-| Center for Science in the Public Interest (CSPI) | Earth Island Institute | Engaging Networks |
-| Evangelical Lutheran Church in America (ELCA) | Food and Water Watch (FWW) | Friends of Canadian Broadcasting |
-| Human Rights Campaign (HRC) | International Fund for Animal Welfare (IFAW) | Just Liberty |
-| Mercy for Animals | National Parks Conservation Association (NPCA) | National Trust for Historic Preservation (NTHP) |
-| National Wildlife Federation (NWF) | Oceana | Ocean Conservancy |
-| Organic Consumers Association | Oxfam America | Oxfam Canada |
-| People for the Ethical Treatment of Animals (PETA) | Polaris Project | Rainforest Action Network (RAN) |
-| Saint Anthony's Guild (Friar Works) | Save the Children Action Network (SCAN) | Save Tibet |
-| Shatterproof | SPCA International (SPCAI) | The Nature Conservancy (TNC) |
-| Turtle Island Restoration Network | Van Andel Institute | World Wildlife Fund (WWF) |
+- <img src="https://www.google.com/s2/favicons?domain=amnestyusa.org&sz=16" alt="" width="16" height="16"> [Amnesty International USA (AIUSA)](https://www.amnestyusa.org/)
+- <img src="https://www.google.com/s2/favicons?domain=ats.org&sz=16" alt="" width="16" height="16"> [American Technion Society (ATS)](https://ats.org/)
+- <img src="https://www.google.com/s2/favicons?domain=catholicextension.org&sz=16" alt="" width="16" height="16"> [Catholic Extension](https://www.catholicextension.org/)
+- <img src="https://www.google.com/s2/favicons?domain=cspinet.org&sz=16" alt="" width="16" height="16"> [Center for Science in the Public Interest (CSPI)](https://www.cspinet.org/)
+- <img src="https://www.google.com/s2/favicons?domain=earthisland.org&sz=16" alt="" width="16" height="16"> [Earth Island Institute](https://www.earthisland.org/)
+- <img src="https://www.google.com/s2/favicons?domain=engagingnetworks.net&sz=16" alt="" width="16" height="16"> [Engaging Networks](https://www.engagingnetworks.net/)
+- <img src="https://www.google.com/s2/favicons?domain=elca.org&sz=16" alt="" width="16" height="16"> [Evangelical Lutheran Church in America (ELCA)](https://www.elca.org/)
+- <img src="https://www.google.com/s2/favicons?domain=foodandwaterwatch.org&sz=16" alt="" width="16" height="16"> [Food and Water Watch (FWW)](https://www.foodandwaterwatch.org/)
+- <img src="https://www.google.com/s2/favicons?domain=friends.ca&sz=16" alt="" width="16" height="16"> [Friends of Canadian Broadcasting](https://friends.ca/)
+- <img src="https://www.google.com/s2/favicons?domain=hrc.org&sz=16" alt="" width="16" height="16"> [Human Rights Campaign (HRC)](https://www.hrc.org/)
+- <img src="https://www.google.com/s2/favicons?domain=ifaw.org&sz=16" alt="" width="16" height="16"> [International Fund for Animal Welfare (IFAW)](https://www.ifaw.org/)
+- <img src="https://www.google.com/s2/favicons?domain=justliberty.org&sz=16" alt="" width="16" height="16"> [Just Liberty](https://justliberty.org/)
+- <img src="https://www.google.com/s2/favicons?domain=mercyforanimals.org&sz=16" alt="" width="16" height="16"> [Mercy for Animals](https://mercyforanimals.org/)
+- <img src="https://www.google.com/s2/favicons?domain=npca.org&sz=16" alt="" width="16" height="16"> [National Parks Conservation Association (NPCA)](https://www.npca.org/)
+- <img src="https://www.google.com/s2/favicons?domain=savingplaces.org&sz=16" alt="" width="16" height="16"> [National Trust for Historic Preservation (NTHP)](https://savingplaces.org/)
+- <img src="https://www.google.com/s2/favicons?domain=nwf.org&sz=16" alt="" width="16" height="16"> [National Wildlife Federation (NWF)](https://www.nwf.org/)
+- <img src="https://www.google.com/s2/favicons?domain=oceana.org&sz=16" alt="" width="16" height="16"> [Oceana](https://oceana.org/)
+- <img src="https://www.google.com/s2/favicons?domain=oceanconservancy.org&sz=16" alt="" width="16" height="16"> [Ocean Conservancy](https://oceanconservancy.org/)
+- <img src="https://www.google.com/s2/favicons?domain=organicconsumers.org&sz=16" alt="" width="16" height="16"> [Organic Consumers Association](https://www.organicconsumers.org/)
+- <img src="https://www.google.com/s2/favicons?domain=oxfamamerica.org&sz=16" alt="" width="16" height="16"> [Oxfam America](https://www.oxfamamerica.org/)
+- <img src="https://www.google.com/s2/favicons?domain=oxfam.ca&sz=16" alt="" width="16" height="16"> [Oxfam Canada](https://www.oxfam.ca/)
+- <img src="https://www.google.com/s2/favicons?domain=peta.org&sz=16" alt="" width="16" height="16"> [People for the Ethical Treatment of Animals (PETA)](https://www.peta.org/)
+- <img src="https://www.google.com/s2/favicons?domain=polarisproject.org&sz=16" alt="" width="16" height="16"> [Polaris Project](https://polarisproject.org/)
+- <img src="https://www.google.com/s2/favicons?domain=ran.org&sz=16" alt="" width="16" height="16"> [Rainforest Action Network (RAN)](https://www.ran.org/)
+- <img src="https://www.google.com/s2/favicons?domain=stanthonysguild.org&sz=16" alt="" width="16" height="16"> [Saint Anthony's Guild (Friar Works)](https://stanthonysguild.org/)
+- <img src="https://www.google.com/s2/favicons?domain=savethechildrenactionnetwork.org&sz=16" alt="" width="16" height="16"> [Save the Children Action Network (SCAN)](https://savethechildrenactionnetwork.org/)
+- <img src="https://www.google.com/s2/favicons?domain=savetibet.org&sz=16" alt="" width="16" height="16"> [Save Tibet](https://savetibet.org/)
+- <img src="https://www.google.com/s2/favicons?domain=shatterproof.org&sz=16" alt="" width="16" height="16"> [Shatterproof](https://www.shatterproof.org/)
+- <img src="https://www.google.com/s2/favicons?domain=spcai.org&sz=16" alt="" width="16" height="16"> [SPCA International (SPCAI)](https://www.spcai.org/)
+- <img src="https://www.google.com/s2/favicons?domain=nature.org&sz=16" alt="" width="16" height="16"> [The Nature Conservancy (TNC)](https://www.nature.org/)
+- <img src="https://www.google.com/s2/favicons?domain=seaturtles.org&sz=16" alt="" width="16" height="16"> [Turtle Island Restoration Network](https://seaturtles.org/)
+- <img src="https://www.google.com/s2/favicons?domain=vai.org&sz=16" alt="" width="16" height="16"> [Van Andel Institute](https://www.vai.org/)
+- <img src="https://www.google.com/s2/favicons?domain=worldwildlife.org&sz=16" alt="" width="16" height="16"> [World Wildlife Fund (WWF)](https://www.worldwildlife.org/)
+
 
 ## Getting Started
 
