@@ -37,7 +37,7 @@ export class StickyNSG {
      * Create the sticky NSG cookie if NSG is active on the page
      */
     createStickyNSGCookie() {
-        var _a, _b, _c, _d;
+        var _a, _b, _c, _d, _e, _f;
         if (!this.nsgActiveOnPage()) {
             this.logger.log("No NSG active on page, not creating sticky NSG cookie");
             return;
@@ -51,24 +51,36 @@ export class StickyNSG {
         // We also add "Other" to the amounts list
         const nsg = window.EngagingNetworks.suggestedGift;
         this.logger.log("Creating sticky NSG cookie", nsg);
-        const cookieValue = JSON.stringify({
-            onetime: {
-                amounts: (_a = nsg.single) === null || _a === void 0 ? void 0 : _a.reduce((acc, curr) => {
-                    acc[curr.value] = curr.value;
-                    return acc;
-                }, {}),
-                default: (_b = nsg.single) === null || _b === void 0 ? void 0 : _b.find((gift) => gift.nextSuggestedGift).value,
+        const oneTimeNsg = (_a = nsg.single) === null || _a === void 0 ? void 0 : _a.reduce((acc, curr) => {
+            acc[curr.value] = curr.value;
+            return acc;
+        }, {});
+        const oneTimeDefault = (_c = (_b = nsg.single) === null || _b === void 0 ? void 0 : _b.find((gift) => gift.nextSuggestedGift)) === null || _c === void 0 ? void 0 : _c.value;
+        const recurringNsg = (_d = nsg.recurring) === null || _d === void 0 ? void 0 : _d.reduce((acc, curr) => {
+            acc[curr.value] = curr.value;
+            return acc;
+        }, {});
+        const recurringDefault = (_f = (_e = nsg.recurring) === null || _e === void 0 ? void 0 : _e.find((gift) => gift.nextSuggestedGift)) === null || _f === void 0 ? void 0 : _f.value;
+        const nsgCookieData = {};
+        if (oneTimeNsg && oneTimeDefault) {
+            nsgCookieData.onetime = {
+                amounts: oneTimeNsg,
+                default: oneTimeDefault,
                 stickyDefault: false,
-            },
-            monthly: {
-                amounts: (_c = nsg.recurring) === null || _c === void 0 ? void 0 : _c.reduce((acc, curr) => {
-                    acc[curr.value] = curr.value;
-                    return acc;
-                }, {}),
-                default: (_d = nsg.recurring) === null || _d === void 0 ? void 0 : _d.find((gift) => gift.nextSuggestedGift).value,
+            };
+        }
+        if (recurringNsg && recurringDefault) {
+            nsgCookieData.monthly = {
+                amounts: recurringNsg,
+                default: recurringDefault,
                 stickyDefault: false,
-            },
-        });
+            };
+        }
+        if (Object.keys(nsgCookieData).length === 0) {
+            this.logger.log("No valid NSG data found to create sticky NSG cookie");
+            return;
+        }
+        const cookieValue = JSON.stringify(nsgCookieData);
         cookie.set(this.cookieName, cookieValue, { path: "/", expires: 30 });
         this.logger.log("Sticky NSG cookie created", cookieValue);
     }

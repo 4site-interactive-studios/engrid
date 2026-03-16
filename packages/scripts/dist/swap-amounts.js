@@ -120,7 +120,7 @@ export class SwapAmounts {
         const hasNSG = window.EngagingNetworks.suggestedGift !== undefined &&
             Object.keys(window.EngagingNetworks.suggestedGift).length > 0;
         if (!!window.EngridAmounts && hasNSG) {
-            this.logger.log("Not swapping amounts because Next Suggested Gifts are present");
+            this.logger.log("Not swapping amounts because NSG is active on page");
         }
         return !!window.EngridAmounts && !hasNSG;
     }

@@ -68,25 +68,42 @@ export class StickyNSG {
     // We also add "Other" to the amounts list
     const nsg = window.EngagingNetworks.suggestedGift;
     this.logger.log("Creating sticky NSG cookie", nsg);
-    const cookieValue = JSON.stringify({
-      onetime: {
-        amounts: nsg.single?.reduce((acc: any, curr: any) => {
-          acc[curr.value] = curr.value;
-          return acc;
-        }, {}),
-        default: nsg.single?.find((gift: any) => gift.nextSuggestedGift).value,
+
+    const oneTimeNsg = nsg.single?.reduce((acc: any, curr: any) => {
+        acc[curr.value] = curr.value;
+        return acc;
+      }, {});
+    const oneTimeDefault = nsg.single?.find((gift: any) => gift.nextSuggestedGift)?.value;
+    const recurringNsg = nsg.recurring?.reduce((acc: any, curr: any) => {
+        acc[curr.value] = curr.value;
+        return acc;
+      }, {});
+    const recurringDefault = nsg.recurring?.find((gift: any) => gift.nextSuggestedGift)?.value;
+
+    const nsgCookieData: any = {};
+
+    if (oneTimeNsg && oneTimeDefault) {
+      nsgCookieData.onetime = {
+        amounts: oneTimeNsg,
+        default: oneTimeDefault,
         stickyDefault: false,
-      },
-      monthly: {
-        amounts: nsg.recurring?.reduce((acc: any, curr: any) => {
-          acc[curr.value] = curr.value;
-          return acc;
-        }, {}),
-        default: nsg.recurring?.find((gift: any) => gift.nextSuggestedGift)
-          .value,
+      };
+    }
+
+    if (recurringNsg && recurringDefault) {
+      nsgCookieData.monthly = {
+        amounts: recurringNsg,
+        default: recurringDefault,
         stickyDefault: false,
-      },
-    });
+      }
+    }
+
+    if (Object.keys(nsgCookieData).length === 0) {
+      this.logger.log("No valid NSG data found to create sticky NSG cookie");
+      return;
+    }
+
+    const cookieValue = JSON.stringify(nsgCookieData);
     cookie.set(this.cookieName, cookieValue, { path: "/", expires: 30 });
     this.logger.log("Sticky NSG cookie created", cookieValue);
   }
