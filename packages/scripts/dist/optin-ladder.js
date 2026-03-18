@@ -1,9 +1,12 @@
-// This component is responsible for showing a ladder of checkboxes, one at a time, to the user.
-// If the page is not embedded in an iframe, and there are EN's Opt-In fields on the page, we will store the values to sessionStorage upon Form Submit.
-// If the page is embedded in an iframe and on a Thank You Page, we will look for .optin-ladder elements, compare the values to sessionStorage, and show the next checkbox in the ladder, removing all but the first match.
-// If the page is embedded in an iframe and on a Thank You Page, and the child iFrame is also a Thank You Page, we will look for a sessionStorage that has the current ladder step and the total number of steps.
-// If the current step is less than the total number of steps, we will redirect to the first page. If the current step is equal to the total number of steps, we will show the Thank You Page.
-import { EngridLogger, ENGrid, EnForm } from ".";
+/**
+ * Docs: https://engrid.4sitestudios.com/component/optin-ladder
+ * This component is responsible for showing a ladder of checkboxes, one at a time, to the user.
+ * If the page is not embedded in an iframe, and there are EN's Opt-In fields on the page, we will store the values to sessionStorage upon Form Submit.
+ * If the page is embedded in an iframe and on a Thank You Page, we will look for .optin-ladder elements, compare the values to sessionStorage, and show the next checkbox in the ladder, removing all but the first match.
+ * If the page is embedded in an iframe and on a Thank You Page, and the child iFrame is also a Thank You Page, we will look for a sessionStorage that has the current ladder step and the total number of steps.
+ * If the current step is less than the total number of steps, we will redirect to the first page. If the current step is equal to the total number of steps, we will show the Thank You Page.
+ */
+import { EngridLogger, ENGrid, EnForm } from '.';
 export class OptInLadder {
     constructor() {
         this.logger = new EngridLogger("OptInLadder", "lightgreen", "darkgreen", "✔");
@@ -179,6 +182,12 @@ export class OptInLadder {
             return;
         }
         const hasOptInLadderStop = sessionStorage.getItem("engrid.optin-ladder-stop");
+        const hasOptInLadderPersistStop = sessionStorage.getItem("engrid.optin-ladder-persist-stop");
+        if (hasOptInLadderPersistStop) {
+            this.logger.log("OptInLadder has been stopped with persist flag, showing the thank-you page");
+            sessionStorage.removeItem("engrid.optin-ladder-persist-stop");
+            return;
+        }
         if (hasOptInLadderStop) {
             this.logger.log("OptInLadder has been stopped");
             return;
@@ -186,9 +195,13 @@ export class OptInLadder {
         const sessionStorageOptInLadder = JSON.parse(sessionStorage.getItem("engrid.optin-ladder") || "{}");
         const currentStep = sessionStorageOptInLadder.step || 0;
         const totalSteps = sessionStorageOptInLadder.totalSteps || 0;
-        if (currentStep <= totalSteps) {
-            this.logger.log(`Current step ${currentStep} is less or equal to total steps ${totalSteps}`);
+        if (totalSteps == 0) {
+            this.logger.log("No total steps found in sessionStorage");
             this.hidePage();
+        }
+        else if (currentStep <= totalSteps) {
+            this.logger.log(`Current step ${currentStep} is less or equal to total steps ${totalSteps}`);
+            this.hidePage(true);
             // Redirect to the first page
             window.location.href = this.getFirstPageUrl();
             return;
@@ -248,15 +261,23 @@ export class OptInLadder {
     isEmbeddedThankYouPage() {
         return ENGrid.getBodyData("embedded") === "thank-you-page-donation";
     }
-    hidePage() {
-        const engridPage = document.querySelector("#engrid");
-        if (engridPage) {
-            engridPage.classList.add("hide");
+    hidePage(forceHide = false) {
+        if (ENGrid.getBodyData("opt-in-ladder-persist") === "true" && !forceHide) {
+            this.logger.log("Hide activated, but opt-in ladder persist is enabled, showing the thank-you page");
+            sessionStorage.setItem("engrid.optin-ladder-persist-stop", "Y");
+            window.location.href = window.location.href.replace("data/1", "data/2");
+        }
+        else {
+            const engridPage = document.querySelector("#engrid");
+            if (engridPage) {
+                engridPage.classList.add("hide");
+            }
         }
     }
     clearSessionStorage() {
         sessionStorage.removeItem("engrid.supporter.questions");
         sessionStorage.removeItem("engrid.optin-ladder");
         sessionStorage.removeItem("engrid.optin-ladder-stop");
+        sessionStorage.removeItem("engrid.optin-ladder-persist-stop");
     }
 }
