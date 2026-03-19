@@ -42,6 +42,8 @@ export const OptionsDefaults = {
     CountryRedirect: false,
     WelcomeBack: false,
     OptInLadder: false,
+    StickyNSG: false,
+    StickyPrepopulation: false,
     PreferredPaymentMethod: false,
     PageLayouts: [
         "leftleft1col",

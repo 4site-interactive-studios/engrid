@@ -11,6 +11,7 @@ export declare class TidyContact {
     private countries_dropdown;
     private country_ip;
     constructor();
+    private shouldRun;
     private loadOptions;
     private createFields;
     private createPhoneFields;

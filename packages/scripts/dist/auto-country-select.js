@@ -16,10 +16,15 @@ export class AutoCountrySelect {
             ENGrid.getUrlParameter("supporter.region") ||
             (ENGrid.getUrlParameter("ea.url.id") &&
                 !ENGrid.getUrlParameter("forwarded"));
+        // If fast form is active, then personal details have already been filled somehow and we should not override the country selection
+        // The client is also likely using WelcomeBack.
+        const fastFormActive = ENGrid.getBodyData("hide-fast-address-details") ||
+            ENGrid.getBodyData("hide-fast-personal-details");
         if (!engridAutofill &&
             !submissionFailed &&
             hasIntlSupport &&
-            !locationDataInUrl) {
+            !locationDataInUrl &&
+            !fastFormActive) {
             fetch(`https://${window.location.hostname}/cdn-cgi/trace`)
                 .then((res) => res.text())
                 .then((t) => {

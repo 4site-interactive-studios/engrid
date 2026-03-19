@@ -1,148 +1,202 @@
 <img src="https://raw.githubusercontent.com/4site-interactive-studios/engrid/main/reference-materials/repo/repo-hero.jpg">
 
-# 4Site's ENgrid Page Template Framework
+# ENgrid — Page Template Framework for Engaging Networks
 
-<!--- <img align="right" width="200" height="200" src="https://engagingnetworks.academy/wp-content/uploads/2019/09/D-D-Partner.png"> -->
+[![npm version - scripts](https://img.shields.io/npm/v/@4site/engrid-scripts?label=%404site%2Fengrid-scripts)](https://www.npmjs.com/package/@4site/engrid-scripts)
+[![npm version - styles](https://img.shields.io/npm/v/@4site/engrid-styles?label=%404site%2Fengrid-styles)](https://www.npmjs.com/package/@4site/engrid-styles)
+[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](https://github.com/4site-interactive-studios/engrid/blob/main/LICENSE)
 
-This project started as a labor of love for our clients and ourselves. Originating in 2017 as a partnership between Engaging Networks and 4Site Studios to create the first freely available page templates for their platform, we created our first resuable Engaging Networks Page Template. That project was incredibly successful, and those templates are still used today for all new Engaging Networks clients. They're easy for junior developers and code dabblers to ease into, and they included Internet Explorer 11 support.
+ENgrid is an open-source page template framework built by [4Site Studios](https://www.4sitestudios.com/engaging-networks/?ms=github) for [Engaging Networks](https://www.engagingnetworks.net/). It provides mobile-first, accessible, conversion-optimized page templates for donation, advocacy, e-card, event, survey, premium, and other EN page types — with features that go well beyond what Engaging Networks offers out of the box.
 
-Since then, we've continued to enhance and refine our work, culminating in a complete re-write in late 2019 that was named "ENgrid". Using today's latest web technologies, Webpack, Typescript, ES6, SCSS, and CSS Grids, we've created a new framework for marketers, fundraisers, and everyone in between that will ensure your pages stand out and deliver the performance you're looking for.
+## Why ENgrid?
 
-Designed and Developed by [4Site Studios](https://www.4sitestudios.com/engaging-networks/?ms=github) while working with:
+- **Conversion-focused** — Smart donation amount handling, upsell lightboxes, live giving variables, and dozens of enhancements designed to increase completion rates and average gift size
+- **Accessible by default** — Skip links, ARIA attributes, keyboard focus management, and autocomplete attributes are applied automatically to help meet WCAG standards
+- **Content editor friendly** — All on-page content is editable through the EN page builder. Background images, layouts, click-to-expand sections, conditional content, media attribution, and more — all without developer involvement
+- **Developer extensible** — Built with TypeScript, SCSS, and Webpack. Per-client GitHub repos, 30+ body data attributes, sub-brand theming, a debug panel, and 35+ helper functions
+- **Fast** — Single CSS and JS file, prefetched render-critical assets, lazy loaded images — the fastest page load times possible on Engaging Networks
+- **Open source** — Released under [The Unlicense](https://github.com/4site-interactive-studios/engrid/blob/main/LICENSE). All code is published on GitHub with full release notes documenting every change
 
-1. American Technion Society (ATS) - Launching Q4, 2025- Amnesty International USA (AIUSA)
-2. Catholic Extension
-3. Center for Science in Public Interest (CSPI)
-4. Earth Island Institute
-5. Engaging Networks - Free & Flexible templates
-6. Evangelical Lutheran Church in America (ELCA) - Launching Q4, 2025
-7. Food and Water Watch (FWW)
-8. Friends of Canadian Broadcasting
-9. Human Rights Campaign (HRC) via Lautman Maska Neill & Company
-10. International Fund for Animal Welfare (IFAW)
-11. Just Liberty
-12. Mercy for Animals
-13. National Parks Conservation Association (NPCA) via Avalon Consulting
-14. National Trust for Historic Preservation (NTHP) via Avalon Consulting
-15. National Wildlife Federation (NWF)
-16. Oceana
-17. Ocean Conservancy
-18. Organic Consumers
-19. Oxfam America
-20. Oxfam Canada
-21. People for the Ethical Treatment of Animals (PETA)
-22. Polaris Project
-23. Rainforest Action Network (RAN)
-24. Saint Anthony's Guild (Friar Works)
-25. Save the Children Action Network (SCAN)
-26. Save Tibet via Schultz and Williams
-27. Shatterproof
-28. SPCA International (SPCAI) - Launching Q4, 2025
-29. The Nature Conservancy (TNC)
-30. Turtle Island Restoration Network
-31. Van Andel Institute
-32. World Wildlife Fund (WWF)
-
-## ENgrid Features
+## Features
 
 ### Giving Pages
-- Comma and non-number handling in Other Donation Amount input field
-- Automatically change the Credit Card Expiration Year Field Options to include the current year and the next 19 years, removing past years
+- Smart donation amount handling (strips commas, non-numeric characters)
+- Auto-updated credit card expiration year options
 - Full VGS support with custom styling and error handling
-- Tip Jar / Additional Gift Checkbox that works in addition to ENs native processing fee checkbox
-- Donation Upsell Lightbox, an alternative to EN's native upsell lightbox that can be further customized
-- Conditional Hide/Show fields (e.g., In Honor of Giving Fields)
-- Give by Check, Card, Paypal, Apple Pay, Google Pay, and Venmo (Depends on Payment processor support)
-- Auto-update CC Expiration Date fields
-- Insert the currently selected giving amount and frequency anywhere on the page with our "Live giving variables" that act like live merge tags
-- CVV "What's this" tooltip
-- Conditionally hide/show content based on giving amount
-- Conditionally hide/show content based on giving frequency
-- Conditionally hide/show content based on the selected value of another radio or checkbox input
-- Optional "Remember Me" to save and pre-fill supporter info. Works cross-domain/sub-domain
-- More customizations for the Currency Selector, with the ability to change the amount buttons based on the selected currency
-- 
+- Tip Jar / Processing Fee checkbox
+- Donation Upsell Lightbox with customizable one-time to recurring upsells
+- Conditional hide/show fields (e.g., In Honor/Memorial giving)
+- Card, Check, PayPal, Apple Pay, Google Pay, Venmo, and DAF support (varies by payment processor)
+- Live giving variables — insert the selected amount and frequency anywhere on the page
+- CVV "What's this?" tooltip
+- Conditional content based on giving amount, frequency, or any selected radio/checkbox value
+- Remember Me — save and pre-fill supporter info across visits, cross-domain/subdomain
+- Enhanced currency selector with per-currency amount buttons
+- Premium gift displays with multiple themes
+- Post-donation donation embed for follow-up gifts on the thank you page
 
-### Advocacy Pages
-- Advocacy "Opt-in Upsell" Lightbox
-- Title field "Why is this required?" tooltip for Email to Senate target actions
+### Advocacy & e-Card
+- Advocacy opt-in upsell lightbox
+- Title field "Why is this required?" tooltip for Email-to-Senate actions
+- Improved e-card recipient UX
+- Ecard-to-target for sending ecards to advocacy targets
 
-### e-Card Pages
-- Tweaked UI / UX for an improved e-card "add recipient" experience
-
-### Accessibility Enhancements
-- Skip content link accessibility enhancement
-- Accessible outlines around fields when you navigate to them with your keyboard
+### Accessibility
+- Skip to main content link for keyboard navigation
+- Accessible outlines around fields when navigating by keyboard
 - Optional accessible drop-down menu
-- Automatically add the autocomplete attribute to the most common input elements
-- Automatically add the aria-required attribute to required fields
-- Automatically add the aria-labelledby attribute to input fields with labels
-- Automatically add the aria-label attribute to the other amount input field & split selets
+- Automatic `autocomplete` attributes on common input fields
+- Automatic `aria-required` on required fields
+- Automatic `aria-labelledby` on input fields with labels
+- Automatic `aria-label` on Other Amount input and split selects
 
-### Improvements for Content Editors
-- All on-page content is editable; nothing hard coded into the page template
-- Per Page Background Images and Videos!
-- Per Page Layouts (Six Built-In)
-- Click-to-expand content sections can be opened with a click, touch, or by pressing "enter" or "spacebar" when focused with a keyboard.
-- Add an attribution overlay to images and videos to include the photographer's name, no more editing in Photoshop and hard coding it in. You can also optionally add a link
-- All pages using our page template can be seamlessly embedded in your website with Shortcodes using our WordPress iFrame embed plugin or our custom script
-- Inside page builder, hidden and conditional content is visually color-coded
-- Easy to add classes for visually hiding labels/fields while keeping in line with accessibility best practices
-- Easy to add classes for conditionally showing / hiding content based on gift amount (e.g., .showifamount-greaterthanorequalto-15)
-- Easy to add classes for conditionally showing / hiding content based on the selected value of another radio or checkbox input
-- Page template allows for default Facebook / Twitter social sharing meta tags with support for EN's per-page social sharing widget to override them
-- ENgrid content editor documentation
-- Support for custom merge tags in the page content, that can be replaced with dynamic values passed in the URL
-- Adjust an ecard form to target a specific recipient, defined in a code block
-- Ability to embed an ecard form into Donation/Advocacy pages
-- Easily get redirected to the page builder from any page by adding `?pbedit` to the URL
+### Content Editor Capabilities
+- All on-page content editable through the EN page builder — nothing hard-coded
+- Per-page background images and videos
+- Six built-in page layouts
+- Click-to-expand content sections (click, touch, or keyboard accessible)
+- Media attribution overlays for photographer/artist credits with optional links
+- Seamless WordPress embedding via the Promotions Plugin or shortcodes
+- Color-coded hidden and conditional content inside the page builder
+- Easy classes for visually hiding labels while maintaining accessibility
+- Simple CSS classes for conditional show/hide by amount, frequency, or selection
+- Default social sharing meta tags with per-page override support
+- Custom merge tags replaced with dynamic values from URL parameters
+- Ecard form embedding into donation/advocacy pages
+- Quick edit shortcut — add `?pbedit` to any page URL to jump to the page builder
 
-### Improvements for Developers
-- 30+ data attributes added to the body tag for more control over the styling and functionality of the page
-- Each client project gets its own GitHub repo containing all source code and assets
-- Works with all page types (e.g., Donation, Premium, e-Card, Email to Target, Event, etc.). We add coverage when any new page type or display scenario comes up.
-- Supports themes "Sub-Brand" theming and alternative brand theming for the ultimate setup and A/B testing scenario
+### Developer Capabilities
+- 30+ data attributes on the `<body>` tag for granular styling and functional control
+- Per-client GitHub repos with all source code and assets
+- Works with all EN page types — donation, premium, e-card, email-to-target, event, survey, and more
+- Sub-brand theming and A/B testing support
 - Optional placeholder values in input fields
-- Address Form Field Internationalization - If the user is on a US / English page and selects "France" as their country, the Address Form fields will update their labels, change their ordering, and hide/show relevant fields for French Address formatting. Current address formatting support for (United States, Canada, United Kingdom, France, Germany, Netherlands, and Australia).
-- Hidden fields become visible when the debug mode is enabled
-- Debug panel that allows you to quick-fill form fields, change theme layouts, force form submission, and give you a shortcut to the EN page builder
-- Abstract class with more than 35 helper functions that tackle common EN tasks like getting/setting field values, 
-- ENgrid developer documentation
+- International address formatting — fields update labels, ordering, and visibility based on selected country (US, CA, UK, FR, DE, NL, AU)
+- Debug panel for quick-filling forms, changing layouts, forcing submissions, and shortcuts to the page builder
+- 35+ helper functions for common EN tasks (getting/setting field values, etc.)
 
-### General Quality of Life Improvements
-- Added data attributes to form fields to help improve browser/password manager auto-fill completions
-- On page load auto select the users country based on IP address
-- Capitalize the first letter of First Name, Last Name, Address 1, City, and Region fields on the form submit 
-- Lazy Load all image assets and moves them to their own CPU thread to prevent slowdowns in rendering the page when they include high-resolution imagery
-- Fastest page load times possible on Engaging Networks. All render critical assets are prefetched, and there is only a single CSS and JS file
-- Optional IE11 pop-up encouraging users to upgrade their browsers
-- Auto push events about page type, field interactions, and actions to Google Tag Manager
+### Quality of Life
+- Exit intent lightbox to capture abandoning visitors
+- Enhanced browser and password manager autofill via data attributes
+- IP-based country auto-detection on page load
+- Auto-capitalization of First Name, Last Name, Address, City, and Region
+- Lazy loading with off-thread image rendering for high-resolution imagery
+- Single CSS + JS file with prefetched render-critical assets for fastest EN page loads
+- Automatic GTM Data Layer events for page type, field interactions, and form actions
+- Welcome Back returning supporter recognition
+- Multi-step form support controlled via content blocks in the page builder
 
-### TidyContct Paid Services integrated with ENgrid
-- TidyContact Address: Format all US addresses to the CASSI address standard in real-time on form submission
-- TidyContact Phone: Format mobile numbers to the Twilio E.164 format in real-time on form submission
-- TidyContact Email: Validate email addresses in real-time before the form is submitted 
-- TidyContact QuickFill: "Remember Me" to save and pre-fill supporter info. Works cross-domain/sub-domain
+### TidyContact Integration (Paid Add-on)
+- **TidyContact Address** — Format US addresses to the CASS standard in real time on form submission
+- **TidyContact Phone** — Format mobile numbers to the Twilio E.164 format in real time
+- **TidyContact Email** — Validate email addresses in real time before form submission
+- **TidyContact QuickFill** — Remember Me to save and pre-fill supporter info cross-domain/subdomain
+
+## Organizations Using ENgrid
+
+- <img src="https://www.google.com/s2/favicons?domain=amnestyusa.org&sz=16" alt="" width="16" height="16"> [Amnesty International USA (AIUSA)](https://www.amnestyusa.org/)
+- <img src="https://www.google.com/s2/favicons?domain=ats.org&sz=16" alt="" width="16" height="16"> [American Technion Society (ATS)](https://ats.org/)
+- <img src="https://www.google.com/s2/favicons?domain=catholicextension.org&sz=16" alt="" width="16" height="16"> [Catholic Extension](https://www.catholicextension.org/)
+- <img src="https://www.google.com/s2/favicons?domain=cspinet.org&sz=16" alt="" width="16" height="16"> [Center for Science in the Public Interest (CSPI)](https://www.cspinet.org/)
+- <img src="https://www.google.com/s2/favicons?domain=earthisland.org&sz=16" alt="" width="16" height="16"> [Earth Island Institute](https://www.earthisland.org/)
+- <img src="https://www.google.com/s2/favicons?domain=engagingnetworks.net&sz=16" alt="" width="16" height="16"> [Engaging Networks](https://www.engagingnetworks.net/)
+- <img src="https://www.google.com/s2/favicons?domain=elca.org&sz=16" alt="" width="16" height="16"> [Evangelical Lutheran Church in America (ELCA)](https://www.elca.org/)
+- <img src="https://www.google.com/s2/favicons?domain=foodandwaterwatch.org&sz=16" alt="" width="16" height="16"> [Food and Water Watch (FWW)](https://www.foodandwaterwatch.org/)
+- <img src="https://www.google.com/s2/favicons?domain=friends.ca&sz=16" alt="" width="16" height="16"> [Friends of Canadian Broadcasting](https://friends.ca/)
+- <img src="https://www.google.com/s2/favicons?domain=hrc.org&sz=16" alt="" width="16" height="16"> [Human Rights Campaign (HRC)](https://www.hrc.org/)
+- <img src="https://www.google.com/s2/favicons?domain=ifaw.org&sz=16" alt="" width="16" height="16"> [International Fund for Animal Welfare (IFAW)](https://www.ifaw.org/)
+- <img src="https://www.google.com/s2/favicons?domain=justliberty.org&sz=16" alt="" width="16" height="16"> [Just Liberty](https://justliberty.org/)
+- <img src="https://www.google.com/s2/favicons?domain=mercyforanimals.org&sz=16" alt="" width="16" height="16"> [Mercy for Animals](https://mercyforanimals.org/)
+- <img src="https://www.google.com/s2/favicons?domain=npca.org&sz=16" alt="" width="16" height="16"> [National Parks Conservation Association (NPCA)](https://www.npca.org/)
+- <img src="https://www.google.com/s2/favicons?domain=savingplaces.org&sz=16" alt="" width="16" height="16"> [National Trust for Historic Preservation (NTHP)](https://savingplaces.org/)
+- <img src="https://www.google.com/s2/favicons?domain=nwf.org&sz=16" alt="" width="16" height="16"> [National Wildlife Federation (NWF)](https://www.nwf.org/)
+- <img src="https://www.google.com/s2/favicons?domain=oceana.org&sz=16" alt="" width="16" height="16"> [Oceana](https://oceana.org/)
+- <img src="https://www.google.com/s2/favicons?domain=oceanconservancy.org&sz=16" alt="" width="16" height="16"> [Ocean Conservancy](https://oceanconservancy.org/)
+- <img src="https://www.google.com/s2/favicons?domain=organicconsumers.org&sz=16" alt="" width="16" height="16"> [Organic Consumers Association](https://www.organicconsumers.org/)
+- <img src="https://www.google.com/s2/favicons?domain=oxfamamerica.org&sz=16" alt="" width="16" height="16"> [Oxfam America](https://www.oxfamamerica.org/)
+- <img src="https://www.google.com/s2/favicons?domain=oxfam.ca&sz=16" alt="" width="16" height="16"> [Oxfam Canada](https://www.oxfam.ca/)
+- <img src="https://www.google.com/s2/favicons?domain=peta.org&sz=16" alt="" width="16" height="16"> [People for the Ethical Treatment of Animals (PETA)](https://www.peta.org/)
+- <img src="https://www.google.com/s2/favicons?domain=polarisproject.org&sz=16" alt="" width="16" height="16"> [Polaris Project](https://polarisproject.org/)
+- <img src="https://www.google.com/s2/favicons?domain=ran.org&sz=16" alt="" width="16" height="16"> [Rainforest Action Network (RAN)](https://www.ran.org/)
+- <img src="https://www.google.com/s2/favicons?domain=stanthonysguild.org&sz=16" alt="" width="16" height="16"> [Saint Anthony's Guild (Friar Works)](https://stanthonysguild.org/)
+- <img src="https://www.google.com/s2/favicons?domain=savethechildrenactionnetwork.org&sz=16" alt="" width="16" height="16"> [Save the Children Action Network (SCAN)](https://savethechildrenactionnetwork.org/)
+- <img src="https://www.google.com/s2/favicons?domain=savetibet.org&sz=16" alt="" width="16" height="16"> [Save Tibet](https://savetibet.org/)
+- <img src="https://www.google.com/s2/favicons?domain=shatterproof.org&sz=16" alt="" width="16" height="16"> [Shatterproof](https://www.shatterproof.org/)
+- <img src="https://www.google.com/s2/favicons?domain=spcai.org&sz=16" alt="" width="16" height="16"> [SPCA International (SPCAI)](https://www.spcai.org/)
+- <img src="https://www.google.com/s2/favicons?domain=nature.org&sz=16" alt="" width="16" height="16"> [The Nature Conservancy (TNC)](https://www.nature.org/)
+- <img src="https://www.google.com/s2/favicons?domain=seaturtles.org&sz=16" alt="" width="16" height="16"> [Turtle Island Restoration Network](https://seaturtles.org/)
+- <img src="https://www.google.com/s2/favicons?domain=vai.org&sz=16" alt="" width="16" height="16"> [Van Andel Institute](https://www.vai.org/)
+- <img src="https://www.google.com/s2/favicons?domain=worldwildlife.org&sz=16" alt="" width="16" height="16"> [World Wildlife Fund (WWF)](https://www.worldwildlife.org/)
+
+
+## Getting Started
+
+Start a new client theme from the template repo:
+
+```
+git clone https://github.com/4site-interactive-studios/engrid-template.git my-org-theme
+cd my-org-theme
+npm install
+npm run watch
+```
+
+For full setup instructions, see [Creating an ENgrid Theme](https://engrid.4sitestudios.com/docs/v2/creating-an-engrid-theme) in the documentation.
+
+## Documentation
+
+- [Features Overview](https://engrid.4sitestudios.com/docs/v2/features-overview) — What ENgrid can do
+- [Content Editor Guide](https://engrid.4sitestudios.com/docs/v2/content-editor-guide) — For non-developers managing page content
+- [Developer Training Guide](https://engrid.4sitestudios.com/docs/v2/training) — Setup, theming, and development workflow
+- [Release Notes](https://www.4sitestudios.com/engrid-release-notes/) — What's new in each release
+
+## Repository Structure
+
+This is a Lerna monorepo containing two packages:
+
+- **[@4site/engrid-scripts](https://www.npmjs.com/package/@4site/engrid-scripts)** — TypeScript framework powering ENgrid's functionality
+- **[@4site/engrid-styles](https://www.npmjs.com/package/@4site/engrid-styles)** — SCSS base styles for ENgrid page templates
+
+Client themes install these as npm dependencies and extend them with organization-specific customizations.
+
+## Development
+
+```shell
+# Clone the repo
+git clone https://github.com/4site-interactive-studios/engrid.git
+cd engrid
+
+# Install dependencies
+npm install
+
+# Build all packages
+npm run build
+
+# Watch for changes during development
+npm run watch
+```
 
 ## ENgrid Resources
 
-- [ENgrid Template Github Repository](https://github.com/4site-interactive-studios/engrid-template/)
 - [ENgrid Documentation](https://engrid.4sitestudios.com/)
-- [Community Run EN Slack Channel](https://join.slack.com/t/endevelopers/shared_invite/enQtNTgyMDU5NDEzOTQxLWM1YjkwYmM2NjcxODdhNjI4MmRhMjI1ZTJlNzZlYTM5MmI4OTg3NTlhZTljMDMyMjczZmYyNTBjZmM4ZDY4MTA)
+- [ENgrid Template Repository](https://github.com/4site-interactive-studios/engrid-template/)
+- [ENgrid Release Notes](https://www.4sitestudios.com/engrid-release-notes/)
+- [Community EN Slack Channel](https://join.slack.com/t/endevelopers/shared_invite/enQtNTgyMDU5NDEzOTQxLWM1YjkwYmM2NjcxODdhNjI4MmRhMjI1ZTJlNzZlYTM5MmI4OTg3NTlhZTljMDMyMjczZmYyNTBjZmM4ZDY4MTA)
 
 ## Engaging Networks Resources
 
 - [Engaging Networks Supportal](https://engagingnetworks.support/)
-- [Engaging Networks Acadmey](https://engagingnetworks.academy/)
-- [Engaging Networks Maintained Example Code Blocks](https://github.com/EngagingNetworks/page-builder-code-blocks)
-- [Engaging Networks Maintained Example Page Styles](https://github.com/EngagingNetworks/page-builder-css-styles)
+- [Engaging Networks Academy](https://engagingnetworks.academy/)
+- [Engaging Networks Code Blocks](https://github.com/EngagingNetworks/page-builder-code-blocks)
+- [Engaging Networks Page Styles](https://github.com/EngagingNetworks/page-builder-css-styles)
 
-# Interested in a project or have questions?
+## Interested in ENgrid?
 
-We would love to hear from you.
+We'd love to hear from you.
 
-Bryan Casler
-Director of Digital Strategy  
-4Site Interactive Studios  
-Cell: (315) 877-3420  
+**Bryan Casler**
+Vice President of Digital and AI Strategy
+4Site Interactive Studios
+Cell: (315) 877-3420
 Email: bryan@4sitestudios.com
+
+[Contact 4Site Studios](https://www.4sitestudios.com/contact/) | [Learn more about ENgrid](https://www.4sitestudios.com/engaging-networks/?ms=github)

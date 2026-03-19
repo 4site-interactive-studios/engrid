@@ -55,10 +55,13 @@ export interface Options {
         fieldClearSelectorTargetLocation?: string;
         checked?: boolean;
       };
+  StickyNSG?: boolean;
+  StickyPrepopulation?: false | { fields: string[] };
   TidyContact?:
     | false
     | {
         cid?: string; // Client ID
+        page_types?: ("DONATION" | "ECARD" | "SURVEY" | "EMAILTOTARGET" | "ADVOCACY" | "SUBSCRIBEFORM" | "EVENT" | "SUPPORTERHUB" | "UNSUBSCRIBE" | "TWEETPAGE" | "UNKNOWN")[]; // Page Types to enable TidyContact on, if left blank will run on all page types
         record_field?: string; // TidyContact Record
         date_field?: string; // TidyContact Date
         status_field?: string; // TidyContact Status
@@ -234,6 +237,8 @@ export const OptionsDefaults: Options = {
   CountryRedirect: false,
   WelcomeBack: false,
   OptInLadder: false,
+  StickyNSG: false,
+  StickyPrepopulation: false,
   PreferredPaymentMethod: false,
   PageLayouts: [
     "leftleft1col",
