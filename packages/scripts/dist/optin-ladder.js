@@ -6,7 +6,7 @@
  * If the page is embedded in an iframe and on a Thank You Page, and the child iFrame is also a Thank You Page, we will look for a sessionStorage that has the current ladder step and the total number of steps.
  * If the current step is less than the total number of steps, we will redirect to the first page. If the current step is equal to the total number of steps, we will show the Thank You Page.
  */
-import { EngridLogger, ENGrid, EnForm } from '.';
+import { EngridLogger, ENGrid, EnForm } from ".";
 export class OptInLadder {
     constructor() {
         this.logger = new EngridLogger("OptInLadder", "lightgreen", "darkgreen", "✔");
@@ -98,7 +98,7 @@ export class OptInLadder {
         if (!emailField || !emailField.value) {
             this.logger.log("Email field is empty");
             // Since this is a OptInLadder page with no e-mail address, hide the page
-            this.hidePage();
+            this.hidePage(true);
             return;
         }
         const sessionStorageCheckboxValues = JSON.parse(sessionStorage.getItem("engrid.supporter.questions") || "{}");
@@ -195,9 +195,10 @@ export class OptInLadder {
         const sessionStorageOptInLadder = JSON.parse(sessionStorage.getItem("engrid.optin-ladder") || "{}");
         const currentStep = sessionStorageOptInLadder.step || 0;
         const totalSteps = sessionStorageOptInLadder.totalSteps || 0;
-        if (totalSteps == 0) {
+        if (totalSteps === 0) {
             this.logger.log("No total steps found in sessionStorage");
             this.hidePage();
+            return;
         }
         else if (currentStep <= totalSteps) {
             this.logger.log(`Current step ${currentStep} is less or equal to total steps ${totalSteps}`);
@@ -223,14 +224,6 @@ export class OptInLadder {
     saveStepToSessionStorage(step, totalSteps) {
         sessionStorage.setItem("engrid.optin-ladder", JSON.stringify({ step, totalSteps }));
         this.logger.log(`Saved step ${step} of ${totalSteps} to sessionStorage`);
-    }
-    getFirstPageUrl() {
-        // Get the current URL and replace the last path with 1?chain
-        const url = new URL(window.location.href);
-        const path = url.pathname.split("/");
-        path.pop();
-        path.push("1");
-        return url.origin + path.join("/") + "?chain";
     }
     saveOptInsToSessionStorage(type = "parent") {
         // Grab all the checkboxes with the name starting with "supporter.questions"
@@ -261,11 +254,20 @@ export class OptInLadder {
     isEmbeddedThankYouPage() {
         return ENGrid.getBodyData("embedded") === "thank-you-page-donation";
     }
+    getPageUrl(page, chain = false) {
+        const url = new URL(window.location.href);
+        const path = url.pathname.split("/");
+        path[path.length - 1] = String(page);
+        return url.origin + path.join("/") + (chain ? "?chain" : "");
+    }
+    getFirstPageUrl() {
+        return this.getPageUrl(1, true);
+    }
     hidePage(forceHide = false) {
         if (ENGrid.getBodyData("opt-in-ladder-persist") === "true" && !forceHide) {
             this.logger.log("Hide activated, but opt-in ladder persist is enabled, showing the thank-you page");
             sessionStorage.setItem("engrid.optin-ladder-persist-stop", "Y");
-            window.location.href = window.location.href.replace("data/1", "data/2");
+            window.location.href = this.getPageUrl(2);
         }
         else {
             const engridPage = document.querySelector("#engrid");
