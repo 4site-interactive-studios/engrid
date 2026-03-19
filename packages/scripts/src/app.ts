@@ -87,6 +87,8 @@ import {
   PostDonationEmbed,
   FrequencyUpsell,
   CustomPremium,
+  StickyNSG,
+  StickyPrepopulation,
   PreferredPaymentMethod,
 } from ".";
 
@@ -309,6 +311,8 @@ export class App extends ENGrid {
     // Adjust display of event tickets.
     new EventTickets();
 
+    // StickyNSG - Must load before SwapAmounts
+    new StickyNSG();
     // Swap Amounts
     new SwapAmounts();
 
@@ -464,6 +468,8 @@ export class App extends ENGrid {
     new PostDonationEmbed();
 
     new FrequencyUpsell();
+
+    new StickyPrepopulation();
 
     //Debug panel
     let showDebugPanel = this.options.Debug;
