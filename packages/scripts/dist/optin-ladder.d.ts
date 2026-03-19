@@ -7,9 +7,10 @@ export declare class OptInLadder {
     private runAsChildThankYou;
     private inIframe;
     private saveStepToSessionStorage;
-    private getFirstPageUrl;
     private saveOptInsToSessionStorage;
     private isEmbeddedThankYouPage;
+    private getPageUrl;
+    private getFirstPageUrl;
     private hidePage;
     private clearSessionStorage;
 }
