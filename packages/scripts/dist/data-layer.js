@@ -35,7 +35,7 @@ export class DataLayer {
             "receiptNumber",
             "recurring",
             "transactionId",
-            "transactionType"
+            "transactionType",
         ];
         this.excludedFields = [
             // Credit Card
@@ -115,12 +115,15 @@ export class DataLayer {
     onLoad() {
         // Collect all data layer variables to push at once
         const dataLayerData = {};
+        const suppressEcardData = ENGrid.getPageType() === "ECARD" &&
+            ENGrid.getOption("SuppressPurchaseEcard");
         if (ENGrid.getGiftProcess()) {
             // EN will chain together gift process data on the page json when redirecting from a completed donation to an ecard.
-            // Since the ecard page can be embedded on the thank you page of a donation, this can cause confusion in the data layer with events 
+            // Since the ecard page can be embedded on the thank you page of a donation, this can cause confusion in the data layer with events
             // firing for both the donation and the ecard on the same page.
-            if (ENGrid.getPageType() === "ECARD" && ENGrid.getOption("SuppressPurchaseEcard")) {
+            if (suppressEcardData) {
                 this.logger.log("⛔ Gift process was detected BUT suppressing EN_SUCCESSFUL_DONATION event due to SuppressPurchaseEcard option enabled");
+                window.sessionStorage.removeItem(this.endOfGiftProcessStorageKey);
             }
             else {
                 this.logger.log("EN_SUCCESSFUL_DONATION");
@@ -128,9 +131,9 @@ export class DataLayer {
             }
         }
         if (window.pageJson) {
-            let pageJson = window.pageJson;
+            const pageJson = window.pageJson;
             for (const property in pageJson) {
-                if (ENGrid.getPageType() === "ECARD" && ENGrid.getOption("SuppressPurchaseEcard") && this.giftFields.includes(property)) {
+                if (suppressEcardData && this.giftFields.includes(property)) {
                     continue;
                 }
                 const key = `EN_PAGEJSON_${property.toUpperCase()}`;
