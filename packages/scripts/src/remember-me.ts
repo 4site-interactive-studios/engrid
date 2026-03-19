@@ -372,14 +372,48 @@ export class RememberMe {
     }
   }
   private setFieldValue(
-    field: HTMLInputElement,
+    field: HTMLInputElement | HTMLSelectElement,
     value: string | undefined,
     overwrite: boolean = false
   ) {
     value = decodeURIComponent(value || "");
     if (field && value !== undefined) {
-      if ((field.value && overwrite) || !field.value) {
-        field.value = value;
+      if ("type" in field) {
+        switch (field.type) {
+          case "select-one":
+          case "select-multiple": {
+            const selectField = field as HTMLSelectElement;
+            for (const option of Array.from(selectField.options)) {
+              if (option.value === value) {
+                if ((selectField.value && overwrite) || !selectField.value) {
+                  option.selected = true;
+                  selectField.dispatchEvent(
+                    new Event("change", { bubbles: true })
+                  );
+                }
+                break;
+              }
+            }
+            break;
+          }
+          case "checkbox":
+          case "radio": {
+            const inputField = field as HTMLInputElement;
+            if (inputField.value === value) {
+              inputField.checked = true;
+              inputField.dispatchEvent(new Event("change", { bubbles: true }));
+            }
+            break;
+          }
+          case "textarea":
+          case "text":
+          default:
+            if ((field.value && overwrite) || !field.value) {
+              field.value = value;
+              field.dispatchEvent(new Event("change", { bubbles: true }));
+              field.dispatchEvent(new Event("blur", { bubbles: true }));
+            }
+        }
       }
     }
   }

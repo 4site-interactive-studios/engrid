@@ -80,10 +80,4 @@
         display: none;
       }
   }
-
-  /* Mattch the Plaid iFrame so we can apply a background color as soon as it appears on screen, normally there is a slight delay. We use the same background color that Plaid natively uses. */
-  iframe.plaid-link-iframe,
-  iframe[id^="plaid-link-iframe"] {
-    background-color: rgba(144, 144, 144, 0.98);
-  }
 }

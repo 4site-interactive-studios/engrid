@@ -145,8 +145,7 @@
   .i8-hide .en__field:nth-of-type(8),
   .i9-hide .en__field:nth-of-type(9),
   .i10-hide .en__field:nth-of-type(10),
-  .i11-hide .en__field:nth-of-type(11),
-  .en__field--plaid {
+  .i11-hide .en__field:nth-of-type(11) {
     background-color: #ff00001a !important;
   }
 
@@ -200,8 +199,7 @@ body:not(#en__pagebuilder):not([data-engrid-debug]) {
   .i8-hide .en__field:not(.en__field--validationFailed):nth-of-type(8),
   .i9-hide .en__field:not(.en__field--validationFailed):nth-of-type(9),
   .i10-hide .en__field:not(.en__field--validationFailed):nth-of-type(10),
-  .i11-hide .en__field:not(.en__field--validationFailed):nth-of-type(11),
-  .en__field--plaid{
+  .i11-hide .en__field:not(.en__field--validationFailed):nth-of-type(11) {
     display: none;
   }
 

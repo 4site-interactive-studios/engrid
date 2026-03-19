@@ -30,6 +30,7 @@ export interface Options {
         dateFieldFormat?: string;
         statusField?: string;
         messageField?: string;
+        proxyUrl?: string;
       };
   ProgressBar?: boolean | null;
   AutoYear?: boolean;
@@ -59,6 +60,7 @@ export interface Options {
     | false
     | {
         cid?: string; // Client ID
+        page_types?: ("DONATION" | "ECARD" | "SURVEY" | "EMAILTOTARGET" | "ADVOCACY" | "SUBSCRIBEFORM" | "EVENT" | "SUPPORTERHUB" | "UNSUBSCRIBE" | "TWEETPAGE" | "UNKNOWN")[]; // Page Types to enable TidyContact on, if left blank will run on all page types
         record_field?: string; // TidyContact Record
         date_field?: string; // TidyContact Date
         status_field?: string; // TidyContact Status
@@ -87,7 +89,6 @@ export interface Options {
   MobileCTA?: false | { pageType: string; label: string }[];
   PageLayouts?: string[];
   CountryDisable?: string[];
-  Plaid?: boolean;
   Placeholders?: false | { [key: string]: string };
   ENValidators?: boolean;
   // CustomCurrency is either false or an object with the following properties:
@@ -114,6 +115,11 @@ export interface Options {
           };
           ariaLabel?: string;
           placeholder?: string;
+          validCardBrands?:
+            | {
+                type: string;
+              }[]
+            | null;
         };
         "transaction.ccvv"?: {
           showCardIcon?: boolean | object;
@@ -150,6 +156,7 @@ export interface Options {
           editText: string;
           anchor: string;
           placement: "beforebegin" | "afterbegin" | "beforeend" | "afterend";
+          showPhoneNumber?: boolean;
         };
       };
   OptInLadder?:
@@ -218,7 +225,6 @@ export const OptionsDefaults: Options = {
   TidyContact: false,
   RegionLongFormat: "",
   CountryDisable: [],
-  Plaid: false,
   Placeholders: false,
   ENValidators: false,
   MobileCTA: false,

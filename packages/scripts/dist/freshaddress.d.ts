@@ -15,4 +15,6 @@ export declare class FreshAddress {
     private callAPI;
     private validateResponse;
     private validate;
+    private callProxy;
+    private validateProxyResponse;
 }

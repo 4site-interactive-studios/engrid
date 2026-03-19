@@ -31,7 +31,6 @@ export const OptionsDefaults = {
     TidyContact: false,
     RegionLongFormat: "",
     CountryDisable: [],
-    Plaid: false,
     Placeholders: false,
     ENValidators: false,
     MobileCTA: false,

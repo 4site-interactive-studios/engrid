@@ -28,6 +28,7 @@ export interface Options {
         dateFieldFormat?: string;
         statusField?: string;
         messageField?: string;
+        proxyUrl?: string;
     };
     ProgressBar?: boolean | null;
     AutoYear?: boolean;
@@ -55,6 +56,7 @@ export interface Options {
     };
     TidyContact?: false | {
         cid?: string;
+        page_types?: ("DONATION" | "ECARD" | "SURVEY" | "EMAILTOTARGET" | "ADVOCACY" | "SUBSCRIBEFORM" | "EVENT" | "SUPPORTERHUB" | "UNSUBSCRIBE" | "TWEETPAGE" | "UNKNOWN")[];
         record_field?: string;
         date_field?: string;
         status_field?: string;
@@ -86,7 +88,6 @@ export interface Options {
     }[];
     PageLayouts?: string[];
     CountryDisable?: string[];
-    Plaid?: boolean;
     Placeholders?: false | {
         [key: string]: string;
     };
@@ -113,6 +114,9 @@ export interface Options {
             };
             ariaLabel?: string;
             placeholder?: string;
+            validCardBrands?: {
+                type: string;
+            }[] | null;
         };
         "transaction.ccvv"?: {
             showCardIcon?: boolean | object;
@@ -149,6 +153,7 @@ export interface Options {
             editText: string;
             anchor: string;
             placement: "beforebegin" | "afterbegin" | "beforeend" | "afterend";
+            showPhoneNumber?: boolean;
         };
     };
     OptInLadder?: false | {

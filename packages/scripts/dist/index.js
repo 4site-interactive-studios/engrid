@@ -63,7 +63,7 @@ export * from "./digital-wallets";
 export * from "./mobile-cta";
 export * from "./live-frequency";
 export * from "./universal-opt-in";
-export * from "./plaid";
+export * from "./stripe-financial-connections";
 export * from "./give-by-select";
 export * from "./url-params-to-body-attrs";
 export * from "./exit-intent-lightbox";
