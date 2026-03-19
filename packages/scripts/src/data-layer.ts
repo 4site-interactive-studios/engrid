@@ -23,6 +23,20 @@ export class DataLayer {
   private encoder = new TextEncoder();
   private endOfGiftProcessStorageKey = "ENGRID_END_OF_GIFT_PROCESS_EVENTS";
 
+  // pageJson entries related to the gift process
+  private giftFields = [
+    "amount",
+    "currency",
+    "donationLogId",
+    "feeCover",
+    "giftProcess",
+    "paymentType",
+    "receiptNumber",
+    "recurring",
+    "transactionId",
+    "transactionType",
+  ];
+
   private excludedFields = [
     // Credit Card
     "transaction.ccnumber",
@@ -111,15 +125,31 @@ export class DataLayer {
   private onLoad() {
     // Collect all data layer variables to push at once
     const dataLayerData: { [key: string]: any } = {};
+    const suppressEcardData =
+      ENGrid.getPageType() === "ECARD" &&
+      ENGrid.getOption("SuppressPurchaseEcard");
 
     if (ENGrid.getGiftProcess()) {
-      this.logger.log("EN_SUCCESSFUL_DONATION");
-      this.addEndOfGiftProcessEventsToDataLayer();
+      // EN will chain together gift process data on the page json when redirecting from a completed donation to an ecard.
+      // Since the ecard page can be embedded on the thank you page of a donation, this can cause confusion in the data layer with events
+      // firing for both the donation and the ecard on the same page.
+      if (suppressEcardData) {
+        this.logger.log(
+          "⛔ Gift process was detected BUT suppressing EN_SUCCESSFUL_DONATION event due to SuppressPurchaseEcard option enabled"
+        );
+        window.sessionStorage.removeItem(this.endOfGiftProcessStorageKey);
+      } else {
+        this.logger.log("EN_SUCCESSFUL_DONATION");
+        this.addEndOfGiftProcessEventsToDataLayer();
+      }
     }
 
     if (window.pageJson) {
       const pageJson = window.pageJson as Record<string, any>;
       for (const property in pageJson) {
+        if (suppressEcardData && this.giftFields.includes(property)) {
+          continue;
+        }
         const key = `EN_PAGEJSON_${property.toUpperCase()}`;
         const value = pageJson[property];
         dataLayerData[key] = this.transformJSON(value);
