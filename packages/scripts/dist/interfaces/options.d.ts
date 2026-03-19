@@ -50,6 +50,10 @@ export interface Options {
         fieldClearSelectorTargetLocation?: string;
         checked?: boolean;
     };
+    StickyNSG?: boolean;
+    StickyPrepopulation?: false | {
+        fields: string[];
+    };
     TidyContact?: false | {
         cid?: string;
         page_types?: ("DONATION" | "ECARD" | "SURVEY" | "EMAILTOTARGET" | "ADVOCACY" | "SUBSCRIBEFORM" | "EVENT" | "SUPPORTERHUB" | "UNSUBSCRIBE" | "TWEETPAGE" | "UNKNOWN")[];
