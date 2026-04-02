@@ -94,6 +94,7 @@ export class App extends ENGrid {
             }
         });
         // Client onSubmit and onError functions
+        this._form.onIntentSubmit.subscribe(() => this.onIntentSubmit());
         this._form.onSubmit.subscribe(() => this.onSubmit());
         this._form.onError.subscribe(() => this.onError());
         this._form.onValidate.subscribe(() => this.onValidate());
@@ -111,6 +112,7 @@ export class App extends ENGrid {
         window.enOnSubmit = () => {
             this._form.submit = true;
             this._form.submitPromise = false;
+            this._form.dispatchIntentSubmit();
             this._form.dispatchSubmit();
             ENGrid.watchForError(ENGrid.enableSubmit);
             if (!this._form.submit)
@@ -329,6 +331,12 @@ export class App extends ENGrid {
         if (this.options.onValidate) {
             this.logger.log("Client onValidate Triggered");
             this.options.onValidate();
+        }
+    }
+    onIntentSubmit() {
+        if (this.options.onIntentSubmit) {
+            this.logger.log("Client onIntentSubmit Triggered");
+            this.options.onIntentSubmit();
         }
     }
     onSubmit() {
