@@ -158,7 +158,7 @@ export class DigitalWallets {
   }
 
   private addDAF() {
-    this.logger.log("Donor Advised Fund Digital Wallets detected");
+    this.logger.log("DAF Digital Wallet detected");
     this.addOptionToPaymentTypeField("daf", "Donor Advised Fund");
     ENGrid.setBodyData("payment-type-option-daf", "true");
     this.addDAFListener()
@@ -225,19 +225,22 @@ export class DigitalWallets {
     const paypalTouch =
       window.EngagingNetworks?.require?._defined?.enPaypalTouch?.paypalTouch;
     if (!paypalTouch?.library?.Buttons) {
+      this.logger.log("Paypal Touch library not found, cannot add listener");
       return false;
     }
     const buttons = paypalTouch.library.Buttons.bind(paypalTouch.library);
-    paypalTouch.library.Buttons = (o: any) =>
-      buttons({
-        ...o,
-        onClick: (d: any, a: any) => (
-          this._form.dispatchIntentSubmit.bind(this._form),
-          o.onClick && o.onClick(d, a)
-        ),
-      });
-    paypalTouch.unloadButton && paypalTouch.unloadButton();
-    paypalTouch.loadButton && paypalTouch.loadButton();
+    setTimeout(() => {
+      paypalTouch.library.Buttons = (o: any) =>
+        buttons({
+          ...o,
+          onClick: (d: any, a: any) => (
+            this._form.dispatchIntentSubmit(),
+            o.onClick && o.onClick(d, a)
+          ),
+        });
+      paypalTouch.unloadButton && paypalTouch.unloadButton();
+      paypalTouch.loadButton && paypalTouch.loadButton();
+    }, 750);
     return true;
   }
 
@@ -249,11 +252,11 @@ export class DigitalWallets {
   }
 
   private addDAFListener(): boolean {
-    return !!document
-      .getElementById("chariot-button")
-      ?.addEventListener(
-        "click",
-        this._form.dispatchIntentSubmit.bind(this._form)
-      );
+    const chariotButton = document.getElementById("chariot-button");
+    chariotButton?.addEventListener(
+      "click",
+      this._form.dispatchIntentSubmit.bind(this._form)
+    );
+    return !!chariotButton;
   }
 }

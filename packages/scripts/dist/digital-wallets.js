@@ -119,7 +119,7 @@ export class DigitalWallets {
             : this.logger.log("Failed to add Paypal Touch listener");
     }
     addDAF() {
-        this.logger.log("Donor Advised Fund Digital Wallets detected");
+        this.logger.log("DAF Digital Wallet detected");
         this.addOptionToPaymentTypeField("daf", "Donor Advised Fund");
         ENGrid.setBodyData("payment-type-option-daf", "true");
         this.addDAFListener()
@@ -174,13 +174,16 @@ export class DigitalWallets {
         var _a, _b, _c, _d, _e;
         const paypalTouch = (_d = (_c = (_b = (_a = window.EngagingNetworks) === null || _a === void 0 ? void 0 : _a.require) === null || _b === void 0 ? void 0 : _b._defined) === null || _c === void 0 ? void 0 : _c.enPaypalTouch) === null || _d === void 0 ? void 0 : _d.paypalTouch;
         if (!((_e = paypalTouch === null || paypalTouch === void 0 ? void 0 : paypalTouch.library) === null || _e === void 0 ? void 0 : _e.Buttons)) {
+            this.logger.log("Paypal Touch library not found, cannot add listener");
             return false;
         }
         const buttons = paypalTouch.library.Buttons.bind(paypalTouch.library);
-        paypalTouch.library.Buttons = (o) => buttons(Object.assign(Object.assign({}, o), { onClick: (d, a) => (this._form.dispatchIntentSubmit.bind(this._form),
+        // setTimeout(() => {
+        paypalTouch.library.Buttons = (o) => buttons(Object.assign(Object.assign({}, o), { onClick: (d, a) => (this._form.dispatchIntentSubmit(),
                 o.onClick && o.onClick(d, a)) }));
         paypalTouch.unloadButton && paypalTouch.unloadButton();
         paypalTouch.loadButton && paypalTouch.loadButton();
+        // }, 750);
         return true;
     }
     addStripeDigitalWalletListener() {
@@ -188,8 +191,8 @@ export class DigitalWallets {
         return !!((_f = (_e = (_d = (_c = (_b = (_a = window.EngagingNetworks) === null || _a === void 0 ? void 0 : _a.require) === null || _b === void 0 ? void 0 : _b._defined) === null || _c === void 0 ? void 0 : _c.enStripeButtons) === null || _d === void 0 ? void 0 : _d.stripeButtons) === null || _e === void 0 ? void 0 : _e.paymentRequest) === null || _f === void 0 ? void 0 : _f.on("paymentmethod", this._form.dispatchIntentSubmit.bind(this._form)));
     }
     addDAFListener() {
-        var _a;
-        return !!((_a = document
-            .getElementById("chariot-button")) === null || _a === void 0 ? void 0 : _a.addEventListener("click", this._form.dispatchIntentSubmit.bind(this._form)));
+        const chariotButton = document.getElementById("chariot-button");
+        chariotButton === null || chariotButton === void 0 ? void 0 : chariotButton.addEventListener("click", this._form.dispatchIntentSubmit.bind(this._form));
+        return !!chariotButton;
     }
 }
