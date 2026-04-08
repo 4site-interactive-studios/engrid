@@ -178,6 +178,7 @@ export interface Options {
     };
     onLoad?: () => void;
     onResize?: () => void;
+    onIntentSubmit?: () => void;
     onSubmit?: () => void;
     onError?: () => void;
     onValidate?: () => void;

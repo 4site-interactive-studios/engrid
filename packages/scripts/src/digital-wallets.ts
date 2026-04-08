@@ -1,6 +1,16 @@
 import { ENGrid } from "./engrid";
+import { EnForm } from "./events";
+import { EngridLogger } from "./logger";
 
 export class DigitalWallets {
+  private logger: EngridLogger = new EngridLogger(
+    "DigitalWallets",
+    "#fff",
+    "#333",
+    "👛"
+  );
+  private _form: EnForm = EnForm.getInstance();
+
   constructor() {
     //digital wallets not enabled.
     if (!document.getElementById("en__digitalWallet")) {
@@ -10,6 +20,9 @@ export class DigitalWallets {
       ENGrid.setBodyData("payment-type-option-paypal-one-touch", "false");
       ENGrid.setBodyData("payment-type-option-venmo", "false");
       ENGrid.setBodyData("payment-type-option-daf", "false");
+      this.logger.log(
+        "No digital wallet container found, skipping digital wallet setup."
+      );
       return;
     }
 
@@ -112,6 +125,7 @@ export class DigitalWallets {
   }
 
   private addStripeDigitalWallets() {
+    this.logger.log("Stripe Digital Wallets detected");
     this.addOptionToPaymentTypeField(
       "stripedigitalwallet",
       "GooglePay / ApplePay"
@@ -128,17 +142,28 @@ export class DigitalWallets {
     ENGrid.setBodyData("payment-type-option-apple-pay", "true");
     ENGrid.setBodyData("payment-type-option-google-pay", "true");
     ENGrid.setBodyData("payment-type-option-stripedigitalwallet", "true");
+    this.addStripeDigitalWalletListener()
+      ? this.logger.log("Stripe Digital Wallet listener added successfully")
+      : this.logger.log("Failed to add Stripe Digital Wallet listener");
   }
 
   private addPaypalTouchDigitalWallets() {
+    this.logger.log("Paypal Touch Digital Wallets detected");
     this.addOptionToPaymentTypeField("paypaltouch", "Paypal / Venmo");
     ENGrid.setBodyData("payment-type-option-paypal-one-touch", "true");
     ENGrid.setBodyData("payment-type-option-venmo", "true");
+    this.addPaypalOneTouchListener()
+      ? this.logger.log("Paypal Touch listener added successfully")
+      : this.logger.log("Failed to add Paypal Touch listener");
   }
 
   private addDAF() {
+    this.logger.log("DAF Digital Wallet detected");
     this.addOptionToPaymentTypeField("daf", "Donor Advised Fund");
     ENGrid.setBodyData("payment-type-option-daf", "true");
+    this.addDAFListener()
+      ? this.logger.log("DAF listener added successfully")
+      : this.logger.log("Failed to add DAF listener");
   }
 
   private addOptionToPaymentTypeField(value: string, label: string) {
@@ -185,13 +210,51 @@ export class DigitalWallets {
           } else if (walletType === "daf") {
             this.addDAF();
           }
-          //Disconnect observer to prevent multiple additions
+          //Disconnect observer and break loop to prevent multiple additions
           observer.disconnect();
+          break;
         }
       }
     };
 
     const observer = new MutationObserver(callback);
     observer.observe(node, { childList: true, subtree: true });
+  }
+
+  private addPaypalOneTouchListener(): boolean {
+    const paypalTouch =
+      window.EngagingNetworks?.require?._defined?.enPaypalTouch?.paypalTouch;
+    if (!paypalTouch?.library?.Buttons) {
+      this.logger.log("Paypal Touch library not found, cannot add listener");
+      return false;
+    }
+    const buttons = paypalTouch.library.Buttons.bind(paypalTouch.library);
+    paypalTouch.library.Buttons = (o: any) =>
+      buttons({
+        ...o,
+        onClick: (d: any, a: any) => (
+          this._form.dispatchIntentSubmit(),
+          o.onClick && o.onClick(d, a)
+        ),
+      });
+    paypalTouch.unloadButton && paypalTouch.unloadButton();
+    paypalTouch.loadButton && paypalTouch.loadButton();
+    return true;
+  }
+
+  private addStripeDigitalWalletListener(): boolean {
+    return !!window.EngagingNetworks?.require?._defined?.enStripeButtons?.stripeButtons?.paymentRequest?.on(
+      "paymentmethod",
+      this._form.dispatchIntentSubmit.bind(this._form)
+    );
+  }
+
+  private addDAFListener(): boolean {
+    const chariotButton = document.getElementById("chariot-button");
+    chariotButton?.addEventListener(
+      "click",
+      this._form.dispatchIntentSubmit.bind(this._form)
+    );
+    return !!chariotButton;
   }
 }

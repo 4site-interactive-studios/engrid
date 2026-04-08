@@ -13,6 +13,7 @@ export declare class App extends ENGrid {
     private onLoad;
     private onResize;
     private onValidate;
+    private onIntentSubmit;
     private onSubmit;
     private onError;
     static log(message: string): void;
