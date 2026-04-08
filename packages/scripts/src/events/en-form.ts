@@ -82,18 +82,18 @@ export class EnForm {
   }
 
   /**
- * onError is dispatched using window.enOnError, which is called by Engaging Networks' JavaScript when a server-side validation error occurs on form submission.
- * This allows you to listen for validation errors and respond accordingly, such as displaying custom error messages or triggering analytics events.
- */
-  public get onError() {
-    return this._onError.asEvent();
-  }
-
-  /**
    * onValidate is dispatched using window.enOnValidate, which is called by Engaging Networks' JavaScript
    * when the form is being validated, before submission. This only occurs after ENgrid's client-side validation has passed, but before server-side validation.
    */
   public get onValidate() {
     return this._onValidate.asEvent();
+  }
+
+  /**
+   * onError is dispatched using window.enOnError, which is called by Engaging Networks' JavaScript when a server-side validation error occurs on form submission.
+   * This allows you to listen for validation errors and respond accordingly, such as displaying custom error messages or triggering analytics events.
+   */
+  public get onError() {
+    return this._onError.asEvent();
   }
 }
