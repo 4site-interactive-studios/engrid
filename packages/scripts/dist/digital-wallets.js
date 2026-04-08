@@ -178,12 +178,10 @@ export class DigitalWallets {
             return false;
         }
         const buttons = paypalTouch.library.Buttons.bind(paypalTouch.library);
-        // setTimeout(() => {
         paypalTouch.library.Buttons = (o) => buttons(Object.assign(Object.assign({}, o), { onClick: (d, a) => (this._form.dispatchIntentSubmit(),
                 o.onClick && o.onClick(d, a)) }));
         paypalTouch.unloadButton && paypalTouch.unloadButton();
         paypalTouch.loadButton && paypalTouch.loadButton();
-        // }, 750);
         return true;
     }
     addStripeDigitalWalletListener() {

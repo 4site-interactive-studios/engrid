@@ -229,18 +229,16 @@ export class DigitalWallets {
       return false;
     }
     const buttons = paypalTouch.library.Buttons.bind(paypalTouch.library);
-    setTimeout(() => {
-      paypalTouch.library.Buttons = (o: any) =>
-        buttons({
-          ...o,
-          onClick: (d: any, a: any) => (
-            this._form.dispatchIntentSubmit(),
-            o.onClick && o.onClick(d, a)
-          ),
-        });
-      paypalTouch.unloadButton && paypalTouch.unloadButton();
-      paypalTouch.loadButton && paypalTouch.loadButton();
-    }, 750);
+    paypalTouch.library.Buttons = (o: any) =>
+      buttons({
+        ...o,
+        onClick: (d: any, a: any) => (
+          this._form.dispatchIntentSubmit(),
+          o.onClick && o.onClick(d, a)
+        ),
+      });
+    paypalTouch.unloadButton && paypalTouch.unloadButton();
+    paypalTouch.loadButton && paypalTouch.loadButton();
     return true;
   }
 
