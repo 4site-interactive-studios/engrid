@@ -73,18 +73,29 @@ export class WelcomeBack {
             .querySelector(options.anchor)) === null || _a === void 0 ? void 0 : _a.insertAdjacentElement(options.placement, welcomeBack);
     }
     resetWelcomeBack() {
-        const inputs = document.querySelectorAll(".fast-personal-details .en__field__input");
-        inputs.forEach((input) => {
-            if (input.type === "checkbox" || input.type === "radio") {
-                input.checked = false;
-            }
-            else {
-                input.value = "";
-            }
-        });
+        const clearAutofillLink = document.getElementById("clear-autofill-data");
+        if (clearAutofillLink) {
+            clearAutofillLink.click();
+        }
         this.supporterDetails = {};
         ENGrid.setBodyData("hide-fast-personal-details", false);
         cookie.remove("engrid-autofill");
+        this.removeAutoFillWithIframe();
+    }
+    removeAutoFillWithIframe() {
+        const rememberMeOptions = ENGrid.getOption("RememberMe");
+        const iframe = document.querySelector('iframe[title="Remember Me iframe"]');
+        if (rememberMeOptions && iframe && iframe.contentWindow) {
+            const cookieName = typeof rememberMeOptions === "object" && rememberMeOptions.cookieName
+                ? rememberMeOptions.cookieName
+                : "engrid-autofill";
+            iframe.contentWindow.postMessage(JSON.stringify({
+                key: cookieName,
+                value: {},
+                operation: "write",
+                expires: 1,
+            }), "*");
+        }
     }
     addPersonalDetailsSummary() {
         var _a;
@@ -125,8 +136,17 @@ export class WelcomeBack {
             .querySelector(options.anchor)) === null || _a === void 0 ? void 0 : _a.insertAdjacentElement(options.placement, personalDetailsSummary);
     }
     addEventListeners() {
+        // Add listener for "Not you?" link in welcome message
         document
             .querySelectorAll(".engrid-reset-welcome-back")
+            .forEach((element) => {
+            element.addEventListener("click", () => {
+                this.resetWelcomeBack();
+            });
+        });
+        // Add listener for "Change" button in personal details summary
+        document
+            .querySelectorAll(".engrid-welcome-back-clear")
             .forEach((element) => {
             element.addEventListener("click", () => {
                 this.resetWelcomeBack();

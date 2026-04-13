@@ -9,6 +9,7 @@ export declare class WelcomeBack {
     private shouldRun;
     private addWelcomeBack;
     private resetWelcomeBack;
+    private removeAutoFillWithIframe;
     private addPersonalDetailsSummary;
     private addEventListeners;
     enOnValidate(): void;
