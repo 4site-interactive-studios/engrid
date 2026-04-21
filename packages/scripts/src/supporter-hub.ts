@@ -14,6 +14,7 @@ export class SupporterHub {
     if (!this.shoudRun()) return;
     this.logger.log("Enabled");
     this.watch();
+    this.preventDuplicateSubmits();
   }
   shoudRun() {
     return (
@@ -88,5 +89,26 @@ export class SupporterHub {
           });
       }
     }, 300);
+  }
+
+  // The supporter hub does not properly handle or prevent duplicate submits, so we add a listener to prevent this.
+  private preventDuplicateSubmits() {
+    document.addEventListener(
+      "click",
+      (e: MouseEvent) => {
+        const btn = (e.target as HTMLElement).closest(
+          ".en__submit button"
+        ) as HTMLButtonElement;
+        if (!btn) return;
+        if (btn.dataset.busy) {
+          e.stopImmediatePropagation();
+          e.preventDefault();
+          return;
+        }
+        btn.dataset.busy = "true";
+        setTimeout(() => delete btn.dataset.busy, 10000);
+      },
+      true
+    );
   }
 }

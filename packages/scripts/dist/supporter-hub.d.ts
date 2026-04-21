@@ -6,4 +6,5 @@ export declare class SupporterHub {
     watch(): void;
     creditCardUpdate(overlay: HTMLDivElement): void;
     amountLabelUpdate(overlay: HTMLDivElement): void;
+    private preventDuplicateSubmits;
 }
