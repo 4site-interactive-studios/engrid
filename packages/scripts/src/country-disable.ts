@@ -13,10 +13,15 @@ export class CountryDisable {
     const countries = document.querySelectorAll(
       'select[name="supporter.country"], select[name="transaction.shipcountry"], select[name="supporter.billingCountry"], select[name="transaction.infcountry"]'
     );
-    const CountryDisable = ENGrid.getOption("CountryDisable") as string[];
+    const countryDisable = ENGrid.getOption("CountryDisable") as
+      | string[]
+      | undefined;
+    const disabledCountries = Array.isArray(countryDisable)
+      ? countryDisable
+      : [];
     // Remove the countries from the dropdown list
-    if (countries.length > 0 && CountryDisable.length > 0) {
-      const countriesLower = CountryDisable.map((country) =>
+    if (countries.length > 0 && disabledCountries.length > 0) {
+      const countriesLower = disabledCountries.map((country) =>
         country.toLowerCase()
       );
       countries.forEach((country) => {

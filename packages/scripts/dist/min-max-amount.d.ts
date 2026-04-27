@@ -12,5 +12,6 @@ export declare class MinMaxAmount {
     shouldRun(): boolean;
     enOnValidate(): void;
     liveValidate(): void;
+    private updateFamntRange;
     private setValidationConfigFromEN;
 }

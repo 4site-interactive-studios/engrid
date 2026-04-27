@@ -52,6 +52,9 @@ export class AutoCountrySelect {
           this.country = jsondata.loc;
           this.init();
           // console.log("Country:", this.country);
+        })
+        .catch(() => {
+          this.init();
         });
     } else {
       this.init();
