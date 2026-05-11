@@ -1,7 +1,23 @@
 export class EventTickets {
     constructor() {
-        // --------------------------------------------
-        // Format ticket amounts as currency.
+        this.formatTicketAmountsAsCurrency();
+        this.showWaitlistLinkIfApplicable();
+    }
+    showWaitlistLinkIfApplicable() {
+        const waitlistLink = document.querySelector(".waitlist-link a");
+        if (!waitlistLink) {
+            return;
+        }
+        document.querySelectorAll('.en__ticket').forEach((ticket) => {
+            const soldOutMessage = ticket.querySelector(".en__ticket__soldout");
+            if (soldOutMessage) {
+                const waitlistClone = waitlistLink.cloneNode(true);
+                waitlistClone.className = "waitlist-link";
+                soldOutMessage.insertAdjacentElement("afterend", waitlistClone);
+            }
+        });
+    }
+    formatTicketAmountsAsCurrency() {
         const ticketCostElements = document.getElementsByClassName("en__ticket__field--cost");
         const ticketCurrencyElements = document.getElementsByClassName("en__ticket__currency");
         for (const ticketCurrencyElement of ticketCurrencyElements) {
