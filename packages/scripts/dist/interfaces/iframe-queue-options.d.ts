@@ -62,6 +62,18 @@ export interface IframeQueueItem {
      * iframe load error, or message error from the embedded page).
      */
     onError?: (error: Error) => void;
+    /**
+     * If true, when this item fails (timeout / load error / embedded
+     * error message) the queue does NOT remove the iframe from the DOM
+     * and instead repositions it as a visible, framed overlay so a
+     * developer can inspect it (right-click → Inspect frame, view its
+     * console, etc.). Default: false.
+     *
+     * Independent of this flag, failed iframes are also kept and made
+     * visible automatically whenever ENgrid debug mode is on
+     * (`window.EngridOptions.Debug === true` or `?debug=true`).
+     */
+    keepIframeOnError?: boolean;
 }
 /**
  * Payload dispatched by `IframeQueueEvents.onChainError` when the queue

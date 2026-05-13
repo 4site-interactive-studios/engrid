@@ -20,7 +20,7 @@ import { SignalDispatcher, SimpleEventDispatcher } from "strongly-typed-events";
 import { EngridLogger } from "..";
 export class IframeQueueEvents {
     constructor() {
-        this.logger = new EngridLogger("IframeQueueEvents", "white", "#1f6feb", "🚂");
+        this.logger = new EngridLogger("IframeQueueEvents");
         this._onChainComplete = new SignalDispatcher();
         this._onChainError = new SimpleEventDispatcher();
         this._onItemStart = new SimpleEventDispatcher();

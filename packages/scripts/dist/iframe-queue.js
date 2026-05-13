@@ -1,6 +1,20 @@
 /**
  * Iframe Queue — load embedded EN pages sequentially.
  *
+ * **This component is opt-in.** Like `OptInLadder`, it is exported from
+ * `@4site/engrid-scripts` but is **not** auto-constructed by ENgrid's
+ * core bootstrap (`app.ts`). To use it, instantiate it once in your
+ * theme's bootstrap:
+ *
+ * ```ts
+ * import { IframeQueue } from "@4site/engrid-scripts";
+ * new IframeQueue();
+ * ```
+ *
+ * On client themes that don't use this component, **nothing in this
+ * file runs**: no `message` listener is registered, no singleton is
+ * allocated, no bundle code beyond the unused class definition.
+ *
  * **Why this exists.** Engaging Networks' platform handles concurrent
  * iframe submissions inconsistently — when several embedded EN forms
  * are submitted in parallel (e.g. QCB opt-ins for postal mail, mobile
@@ -70,6 +84,35 @@ const MSG_THANK_YOU = "engrid-iframe-queue:thank-you";
 const MSG_ERROR = "engrid-iframe-queue:error";
 /** Default per-item timeout in milliseconds. */
 const DEFAULT_TIMEOUT_MS = 30000;
+/**
+ * Parameters that are automatically inherited from the parent page
+ * onto each queued iframe URL. These are all ENgrid loader / dev-mode
+ * flags — adding them to the parent is meant to affect "the ENgrid
+ * bundle running on this browser tab," which conceptually includes
+ * the embedded forms loaded by the queue.
+ *
+ * For each key, the value is resolved with the same precedence used by
+ * `loader.ts#getOption`:
+ *   1. The item's own URL — if the consumer hard-coded the param on
+ *      the iframe URL, that wins.
+ *   2. The parent page's URL parameter (`?assets=local`).
+ *   3. `window.EngridLoader[key]` on the parent page — useful when EN
+ *      strips URL params on the Thank You page, so themes set
+ *      `<script>window.EngridLoader = { assets: 'local' };</script>`
+ *      to pin the bundle source.
+ *
+ * Notable use case: any of the three works for forcing local-asset
+ * loading on every queued QCB iframe during testing.
+ */
+const PROPAGATED_PARENT_PARAMS = [
+    "assets",
+    "engridjs",
+    "engridcss",
+    "repo-name",
+    "repo-owner",
+    "debug",
+    "mode",
+];
 /** Default visually-hidden style for queue iframes. */
 const DEFAULT_HIDDEN_STYLE = {
     position: "absolute",
@@ -272,7 +315,7 @@ export class IframeQueue {
     processItem(item) {
         return new Promise((resolve, reject) => {
             var _a, _b;
-            const url = this.stripChainParam(item.url);
+            const url = this.prepareIframeUrl(item.url);
             const expectedPageId = ENGrid.getPageIdFromUrl(url);
             if (!expectedPageId) {
                 reject(new Error(`IframeQueue: could not parse Page ID from URL "${item.url}".`));
@@ -284,7 +327,7 @@ export class IframeQueue {
             const timeoutMs = (_b = item.timeout) !== null && _b !== void 0 ? _b : DEFAULT_TIMEOUT_MS;
             let settled = false;
             let timeoutId = null;
-            const cleanup = () => {
+            const detachListeners = () => {
                 if (timeoutId !== null) {
                     window.clearTimeout(timeoutId);
                     timeoutId = null;
@@ -292,6 +335,8 @@ export class IframeQueue {
                 window.removeEventListener("message", onMessage);
                 iframe.removeEventListener("load", onIframeLoad);
                 iframe.removeEventListener("error", onIframeError);
+            };
+            const removeIframe = () => {
                 if (iframe.parentNode) {
                     iframe.parentNode.removeChild(iframe);
                 }
@@ -301,7 +346,8 @@ export class IframeQueue {
                 if (settled)
                     return;
                 settled = true;
-                cleanup();
+                detachListeners();
+                removeIframe();
                 this.events.dispatchItemComplete(item);
                 try {
                     (_a = item.onComplete) === null || _a === void 0 ? void 0 : _a.call(item);
@@ -315,7 +361,14 @@ export class IframeQueue {
                 if (settled)
                     return;
                 settled = true;
-                cleanup();
+                detachListeners();
+                if (this.shouldKeepIframeOnError(item)) {
+                    this.markIframeFailed(iframe, error);
+                    this.logger.danger(`Item failed — iframe kept in DOM for inspection: ${error.message}`);
+                }
+                else {
+                    removeIframe();
+                }
                 reject(error);
             };
             const onMessage = (event) => {
@@ -376,18 +429,121 @@ export class IframeQueue {
             container.appendChild(iframe);
         });
     }
-    /** Defensive: remove any `chain` query parameter from the URL. */
-    stripChainParam(rawUrl) {
+    /**
+     * Normalise the URL for a queued iframe:
+     *  1. Strip any `chain` query parameter defensively — the queue
+     *     replaces `?chain` with sequential processing.
+     *  2. Inherit a small allowlist of loader / dev-mode params (see
+     *     {@link PROPAGATED_PARENT_PARAMS}) when they're not already set
+     *     on the item URL. Each key is resolved with the same precedence
+     *     `loader.ts#getOption` uses: parent URL param first, then
+     *     `window.EngridLoader[key]`.
+     *
+     * Item-specified params always take precedence over inherited ones.
+     * Returns the original string unchanged if URL parsing fails.
+     */
+    prepareIframeUrl(rawUrl) {
+        let url;
         try {
-            const url = new URL(rawUrl, window.location.href);
-            if (url.searchParams.has("chain")) {
-                url.searchParams.delete("chain");
-            }
-            return url.href;
+            url = new URL(rawUrl, window.location.href);
         }
         catch (_a) {
             return rawUrl;
         }
+        url.searchParams.delete("chain");
+        const parentUrlParams = this.getParentSearchParams();
+        const parentLoader = this.getParentEngridLoader();
+        const inherited = [];
+        for (const key of PROPAGATED_PARENT_PARAMS) {
+            if (url.searchParams.has(key))
+                continue;
+            let value = null;
+            let source = "";
+            if (parentUrlParams) {
+                const v = parentUrlParams.get(key);
+                if (v !== null) {
+                    value = v;
+                    source = "url";
+                }
+            }
+            if (value === null && parentLoader) {
+                const v = parentLoader[key];
+                if (typeof v === "string" && v !== "") {
+                    value = v;
+                    source = "EngridLoader";
+                }
+            }
+            if (value !== null) {
+                url.searchParams.set(key, value);
+                inherited.push(`${key}=${value} (from parent ${source})`);
+            }
+        }
+        if (inherited.length > 0) {
+            this.logger.log(`Inherited parent params on iframe URL: ${inherited.join(", ")}`);
+        }
+        return url.href;
+    }
+    /** Returns the parent page's URLSearchParams, or null on failure. */
+    getParentSearchParams() {
+        try {
+            return new URL(window.location.href).searchParams;
+        }
+        catch (_a) {
+            return null;
+        }
+    }
+    /**
+     * Returns the parent page's `window.EngridLoader` object if set, or
+     * null. Used by {@link prepareIframeUrl} as a fallback source for
+     * loader/dev-mode param values when EN has stripped URL parameters
+     * from the Thank You page.
+     */
+    getParentEngridLoader() {
+        const w = window;
+        if (!w.EngridLoader || typeof w.EngridLoader !== "object")
+            return null;
+        return w.EngridLoader;
+    }
+    /**
+     * Decide whether to leave a failed iframe in the DOM (for
+     * inspection) instead of removing it. True when the item explicitly
+     * asks for it via `keepIframeOnError`, OR whenever ENgrid debug
+     * mode is on (since debugging is when this is useful and we don't
+     * want to make consumers opt in just to inspect failures).
+     */
+    shouldKeepIframeOnError(item) {
+        if (item.keepIframeOnError)
+            return true;
+        try {
+            return ENGrid.debug === true;
+        }
+        catch (_a) {
+            return false;
+        }
+    }
+    /**
+     * Reposition and style a failed iframe so it's visible in the
+     * viewport (overriding the visually-hidden default), and tag it
+     * with a class + tooltip so the developer knows why it's there.
+     * Right-click the iframe → Inspect frame to dive in.
+     */
+    markIframeFailed(iframe, error) {
+        Object.assign(iframe.style, {
+            position: "fixed",
+            top: "10px",
+            right: "10px",
+            bottom: "auto",
+            left: "auto",
+            width: "min(600px, 90vw)",
+            height: "min(500px, 80vh)",
+            opacity: "1",
+            zIndex: "99999",
+            border: "3px solid #d33",
+            background: "white",
+            boxShadow: "0 4px 24px rgba(0, 0, 0, 0.25)",
+        });
+        iframe.classList.add("engrid-iframe--queue-failed");
+        iframe.title = `Iframe Queue: failed item — ${error.message}`;
     }
     /** Create a hidden iframe element for a queue item. */
     createIframe(url, styleOverride) {
@@ -433,12 +589,21 @@ export class IframeQueue {
             `fieldCount=${Object.keys(fields).length}, autoSubmit=${autoSubmit})`);
         try {
             for (const [name, value] of Object.entries(fields)) {
-                ENGrid.setFieldValue(name, value);
+                // Pass `dispatchEvents = true` so each field fires
+                // `change` + `blur` after the value is set. Without that,
+                // EN's form-validation state machine doesn't see the new
+                // values and leaves `en__submit--disabled` on the submit
+                // button, causing the auto-click below to no-op.
+                ENGrid.setFieldValue(name, value, true, true);
             }
             if (autoSubmit) {
                 // Defer slightly so any synchronous EN dependency parsing in
                 // setFieldValue settles before the form is submitted.
                 window.setTimeout(() => {
+                    // Belt-and-braces: clear EN's "submit disabled" state in
+                    // case its validators didn't re-evaluate (e.g. async
+                    // validators that hadn't completed when the events fired).
+                    this.forceEnableSubmitButton();
                     this._form.submitForm();
                 }, 0);
             }
@@ -451,6 +616,31 @@ export class IframeQueue {
                 pageId: (_b = data.pageId) !== null && _b !== void 0 ? _b : ENGrid.getPageID(),
                 message: error.message,
             }, "*");
+        }
+    }
+    /**
+     * Strip every "disabled" marker from the EN submit button so the
+     * programmatic `submitForm()` click is honoured. Removes:
+     *   - the `disabled` DOM property/attribute on the button,
+     *   - the `en__submit--disabled` BEM modifier (EN's own class),
+     *   - the `en__submit--disabled` modifier on the `.en__submit`
+     *     wrapper (some templates style the wrapper instead),
+     *   - ENgrid's own loader markup if a previous `disableSubmit()`
+     *     call left it in place.
+     *
+     * Used only by embedded-mode populate flow when `autoSubmit` is on.
+     */
+    forceEnableSubmitButton() {
+        const button = document.querySelector("form .en__submit button");
+        if (button) {
+            if (button.disabled)
+                button.disabled = false;
+            button.removeAttribute("disabled");
+            button.classList.remove("en__submit--disabled");
+        }
+        const wrapper = document.querySelector(".en__submit");
+        if (wrapper) {
+            wrapper.classList.remove("en__submit--disabled");
         }
     }
     // ---------------------------------------------------------------------------

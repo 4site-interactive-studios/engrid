@@ -1,5 +1,5 @@
 import { DonationAmount, DonationFrequency, EnForm, ProcessingFees, Country, } from "./events";
-import { AmountLabel, Loader, ProgressBar, UpsellLightbox, ENGrid, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, A11y, CapitalizeFields, Ecard, ClickToExpand, Advocacy, DataAttributes, LiveVariables, iFrame, InputPlaceholders, InputHasValueAndFocus, ShowHideRadioCheckboxes, AutoCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce, AutoYear, Autocomplete, RememberMe, TranslateFields, ShowIfAmount, EngridLogger, OtherAmount, MinMaxAmount, Ticker, DataReplace, DataHide, AddNameToMessage, ExpandRegionName, AppVersion, UrlToForm, RequiredIfVisible, TidyContact, DataLayer, LiveCurrency, Autosubmit, EventTickets, SwapAmounts, DebugPanel, DebugHiddenFields, FreshAddress, BrandingHtml, CountryDisable, PremiumGift, DigitalWallets, MobileCTA, LiveFrequency, UniversalOptIn, StripeFinancialConnections, GiveBySelect, UrlParamsToBodyAttrs, ExitIntentLightbox, SupporterHub, FastFormFill, SetAttr, ShowIfPresent, ENValidators, CustomCurrency, VGS, PostalCodeValidator, CountryRedirect, WelcomeBack, EcardToTarget, UsOnlyForm, ThankYouPageConditionalContent, EmbeddedEcard, CheckboxLabel, UpsellCheckbox, PostDonationEmbed, FrequencyUpsell, CustomPremium, StickyNSG, StickyPrepopulation, PreferredPaymentMethod, IframeQueue, } from ".";
+import { AmountLabel, Loader, ProgressBar, UpsellLightbox, ENGrid, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, A11y, CapitalizeFields, Ecard, ClickToExpand, Advocacy, DataAttributes, LiveVariables, iFrame, InputPlaceholders, InputHasValueAndFocus, ShowHideRadioCheckboxes, AutoCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce, AutoYear, Autocomplete, RememberMe, TranslateFields, ShowIfAmount, EngridLogger, OtherAmount, MinMaxAmount, Ticker, DataReplace, DataHide, AddNameToMessage, ExpandRegionName, AppVersion, UrlToForm, RequiredIfVisible, TidyContact, DataLayer, LiveCurrency, Autosubmit, EventTickets, SwapAmounts, DebugPanel, DebugHiddenFields, FreshAddress, BrandingHtml, CountryDisable, PremiumGift, DigitalWallets, MobileCTA, LiveFrequency, UniversalOptIn, StripeFinancialConnections, GiveBySelect, UrlParamsToBodyAttrs, ExitIntentLightbox, SupporterHub, FastFormFill, SetAttr, ShowIfPresent, ENValidators, CustomCurrency, VGS, PostalCodeValidator, CountryRedirect, WelcomeBack, EcardToTarget, UsOnlyForm, ThankYouPageConditionalContent, EmbeddedEcard, CheckboxLabel, UpsellCheckbox, PostDonationEmbed, FrequencyUpsell, CustomPremium, StickyNSG, StickyPrepopulation, PreferredPaymentMethod, } from ".";
 export class App extends ENGrid {
     constructor(options) {
         super();
@@ -280,11 +280,6 @@ export class App extends ENGrid {
         new UsOnlyForm();
         new ThankYouPageConditionalContent();
         new EmbeddedEcard();
-        // Iframe Queue - sequentially loads embedded EN pages (e.g. QCB
-        // opt-in iframes), passing field data via postMessage. Must run
-        // after iFrame and EmbeddedEcard so both modes are available to
-        // any code that pushes items into the queue at construction time.
-        new IframeQueue();
         new CheckboxLabel();
         new PostDonationEmbed();
         new FrequencyUpsell();

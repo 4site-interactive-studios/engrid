@@ -25,12 +25,7 @@ import {
 } from "../interfaces/iframe-queue-options";
 
 export class IframeQueueEvents {
-  private logger: EngridLogger = new EngridLogger(
-    "IframeQueueEvents",
-    "white",
-    "#1f6feb",
-    "🚂"
-  );
+  private logger: EngridLogger = new EngridLogger("IframeQueueEvents");
 
   private _onChainComplete = new SignalDispatcher();
   private _onChainError = new SimpleEventDispatcher<IframeQueueErrorPayload>();

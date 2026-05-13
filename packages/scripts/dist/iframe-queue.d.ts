@@ -1,6 +1,20 @@
 /**
  * Iframe Queue — load embedded EN pages sequentially.
  *
+ * **This component is opt-in.** Like `OptInLadder`, it is exported from
+ * `@4site/engrid-scripts` but is **not** auto-constructed by ENgrid's
+ * core bootstrap (`app.ts`). To use it, instantiate it once in your
+ * theme's bootstrap:
+ *
+ * ```ts
+ * import { IframeQueue } from "@4site/engrid-scripts";
+ * new IframeQueue();
+ * ```
+ *
+ * On client themes that don't use this component, **nothing in this
+ * file runs**: no `message` listener is registered, no singleton is
+ * allocated, no bundle code beyond the unused class definition.
+ *
  * **Why this exists.** Engaging Networks' platform handles concurrent
  * iframe submissions inconsistently — when several embedded EN forms
  * are submitted in parallel (e.g. QCB opt-ins for postal mail, mobile
@@ -115,8 +129,44 @@ export declare class IframeQueue {
      * and rejects on error/timeout.
      */
     private processItem;
-    /** Defensive: remove any `chain` query parameter from the URL. */
-    private stripChainParam;
+    /**
+     * Normalise the URL for a queued iframe:
+     *  1. Strip any `chain` query parameter defensively — the queue
+     *     replaces `?chain` with sequential processing.
+     *  2. Inherit a small allowlist of loader / dev-mode params (see
+     *     {@link PROPAGATED_PARENT_PARAMS}) when they're not already set
+     *     on the item URL. Each key is resolved with the same precedence
+     *     `loader.ts#getOption` uses: parent URL param first, then
+     *     `window.EngridLoader[key]`.
+     *
+     * Item-specified params always take precedence over inherited ones.
+     * Returns the original string unchanged if URL parsing fails.
+     */
+    private prepareIframeUrl;
+    /** Returns the parent page's URLSearchParams, or null on failure. */
+    private getParentSearchParams;
+    /**
+     * Returns the parent page's `window.EngridLoader` object if set, or
+     * null. Used by {@link prepareIframeUrl} as a fallback source for
+     * loader/dev-mode param values when EN has stripped URL parameters
+     * from the Thank You page.
+     */
+    private getParentEngridLoader;
+    /**
+     * Decide whether to leave a failed iframe in the DOM (for
+     * inspection) instead of removing it. True when the item explicitly
+     * asks for it via `keepIframeOnError`, OR whenever ENgrid debug
+     * mode is on (since debugging is when this is useful and we don't
+     * want to make consumers opt in just to inspect failures).
+     */
+    private shouldKeepIframeOnError;
+    /**
+     * Reposition and style a failed iframe so it's visible in the
+     * viewport (overriding the visually-hidden default), and tag it
+     * with a class + tooltip so the developer knows why it's there.
+     * Right-click the iframe → Inspect frame to dive in.
+     */
+    private markIframeFailed;
     /** Create a hidden iframe element for a queue item. */
     private createIframe;
     /**
@@ -129,6 +179,19 @@ export declare class IframeQueue {
     private setupEmbeddedMode;
     /** Handle a populate message sent by an IframeQueue parent. */
     private handlePopulate;
+    /**
+     * Strip every "disabled" marker from the EN submit button so the
+     * programmatic `submitForm()` click is honoured. Removes:
+     *   - the `disabled` DOM property/attribute on the button,
+     *   - the `en__submit--disabled` BEM modifier (EN's own class),
+     *   - the `en__submit--disabled` modifier on the `.en__submit`
+     *     wrapper (some templates style the wrapper instead),
+     *   - ENgrid's own loader markup if a previous `disableSubmit()`
+     *     call left it in place.
+     *
+     * Used only by embedded-mode populate flow when `autoSubmit` is on.
+     */
+    private forceEnableSubmitButton;
     /** True when this script is executing inside an iframe. */
     private inIframe;
 }
