@@ -49,6 +49,7 @@ export class ClickToExpand {
                     }
                     element.classList.add("expanded");
                     cta.setAttribute("aria-expanded", "true");
+                    cta.setAttribute("aria-hidden", "true");
                     textWrapper.setAttribute("aria-hidden", "false");
                     textWrapper.focus(); // Move focus to revealed content for screen reader announcement
                 };
