@@ -3721,7 +3721,7 @@ button[disabled],
 }
 
 body#en__pagebuilder .click-to-expand-screenreader-tip {
-  background-color: rgba(248, 168, 9, 0.1019607843);
+  background-color: rgba(248, 168, 9, 0.1019607843) !important;
 }
 
 body:not(#en__pagebuilder) .click-to-expand .click-to-expand-text-wrapper > :first-child {

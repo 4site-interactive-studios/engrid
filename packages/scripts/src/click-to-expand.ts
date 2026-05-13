@@ -12,14 +12,11 @@ export class ClickToExpand {
   constructor() {
     if (this.clickToExpandWrapper.length) {
       this.clickToExpandWrapper.forEach((element: HTMLElement, index: number) => {
-        const content = element.innerHTML;
         const textWrapperId = `click-to-expand-text-${index}`;
         const ctaId = `click-to-expand-cta-${index}`;
 
-        // Parse the content to extract a screen reader tip if available
-        const tempContainer = document.createElement("div");
-        tempContainer.innerHTML = content;
-        const screenReaderTip = tempContainer.querySelector(
+        // Extract screen reader tip from the live DOM
+        const screenReaderTip = element.querySelector(
           ".click-to-expand-screenreader-tip"
         );
         let ariaLabel = "Show more";
@@ -30,32 +27,35 @@ export class ClickToExpand {
           }
           screenReaderTip.remove();
         }
-        const cleanedContent = tempContainer.innerHTML;
 
-        const wrapper_html = `
-          <div class="click-to-expand-text-wrapper" 
-                id="${textWrapperId}"
-                aria-hidden="true"
-                aria-label="Expanded content${ariaLabel.replace('Show more', '')}"
-                tabindex="-1">
-            ${cleanedContent}
-          </div>
-          <div role="button" 
-                tabindex="0"
-                class="click-to-expand-cta"
-                id="${ctaId}"
-                aria-expanded="false"
-                aria-controls="${textWrapperId}"
-                aria-label="${ariaLabel}">
-          </div>`;
-        element.innerHTML = wrapper_html;
+        // Capture all original child nodes before restructuring
+        const originalChildren = Array.from(element.childNodes);
 
-        const cta = element.querySelector(
-          ".click-to-expand-cta"
-        ) as HTMLDivElement;
-        const textWrapper = element.querySelector(
-          ".click-to-expand-text-wrapper"
-        ) as HTMLElement;
+        element.innerHTML = "";
+
+        // Create the text wrapper
+        const textWrapper = document.createElement("div");
+        textWrapper.className = "click-to-expand-text-wrapper";
+        textWrapper.id = textWrapperId;
+        textWrapper.setAttribute("aria-hidden", "true");
+        textWrapper.setAttribute("aria-label", "Expanded content" + (ariaLabel ? `${ariaLabel.replace('Show more', '')}` : ""));
+        textWrapper.setAttribute("tabindex", "-1");
+
+        originalChildren.forEach((child) => {
+          textWrapper.appendChild(child);
+        });
+
+        const cta = document.createElement("div");
+        cta.className = "click-to-expand-cta";
+        cta.id = ctaId;
+        cta.setAttribute("role", "button");
+        cta.setAttribute("tabindex", "0");
+        cta.setAttribute("aria-expanded", "false");
+        cta.setAttribute("aria-controls", textWrapperId);
+        cta.setAttribute("aria-label", ariaLabel);
+
+        element.appendChild(textWrapper);
+        element.appendChild(cta);
 
         const expand = () => {
           if (ENGrid.debug) {
@@ -63,7 +63,6 @@ export class ClickToExpand {
           }
           element.classList.add("expanded");
           cta.setAttribute("aria-expanded", "true");
-          cta.setAttribute("aria-hidden", "true");
           textWrapper.setAttribute("aria-hidden", "false");
           textWrapper.focus(); // Move focus to revealed content for screen reader announcement
         };
