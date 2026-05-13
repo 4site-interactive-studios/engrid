@@ -4,6 +4,7 @@ import { UpsellOptions } from "./upsell-options";
 import { ExitIntentOptions } from "./exit-intent-options";
 import { EcardToTargetOptions } from "./ecard-to-target-options";
 import { EmbeddedEcardOptions } from "./embedded-ecard-options";
+import { IframeQueueOptions } from "./iframe-queue-options";
 import { FrequencyUpsellConfig } from "./frequency-upsell-options";
 
 export {}; // this file needs to be a module
@@ -22,6 +23,7 @@ declare global {
     EngridTranslate: TranslateOptions;
     EngridEcardToTarget: EcardToTargetOptions;
     EngridEmbeddedEcard: EmbeddedEcardOptions;
+    EngridIframeQueue: IframeQueueOptions;
     EngridFrequencyUpsell: FrequencyUpsellConfig;
     EngridVersion: string;
     EngridLoader: {

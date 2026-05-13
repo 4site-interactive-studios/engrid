@@ -19,6 +19,12 @@ export {
   FrequencyUpsellABTestConfig,
   FrequencyUpsellConfig,
 } from "./interfaces/frequency-upsell-options";
+export {
+  IframeQueueOptions,
+  IframeQueueOptionsDefaults,
+  IframeQueueItem,
+  IframeQueueErrorPayload,
+} from "./interfaces/iframe-queue-options";
 
 export * from "./loader";
 export * from "./app";
@@ -34,6 +40,7 @@ export * from "./click-to-expand";
 export * from "./advocacy";
 export * from "./data-attributes";
 export * from "./iframe";
+export * from "./iframe-queue";
 export * from "./input-has-value-and-focus";
 export * from "./input-placeholders";
 export * from "./media-attribution";

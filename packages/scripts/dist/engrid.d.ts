@@ -15,6 +15,16 @@ export declare abstract class ENGrid {
     static getPageNumber(): any;
     static isThankYouPage(): boolean;
     static getPageID(): any;
+    /**
+     * Parse the numeric Page ID out of a Engaging Networks URL.
+     * EN page URLs follow the pattern `https://<host>/page/<PAGE_ID>/<slug>/...`.
+     * Used by the Iframe Queue component to match Thank-You-page pings from
+     * embedded iframes against the queued URL that was submitted.
+     *
+     * @param url Full URL string to parse.
+     * @returns The numeric Page ID, or 0 if it could not be parsed.
+     */
+    static getPageIdFromUrl(url: string): number;
     static getClientID(): any;
     static getDataCenter(): "us" | "ca";
     static getPageType(): "DONATION" | "ECARD" | "SURVEY" | "EMAILTOTARGET" | "ADVOCACY" | "SUBSCRIBEFORM" | "EVENT" | "SUPPORTERHUB" | "UNSUBSCRIBE" | "TWEETPAGE" | "UNKNOWN";

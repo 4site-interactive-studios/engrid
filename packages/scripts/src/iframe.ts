@@ -166,6 +166,12 @@ export class iFrame {
       "*"
     );
 
+    // Iframe Queue: signal Thank-You-page completion to the parent window.
+    // The IframeQueue component (in parent mode) listens for this ping and
+    // matches it by Page ID to advance to the next queued iframe. Fires
+    // exactly once per Thank-You-page load. See iframe-queue.ts.
+    this.sendIframeQueueThankYouPing();
+
     // On click fire the resize event
     document.addEventListener("click", (e: Event) => {
       this.logger.log("iFrame Event - click");
@@ -175,6 +181,37 @@ export class iFrame {
     });
     // Watch for errors and send the height
     ENGrid.watchForError(this.sendIframeHeight.bind(this));
+  }
+
+  /**
+   * Posts a `engrid-iframe-queue:thank-you` message to the parent window
+   * when the embedded EN page reaches its Thank You page (the last page
+   * in the page sequence). Carries the Page ID of the submitting form so
+   * the IframeQueue parent can match the ping against the queued item it
+   * is waiting on, ignoring pings from unrelated EN iframes that may exist
+   * on the same parent page (e.g. an Embedded Ecard iframe).
+   *
+   * Only fires when:
+   *   - the script is running inside an iframe (already guaranteed by the
+   *     code path that calls onLoaded()), AND
+   *   - the embedded page is a Thank You page (ENGrid.isThankYouPage()).
+   *
+   * Consumed by: IframeQueue (engrid/packages/scripts/src/iframe-queue.ts).
+   */
+  private sendIframeQueueThankYouPing() {
+    if (!ENGrid.isThankYouPage()) return;
+    const pageId = ENGrid.getPageID();
+    const message = {
+      type: "engrid-iframe-queue:thank-you",
+      pageId,
+      pageNumber: ENGrid.getPageNumber(),
+      pageCount: ENGrid.getPageCount(),
+      url: window.location.href,
+    };
+    this.logger.log(
+      `iFrame Event - Iframe Queue thank-you ping (pageId=${pageId})`
+    );
+    window.parent.postMessage(message, "*");
   }
 
   private sendIframeHeight() {

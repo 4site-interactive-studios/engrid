@@ -90,6 +90,7 @@ import {
   StickyNSG,
   StickyPrepopulation,
   PreferredPaymentMethod,
+  IframeQueue,
 } from ".";
 
 export class App extends ENGrid {
@@ -464,6 +465,12 @@ export class App extends ENGrid {
     new ThankYouPageConditionalContent();
 
     new EmbeddedEcard();
+
+    // Iframe Queue - sequentially loads embedded EN pages (e.g. QCB
+    // opt-in iframes), passing field data via postMessage. Must run
+    // after iFrame and EmbeddedEcard so both modes are available to
+    // any code that pushes items into the queue at construction time.
+    new IframeQueue();
 
     new CheckboxLabel();
 

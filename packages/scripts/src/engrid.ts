@@ -226,6 +226,23 @@ export abstract class ENGrid {
     return 0;
   }
 
+  /**
+   * Parse the numeric Page ID out of a Engaging Networks URL.
+   * EN page URLs follow the pattern `https://<host>/page/<PAGE_ID>/<slug>/...`.
+   * Used by the Iframe Queue component to match Thank-You-page pings from
+   * embedded iframes against the queued URL that was submitted.
+   *
+   * @param url Full URL string to parse.
+   * @returns The numeric Page ID, or 0 if it could not be parsed.
+   */
+  static getPageIdFromUrl(url: string): number {
+    if (!url) return 0;
+    const match = url.match(/\/page\/(\d+)(?:\/|$|\?|#)/);
+    if (!match) return 0;
+    const id = parseInt(match[1], 10);
+    return Number.isFinite(id) ? id : 0;
+  }
+
   // Return the client ID
   static getClientID() {
     if ("pageJson" in window) return window.pageJson.clientId;
