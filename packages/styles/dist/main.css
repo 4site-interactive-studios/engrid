@@ -5722,6 +5722,55 @@ button.en__eventOccurrence__select > label {
   grid-area: en__additional__promo;
 }
 
+.en__overlay--waitlist .en__overlay__popup {
+  top: 15vh;
+}
+.en__overlay--waitlist .en__overlay__header {
+  background: var(--engrid__page_background-color);
+  border-bottom: unset;
+  border-radius: unset;
+}
+.en__overlay--waitlist .en__overlay__content {
+  background: var(--engrid__page_background-color);
+}
+.en__overlay--waitlist .en__waitlistCopy {
+  font-size: var(--h2_font-size);
+  line-height: var(--h2_line-height);
+  font-weight: var(--h2_font-weight);
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.en__overlay--waitlist .en__waitlistForm {
+  max-width: 475px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.en__overlay--waitlist .en__field {
+  display: grid;
+  gap: 8px;
+}
+.en__overlay--waitlist .en__overlay__actions {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  max-width: 450px;
+  margin: 16px auto;
+}
+.en__overlay--waitlist .en__overlay__actions .en__button {
+  min-width: 120px;
+  text-transform: uppercase;
+  padding: var(--button_padding);
+}
+.en__overlay--waitlist .en__overlay__actions .en__button--submit {
+  --button_background-color: var(--submit__button_background-color);
+  --button_border-color: var(--submit__button_border-color);
+  --button_color: var(--submit__button_color);
+  --button_background-color_hover: var(--submit__button_background-color_hover);
+  --button_border-color_hover: var(--submit__button_border-color_hover);
+  --button_color_hover: var(--submit__button_color_hover);
+}
+
 @media screen and (max-width: 600px) {
   .en__ticket {
     display: flex;
