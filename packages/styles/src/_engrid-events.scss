@@ -296,6 +296,7 @@ button.en__eventOccurrence__select>label {
 .en__overlay--waitlist {
   .en__overlay__popup {
     top: 15vh;
+    width: 100%;
   }
 
   .en__overlay__header {
@@ -306,6 +307,7 @@ button.en__eventOccurrence__select>label {
 
   .en__overlay__content {
     background: var(--engrid__page_background-color);
+    padding: 10px 20px;
   }
 
   .en__waitlistCopy {
