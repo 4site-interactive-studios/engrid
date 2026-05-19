@@ -7,6 +7,7 @@ export declare class OptInLadder {
     private runAsChildRegular;
     private runAsChildThankYou;
     private inIframe;
+    private listenForParentInfo;
     private saveStepToSessionStorage;
     private saveOptInsToSessionStorage;
     private isEmbeddedThankYouPage;
@@ -14,4 +15,5 @@ export declare class OptInLadder {
     private getFirstPageUrl;
     private hidePage;
     private clearSessionStorage;
+    private isFollowupStep;
 }
