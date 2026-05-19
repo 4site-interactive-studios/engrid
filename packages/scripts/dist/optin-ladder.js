@@ -6,11 +6,12 @@
  * If the page is embedded in an iframe and on a Thank You Page, and the child iFrame is also a Thank You Page, we will look for a sessionStorage that has the current ladder step and the total number of steps.
  * If the current step is less than the total number of steps, we will redirect to the first page. If the current step is equal to the total number of steps, we will show the Thank You Page.
  */
-import { EngridLogger, ENGrid, EnForm } from ".";
+import { EngridLogger, ENGrid, EnForm, DataLayer } from ".";
 export class OptInLadder {
     constructor() {
         this.logger = new EngridLogger("OptInLadder", "lightgreen", "darkgreen", "✔");
         this._form = EnForm.getInstance();
+        this._dataLayer = DataLayer.getInstance();
         if (!this.inIframe()) {
             this.runAsParent();
         }
@@ -22,6 +23,7 @@ export class OptInLadder {
         }
     }
     runAsParent() {
+        var _a;
         this.logger.log("Running as Parent");
         if (ENGrid.getPageNumber() > 1 &&
             ENGrid.getPageNumber() === ENGrid.getPageCount()) {
@@ -64,6 +66,9 @@ export class OptInLadder {
                 return;
             }
             placement.appendChild(iframe);
+            this._dataLayer.pushVariable("ENGRID_OPTIN_LADDER_PARENT_ID", ENGrid.getPageID());
+            this._dataLayer.pushVariable("ENGRID_OPTIN_LADDER_PARENT_NAME", ((_a = window === null || window === void 0 ? void 0 : window.pageJson) === null || _a === void 0 ? void 0 : _a.pageName) || "");
+            this._dataLayer.pushVariable("ENGRID_OPTIN_LADDER_PARENT_TYPE", ENGrid.getPageType());
         }
         else {
             // Grab all the checkboxes with the name starting with "supporter.questions"
@@ -170,6 +175,12 @@ export class OptInLadder {
         this.saveStepToSessionStorage(currentStep, totalSteps);
         // On form submit, save the checkbox values to sessionStorage
         this._form.onSubmit.subscribe(() => {
+            var _a;
+            this._dataLayer.pushEvent("ENGRID_OPTIN_LADDER_SUBMIT", {
+                opt_in_label: (_a = currentHeader === null || currentHeader === void 0 ? void 0 : currentHeader.innerText.trim()) !== null && _a !== void 0 ? _a : "Unknown",
+                opt_in_step: currentStep,
+                opt_in_total_steps: totalSteps,
+            });
             this.saveOptInsToSessionStorage("child");
             // Save the current step to sessionStorage
             currentStep++;

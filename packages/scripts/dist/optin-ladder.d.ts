@@ -1,6 +1,7 @@
 export declare class OptInLadder {
     private logger;
     private _form;
+    private _dataLayer;
     constructor();
     private runAsParent;
     private runAsChildRegular;

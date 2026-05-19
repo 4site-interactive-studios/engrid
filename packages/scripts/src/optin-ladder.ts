@@ -6,7 +6,7 @@
  * If the page is embedded in an iframe and on a Thank You Page, and the child iFrame is also a Thank You Page, we will look for a sessionStorage that has the current ladder step and the total number of steps.
  * If the current step is less than the total number of steps, we will redirect to the first page. If the current step is equal to the total number of steps, we will show the Thank You Page.
  */
-import { EngridLogger, ENGrid, EnForm } from ".";
+import { EngridLogger, ENGrid, EnForm, DataLayer } from ".";
 
 export class OptInLadder {
   private logger: EngridLogger = new EngridLogger(
@@ -16,6 +16,7 @@ export class OptInLadder {
     "✔"
   );
   private _form: EnForm = EnForm.getInstance();
+  private _dataLayer: DataLayer = DataLayer.getInstance();
 
   constructor() {
     if (!this.inIframe()) {
@@ -75,6 +76,18 @@ export class OptInLadder {
         return;
       }
       placement.appendChild(iframe);
+      this._dataLayer.pushVariable(
+        "ENGRID_OPTIN_LADDER_PARENT_ID",
+        ENGrid.getPageID()
+      );
+      this._dataLayer.pushVariable(
+        "ENGRID_OPTIN_LADDER_PARENT_NAME",
+        window?.pageJson?.pageName || ""
+      );
+      this._dataLayer.pushVariable(
+        "ENGRID_OPTIN_LADDER_PARENT_TYPE",
+        ENGrid.getPageType()
+      );
     } else {
       // Grab all the checkboxes with the name starting with "supporter.questions"
       const checkboxes = document.querySelectorAll(
@@ -193,8 +206,12 @@ export class OptInLadder {
     this.saveStepToSessionStorage(currentStep, totalSteps);
     // On form submit, save the checkbox values to sessionStorage
     this._form.onSubmit.subscribe(() => {
+      this._dataLayer.pushEvent("ENGRID_OPTIN_LADDER_SUBMIT", {
+        opt_in_label: currentHeader?.innerText.trim() ?? "Unknown",
+        opt_in_step: currentStep,
+        opt_in_total_steps: totalSteps,
+      });
       this.saveOptInsToSessionStorage("child");
-
       // Save the current step to sessionStorage
       currentStep++;
       this.saveStepToSessionStorage(currentStep, totalSteps);
