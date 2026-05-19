@@ -385,12 +385,12 @@ export class OptInLadder {
     const url = new URL(window.location.href);
     const path = url.pathname.split("/");
     path[path.length - 1] = String(page);
-    const nextUrl = new URL(url.origin + path.join("/"));
+    url.pathname = path.join("/");
     if (chain) {
-      nextUrl.searchParams.set("chain", "true");
+      url.searchParams.set("chain", "true");
     }
-    nextUrl.searchParams.set("engrid_optin_ladder_followup", "true");
-    return nextUrl.toString();
+    url.searchParams.set("engrid_optin_ladder_followup", "true");
+    return url.toString();
   }
 
   private getFirstPageUrl(): string {
@@ -421,6 +421,12 @@ export class OptInLadder {
 
   private isFollowupStep(): boolean {
     const searchParams = new URLSearchParams(window.location.search);
-    return searchParams.get("engrid_optin_ladder_followup") === "true";
+    const fromUrl =
+      searchParams.get("engrid_optin_ladder_followup") === "true";
+    const fromStorage =
+      Number(
+        sessionStorage.getItem("engrid.optin-ladder-submission-count")
+      ) > 0;
+    return fromUrl || fromStorage;
   }
 }
