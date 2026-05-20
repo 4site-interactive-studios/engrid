@@ -308,6 +308,18 @@ button.en__eventOccurrence__select>label {
   .en__overlay__content {
     background: var(--engrid__page_background-color);
     padding: 10px 20px;
+
+    .en__button--confirm {
+      --button_background-color: var(--submit__button_background-color);
+      --button_border-color: var(--submit__button_border-color);
+      --button_color: var(--submit__button_color);
+      --button_background-color_hover: var(--submit__button_background-color_hover);
+      --button_border-color_hover: var(--submit__button_border-color_hover);
+      --button_color_hover: var(--submit__button_color_hover);
+      padding: var(--button_padding);
+      min-width: 100px;
+      justify-self: center;
+    }
   }
 
   .en__waitlistCopy {
