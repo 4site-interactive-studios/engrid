@@ -145,11 +145,11 @@ input[type="text"].en__ticket__quantity {
 .en__orderSummary {
   padding: 0;
 
-  > * > :first-child {
+  >*> :first-child {
     padding-left: 0;
   }
 
-  > * > :last-child {
+  >*> :last-child {
     padding-right: 0;
   }
 }
@@ -182,7 +182,7 @@ button.en__eventOccurrence__select {
   margin-bottom: 0;
 }
 
-button.en__eventOccurrence__select > label {
+button.en__eventOccurrence__select>label {
   font-family: var(--button_font-family);
 }
 
@@ -240,17 +240,21 @@ button.en__eventOccurrence__select > label {
   width: min-content;
   margin-left: auto;
 }
+
 .en__ticket__minus {
   justify-self: end;
   grid-area: en__ticket__minus;
 }
+
 .en__ticket__plus {
   justify-self: start;
   grid-area: en__ticket__plus;
 }
+
 .en__ticket__remaining {
   grid-area: en__ticket__remaining;
 }
+
 .en__ticket__quantity {
   justify-self: center;
   align-self: center;
@@ -287,6 +291,79 @@ button.en__eventOccurrence__select > label {
 .en__additional__promo {
   justify-self: end;
   grid-area: en__additional__promo;
+}
+
+.en__overlay--waitlist {
+  .en__overlay__popup {
+    top: 15vh;
+    width: 100%;
+  }
+
+  .en__overlay__header {
+    background: var(--engrid__page_background-color);
+    border-bottom: unset;
+    border-radius: unset;
+  }
+
+  .en__overlay__content {
+    background: var(--engrid__page_background-color);
+    padding: 10px 20px;
+
+    .en__button--confirm {
+      --button_background-color: var(--submit__button_background-color);
+      --button_border-color: var(--submit__button_border-color);
+      --button_color: var(--submit__button_color);
+      --button_background-color_hover: var(--submit__button_background-color_hover);
+      --button_border-color_hover: var(--submit__button_border-color_hover);
+      --button_color_hover: var(--submit__button_color_hover);
+      padding: var(--button_padding);
+      min-width: 100px;
+      justify-self: center;
+    }
+  }
+
+  .en__waitlistCopy {
+    font-size: var(--h2_font-size);
+    line-height: var(--h2_line-height);
+    font-weight: var(--h2_font-weight);
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .en__waitlistForm {
+    max-width: 475px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .en__field {
+    display: grid;
+    gap: 8px;
+  }
+
+  .en__overlay__actions {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    max-width: 450px;
+    margin: 16px auto;
+
+    .en__button {
+      min-width: 120px;
+      text-transform: uppercase;
+      padding: var(--button_padding);
+    }
+
+    .en__button--submit {
+      --button_background-color: var(--submit__button_background-color);
+      --button_border-color: var(--submit__button_border-color);
+      --button_color: var(--submit__button_color);
+      --button_background-color_hover: var(--submit__button_background-color_hover);
+      --button_border-color_hover: var(--submit__button_border-color_hover);
+      --button_color_hover: var(--submit__button_color_hover);
+    }
+  }
 }
 
 @media screen and (max-width: 600px) {
