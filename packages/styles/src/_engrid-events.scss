@@ -318,7 +318,7 @@ button.en__eventOccurrence__select>label {
       --button_color_hover: var(--submit__button_color_hover);
       padding: var(--button_padding);
       min-width: 100px;
-      justify-self: center;
+      margin: auto;
     }
   }
 
@@ -421,5 +421,15 @@ button.en__eventOccurrence__select>label {
 
   .en__ticket__plus {
     margin-right: 2rem;
+  }
+}
+
+#engrid:has(.en__overlay--open) {
+
+  .content-header,
+  .content-footerSpacer,
+  .content-preFooter,
+  .content-footer {
+    z-index: unset;
   }
 }

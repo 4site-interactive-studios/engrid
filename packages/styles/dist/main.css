@@ -5744,7 +5744,7 @@ button.en__eventOccurrence__select > label {
   --button_color_hover: var(--submit__button_color_hover);
   padding: var(--button_padding);
   min-width: 100px;
-  justify-self: center;
+  margin: auto;
 }
 .en__overlay--waitlist .en__waitlistCopy {
   font-size: var(--h2_font-size);
@@ -5832,6 +5832,13 @@ button.en__eventOccurrence__select > label {
     margin-right: 2rem;
   }
 }
+#engrid:has(.en__overlay--open) .content-header,
+#engrid:has(.en__overlay--open) .content-footerSpacer,
+#engrid:has(.en__overlay--open) .content-preFooter,
+#engrid:has(.en__overlay--open) .content-footer {
+  z-index: unset;
+}
+
 /*
 * ##########################################################
 * # Field Level Inline "Fancy Errors"
