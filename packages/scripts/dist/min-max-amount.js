@@ -40,10 +40,12 @@ export class MinMaxAmount {
             }
             this._form.validate = false;
             if (this.disableLiveValidation) {
-                this.logger.log("Setting error on enOnValidate: " + this.minAmount);
+                this.logger.log("Setting error on enOnValidate: " +
+                    (this.minAmountMessage || "Invalid Amount"));
+                // Defer so EN's own onValidate pass can't overwrite the error
                 window.setTimeout(() => {
                     ENGrid.setError(".en__field--withOther", this.minAmountMessage || "Invalid Amount");
-                });
+                }, 300);
             }
         }
         else if (this._amount.amount > this.maxAmount) {
@@ -53,11 +55,17 @@ export class MinMaxAmount {
             }
             this._form.validate = false;
             if (this.disableLiveValidation) {
-                this.logger.log("Setting error on enOnValidate: " + this.maxAmount);
+                this.logger.log("Setting error on enOnValidate: " +
+                    (this.maxAmountMessage || "Invalid Amount"));
+                // Defer so EN's own onValidate pass can't overwrite the error
                 window.setTimeout(() => {
                     ENGrid.setError(".en__field--withOther", this.maxAmountMessage || "Invalid Amount");
-                });
+                }, 300);
             }
+        }
+        else if (this.disableLiveValidation) {
+            // Amount is in range — clear any stale error left over from a previous submit
+            ENGrid.removeError(".en__field--withOther");
         }
         if (!this.disableLiveValidation) {
             window.setTimeout(this.liveValidate.bind(this), 300);
