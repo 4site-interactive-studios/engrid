@@ -22,7 +22,7 @@ export class MinMaxAmount {
   private maxAmount: number = ENGrid.getOption("MaxAmount") ?? 100000;
   private minAmountMessage = ENGrid.getOption("MinAmountMessage");
   private maxAmountMessage = ENGrid.getOption("MaxAmountMessage");
-  private disableLiveValidation = ENGrid.getOption("DisableLiveValidation");
+  private disableLiveValidation = ENGrid.getOption("DisableMinMaxLiveValidation");
   private enAmountValidator: Validator | null = null;
   private logger: EngridLogger = new EngridLogger(
     "MinMaxAmount",
