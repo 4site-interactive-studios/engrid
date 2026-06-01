@@ -415,4 +415,17 @@ export class DataLayer {
     );
     return !eventsData ? [] : JSON.parse(eventsData);
   }
+
+  public pushVariable(variableName: string, variableValue: any = "") {
+    this.dataLayer.push({
+      [variableName.toUpperCase()]: variableValue,
+    });
+  }
+
+  public pushEvent(eventName: string, eventProperties: object = {}) {
+    this.dataLayer.push({
+      event: eventName,
+      ...eventProperties,
+    });
+  }
 }

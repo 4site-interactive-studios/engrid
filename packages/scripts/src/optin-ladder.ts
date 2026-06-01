@@ -6,7 +6,7 @@
  * If the page is embedded in an iframe and on a Thank You Page, and the child iFrame is also a Thank You Page, we will look for a sessionStorage that has the current ladder step and the total number of steps.
  * If the current step is less than the total number of steps, we will redirect to the first page. If the current step is equal to the total number of steps, we will show the Thank You Page.
  */
-import { EngridLogger, ENGrid, EnForm } from ".";
+import { EngridLogger, ENGrid, EnForm, DataLayer } from ".";
 
 export class OptInLadder {
   private logger: EngridLogger = new EngridLogger(
@@ -16,14 +16,18 @@ export class OptInLadder {
     "✔"
   );
   private _form: EnForm = EnForm.getInstance();
+  private _dataLayer: DataLayer = DataLayer.getInstance();
 
   constructor() {
     if (!this.inIframe()) {
       this.runAsParent();
-    } else if (ENGrid.getPageNumber() === 1) {
-      this.runAsChildRegular();
     } else {
-      this.runAsChildThankYou();
+      this.listenForParentInfo();
+      if (ENGrid.getPageNumber() === 1) {
+        this.runAsChildRegular();
+      } else {
+        this.runAsChildThankYou();
+      }
     }
   }
 
@@ -75,6 +79,19 @@ export class OptInLadder {
         return;
       }
       placement.appendChild(iframe);
+      iframe.addEventListener("load", () => {
+        if (iframe.contentWindow) {
+          iframe.contentWindow.postMessage(
+            {
+              type: "engrid-optin-ladder-parent-info",
+              pageID: ENGrid.getPageID(),
+              pageName: window?.pageJson?.pageName || "",
+              pageType: ENGrid.getPageType(),
+            },
+            "*"
+          );
+        }
+      });
     } else {
       // Grab all the checkboxes with the name starting with "supporter.questions"
       const checkboxes = document.querySelectorAll(
@@ -127,6 +144,9 @@ export class OptInLadder {
     let totalSteps = optInHeaders.length;
     let currentHeader: HTMLElement | null = null;
     let currentFormBlock: HTMLElement | null = null;
+    let submissionCount =
+      Number(sessionStorage.getItem("engrid.optin-ladder-submission-count")) ||
+      0;
     for (let i = 0; i < optInHeaders.length; i++) {
       const header = optInHeaders[i] as HTMLElement;
       // Get the optin number from the .optin-ladder-XXXX class
@@ -165,6 +185,7 @@ export class OptInLadder {
       currentStep++;
       break;
     }
+
     if (!currentHeader || !currentFormBlock) {
       this.logger.log("No optin-ladder elements found");
       // Set the current step to the total steps to avoid redirecting to the first page
@@ -174,6 +195,7 @@ export class OptInLadder {
       this.hidePage();
       return;
     }
+
     // Show the current header and form block, while removing the rest
     optInHeaders.forEach((header) => {
       if (header !== currentHeader) {
@@ -182,6 +204,7 @@ export class OptInLadder {
         header.style.display = "block";
       }
     });
+
     optInFormBlocks.forEach((formBlock) => {
       if (formBlock !== currentFormBlock) {
         formBlock.remove();
@@ -189,12 +212,45 @@ export class OptInLadder {
         formBlock.style.display = "block";
       }
     });
+
     // Save the current step to sessionStorage
     this.saveStepToSessionStorage(currentStep, totalSteps);
+
+    if (!this.isFollowupStep()) {
+      this._dataLayer.pushVariable(
+        "ENGRID_OPTIN_LADDER_FIRST_STEP_ID",
+        currentHeader?.className.match(/optin-ladder-(\d+)/)?.[1] || ""
+      );
+      this._dataLayer.pushVariable(
+        "ENGRID_OPTIN_LADDER_FIRST_STEP_NAME",
+        currentHeader?.innerText.trim() || ""
+      );
+    }
+
     // On form submit, save the checkbox values to sessionStorage
     this._form.onSubmit.subscribe(() => {
-      this.saveOptInsToSessionStorage("child");
+      submissionCount++;
 
+      this._dataLayer.pushEvent("ENGRID_OPTIN_LADDER_SUBMIT", {
+        opt_in_label: currentHeader?.innerText.trim() ?? "Unknown",
+        opt_in_id:
+          currentHeader?.className.match(/optin-ladder-(\d+)/)?.[1] || "",
+        opt_in_step: currentStep,
+        opt_in_total_steps: totalSteps,
+        submission_count: submissionCount,
+      });
+
+      this._dataLayer.pushVariable(
+        "ENGRID_OPTIN_LADDER_SUBMISSION_COUNT",
+        submissionCount
+      );
+
+      sessionStorage.setItem(
+        "engrid.optin-ladder-submission-count",
+        submissionCount.toString()
+      );
+
+      this.saveOptInsToSessionStorage("child");
       // Save the current step to sessionStorage
       currentStep++;
       this.saveStepToSessionStorage(currentStep, totalSteps);
@@ -257,6 +313,25 @@ export class OptInLadder {
     }
   }
 
+  private listenForParentInfo() {
+    window.addEventListener("message", (event) => {
+      if (event.data && event.data.type === "engrid-optin-ladder-parent-info") {
+        this._dataLayer.pushVariable(
+          "ENGRID_OPTIN_LADDER_PARENT_ID",
+          event.data?.pageID || ""
+        );
+        this._dataLayer.pushVariable(
+          "ENGRID_OPTIN_LADDER_PARENT_NAME",
+          event.data?.pageName || ""
+        );
+        this._dataLayer.pushVariable(
+          "ENGRID_OPTIN_LADDER_PARENT_TYPE",
+          event.data?.pageType || ""
+        );
+      }
+    });
+  }
+
   private saveStepToSessionStorage(step: number, totalSteps: number) {
     sessionStorage.setItem(
       "engrid.optin-ladder",
@@ -301,14 +376,21 @@ export class OptInLadder {
       sessionStorage.setItem("engrid.optin-ladder-stop", "Y");
     }
   }
+
   private isEmbeddedThankYouPage() {
     return ENGrid.getBodyData("embedded") === "thank-you-page-donation";
   }
+
   private getPageUrl(page: number, chain: boolean = false): string {
     const url = new URL(window.location.href);
     const path = url.pathname.split("/");
     path[path.length - 1] = String(page);
-    return url.origin + path.join("/") + (chain ? "?chain" : "");
+    url.pathname = path.join("/");
+    if (chain) {
+      url.searchParams.set("chain", "true");
+    }
+    url.searchParams.set("engrid_optin_ladder_followup", "true");
+    return url.toString();
   }
 
   private getFirstPageUrl(): string {
@@ -334,5 +416,17 @@ export class OptInLadder {
     sessionStorage.removeItem("engrid.optin-ladder");
     sessionStorage.removeItem("engrid.optin-ladder-stop");
     sessionStorage.removeItem("engrid.optin-ladder-persist-stop");
+    sessionStorage.removeItem("engrid.optin-ladder-submission-count");
+  }
+
+  private isFollowupStep(): boolean {
+    const searchParams = new URLSearchParams(window.location.search);
+    const fromUrl =
+      searchParams.get("engrid_optin_ladder_followup") === "true";
+    const fromStorage =
+      Number(
+        sessionStorage.getItem("engrid.optin-ladder-submission-count")
+      ) > 0;
+    return fromUrl || fromStorage;
   }
 }

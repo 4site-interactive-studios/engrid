@@ -27,4 +27,6 @@ export declare class DataLayer {
     private storeEndOfGiftProcessData;
     private addEndOfGiftProcessEventsToDataLayer;
     private getEndOfGiftProcessData;
+    pushVariable(variableName: string, variableValue?: any): void;
+    pushEvent(eventName: string, eventProperties?: object): void;
 }
