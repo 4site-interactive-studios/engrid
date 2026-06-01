@@ -3733,8 +3733,16 @@ button[disabled],
   --click-to-expand__cta-image_height: 16px;
 }
 
+body#en__pagebuilder .click-to-expand-screenreader-tip {
+  background-color: rgba(248, 168, 9, 0.1019607843) !important;
+}
+
 body:not(#en__pagebuilder) .click-to-expand .click-to-expand-text-wrapper > :first-child {
   margin-top: 0;
+}
+
+body:not(#en__pagebuilder) .click-to-expand .click-to-expand-screenreader-tip {
+  display: none;
 }
 
 body:not(#en__pagebuilder) .click-to-expand:not(.expanded) {
@@ -3759,10 +3767,18 @@ body:not(#en__pagebuilder) .click-to-expand:not(.expanded) .click-to-expand-cta 
   margin-right: auto;
   left: 0;
   right: 0;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+body:not(#en__pagebuilder) .click-to-expand:not(.expanded) .click-to-expand-cta:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
 }
 
-body:not(#en__pagebuilder) .click-to-expand.expanded .click-to-expand-text-wrapper {
-  outline: none;
+body:not(#en__pagebuilder) .click-to-expand.expanded .click-to-expand-cta {
+  display: none;
 }
 
 [data-engrid-theme] {
