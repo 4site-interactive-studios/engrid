@@ -10,7 +10,7 @@ export class MinMaxAmount {
         this.maxAmount = (_b = ENGrid.getOption("MaxAmount")) !== null && _b !== void 0 ? _b : 100000;
         this.minAmountMessage = ENGrid.getOption("MinAmountMessage");
         this.maxAmountMessage = ENGrid.getOption("MaxAmountMessage");
-        this.disableLiveValidation = ENGrid.getOption("DisableLiveValidation");
+        this.disableLiveValidation = ENGrid.getOption("DisableMinMaxLiveValidation");
         this.enAmountValidator = null;
         this.logger = new EngridLogger("MinMaxAmount", "white", "purple", "🔢");
         if (!this.shouldRun()) {
