@@ -1,0 +1,15 @@
+.en__field__error__alert {
+  color: var(--error__color);
+  font-family: var(--p_font-family);
+  font-size: max(75%, 10px);
+  font-weight: var(--p_font-weight);
+  line-height: var(--p_line-height);
+  order: 3;
+}
+
+// The original .en__field__error is hidden once its text has been mirrored into
+// the .en__field__error__alert live region by the A11y component, so the alert
+// region remains the single visible/announced source of error text.
+.en__field__error--hidden-by-a11y {
+  display: none !important;
+}

@@ -3310,6 +3310,19 @@ body[data-engrid-live-currency=active] .en__field--donationAmt .en__field__item:
 }
 
 /* ENGRID STYLINGS */
+.en__field__error__alert {
+  color: var(--error__color);
+  font-family: var(--p_font-family);
+  font-size: max(75%, 10px);
+  font-weight: var(--p_font-weight);
+  line-height: var(--p_line-height);
+  order: 3;
+}
+
+.en__field__error--hidden-by-a11y {
+  display: none !important;
+}
+
 @supports (-webkit-appearance: -apple-pay-button) {
   .apple-pay-button {
     display: inline-block;
@@ -5738,6 +5751,68 @@ button.en__eventOccurrence__select > label {
   grid-area: en__additional__promo;
 }
 
+.en__overlay--waitlist .en__overlay__popup {
+  top: 15vh;
+  width: 100%;
+}
+.en__overlay--waitlist .en__overlay__header {
+  background: var(--engrid__page_background-color);
+  border-bottom: unset;
+  border-radius: unset;
+}
+.en__overlay--waitlist .en__overlay__content {
+  background: var(--engrid__page_background-color);
+  padding: 10px 20px;
+}
+.en__overlay--waitlist .en__overlay__content .en__button--confirm {
+  --button_background-color: var(--submit__button_background-color);
+  --button_border-color: var(--submit__button_border-color);
+  --button_color: var(--submit__button_color);
+  --button_background-color_hover: var(--submit__button_background-color_hover);
+  --button_border-color_hover: var(--submit__button_border-color_hover);
+  --button_color_hover: var(--submit__button_color_hover);
+  padding: var(--button_padding);
+  min-width: 100px;
+  margin: auto;
+}
+.en__overlay--waitlist .en__waitlistCopy {
+  font-size: var(--h2_font-size);
+  line-height: var(--h2_line-height);
+  font-weight: var(--h2_font-weight);
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.en__overlay--waitlist .en__waitlistForm {
+  max-width: 475px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.en__overlay--waitlist .en__field {
+  display: grid;
+  gap: 8px;
+}
+.en__overlay--waitlist .en__overlay__actions {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  max-width: 450px;
+  margin: 16px auto;
+}
+.en__overlay--waitlist .en__overlay__actions .en__button {
+  min-width: 120px;
+  text-transform: uppercase;
+  padding: var(--button_padding);
+}
+.en__overlay--waitlist .en__overlay__actions .en__button--submit {
+  --button_background-color: var(--submit__button_background-color);
+  --button_border-color: var(--submit__button_border-color);
+  --button_color: var(--submit__button_color);
+  --button_background-color_hover: var(--submit__button_background-color_hover);
+  --button_border-color_hover: var(--submit__button_border-color_hover);
+  --button_color_hover: var(--submit__button_color_hover);
+}
+
 @media screen and (max-width: 600px) {
   .en__ticket {
     display: flex;
@@ -5786,6 +5861,13 @@ button.en__eventOccurrence__select > label {
     margin-right: 2rem;
   }
 }
+#engrid:has(.en__overlay--open) .content-header,
+#engrid:has(.en__overlay--open) .content-footerSpacer,
+#engrid:has(.en__overlay--open) .content-preFooter,
+#engrid:has(.en__overlay--open) .content-footer {
+  z-index: unset;
+}
+
 /*
 * ##########################################################
 * # Field Level Inline "Fancy Errors"

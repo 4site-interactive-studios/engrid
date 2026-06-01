@@ -6,6 +6,7 @@ export declare class MinMaxAmount {
     private maxAmount;
     private minAmountMessage;
     private maxAmountMessage;
+    private disableLiveValidation;
     private enAmountValidator;
     private logger;
     constructor();

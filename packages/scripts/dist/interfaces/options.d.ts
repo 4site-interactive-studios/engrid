@@ -16,6 +16,7 @@ export interface Options {
     MinAmountMessage?: string;
     MaxAmountMessage?: string;
     UseAmountValidatorFromEN?: boolean;
+    DisableMinMaxLiveValidation?: boolean;
     SkipToMainContentLink?: boolean;
     SrcDefer?: boolean;
     SuppressPurchaseEcard?: boolean;
