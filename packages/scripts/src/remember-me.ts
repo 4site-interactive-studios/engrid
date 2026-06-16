@@ -134,10 +134,8 @@ export class RememberMe {
       let hasFieldData = Object.keys(this.fieldData).length > 0;
       if (!hasFieldData) {
         this.insertRememberMeOptin();
-        this.rememberMeOptIn = false;
       } else {
         this.insertClearRememberMeLink();
-        this.rememberMeOptIn = true;
       }
       this.writeFields();
       this._form.onSubmit.subscribe(() => {
@@ -452,9 +450,9 @@ export class RememberMe {
           } else if (this.fieldDonationAmountRadioName === this.fieldNames[i]) {
             field = document.querySelector(
               fieldSelector +
-                "[value='" +
-                this.fieldData[this.fieldNames[i]] +
-                "']"
+              "[value='" +
+              this.fieldData[this.fieldNames[i]] +
+              "']"
             ) as HTMLInputElement;
             if (field) {
               field.click();

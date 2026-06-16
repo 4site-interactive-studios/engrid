@@ -83,11 +83,9 @@ export class RememberMe {
             let hasFieldData = Object.keys(this.fieldData).length > 0;
             if (!hasFieldData) {
                 this.insertRememberMeOptin();
-                this.rememberMeOptIn = false;
             }
             else {
                 this.insertClearRememberMeLink();
-                this.rememberMeOptIn = true;
             }
             this.writeFields();
             this._form.onSubmit.subscribe(() => {
