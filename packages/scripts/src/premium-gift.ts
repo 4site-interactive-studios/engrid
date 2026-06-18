@@ -179,6 +179,8 @@ export class PremiumGift {
     if (premiumHeader && radioGroup) {
       const premiumHeaderId = premiumHeader.id || "premium-gift-header";
       premiumHeader.setAttribute("id", premiumHeaderId);
+      premiumHeader.setAttribute("role", "heading");
+      premiumHeader.setAttribute("aria-level", "2");
       radioGroup.setAttribute("aria-labelledby", premiumHeaderId);
       radioGroup.setAttribute("role", "radiogroup");
     }
