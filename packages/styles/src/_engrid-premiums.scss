@@ -62,6 +62,12 @@
     // padding: 0 calc(var(--fields_spacing-inline) * 2) 0 0;
   }
 
+  .en__pg__select:has(input:focus) {
+    outline: 3px solid var(--focus_outline_color, #086ce7);
+    outline-offset: var(--focus_outline_offset, 2px);
+    border-radius: 30px;
+  }
+
   .en__pg__display {
     grid-area: en__pg__display;
     padding: 0;
@@ -116,14 +122,12 @@
   }
 
   // No premium has been selected
-  &:not(#en__pagebuilder):not([data-engrid-debug]):not([data-engrid-premium-gift-name])
-    .showif-has-premium {
+  &:not(#en__pagebuilder):not([data-engrid-debug]):not([data-engrid-premium-gift-name]) .showif-has-premium {
     display: none;
   }
 
   // A premium has been selected
-  &:not(#en__pagebuilder):not([data-engrid-debug])[data-engrid-premium-gift-name]
-    .showif-no-premium {
+  &:not(#en__pagebuilder):not([data-engrid-debug])[data-engrid-premium-gift-name] .showif-no-premium {
     display: none;
   }
 }

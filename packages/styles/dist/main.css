@@ -6661,6 +6661,11 @@ div[id^=nb-field-].nb-success input {
   padding: 0;
   width: var(--radio_width);
 }
+[data-engrid-theme] .en__pg__select:has(input:focus) {
+  outline: 3px solid var(--focus_outline_color, #086ce7);
+  outline-offset: var(--focus_outline_offset, 2px);
+  border-radius: 30px;
+}
 [data-engrid-theme] .en__pg__display {
   grid-area: en__pg__display;
   padding: 0;
