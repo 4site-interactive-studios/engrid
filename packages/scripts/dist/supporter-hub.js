@@ -9,6 +9,7 @@ export class SupporterHub {
         this.logger.log("Enabled");
         this.watch();
         this.preventDuplicateSubmits();
+        this.pageAltsAndArias();
     }
     shoudRun() {
         return ("pageJson" in window &&
@@ -29,6 +30,17 @@ export class SupporterHub {
                                 this.logger.log("Overlay found");
                                 this.creditCardUpdate(node);
                                 this.amountLabelUpdate(node);
+                                this.dialogAltsAndArias(node);
+                            }
+                        }
+                    });
+                    mutation.removedNodes.forEach((node) => {
+                        if (node.nodeName === "DIV") {
+                            const overlay = node;
+                            if (overlay.classList.contains("en__hubOverlay") ||
+                                overlay.classList.contains("en__hubPledge__panels")) {
+                                this.logger.log("Overlay removed");
+                                this.inertPage(false);
                             }
                         }
                     });
@@ -45,7 +57,35 @@ export class SupporterHub {
         if (hubOverlay) {
             this.creditCardUpdate(hubOverlay);
             this.amountLabelUpdate(hubOverlay);
+            this.dialogAltsAndArias(hubOverlay);
         }
+    }
+    pageAltsAndArias() {
+        // Find every en__component--hubgadget and set role as button and aria-label as the span content of the component
+        document.querySelectorAll(".en__component--hubgadget").forEach((node) => {
+            const button = node;
+            const labelSpan = button.querySelector("span");
+            if (!labelSpan)
+                return;
+            const img = button.querySelector("img");
+            img === null || img === void 0 ? void 0 : img.setAttribute("aria-hidden", "true");
+            const slug = ENGrid.slugify(labelSpan.innerText);
+            const labelId = `hubgadget-label-${slug}`;
+            labelSpan.setAttribute("id", labelId);
+            button.setAttribute("aria-labelledby", labelId);
+            button.setAttribute("role", "button");
+            button.setAttribute("aria-controls", `huboverlay-${slug}`);
+            button.setAttribute("aria-haspopup", "dialog");
+            if (!button.classList.contains("en__component--hubgadget--inactive")) {
+                button.setAttribute("tabindex", "0");
+                button.addEventListener("keydown", (e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        button.click();
+                    }
+                });
+            }
+        });
     }
     creditCardUpdate(overlay) {
         window.setTimeout(() => {
@@ -72,6 +112,70 @@ export class SupporterHub {
                 });
             }
         }, 300);
+    }
+    dialogAltsAndArias(overlay) {
+        window.setTimeout(() => {
+            this.inertPage(true, overlay);
+            const header = overlay.querySelector(".en__hubOverlay__header"), closeButton = header.querySelector("a");
+            // Tag close button
+            if (header && closeButton) {
+                closeButton.setAttribute("role", "button");
+                closeButton.setAttribute("aria-label", "Close");
+            }
+            // Tag header and label dialog
+            const headerTitle = header.querySelector("h2");
+            const slug = ENGrid.slugify((headerTitle === null || headerTitle === void 0 ? void 0 : headerTitle.innerText) || "supporter-hub-overlay");
+            let headerTitleId = `huboverlay-title-${slug}`;
+            if (headerTitle) {
+                headerTitleId = headerTitle.id || headerTitleId;
+                headerTitle.setAttribute("id", headerTitleId);
+            }
+            const popup = overlay.querySelector(".en__hubOverlay__popup");
+            if (popup) {
+                popup.setAttribute("id", `huboverlay-${slug}`);
+                popup.setAttribute("role", "dialog");
+                popup.setAttribute("aria-modal", "true");
+                if (headerTitle) {
+                    popup.setAttribute("aria-labelledby", headerTitleId);
+                }
+                else {
+                    popup.setAttribute("aria-label", "Supporter Hub Overlay");
+                }
+            }
+        }, 300);
+    }
+    inertPage(inert, overlay) {
+        if (inert) {
+            const hubOverlay = overlay && overlay.classList.contains("en__hubOverlay")
+                ? overlay
+                : document.querySelector(".en__hubOverlay") ||
+                    overlay;
+            if (!hubOverlay)
+                return;
+            let element = hubOverlay;
+            while (element && element !== document.body) {
+                const parent = element.parentElement;
+                if (parent) {
+                    Array.from(parent.children).forEach((sibling) => {
+                        if (sibling !== element &&
+                            sibling instanceof HTMLElement &&
+                            !sibling.hasAttribute("inert")) {
+                            sibling.setAttribute("inert", "");
+                            sibling.dataset.engridInert = "true";
+                        }
+                    });
+                }
+                element = parent;
+            }
+        }
+        else if (!document.querySelector(".en__hubOverlay, .en__hubPledge__panels")) {
+            document
+                .querySelectorAll("[data-engrid-inert]")
+                .forEach((element) => {
+                element.removeAttribute("inert");
+                delete element.dataset.engridInert;
+            });
+        }
     }
     // The supporter hub does not properly handle or prevent duplicate submits, so we add a listener to prevent this.
     preventDuplicateSubmits() {
