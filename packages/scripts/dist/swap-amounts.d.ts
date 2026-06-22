@@ -32,13 +32,20 @@ export declare class SwapAmounts {
     private _frequency;
     private defaultChange;
     private swapped;
+    private hasOneTimeNSG;
+    private hasRecurringNSG;
     constructor();
     loadAmountsFromUrl(): void;
     swapAmounts(): void;
+    private shouldUseNSG;
     /**
      * Convert the internal config object into the structure Engaging Networks expects
      */
     private toEnAmountList;
+    /**
+     * Convert the Engaging Networks NSG config object into the structure Engaging Network Lists expect
+     */
+    private toEnAmountListNSG;
     shouldRun(): boolean;
     ignoreCurrentValue(): boolean;
 }
