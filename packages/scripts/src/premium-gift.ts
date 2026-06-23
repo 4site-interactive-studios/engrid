@@ -191,7 +191,7 @@ export class PremiumGift {
     multistepBackButton.forEach((item) => {
       item.setAttribute("aria-label", "Back");
     });
-    const premiumRow = document.querySelectorAll<HTMLElement>(".en__pg");
+    const premiumRow = document.querySelectorAll(".en__pg");
     premiumRow.forEach((item) => {
       const premiumTitle = item.querySelector(
         ".en__pg__detail h2.en__pg__name"
