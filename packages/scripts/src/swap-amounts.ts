@@ -43,6 +43,21 @@ interface FrequencyAmountsConfig {
    * the donor's currently selected amount and re-select the configured default.
    */
   stickyDefault?: boolean;
+  overrideNSG?: boolean; // When true, will not swap to NSG amounts even if NSG config present for the frequency
+}
+
+interface NextSuggestedGiftConfig {
+  currency: string;
+  single: {
+    nextSuggestedGift: boolean;
+    value: number,
+    id: number | string;
+  }[];
+  recurring: {
+    nextSuggestedGift: boolean;
+    value: number,
+    id: number | string;
+  }[];
 }
 
 export class SwapAmounts {
@@ -56,8 +71,23 @@ export class SwapAmounts {
   private _frequency: DonationFrequency = DonationFrequency.getInstance();
   private defaultChange = false; // Tracks if user changed away from default after swap
   private swapped = false; // Tracks if we've already executed at least one swap
+  private hasOneTimeNSG = false;
+  private hasRecurringNSG = false;
   constructor() {
     this.loadAmountsFromUrl();
+    this.hasOneTimeNSG = !!(
+      window.EngagingNetworks.suggestedGift &&
+      window.EngagingNetworks.suggestedGift.single &&
+      window.EngagingNetworks.suggestedGift.single.length > 0
+    );
+    this.hasRecurringNSG = !!(
+      window.EngagingNetworks.suggestedGift &&
+      window.EngagingNetworks.suggestedGift.recurring &&
+      window.EngagingNetworks.suggestedGift.recurring.length > 0
+    );
+    if (this.hasOneTimeNSG || this.hasRecurringNSG) {
+      this.logger.log("Detected NSG amounts", { suggestedGift: window.EngagingNetworks.suggestedGift });
+    }
     if (!this.shouldRun()) return;
 
     // Respond when frequency changes
@@ -118,6 +148,17 @@ export class SwapAmounts {
     const freq = this._frequency.frequency;
     const config = configs[freq];
     if (!config) return;
+    if (this.shouldUseNSG(freq, config)) {
+      this.logger.log(`NSG present for ${freq}, using NSG amounts`, { suggestedGift: window.EngagingNetworks.suggestedGift });
+      window.EngagingNetworks.require._defined.enjs.swapList(
+        "donationAmt",
+        this.toEnAmountListNSG(window.EngagingNetworks.suggestedGift, freq),
+        { ignoreCurrentValue: true }
+      );
+      this._amount.load();
+      this.swapped = true;
+      return;
+    }
     const stickyDefault = !!config.stickyDefault;
     // If stickyDefault, always ignore current value so selected flag in list enforces default
     const ignoreCurrentValue = stickyDefault ? true : this.ignoreCurrentValue();
@@ -131,6 +172,15 @@ export class SwapAmounts {
     this.logger.log("Amounts Swapped To", config, { ignoreCurrentValue });
     this.swapped = true;
   }
+  private shouldUseNSG(freq: string, config: FrequencyAmountsConfig) {
+    if (freq === "onetime" && this.hasOneTimeNSG && !config.overrideNSG) {
+      return true;
+    }
+    if (freq === "monthly" && this.hasRecurringNSG && !config.overrideNSG) {
+      return true;
+    }
+    return false;
+  }
   /**
    * Convert the internal config object into the structure Engaging Networks expects
    */
@@ -141,14 +191,19 @@ export class SwapAmounts {
       value: value.toString(),
     }));
   }
+  /**
+   * Convert the Engaging Networks NSG config object into the structure Engaging Network Lists expect
+   */
+  private toEnAmountListNSG(config: NextSuggestedGiftConfig, freq: string) {
+    const frequency = freq === "onetime" ? "single" : "recurring";
+    return config[frequency].map(({ nextSuggestedGift, value }) => ({
+      selected: nextSuggestedGift,
+      label: value > 0 ? value.toString() : "Other",
+      value: value > 0 ? value.toString() : "other",
+    }));
+  }
   shouldRun() {
-    const hasNSG =
-      window.EngagingNetworks.suggestedGift !== undefined &&
-      Object.keys(window.EngagingNetworks.suggestedGift).length > 0;
-    if (!!window.EngridAmounts && hasNSG) {
-      this.logger.log("Not swapping amounts because NSG is active on page");
-    }
-    return !!window.EngridAmounts && !hasNSG;
+    return !!window.EngridAmounts;
   }
   ignoreCurrentValue() {
     const urlParam = ENGrid.getUrlParameter("transaction.donationAmt");
