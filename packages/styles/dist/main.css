@@ -5356,6 +5356,22 @@ button.en__ecarditems__prevclose {
   color: #ffffff;
 }
 
+/**
+  * This date entry field displays too wide on webkit iOS browsers. This is a fix for that.
+  */
+.en__ecardrecipients__futureDelivery input[type=date] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.en__ecardrecipients__futureDelivery input[type=date]::-webkit-date-and-time-value {
+  text-align: left;
+}
+
 @media screen and (max-width: 700px) {
   button.en__ecarditems__prevclose {
     right: 17px;
