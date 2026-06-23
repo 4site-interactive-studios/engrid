@@ -52,11 +52,14 @@ export class PremiumGift {
               if (newPremiumGift) {
                 newPremiumGift.checked = true;
                 newPremiumGift.dispatchEvent(new Event("change"));
+                this.altsAndArias();
               }
             }, 100);
           }
           window.setTimeout(() => {
             this.checkPremiumGift();
+            this.altsAndArias();
+            this.maxDonationAria();
           }, 110);
         }
       });
@@ -171,47 +174,98 @@ export class PremiumGift {
 
   // Sets alt tags for premium gift images and aria tags for premium gift radio inputs
   altsAndArias() {
-    const premiumTitle = document.querySelectorAll(
-      ".en__pg__detail h2.en__pg__name"
-    );
+    const premiumHeader = document.querySelector(".en__pgHeader");
+    const radioGroup = document.querySelector(".en__pgList");
+    if (premiumHeader && radioGroup) {
+      const premiumHeaderId = premiumHeader.id || "premium-gift-header";
+      premiumHeader.setAttribute("id", premiumHeaderId);
+      premiumHeader.setAttribute("role", "heading");
+      premiumHeader.setAttribute("aria-level", "2");
+      radioGroup.setAttribute("aria-labelledby", premiumHeaderId);
+      radioGroup.setAttribute("role", "radiogroup");
+    }
+
     const multistepBackButton = document.querySelectorAll(
       ".multistep-button-container button.btn-back"
     );
+    multistepBackButton.forEach((item) => {
+      item.setAttribute("aria-label", "Back");
+    });
+    const premiumRow = document.querySelectorAll<HTMLElement>(".en__pg");
+    premiumRow.forEach((item) => {
+      const premiumTitle = item.querySelector(
+        ".en__pg__detail h2.en__pg__name"
+      );
+      const titleText = premiumTitle?.innerHTML || "";
+      const premiumGiftInput = item.querySelector(
+        'input[name="en__pg"]'
+      ) as HTMLInputElement | null;
+      const premiumGiftId = premiumGiftInput?.value || ENGrid.slugify(titleText);
+      premiumTitle?.setAttribute("id", `premium-gift-option-${premiumGiftId}`);
+      const details = item.querySelector(".en__pg__detail");
+      const display = item.querySelector(".en__pg__display");
+      const select = item.querySelector(".en__pg__select");
 
-    premiumTitle.forEach((item) => {
-      if (item) {
-        const titleText = item.innerHTML;
-        const parent = item.parentElement;
-        const prevSibling = parent?.previousElementSibling;
-        const radioInputSibling = prevSibling?.previousElementSibling;
-
-        if (prevSibling) {
-          const imageDiv = prevSibling.querySelector(".en__pg__images");
-          if (imageDiv) {
-            const img = imageDiv.querySelector("img");
-            if (img) {
-              img.setAttribute("alt", titleText);
-              img.style.width = "125px";
-              img.style.height = "100px";
-            }
-          }
-        }
-
-        if (radioInputSibling) {
-          const radioInput = radioInputSibling.querySelector(
-            'input[type="radio"]'
-          );
-          if (radioInput) {
-            radioInput.setAttribute("aria-label", titleText);
-          }
+      if (select) {
+        const radioInput = select.querySelector('input[type="radio"]') as HTMLInputElement;
+        if (radioInput) {
+          radioInput.setAttribute("aria-labelledby", premiumTitle?.id || "");
         }
       }
 
-      multistepBackButton.forEach((item) => {
-        item.setAttribute("aria-label", "Back");
+      if (details) {
+        const optionTypesParent = details.querySelector(".en__pg__optionTypes");
+        if (optionTypesParent) {
+          this.altsAndAriasForSelects(optionTypesParent, titleText, premiumGiftId);
+        }
+      }
+
+      if (display) {
+        const imageDiv = display.querySelector(".en__pg__images");
+        if (imageDiv) {
+          const img = imageDiv.querySelector("img");
+          if (img) {
+            img.setAttribute("alt", titleText);
+            img.style.width = "125px";
+            img.style.height = "100px";
+          }
+        }
+
+      }
+    });
+    this.syncOptionSelectStates();
+  }
+
+  syncOptionSelectStates() {
+    const premiumRows = document.querySelectorAll<HTMLElement>(".en__pg");
+    premiumRows.forEach((row) => {
+      const radioInput = row.querySelector(
+        'input[name="en__pg"]'
+      ) as HTMLInputElement | null;
+      const optionSelects = row.querySelectorAll<HTMLSelectElement>(
+        ".en__pg__optionType select"
+      );
+      optionSelects.forEach((select) => {
+        select.disabled = !radioInput?.checked;
       });
     });
   }
+
+  altsAndAriasForSelects(optionTypesParent: Element, titleText: string, premiumGiftId: string) {
+    optionTypesParent.setAttribute("aria-label", `Options for ${titleText}`);
+    const optionTypes = optionTypesParent.querySelectorAll(".en__pg__optionType");
+    optionTypes.forEach((option, index) => {
+      const label = option.querySelector("label");
+      const select = option.querySelector('select');
+      if (label && select) {
+        const labelId = ENGrid.slugify(label.innerText) || index.toString();
+        select.setAttribute("id", `premium-gift-option-type-${premiumGiftId}-${labelId}`);
+        label.setAttribute("for", select.id);
+        label.setAttribute("aria-label", `${label.innerText} for ${titleText}`);
+      }
+    });
+  }
+
 
   // This is for the Maximize My Donation aria-label - the tree structure for it is slightly different.
   maxDonationAria() {
