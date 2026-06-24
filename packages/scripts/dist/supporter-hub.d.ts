@@ -1,6 +1,7 @@
 export declare class SupporterHub {
     private logger;
     private _form;
+    private closeListener;
     constructor();
     shoudRun(): boolean;
     watch(): void;
@@ -8,6 +9,5 @@ export declare class SupporterHub {
     creditCardUpdate(overlay: HTMLDivElement): void;
     amountLabelUpdate(overlay: HTMLDivElement): void;
     dialogAltsAndArias(overlay: HTMLDivElement): void;
-    inertPage(inert: boolean, overlay?: HTMLDivElement): void;
     private preventDuplicateSubmits;
 }

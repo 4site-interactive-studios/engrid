@@ -1,9 +1,10 @@
 // Component that adds 4Site Special Features to the Supporter Hub Page
-import { ENGrid, EngridLogger, EnForm } from ".";
+import { ENGrid, EngridLogger, EnForm, A11y } from ".";
 export class SupporterHub {
     constructor() {
         this.logger = new EngridLogger("SupporterHub", "black", "pink", "🛖");
         this._form = EnForm.getInstance();
+        this.closeListener = null;
         if (!this.shoudRun())
             return;
         this.logger.log("Enabled");
@@ -40,7 +41,7 @@ export class SupporterHub {
                             if (overlay.classList.contains("en__hubOverlay") ||
                                 overlay.classList.contains("en__hubPledge__panels")) {
                                 this.logger.log("Overlay removed");
-                                this.inertPage(false);
+                                A11y.inertPage(false);
                             }
                         }
                     });
@@ -115,12 +116,22 @@ export class SupporterHub {
     }
     dialogAltsAndArias(overlay) {
         window.setTimeout(() => {
-            this.inertPage(true, overlay);
+            const hubOverlay = overlay.classList.contains("en__hubOverlay")
+                ? overlay
+                : document.querySelector(".en__hubOverlay") ||
+                    overlay;
+            A11y.inertPage(true, hubOverlay);
             const header = overlay.querySelector(".en__hubOverlay__header"), closeButton = header.querySelector("a");
             // Tag close button
             if (header && closeButton) {
                 closeButton.setAttribute("role", "button");
                 closeButton.setAttribute("aria-label", "Close");
+                document.addEventListener("keydown", (e) => {
+                    if (e.key === "Escape") {
+                        this.logger.log("Escape key pressed, closing overlay");
+                        closeButton.click();
+                    }
+                }, { once: true });
             }
             // Tag header and label dialog
             const headerTitle = header.querySelector("h2");
@@ -143,39 +154,6 @@ export class SupporterHub {
                 }
             }
         }, 300);
-    }
-    inertPage(inert, overlay) {
-        if (inert) {
-            const hubOverlay = overlay && overlay.classList.contains("en__hubOverlay")
-                ? overlay
-                : document.querySelector(".en__hubOverlay") ||
-                    overlay;
-            if (!hubOverlay)
-                return;
-            let element = hubOverlay;
-            while (element && element !== document.body) {
-                const parent = element.parentElement;
-                if (parent) {
-                    Array.from(parent.children).forEach((sibling) => {
-                        if (sibling !== element &&
-                            sibling instanceof HTMLElement &&
-                            !sibling.hasAttribute("inert")) {
-                            sibling.setAttribute("inert", "");
-                            sibling.dataset.engridInert = "true";
-                        }
-                    });
-                }
-                element = parent;
-            }
-        }
-        else if (!document.querySelector(".en__hubOverlay, .en__hubPledge__panels")) {
-            document
-                .querySelectorAll("[data-engrid-inert]")
-                .forEach((element) => {
-                element.removeAttribute("inert");
-                delete element.dataset.engridInert;
-            });
-        }
     }
     // The supporter hub does not properly handle or prevent duplicate submits, so we add a listener to prevent this.
     preventDuplicateSubmits() {

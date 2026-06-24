@@ -81,6 +81,12 @@ button.en__ecarditems__addrecipient {
   margin-right: var(--fields_spacing-inline);
 }
 
+.en__ecarditems__thumb:focus,
+.en__ecarditems__thumb:focus-visible {
+  outline: 3px solid var(--focus_outline_color, #086ce7);
+  outline-offset: var(--focus_outline_offset, 2px);
+}
+
 .en__ecarditems__thumb img {
   height: var(--ecard_thumnail-row_height);
   width: auto;

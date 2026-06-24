@@ -1,6 +1,6 @@
 // Component that adds 4Site Special Features to the Supporter Hub Page
 
-import { ENGrid, EngridLogger, EnForm } from ".";
+import { ENGrid, EngridLogger, EnForm, A11y } from ".";
 
 export class SupporterHub {
   private logger: EngridLogger = new EngridLogger(
@@ -10,6 +10,7 @@ export class SupporterHub {
     "🛖"
   );
   private _form: EnForm = EnForm.getInstance();
+  private closeListener: ((e: KeyboardEvent) => void) | null = null;
   constructor() {
     if (!this.shoudRun()) return;
     this.logger.log("Enabled");
@@ -52,7 +53,7 @@ export class SupporterHub {
                 overlay.classList.contains("en__hubPledge__panels")
               ) {
                 this.logger.log("Overlay removed");
-                this.inertPage(false);
+                A11y.inertPage(false);
               }
             }
           });
@@ -75,7 +76,7 @@ export class SupporterHub {
   pageAltsAndArias() {
     // Find every en__component--hubgadget and set role as button and aria-label as the span content of the component
     document.querySelectorAll(".en__component--hubgadget").forEach((node) => {
-      const button = node as HTMLDivElement
+      const button = node as HTMLDivElement;
       const labelSpan = button.querySelector("span");
       if (!labelSpan) return;
       const img = button.querySelector("img");
@@ -102,8 +103,8 @@ export class SupporterHub {
     window.setTimeout(() => {
       // Check if the overlay has Credit Card field and Update Button
       const ccField = overlay.querySelector(
-        "#en__hubPledge__field--ccnumber"
-      ) as HTMLInputElement,
+          "#en__hubPledge__field--ccnumber"
+        ) as HTMLInputElement,
         updateButton = overlay.querySelector(
           ".en__hubUpdateCC__toggle"
         ) as HTMLButtonElement;
@@ -133,19 +134,35 @@ export class SupporterHub {
   }
   dialogAltsAndArias(overlay: HTMLDivElement) {
     window.setTimeout(() => {
-      this.inertPage(true, overlay);
+      const hubOverlay = overlay.classList.contains("en__hubOverlay")
+        ? overlay
+        : (document.querySelector(".en__hubOverlay") as HTMLDivElement) ||
+          overlay;
+      A11y.inertPage(true, hubOverlay);
       const header = overlay.querySelector(
-        ".en__hubOverlay__header"
-      ) as HTMLDivElement,
+          ".en__hubOverlay__header"
+        ) as HTMLDivElement,
         closeButton = header.querySelector("a") as HTMLAnchorElement;
       // Tag close button
       if (header && closeButton) {
         closeButton.setAttribute("role", "button");
         closeButton.setAttribute("aria-label", "Close");
+        document.addEventListener(
+          "keydown",
+          (e: KeyboardEvent) => {
+            if (e.key === "Escape") {
+              this.logger.log("Escape key pressed, closing overlay");
+              closeButton.click();
+            }
+          },
+          { once: true }
+        );
       }
       // Tag header and label dialog
       const headerTitle = header.querySelector("h2") as HTMLHeadingElement;
-      const slug = ENGrid.slugify(headerTitle?.innerText || "supporter-hub-overlay");
+      const slug = ENGrid.slugify(
+        headerTitle?.innerText || "supporter-hub-overlay"
+      );
       let headerTitleId = `huboverlay-title-${slug}`;
       if (headerTitle) {
         headerTitleId = headerTitle.id || headerTitleId;
@@ -165,41 +182,6 @@ export class SupporterHub {
         }
       }
     }, 300);
-  }
-  inertPage(inert: boolean, overlay?: HTMLDivElement) {
-    if (inert) {
-      const hubOverlay =
-        overlay && overlay.classList.contains("en__hubOverlay")
-          ? overlay
-          : (document.querySelector(".en__hubOverlay") as HTMLDivElement) ||
-          overlay;
-      if (!hubOverlay) return;
-
-      let element: HTMLElement | null = hubOverlay;
-      while (element && element !== document.body) {
-        const parent: HTMLElement | null = element.parentElement;
-        if (parent) {
-          Array.from(parent.children).forEach((sibling) => {
-            if (
-              sibling !== element &&
-              sibling instanceof HTMLElement &&
-              !sibling.hasAttribute("inert")
-            ) {
-              sibling.setAttribute("inert", "");
-              sibling.dataset.engridInert = "true";
-            }
-          });
-        }
-        element = parent;
-      }
-    } else if (!document.querySelector(".en__hubOverlay, .en__hubPledge__panels")) {
-      document
-        .querySelectorAll<HTMLElement>("[data-engrid-inert]")
-        .forEach((element) => {
-          element.removeAttribute("inert");
-          delete element.dataset.engridInert;
-        });
-    }
   }
   // The supporter hub does not properly handle or prevent duplicate submits, so we add a listener to prevent this.
   private preventDuplicateSubmits() {

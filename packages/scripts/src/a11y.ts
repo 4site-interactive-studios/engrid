@@ -236,6 +236,49 @@ export class A11y {
     }
   }
 
+  /**
+   * Make everything on the page inert except the supplied overlay element and
+   * its ancestors. This hides background content from assistive technology and
+   * prevents focus from escaping a modal-style overlay.
+   *
+   * @param inert   When true, set `inert` on all siblings of the overlay and of
+   *                each of its ancestors. When false, remove `inert` from every
+   *                element this method previously marked (tracked via the
+   *                `data-engrid-inert` flag).
+   * @param overlay The element that should remain interactive. Required when
+   *                `inert` is true; ignored when `inert` is false.
+   */
+  static inertPage(inert: boolean, overlay?: HTMLElement): void {
+    if (inert) {
+      if (!overlay) return;
+
+      let element: HTMLElement | null = overlay;
+      while (element && element !== document.body) {
+        const parent: HTMLElement | null = element.parentElement;
+        if (parent) {
+          Array.from(parent.children).forEach((sibling) => {
+            if (
+              sibling !== element &&
+              sibling instanceof HTMLElement &&
+              !sibling.hasAttribute("inert")
+            ) {
+              sibling.setAttribute("inert", "");
+              sibling.dataset.engridInert = "true";
+            }
+          });
+        }
+        element = parent;
+      }
+    } else {
+      document
+        .querySelectorAll<HTMLElement>("[data-engrid-inert]")
+        .forEach((element) => {
+          element.removeAttribute("inert");
+          delete element.dataset.engridInert;
+        });
+    }
+  }
+
   private manageErrorListAlertRole(): void {
     const errorList = document.querySelector<HTMLUListElement>('ul.en__errorList');
     if (!errorList) return;
