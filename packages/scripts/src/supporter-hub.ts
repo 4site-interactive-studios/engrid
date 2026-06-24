@@ -10,7 +10,6 @@ export class SupporterHub {
     "🛖"
   );
   private _form: EnForm = EnForm.getInstance();
-  private closeListener: ((e: KeyboardEvent) => void) | null = null;
   constructor() {
     if (!this.shoudRun()) return;
     this.logger.log("Enabled");

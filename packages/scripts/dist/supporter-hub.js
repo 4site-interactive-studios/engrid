@@ -4,7 +4,6 @@ export class SupporterHub {
     constructor() {
         this.logger = new EngridLogger("SupporterHub", "black", "pink", "🛖");
         this._form = EnForm.getInstance();
-        this.closeListener = null;
         if (!this.shoudRun())
             return;
         this.logger.log("Enabled");

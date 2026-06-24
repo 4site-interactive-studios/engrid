@@ -1,7 +1,6 @@
 export declare class SupporterHub {
     private logger;
     private _form;
-    private closeListener;
     constructor();
     shoudRun(): boolean;
     watch(): void;
