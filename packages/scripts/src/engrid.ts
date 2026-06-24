@@ -1,5 +1,7 @@
 import { Options } from ".";
 
+const errorCallbacks = new Map<string, Function>();
+
 export abstract class ENGrid {
   constructor() {
     if (!ENGrid.enForm) {
@@ -492,6 +494,7 @@ export abstract class ENGrid {
       } else {
         errorMessageElement.innerHTML = errorMessage;
       }
+      errorCallbacks.forEach((callback) => callback());
     }
   }
   static removeError(element: string | HTMLElement) {
@@ -592,21 +595,13 @@ export abstract class ENGrid {
     const errorElement = document.querySelector(
       ".en__errorList"
     ) as HTMLUListElement;
-    const capitalize = (word: string) =>
-      word.charAt(0).toUpperCase() + word.slice(1);
-    // Avoid duplicate callbacks
-    let callbackType = callback.toString();
-    if (callbackType.indexOf("function") === 0) {
-      callbackType = callbackType.replace("function ", "");
+    const callbackType = ENGrid.getErrorCallbackKey(callback);
+
+    // Register callback so setError can trigger it too
+    if (!errorCallbacks.has(callbackType)) {
+      errorCallbacks.set(callbackType, callback);
     }
-    if (callbackType.indexOf("(") > 0) {
-      callbackType = callbackType.substring(0, callbackType.indexOf("("));
-    }
-    // Remove invalid characters
-    callbackType = callbackType.replace(/[^a-zA-Z0-9]/g, "");
-    // Limit to 20 characters and add prefix
-    callbackType = callbackType.substring(0, 20);
-    callbackType = "engrid" + capitalize(callbackType);
+
     if (errorElement && !errorElement.dataset[callbackType]) {
       errorElement.dataset[callbackType] = "true";
 
@@ -619,6 +614,25 @@ export abstract class ENGrid {
       });
       observer.observe(errorElement, { childList: true });
     }
+  }
+
+  private static getErrorCallbackKey(callback: Function): string {
+    const capitalize = (word: string) =>
+      word.charAt(0).toUpperCase() + word.slice(1);
+
+    // Avoid duplicate callbacks
+    let callbackType = callback.toString();
+    if (callbackType.indexOf("function") === 0) {
+      callbackType = callbackType.replace("function ", "");
+    }
+    if (callbackType.indexOf("(") > 0) {
+      callbackType = callbackType.substring(0, callbackType.indexOf("("));
+    }
+    // Remove invalid characters
+    callbackType = callbackType.replace(/[^a-zA-Z0-9]/g, "");
+    // Limit to 20 characters and add prefix
+    callbackType = callbackType.substring(0, 20);
+    return "engrid" + capitalize(callbackType);
   }
   // Get the Payment Type
   static getPaymentType(): string {
