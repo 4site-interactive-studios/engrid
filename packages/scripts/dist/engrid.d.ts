@@ -54,6 +54,7 @@ export declare abstract class ENGrid {
     static removeHtml(target: string): void;
     static slugify(text: string): string;
     static watchForError(callback: Function): void;
+    private static getErrorCallbackKey;
     static getPaymentType(): string;
     static setPaymentType(paymentType: string): void;
     static isInViewport(element: HTMLElement): boolean;
