@@ -1393,7 +1393,7 @@ textarea,
 
 .en__ecardmessage__default {
   min-height: 15.625rem;
-  border: 1px solid #bfbfbf;
+  border: 1px solid var(--input__border-color, #bfbfbf);
   padding: 0.625rem;
 }
 
@@ -1426,7 +1426,7 @@ textarea,
 
 .en__ecardrecipients__list {
   min-height: 15.625rem;
-  border: 1px solid #bfbfbf;
+  border: 1px solid var(--input__border-color, #bfbfbf);
   padding: 0.625rem;
   margin: 1.25rem 0 0;
   background: var(--color_white);

@@ -1485,7 +1485,7 @@
 .en__ecardmessage__default {
   // width: 100%;
   min-height: 15.625rem; // 200px - Set a larger default height for Text Areas @HOLD-TODO, is this actually a text area?
-  border: 1px solid #bfbfbf;
+  border: 1px solid var(--input__border-color, #bfbfbf);
   padding: 0.625rem; // 10px
   // -webkit-box-sizing: border-box;
   // -moz-box-sizing: border-box;
@@ -1530,7 +1530,7 @@
 
 .en__ecardrecipients__list {
   min-height: 15.625rem; // 200px - @HOLD-TODO Investigate, there has to be a better way to do this
-  border: 1px solid #bfbfbf;
+  border: 1px solid var(--input__border-color, #bfbfbf);
   padding: 0.625rem; // 10px
   margin: 1.25rem 0 0; // 20px 0 0
   background: var(--color_white);
