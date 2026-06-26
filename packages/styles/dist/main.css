@@ -3323,6 +3323,15 @@ body[data-engrid-live-currency=active] .en__field--donationAmt .en__field__item:
   display: none !important;
 }
 
+.engrid__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
 @supports (-webkit-appearance: -apple-pay-button) {
   .apple-pay-button {
     display: inline-block;
