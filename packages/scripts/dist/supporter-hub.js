@@ -129,9 +129,14 @@ export class SupporterHub {
         };
         const politeRegion = makeRegion(false);
         const assertiveRegion = makeRegion(true);
+        assertiveRegion.id = "en__hubgadget__response--failure-alert";
         // The live regions own announcements; hide the originals so each message is
         // read once rather than twice.
         responses.forEach((r) => r.setAttribute("aria-hidden", "true"));
+        // The failure message is about the email field, so flag it as invalid and
+        // point AT at the message describing why.
+        const emailInput = body.querySelector(".en__field--hublogin input");
+        const emailField = emailInput === null || emailInput === void 0 ? void 0 : emailInput.closest(".en__field--hublogin");
         const isVisible = (el) => window.getComputedStyle(el).display !== "none";
         let lastAnnounced = "";
         const announce = () => {
@@ -147,6 +152,17 @@ export class SupporterHub {
             const isFailure = !!(target === null || target === void 0 ? void 0 : target.classList.contains("en__hubgadget__response--failure"));
             politeRegion.textContent = isFailure ? "" : message;
             assertiveRegion.textContent = isFailure ? message : "";
+            if (emailInput) {
+                if (isFailure) {
+                    emailInput.setAttribute("aria-invalid", "true");
+                    emailInput.setAttribute("aria-describedby", assertiveRegion.id);
+                }
+                else {
+                    emailInput.removeAttribute("aria-invalid");
+                    emailInput.removeAttribute("aria-describedby");
+                }
+            }
+            emailField === null || emailField === void 0 ? void 0 : emailField.classList.toggle("en__field--validationFailed", isFailure);
         };
         let debounce = 0;
         new MutationObserver(() => {
