@@ -71,12 +71,7 @@ button.en__ecarditems__addrecipient {
 }
 
 .en__ecarditems__thumb {
-  width: calc(
-    (
-        100% - var(--fields_spacing-inline) *
-          (var(--ecard_thumnail-row_count) * 2)
-      ) / var(--ecard_thumnail-row_count)
-  );
+  width: calc((100% - var(--fields_spacing-inline) * (var(--ecard_thumnail-row_count) * 2)) / var(--ecard_thumnail-row_count));
   margin-left: var(--fields_spacing-inline);
   margin-right: var(--fields_spacing-inline);
 }
@@ -130,9 +125,26 @@ button.en__ecarditems__prevclose {
   background-color: #323232;
   margin-bottom: 40px;
   color: #ffffff;
+
   :hover {
     color: #ffffff;
   }
+}
+
+/**
+  * This date entry field displays too wide on webkit iOS browsers. This is a fix for that.
+  */
+.en__ecardrecipients__futureDelivery input[type="date"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.en__ecardrecipients__futureDelivery input[type="date"]::-webkit-date-and-time-value {
+  text-align: left;
 }
 
 @media screen and (max-width: 700px) {
