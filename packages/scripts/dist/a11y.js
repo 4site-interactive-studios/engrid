@@ -29,8 +29,8 @@ export class A11y {
     static addErrorAlertArea(root = document) {
         const fieldElements = root.querySelectorAll('.en__field .en__field__element');
         fieldElements.forEach((fieldElement) => {
-            var _a;
-            if ((_a = fieldElement.nextElementSibling) === null || _a === void 0 ? void 0 : _a.classList.contains('en__field__error__alert'))
+            const fieldWrapper = fieldElement.closest('.en__field');
+            if (fieldWrapper === null || fieldWrapper === void 0 ? void 0 : fieldWrapper.querySelector('.en__field__error__alert'))
                 return;
             const errorAlert = document.createElement('div');
             errorAlert.setAttribute('aria-live', 'polite');
