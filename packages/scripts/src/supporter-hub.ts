@@ -57,6 +57,12 @@ export class SupporterHub {
               ) {
                 this.logger.log("Overlay removed");
                 A11y.inertPage(false);
+                const remainingOverlay = document.querySelector<HTMLElement>(
+                  ".en__hubOverlay, .en__hubPledge__panels"
+                );
+                if (remainingOverlay) {
+                  A11y.inertPage(true, remainingOverlay);
+                }
               }
             }
           });
