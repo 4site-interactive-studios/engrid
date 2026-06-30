@@ -1393,7 +1393,7 @@ textarea,
 
 .en__ecardmessage__default {
   min-height: 15.625rem;
-  border: 1px solid #bfbfbf;
+  border: 1px solid var(--textarea_border-color, #bfbfbf);
   padding: 0.625rem;
 }
 
@@ -1426,7 +1426,7 @@ textarea,
 
 .en__ecardrecipients__list {
   min-height: 15.625rem;
-  border: 1px solid #bfbfbf;
+  border: 1px solid var(--textarea_border-color, #bfbfbf);
   padding: 0.625rem;
   margin: 1.25rem 0 0;
   background: var(--color_white);
@@ -3321,6 +3321,15 @@ body[data-engrid-live-currency=active] .en__field--donationAmt .en__field__item:
 
 .en__field__error--hidden-by-a11y {
   display: none !important;
+}
+
+.engrid__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }
 
 @supports (-webkit-appearance: -apple-pay-button) {
@@ -5306,6 +5315,12 @@ button.en__ecarditems__addrecipient {
   width: calc((100% - var(--fields_spacing-inline) * var(--ecard_thumnail-row_count) * 2) / var(--ecard_thumnail-row_count));
   margin-left: var(--fields_spacing-inline);
   margin-right: var(--fields_spacing-inline);
+}
+
+.en__ecarditems__thumb:focus,
+.en__ecarditems__thumb:focus-visible {
+  outline: 3px solid var(--focus_outline_color, #086ce7);
+  outline-offset: var(--focus_outline_offset, 2px);
 }
 
 .en__ecarditems__thumb img {

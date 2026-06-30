@@ -5,4 +5,8 @@ export declare class Ecard {
     constructor();
     private shouldRun;
     private checkRecipientFields;
+    private altsAndArias;
+    private altsAndAriasEcardItemsList;
+    private coupleLabelAndInput;
+    private coupleH2AndInput;
 }
