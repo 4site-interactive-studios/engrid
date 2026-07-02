@@ -56,6 +56,7 @@ export class PageBackground {
         backgroundImg = clonedImage;
         // Remove the no-page-background data attribute if it exists, since we now have a background image
         document.body.removeAttribute("data-engrid-no-page-backgroundImage");
+        ENGrid.setBodyData("use-body-banner-background", "");
       }
     } else if (!backgroundImg) {
       this.logger.log(

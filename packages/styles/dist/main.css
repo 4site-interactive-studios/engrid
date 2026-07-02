@@ -8022,6 +8022,9 @@ body[data-engrid-embedded]:not(#en__pagebuilder) .hideif-iframe {
   [data-engrid-layout=centercenter1col][data-engrid-embedded] [class*=page-backgroundImage] {
     display: none !important;
   }
+  body[data-engrid-use-body-banner-background] [data-engrid-layout=centercenter1col]:not(#en__pagebuilder) .body-banner {
+    display: none !important;
+  }
 }
 @media screen and (max-width: 499px) {
   [data-engrid-layout=centercenter1col] .page-backgroundImage,
@@ -8257,6 +8260,9 @@ body[data-engrid-embedded]:not(#en__pagebuilder) .hideif-iframe {
   [data-engrid-layout=centerleft1col][data-engrid-embedded] [class*=page-backgroundImage] {
     display: none !important;
   }
+  body[data-engrid-use-body-banner-background] [data-engrid-layout=centerleft1col]:not(#en__pagebuilder) .body-banner {
+    display: none !important;
+  }
 }
 @media screen and (max-width: 499px) {
   [data-engrid-layout=centerleft1col] .page-backgroundImage,
@@ -8358,6 +8364,9 @@ body[data-engrid-embedded]:not(#en__pagebuilder) .hideif-iframe {
   [data-engrid-layout=centerright1col][data-engrid-embedded] [class*=page-backgroundImage] {
     display: none !important;
   }
+  body[data-engrid-use-body-banner-background] [data-engrid-layout=centerright1col]:not(#en__pagebuilder) .body-banner {
+    display: none !important;
+  }
 }
 @media screen and (min-width: 500px) and (max-width: 499px) {
   .page-backgroundImage,
@@ -8430,6 +8439,9 @@ body[data-engrid-embedded]:not(#en__pagebuilder) .hideif-iframe {
     grid-row: page-start/content-footerSpacer-end;
   }
   [data-engrid-layout=leftleft1col][data-engrid-embedded] [class*=page-backgroundImage] {
+    display: none !important;
+  }
+  body[data-engrid-use-body-banner-background] [data-engrid-layout=leftleft1col]:not(#en__pagebuilder) .body-banner {
     display: none !important;
   }
 }
@@ -8531,6 +8543,9 @@ body[data-engrid-embedded]:not(#en__pagebuilder) .hideif-iframe {
     grid-row: page-start/content-footerSpacer-end;
   }
   [data-engrid-layout=rightright1col][data-engrid-embedded] [class*=page-backgroundImage] {
+    display: none !important;
+  }
+  body[data-engrid-use-body-banner-background] [data-engrid-layout=rightright1col]:not(#en__pagebuilder) .body-banner {
     display: none !important;
   }
 }
