@@ -1,11 +1,15 @@
 import { ENGrid, EngridLogger } from ".";
 export class PageBackground {
-    constructor() {
+    constructor(useBodyBannerImage = false) {
         // @TODO: Change page-backgroundImage to page-background
         this.pageBackground = document.querySelector(".page-backgroundImage");
+        this.bodyBannerImage = null;
         this.mutationObserver = null;
         this.logger = new EngridLogger("PageBackground", "lightblue", "darkblue", "🖼️");
-        if (!this.pageBackground) {
+        if (useBodyBannerImage) {
+            this.bodyBannerImage = document.querySelector(".body-banner img");
+        }
+        if (!this.pageBackground && !this.bodyBannerImage) {
             this.logger.log("A background image set in the page was not found, any default image set in the theme on --engrid__page-backgroundImage_url will be used");
             return;
         }
@@ -18,15 +22,29 @@ export class PageBackground {
      * Initialize background image by finding and setting CSS custom property
      */
     initializeBackgroundImage() {
-        if (!this.pageBackground)
+        var _a;
+        if (!this.pageBackground && !this.bodyBannerImage)
             return;
-        const pageBackgroundImg = this.pageBackground.querySelector("img");
-        if (!pageBackgroundImg) {
-            this.logger.log("A background image set in the page was not found, any default image set in the theme on --engrid__page-backgroundImage_url will be used");
+        let backgroundImg = (_a = this.pageBackground) === null || _a === void 0 ? void 0 : _a.querySelector("img");
+        // If page background has an image, continue with that as the image source, otherwise check for body banner image
+        if (!backgroundImg && this.bodyBannerImage) {
+            this.logger.log("No image found in page background, using body banner image as background image instead");
+            backgroundImg = this.bodyBannerImage;
+            // Clone the body banner image to the page background section to ensure it is present in the DOM for processing
+            if (this.pageBackground) {
+                const clonedImage = backgroundImg.cloneNode(true);
+                this.pageBackground.appendChild(clonedImage);
+                backgroundImg = clonedImage;
+                // Remove the no-page-background data attribute if it exists, since we now have a background image
+                document.body.removeAttribute("data-engrid-no-page-backgroundImage");
+            }
+        }
+        else if (!backgroundImg) {
+            this.logger.log("No image found in page background and no body banner image found, any default image set in the theme on --engrid__page-backgroundImage_url will be used");
             return;
         }
-        const dataSrc = pageBackgroundImg.getAttribute("data-src");
-        const src = pageBackgroundImg.src;
+        const dataSrc = backgroundImg.getAttribute("data-src");
+        const src = backgroundImg.src;
         if (dataSrc) {
             this.setBackgroundImageUrl(dataSrc, "data-src");
         }
@@ -34,7 +52,7 @@ export class PageBackground {
             this.setBackgroundImageUrl(src, "src");
         }
         else {
-            this.logger.log("A background image set in the page was found but without a data-src or src value, no action taken", pageBackgroundImg);
+            this.logger.log("A background image set in the page was found but without a data-src or src value, no action taken", backgroundImg);
         }
     }
     /**

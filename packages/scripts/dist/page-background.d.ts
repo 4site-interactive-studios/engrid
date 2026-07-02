@@ -1,8 +1,9 @@
 export declare class PageBackground {
     private pageBackground;
+    private bodyBannerImage;
     private mutationObserver;
     private logger;
-    constructor();
+    constructor(useBodyBannerImage?: boolean);
     /**
      * Initialize background image by finding and setting CSS custom property
      */
