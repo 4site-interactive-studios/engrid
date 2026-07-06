@@ -367,7 +367,7 @@ export class App extends ENGrid {
       ) {
         new RememberMe(this.options.RememberMe);
       }
-    } catch (e) {}
+    } catch (e) { }
 
     if (this.options.NeverBounceAPI)
       new NeverBounce(
@@ -425,7 +425,7 @@ export class App extends ENGrid {
     new SupporterHub();
 
     // Digital Wallets Features
-    if (ENGrid.getPageType() === "DONATION") {
+    if (ENGrid.getPageType() === "DONATION" || ENGrid.getPageType() === "EVENT") {
       new DigitalWallets();
       new PreferredPaymentMethod();
     }
@@ -483,7 +483,7 @@ export class App extends ENGrid {
       ) {
         showDebugPanel = true;
       }
-    } catch (e) {}
+    } catch (e) { }
     if (showDebugPanel) {
       new DebugPanel(this.options.PageLayouts);
     }
