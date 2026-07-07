@@ -17,7 +17,7 @@
 }
 
 @mixin engrid_hide-body-banner-on-desktop {
-  body[data-engrid-use-body-banner-background] &:not(#en__pagebuilder) {
+  &[data-engrid-use-body-banner-background]:not(#en__pagebuilder) {
     .body-banner {
       display: none !important;
     }

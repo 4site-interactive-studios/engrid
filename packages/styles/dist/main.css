@@ -8022,7 +8022,7 @@ body[data-engrid-embedded]:not(#en__pagebuilder) .hideif-iframe {
   [data-engrid-layout=centercenter1col][data-engrid-embedded] [class*=page-backgroundImage] {
     display: none !important;
   }
-  body[data-engrid-use-body-banner-background] [data-engrid-layout=centercenter1col]:not(#en__pagebuilder) .body-banner {
+  [data-engrid-layout=centercenter1col][data-engrid-use-body-banner-background]:not(#en__pagebuilder) .body-banner {
     display: none !important;
   }
 }
@@ -8260,7 +8260,7 @@ body[data-engrid-embedded]:not(#en__pagebuilder) .hideif-iframe {
   [data-engrid-layout=centerleft1col][data-engrid-embedded] [class*=page-backgroundImage] {
     display: none !important;
   }
-  body[data-engrid-use-body-banner-background] [data-engrid-layout=centerleft1col]:not(#en__pagebuilder) .body-banner {
+  [data-engrid-layout=centerleft1col][data-engrid-use-body-banner-background]:not(#en__pagebuilder) .body-banner {
     display: none !important;
   }
 }
@@ -8364,7 +8364,7 @@ body[data-engrid-embedded]:not(#en__pagebuilder) .hideif-iframe {
   [data-engrid-layout=centerright1col][data-engrid-embedded] [class*=page-backgroundImage] {
     display: none !important;
   }
-  body[data-engrid-use-body-banner-background] [data-engrid-layout=centerright1col]:not(#en__pagebuilder) .body-banner {
+  [data-engrid-layout=centerright1col][data-engrid-use-body-banner-background]:not(#en__pagebuilder) .body-banner {
     display: none !important;
   }
 }
@@ -8441,7 +8441,7 @@ body[data-engrid-embedded]:not(#en__pagebuilder) .hideif-iframe {
   [data-engrid-layout=leftleft1col][data-engrid-embedded] [class*=page-backgroundImage] {
     display: none !important;
   }
-  body[data-engrid-use-body-banner-background] [data-engrid-layout=leftleft1col]:not(#en__pagebuilder) .body-banner {
+  [data-engrid-layout=leftleft1col][data-engrid-use-body-banner-background]:not(#en__pagebuilder) .body-banner {
     display: none !important;
   }
 }
@@ -8545,7 +8545,7 @@ body[data-engrid-embedded]:not(#en__pagebuilder) .hideif-iframe {
   [data-engrid-layout=rightright1col][data-engrid-embedded] [class*=page-backgroundImage] {
     display: none !important;
   }
-  body[data-engrid-use-body-banner-background] [data-engrid-layout=rightright1col]:not(#en__pagebuilder) .body-banner {
+  [data-engrid-layout=rightright1col][data-engrid-use-body-banner-background]:not(#en__pagebuilder) .body-banner {
     display: none !important;
   }
 }
