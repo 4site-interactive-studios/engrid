@@ -216,7 +216,7 @@
       }
 
       // Compound field wrappers need a negative horizontal margin
-      &.en__field__element--checkbox,
+      &.en__field__element--checkbox:not([class^="pbo"]),
       &.en__field__element--radio,
       &.en__field__element--rating,
       &.en__field__element--imgselect,
@@ -269,11 +269,11 @@
   /* Helper Class .direction-column (recording: https://cln.sh/3nPmz4Nb) */
   /* Makes the Surveys and Questions field types have their Radio and Checkbox fields appear in a column. */
   &.direction-column .en__field--radio,
-  &.direction-column .en__field--checkbox,
+  &.direction-column .en__field--checkbox:not([class^="pbo"]),
   .en__field.en__field--radio.en__field--survey,
-  .en__field.en__field--checkbox.en__field--survey,
+  .en__field.en__field--checkbox:not([class^="pbo"]).en__field--survey,
   .en__field.en__field--radio.en__field--question,
-  .en__field.en__field--checkbox.en__field--question {
+  .en__field.en__field--checkbox:not([class^="pbo"]).en__field--question {
     .en__field__element {
       display: grid;
       grid-auto-rows: auto;
@@ -299,7 +299,7 @@
   /* If your Checkbox or Radio selects are in a column, this will make it so the Other Input appears to the side of the Checkbox or Radio select that makes it appear */
   /* Be mindful of using this, a user with limited vision might not see it appear to the side */
   &.inline-other .en__field--radio.en__field--withOther--active,
-  &.inline-other .en__field--checkbox.en__field--withOther--active {
+  &.inline-other .en__field--checkbox:not([class^="pbo"]).en__field--withOther--active {
     .en__field__element {
       grid-template-columns: min-content;
     }
@@ -546,7 +546,7 @@ input[type="radio"] {
 /************************************
 * Checkbox Fields
 ***********************************/
-input[type="checkbox"] {
+input[type="checkbox"]:not([class^="pbo"]) {
   + label {
     cursor: pointer;
     content: "";
@@ -761,7 +761,7 @@ input[type="checkbox"] {
 
 /* Custom Styling for Radio & Checkbox Inputs */
 input.en__field__input--radio,
-input.en__field__input--checkbox,
+input.en__field__input--checkbox:not([class^="pbo"]),
 input.en__contactDetails__select {
   border: 0;
   clip: rect(0 0 0 0);
@@ -777,7 +777,7 @@ input.en__contactDetails__select {
 }
 
 .en__field__input--radio:focus + .en__field__label,
-.en__field__input--checkbox:focus + .en__field__label,
+.en__field__input--checkbox:not([class^="pbo"]):focus + .en__field__label,
 .en__contactDetails__select:focus + .en__contactDetails__rows {
   outline: -webkit-focus-ring-color auto 1px;
   outline-offset: calc(
@@ -786,7 +786,7 @@ input.en__contactDetails__select {
 }
 
 .en__field--radio[class*="en__field--NOT_TAGGED_"] .en__field__element,
-.en__field--checkbox[class*="en__field--NOT_TAGGED_"] .en__field__element {
+.en__field--checkbox[class*="en__field--NOT_TAGGED_"]:not([class^="pbo"]) .en__field__element {
   flex-direction: column;
   align-items: flex-start;
 }
