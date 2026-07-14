@@ -43,6 +43,9 @@ export class RememberMe {
             options.fieldClearSelectorTargetLocation
                 ? options.fieldClearSelectorTargetLocation
                 : "before";
+        this.fieldClearLabel = options.fieldClearLabel
+            ? options.fieldClearLabel
+            : "(clear autofill)";
         this.fieldData = {};
         if (this.useRemote()) {
             this.createIframe(() => {
@@ -109,12 +112,11 @@ export class RememberMe {
     insertClearRememberMeLink() {
         let clearRememberMeField = document.getElementById("clear-autofill-data");
         if (!clearRememberMeField) {
-            const clearAutofillLabel = "clear autofill";
             clearRememberMeField = document.createElement("a");
             clearRememberMeField.setAttribute("id", "clear-autofill-data");
             clearRememberMeField.classList.add("label-tooltip");
             clearRememberMeField.setAttribute("style", "cursor: pointer;");
-            clearRememberMeField.innerHTML = `(${clearAutofillLabel})`;
+            clearRememberMeField.innerHTML = this.fieldClearLabel;
             const targetField = this.getElementByFirstSelector(this.fieldClearSelectorTarget);
             if (targetField) {
                 if (this.fieldClearSelectorTargetLocation === "after") {

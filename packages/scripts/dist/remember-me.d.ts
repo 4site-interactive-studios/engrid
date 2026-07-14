@@ -17,6 +17,7 @@ export declare class RememberMe {
     private fieldOptInSelectorTargetLocation;
     private fieldClearSelectorTarget;
     private fieldClearSelectorTargetLocation;
+    private fieldClearLabel;
     constructor(options: {
         remoteUrl?: string;
         cookieName?: string;
@@ -30,6 +31,7 @@ export declare class RememberMe {
         fieldOptInSelectorTargetLocation?: string;
         fieldClearSelectorTarget?: string;
         fieldClearSelectorTargetLocation?: string;
+        fieldClearLabel?: string;
         checked?: boolean;
     });
     private updateFieldData;

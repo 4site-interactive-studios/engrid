@@ -50,6 +50,7 @@ export interface Options {
         fieldOptInSelectorTargetLocation?: string;
         fieldClearSelectorTarget?: string;
         fieldClearSelectorTargetLocation?: string;
+        fieldClearLabel?: string;
         checked?: boolean;
     };
     StickyNSG?: boolean;
