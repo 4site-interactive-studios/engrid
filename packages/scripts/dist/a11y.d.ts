@@ -20,9 +20,10 @@ export declare class A11y {
     /**
      * Observe #engrid for .en__field__error additions and removals, mirroring
      * text into the per-field .en__field__error__alert live region and toggling
-     * aria-invalid / aria-describedby on the corresponding input. Runs for the
-     * lifetime of the page so async validators (NeverBounce, VGS, server
-     * re-renders) are caught without timing assumptions.
+     * aria-invalid / aria-describedby on the corresponding input (or radio group
+     * when the field has role="group"). Runs for the lifetime of the page so async
+     * validators (NeverBounce, VGS, server re-renders) are caught without timing
+     * assumptions.
      */
     private observeErrorMessages;
     private moveErrorMessage;

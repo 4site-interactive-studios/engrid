@@ -161,9 +161,10 @@ export class A11y {
   /**
    * Observe #engrid for .en__field__error additions and removals, mirroring
    * text into the per-field .en__field__error__alert live region and toggling
-   * aria-invalid / aria-describedby on the corresponding input. Runs for the
-   * lifetime of the page so async validators (NeverBounce, VGS, server
-   * re-renders) are caught without timing assumptions.
+   * aria-invalid / aria-describedby on the corresponding input (or radio group
+   * when the field has role="group"). Runs for the lifetime of the page so async
+   * validators (NeverBounce, VGS, server re-renders) are caught without timing
+   * assumptions.
    */
   private observeErrorMessages(): void {
     const root = document.getElementById('engrid') ?? document.body;
@@ -205,7 +206,7 @@ export class A11y {
 
   private moveErrorMessage(field: HTMLElement): void {
     if (field.closest('.en__field__error__alert')) return;
-    const fieldWrapper = field.closest('.en__field');
+    const fieldWrapper = field.closest('.en__field') as HTMLElement | null;
     if (!fieldWrapper) return;
 
     const alertContainer = fieldWrapper.querySelector<HTMLElement>('.en__field__error__alert');
@@ -214,40 +215,66 @@ export class A11y {
     alertContainer.textContent = field.textContent;
     field.classList.add('en__field__error--hidden-by-a11y');
 
-    const inputElement = fieldWrapper.querySelector<HTMLElement>(
-      '.en__field__element input, .en__field__element select, .en__field__element textarea'
-    );
-    if (!inputElement) return;
+    const target =
+      fieldWrapper.getAttribute('role') === 'group'
+        ? fieldWrapper
+        : fieldWrapper.querySelector<HTMLElement>(
+          '.en__field__element input, .en__field__element select, .en__field__element textarea'
+        );
+    if (!target) return;
 
-    inputElement.setAttribute('aria-invalid', 'true');
-    const describedBy = (inputElement.getAttribute('aria-describedby') ?? '')
+    target.setAttribute('aria-invalid', 'true');
+    const describedBy = (target.getAttribute('aria-describedby') ?? '')
       .split(/\s+/)
       .filter(Boolean);
     if (describedBy.indexOf(alertContainer.id) === -1) {
       describedBy.push(alertContainer.id);
     }
-    inputElement.setAttribute('aria-describedby', describedBy.join(' '));
+    target.setAttribute('aria-describedby', describedBy.join(' '));
+
+    // For radio groups, the group itself is the accessible widget; keep the
+    // individual inputs from also being announced as invalid.
+    if (target === fieldWrapper) {
+      fieldWrapper
+        .querySelectorAll<HTMLElement>(
+          '.en__field__element input, .en__field__element select, .en__field__element textarea'
+        )
+        .forEach(input => {
+          input.removeAttribute('aria-invalid');
+          const remaining = (input.getAttribute('aria-describedby') ?? '')
+            .split(/\s+/)
+            .filter(id => id && id !== alertContainer.id);
+          if (remaining.length) {
+            input.setAttribute('aria-describedby', remaining.join(' '));
+          } else {
+            input.removeAttribute('aria-describedby');
+          }
+        });
+    }
   }
 
   private clearErrorMessage(alert: HTMLElement): void {
     alert.textContent = '';
 
-    const fieldWrapper = alert.closest('.en__field');
+    const fieldWrapper = alert.closest('.en__field') as HTMLElement | null;
     if (!fieldWrapper) return;
 
-    const inputElement = fieldWrapper.querySelector<HTMLElement>(
-      '.en__field__element input, .en__field__element select, .en__field__element textarea'
-    );
-    if (!inputElement) return;
+    const target =
+      fieldWrapper.getAttribute('role') === 'group'
+        ? fieldWrapper
+        : fieldWrapper.querySelector<HTMLElement>(
+          '.en__field__element input, .en__field__element select, .en__field__element textarea'
+        );
+    if (!target) return;
 
-    inputElement.removeAttribute('aria-invalid');
-    const remaining = (inputElement.getAttribute('aria-describedby') ?? '')
+    target.removeAttribute('aria-invalid');
+    const remaining = (target.getAttribute('aria-describedby') ?? '')
       .split(/\s+/)
       .filter(id => id && id !== alert.id);
     if (remaining.length) {
-      inputElement.setAttribute('aria-describedby', remaining.join(' '));
+      target.setAttribute('aria-describedby', remaining.join(' '));
     } else {
-      inputElement.removeAttribute('aria-describedby');
+      target.removeAttribute('aria-describedby');
     }
   }
 
