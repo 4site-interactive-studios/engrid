@@ -48,4 +48,5 @@ export declare class A11y {
     private formatErrorMessage;
     private focusFirstInvalidField;
     private getFieldLabel;
+    private normalizeLabel;
 }

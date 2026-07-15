@@ -37,7 +37,7 @@ export class A11y {
         const liveRegionId = 'engrid-a11y-error-summary';
         if (document.getElementById(liveRegionId))
             return;
-        const form = (_a = ENGrid.enForm) !== null && _a !== void 0 ? _a : (root instanceof Document ? root.querySelector('form.en__component') : root.querySelector('form.en__component'));
+        const form = (_a = ENGrid.enForm) !== null && _a !== void 0 ? _a : root.querySelector('form.en__component');
         if (!form)
             return;
         const region = document.createElement('div');
@@ -163,6 +163,8 @@ export class A11y {
                         return;
                     if (!node.classList.contains('en__field__error'))
                         return;
+                    if (node.isConnected)
+                        return; // relocated, not removed
                     // node.parentElement is null after removal; record.target is the
                     // former parent. Walk up to the enclosing .en__field to be defensive
                     // against deeper nesting.
@@ -235,7 +237,10 @@ export class A11y {
             : fieldWrapper.querySelector('.en__field__element input, .en__field__element select, .en__field__element textarea');
         if (!target)
             return;
-        target.removeAttribute('aria-invalid');
+        const hasRemainingError = fieldWrapper.querySelector('.en__field__error') !== null;
+        if (!hasRemainingError) {
+            target.removeAttribute('aria-invalid');
+        }
         const remaining = ((_a = target.getAttribute('aria-describedby')) !== null && _a !== void 0 ? _a : '')
             .split(/\s+/)
             .filter(id => id && id !== errorId);
@@ -333,12 +338,12 @@ export class A11y {
     }
     formatErrorMessage(label, message) {
         const cleanMessage = message.trim();
-        const cleanLabel = label.trim();
+        const cleanLabel = this.normalizeLabel(label);
         if (!cleanLabel)
             return cleanMessage;
         // If the message already mentions the field label, no need to prefix it.
         const escapedLabel = cleanLabel.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        const labelRegex = new RegExp(escapedLabel, 'i');
+        const labelRegex = new RegExp(`\\b${escapedLabel}\\b`, 'i');
         if (labelRegex.test(cleanMessage))
             return cleanMessage;
         // Generic messages that don't identify the field need a label prefix.
@@ -362,11 +367,18 @@ export class A11y {
         }
     }
     getFieldLabel(field) {
-        var _a, _b, _c, _d, _e, _f;
+        var _a, _b, _c, _d, _e, _f, _g;
         const label = (_c = (_b = (_a = field.querySelector('.en__field__label:not(.en__field__label--item)')) !== null && _a !== void 0 ? _a : field.querySelector('.en__field__label')) !== null && _b !== void 0 ? _b : field.querySelector('label')) !== null && _c !== void 0 ? _c : field.querySelector('legend');
-        if ((_d = label === null || label === void 0 ? void 0 : label.textContent) === null || _d === void 0 ? void 0 : _d.trim())
-            return label.textContent.trim();
+        const labelText = (_e = (_d = label === null || label === void 0 ? void 0 : label.textContent) === null || _d === void 0 ? void 0 : _d.trim()) !== null && _e !== void 0 ? _e : '';
+        if (labelText)
+            return this.normalizeLabel(labelText);
         const input = field.querySelector('input, select, textarea');
-        return (_f = (_e = input === null || input === void 0 ? void 0 : input.getAttribute('aria-label')) === null || _e === void 0 ? void 0 : _e.trim()) !== null && _f !== void 0 ? _f : '';
+        return (_g = (_f = input === null || input === void 0 ? void 0 : input.getAttribute('aria-label')) === null || _f === void 0 ? void 0 : _f.trim()) !== null && _g !== void 0 ? _g : '';
+    }
+    normalizeLabel(label) {
+        return label
+            .replace(/\s+/g, ' ')
+            .replace(/^[*:\s]+|[*:\s]+$/g, '')
+            .trim();
     }
 }

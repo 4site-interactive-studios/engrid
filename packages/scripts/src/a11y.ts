@@ -45,7 +45,7 @@ export class A11y {
     const liveRegionId = 'engrid-a11y-error-summary';
     if (document.getElementById(liveRegionId)) return;
 
-    const form = ENGrid.enForm ?? (root instanceof Document ? root.querySelector('form.en__component') : root.querySelector('form.en__component'));
+    const form = ENGrid.enForm ?? root.querySelector<HTMLFormElement>('form.en__component');
     if (!form) return;
 
     const region = document.createElement('div');
@@ -193,6 +193,7 @@ export class A11y {
         record.removedNodes.forEach(node => {
           if (!(node instanceof HTMLElement)) return;
           if (!node.classList.contains('en__field__error')) return;
+          if (node.isConnected) return; // relocated, not removed
           // node.parentElement is null after removal; record.target is the
           // former parent. Walk up to the enclosing .en__field to be defensive
           // against deeper nesting.
@@ -276,7 +277,10 @@ export class A11y {
         );
     if (!target) return;
 
-    target.removeAttribute('aria-invalid');
+    const hasRemainingError = fieldWrapper.querySelector('.en__field__error') !== null;
+    if (!hasRemainingError) {
+      target.removeAttribute('aria-invalid');
+    }
     const remaining = (target.getAttribute('aria-describedby') ?? '')
       .split(/\s+/)
       .filter(id => id && id !== errorId);
@@ -378,12 +382,12 @@ export class A11y {
 
   private formatErrorMessage(label: string, message: string): string {
     const cleanMessage = message.trim();
-    const cleanLabel = label.trim();
+    const cleanLabel = this.normalizeLabel(label);
     if (!cleanLabel) return cleanMessage;
 
     // If the message already mentions the field label, no need to prefix it.
     const escapedLabel = cleanLabel.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const labelRegex = new RegExp(escapedLabel, 'i');
+    const labelRegex = new RegExp(`\\b${escapedLabel}\\b`, 'i');
     if (labelRegex.test(cleanMessage)) return cleanMessage;
 
     // Generic messages that don't identify the field need a label prefix.
@@ -416,11 +420,19 @@ export class A11y {
       field.querySelector<HTMLElement>('.en__field__label') ??
       field.querySelector<HTMLElement>('label') ??
       field.querySelector<HTMLElement>('legend');
-    if (label?.textContent?.trim()) return label.textContent.trim();
+    const labelText = label?.textContent?.trim() ?? '';
+    if (labelText) return this.normalizeLabel(labelText);
 
     const input = field.querySelector<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>(
       'input, select, textarea'
     );
     return input?.getAttribute('aria-label')?.trim() ?? '';
+  }
+
+  private normalizeLabel(label: string): string {
+    return label
+      .replace(/\s+/g, ' ')
+      .replace(/^[*:\s]+|[*:\s]+$/g, '')
+      .trim();
   }
 }
