@@ -6,6 +6,10 @@ interface DataObj {
   [key: string]: string;
 }
 
+// localStorage key used to cache the per-device AES-GCM encryption key.
+// A random secret generated once per device and held in localStorage.
+const RM_ENCRYPTION_KEY_STORAGE_NAME = "engrid-remember-me-key";
+
 export class RememberMe {
   public _form: EnForm = EnForm.getInstance();
   public _events: RememberMeEvents = RememberMeEvents.getInstance();
@@ -17,6 +21,7 @@ export class RememberMe {
   private cookieExpirationDays: number;
   private iframe: HTMLIFrameElement | null;
   private rememberMeOptIn: boolean;
+  private encryptData: boolean;
 
   private fieldDonationAmountRadioName: string;
   private fieldDonationAmountOtherName: string;
@@ -44,8 +49,10 @@ export class RememberMe {
     fieldClearSelectorTargetLocation?: string;
     fieldClearLabel?: string;
     checked?: boolean;
+    encryptData?: boolean;
   }) {
     this.iframe = null;
+    this.encryptData = options.encryptData ? options.encryptData : false;
 
     this.remoteUrl = options.remoteUrl ? options.remoteUrl : null;
     this.cookieName = options.cookieName
@@ -98,7 +105,11 @@ export class RememberMe {
         () => {
           if (this.iframe && this.iframe.contentWindow) {
             this.iframe.contentWindow.postMessage(
-              JSON.stringify({ key: this.cookieName, operation: "read" }),
+              JSON.stringify({
+                key: this.cookieName,
+                operation: "read",
+                encryptData: this.encryptData,
+              }),
               "*"
             );
             this._form.onSubmit.subscribe(() => {
@@ -135,6 +146,27 @@ export class RememberMe {
           }
         }
       );
+    } else if (this.encryptData) {
+      // Same flow as the unencrypted branch below, but the cookie payload is
+      // AES-GCM encrypted/decrypted (browser-native Web Crypto), so reading
+      // the cookie is asynchronous. A failed decrypt (foreign device or
+      // cleared localStorage) leaves fieldData empty and silently falls back
+      // to the standard, no-autofill experience.
+      this.readCookieEncrypted().then(() => {
+        let hasFieldData = Object.keys(this.fieldData).length > 0;
+        if (!hasFieldData) {
+          this.insertRememberMeOptin();
+        } else {
+          this.insertClearRememberMeLink();
+        }
+        this.writeFields();
+        this._form.onSubmit.subscribe(() => {
+          if (this.rememberMeOptIn) {
+            this.readFields();
+            this.saveCookieEncrypted();
+          }
+        });
+      });
     } else {
       this.readCookie();
       let hasFieldData = Object.keys(this.fieldData).length > 0;
@@ -189,6 +221,8 @@ export class RememberMe {
       this.clearFields(["supporter.country" /*, 'supporter.emailAddress'*/]);
       if (this.useRemote()) {
         this.clearCookieOnRemote();
+      } else if (this.encryptData) {
+        this.clearCookieEncrypted();
       } else {
         this.clearCookie();
       }
@@ -342,6 +376,7 @@ export class RememberMe {
           value: this.fieldData,
           operation: "write",
           expires: this.cookieExpirationDays,
+          encryptData: this.encryptData,
         }),
         "*"
       );
@@ -354,6 +389,154 @@ export class RememberMe {
     cookie.set(this.cookieName, JSON.stringify(this.fieldData), {
       expires: this.cookieExpirationDays,
     });
+  }
+  /**
+   * Reads and decrypts the local (non-remote) Remember Me cookie using
+   * browser-native AES-GCM (Web Crypto), with the key held in localStorage
+   * on this device. If the key is absent (different device or cleared
+   * storage) or decryption otherwise fails, the field data is left empty
+   * and the component falls back to the normal, no-autofill experience.
+   */
+  private async readCookieEncrypted(): Promise<void> {
+    const raw = cookie.get(this.cookieName);
+    if (!raw) {
+      return;
+    }
+    const decrypted = await this.decryptPayload(raw);
+    if (decrypted) {
+      this.updateFieldData(decrypted);
+    }
+  }
+  /**
+   * Encrypts the current fieldData with AES-GCM (Web Crypto) and stores the
+   * base64-encoded result in the local cookie. If encryption isn't possible
+   * (e.g. Web Crypto unavailable), nothing is written.
+   */
+  private async saveCookieEncrypted(): Promise<void> {
+    const encrypted = await this.encryptPayload(JSON.stringify(this.fieldData));
+    if (encrypted) {
+      cookie.set(this.cookieName, encrypted, {
+        expires: this.cookieExpirationDays,
+      });
+    }
+  }
+  private clearCookieEncrypted() {
+    this.fieldData = {};
+    this.saveCookieEncrypted();
+  }
+  /**
+   * Retrieves the per-device AES-GCM encryption key. A random secret
+   * generated once per device and held in localStorage — never written
+   * to the cookie, so it never travels with the transported value.
+   */
+  private async getEncryptionKey(): Promise<CryptoKey | null> {
+    if (!window.crypto || !window.crypto.subtle) {
+      return null;
+    }
+    const storedKey = window.localStorage.getItem(
+      RM_ENCRYPTION_KEY_STORAGE_NAME
+    );
+    if (storedKey) {
+      try {
+        return await window.crypto.subtle.importKey(
+          "raw",
+          this.base64ToArrayBuffer(storedKey),
+          { name: "AES-GCM", length: 256 },
+          false,
+          ["encrypt", "decrypt"]
+        );
+      } catch (e) {
+        return null;
+      }
+    }
+    try {
+      const key = await window.crypto.subtle.generateKey(
+        { name: "AES-GCM", length: 256 },
+        true,
+        ["encrypt", "decrypt"]
+      );
+      const exported = await window.crypto.subtle.exportKey("raw", key);
+      window.localStorage.setItem(
+        RM_ENCRYPTION_KEY_STORAGE_NAME,
+        this.arrayBufferToBase64(exported)
+      );
+      return key;
+    } catch (e) {
+      return null;
+    }
+  }
+  /**
+   * Encrypts a plaintext string with AES-GCM and returns the base64-encoded
+   * IV + ciphertext, ready for storage. Returns null if a key isn't
+   * available (e.g. Web Crypto unsupported).
+   */
+  private async encryptPayload(plaintext: string): Promise<string | null> {
+    const key = await this.getEncryptionKey();
+    if (!key) {
+      return null;
+    }
+    const iv = window.crypto.getRandomValues(new Uint8Array(12));
+    const ciphertext = await window.crypto.subtle.encrypt(
+      { name: "AES-GCM", iv },
+      key,
+      new TextEncoder().encode(plaintext)
+    );
+    const combined = new Uint8Array(iv.length + ciphertext.byteLength);
+    combined.set(iv);
+    combined.set(new Uint8Array(ciphertext), iv.length);
+    return this.arrayBufferToBase64(combined);
+  }
+  /**
+   * Decrypts a base64-encoded IV + ciphertext payload previously produced by
+   * encryptPayload. Returns null (rather than throwing) if the key is
+   * missing or decryption otherwise fails, so callers can gracefully fall
+   * back to the standard, no-autofill experience.
+   */
+  private async decryptPayload(
+    encryptedBase64: string
+  ): Promise<string | null> {
+    const key = await this.getEncryptionKey();
+    if (!key) {
+      return null;
+    }
+    let combined: Uint8Array;
+    try {
+      combined = new Uint8Array(this.base64ToArrayBuffer(encryptedBase64));
+    } catch (e) {
+      return null;
+    }
+    if (combined.length < 13) {
+      return null;
+    }
+    const iv = combined.slice(0, 12);
+    const ciphertext = combined.slice(12);
+    try {
+      const decrypted = await window.crypto.subtle.decrypt(
+        { name: "AES-GCM", iv },
+        key,
+        ciphertext
+      );
+      return new TextDecoder().decode(decrypted);
+    } catch (e) {
+      return null;
+    }
+  }
+  private arrayBufferToBase64(buffer: ArrayBuffer | Uint8Array): string {
+    let binary = "";
+    const bytes =
+      buffer instanceof Uint8Array ? buffer : new Uint8Array(buffer);
+    for (let i = 0; i < bytes.byteLength; i++) {
+      binary += String.fromCharCode(bytes[i]);
+    }
+    return window.btoa(binary);
+  }
+  private base64ToArrayBuffer(base64: string): ArrayBuffer {
+    const binary = window.atob(base64);
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) {
+      bytes[i] = binary.charCodeAt(i);
+    }
+    return bytes.buffer;
   }
   private readFields() {
     for (let i = 0; i < this.fieldNames.length; i++) {

@@ -9,6 +9,7 @@ export declare class RememberMe {
     private cookieExpirationDays;
     private iframe;
     private rememberMeOptIn;
+    private encryptData;
     private fieldDonationAmountRadioName;
     private fieldDonationAmountOtherName;
     private fieldDonationRecurrPayRadioName;
@@ -33,6 +34,7 @@ export declare class RememberMe {
         fieldClearSelectorTargetLocation?: string;
         fieldClearLabel?: string;
         checked?: boolean;
+        encryptData?: boolean;
     });
     private updateFieldData;
     private insertClearRememberMeLink;
@@ -45,6 +47,42 @@ export declare class RememberMe {
     private saveCookieToRemote;
     private readCookie;
     private saveCookie;
+    /**
+     * Reads and decrypts the local (non-remote) Remember Me cookie using
+     * browser-native AES-GCM (Web Crypto), with the key held in localStorage
+     * on this device. If the key is absent (different device or cleared
+     * storage) or decryption otherwise fails, the field data is left empty
+     * and the component falls back to the normal, no-autofill experience.
+     */
+    private readCookieEncrypted;
+    /**
+     * Encrypts the current fieldData with AES-GCM (Web Crypto) and stores the
+     * base64-encoded result in the local cookie. If encryption isn't possible
+     * (e.g. Web Crypto unavailable), nothing is written.
+     */
+    private saveCookieEncrypted;
+    private clearCookieEncrypted;
+    /**
+     * Retrieves the per-device AES-GCM encryption key. A random secret
+     * generated once per device and held in localStorage — never written
+     * to the cookie, so it never travels with the transported value.
+     */
+    private getEncryptionKey;
+    /**
+     * Encrypts a plaintext string with AES-GCM and returns the base64-encoded
+     * IV + ciphertext, ready for storage. Returns null if a key isn't
+     * available (e.g. Web Crypto unsupported).
+     */
+    private encryptPayload;
+    /**
+     * Decrypts a base64-encoded IV + ciphertext payload previously produced by
+     * encryptPayload. Returns null (rather than throwing) if the key is
+     * missing or decryption otherwise fails, so callers can gracefully fall
+     * back to the standard, no-autofill experience.
+     */
+    private decryptPayload;
+    private arrayBufferToBase64;
+    private base64ToArrayBuffer;
     private readFields;
     private setFieldValue;
     private clearFields;

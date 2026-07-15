@@ -52,6 +52,7 @@ export interface Options {
         fieldClearSelectorTargetLocation?: string;
         fieldClearLabel?: string;
         checked?: boolean;
+        encryptData?: boolean;
     };
     StickyNSG?: boolean;
     StickyPrepopulation?: false | {

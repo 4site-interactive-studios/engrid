@@ -32,6 +32,8 @@ To enable, add a 'RememberMe' property to the 'options' object in your engrid th
 
 **fieldDonationAmountOtherCheckboxID**: This is deprecated and will be removed.
 
+**encryptData**: Boolean. If set to true, the saved form details are encrypted with browser-native AES-GCM (Web Crypto) before being stored, and the resulting bytes are base64-encoded. This applies to both the local cookie and the remote-iframe cookie. The encryption key is randomly generated once per device and kept in `localStorage` (never written to the cookie itself, so it never travels with the transported value). In remote mode, the key and store live in the iframe's origin, so multiple sites sharing that remote origin (e.g. FWW and FWA) share them automatically — however, note that this relies on localStorage access within the cross-origin iframe, which is subject to Chrome's third-party storage partitioning (see known limitations). If the key is missing or decryption otherwise fails (a different device, or cleared storage), the component silently discards the data and falls back to the normal, no-autofill experience. Defaults to false. When enabled with `remoteUrl`, the remote page must implement the matching encrypt/decrypt protocol (see `data-remember.html` for a reference implementation).
+
 ---
 
 **Sample Remote URL Page Markup to be used as a cookie repository**
