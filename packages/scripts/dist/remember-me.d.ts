@@ -111,10 +111,10 @@ export declare class RememberMe {
      * short delay to let SwapAmounts finish its DOM update, re-applies only the
      * donation amount. It unsubscribes immediately so it only fires once.
      *
-     * To avoid overwriting a manual donor interaction (if the donor changes
-     * frequency before the automated SwapAmounts fires), the handler checks
-     * whether the current amount selection still matches what writeFields set.
-     * If the donor already picked a different amount, we skip re-application.
+     * To avoid overwriting a manual donor interaction, the handler checks
+     * whether the current amount selection is empty/wiped (as SwapAmounts does)
+     * OR still matches what writeFields originally set. If the donor already
+     * picked a different amount, we skip re-application.
      */
     private reapplyDonationAmtAfterSwap;
     /**

@@ -678,7 +678,7 @@ export class RememberMe {
             const savedValue = this.fieldData[this.fieldNames[i]];
             if (savedValue) {
               const freqRadio = document.querySelector(
-                fieldSelector + "[value='" + savedValue + "']"
+                fieldSelector + "[value='" + CSS.escape(savedValue) + "']"
               ) as HTMLInputElement;
               if (freqRadio) {
                 freqRadio.click();
@@ -686,8 +686,9 @@ export class RememberMe {
             }
           } else if (this.fieldDonationAmountRadioName === this.fieldNames[i]) {
             const savedAmt = this.fieldData[this.fieldNames[i]];
+            const escapedAmt = CSS.escape(savedAmt);
             field = document.querySelector(
-              fieldSelector + "[value='" + savedAmt + "']"
+              fieldSelector + "[value='" + escapedAmt + "']"
             ) as HTMLInputElement;
             if (field) {
               // Saved value matches a predefined radio option — just click it
@@ -731,10 +732,10 @@ export class RememberMe {
    * short delay to let SwapAmounts finish its DOM update, re-applies only the
    * donation amount. It unsubscribes immediately so it only fires once.
    *
-   * To avoid overwriting a manual donor interaction (if the donor changes
-   * frequency before the automated SwapAmounts fires), the handler checks
-   * whether the current amount selection still matches what writeFields set.
-   * If the donor already picked a different amount, we skip re-application.
+   * To avoid overwriting a manual donor interaction, the handler checks
+   * whether the current amount selection is empty/wiped (as SwapAmounts does)
+   * OR still matches what writeFields originally set. If the donor already
+   * picked a different amount, we skip re-application.
    */
   private reapplyDonationAmtAfterSwap() {
     const savedAmt = this.fieldData[this.fieldDonationAmountRadioName];
@@ -746,21 +747,22 @@ export class RememberMe {
     const handler = () => {
       // SwapAmounts calls _amount.load() after swapList — give it a tick to settle
       window.setTimeout(() => {
-        // If the donor manually changed the amount since registration,
-        // do not overwrite their choice.
         const currentAmt = this.getCurrentSelectedAmount();
-        if (
-          currentAmt !== null &&
-          currentAmt !== "" &&
-          currentAmt !== amountAtRegistration
-        ) {
+
+        // Only re-apply if the selection is now empty (DOM was swapped out)
+        // or still matches what we originally wrote. If the donor manually
+        // selected a different amount, respect their choice.
+        const selectionWiped = currentAmt === null || currentAmt === "";
+        const selectionUnchanged = currentAmt === amountAtRegistration;
+        if (!selectionWiped && !selectionUnchanged) {
           return;
         }
 
         const fieldSelector =
           "[name='" + this.fieldDonationAmountRadioName + "']";
+        const escapedAmt = CSS.escape(savedAmt);
         let radio = document.querySelector(
-          fieldSelector + "[value='" + savedAmt + "']"
+          fieldSelector + "[value='" + escapedAmt + "']"
         ) as HTMLInputElement;
         if (radio) {
           radio.click();
