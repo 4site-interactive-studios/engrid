@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import * as cookie from "./cookie";
-import { EnForm, RememberMeEvents } from "./events";
+import { EnForm, RememberMeEvents, DonationFrequency } from "./events";
 const tippy = require("tippy.js").default;
 // localStorage key used to cache the per-device AES-GCM encryption key.
 // A random secret generated once per device and held in localStorage.
@@ -17,6 +17,7 @@ export class RememberMe {
     constructor(options) {
         this._form = EnForm.getInstance();
         this._events = RememberMeEvents.getInstance();
+        this._frequency = DonationFrequency.getInstance();
         this.iframe = null;
         this.encryptData = options.encryptData ? options.encryptData : false;
         this.hide = options.hide ? options.hide : false;
@@ -99,6 +100,7 @@ export class RememberMe {
                     }
                     else {
                         this.insertClearRememberMeLink();
+                        this.reapplyDonationAmtAfterSwap();
                     }
                 }
             });
@@ -118,6 +120,9 @@ export class RememberMe {
                     this.insertClearRememberMeLink();
                 }
                 this.writeFields();
+                if (hasFieldData) {
+                    this.reapplyDonationAmtAfterSwap();
+                }
                 this._form.onSubmit.subscribe(() => {
                     if (this.rememberMeOptIn) {
                         this.readFields();
@@ -136,6 +141,9 @@ export class RememberMe {
                 this.insertClearRememberMeLink();
             }
             this.writeFields();
+            if (hasFieldData) {
+                this.reapplyDonationAmtAfterSwap();
+            }
             this._form.onSubmit.subscribe(() => {
                 if (this.rememberMeOptIn) {
                     this.readFields();
@@ -596,6 +604,43 @@ export class RememberMe {
                 }
             }
         }
+    }
+    /**
+     * SwapAmounts replaces the donationAmt radio DOM nodes ~1 second after page
+     * load (triggered by DonationFrequency.load() setTimeout). When that happens
+     * the selection the RememberMe just wrote gets wiped out.
+     *
+     * This method subscribes to the first onFrequencyChange event and, after a
+     * short delay to let SwapAmounts finish its DOM update, re-applies only the
+     * donation amount. It unsubscribes immediately so it only fires once and
+     * never interferes with manual donor interactions.
+     */
+    reapplyDonationAmtAfterSwap() {
+        const savedAmt = this.fieldData[this.fieldDonationAmountRadioName];
+        if (!savedAmt)
+            return;
+        const handler = () => {
+            // SwapAmounts calls _amount.load() after swapList — give it a tick to settle
+            window.setTimeout(() => {
+                const fieldSelector = "[name='" + this.fieldDonationAmountRadioName + "']";
+                let radio = document.querySelector(fieldSelector + "[value='" + savedAmt + "']");
+                if (radio) {
+                    radio.click();
+                }
+                else {
+                    // Custom amount: click "Other" radio then fill the text input
+                    const otherRadio = document.querySelector(fieldSelector + "[value='Other'], " +
+                        fieldSelector + "[value='other'], " +
+                        fieldSelector + "[value='OTHER']");
+                    if (otherRadio)
+                        otherRadio.click();
+                    const otherField = document.querySelector("input[name='" + this.fieldDonationAmountOtherName + "']");
+                    this.setFieldValue(otherField, savedAmt, true);
+                }
+            }, 200);
+        };
+        // Subscribe once: fires on the first frequency change then auto-unsubscribes
+        this._frequency.onFrequencyChange.one(handler);
     }
     isJson(str) {
         try {

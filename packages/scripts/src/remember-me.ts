@@ -1,5 +1,5 @@
 import * as cookie from "./cookie";
-import { EnForm, RememberMeEvents } from "./events";
+import { EnForm, RememberMeEvents, DonationFrequency } from "./events";
 const tippy = require("tippy.js").default;
 
 interface DataObj {
@@ -13,6 +13,7 @@ const RM_ENCRYPTION_KEY_STORAGE_NAME = "engrid-remember-me-key";
 export class RememberMe {
   public _form: EnForm = EnForm.getInstance();
   public _events: RememberMeEvents = RememberMeEvents.getInstance();
+  private _frequency: DonationFrequency = DonationFrequency.getInstance();
 
   private remoteUrl: string | null;
   private cookieName: string;
@@ -151,6 +152,7 @@ export class RememberMe {
               this.insertRememberMeOptin();
             } else {
               this.insertClearRememberMeLink();
+              this.reapplyDonationAmtAfterSwap();
             }
           }
         }
@@ -169,6 +171,9 @@ export class RememberMe {
           this.insertClearRememberMeLink();
         }
         this.writeFields();
+        if (hasFieldData) {
+          this.reapplyDonationAmtAfterSwap();
+        }
         this._form.onSubmit.subscribe(() => {
           if (this.rememberMeOptIn) {
             this.readFields();
@@ -185,6 +190,9 @@ export class RememberMe {
         this.insertClearRememberMeLink();
       }
       this.writeFields();
+      if (hasFieldData) {
+        this.reapplyDonationAmtAfterSwap();
+      }
       this._form.onSubmit.subscribe(() => {
         if (this.rememberMeOptIn) {
           this.readFields();
@@ -713,6 +721,49 @@ export class RememberMe {
         }
       }
     }
+  }
+  /**
+   * SwapAmounts replaces the donationAmt radio DOM nodes ~1 second after page
+   * load (triggered by DonationFrequency.load() setTimeout). When that happens
+   * the selection the RememberMe just wrote gets wiped out.
+   *
+   * This method subscribes to the first onFrequencyChange event and, after a
+   * short delay to let SwapAmounts finish its DOM update, re-applies only the
+   * donation amount. It unsubscribes immediately so it only fires once and
+   * never interferes with manual donor interactions.
+   */
+  private reapplyDonationAmtAfterSwap() {
+    const savedAmt = this.fieldData[this.fieldDonationAmountRadioName];
+    if (!savedAmt) return;
+
+    const handler = () => {
+      // SwapAmounts calls _amount.load() after swapList — give it a tick to settle
+      window.setTimeout(() => {
+        const fieldSelector =
+          "[name='" + this.fieldDonationAmountRadioName + "']";
+        let radio = document.querySelector(
+          fieldSelector + "[value='" + savedAmt + "']"
+        ) as HTMLInputElement;
+        if (radio) {
+          radio.click();
+        } else {
+          // Custom amount: click "Other" radio then fill the text input
+          const otherRadio = document.querySelector(
+            fieldSelector + "[value='Other'], " +
+            fieldSelector + "[value='other'], " +
+            fieldSelector + "[value='OTHER']"
+          ) as HTMLInputElement;
+          if (otherRadio) otherRadio.click();
+          const otherField = document.querySelector(
+            "input[name='" + this.fieldDonationAmountOtherName + "']"
+          ) as HTMLInputElement;
+          this.setFieldValue(otherField, savedAmt, true);
+        }
+      }, 200);
+    };
+
+    // Subscribe once: fires on the first frequency change then auto-unsubscribes
+    this._frequency.onFrequencyChange.one(handler);
   }
   private isJson(str: string) {
     try {

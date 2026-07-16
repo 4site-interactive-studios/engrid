@@ -2,6 +2,7 @@ import { EnForm, RememberMeEvents } from "./events";
 export declare class RememberMe {
     _form: EnForm;
     _events: RememberMeEvents;
+    private _frequency;
     private remoteUrl;
     private cookieName;
     private fieldNames;
@@ -101,5 +102,16 @@ export declare class RememberMe {
      * @param overwrite - A boolean indicating whether to overwrite the existing value of the fields. Defaults to false.
      */
     private writeFields;
+    /**
+     * SwapAmounts replaces the donationAmt radio DOM nodes ~1 second after page
+     * load (triggered by DonationFrequency.load() setTimeout). When that happens
+     * the selection the RememberMe just wrote gets wiped out.
+     *
+     * This method subscribes to the first onFrequencyChange event and, after a
+     * short delay to let SwapAmounts finish its DOM update, re-applies only the
+     * donation amount. It unsubscribes immediately so it only fires once and
+     * never interferes with manual donor interactions.
+     */
+    private reapplyDonationAmtAfterSwap;
     private isJson;
 }
