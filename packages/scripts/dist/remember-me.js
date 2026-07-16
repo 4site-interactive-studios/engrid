@@ -19,6 +19,7 @@ export class RememberMe {
         this._events = RememberMeEvents.getInstance();
         this.iframe = null;
         this.encryptData = options.encryptData ? options.encryptData : false;
+        this.hide = options.hide ? options.hide : false;
         this.remoteUrl = options.remoteUrl ? options.remoteUrl : null;
         this.cookieName = options.cookieName
             ? options.cookieName
@@ -246,6 +247,9 @@ export class RememberMe {
                             this.rememberMeOptIn = false;
                         }
                     });
+                }
+                if (this.hide) {
+                    rememberMeOptInField.classList.add("hide");
                 }
                 tippy("#rememberme-learn-more-toggle", { content: rememberMeInfo });
             }

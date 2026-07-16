@@ -57,6 +57,7 @@ export interface Options {
         fieldClearLabel?: string;
         checked?: boolean;
         encryptData?: boolean;
+        hide?: boolean;
       };
   StickyNSG?: boolean;
   StickyPrepopulation?: false | { fields: string[] };

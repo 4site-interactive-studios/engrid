@@ -22,6 +22,7 @@ export class RememberMe {
   private iframe: HTMLIFrameElement | null;
   private rememberMeOptIn: boolean;
   private encryptData: boolean;
+  private hide: boolean;
 
   private fieldDonationAmountRadioName: string;
   private fieldDonationAmountOtherName: string;
@@ -50,9 +51,11 @@ export class RememberMe {
     fieldClearLabel?: string;
     checked?: boolean;
     encryptData?: boolean;
+    hide?: boolean;
   }) {
     this.iframe = null;
     this.encryptData = options.encryptData ? options.encryptData : false;
+    this.hide = options.hide ? options.hide : false;
 
     this.remoteUrl = options.remoteUrl ? options.remoteUrl : null;
     this.cookieName = options.cookieName
@@ -313,6 +316,10 @@ export class RememberMe {
               this.rememberMeOptIn = false;
             }
           });
+        }
+
+        if (this.hide) {
+          rememberMeOptInField.classList.add("hide");
         }
 
         tippy("#rememberme-learn-more-toggle", { content: rememberMeInfo });

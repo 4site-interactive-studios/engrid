@@ -10,6 +10,7 @@ export declare class RememberMe {
     private iframe;
     private rememberMeOptIn;
     private encryptData;
+    private hide;
     private fieldDonationAmountRadioName;
     private fieldDonationAmountOtherName;
     private fieldDonationRecurrPayRadioName;
@@ -35,6 +36,7 @@ export declare class RememberMe {
         fieldClearLabel?: string;
         checked?: boolean;
         encryptData?: boolean;
+        hide?: boolean;
     });
     private updateFieldData;
     private insertClearRememberMeLink;
