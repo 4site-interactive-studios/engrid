@@ -14,6 +14,7 @@ export declare class RememberMe {
     private fieldDonationAmountRadioName;
     private fieldDonationAmountOtherName;
     private fieldDonationRecurrPayRadioName;
+    private fieldDonationRecurrFreqRadioName;
     private fieldDonationAmountOtherCheckboxID;
     private fieldOptInSelectorTarget;
     private fieldOptInSelectorTargetLocation;
@@ -28,6 +29,7 @@ export declare class RememberMe {
         fieldDonationAmountRadioName?: string;
         fieldDonationAmountOtherName?: string;
         fieldDonationRecurrPayRadioName?: string;
+        fieldDonationRecurrFreqRadioName?: string;
         fieldDonationAmountOtherCheckboxID?: string;
         fieldOptInSelectorTarget?: string;
         fieldOptInSelectorTargetLocation?: string;

@@ -39,6 +39,10 @@ export class RememberMe {
             options.fieldDonationRecurrPayRadioName
                 ? options.fieldDonationRecurrPayRadioName
                 : "transaction.recurrpay";
+        this.fieldDonationRecurrFreqRadioName =
+            options.fieldDonationRecurrFreqRadioName
+                ? options.fieldDonationRecurrFreqRadioName
+                : "transaction.recurrfreq";
         this.fieldDonationAmountOtherCheckboxID =
             options.fieldDonationAmountOtherCheckboxID
                 ? options.fieldDonationAmountOtherCheckboxID
@@ -539,6 +543,16 @@ export class RememberMe {
                     if (this.fieldNames[i] === this.fieldDonationRecurrPayRadioName) {
                         if (this.fieldData[this.fieldNames[i]] === "Y") {
                             field.click();
+                        }
+                    }
+                    else if (this.fieldNames[i] === this.fieldDonationRecurrFreqRadioName) {
+                        // recurrfreq is a radio group — find the specific radio with the saved value and click it
+                        const savedValue = this.fieldData[this.fieldNames[i]];
+                        if (savedValue) {
+                            const freqRadio = document.querySelector(fieldSelector + "[value='" + savedValue + "']");
+                            if (freqRadio) {
+                                freqRadio.click();
+                            }
                         }
                     }
                     else if (this.fieldDonationAmountRadioName === this.fieldNames[i]) {
