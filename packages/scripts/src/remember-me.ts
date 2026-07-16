@@ -563,6 +563,23 @@ export class RememberMe {
               fieldSelector + ":checked"
             ) as HTMLInputElement;
           }
+          // When the donation amount radio is set to "Other", save the actual
+          // custom value from the .other text input instead of "Other".
+          if (
+            this.fieldNames[i] === this.fieldDonationAmountRadioName &&
+            field &&
+            field.value.toLowerCase() === "other"
+          ) {
+            const otherField = document.querySelector(
+              "input[name='" + this.fieldDonationAmountOtherName + "']"
+            ) as HTMLInputElement;
+            if (otherField && otherField.value) {
+              this.fieldData[this.fieldNames[i]] = encodeURIComponent(
+                otherField.value
+              );
+              continue;
+            }
+          }
           this.fieldData[this.fieldNames[i]] = encodeURIComponent(field.value);
         } else if (field.tagName === "SELECT") {
           this.fieldData[this.fieldNames[i]] = encodeURIComponent(field.value);
@@ -660,23 +677,29 @@ export class RememberMe {
               }
             }
           } else if (this.fieldDonationAmountRadioName === this.fieldNames[i]) {
+            const savedAmt = this.fieldData[this.fieldNames[i]];
             field = document.querySelector(
-              fieldSelector +
-              "[value='" +
-              this.fieldData[this.fieldNames[i]] +
-              "']"
+              fieldSelector + "[value='" + savedAmt + "']"
             ) as HTMLInputElement;
             if (field) {
+              // Saved value matches a predefined radio option — just click it
               field.click();
             } else {
-              field = document.querySelector(
+              // No matching radio: the value is a custom amount.
+              // Click the "Other" radio first so the text input becomes active,
+              // then fill in the numeric value.
+              const otherRadio = document.querySelector(
+                fieldSelector + "[value='Other'], " +
+                fieldSelector + "[value='other'], " +
+                fieldSelector + "[value='OTHER']"
+              ) as HTMLInputElement;
+              if (otherRadio) {
+                otherRadio.click();
+              }
+              const otherField = document.querySelector(
                 "input[name='" + this.fieldDonationAmountOtherName + "']"
               ) as HTMLInputElement;
-              this.setFieldValue(
-                field,
-                this.fieldData[this.fieldNames[i]],
-                true
-              );
+              this.setFieldValue(otherField, savedAmt, true);
             }
           } else {
             this.setFieldValue(

@@ -462,6 +462,17 @@ export class RememberMe {
                     if (type === "radio" || type === "checkbox") {
                         field = document.querySelector(fieldSelector + ":checked");
                     }
+                    // When the donation amount radio is set to "Other", save the actual
+                    // custom value from the .other text input instead of "Other".
+                    if (this.fieldNames[i] === this.fieldDonationAmountRadioName &&
+                        field &&
+                        field.value.toLowerCase() === "other") {
+                        const otherField = document.querySelector("input[name='" + this.fieldDonationAmountOtherName + "']");
+                        if (otherField && otherField.value) {
+                            this.fieldData[this.fieldNames[i]] = encodeURIComponent(otherField.value);
+                            continue;
+                        }
+                    }
                     this.fieldData[this.fieldNames[i]] = encodeURIComponent(field.value);
                 }
                 else if (field.tagName === "SELECT") {
@@ -556,16 +567,24 @@ export class RememberMe {
                         }
                     }
                     else if (this.fieldDonationAmountRadioName === this.fieldNames[i]) {
-                        field = document.querySelector(fieldSelector +
-                            "[value='" +
-                            this.fieldData[this.fieldNames[i]] +
-                            "']");
+                        const savedAmt = this.fieldData[this.fieldNames[i]];
+                        field = document.querySelector(fieldSelector + "[value='" + savedAmt + "']");
                         if (field) {
+                            // Saved value matches a predefined radio option — just click it
                             field.click();
                         }
                         else {
-                            field = document.querySelector("input[name='" + this.fieldDonationAmountOtherName + "']");
-                            this.setFieldValue(field, this.fieldData[this.fieldNames[i]], true);
+                            // No matching radio: the value is a custom amount.
+                            // Click the "Other" radio first so the text input becomes active,
+                            // then fill in the numeric value.
+                            const otherRadio = document.querySelector(fieldSelector + "[value='Other'], " +
+                                fieldSelector + "[value='other'], " +
+                                fieldSelector + "[value='OTHER']");
+                            if (otherRadio) {
+                                otherRadio.click();
+                            }
+                            const otherField = document.querySelector("input[name='" + this.fieldDonationAmountOtherName + "']");
+                            this.setFieldValue(otherField, savedAmt, true);
                         }
                     }
                     else {
