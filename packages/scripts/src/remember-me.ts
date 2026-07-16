@@ -729,16 +729,34 @@ export class RememberMe {
    *
    * This method subscribes to the first onFrequencyChange event and, after a
    * short delay to let SwapAmounts finish its DOM update, re-applies only the
-   * donation amount. It unsubscribes immediately so it only fires once and
-   * never interferes with manual donor interactions.
+   * donation amount. It unsubscribes immediately so it only fires once.
+   *
+   * To avoid overwriting a manual donor interaction (if the donor changes
+   * frequency before the automated SwapAmounts fires), the handler checks
+   * whether the current amount selection still matches what writeFields set.
+   * If the donor already picked a different amount, we skip re-application.
    */
   private reapplyDonationAmtAfterSwap() {
     const savedAmt = this.fieldData[this.fieldDonationAmountRadioName];
     if (!savedAmt) return;
 
+    // Capture the amount that writeFields just set so we can detect manual changes
+    const amountAtRegistration = this.getCurrentSelectedAmount();
+
     const handler = () => {
       // SwapAmounts calls _amount.load() after swapList — give it a tick to settle
       window.setTimeout(() => {
+        // If the donor manually changed the amount since registration,
+        // do not overwrite their choice.
+        const currentAmt = this.getCurrentSelectedAmount();
+        if (
+          currentAmt !== null &&
+          currentAmt !== "" &&
+          currentAmt !== amountAtRegistration
+        ) {
+          return;
+        }
+
         const fieldSelector =
           "[name='" + this.fieldDonationAmountRadioName + "']";
         let radio = document.querySelector(
@@ -764,6 +782,28 @@ export class RememberMe {
 
     // Subscribe once: fires on the first frequency change then auto-unsubscribes
     this._frequency.onFrequencyChange.one(handler);
+  }
+
+  /**
+   * Returns the currently selected donation amount value, or null if nothing
+   * is selected. Checks both predefined radio buttons and the "Other" text input.
+   */
+  private getCurrentSelectedAmount(): string | null {
+    const fieldSelector =
+      "[name='" + this.fieldDonationAmountRadioName + "']";
+    const checkedRadio = document.querySelector(
+      fieldSelector + ":checked"
+    ) as HTMLInputElement;
+    if (!checkedRadio) return null;
+    if (
+      checkedRadio.value.toLowerCase() === "other"
+    ) {
+      const otherField = document.querySelector(
+        "input[name='" + this.fieldDonationAmountOtherName + "']"
+      ) as HTMLInputElement;
+      return otherField ? otherField.value : null;
+    }
+    return checkedRadio.value;
   }
   private isJson(str: string) {
     try {

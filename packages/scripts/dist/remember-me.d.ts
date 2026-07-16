@@ -109,9 +109,18 @@ export declare class RememberMe {
      *
      * This method subscribes to the first onFrequencyChange event and, after a
      * short delay to let SwapAmounts finish its DOM update, re-applies only the
-     * donation amount. It unsubscribes immediately so it only fires once and
-     * never interferes with manual donor interactions.
+     * donation amount. It unsubscribes immediately so it only fires once.
+     *
+     * To avoid overwriting a manual donor interaction (if the donor changes
+     * frequency before the automated SwapAmounts fires), the handler checks
+     * whether the current amount selection still matches what writeFields set.
+     * If the donor already picked a different amount, we skip re-application.
      */
     private reapplyDonationAmtAfterSwap;
+    /**
+     * Returns the currently selected donation amount value, or null if nothing
+     * is selected. Checks both predefined radio buttons and the "Other" text input.
+     */
+    private getCurrentSelectedAmount;
     private isJson;
 }
