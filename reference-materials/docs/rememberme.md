@@ -20,6 +20,8 @@ To enable, add a 'RememberMe' property to the 'options' object in your engrid th
 
 **fieldClearSelectorTargetLocation**: A string that is set to either 'before' or 'after'. Defaults to 'before'.
 
+**fieldClearLabel**: A string containing the text for the "Clear Autofill" link that appears when data is being auto-filled. Defaults to `(clear autofill)`.
+
 **cookieName**: String dictating the name of the cookie stores the autofill data.  Defaults to 'engrid-autofill'.
 
 **cookieExpirationDays**: Number of days for the cookie expiration.  Defaults to 365.
@@ -30,7 +32,13 @@ To enable, add a 'RememberMe' property to the 'options' object in your engrid th
 
 **fieldDonationRecurrPayRadioName**: A string containing the name of the Engaging Networks frequency field.  You can probably let this stay defaulted. Defaults to 'transaction.recurrpay'
 
+**fieldDonationRecurrFreqRadioName**: A string containing the name of the Engaging Networks recurring frequency radio buttons. You can probably let this stay defaulted. Defaults to 'transaction.recurrfreq'
+
 **fieldDonationAmountOtherCheckboxID**: This is deprecated and will be removed.
+
+**hide**: Boolean. If set to `true`, the Remember Me opt-in element is rendered with the `hide` CSS class, effectively keeping it invisible while still allowing the component to function. Useful when clients want autofill behavior without displaying the opt-in checkbox to the donor. Defaults to `false`.
+
+**encryptData**: Boolean. If set to true, the saved form details are encrypted with browser-native AES-GCM (Web Crypto) before being stored, and the resulting bytes are base64-encoded. This applies to both the local cookie and the remote-iframe cookie. The encryption key is randomly generated once per device and kept in `localStorage` (never written to the cookie itself, so it never travels with the transported value). In remote mode, the key and store live in the iframe's origin, so multiple sites sharing that remote origin (e.g. FWW and FWA) share them automatically — however, note that this relies on localStorage access within the cross-origin iframe, which is subject to Chrome's third-party storage partitioning (see known limitations). If the key is missing or decryption otherwise fails (a different device, or cleared storage), the component silently discards the data and falls back to the normal, no-autofill experience. Defaults to false. When enabled with `remoteUrl`, the remote page must implement the matching encrypt/decrypt protocol (see the "Sample Remote URL Page Markup" section below for a reference starting point).
 
 ---
 
