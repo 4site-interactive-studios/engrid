@@ -92,7 +92,9 @@ export class RememberMe {
                     data.key &&
                     data.value !== undefined &&
                     data.key === this.cookieName) {
-                    this.updateFieldData(data.value);
+                    if (data.value !== null) {
+                        this.updateFieldData(data.value);
+                    }
                     this.writeFields();
                     let hasFieldData = Object.keys(this.fieldData).length > 0;
                     if (!hasFieldData) {
@@ -153,12 +155,20 @@ export class RememberMe {
         }
     }
     updateFieldData(jsonData) {
-        if (jsonData) {
-            let data = JSON.parse(jsonData);
-            for (let i = 0; i < this.fieldNames.length; i++) {
-                if (data[this.fieldNames[i]] !== undefined) {
-                    this.fieldData[this.fieldNames[i]] = decodeURIComponent(data[this.fieldNames[i]]);
-                }
+        if (!jsonData)
+            return;
+        let data;
+        try {
+            data = JSON.parse(jsonData);
+        }
+        catch (e) {
+            // Payload is not valid JSON (e.g. corrupted or unexpected ciphertext).
+            // Fall back silently to the no-autofill experience.
+            return;
+        }
+        for (let i = 0; i < this.fieldNames.length; i++) {
+            if (data[this.fieldNames[i]] !== undefined) {
+                this.fieldData[this.fieldNames[i]] = decodeURIComponent(data[this.fieldNames[i]]);
             }
         }
     }
