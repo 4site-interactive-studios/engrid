@@ -3309,6 +3309,29 @@ body[data-engrid-live-currency=active] .en__field--donationAmt .en__field__item:
   color: transparent !important;
 }
 
+/************************************
+ * Highlight Required Fields
+ ***********************************/
+body[data-engrid-highlight-required-fields] .en__mandatory:not(.en__field--giveBySelect) > label,
+body[data-engrid-highlight-required-fields][data-engrid-payment-type=card] .en__field--vgs > label,
+body[data-engrid-highlight-required-fields][data-engrid-payment-type=VI] .en__field--vgs > label,
+body[data-engrid-highlight-required-fields][data-engrid-payment-type=MC] .en__field--vgs > label,
+body[data-engrid-highlight-required-fields][data-engrid-payment-type=AX] .en__field--vgs > label,
+body[data-engrid-highlight-required-fields][data-engrid-payment-type=DI] .en__field--vgs > label {
+  justify-content: flex-start;
+}
+
+body[data-engrid-highlight-required-fields] .en__mandatory:not(.en__field--giveBySelect) > label:after,
+body[data-engrid-highlight-required-fields][data-engrid-payment-type=card] .en__field--vgs > label:after,
+body[data-engrid-highlight-required-fields][data-engrid-payment-type=VI] .en__field--vgs > label:after,
+body[data-engrid-highlight-required-fields][data-engrid-payment-type=MC] .en__field--vgs > label:after,
+body[data-engrid-highlight-required-fields][data-engrid-payment-type=AX] .en__field--vgs > label:after,
+body[data-engrid-highlight-required-fields][data-engrid-payment-type=DI] .en__field--vgs > label:after {
+  color: var(--error__color);
+  content: "*";
+  margin-right: auto;
+}
+
 /* ENGRID STYLINGS */
 .en__field__error__alert {
   color: var(--error__color);
