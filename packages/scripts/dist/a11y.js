@@ -1,5 +1,6 @@
 import { EngridLogger } from "./logger";
 import { ENGrid } from "./engrid";
+import { EnForm } from "./events/en-form";
 // a11y means accessibility
 // This Component is supposed to be used as a helper for Aria Attributes & Other Accessibility Features
 export class A11y {
@@ -16,6 +17,12 @@ export class A11y {
         this.observeErrorMessages();
         (_a = ENGrid.enForm) === null || _a === void 0 ? void 0 : _a.addEventListener('submit', () => {
             this.shouldFocusFirstInvalidField = true;
+        });
+        // onSubmit only fires once validation has passed, so disarm the focus
+        // flag: a successful submit must not leave it set, or the next unrelated
+        // async field error (e.g. NeverBounce on blur) would steal focus.
+        EnForm.getInstance().onSubmit.subscribe(() => {
+            this.shouldFocusFirstInvalidField = false;
         });
     }
     /**
@@ -309,6 +316,7 @@ export class A11y {
         }, 100);
     }
     updateGlobalErrorLiveRegion() {
+        var _a;
         const region = document.getElementById('engrid-a11y-error-summary');
         if (!region)
             return;
@@ -328,15 +336,35 @@ export class A11y {
             return message;
         })
             .filter((message) => Boolean(message));
+        // Top-of-form server errors (ul.en__errorList) aren't tied to a .en__field,
+        // so fold in any that aren't already covered by the per-field messages,
+        // otherwise they would be silent for screen readers.
+        const normalizeForCompare = (value) => value.replace(/\s+/g, ' ').replace(/[.!?:]+$/, '').trim().toLowerCase();
+        const coveredMessages = messages.map(normalizeForCompare).filter(Boolean);
+        const serverMessages = Array.from((_a = errorList === null || errorList === void 0 ? void 0 : errorList.querySelectorAll('li')) !== null && _a !== void 0 ? _a : [])
+            .map(item => { var _a, _b; return (_b = (_a = item.textContent) === null || _a === void 0 ? void 0 : _a.trim()) !== null && _b !== void 0 ? _b : ''; })
+            .filter(text => {
+            if (!text)
+                return false;
+            const normalized = normalizeForCompare(text);
+            if (!normalized)
+                return false;
+            return !coveredMessages.some(covered => covered === normalized ||
+                covered.includes(normalized) ||
+                normalized.includes(covered));
+        });
+        const allMessages = [...messages, ...serverMessages];
         region.textContent = '';
-        if (!messages.length)
+        if (!allMessages.length) {
+            this.shouldFocusFirstInvalidField = false;
             return;
-        if (messages.length === 1) {
-            region.textContent = messages[0];
+        }
+        if (allMessages.length === 1) {
+            region.textContent = allMessages[0];
         }
         else {
-            const cleaned = messages.map(message => message.replace(/[.!?]+$/, '').trim());
-            region.textContent = `There are ${messages.length} errors: ${cleaned.join('. ')}.`;
+            const cleaned = allMessages.map(message => message.replace(/[.!?]+$/, '').trim());
+            region.textContent = `There are ${allMessages.length} errors: ${cleaned.join('. ')}.`;
         }
         if (this.shouldFocusFirstInvalidField) {
             this.shouldFocusFirstInvalidField = false;
@@ -353,13 +381,7 @@ export class A11y {
         const labelRegex = new RegExp(`\\b${escapedLabel}\\b`, 'i');
         if (labelRegex.test(cleanMessage))
             return cleanMessage;
-        // Generic messages that don't identify the field need a label prefix.
-        const genericPattern = /^(required field|this field is required|required|invalid|please enter a value|please select a value)$/i;
-        const normalized = cleanMessage.replace(/[.!?]+$/, '').trim();
-        if (genericPattern.test(normalized)) {
-            return `${cleanLabel}: ${cleanMessage}`;
-        }
-        return cleanMessage;
+        return `${cleanLabel}: ${cleanMessage}`;
     }
     focusFirstInvalidField() {
         const fields = Array.from(document.querySelectorAll('.en__field'));

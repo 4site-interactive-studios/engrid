@@ -1,5 +1,6 @@
 import { EngridLogger } from "./logger";
 import { ENGrid } from "./engrid";
+import { EnForm } from "./events/en-form";
 // a11y means accessibility
 // This Component is supposed to be used as a helper for Aria Attributes & Other Accessibility Features
 
@@ -23,6 +24,12 @@ export class A11y {
     this.observeErrorMessages();
     ENGrid.enForm?.addEventListener('submit', () => {
       this.shouldFocusFirstInvalidField = true;
+    });
+    // onSubmit only fires once validation has passed, so disarm the focus
+    // flag: a successful submit must not leave it set, or the next unrelated
+    // async field error (e.g. NeverBounce on blur) would steal focus.
+    EnForm.getInstance().onSubmit.subscribe(() => {
+      this.shouldFocusFirstInvalidField = false;
     });
   }
 
@@ -371,14 +378,41 @@ export class A11y {
       })
       .filter((message): message is string => Boolean(message));
 
-    region.textContent = '';
-    if (!messages.length) return;
+    // Top-of-form server errors (ul.en__errorList) aren't tied to a .en__field,
+    // so fold in any that aren't already covered by the per-field messages,
+    // otherwise they would be silent for screen readers.
+    const normalizeForCompare = (value: string): string =>
+      value.replace(/\s+/g, ' ').replace(/[.!?:]+$/, '').trim().toLowerCase();
+    const coveredMessages = messages.map(normalizeForCompare).filter(Boolean);
+    const serverMessages = Array.from(
+      errorList?.querySelectorAll<HTMLElement>('li') ?? []
+    )
+      .map(item => item.textContent?.trim() ?? '')
+      .filter(text => {
+        if (!text) return false;
+        const normalized = normalizeForCompare(text);
+        if (!normalized) return false;
+        return !coveredMessages.some(
+          covered =>
+            covered === normalized ||
+            covered.includes(normalized) ||
+            normalized.includes(covered)
+        );
+      });
 
-    if (messages.length === 1) {
-      region.textContent = messages[0];
+    const allMessages = [...messages, ...serverMessages];
+
+    region.textContent = '';
+    if (!allMessages.length) {
+      this.shouldFocusFirstInvalidField = false;
+      return;
+    }
+
+    if (allMessages.length === 1) {
+      region.textContent = allMessages[0];
     } else {
-      const cleaned = messages.map(message => message.replace(/[.!?]+$/, '').trim());
-      region.textContent = `There are ${messages.length} errors: ${cleaned.join('. ')}.`;
+      const cleaned = allMessages.map(message => message.replace(/[.!?]+$/, '').trim());
+      region.textContent = `There are ${allMessages.length} errors: ${cleaned.join('. ')}.`;
     }
 
     if (this.shouldFocusFirstInvalidField) {
@@ -397,14 +431,7 @@ export class A11y {
     const labelRegex = new RegExp(`\\b${escapedLabel}\\b`, 'i');
     if (labelRegex.test(cleanMessage)) return cleanMessage;
 
-    // Generic messages that don't identify the field need a label prefix.
-    const genericPattern = /^(required field|this field is required|required|invalid|please enter a value|please select a value)$/i;
-    const normalized = cleanMessage.replace(/[.!?]+$/, '').trim();
-    if (genericPattern.test(normalized)) {
-      return `${cleanLabel}: ${cleanMessage}`;
-    }
-
-    return cleanMessage;
+    return `${cleanLabel}: ${cleanMessage}`;
   }
 
   private focusFirstInvalidField(): void {
