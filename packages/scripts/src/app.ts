@@ -336,6 +336,9 @@ export class App extends ENGrid {
     // Auto Country Select
     new AutoCountrySelect();
 
+    // Page Background
+    new PageBackground(this.options.UseBodyBannerImageAsBackground);
+
     // Add Image Attribution
     if (this.options.MediaAttribution) new MediaAttribution();
     // Apple Pay
@@ -392,8 +395,6 @@ export class App extends ENGrid {
     new AddNameToMessage();
     new ExpandRegionName();
 
-    // Page Background
-    new PageBackground();
 
     // Url Params to Form Fields
     new UrlToForm();

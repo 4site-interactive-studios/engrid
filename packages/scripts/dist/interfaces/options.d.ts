@@ -1,5 +1,6 @@
 export interface Options {
     backgroundImage?: string | string[];
+    UseBodyBannerImageAsBackground?: boolean;
     MediaAttribution?: boolean;
     applePay?: boolean;
     CapitalizeFields?: boolean;

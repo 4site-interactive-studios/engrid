@@ -1,5 +1,6 @@
 export interface Options {
   backgroundImage?: string | string[];
+  UseBodyBannerImageAsBackground?: boolean;
   MediaAttribution?: boolean;
   applePay?: boolean;
   CapitalizeFields?: boolean;
@@ -266,4 +267,5 @@ export const OptionsDefaults: Options = {
     "rightright1col",
     "none",
   ],
+  UseBodyBannerImageAsBackground: false,
 };
