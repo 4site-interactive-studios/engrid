@@ -2,6 +2,7 @@ import { EnForm, RememberMeEvents } from "./events";
 export declare class RememberMe {
     _form: EnForm;
     _events: RememberMeEvents;
+    private _frequency;
     private remoteUrl;
     private cookieName;
     private fieldNames;
@@ -9,14 +10,18 @@ export declare class RememberMe {
     private cookieExpirationDays;
     private iframe;
     private rememberMeOptIn;
+    private encryptData;
+    private hide;
     private fieldDonationAmountRadioName;
     private fieldDonationAmountOtherName;
     private fieldDonationRecurrPayRadioName;
+    private fieldDonationRecurrFreqRadioName;
     private fieldDonationAmountOtherCheckboxID;
     private fieldOptInSelectorTarget;
     private fieldOptInSelectorTargetLocation;
     private fieldClearSelectorTarget;
     private fieldClearSelectorTargetLocation;
+    private fieldClearLabel;
     constructor(options: {
         remoteUrl?: string;
         cookieName?: string;
@@ -25,12 +30,16 @@ export declare class RememberMe {
         fieldDonationAmountRadioName?: string;
         fieldDonationAmountOtherName?: string;
         fieldDonationRecurrPayRadioName?: string;
+        fieldDonationRecurrFreqRadioName?: string;
         fieldDonationAmountOtherCheckboxID?: string;
         fieldOptInSelectorTarget?: string;
         fieldOptInSelectorTargetLocation?: string;
         fieldClearSelectorTarget?: string;
         fieldClearSelectorTargetLocation?: string;
+        fieldClearLabel?: string;
         checked?: boolean;
+        encryptData?: boolean;
+        hide?: boolean;
     });
     private updateFieldData;
     private insertClearRememberMeLink;
@@ -43,6 +52,42 @@ export declare class RememberMe {
     private saveCookieToRemote;
     private readCookie;
     private saveCookie;
+    /**
+     * Reads and decrypts the local (non-remote) Remember Me cookie using
+     * browser-native AES-GCM (Web Crypto), with the key held in localStorage
+     * on this device. If the key is absent (different device or cleared
+     * storage) or decryption otherwise fails, the field data is left empty
+     * and the component falls back to the normal, no-autofill experience.
+     */
+    private readCookieEncrypted;
+    /**
+     * Encrypts the current fieldData with AES-GCM (Web Crypto) and stores the
+     * base64-encoded result in the local cookie. If encryption isn't possible
+     * (e.g. Web Crypto unavailable), nothing is written.
+     */
+    private saveCookieEncrypted;
+    private clearCookieEncrypted;
+    /**
+     * Retrieves the per-device AES-GCM encryption key. A random secret
+     * generated once per device and held in localStorage — never written
+     * to the cookie, so it never travels with the transported value.
+     */
+    private getEncryptionKey;
+    /**
+     * Encrypts a plaintext string with AES-GCM and returns the base64-encoded
+     * IV + ciphertext, ready for storage. Returns null if a key isn't
+     * available (e.g. Web Crypto unsupported).
+     */
+    private encryptPayload;
+    /**
+     * Decrypts a base64-encoded IV + ciphertext payload previously produced by
+     * encryptPayload. Returns null (rather than throwing) if the key is
+     * missing or decryption otherwise fails, so callers can gracefully fall
+     * back to the standard, no-autofill experience.
+     */
+    private decryptPayload;
+    private arrayBufferToBase64;
+    private base64ToArrayBuffer;
     private readFields;
     private setFieldValue;
     private clearFields;
@@ -57,5 +102,25 @@ export declare class RememberMe {
      * @param overwrite - A boolean indicating whether to overwrite the existing value of the fields. Defaults to false.
      */
     private writeFields;
+    /**
+     * SwapAmounts replaces the donationAmt radio DOM nodes ~1 second after page
+     * load (triggered by DonationFrequency.load() setTimeout). When that happens
+     * the selection the RememberMe just wrote gets wiped out.
+     *
+     * This method subscribes to the first onFrequencyChange event and, after a
+     * short delay to let SwapAmounts finish its DOM update, re-applies only the
+     * donation amount. It unsubscribes immediately so it only fires once.
+     *
+     * To avoid overwriting a manual donor interaction, the handler checks
+     * whether the current amount selection is empty/wiped (as SwapAmounts does)
+     * OR still matches what writeFields originally set. If the donor already
+     * picked a different amount, we skip re-application.
+     */
+    private reapplyDonationAmtAfterSwap;
+    /**
+     * Returns the currently selected donation amount value, or null if nothing
+     * is selected. Checks both predefined radio buttons and the "Other" text input.
+     */
+    private getCurrentSelectedAmount;
     private isJson;
 }

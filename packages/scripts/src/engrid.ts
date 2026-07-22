@@ -219,7 +219,9 @@ export abstract class ENGrid {
   }
 
   static isThankYouPage() {
-    return this.getPageNumber() === this.getPageCount();
+    return (
+      this.getPageNumber() === this.getPageCount() && this.getPageCount() > 1
+    );
   }
 
   // Return the current page ID

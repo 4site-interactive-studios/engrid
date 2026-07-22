@@ -65,10 +65,7 @@ export class A11y {
                 label.setAttribute("id", `en__field__label--${Math.random().toString(36).slice(2, 7)}`);
                 // EN renders the group's question label as a <label>, but a radio group
                 // has no single control for `for` to point at. When EN leaves it blank
-                // (`for=""`) it's an invalid IDREF, so strip only that empty case — the
-                // group is named via aria-labelledby regardless. Never touch a populated
-                // `for`: survey questions (`for*="svquestion"`) and the recurring
-                // frequency label (queried via `label[for=...]`) depend on its value.
+                // (`for=""`) it's an invalid IDREF, so strip only that empty case
                 const forAttr = label.getAttribute("for");
                 if (forAttr !== null && forAttr.trim() === "") {
                     label.removeAttribute("for");
