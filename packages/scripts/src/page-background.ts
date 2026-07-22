@@ -40,9 +40,8 @@ export class PageBackground {
       return null;
     }
 
-    return this.bodyBanner.querySelector(
-      ".body-banner img.preferred-image, .body-banner img"
-    ) as HTMLImageElement | null;
+    return (this.bodyBanner.querySelector("img.preferred-image") ??
+      this.bodyBanner.querySelector("img")) as HTMLImageElement | null;
   }
 
   /**
@@ -105,9 +104,8 @@ export class PageBackground {
     document.body.removeAttribute("data-engrid-no-page-backgroundImage");
     ENGrid.setBodyData("use-body-banner-background", "");
 
-    return this.pageBackground.querySelector(
-      "img.preferred-image, img"
-    ) as HTMLImageElement | null;
+    return (this.pageBackground.querySelector("img.preferred-image") ??
+      this.pageBackground.querySelector("img")) as HTMLImageElement | null;
   }
 
   private getImageSource(

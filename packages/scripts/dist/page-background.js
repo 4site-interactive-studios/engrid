@@ -20,10 +20,11 @@ export class PageBackground {
         this.setupMutationObserver();
     }
     findBodyBannerImage() {
+        var _a;
         if (!this.bodyBanner) {
             return null;
         }
-        return this.bodyBanner.querySelector(".body-banner img.preferred-image, .body-banner img");
+        return ((_a = this.bodyBanner.querySelector("img.preferred-image")) !== null && _a !== void 0 ? _a : this.bodyBanner.querySelector("img"));
     }
     /**
      * Initialize background image by finding and setting CSS custom property
@@ -55,6 +56,7 @@ export class PageBackground {
         return null;
     }
     useBodyBannerAsBackground() {
+        var _a;
         if (!this.pageBackground || !this.bodyBanner) {
             return null;
         }
@@ -65,7 +67,7 @@ export class PageBackground {
         }
         document.body.removeAttribute("data-engrid-no-page-backgroundImage");
         ENGrid.setBodyData("use-body-banner-background", "");
-        return this.pageBackground.querySelector("img.preferred-image, img");
+        return ((_a = this.pageBackground.querySelector("img.preferred-image")) !== null && _a !== void 0 ? _a : this.pageBackground.querySelector("img"));
     }
     getImageSource(backgroundImg) {
         const dataSrc = backgroundImg.getAttribute("data-src");
