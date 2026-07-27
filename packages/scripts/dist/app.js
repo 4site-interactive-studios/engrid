@@ -256,10 +256,11 @@ export class App extends ENGrid {
         // Supporter Hub Features
         new SupporterHub();
         // Digital Wallets Features
-        if (ENGrid.getPageType() === "DONATION" || ENGrid.getPageType() === "EVENT") {
+        if (ENGrid.getPageType() === "DONATION" ||
+            ENGrid.getPageType() === "EVENT") {
             new DigitalWallets();
-            new PreferredPaymentMethod();
         }
+        new PreferredPaymentMethod();
         // Mobile CTA
         new MobileCTA();
         // Live Frequency

@@ -370,7 +370,7 @@ export class App extends ENGrid {
       ) {
         new RememberMe(this.options.RememberMe);
       }
-    } catch (e) { }
+    } catch (e) {}
 
     if (this.options.NeverBounceAPI)
       new NeverBounce(
@@ -394,7 +394,6 @@ export class App extends ENGrid {
 
     new AddNameToMessage();
     new ExpandRegionName();
-
 
     // Url Params to Form Fields
     new UrlToForm();
@@ -426,10 +425,14 @@ export class App extends ENGrid {
     new SupporterHub();
 
     // Digital Wallets Features
-    if (ENGrid.getPageType() === "DONATION" || ENGrid.getPageType() === "EVENT") {
+    if (
+      ENGrid.getPageType() === "DONATION" ||
+      ENGrid.getPageType() === "EVENT"
+    ) {
       new DigitalWallets();
-      new PreferredPaymentMethod();
     }
+
+    new PreferredPaymentMethod();
 
     // Mobile CTA
     new MobileCTA();
@@ -484,7 +487,7 @@ export class App extends ENGrid {
       ) {
         showDebugPanel = true;
       }
-    } catch (e) { }
+    } catch (e) {}
     if (showDebugPanel) {
       new DebugPanel(this.options.PageLayouts);
     }
