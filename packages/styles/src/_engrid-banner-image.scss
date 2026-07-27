@@ -16,6 +16,14 @@
   }
 }
 
+@mixin engrid_hide-body-banner-on-desktop {
+  &[data-engrid-use-body-banner-background]:not(#en__pagebuilder) {
+    .body-banner {
+      display: none !important;
+    }
+  }
+}
+
 @mixin engrid_mobile-banner {
   // If there is content in the body-title, hide the body-bannerOverlay on mobile
   body[data-engrid-has-body-title] .en__component--advrow .body-bannerOverlay {

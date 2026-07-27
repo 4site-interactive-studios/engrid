@@ -180,12 +180,14 @@ export class App extends ENGrid {
         new CustomCurrency();
         // Auto Country Select
         new AutoCountrySelect();
+        // Page Background
+        new PageBackground(this.options.UseBodyBannerImageAsBackground);
         // Add Image Attribution
         if (this.options.MediaAttribution)
             new MediaAttribution();
         // Apple Pay
         if (this.options.applePay)
-            new ApplePay();
+            ApplePay.getInstance();
         // Capitalize Fields
         if (this.options.CapitalizeFields)
             new CapitalizeFields();
@@ -230,8 +232,6 @@ export class App extends ENGrid {
         new A11y();
         new AddNameToMessage();
         new ExpandRegionName();
-        // Page Background
-        new PageBackground();
         // Url Params to Form Fields
         new UrlToForm();
         // Required if Visible Fields

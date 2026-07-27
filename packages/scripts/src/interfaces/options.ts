@@ -1,5 +1,6 @@
 export interface Options {
   backgroundImage?: string | string[];
+  UseBodyBannerImageAsBackground?: boolean;
   MediaAttribution?: boolean;
   applePay?: boolean;
   CapitalizeFields?: boolean;
@@ -54,7 +55,10 @@ export interface Options {
         fieldOptInSelectorTargetLocation?: string;
         fieldClearSelectorTarget?: string;
         fieldClearSelectorTargetLocation?: string;
+        fieldClearLabel?: string;
         checked?: boolean;
+        encryptData?: boolean;
+        hide?: boolean;
       };
   StickyNSG?: boolean;
   StickyPrepopulation?: false | { fields: string[] };
@@ -263,4 +267,5 @@ export const OptionsDefaults: Options = {
     "rightright1col",
     "none",
   ],
+  UseBodyBannerImageAsBackground: false,
 };

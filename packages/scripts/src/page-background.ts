@@ -5,6 +5,10 @@ export class PageBackground {
   private pageBackground: HTMLElement | null = document.querySelector(
     ".page-backgroundImage"
   );
+  private bodyBanner: HTMLElement | null = document.querySelector(
+    ".body-banner"
+  );
+  private bodyBannerImage: HTMLImageElement | null = null;
   private mutationObserver: MutationObserver | null = null;
   private logger: EngridLogger = new EngridLogger(
     "PageBackground",
@@ -13,8 +17,12 @@ export class PageBackground {
     "🖼️"
   );
 
-  constructor() {
-    if (!this.pageBackground) {
+  constructor(useBodyBannerImage: boolean = false) {
+    if (useBodyBannerImage) {
+      this.bodyBannerImage = this.findBodyBannerImage();
+    }
+
+    if (!this.pageBackground && !this.bodyBannerImage) {
       this.logger.log(
         "A background image set in the page was not found, any default image set in the theme on --engrid__page-backgroundImage_url will be used"
       );
@@ -27,36 +35,93 @@ export class PageBackground {
     this.setupMutationObserver();
   }
 
+  private findBodyBannerImage(): HTMLImageElement | null {
+    if (!this.bodyBanner) {
+      return null;
+    }
+
+    return (this.bodyBanner.querySelector("img.preferred-image") ??
+      this.bodyBanner.querySelector("img")) as HTMLImageElement | null;
+  }
+
   /**
    * Initialize background image by finding and setting CSS custom property
    */
   private initializeBackgroundImage(): void {
-    if (!this.pageBackground) return;
+    const backgroundImg = this.getBackgroundImage();
 
-    const pageBackgroundImg = this.pageBackground.querySelector(
-      "img"
-    ) as HTMLImageElement | null;
-
-    if (!pageBackgroundImg) {
+    if (!backgroundImg) {
       this.logger.log(
-        "A background image set in the page was not found, any default image set in the theme on --engrid__page-backgroundImage_url will be used"
+        "No image found in page background and no body banner image found (or pageBackground is already occupied), any default image set in the theme on --engrid__page-backgroundImage_url will be used"
       );
       return;
     }
 
-    const dataSrc = pageBackgroundImg.getAttribute("data-src");
-    const src = pageBackgroundImg.src;
+    const imageSource = this.getImageSource(backgroundImg);
 
-    if (dataSrc) {
-      this.setBackgroundImageUrl(dataSrc, "data-src");
-    } else if (src) {
-      this.setBackgroundImageUrl(src, "src");
-    } else {
+    if (!imageSource) {
       this.logger.log(
         "A background image set in the page was found but without a data-src or src value, no action taken",
-        pageBackgroundImg
+        backgroundImg
       );
+      return;
     }
+
+    this.setBackgroundImageUrl(imageSource.url, imageSource.sourceType);
+  }
+
+  private getBackgroundImage(): HTMLImageElement | null {
+    if (!this.pageBackground) {
+      return null;
+    }
+
+    const existingImage = this.pageBackground.querySelector("img");
+    if (existingImage) {
+      return existingImage;
+    }
+
+    if (this.bodyBannerImage && this.pageBackground.children.length === 0) {
+      return this.useBodyBannerAsBackground();
+    }
+
+    return null;
+  }
+
+  private useBodyBannerAsBackground(): HTMLImageElement | null {
+    if (!this.pageBackground || !this.bodyBanner) {
+      return null;
+    }
+
+    this.logger.log(
+      "No image found in page background, using body banner image as background image instead"
+    );
+
+    const clonedBodyBanner = this.bodyBanner.cloneNode(true) as HTMLElement;
+    while (clonedBodyBanner.firstChild) {
+      this.pageBackground.appendChild(clonedBodyBanner.firstChild);
+    }
+
+    document.body.removeAttribute("data-engrid-no-page-backgroundImage");
+    ENGrid.setBodyData("use-body-banner-background", "");
+
+    return (this.pageBackground.querySelector("img.preferred-image") ??
+      this.pageBackground.querySelector("img")) as HTMLImageElement | null;
+  }
+
+  private getImageSource(
+    backgroundImg: HTMLImageElement
+  ): { sourceType: string; url: string } | null {
+    const dataSrc = backgroundImg.getAttribute("data-src");
+    if (dataSrc) {
+      return { sourceType: "data-src", url: dataSrc };
+    }
+
+    const src = backgroundImg.src;
+    if (src) {
+      return { sourceType: "src", url: src };
+    }
+
+    return null;
   }
 
   /**
