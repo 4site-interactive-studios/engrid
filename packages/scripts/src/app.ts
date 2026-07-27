@@ -342,7 +342,7 @@ export class App extends ENGrid {
     // Add Image Attribution
     if (this.options.MediaAttribution) new MediaAttribution();
     // Apple Pay
-    if (this.options.applePay) new ApplePay();
+    if (this.options.applePay) ApplePay.getInstance();
     // Capitalize Fields
     if (this.options.CapitalizeFields) new CapitalizeFields();
     // Auto Year Class

@@ -187,7 +187,7 @@ export class App extends ENGrid {
             new MediaAttribution();
         // Apple Pay
         if (this.options.applePay)
-            new ApplePay();
+            ApplePay.getInstance();
         // Capitalize Fields
         if (this.options.CapitalizeFields)
             new CapitalizeFields();
