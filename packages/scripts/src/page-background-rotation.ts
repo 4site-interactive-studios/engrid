@@ -2,22 +2,23 @@
 // The image rotates on a cross-fade transition, and the next image is randomly selected from the list of child elements with a class of 'background-image-item' within the 'background-rotation' div
 // The random selection of the next image is done in a way that ensures that the same image is not displayed twice in a row, and that all images are displayed before any image is repeated
 // On mobile, the background image will not rotate, and a random image in the list will be displayed as a static background image
-// The background image will also not rotate if the user has set a preference for reduced motion in their system settings
+// The background image will also not rotate if the user has set a preference for reduced motion in their system settings, unless controls are present which will allow the user to "start" the process manually.
 // Figattributes/figcaptions, if included on the image, will also need to be updated to reflect the new image being displayed
-// Each image item can include a data-theme="light" or data-theme="dark" (default) attribute, which switches the .body-title h1 text color so it stays visible over the current background image (>1200px layout only)
+// Each image item can include a data-theme (default 'dark') attribute, which allow for client themes to style particular elements based on the background color.
 // Options block:
 /**
- * Set via the default options, overridden by the options passed to the constructor, and overridden by a window-level variable called 'BackgroundRotationOptions' if it exists. The options are as follows:
+ * Set via the default options, overridden by the options passed to the constructor, and overridden by a window-level variable called 'EngridPageBackgroundRotationOptions' if it exists. The options are as follows:
  * enabled: Whether the background rotation is enabled (default: true)
  * interval: The interval in milliseconds between image rotations (default: 5000)
  * transitionDuration: The duration of the cross-fade transition in milliseconds (default: 500)
  * transitionClass: The CSS class to apply to the background image container during the transition (default: 'background-rotation-transition')
- * eachImageSelector: The CSS selector for each individual background image (default: '.background-image-item')
- * backgroundImageSelector: The CSS selector for the background image container (default: '.background-rotation')
+ * eachImageSelector: The CSS selector for each individual background image (default: '.page-background-image-item')
+ * backgroundImageSelector: The CSS selector for the background image container (default: '.page-background-rotation')
  * slideOrder: The order in which the images are displayed (default: 'random' [random-bag], other options: 'sequential', 'true-random')
  * randomStart: Whether to start the rotation at a random image (default: true)
  * reducedMotion: Whether to respect the user's preference for reduced motion (default: true)
  * rotateOnMobile: Whether to rotate the background image on mobile devices (default: false)
+ * mobileBreakpoint: Where to consider the layout as being "mobile" (default: ‘(max-width: 499px)’)
  * controls: Whether to add back, pause, and forward buttons for the rotation (default: false)
  */
 import { ENGrid } from "./engrid";
@@ -95,7 +96,7 @@ export class PageBackgroundRotation {
     this.mobileMediaQuery = window.matchMedia(this.options.mobileBreakpoint);
     if (!this.shouldRun()) return;
     this.container = document.querySelector(
-      `.page-backgroundImage ${this.options.backgroundImageSelector}`
+      `.page-backgroundImage ${this.options.backgroundImageSelector}, .body-banner ${this.options.backgroundImageSelector}`
     );
     this.items = Array.from(
       this.container!.querySelectorAll<HTMLElement>(
@@ -137,7 +138,7 @@ export class PageBackgroundRotation {
       return false;
     }
     const container = document.querySelector(
-      `.page-backgroundImage ${this.options.backgroundImageSelector}`
+      `.page-backgroundImage ${this.options.backgroundImageSelector}, .body-banner ${this.options.backgroundImageSelector}`
     );
     if (!container) return false;
     if (!container.querySelector(this.options.eachImageSelector)) {
