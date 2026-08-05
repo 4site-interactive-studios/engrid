@@ -2,6 +2,7 @@ type BackgroundRotationSlideOrder = "random" | "sequential" | "true-random";
 interface EngridPageBackgroundRotationOptions {
     enabled: boolean;
     interval: number;
+    initialDelay: number;
     transitionDuration: number;
     transitionClass: string;
     eachImageSelector: string;
@@ -22,6 +23,8 @@ export declare class PageBackgroundRotation {
     private layers;
     private imageUrls;
     private imagesWarmed;
+    private warmingScheduled;
+    private firstImagePreloaded;
     private currentIndex;
     private randomBag;
     private history;
@@ -32,6 +35,8 @@ export declare class PageBackgroundRotation {
     private pauseButton;
     private liveRegion;
     private rotationTimer;
+    private initialDelayTimer;
+    private initialDelayElapsed;
     private transitionTimer;
     private mobileMediaQuery;
     private reducedMotionMediaQuery;
@@ -39,6 +44,8 @@ export declare class PageBackgroundRotation {
     private shouldRun;
     private prepareItems;
     private applyLayerImage;
+    private preloadFirstImage;
+    private scheduleImageWarming;
     private warmRemainingImages;
     private getItemLayer;
     private getItemImage;

@@ -2,22 +2,24 @@
 // The image rotates on a cross-fade transition, and the next image is randomly selected from the list of child elements with a class of 'background-image-item' within the 'background-rotation' div
 // The random selection of the next image is done in a way that ensures that the same image is not displayed twice in a row, and that all images are displayed before any image is repeated
 // On mobile, the background image will not rotate, and a random image in the list will be displayed as a static background image
-// The background image will also not rotate if the user has set a preference for reduced motion in their system settings
+// The background image will also not rotate if the user has set a preference for reduced motion in their system settings, unless controls are present which will allow the user to "start" the process manually.
 // Figattributes/figcaptions, if included on the image, will also need to be updated to reflect the new image being displayed
-// Each image item can include a data-theme="light" or data-theme="dark" (default) attribute, which switches the .body-title h1 text color so it stays visible over the current background image (>1200px layout only)
+// Each image item can include a data-theme (default 'dark') attribute, which allow for client themes to style particular elements based on the background color.
 // Options block:
 /**
- * Set via the default options, overridden by the options passed to the constructor, and overridden by a window-level variable called 'BackgroundRotationOptions' if it exists. The options are as follows:
+ * Set via the default options, overridden by the options passed to the constructor, and overridden by a window-level variable called 'EngridPageBackgroundRotationOptions' if it exists. The options are as follows:
  * enabled: Whether the background rotation is enabled (default: true)
  * interval: The interval in milliseconds between image rotations (default: 5000)
+ * initialDelay: The delay in milliseconds before the first rotation, giving the first image time to load (default: 10000)
  * transitionDuration: The duration of the cross-fade transition in milliseconds (default: 500)
  * transitionClass: The CSS class to apply to the background image container during the transition (default: 'background-rotation-transition')
- * eachImageSelector: The CSS selector for each individual background image (default: '.background-image-item')
- * backgroundImageSelector: The CSS selector for the background image container (default: '.background-rotation')
+ * eachImageSelector: The CSS selector for each individual background image (default: '.page-background-image-item')
+ * backgroundImageSelector: The CSS selector for the background image container (default: '.page-background-rotation')
  * slideOrder: The order in which the images are displayed (default: 'random' [random-bag], other options: 'sequential', 'true-random')
  * randomStart: Whether to start the rotation at a random image (default: true)
  * reducedMotion: Whether to respect the user's preference for reduced motion (default: true)
  * rotateOnMobile: Whether to rotate the background image on mobile devices (default: false)
+ * mobileBreakpoint: Where to consider the layout as being "mobile" (default: ‘(max-width: 499px)’)
  * controls: Whether to add back, pause, and forward buttons for the rotation (default: false)
  */
 import { ENGrid } from "./engrid";
@@ -29,6 +31,7 @@ export class PageBackgroundRotation {
         this.defaultOptions = {
             enabled: true,
             interval: 5000,
+            initialDelay: 10000,
             transitionDuration: 500,
             transitionClass: "background-rotation-transition",
             eachImageSelector: ".page-background-image-item",
@@ -45,6 +48,8 @@ export class PageBackgroundRotation {
         this.layers = [];
         this.imageUrls = [];
         this.imagesWarmed = false;
+        this.warmingScheduled = false;
+        this.firstImagePreloaded = false;
         this.currentIndex = -1;
         this.randomBag = [];
         this.history = [];
@@ -55,13 +60,15 @@ export class PageBackgroundRotation {
         this.pauseButton = null;
         this.liveRegion = null;
         this.rotationTimer = null;
+        this.initialDelayTimer = null;
+        this.initialDelayElapsed = false;
         this.transitionTimer = null;
         this.reducedMotionMediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
         this.options = Object.assign(Object.assign(Object.assign({}, this.defaultOptions), options), ((_a = window.EngridPageBackgroundRotationOptions) !== null && _a !== void 0 ? _a : {}));
         this.mobileMediaQuery = window.matchMedia(this.options.mobileBreakpoint);
         if (!this.shouldRun())
             return;
-        this.container = document.querySelector(`.page-backgroundImage ${this.options.backgroundImageSelector}`);
+        this.container = document.querySelector(`.page-backgroundImage ${this.options.backgroundImageSelector}, .body-banner ${this.options.backgroundImageSelector}`);
         this.items = Array.from(this.container.querySelectorAll(this.options.eachImageSelector));
         this.container.style.setProperty("--background-rotation-transition-duration", `${this.options.transitionDuration}ms`);
         document.body.style.setProperty("--background-rotation-transition-duration", `${this.options.transitionDuration}ms`);
@@ -86,7 +93,7 @@ export class PageBackgroundRotation {
             this.logger.log("Background rotation is disabled");
             return false;
         }
-        const container = document.querySelector(`.page-backgroundImage ${this.options.backgroundImageSelector}`);
+        const container = document.querySelector(`.page-backgroundImage ${this.options.backgroundImageSelector}, .body-banner ${this.options.backgroundImageSelector}`);
         if (!container)
             return false;
         if (!container.querySelector(this.options.eachImageSelector)) {
@@ -117,10 +124,46 @@ export class PageBackgroundRotation {
             return;
         layer.style.backgroundImage = `url('${imageUrl}')`;
     }
+    // Fetches the first image ahead of other page assets so the background
+    // paints as early as possible; only ever applied to the first image shown
+    preloadFirstImage(index) {
+        if (this.firstImagePreloaded)
+            return;
+        this.firstImagePreloaded = true;
+        const imageUrl = this.imageUrls[index];
+        if (!imageUrl)
+            return;
+        const preload = document.createElement("link");
+        preload.rel = "preload";
+        preload.setAttribute("as", "image");
+        preload.href = imageUrl;
+        preload.setAttribute("fetchpriority", "high");
+        document.head.appendChild(preload);
+    }
     // The remaining layers are applied once the page has settled, so a full set of
     // viewport-sized images isn't competing with the form's own assets during load.
-    // They are still applied ahead of the first rotation, so cross-fades don't
-    // start against an image that hasn't been fetched yet.
+    // Warming waits until the first image has finished loading AND a minimum 4s
+    // delay has passed, so it never competes with the first image's bandwidth.
+    // The layers are still applied ahead of the first rotation (10s initialDelay),
+    // so cross-fades don't start against an image that hasn't been fetched yet.
+    scheduleImageWarming(index) {
+        if (this.warmingScheduled || this.imagesWarmed)
+            return;
+        this.warmingScheduled = true;
+        const imageUrl = this.imageUrls[index];
+        const firstImageLoaded = new Promise((resolve) => {
+            if (!imageUrl) {
+                resolve();
+                return;
+            }
+            const probe = new Image();
+            probe.onload = () => resolve();
+            probe.onerror = () => resolve();
+            probe.src = imageUrl;
+        });
+        const minimumDelay = new Promise((resolve) => window.setTimeout(resolve, 4000));
+        Promise.all([firstImageLoaded, minimumDelay]).then(() => this.warmRemainingImages());
+    }
     warmRemainingImages() {
         if (this.imagesWarmed)
             return;
@@ -200,25 +243,44 @@ export class PageBackgroundRotation {
             this.isPaused = false;
             this.updatePauseButton();
         }
-        if (this.rotationTimer !== null)
+        if (this.rotationTimer !== null || this.initialDelayTimer !== null)
             return;
         const startIndex = this.currentIndex !== -1
             ? this.currentIndex
             : this.options.randomStart
                 ? this.getRandomIndex()
                 : 0;
+        // Preload before the layer's background-image is applied, so the
+        // high-priority fetch is the one that hits the network first
+        this.preloadFirstImage(startIndex);
         this.setActiveItem(startIndex);
-        this.warmRemainingImages();
+        this.scheduleImageWarming(startIndex);
         ENGrid.setBodyData("background-rotation", "active");
         if (this.canRotate())
             this.startRotationTimer();
         this.logger.log(`Rotating ${this.items.length} background images every ${this.options.interval}ms`);
     }
+    // The first rotation waits for initialDelay to give the first image (and the
+    // warming of the rest) time to load; later rotations use the normal interval.
+    // If paused before the first rotation, the full initial delay re-arms on resume
     startRotationTimer() {
         this.stopRotationTimer();
+        if (!this.initialDelayElapsed) {
+            this.initialDelayTimer = window.setTimeout(() => {
+                this.initialDelayTimer = null;
+                this.initialDelayElapsed = true;
+                this.rotateToNextImage();
+                this.rotationTimer = window.setInterval(() => this.rotateToNextImage(), this.options.interval);
+            }, this.options.initialDelay);
+            return;
+        }
         this.rotationTimer = window.setInterval(() => this.rotateToNextImage(), this.options.interval);
     }
     stopRotationTimer() {
+        if (this.initialDelayTimer !== null) {
+            window.clearTimeout(this.initialDelayTimer);
+            this.initialDelayTimer = null;
+        }
         if (this.rotationTimer !== null) {
             window.clearInterval(this.rotationTimer);
             this.rotationTimer = null;
@@ -252,6 +314,7 @@ export class PageBackgroundRotation {
     }
     showStaticImage() {
         const index = this.options.randomStart ? this.getRandomIndex() : 0;
+        this.preloadFirstImage(index);
         this.setActiveItem(index);
         ENGrid.setBodyData("background-rotation", "static");
     }
@@ -382,6 +445,7 @@ export class PageBackgroundRotation {
         this.interactionPauses.delete(kind);
         if (this.canRotate() &&
             this.rotationTimer === null &&
+            this.initialDelayTimer === null &&
             !this.isStaticMode()) {
             this.startRotationTimer();
         }
