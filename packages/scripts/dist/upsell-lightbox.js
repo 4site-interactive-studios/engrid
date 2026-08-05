@@ -145,8 +145,6 @@ export class UpsellLightbox {
             this.checkOtherAmount(upsellAmount);
         }
         live_upsell_amount.forEach((elem) => (elem.innerHTML = this.getAmountTxt(upsellAmount + this._fees.calculateFees(upsellAmount))));
-        // The resolved frequency can change with the entered amount, so refresh it
-        this.liveFrequency();
     }
     liveAmounts() {
         const live_upsell_amount = document.querySelectorAll(".upsell_suggestion");
@@ -173,13 +171,13 @@ export class UpsellLightbox {
         let upsellAmount;
         let upsellFrequency;
         if (otherAmount > 0) {
-            // An "other" amount doesn't belong to any amount range, so the upsell
-            // uses the default frequency
+            // An "other" amount overrides the amount but keeps the frequency that
+            // was already shown when the lightbox opened
             upsellAmount =
                 otherAmount > this.options.minAmount
                     ? otherAmount
                     : this.options.minAmount;
-            upsellFrequency = defaultFrequency;
+            upsellFrequency = this._upsellFrequency;
         }
         else {
             upsellAmount = 0;
