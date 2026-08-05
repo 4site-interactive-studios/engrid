@@ -1,11 +1,14 @@
 import { SimpleEventDispatcher } from "strongly-typed-events";
 import { ENGrid } from "../engrid";
+import { EngridLogger } from "../logger";
 export class DonationFrequency {
     constructor() {
         this._onFrequencyChange = new SimpleEventDispatcher();
         this._frequency = "onetime";
         this._recurring = "n";
         this._dispatch = true;
+        this._frequencies = ["onetime"];
+        this.logger = new EngridLogger("DonationFrequency", "white", "black", "💰");
         // Watch the Radios for Changes
         document.addEventListener("change", (e) => {
             const element = e.target;
@@ -57,6 +60,9 @@ export class DonationFrequency {
     get onFrequencyChange() {
         return this._onFrequencyChange.asEvent();
     }
+    get frequencies() {
+        return this._frequencies;
+    }
     // Set amount var with currently selected amount
     load() {
         var _a;
@@ -73,6 +79,11 @@ export class DonationFrequency {
                 ((_a = window.EngagingNetworks.require._defined.enjs
                     .getSupporterData("recurrpay")) === null || _a === void 0 ? void 0 : _a.toLowerCase()) || "n";
         }
+        // List of available frequencies on the form
+        this._frequencies = Array.from(document.querySelectorAll('input[name="transaction.recurrfreq"]'))
+            .filter((el) => el instanceof HTMLInputElement)
+            .map((el) => el.value.toLowerCase());
+        this.logger.log(`Loaded with frequency: ${this.frequency} and recurring: ${this.recurring} \nAvailable frequencies: ${this._frequencies.join(", ")}`);
         // ENGrid.enParseDependencies();
     }
     // Force a new recurrency
@@ -108,6 +119,9 @@ export class DonationFrequency {
             else {
                 this.setRecurrency("Y", dispatch);
             }
+        }
+        else {
+            this.logger.warn(`Attempted to set a frequency of "${freq}" but it was not found on the form.`);
         }
         // Revert dispatch to default value (true)
         this._dispatch = true;

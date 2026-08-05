@@ -1,11 +1,19 @@
 import { SimpleEventDispatcher } from "strongly-typed-events";
 import { ENGrid } from "../engrid";
+import { EngridLogger } from "../logger";
 
 export class DonationFrequency {
   private _onFrequencyChange = new SimpleEventDispatcher<string>();
   private _frequency: string = "onetime";
   private _recurring: string = "n";
   private _dispatch: boolean = true;
+  private _frequencies: string[] = ["onetime"];
+  private logger: EngridLogger = new EngridLogger(
+    "DonationFrequency",
+    "white",
+    "black",
+    "💰"
+  );
   private static instance: DonationFrequency;
 
   private constructor() {
@@ -79,6 +87,10 @@ export class DonationFrequency {
     return this._onFrequencyChange.asEvent();
   }
 
+  get frequencies(): string[] {
+    return this._frequencies;
+  }
+
   // Set amount var with currently selected amount
   public load() {
     this.frequency =
@@ -102,6 +114,17 @@ export class DonationFrequency {
           .getSupporterData("recurrpay")
           ?.toLowerCase() || "n";
     }
+    // List of available frequencies on the form
+    this._frequencies = Array.from(
+      document.querySelectorAll('input[name="transaction.recurrfreq"]')
+    )
+      .filter((el) => el instanceof HTMLInputElement)
+      .map((el) => (el as HTMLInputElement).value.toLowerCase());
+    this.logger.log(
+      `Loaded with frequency: ${this.frequency} and recurring: ${
+        this.recurring
+      } \nAvailable frequencies: ${this._frequencies.join(", ")}`
+    );
     // ENGrid.enParseDependencies();
   }
   // Force a new recurrency
@@ -140,6 +163,10 @@ export class DonationFrequency {
       } else {
         this.setRecurrency("Y", dispatch);
       }
+    } else {
+      this.logger.warn(
+        `Attempted to set a frequency of "${freq}" but it was not found on the form.`
+      );
     }
     // Revert dispatch to default value (true)
     this._dispatch = true;

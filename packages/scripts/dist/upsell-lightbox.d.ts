@@ -9,15 +9,17 @@ export declare class UpsellLightbox {
     private _frequency;
     private _dataLayer;
     private _suggestAmount;
+    private _upsellFrequency;
     private logger;
     constructor();
+    private parseMergeTags;
     private renderLightbox;
     private shouldRun;
     private shouldSkip;
     private popupOtherField;
     private liveAmounts;
     private liveFrequency;
-    private getUpsellAmount;
+    private resolveUpsell;
     private shouldOpen;
     private freqAllowed;
     private open;
