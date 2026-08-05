@@ -54,6 +54,7 @@ export * from "./skip-link";
 export * from "./src-defer";
 export * from "./set-recurr-freq";
 export * from "./page-background";
+export * from "./page-background-rotation";
 export * from "./neverbounce";
 export * from "./freshaddress";
 export * from "./progress-bar";
