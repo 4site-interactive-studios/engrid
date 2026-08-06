@@ -255,7 +255,10 @@ export class UpsellLightbox {
         const val = this.options.amountRange[i];
         if (upsellAmount == 0 && amount <= val.max) {
           if (val.suggestion === 0) {
-            upsellAmount = 0;
+            upsellFrequency = val.frequency ?? defaultFrequency;
+            this._suggestAmount = 0;
+            this._upsellFrequency = upsellFrequency;
+            return { amount: 0, frequency: upsellFrequency };
           } else if (typeof val.suggestion === "number") {
             upsellAmount = val.suggestion;
           } else {

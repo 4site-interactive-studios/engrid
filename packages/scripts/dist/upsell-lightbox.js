@@ -164,7 +164,7 @@ export class UpsellLightbox {
     // the cached _suggestAmount / _upsellFrequency in sync with the current
     // donation amount and any value entered in the "other amount" field.
     resolveUpsell() {
-        var _a, _b, _c, _d;
+        var _a, _b, _c, _d, _e;
         const amount = this._amount.amount;
         const otherAmount = parseFloat((_b = (_a = this.overlay.querySelector("#secondOtherField")) === null || _a === void 0 ? void 0 : _a.value) !== null && _b !== void 0 ? _b : "");
         const defaultFrequency = (_c = this.options.upsellToFrequency) !== null && _c !== void 0 ? _c : "monthly";
@@ -186,7 +186,10 @@ export class UpsellLightbox {
                 const val = this.options.amountRange[i];
                 if (upsellAmount == 0 && amount <= val.max) {
                     if (val.suggestion === 0) {
-                        upsellAmount = 0;
+                        upsellFrequency = (_d = val.frequency) !== null && _d !== void 0 ? _d : defaultFrequency;
+                        this._suggestAmount = 0;
+                        this._upsellFrequency = upsellFrequency;
+                        return { amount: 0, frequency: upsellFrequency };
                     }
                     else if (typeof val.suggestion === "number") {
                         upsellAmount = val.suggestion;
@@ -195,7 +198,7 @@ export class UpsellLightbox {
                         const suggestionMath = val.suggestion.replace("amount", amount.toFixed(2));
                         upsellAmount = parseFloat(Function('"use strict";return (' + suggestionMath + ")")());
                     }
-                    upsellFrequency = (_d = val.frequency) !== null && _d !== void 0 ? _d : defaultFrequency;
+                    upsellFrequency = (_e = val.frequency) !== null && _e !== void 0 ? _e : defaultFrequency;
                     break;
                 }
             }
