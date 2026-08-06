@@ -297,7 +297,8 @@ export class UpsellLightbox {
       !this.options.disablePaymentMethods.includes(paymenttype.toLowerCase()) &&
       !this.overlay.classList.contains("is-submitting") &&
       upsellAmount > 0 &&
-      this._frequency.frequencies.includes(upsellFrequency)
+      this._frequency.frequencies.includes(upsellFrequency) &&
+      this._frequency.frequency !== upsellFrequency
     ) {
       this.logger.log("Upsell Frequency " + this._frequency.frequency);
       this.logger.log("Upsell Amount " + this._amount.amount);
