@@ -1,3 +1,4 @@
+// ! WE ARE PHASING OUT THIS COMPONENT IN FAVOR OF UPSELL-LIGHTBOX. PLEASE USE THAT COMPONENT FOR NEW IMPLEMENTATIONS.
 /*
  * FrequencyUpsell component which creates a modal to upsell the frequency of the donation
  * This is typically used to upsell a single donation into an annual donation, but the component

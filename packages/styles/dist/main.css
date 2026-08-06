@@ -6333,7 +6333,8 @@ body:not(#en__pagebuilder) img:not([src]):not([srcset]) {
 #goMonthly h1 {
   margin-top: 0;
 }
-#goMonthly h1 .upsell_suggestion {
+#goMonthly h1 .upsell_suggestion,
+#goMonthly h1 .upsell_suggestion_frequency {
   font-weight: 700;
 }
 #goMonthly .upsellOtherAmountLabel p {

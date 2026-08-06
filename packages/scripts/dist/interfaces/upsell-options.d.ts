@@ -11,11 +11,14 @@ export interface UpsellOptions {
     amountRange: Array<{
         max: number;
         suggestion: number | string;
+        frequency?: "onetime" | "monthly" | "quarterly" | "semi_annual" | "annual";
     }>;
+    upsellToFrequency?: "onetime" | "monthly" | "quarterly" | "semi_annual" | "annual";
     minAmount: number;
     canClose: boolean;
     submitOnClose: boolean;
     oneTime: boolean;
+    monthly: boolean;
     annual: boolean;
     disablePaymentMethods: Array<string>;
     skipUpsell: boolean;
