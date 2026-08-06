@@ -36,13 +36,17 @@ export class ThankYouPageConditionalContent {
         this.logger.log("Processing TY page conditional content item:", item);
 
         if (ENGrid.getPageID() === item.page) {
+          const inputValue = item.value.replace(/\W/g, "");
+          const classPrefix = CSS.escape(item.class);
+          const selectedClass = CSS.escape(`${item.class}${inputValue}`);
+
           document
-            .querySelectorAll(`[class*="${item.class}"]`)
+            .querySelectorAll(`[class*="${classPrefix}"]`)
             .forEach((el) => {
               el.classList.add("hide");
             });
           document
-            .querySelectorAll(`.${item.class}${item.value}`)
+            .querySelectorAll(`.${selectedClass}`)
             .forEach((el) => {
               el.classList.remove("hide");
             });
