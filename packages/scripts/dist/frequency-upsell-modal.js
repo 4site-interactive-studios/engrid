@@ -9,7 +9,7 @@ export class FrequencyUpsellModal extends Modal {
         super({
             onClickOutside: "bounce",
             customClass: `engrid--frequency-upsell-modal ${upsellOptions.customClass}`,
-            showCloseX: false,
+            showCloseX: upsellOptions.showCloseX,
         });
         this._amountWithFees = 0;
         this._upsellAmountWithFees = 0;

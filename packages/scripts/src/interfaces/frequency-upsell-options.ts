@@ -12,6 +12,7 @@ export interface FrequencyUpsellOptions {
   onOpen: () => void;
   onAccept: () => void;
   onDecline: () => void;
+  showCloseX: boolean;
 }
 
 // A/B Test configuration wrapper. When the page editor sets window.EngridFrequencyUpsell
@@ -43,4 +44,5 @@ export const FrequencyUpsellOptionsDefaults: FrequencyUpsellOptions = {
   onOpen: () => {},
   onAccept: () => {},
   onDecline: () => {},
+  showCloseX: false,
 };
