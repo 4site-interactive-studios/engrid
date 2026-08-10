@@ -10,11 +10,12 @@ export class FrequencyUpsellModal extends Modal {
   private _amountWithFees: number = 0;
   private _upsellAmountWithFees: number = 0;
 
-  constructor(upsellOptions: FrequencyUpsellOptions) {
+  constructor(upsellOptions: FrequencyUpsellOptions, onDismiss?: () => void) {
     super({
       onClickOutside: "bounce",
       customClass: `engrid--frequency-upsell-modal ${upsellOptions.customClass}`,
       showCloseX: upsellOptions.showCloseX,
+      onDismiss,
     });
     this.upsellOptions = upsellOptions;
     this.updateModalContent();

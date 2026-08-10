@@ -6,6 +6,8 @@ interface ModalOptions {
   closeButtonLabel?: string;
   customClass?: string;
   showCloseX?: boolean;
+  closeOnEsc?: boolean;
+  onDismiss?: () => void;
 }
 
 export abstract class Modal {
@@ -17,6 +19,8 @@ export abstract class Modal {
     closeButtonLabel: "Okay!",
     customClass: "",
     showCloseX: true,
+    closeOnEsc: true,
+    onDismiss: () => {},
   };
   private options: ModalOptions;
 
@@ -72,7 +76,7 @@ export abstract class Modal {
       button.classList.add("engrid-modal__button");
       button.textContent = this.options.closeButtonLabel as string;
       button.addEventListener("click", () => {
-        this.close();
+        this.dismiss();
       });
       modalBody?.appendChild(button);
     }
@@ -85,7 +89,7 @@ export abstract class Modal {
     this.modal
       ?.querySelector(".engrid-modal__close")
       ?.addEventListener("click", () => {
-        this.close();
+        this.dismiss();
       });
 
     // Bounce scale when clicking outside of modal
@@ -94,7 +98,7 @@ export abstract class Modal {
       ?.addEventListener("click", (event) => {
         if (event.target === event.currentTarget) {
           if (this.options.onClickOutside === "close") {
-            this.close();
+            this.dismiss();
           } else if (this.options.onClickOutside === "bounce") {
             const modal = document.querySelector(".engrid-modal");
             if (modal) {
@@ -110,9 +114,19 @@ export abstract class Modal {
     const closeEls = this.modal?.querySelectorAll(".modal__close");
     closeEls?.forEach((el) => {
       el.addEventListener("click", () => {
-        this.close();
+        this.dismiss();
       });
     });
+  }
+
+  /**
+   * Generic entry point for dismissing the modal.
+   * Fires the onDismiss callback before closing, so consumers can react to the modal being
+   * dismissed rather than closed via their own explicit button logic.
+   */
+  private dismiss(): void {
+    this.options.onDismiss?.();
+    this.close();
   }
 
   private focusTrapHandler = (e: KeyboardEvent) => {
@@ -148,6 +162,12 @@ export abstract class Modal {
     }
   };
 
+  private escKeyHandler = (e: KeyboardEvent) => {
+    if (e.key === "Escape" && this.options.closeOnEsc) {
+      this.dismiss();
+    }
+  };
+
   public open(): void {
     ENGrid.setBodyData("has-lightbox", "true");
     this.modal?.classList.remove("modal--hidden");
@@ -157,6 +177,7 @@ export abstract class Modal {
     ) as HTMLElement;
     container?.focus({ preventScroll: true });
     this.modal?.addEventListener("keydown", this.focusTrapHandler);
+    this.modal?.addEventListener("keydown", this.escKeyHandler);
   }
 
   public close(): void {
@@ -164,6 +185,7 @@ export abstract class Modal {
     this.modal?.classList.add("modal--hidden");
     this.modal?.setAttribute("aria-hidden", "true");
     this.modal?.removeEventListener("keydown", this.focusTrapHandler);
+    this.modal?.removeEventListener("keydown", this.escKeyHandler);
   }
 
   public getModalContent(): NodeListOf<Element> | HTMLElement | String {

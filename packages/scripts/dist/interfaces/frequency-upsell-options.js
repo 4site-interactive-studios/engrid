@@ -11,4 +11,5 @@ export const FrequencyUpsellOptionsDefaults = {
     onAccept: () => { },
     onDecline: () => { },
     showCloseX: false,
+    submitOnClose: false,
 };
