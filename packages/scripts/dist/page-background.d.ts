@@ -1,3 +1,8 @@
+declare global {
+    interface Window {
+        UseBodyBannerImageAsBackground?: boolean;
+    }
+}
 export declare class PageBackground {
     private pageBackground;
     private bodyBanner;
