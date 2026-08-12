@@ -1,3 +1,5 @@
+// PageBackgroundRotation handles the rotation of background images within a page-backgroundImage block
+// By default, this feature is not enabled, and must be enabled by importing and initializing it in the client theme's onLoad block
 // Within the page-backgroundImage block, if there is a parent div with a class of 'background-rotation', then the background image will rotate every 5 seconds
 // The image rotates on a cross-fade transition, and the next image is randomly selected from the list of child elements with a class of 'background-image-item' within the 'background-rotation' div
 // The random selection of the next image is done in a way that ensures that the same image is not displayed twice in a row, and that all images are displayed before any image is repeated
@@ -125,9 +127,7 @@ export class PageBackgroundRotation {
     }
     this.updateMode();
     if (!this.options.rotateOnMobile) {
-      this.mobileMediaQuery.addEventListener("change", () =>
-        this.updateMode()
-      );
+      this.mobileMediaQuery.addEventListener("change", () => this.updateMode());
     }
     if (this.options.reducedMotion) {
       this.reducedMotionMediaQuery.addEventListener("change", () =>
@@ -279,9 +279,7 @@ export class PageBackgroundRotation {
   }
 
   private reducedMotionPreferred(): boolean {
-    return (
-      this.options.reducedMotion && this.reducedMotionMediaQuery.matches
-    );
+    return this.options.reducedMotion && this.reducedMotionMediaQuery.matches;
   }
 
   // Starts or stops the rotation based on the current viewport and motion
@@ -316,8 +314,8 @@ export class PageBackgroundRotation {
       this.currentIndex !== -1
         ? this.currentIndex
         : this.options.randomStart
-          ? this.getRandomIndex()
-          : 0;
+        ? this.getRandomIndex()
+        : 0;
     // Preload before the layer's background-image is applied, so the
     // high-priority fetch is the one that hits the network first
     this.preloadFirstImage(startIndex);
@@ -543,7 +541,7 @@ export class PageBackgroundRotation {
     nextButton.addEventListener("click", () => this.goToNextImage());
 
     this.liveRegion = document.createElement("div");
-    this.liveRegion.className = "sr-only";
+    this.liveRegion.className = "engrid__sr-only";
     this.liveRegion.setAttribute("aria-live", "polite");
     this.liveRegion.setAttribute("aria-atomic", "true");
 
@@ -600,8 +598,9 @@ export class PageBackgroundRotation {
     const description =
       this.getItemImage(item)?.getAttribute("alt") ||
       this.getItemAttribution(item);
-    this.liveRegion.textContent = `Background image ${this.currentIndex + 1
-      } of ${this.items.length}${description ? `: ${description}` : ""}`;
+    this.liveRegion.textContent = `Background image ${
+      this.currentIndex + 1
+    } of ${this.items.length}${description ? `: ${description}` : ""}`;
   }
 
   private createControlButton(

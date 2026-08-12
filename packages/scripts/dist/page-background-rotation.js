@@ -1,3 +1,5 @@
+// PageBackgroundRotation handles the rotation of background images within a page-backgroundImage block
+// By default, this feature is not enabled, and must be enabled by importing and initializing it in the client theme's onLoad block
 // Within the page-backgroundImage block, if there is a parent div with a class of 'background-rotation', then the background image will rotate every 5 seconds
 // The image rotates on a cross-fade transition, and the next image is randomly selected from the list of child elements with a class of 'background-image-item' within the 'background-rotation' div
 // The random selection of the next image is done in a way that ensures that the same image is not displayed twice in a row, and that all images are displayed before any image is repeated
@@ -212,7 +214,7 @@ export class PageBackgroundRotation {
         return false;
     }
     reducedMotionPreferred() {
-        return (this.options.reducedMotion && this.reducedMotionMediaQuery.matches);
+        return this.options.reducedMotion && this.reducedMotionMediaQuery.matches;
     }
     // Starts or stops the rotation based on the current viewport and motion
     // preferences, called on page load and whenever they change
@@ -424,7 +426,7 @@ export class PageBackgroundRotation {
         const nextButton = this.createControlButton("background-rotation-next", "Next background image", '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>');
         nextButton.addEventListener("click", () => this.goToNextImage());
         this.liveRegion = document.createElement("div");
-        this.liveRegion.className = "sr-only";
+        this.liveRegion.className = "engrid__sr-only";
         this.liveRegion.setAttribute("aria-live", "polite");
         this.liveRegion.setAttribute("aria-atomic", "true");
         controls.append(this.previousButton, this.pauseButton, nextButton, this.liveRegion);
