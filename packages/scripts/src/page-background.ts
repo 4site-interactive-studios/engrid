@@ -1,5 +1,11 @@
 import { ENGrid, EngridLogger } from ".";
 
+declare global {
+  interface Window {
+    UseBodyBannerImageAsBackground?: boolean;
+  }
+}
+
 export class PageBackground {
   // @TODO: Change page-backgroundImage to page-background
   private pageBackground: HTMLElement | null = document.querySelector(
@@ -18,6 +24,10 @@ export class PageBackground {
   );
 
   constructor(useBodyBannerImage: boolean = false) {
+    if (typeof window.UseBodyBannerImageAsBackground !== "undefined") {
+      useBodyBannerImage = !!window.UseBodyBannerImageAsBackground;
+    }
+
     if (useBodyBannerImage) {
       this.bodyBannerImage = this.findBodyBannerImage();
     }

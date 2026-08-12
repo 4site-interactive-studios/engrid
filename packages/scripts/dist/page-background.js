@@ -7,6 +7,9 @@ export class PageBackground {
         this.bodyBannerImage = null;
         this.mutationObserver = null;
         this.logger = new EngridLogger("PageBackground", "lightblue", "darkblue", "🖼️");
+        if (typeof window.UseBodyBannerImageAsBackground !== "undefined") {
+            useBodyBannerImage = !!window.UseBodyBannerImageAsBackground;
+        }
         if (useBodyBannerImage) {
             this.bodyBannerImage = this.findBodyBannerImage();
         }
