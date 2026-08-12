@@ -342,7 +342,7 @@ export class App extends ENGrid {
     // Add Image Attribution
     if (this.options.MediaAttribution) new MediaAttribution();
     // Apple Pay
-    if (this.options.applePay) new ApplePay();
+    if (this.options.applePay) ApplePay.getInstance();
     // Capitalize Fields
     if (this.options.CapitalizeFields) new CapitalizeFields();
     // Auto Year Class
@@ -395,7 +395,6 @@ export class App extends ENGrid {
     new AddNameToMessage();
     new ExpandRegionName();
 
-
     // Url Params to Form Fields
     new UrlToForm();
 
@@ -426,10 +425,14 @@ export class App extends ENGrid {
     new SupporterHub();
 
     // Digital Wallets Features
-    if (ENGrid.getPageType() === "DONATION") {
+    if (
+      ENGrid.getPageType() === "DONATION" ||
+      ENGrid.getPageType() === "EVENT"
+    ) {
       new DigitalWallets();
-      new PreferredPaymentMethod();
     }
+
+    new PreferredPaymentMethod();
 
     // Mobile CTA
     new MobileCTA();

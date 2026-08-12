@@ -187,7 +187,7 @@ export class App extends ENGrid {
             new MediaAttribution();
         // Apple Pay
         if (this.options.applePay)
-            new ApplePay();
+            ApplePay.getInstance();
         // Capitalize Fields
         if (this.options.CapitalizeFields)
             new CapitalizeFields();
@@ -256,10 +256,11 @@ export class App extends ENGrid {
         // Supporter Hub Features
         new SupporterHub();
         // Digital Wallets Features
-        if (ENGrid.getPageType() === "DONATION") {
+        if (ENGrid.getPageType() === "DONATION" ||
+            ENGrid.getPageType() === "EVENT") {
             new DigitalWallets();
-            new PreferredPaymentMethod();
         }
+        new PreferredPaymentMethod();
         // Mobile CTA
         new MobileCTA();
         // Live Frequency

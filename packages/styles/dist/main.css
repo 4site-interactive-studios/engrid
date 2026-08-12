@@ -3333,15 +3333,6 @@ body[data-engrid-live-currency=active] .en__field--donationAmt .en__field__item:
   .apple-pay-button-white-with-line {
     -apple-pay-button-style: white-outline;
   }
-  .en__field__input.en__field__input--radio[value=applepay] + label {
-    border-width: 0 !important;
-  }
-  .en__field__input.en__field__input--radio[value=applepay]:checked + label {
-    background-color: transparent !important;
-  }
-  .en__field__input.en__field__input--radio[value=applepay]:checked + label .apple-pay-button {
-    -apple-pay-button-style: inherit !important;
-  }
 }
 @supports not (-webkit-appearance: -apple-pay-button) {
   .apple-pay-container,
@@ -3349,6 +3340,27 @@ body[data-engrid-live-currency=active] .en__field--donationAmt .en__field__item:
     display: none;
   }
   .en__field__input.en__field__input--radio[value=applepay] + label {
+    display: none;
+  }
+}
+@supports (-webkit-appearance: -apple-pay-button) {
+  .apple-pay-container {
+    width: 100%;
+    margin-top: 2rem;
+  }
+  .apple-pay-container .apple-pay-button {
+    display: block;
+    width: 100%;
+    height: 45px;
+    cursor: pointer;
+  }
+  body:not(#en__pagebuilder):not([data-engrid-apple-pay-available=true]) .apple-pay-container, body:not(#en__pagebuilder):not([data-engrid-payment-type=applepay]) .apple-pay-container {
+    display: none;
+  }
+  body:not(#en__pagebuilder)[data-engrid-apple-pay-available=true][data-engrid-payment-type=applepay] .en__submit {
+    display: none;
+  }
+  body:not(#en__pagebuilder)[data-engrid-apple-pay-available=false] .en__field__input.en__field__input--radio[value=applepay] + label {
     display: none;
   }
 }
@@ -6312,7 +6324,8 @@ body:not(#en__pagebuilder) img:not([src]):not([srcset]) {
 #goMonthly h1 {
   margin-top: 0;
 }
-#goMonthly h1 .upsell_suggestion {
+#goMonthly h1 .upsell_suggestion,
+#goMonthly h1 .upsell_suggestion_frequency {
   font-weight: 700;
 }
 #goMonthly .upsellOtherAmountLabel p {

@@ -9,6 +9,7 @@ export class UpsellLightbox {
         this._frequency = DonationFrequency.getInstance();
         this._dataLayer = DataLayer.getInstance();
         this._suggestAmount = 0;
+        this._upsellFrequency = "monthly";
         this.logger = new EngridLogger("UpsellLightbox", "black", "pink", "🪟");
         let options = "EngridUpsell" in window ? window.EngridUpsell : {};
         this.options = Object.assign(Object.assign({}, UpsellOptionsDefaults), options);
@@ -26,23 +27,19 @@ export class UpsellLightbox {
         this.renderLightbox();
         this._form.onSubmit.subscribe(() => this.open());
     }
+    parseMergeTags(str) {
+        return str
+            .replace(/\{new-amount\}/g, "<span class='upsell_suggestion'></span>")
+            .replace(/\{new-frequency\}/g, "<span class='upsell_suggestion_frequency'></span>")
+            .replace(/\{old-amount\}/g, "<span class='upsell_amount'></span>")
+            .replace(/\{old-frequency\}/g, "<span class='upsell_frequency'></span>");
+    }
     renderLightbox() {
-        const title = this.options.title
-            .replace("{new-amount}", "<span class='upsell_suggestion'></span>")
-            .replace("{old-amount}", "<span class='upsell_amount'></span>")
-            .replace("{old-frequency}", "<span class='upsell_frequency'></span>");
-        const paragraph = this.options.paragraph
-            .replace("{new-amount}", "<span class='upsell_suggestion'></span>")
-            .replace("{old-amount}", "<span class='upsell_amount'></span>")
-            .replace("{old-frequency}", "<span class='upsell_frequency'></span>");
-        const yes = this.options.yesLabel
-            .replace("{new-amount}", "<span class='upsell_suggestion'></span>")
-            .replace("{old-amount}", "<span class='upsell_amount'></span>")
-            .replace("{old-frequency}", "<span class='upsell_frequency'></span>");
-        const no = this.options.noLabel
-            .replace("{new-amount}", "<span class='upsell_suggestion'></span>")
-            .replace("{old-amount}", "<span class='upsell_amount'></span>")
-            .replace("{old-frequency}", "<span class='upsell_frequency'></span>");
+        const title = this.parseMergeTags(this.options.title);
+        const paragraph = this.parseMergeTags(this.options.paragraph);
+        const yes = this.parseMergeTags(this.options.yesLabel);
+        const no = this.parseMergeTags(this.options.noLabel);
+        const other = this.parseMergeTags(this.options.otherLabel);
         const markup = `
             <div class="upsellLightboxContainer" id="goMonthly">
               <!-- ideal image size is 480x650 pixels -->
@@ -57,7 +54,7 @@ export class UpsellLightbox {
                 <div class="upsellOtherAmount">
                   <div class="upsellOtherAmountLabel">
                     <p>
-                      ${this.options.otherLabel}
+                      ${other}
                     </p>
                   </div>
                   <div class="upsellOtherAmountInput">
@@ -140,7 +137,7 @@ export class UpsellLightbox {
         var _a, _b;
         const value = parseFloat((_b = (_a = this.overlay.querySelector("#secondOtherField")) === null || _a === void 0 ? void 0 : _a.value) !== null && _b !== void 0 ? _b : "");
         const live_upsell_amount = document.querySelectorAll("#upsellYesButton .upsell_suggestion");
-        const upsellAmount = this.getUpsellAmount();
+        const { amount: upsellAmount } = this.resolveUpsell();
         if (!isNaN(value) && value > 0) {
             this.checkOtherAmount(value);
         }
@@ -152,59 +149,87 @@ export class UpsellLightbox {
     liveAmounts() {
         const live_upsell_amount = document.querySelectorAll(".upsell_suggestion");
         const live_amount = document.querySelectorAll(".upsell_amount");
-        const upsellAmount = this.getUpsellAmount();
+        const { amount: upsellAmount } = this.resolveUpsell();
         const suggestedAmount = upsellAmount + this._fees.calculateFees(upsellAmount);
         live_upsell_amount.forEach((elem) => (elem.innerHTML = this.getAmountTxt(suggestedAmount)));
         live_amount.forEach((elem) => (elem.innerHTML = this.getAmountTxt(this._amount.amount + this._fees.fee)));
     }
     liveFrequency() {
         const live_upsell_frequency = document.querySelectorAll(".upsell_frequency");
+        const live_upsell_suggestion_frequency = document.querySelectorAll(".upsell_suggestion_frequency");
         live_upsell_frequency.forEach((elem) => (elem.innerHTML = this.getFrequencyTxt()));
+        live_upsell_suggestion_frequency.forEach((elem) => (elem.innerHTML = this.getFrequencyTxt(this._upsellFrequency)));
     }
-    // Return the Suggested Upsell Amount
-    getUpsellAmount() {
-        var _a, _b;
+    // Resolve the upsell amount and target frequency in a single pass and keep
+    // the cached _suggestAmount / _upsellFrequency in sync with the current
+    // donation amount and any value entered in the "other amount" field.
+    resolveUpsell() {
+        var _a, _b, _c, _d, _e;
         const amount = this._amount.amount;
         const otherAmount = parseFloat((_b = (_a = this.overlay.querySelector("#secondOtherField")) === null || _a === void 0 ? void 0 : _a.value) !== null && _b !== void 0 ? _b : "");
+        const defaultFrequency = (_c = this.options.upsellToFrequency) !== null && _c !== void 0 ? _c : "monthly";
+        let upsellAmount;
+        let upsellFrequency;
         if (otherAmount > 0) {
-            return otherAmount > this.options.minAmount
-                ? otherAmount
-                : this.options.minAmount;
+            // An "other" amount overrides the amount but keeps the frequency that
+            // was already shown when the lightbox opened
+            upsellAmount =
+                otherAmount > this.options.minAmount
+                    ? otherAmount
+                    : this.options.minAmount;
+            upsellFrequency = this._upsellFrequency;
         }
-        let upsellAmount = 0;
-        for (let i = 0; i < this.options.amountRange.length; i++) {
-            let val = this.options.amountRange[i];
-            if (upsellAmount == 0 && amount <= val.max) {
-                upsellAmount = val.suggestion;
-                if (upsellAmount === 0)
-                    return 0;
-                if (typeof upsellAmount !== "number") {
-                    const suggestionMath = upsellAmount.replace("amount", amount.toFixed(2));
-                    upsellAmount = parseFloat(Function('"use strict";return (' + suggestionMath + ")")());
+        else {
+            upsellAmount = 0;
+            upsellFrequency = defaultFrequency;
+            for (let i = 0; i < this.options.amountRange.length; i++) {
+                const val = this.options.amountRange[i];
+                if (upsellAmount == 0 && amount <= val.max) {
+                    if (val.suggestion === 0) {
+                        upsellFrequency = (_d = val.frequency) !== null && _d !== void 0 ? _d : defaultFrequency;
+                        this._suggestAmount = 0;
+                        this._upsellFrequency = upsellFrequency;
+                        return { amount: 0, frequency: upsellFrequency };
+                    }
+                    else if (typeof val.suggestion === "number") {
+                        upsellAmount = val.suggestion;
+                    }
+                    else {
+                        const suggestionMath = val.suggestion.replace("amount", amount.toFixed(2));
+                        upsellAmount = parseFloat(Function('"use strict";return (' + suggestionMath + ")")());
+                    }
+                    upsellFrequency = (_e = val.frequency) !== null && _e !== void 0 ? _e : defaultFrequency;
+                    break;
                 }
-                break;
             }
+            upsellAmount =
+                upsellAmount > this.options.minAmount
+                    ? upsellAmount
+                    : this.options.minAmount;
         }
-        return upsellAmount > this.options.minAmount
-            ? upsellAmount
-            : this.options.minAmount;
+        this._suggestAmount = upsellAmount;
+        this._upsellFrequency = upsellFrequency;
+        return { amount: upsellAmount, frequency: upsellFrequency };
     }
     shouldOpen() {
-        const upsellAmount = this.getUpsellAmount();
+        const { amount: upsellAmount, frequency: upsellFrequency } = this.resolveUpsell();
         const paymenttype = ENGrid.getFieldValue("transaction.paymenttype") || "";
-        this._suggestAmount = upsellAmount;
-        // If frequency is not onetime or
-        // the modal is already opened or
-        // there's no suggestion for this donation amount,
+        // If frequency is not allowed, or
+        // the modal is already opened, or
+        // there's no suggestion for this donation amount, or
+        // the target upsell frequency is not available on the form,
         // we should not open
         if (this.freqAllowed() &&
             !this.shouldSkip() &&
             !this.options.disablePaymentMethods.includes(paymenttype.toLowerCase()) &&
             !this.overlay.classList.contains("is-submitting") &&
-            upsellAmount > 0) {
+            upsellAmount > 0 &&
+            this._frequency.frequencies.includes(upsellFrequency) &&
+            this._frequency.frequency !== upsellFrequency) {
             this.logger.log("Upsell Frequency " + this._frequency.frequency);
             this.logger.log("Upsell Amount " + this._amount.amount);
             this.logger.log("Upsell Suggested Amount " + upsellAmount);
+            this.logger.log("Upsell Suggested Frequency " + upsellFrequency);
             return true;
         }
         return false;
@@ -215,6 +240,8 @@ export class UpsellLightbox {
         const allowed = [];
         if (this.options.oneTime)
             allowed.push("onetime");
+        if (this.options.monthly)
+            allowed.push("monthly");
         if (this.options.annual)
             allowed.push("annual");
         return allowed.includes(freq);
@@ -274,27 +301,30 @@ export class UpsellLightbox {
             ((_a = document.querySelector("#upsellYesButton")) === null || _a === void 0 ? void 0 : _a.contains(e.target))) {
             this.logger.success("Upsold");
             this.setOriginalAmount(this._amount.amount.toString());
-            const upsoldAmount = this.getUpsellAmount();
+            const { amount: upsoldAmount, frequency: upsellFrequency } = this.resolveUpsell();
             const originalAmount = this._amount.amount;
-            this._frequency.setFrequency("monthly");
+            const originalFrequency = this._frequency.frequency;
+            this._frequency.setFrequency(upsellFrequency);
             this._amount.setAmount(upsoldAmount);
             this._dataLayer.addEndOfGiftProcessEvent("ENGRID_UPSELL", {
                 eventValue: true,
+                originalFrequency: originalFrequency,
                 originalAmount: originalAmount,
                 upsoldAmount: upsoldAmount,
-                frequency: "monthly",
+                frequency: upsellFrequency,
             });
             this._dataLayer.addEndOfGiftProcessVariable("ENGRID_UPSELL", true);
             this._dataLayer.addEndOfGiftProcessVariable("ENGRID_UPSELL_ORIGINAL_AMOUNT", originalAmount);
-            this._dataLayer.addEndOfGiftProcessVariable("ENGRID_UPSELL_DONATION_FREQUENCY", "MONTHLY");
-            this.renderConversionField("upsellSuccess", "onetime", originalAmount, "monthly", this._suggestAmount, "monthly", upsoldAmount);
+            this._dataLayer.addEndOfGiftProcessVariable("ENGRID_UPSELL_ORIGINAL_FREQUENCY", this.getFrequencyTxt(originalFrequency).toUpperCase());
+            this._dataLayer.addEndOfGiftProcessVariable("ENGRID_UPSELL_DONATION_FREQUENCY", this.getFrequencyTxt(upsellFrequency).toUpperCase());
+            this.renderConversionField("upsellSuccess", originalFrequency, originalAmount, upsellFrequency, this._suggestAmount, upsellFrequency, upsoldAmount);
         }
         else {
             this.setOriginalAmount("");
             window.sessionStorage.removeItem("original");
             this._dataLayer.addEndOfGiftProcessVariable("ENGRID_UPSELL", false);
-            this._dataLayer.addEndOfGiftProcessVariable("ENGRID_UPSELL_DONATION_FREQUENCY", "ONE-TIME");
-            this.renderConversionField("upsellFail", this._frequency.frequency, this._amount.amount, "monthly", this._suggestAmount, this._frequency.frequency, this._amount.amount);
+            this._dataLayer.addEndOfGiftProcessVariable("ENGRID_UPSELL_DONATION_FREQUENCY", this.getFrequencyTxt(this._frequency.frequency).toUpperCase());
+            this.renderConversionField("upsellFail", this._frequency.frequency, this._amount.amount, this._upsellFrequency, this._suggestAmount, this._frequency.frequency, this._amount.amount);
         }
         this._form.submitForm();
     }
@@ -304,7 +334,7 @@ export class UpsellLightbox {
         this.overlay.classList.add("is-hidden");
         ENGrid.setBodyData("has-lightbox", false);
         if (this.options.submitOnClose) {
-            this.renderConversionField("upsellFail", this._frequency.frequency, this._amount.amount, "monthly", this._suggestAmount, this._frequency.frequency, this._amount.amount);
+            this.renderConversionField("upsellFail", this._frequency.frequency, this._amount.amount, this._upsellFrequency, this._suggestAmount, this._frequency.frequency, this._amount.amount);
             this._form.submitForm();
         }
         else {
@@ -320,14 +350,16 @@ export class UpsellLightbox {
         const amountTxt = ENGrid.formatNumber(amount, dec_places, dec_separator, thousands_separator);
         return amount > 0 ? symbol + amountTxt : "";
     }
-    getFrequencyTxt() {
+    getFrequencyTxt(frequency = this._frequency.frequency) {
         const freqTxt = {
             onetime: "one-time",
             monthly: "monthly",
+            quarterly: "quarterly",
+            semi_annual: "semi-annual",
             annual: "annual",
         };
-        const frequency = this._frequency.frequency;
-        return frequency in freqTxt ? freqTxt[frequency] : frequency;
+        const freq = frequency;
+        return freq in freqTxt ? freqTxt[freq] : frequency;
     }
     checkOtherAmount(value) {
         const otherInput = document.querySelector(".upsellOtherAmountInput");
@@ -343,7 +375,7 @@ export class UpsellLightbox {
     renderConversionField(event, // The event that triggered the conversion
     freq, // The frequency of the donation (onetime, monthly, annual)
     amt, // The original amount of the donation (before the upsell)
-    sugFreq, // The suggested frequency of the upsell (monthly)
+    sugFreq, // The suggested frequency of the upsell
     sugAmt, // The suggested amount of the upsell
     subFreq, // The submitted frequency of the upsell (onetime, monthly, annual)
     subAmt // The submitted amount of the upsell
