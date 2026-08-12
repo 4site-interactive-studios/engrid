@@ -26,12 +26,18 @@ body:not(#en__pagebuilder) {
       &.active {
         opacity: 1;
       }
+    }
 
-      // Keep the fading source over the incoming layer regardless of their
-      // authored z-index values or DOM order.
-      &.background-rotation-outgoing {
-        z-index: 1;
-      }
+    // The current layer always sits above the rest of the stack. The incoming
+    // layer fades in on top of the outgoing one, which stays fully opaque
+    // until the fade completes (see goToImage in the component), so the
+    // composite never dips toward whatever is behind the layers. The elevation
+    // must persist after the fade too: when finishTransition strips .active
+    // from the outgoing layer its opacity animates out over transitionDuration,
+    // and a layer that is later in the DOM would otherwise pop back above the
+    // current one for that duration
+    .background-rotation-layer.active:not(.background-rotation-outgoing) {
+      z-index: 1;
     }
 
     // Promote the layers only while a fade is actually running, instead of
@@ -130,8 +136,8 @@ body:not(#en__pagebuilder) {
             position: static;
           }
 
-          // Mobile does not cross-fade, so preserve the existing immediate
-          // DOM-order switch instead of holding the outgoing image above it.
+          // The outgoing layer stays put (and opaque) while the incoming one
+          // fades in over it, so it never sits above the incoming image
           &.background-rotation-outgoing {
             z-index: 0;
           }

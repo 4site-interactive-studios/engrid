@@ -6664,7 +6664,7 @@ body:not(#en__pagebuilder) .page-backgroundImage .page-background-rotation .back
 body:not(#en__pagebuilder) .page-backgroundImage .page-background-rotation .background-rotation-layer.active {
   opacity: 1;
 }
-body:not(#en__pagebuilder) .page-backgroundImage .page-background-rotation .background-rotation-layer.background-rotation-outgoing {
+body:not(#en__pagebuilder) .page-backgroundImage .page-background-rotation .background-rotation-layer.active:not(.background-rotation-outgoing) {
   z-index: 1;
 }
 body:not(#en__pagebuilder) .page-backgroundImage .page-background-rotation.background-rotation-transition .background-rotation-layer {

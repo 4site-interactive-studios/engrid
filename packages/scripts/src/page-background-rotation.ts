@@ -450,7 +450,10 @@ export class PageBackgroundRotation {
     // Settle a fade that is still running before starting the next one
     this.finishTransition();
     const outgoingLayer = this.layers[this.currentIndex];
-    outgoingLayer?.classList.remove("active");
+    // The outgoing layer keeps .active (staying fully opaque) while the
+    // incoming layer fades in on top of it, so the composite is opaque at
+    // every point of the cross-fade — nothing behind the layers ever washes
+    // through. It loses .active in finishTransition, once it is fully covered.
     outgoingLayer?.classList.add("background-rotation-outgoing");
     outgoingLayer?.setAttribute("aria-hidden", "true");
     this.container!.classList.add(this.options.transitionClass);
