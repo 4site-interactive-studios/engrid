@@ -36,6 +36,7 @@ export class RememberMe {
   private fieldClearSelectorTarget: string;
   private fieldClearSelectorTargetLocation: string;
   private fieldClearLabel: string;
+  private rememberMeLabel: string;
 
   constructor(options: {
     remoteUrl?: string;
@@ -52,6 +53,7 @@ export class RememberMe {
     fieldClearSelectorTarget?: string;
     fieldClearSelectorTargetLocation?: string;
     fieldClearLabel?: string;
+    rememberMeLabel?: string;
     checked?: boolean;
     encryptData?: boolean;
     hide?: boolean;
@@ -108,6 +110,10 @@ export class RememberMe {
     this.fieldClearLabel = options.fieldClearLabel
       ? options.fieldClearLabel
       : "(clear autofill)";
+
+    this.rememberMeLabel = options.rememberMeLabel
+      ? options.rememberMeLabel
+      : "Remember Me";
 
     this.fieldData = {};
     if (this.useRemote()) {
@@ -283,11 +289,11 @@ export class RememberMe {
       "remember-me-opt-in"
     ) as HTMLInputElement;
     if (!rememberMeOptInField) {
-      const rememberMeLabel = "Remember Me";
+      const rememberMeLabel = this.rememberMeLabel;
       const rememberMeInfo = `
-				Check “Remember me” to complete forms on this device faster. 
+				Check “${rememberMeLabel}” to complete forms on this device faster. 
 				While your financial information won’t be stored, you should only check this box from a personal device. 
-				Click “Clear autofill” to remove the information from your device at any time.
+				Click “${this.fieldClearLabel}” to remove the information from your device at any time.
 			`;
 
       const rememberMeOptInFieldChecked = this.rememberMeOptIn ? "checked" : "";

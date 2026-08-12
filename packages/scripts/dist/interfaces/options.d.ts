@@ -52,6 +52,7 @@ export interface Options {
         fieldClearSelectorTarget?: string;
         fieldClearSelectorTargetLocation?: string;
         fieldClearLabel?: string;
+        rememberMeLabel?: string;
         checked?: boolean;
         encryptData?: boolean;
         hide?: boolean;
