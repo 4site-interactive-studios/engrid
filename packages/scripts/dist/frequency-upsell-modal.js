@@ -5,11 +5,12 @@
  */
 import { ENGrid, Modal } from ".";
 export class FrequencyUpsellModal extends Modal {
-    constructor(upsellOptions) {
+    constructor(upsellOptions, onDismiss) {
         super({
             onClickOutside: "bounce",
             customClass: `engrid--frequency-upsell-modal ${upsellOptions.customClass}`,
-            showCloseX: false,
+            showCloseX: upsellOptions.showCloseX,
+            onDismiss,
         });
         this._amountWithFees = 0;
         this._upsellAmountWithFees = 0;

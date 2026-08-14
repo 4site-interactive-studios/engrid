@@ -32,6 +32,11 @@ export declare class FrequencyUpsell {
     getUpsellAmount(withFee: boolean): number;
     private addEventListeners;
     /**
+     * Handle the modal being dismissed via the X button, Esc key, or click-outside.
+     * This always counts as a decline (onDecline fires either way).
+     */
+    private handleModalDismiss;
+    /**
      * Create the frequency field for the upsell, if it does not exist on the page already
      * This is required by DonationFrequency to set the frequency
      */
