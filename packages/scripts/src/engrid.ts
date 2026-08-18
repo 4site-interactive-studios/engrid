@@ -255,7 +255,13 @@ export abstract class ENGrid {
 
   //returns 'us or 'ca' based on the client ID
   static getDataCenter() {
-    return ENGrid.getClientID() >= 10000 ? "us" : "ca";
+    if (ENGrid.getClientID() > 20000) {
+      return "us2";
+    } else if (ENGrid.getClientID() > 10000) {
+      return "us";
+    } else {
+      return "ca";
+    }
   }
 
   // Return the current page type
