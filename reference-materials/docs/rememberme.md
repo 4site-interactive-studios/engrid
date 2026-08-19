@@ -38,9 +38,26 @@ To enable, add a 'RememberMe' property to the 'options' object in your engrid th
 
 **hide**: Boolean. If set to `true`, the Remember Me opt-in element is rendered with the `hide` CSS class, effectively keeping it invisible while still allowing the component to function. Useful when clients want autofill behavior without displaying the opt-in checkbox to the donor. Defaults to `false`.
 
-**encryptData**: Boolean. If set to true, the saved form details are encrypted with browser-native AES-GCM (Web Crypto) before being stored, and the resulting bytes are base64-encoded. This applies to both the local cookie and the remote-iframe cookie. The encryption key is randomly generated once per device and kept in `localStorage` (never written to the cookie itself, so it never travels with the transported value). In remote mode, the key and store live in the iframe's origin, so multiple sites sharing that remote origin (e.g. FWW and FWA) share them automatically — however, note that this relies on localStorage access within the cross-origin iframe, which is subject to Chrome's third-party storage partitioning (see known limitations). If the key is missing or decryption otherwise fails (a different device, or cleared storage), the component silently discards the data and falls back to the normal, no-autofill experience. Defaults to false. When enabled with `remoteUrl`, the remote page must implement the matching encrypt/decrypt protocol (see the "Sample Remote URL Page Markup" section below for a reference starting point).
+**encryptData**: Boolean. If set to true, the saved form details are encrypted with browser-native AES-GCM (Web Crypto) before being stored, and the resulting bytes are base64-encoded. This applies to both the local cookie and the remote-iframe cookie. The encryption key is randomly generated once per device and kept in `localStorage` (never written to the cookie itself, so it never travels with the transported value). In remote mode, the key and store live in the iframe's origin, so multiple sites sharing that remote origin (e.g. FWW and FWA) share them automatically. If the key is missing or decryption otherwise fails (a different device, or cleared storage), the component silently discards the data and falls back to the normal, no-autofill experience. Defaults to false. When enabled with `remoteUrl`, the remote page must implement the matching encrypt/decrypt protocol (see the "Sample Remote URL Page Markup" section below for a reference starting point).
+
+**Known Limitations**
+
+- **Safari and Firefox**: When `remoteUrl` is used, the component saves data correctly when the form is on the same site as the remote URL. However, if a user submits a form on a different site and tries to restore data when visiting another site that uses the same `remoteUrl`, Safari and Firefox block the cross-origin iframe from accessing localStorage, causing restoration to fail. This is due to strict third-party storage partitioning policies that prevent cross-site iframe access to localStorage, even when the remote page is properly configured to handle postMessage communication.
+- **Older browsers**: Encryption/decryption relies on the Web Crypto API, which is not available in older browsers (e.g., Internet Explorer).
 
 ---
+
+**Bug Fixes**
+
+The following bug fixes were implemented in the RememberMe component:
+
+1. **Correctly restore `transaction.recurrfreq` radio selection**: Previously, the generic `setFieldValue` path was used for `transaction.recurrfreq`, which only checked the first radio in the DOM. If that radio did not match the saved value, nothing was selected. Now the component queries the exact radio by value and clicks it, matching the same pattern used for `transaction.donationAmt`.
+
+2. **Save and restore custom donation amount correctly**: When the donor selected the "Other" radio and typed a custom amount, `readFields()` was storing the radio's value (`Other`) instead of the numeric value the donor entered in the text input. On restore, `writeFields()` was filling the other text input without first clicking the Other radio, leaving it hidden/disabled. The fix now:
+   - Detects when the checked `donationAmt` radio has value `other` and persists the numeric value from `transaction.donationAmt.other`
+   - Clicks the Other radio first before populating the text input when no predefined radio matches
+
+3. **Reapply donation amount after SwapAmounts replaces the DOM**: `SwapAmounts` listens to `onFrequencyChange` and replaces the `donationAmt` radio nodes about 1 second after page load, which would wipe out RememberMe's earlier selections. A new handler `reapplyDonationAmtAfterSwap()` subscribes once (via `.one()`) to `onFrequencyChange`, waits 200ms for DOM updates, then re-clicks the correct donation amount radio (or fills the Other text input for custom amounts). The handler unsubscribes immediately so it only fires once and does not interfere with subsequent donor interactions.
 
 **Sample Remote URL Page Markup to be used as a cookie repository**
 

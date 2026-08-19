@@ -8,6 +8,8 @@ export class Modal {
             closeButtonLabel: "Okay!",
             customClass: "",
             showCloseX: true,
+            closeOnEsc: true,
+            onDismiss: () => { },
         };
         this.focusTrapHandler = (e) => {
             const modalElement = this.modal;
@@ -31,6 +33,11 @@ export class Modal {
                     e.preventDefault();
                     firstFocusable.focus();
                 }
+            }
+        };
+        this.escKeyHandler = (e) => {
+            if (e.key === "Escape" && this.options.closeOnEsc) {
+                this.dismiss();
             }
         };
         this.options = Object.assign(Object.assign({}, this.defaultOptions), options);
@@ -83,7 +90,7 @@ export class Modal {
             button.classList.add("engrid-modal__button");
             button.textContent = this.options.closeButtonLabel;
             button.addEventListener("click", () => {
-                this.close();
+                this.dismiss();
             });
             modalBody === null || modalBody === void 0 ? void 0 : modalBody.appendChild(button);
         }
@@ -93,13 +100,13 @@ export class Modal {
         var _a, _b, _c, _d, _e;
         // Close event on top X
         (_b = (_a = this.modal) === null || _a === void 0 ? void 0 : _a.querySelector(".engrid-modal__close")) === null || _b === void 0 ? void 0 : _b.addEventListener("click", () => {
-            this.close();
+            this.dismiss();
         });
         // Bounce scale when clicking outside of modal
         (_d = (_c = this.modal) === null || _c === void 0 ? void 0 : _c.querySelector(".engrid-modal__overlay")) === null || _d === void 0 ? void 0 : _d.addEventListener("click", (event) => {
             if (event.target === event.currentTarget) {
                 if (this.options.onClickOutside === "close") {
-                    this.close();
+                    this.dismiss();
                 }
                 else if (this.options.onClickOutside === "bounce") {
                     const modal = document.querySelector(".engrid-modal");
@@ -115,25 +122,37 @@ export class Modal {
         const closeEls = (_e = this.modal) === null || _e === void 0 ? void 0 : _e.querySelectorAll(".modal__close");
         closeEls === null || closeEls === void 0 ? void 0 : closeEls.forEach((el) => {
             el.addEventListener("click", () => {
-                this.close();
+                this.dismiss();
             });
         });
     }
+    /**
+     * Generic entry point for dismissing the modal.
+     * Fires the onDismiss callback before closing, so consumers can react to the modal being
+     * dismissed rather than closed via their own explicit button logic.
+     */
+    dismiss() {
+        var _a, _b;
+        (_b = (_a = this.options).onDismiss) === null || _b === void 0 ? void 0 : _b.call(_a);
+        this.close();
+    }
     open() {
-        var _a, _b, _c, _d;
+        var _a, _b, _c, _d, _e;
         ENGrid.setBodyData("has-lightbox", "true");
         (_a = this.modal) === null || _a === void 0 ? void 0 : _a.classList.remove("modal--hidden");
         (_b = this.modal) === null || _b === void 0 ? void 0 : _b.removeAttribute("aria-hidden");
         const container = (_c = this.modal) === null || _c === void 0 ? void 0 : _c.querySelector(".engrid-modal__container");
         container === null || container === void 0 ? void 0 : container.focus({ preventScroll: true });
         (_d = this.modal) === null || _d === void 0 ? void 0 : _d.addEventListener("keydown", this.focusTrapHandler);
+        (_e = this.modal) === null || _e === void 0 ? void 0 : _e.addEventListener("keydown", this.escKeyHandler);
     }
     close() {
-        var _a, _b, _c;
+        var _a, _b, _c, _d;
         ENGrid.setBodyData("has-lightbox", false);
         (_a = this.modal) === null || _a === void 0 ? void 0 : _a.classList.add("modal--hidden");
         (_b = this.modal) === null || _b === void 0 ? void 0 : _b.setAttribute("aria-hidden", "true");
         (_c = this.modal) === null || _c === void 0 ? void 0 : _c.removeEventListener("keydown", this.focusTrapHandler);
+        (_d = this.modal) === null || _d === void 0 ? void 0 : _d.removeEventListener("keydown", this.escKeyHandler);
     }
     getModalContent() {
         return "<h1>Default Modal Content</h1>";

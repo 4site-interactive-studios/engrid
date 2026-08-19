@@ -3,7 +3,7 @@ export declare class FrequencyUpsellModal extends Modal {
     private readonly upsellOptions;
     private _amountWithFees;
     private _upsellAmountWithFees;
-    constructor(upsellOptions: FrequencyUpsellOptions);
+    constructor(upsellOptions: FrequencyUpsellOptions, onDismiss?: () => void);
     set amountWithFees(value: number);
     set upsellAmountWithFees(value: number);
     updateModalContent(): void;

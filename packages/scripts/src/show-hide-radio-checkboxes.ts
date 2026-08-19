@@ -150,7 +150,7 @@ export class ShowHideRadioCheckboxes {
         state.push({
           page: ENGrid.getPageID(),
           class: this.classes,
-          value: element.value,
+          value: element.value.replace(/\W/g, ""),
         });
 
         this.logger.log("storing radio state", state[state.length - 1]);
@@ -173,7 +173,7 @@ export class ShowHideRadioCheckboxes {
           value:
             [...this.elements].find(
               (el): el is HTMLInputElement => (el as HTMLInputElement).checked
-            )?.value ?? "N", // First checked value or "N" if none
+            )?.value.replace(/\W/g, "") ?? "N", // First checked value or "N" if none
         });
 
         this.logger.log("storing checkbox state", state[state.length - 1]);

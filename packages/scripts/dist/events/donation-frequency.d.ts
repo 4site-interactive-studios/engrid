@@ -3,6 +3,8 @@ export declare class DonationFrequency {
     private _frequency;
     private _recurring;
     private _dispatch;
+    private _frequencies;
+    private logger;
     private static instance;
     private constructor();
     static getInstance(): DonationFrequency;
@@ -11,6 +13,7 @@ export declare class DonationFrequency {
     get recurring(): string;
     set recurring(value: string);
     get onFrequencyChange(): import("strongly-typed-events").ISimpleEvent<string>;
+    get frequencies(): string[];
     load(): void;
     setRecurrency(recurr: string, dispatch?: boolean): void;
     setFrequency(freq: string, dispatch?: boolean): void;

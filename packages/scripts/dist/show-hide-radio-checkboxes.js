@@ -127,7 +127,7 @@ export class ShowHideRadioCheckboxes {
                 state.push({
                     page: ENGrid.getPageID(),
                     class: this.classes,
-                    value: element.value,
+                    value: element.value.replace(/\W/g, ""),
                 });
                 this.logger.log("storing radio state", state[state.length - 1]);
             }
@@ -142,7 +142,7 @@ export class ShowHideRadioCheckboxes {
                 state.push({
                     page: ENGrid.getPageID(),
                     class: this.classes,
-                    value: (_b = (_a = [...this.elements].find((el) => el.checked)) === null || _a === void 0 ? void 0 : _a.value) !== null && _b !== void 0 ? _b : "N", // First checked value or "N" if none
+                    value: (_b = (_a = [...this.elements].find((el) => el.checked)) === null || _a === void 0 ? void 0 : _a.value.replace(/\W/g, "")) !== null && _b !== void 0 ? _b : "N", // First checked value or "N" if none
                 });
                 this.logger.log("storing checkbox state", state[state.length - 1]);
             }

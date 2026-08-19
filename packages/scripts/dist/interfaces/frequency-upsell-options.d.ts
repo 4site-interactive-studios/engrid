@@ -10,6 +10,8 @@ export interface FrequencyUpsellOptions {
     onOpen: () => void;
     onAccept: () => void;
     onDecline: () => void;
+    showCloseX: boolean;
+    submitOnClose: boolean;
 }
 export interface FrequencyUpsellABTestConfig {
     abTest: true;

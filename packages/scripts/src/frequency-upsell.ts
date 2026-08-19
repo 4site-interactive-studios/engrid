@@ -1,3 +1,4 @@
+// ! WE ARE PHASING OUT THIS COMPONENT IN FAVOR OF UPSELL-LIGHTBOX. PLEASE USE THAT COMPONENT FOR NEW IMPLEMENTATIONS.
 /*
  * FrequencyUpsell component which creates a modal to upsell the frequency of the donation
  * This is typically used to upsell a single donation into an annual donation, but the component
@@ -39,7 +40,9 @@ export class FrequencyUpsell {
     }
     this.options = this.selectOptions(window.EngridFrequencyUpsell);
     this.logger.log("FrequencyUpsell initialized", this.options);
-    this.upsellModal = new FrequencyUpsellModal(this.options);
+    this.upsellModal = new FrequencyUpsellModal(this.options, () =>
+      this.handleModalDismiss()
+    );
     this.createFrequencyField();
     this.addEventListeners();
   }
@@ -174,6 +177,20 @@ export class FrequencyUpsell {
       this._form.submit = true;
       return true;
     });
+  }
+
+  /**
+   * Handle the modal being dismissed via the X button, Esc key, or click-outside.
+   * This always counts as a decline (onDecline fires either way).
+   */
+  private handleModalDismiss(): void {
+    this.logger.log("Frequency upsell modal dismissed (declined)");
+    this.options!.onDecline();
+    if (this.options!.submitOnClose) {
+      this._form.submitForm();
+    } else {
+      this._form.dispatchError();
+    }
   }
 
   /**
