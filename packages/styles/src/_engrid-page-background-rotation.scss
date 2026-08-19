@@ -1,0 +1,229 @@
+// Styles for the PageBackgroundRotation component (src/scripts/page-background-rotation.ts)
+// Each item's layer (the item itself, or its wrapping figure.media-with-attribution
+// when MediaAttribution has processed it) becomes a fixed full-viewport layer
+// (mirroring how .page-backgroundImage:before renders the background) and
+// cross-fades via opacity.
+body:not(#en__pagebuilder) {
+  .page-backgroundImage .page-background-rotation {
+    .background-rotation-layer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: top right;
+      // Mirrors background-position for the items that render as an <img> layer
+      // rather than painting the background (see the img rule below), so every
+      // image in the rotation is cropped the same way
+      object-position: top right;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 0;
+      transition: opacity var(--background-rotation-transition-duration, 500ms) ease-in-out;
+
+      &.active {
+        opacity: 1;
+      }
+    }
+
+    // The current layer always sits above the rest of the stack. The incoming
+    // layer fades in on top of the outgoing one, which stays fully opaque
+    // until the fade completes (see goToImage in the component), so the
+    // composite never dips toward whatever is behind the layers. The elevation
+    // must persist after the fade too: when finishTransition strips .active
+    // from the outgoing layer its opacity animates out over transitionDuration,
+    // and a layer that is later in the DOM would otherwise pop back above the
+    // current one for that duration
+    .background-rotation-layer.active:not(.background-rotation-outgoing) {
+      z-index: 1;
+    }
+
+    // Promote the layers only while a fade is actually running, instead of
+    // holding a viewport-sized compositor layer per image for the whole session
+    &.background-rotation-transition .background-rotation-layer {
+      will-change: opacity;
+    }
+
+    // When the item is the <img> tag itself, override the core rule that hides
+    // images inside .page-backgroundImage and make it behave like a cover background
+    img.background-rotation-layer {
+      display: block;
+      object-fit: cover;
+    }
+
+    // A figure layer keeps its MediaAttribution overlay clickable, the way core
+    // does for a background that isn't rotating. The inactive layers stay
+    // click-through so the stack of hidden layers can't swallow those clicks
+    figure.background-rotation-layer.active {
+      pointer-events: auto;
+    }
+
+    // A figure wrapping an item's (hidden) img that is NOT itself the fade layer
+    // should not paint the shared background layer
+    figure.media-with-attribution:not(.background-rotation-layer) {
+      position: static;
+      display: block;
+      background-image: none;
+    }
+  }
+
+  // PageBackground (core) sets --engrid__page-backgroundImage_url from the first
+  // <img> in the section, so .page-backgroundImage:before would paint that one
+  // image underneath every layer and wash through the middle of each cross-fade.
+  // Point it at the current image instead, so a fade reads as one image
+  // dissolving into the next with nothing else showing through.
+  &[data-engrid-background-rotation] .page-backgroundImage:before {
+    background-image: var(--background-rotation-image, none);
+  }
+
+  // Match the layout-specific background positions used by .page-backgroundImage:before
+  &[data-engrid-layout="centercenter1col"],
+  &[data-engrid-layout="centercenter2col"] {
+    .page-backgroundImage .page-background-rotation .background-rotation-layer {
+      background-position: top center;
+      object-position: top center;
+    }
+  }
+
+  &[data-engrid-layout="centerright1col"],
+  &[data-engrid-layout="rightright1col"] {
+    .page-backgroundImage .page-background-rotation .background-rotation-layer {
+      background-position: top left;
+      object-position: top left;
+    }
+  }
+}
+
+// Below a layout's replace-banner breakpoint (see the
+// engrid_replace-banner-with-background mixin in _engrid-background-image.scss,
+// 499px by default) the page-backgroundImage section moves into the body-banner
+// grid row and un-hides its imgs. The flow layer (tagged by the component)
+// stays in-flow so the section gets the image's natural height; any other active
+// layer (mid cross-fade) overlays it absolutely so the two never stack.
+//
+// The selectors mirror the mixin's own conditions; if a client theme overrides
+// the layout's $*_content-column_min-width variable, it must also override this
+// breakpoint in its theme partial.
+@media screen and (max-width: 499px) {
+  body:not(#en__pagebuilder)[data-engrid-page-background="image"] {
+
+    &[data-replace-banner-with-background="if-background-image"],
+    &[data-replace-banner-with-background="if-banner-empty"][data-engrid-body-banner="empty"] {
+      .page-backgroundImage .page-background-rotation {
+        position: relative;
+        overflow: hidden;
+
+        // The core mixin un-hides the section's imgs with `display: block
+        // !important` at this breakpoint, so keeping the inactive layers hidden
+        // takes the same weight
+        .background-rotation-layer {
+          display: none !important;
+
+          &.active {
+            display: block !important;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            background-image: none !important;
+            opacity: 1;
+          }
+
+          &.background-rotation-flow {
+            position: static;
+          }
+
+          // The outgoing layer stays put (and opaque) while the incoming one
+          // fades in over it, so it never sits above the incoming image
+          &.background-rotation-outgoing {
+            z-index: 0;
+          }
+        }
+
+        // The core mixin forces figures to position: absolute at this breakpoint,
+        // override it for the flow layer so the img inside flows and gives the
+        // section its height
+        figure.background-rotation-layer.active {
+          width: 100% !important;
+          height: auto !important;
+          transform: none !important;
+        }
+
+        figure.background-rotation-layer.background-rotation-flow {
+          position: relative !important;
+        }
+
+        img.background-rotation-layer.active {
+          object-fit: initial;
+        }
+      }
+    }
+  }
+}
+
+// Back / pause / forward controls for the rotation (see the 'controls' option).
+// Shown whenever the rotation is active; a theme can hide them per-breakpoint
+// in its own partial.
+.background-rotation-controls {
+  display: none;
+}
+
+body:not(#en__pagebuilder)[data-engrid-background-rotation="active"] {
+  .background-rotation-controls {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 8;
+    display: flex;
+    gap: 0.5rem;
+
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      border: none;
+      border-radius: 50%;
+      background-color: rgba(0, 0, 0, 0.75);
+      color: #ffffff;
+      cursor: pointer;
+      transition: background-color 150ms ease-in-out;
+
+      &:hover,
+      &:focus-visible {
+        background-color: rgba(0, 0, 0, 0.75);
+      }
+
+      &:focus-visible {
+        outline: 2px solid #ffffff;
+        outline-offset: 2px;
+      }
+
+      &:disabled {
+        opacity: 0.4;
+        cursor: default;
+
+        &:hover,
+        &:focus-visible {
+          background-color: rgba(0, 0, 0, 0.5);
+        }
+      }
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body:not(#en__pagebuilder) .page-backgroundImage .page-background-rotation .background-rotation-layer {
+    transition: none;
+  }
+}
