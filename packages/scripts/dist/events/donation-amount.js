@@ -17,12 +17,7 @@ export class DonationAmount {
                     this.amount = parseFloat(element.value);
                 }
                 else if (element.name == other) {
-                    const cleanedAmount = ENGrid.cleanAmount(element.value);
-                    element.value =
-                        cleanedAmount % 1 != 0
-                            ? cleanedAmount.toFixed(2)
-                            : cleanedAmount.toString();
-                    this.amount = cleanedAmount;
+                    this.syncOtherAmount(element, true);
                 }
             }
         });
@@ -30,11 +25,24 @@ export class DonationAmount {
         const otherField = document.querySelector(`[name='${this._other}']`);
         if (otherField) {
             otherField.addEventListener("keyup", (e) => {
-                this.amount = ENGrid.cleanAmount(otherField.value);
+                this.syncOtherAmount(otherField);
             });
         }
         // Load the current amount
         this.load();
+    }
+    syncOtherAmount(field, formatValue = false) {
+        const selectedAmount = document.querySelector(`input[name="${this._radios}"]:checked`);
+        const otherIsSelected = selectedAmount !== null &&
+            ENGrid.cleanAmount(selectedAmount.value) === 0;
+        const amount = ENGrid.cleanAmount(field.value);
+        if (!otherIsSelected || amount <= 0) {
+            return;
+        }
+        if (formatValue) {
+            field.value = amount % 1 != 0 ? amount.toFixed(2) : amount.toString();
+        }
+        this.amount = amount;
     }
     static getInstance(radios = "transaction.donationAmt", other = "transaction.donationAmt.other") {
         if (!DonationAmount.instance) {
