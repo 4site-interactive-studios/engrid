@@ -2,6 +2,7 @@ export * from "./deprecated";
 export { Options, OptionsDefaults } from "./interfaces/options";
 export { UpsellOptions, UpsellOptionsDefaults, } from "./interfaces/upsell-options";
 export { TranslateOptions, TranslateOptionsDefaults, } from "./interfaces/translate-options";
+export { I18nOptions, I18nDefaults } from "./interfaces/i18n-options";
 export { ExitIntentOptions, ExitIntentOptionsDefaults, } from "./interfaces/exit-intent-options";
 export { FrequencyUpsellOptions, FrequencyUpsellOptionsDefaults, FrequencyUpsellABTestConfig, FrequencyUpsellConfig, } from "./interfaces/frequency-upsell-options";
 export { IframeQueueOptions, IframeQueueOptionsDefaults, IframeQueueItem, IframeQueueErrorPayload, } from "./interfaces/iframe-queue-options";

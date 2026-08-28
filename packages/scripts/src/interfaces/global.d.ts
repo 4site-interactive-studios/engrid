@@ -1,4 +1,5 @@
 import { TranslateOptions } from "./translate-options";
+import { I18nOptions } from "./i18n-options";
 import { Options } from "./options";
 import { UpsellOptions } from "./upsell-options";
 import { ExitIntentOptions } from "./exit-intent-options";
@@ -21,6 +22,7 @@ declare global {
     EngridUpsell: UpsellOptions;
     EngridExitIntent: ExitIntentOptions;
     EngridTranslate: TranslateOptions;
+    EngridI18n: I18nOptions;
     EngridEcardToTarget: EcardToTargetOptions;
     EngridEmbeddedEcard: EmbeddedEcardOptions;
     EngridIframeQueue: IframeQueueOptions;

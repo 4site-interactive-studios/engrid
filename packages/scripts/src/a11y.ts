@@ -412,7 +412,10 @@ export class A11y {
       region.textContent = allMessages[0];
     } else {
       const cleaned = allMessages.map(message => message.replace(/[.!?]+$/, '').trim());
-      region.textContent = `There are ${allMessages.length} errors: ${cleaned.join('. ')}.`;
+      region.textContent = ENGrid.t("a11y.errorSummary", {
+        count: allMessages.length,
+        messages: cleaned.join('. '),
+      });
     }
 
     if (this.shouldFocusFirstInvalidField) {

@@ -18,7 +18,9 @@ export class TranslateFields {
   constructor() {
     let options: TranslateOptions =
       "EngridTranslate" in window ? window.EngridTranslate : {};
-    this.options = TranslateOptionsDefaults;
+    // Shallow clone: the EngridTranslate merge below concatenates arrays per
+    // key and must never mutate the shared TranslateOptionsDefaults.
+    this.options = { ...TranslateOptionsDefaults };
 
     // Don't run this for US-only forms.
     if (
@@ -93,6 +95,9 @@ export class TranslateFields {
           );
         }
       }
+    } else {
+      // No country field on the page: still translate to the page language
+      this.applyLanguageLayer();
     }
   }
 
@@ -102,7 +107,11 @@ export class TranslateFields {
     this.resetTranslatedFields();
     const countryValue = ENGrid.getFieldValue(countryName);
 
-    // Translate the State Field
+    // Apply the page language as the base translation layer
+    this.applyLanguageLayer();
+
+    // Translate the State Field (runs last so country-specific state labels
+    // like "Provincia" or "Estado" win over the language layer)
     this.setStateField(countryValue, this.countryToStateFields[countryName]);
 
     if (countryName === "supporter.country") {
@@ -115,6 +124,13 @@ export class TranslateFields {
       // Translate the "To:"
       const recipient_block = document.querySelectorAll(".recipient-block");
       if (!!recipient_block.length) {
+        // Capture the original page-builder text once per cycle so
+        // resetTranslatedFields() can restore it — a country change never
+        // leaves a stale translation behind.
+        recipient_block.forEach((elem) => {
+          const el = elem as HTMLElement;
+          if (!el.dataset.original) el.dataset.original = el.innerHTML;
+        });
         switch (countryValue) {
           case "FR":
           case "FRA":
@@ -131,8 +147,32 @@ export class TranslateFields {
           case "Netherlands":
             recipient_block.forEach((elem) => (elem.innerHTML = "Aan:"));
             break;
+          default:
+            // No country-specific rule: use the page language string when the
+            // language dictionary defines one (e.g. "es" -> "Para:"). English
+            // pages keep the page-builder text, already restored above.
+            if (
+              ENGrid.getPageLanguage() !== "en" &&
+              ENGrid.hasI18nKey("translateFields.recipientTo")
+            ) {
+              recipient_block.forEach(
+                (elem) =>
+                  (elem.innerHTML = ENGrid.t("translateFields.recipientTo"))
+              );
+            }
+            break;
         }
       }
+    }
+  }
+  // Apply the translation layer for the current page language (e.g. "es").
+  // This is the base layer; country-specific translations override it per field.
+  private applyLanguageLayer() {
+    const language = ENGrid.getPageLanguage();
+    if (language in this.options) {
+      this.options[language].forEach((field) => {
+        this.translateField(field.field, field.translation);
+      });
     }
   }
   private translateField(name: string, translation: string) {
@@ -209,7 +249,7 @@ export class TranslateFields {
       case "GB":
       case "GBR":
       case "United Kingdom":
-        this.setStateValues(state, "State/Region", null);
+        this.setStateValues(state, ENGrid.t("translateFields.stateRegion"), null);
         break;
       case "DE":
       case "DEU":
@@ -223,8 +263,8 @@ export class TranslateFields {
         break;
       case "AU":
       case "AUS":
-        this.setStateValues(state, "Province / State", [
-          { label: "Select", value: "" },
+        this.setStateValues(state, ENGrid.t("translateFields.stateGeneric"), [
+          { label: ENGrid.t("translateFields.select"), value: "" },
           { label: "New South Wales", value: "NSW" },
           { label: "Victoria", value: "VIC" },
           { label: "Queensland", value: "QLD" },
@@ -236,8 +276,8 @@ export class TranslateFields {
         ]);
         break;
       case "Australia":
-        this.setStateValues(state, "Province / State", [
-          { label: "Select", value: "" },
+        this.setStateValues(state, ENGrid.t("translateFields.stateGeneric"), [
+          { label: ENGrid.t("translateFields.select"), value: "" },
           { label: "New South Wales", value: "New South Wales" },
           { label: "Victoria", value: "Victoria" },
           { label: "Queensland", value: "Queensland" },
@@ -253,8 +293,8 @@ export class TranslateFields {
         break;
       case "US":
       case "USA":
-        this.setStateValues(state, "State", [
-          { label: "Select State", value: "" },
+        this.setStateValues(state, ENGrid.t("translateFields.state"), [
+          { label: ENGrid.t("translateFields.selectState"), value: "" },
           { label: "Alabama", value: "AL" },
           { label: "Alaska", value: "AK" },
           { label: "Arizona", value: "AZ" },
@@ -331,8 +371,8 @@ export class TranslateFields {
         ]);
         break;
       case "United States":
-        this.setStateValues(state, "State", [
-          { label: "Select State", value: "" },
+        this.setStateValues(state, ENGrid.t("translateFields.state"), [
+          { label: ENGrid.t("translateFields.selectState"), value: "" },
           { label: "Alabama", value: "Alabama" },
           { label: "Alaska", value: "Alaska" },
           { label: "Arizona", value: "Arizona" },
@@ -419,8 +459,8 @@ export class TranslateFields {
         break;
       case "CA":
       case "CAN":
-        this.setStateValues(state, "Province / Territory", [
-          { label: "Select", value: "" },
+        this.setStateValues(state, ENGrid.t("translateFields.provinceTerritory"), [
+          { label: ENGrid.t("translateFields.select"), value: "" },
           { label: "Alberta", value: "AB" },
           { label: "British Columbia", value: "BC" },
           { label: "Manitoba", value: "MB" },
@@ -437,8 +477,8 @@ export class TranslateFields {
         ]);
         break;
       case "Canada":
-        this.setStateValues(state, "Province / Territory", [
-          { label: "Select", value: "" },
+        this.setStateValues(state, ENGrid.t("translateFields.provinceTerritory"), [
+          { label: ENGrid.t("translateFields.select"), value: "" },
           { label: "Alberta", value: "Alberta" },
           { label: "British Columbia", value: "British Columbia" },
           { label: "Manitoba", value: "Manitoba" },
@@ -531,7 +571,7 @@ export class TranslateFields {
         ]);
         break;
       default:
-        this.setStateValues(state, "Province / State", null);
+        this.setStateValues(state, ENGrid.t("translateFields.stateGeneric"), null);
         break;
     }
   }
