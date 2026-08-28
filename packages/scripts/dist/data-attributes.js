@@ -19,6 +19,10 @@ export class DataAttributes {
         if (ENGrid.checkNested(window, "pageJson", "pageType")) {
             ENGrid.setBodyData("page-type", window.pageJson.pageType);
         }
+        // Add the locale as a Data Attribute on the Body Tag
+        if (ENGrid.checkNested(window, "pageJson", "locale")) {
+            ENGrid.setBodyData("locale", window.pageJson.locale.toLowerCase());
+        }
         // Add the currency code as a Data Attribute on the Body Tag
         ENGrid.setBodyData("currency-code", ENGrid.getCurrencyCode());
         // Add a body banner data attribute if the banner contains no image or video
