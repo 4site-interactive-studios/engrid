@@ -22,12 +22,7 @@ export class DonationAmount {
         if (element.name == radios) {
           this.amount = parseFloat(element.value);
         } else if (element.name == other) {
-          const cleanedAmount = ENGrid.cleanAmount(element.value);
-          element.value =
-            cleanedAmount % 1 != 0
-              ? cleanedAmount.toFixed(2)
-              : cleanedAmount.toString();
-          this.amount = cleanedAmount;
+          this.syncOtherAmount(element, true);
         }
       }
     });
@@ -37,11 +32,41 @@ export class DonationAmount {
     ) as HTMLInputElement;
     if (otherField) {
       otherField.addEventListener("keyup", (e: Event) => {
-        this.amount = ENGrid.cleanAmount(otherField.value);
+        this.syncOtherAmount(otherField);
       });
     }
     // Load the current amount
     this.load();
+  }
+
+  // The "other" radio is the one whose value isn't a numeric amount
+  // (EN renders it as value="other"), so it cleans to 0
+  public isOtherAmountSelected(): boolean {
+    const selectedAmount = document.querySelector(
+      `input[name="${this._radios}"]:checked`
+    ) as HTMLInputElement;
+    return (
+      selectedAmount !== null &&
+      ENGrid.cleanAmount(selectedAmount.value) === 0
+    );
+  }
+
+  private syncOtherAmount(
+    field: HTMLInputElement,
+    formatValue: boolean = false
+  ) {
+    const otherIsSelected = this.isOtherAmountSelected();
+    const amount = ENGrid.cleanAmount(field.value);
+
+    if (!otherIsSelected || amount <= 0) {
+      return;
+    }
+
+    if (formatValue) {
+      field.value = amount % 1 != 0 ? amount.toFixed(2) : amount.toString();
+    }
+
+    this.amount = amount;
   }
 
   public static getInstance(

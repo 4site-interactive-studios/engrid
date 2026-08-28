@@ -6,6 +6,8 @@ export declare class DonationAmount {
     private _dispatch;
     private static instance;
     private constructor();
+    isOtherAmountSelected(): boolean;
+    private syncOtherAmount;
     static getInstance(radios?: string, other?: string): DonationAmount;
     get amount(): number;
     set amount(value: number);
