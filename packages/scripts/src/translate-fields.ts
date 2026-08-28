@@ -191,7 +191,20 @@ export class TranslateFields {
           ? (simplecountriesSelect as HTMLElement).cloneNode(true)
           : null;
         if (field instanceof HTMLInputElement && field.placeholder != "") {
-          if (!fieldLabel || fieldLabel.innerHTML == field.placeholder) {
+          // Translate the placeholder when it mirrors the label (the common
+          // case). Compare normalized visible text so template whitespace and
+          // required-marker markup don't break the match. Order matters:
+          // trim before stripping the marker, or labels like "Name *\n"
+          // keep the asterisk.
+          const labelText = (fieldLabel?.textContent || "")
+            .replace(/\s+/g, " ")
+            .trim()
+            .replace(/\s*\*$/, "");
+          const placeholderText = field.placeholder
+            .replace(/\s+/g, " ")
+            .trim()
+            .replace(/\s*\*$/, "");
+          if (!fieldLabel || labelText === placeholderText) {
             field.dataset.original = field.placeholder;
             field.placeholder = translation;
           }
