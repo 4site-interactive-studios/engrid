@@ -1,3 +1,4 @@
+import { I18nDefaults } from "./interfaces/i18n-options";
 const errorCallbacks = new Map();
 export class ENGrid {
     constructor() {
@@ -260,6 +261,37 @@ export class ENGrid {
         else {
             return "UNKNOWN";
         }
+    }
+    // Return the current page language: the first 2 characters of
+    // pageJson.locale, lowercased (e.g. "es_US" -> "es"). Defaults to "en"
+    // when pageJson or the locale is not available.
+    static getPageLanguage() {
+        if ("pageJson" in window &&
+            typeof window.pageJson.locale === "string" &&
+            window.pageJson.locale.length >= 2) {
+            return window.pageJson.locale.substring(0, 2).toLowerCase();
+        }
+        return "en";
+    }
+    // Translate a UI string key using the i18n dictionary: I18nDefaults merged
+    // with the window.EngridI18n global (key-by-key, per language, without
+    // mutating the defaults). Resolution order: current page language bucket ->
+    // English bucket -> the key itself. {placeholders} are interpolated from
+    // the replacements argument.
+    static t(key, replacements = {}) {
+        var _a, _b, _c, _d;
+        const dictionaries = Object.assign({}, I18nDefaults);
+        if ("EngridI18n" in window && window.EngridI18n) {
+            for (const lang in window.EngridI18n) {
+                dictionaries[lang] = Object.assign(Object.assign({}, (I18nDefaults[lang] || {})), window.EngridI18n[lang]);
+            }
+        }
+        const language = ENGrid.getPageLanguage();
+        let text = (_d = (_b = (_a = dictionaries[language]) === null || _a === void 0 ? void 0 : _a[key]) !== null && _b !== void 0 ? _b : (_c = dictionaries["en"]) === null || _c === void 0 ? void 0 : _c[key]) !== null && _d !== void 0 ? _d : key;
+        for (const name in replacements) {
+            text = text.replace(new RegExp(`\\{${name}\\}`, "g"), String(replacements[name]));
+        }
+        return text;
     }
     // Set body engrid data attributes
     static setBodyData(dataName, value) {

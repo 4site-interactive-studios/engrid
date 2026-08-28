@@ -1,4 +1,5 @@
 import { Options } from ".";
+import { I18nDefaults, I18nOptions } from "./interfaces/i18n-options";
 
 const errorCallbacks = new Map<string, Function>();
 
@@ -308,6 +309,49 @@ export abstract class ENGrid {
     } else {
       return "UNKNOWN";
     }
+  }
+
+  // Return the current page language: the first 2 characters of
+  // pageJson.locale, lowercased (e.g. "es_US" -> "es"). Defaults to "en"
+  // when pageJson or the locale is not available.
+  static getPageLanguage(): string {
+    if (
+      "pageJson" in window &&
+      typeof window.pageJson.locale === "string" &&
+      window.pageJson.locale.length >= 2
+    ) {
+      return window.pageJson.locale.substring(0, 2).toLowerCase();
+    }
+    return "en";
+  }
+
+  // Translate a UI string key using the i18n dictionary: I18nDefaults merged
+  // with the window.EngridI18n global (key-by-key, per language, without
+  // mutating the defaults). Resolution order: current page language bucket ->
+  // English bucket -> the key itself. {placeholders} are interpolated from
+  // the replacements argument.
+  static t(
+    key: string,
+    replacements: Record<string, string | number> = {}
+  ): string {
+    const dictionaries: I18nOptions = { ...I18nDefaults };
+    if ("EngridI18n" in window && window.EngridI18n) {
+      for (const lang in window.EngridI18n) {
+        dictionaries[lang] = {
+          ...(I18nDefaults[lang] || {}),
+          ...window.EngridI18n[lang],
+        };
+      }
+    }
+    const language = ENGrid.getPageLanguage();
+    let text = dictionaries[language]?.[key] ?? dictionaries["en"]?.[key] ?? key;
+    for (const name in replacements) {
+      text = text.replace(
+        new RegExp(`\\{${name}\\}`, "g"),
+        String(replacements[name])
+      );
+    }
+    return text;
   }
 
   // Set body engrid data attributes

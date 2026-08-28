@@ -30,6 +30,21 @@ const nlTranslation = [
     { field: "supporter.region", translation: "Provincie" },
     { field: "supporter.country", translation: "Country" },
 ];
+// Page-language layer: keyed by lowercase 2-letter language code
+// (see ENGrid.getPageLanguage()), applied as the base translation layer
+// before any country-specific translations.
+const esTranslation = [
+    { field: "supporter.firstName", translation: "Nombre" },
+    { field: "supporter.lastName", translation: "Apellidos" },
+    { field: "supporter.emailAddress", translation: "Correo electrónico" },
+    { field: "supporter.phoneNumber", translation: "Teléfono" },
+    { field: "supporter.address1", translation: "Dirección" },
+    { field: "supporter.address2", translation: "Complemento" },
+    { field: "supporter.postcode", translation: "Código Postal" },
+    { field: "supporter.city", translation: "Ciudad" },
+    { field: "supporter.region", translation: "Provincia/Estado" },
+    { field: "supporter.country", translation: "País" },
+];
 export const TranslateOptionsDefaults = {
     BR: ptbrTranslation,
     BRA: ptbrTranslation,
@@ -39,4 +54,5 @@ export const TranslateOptionsDefaults = {
     FRA: frTranslation,
     NL: nlTranslation,
     NLD: nlTranslation,
+    es: esTranslation,
 };

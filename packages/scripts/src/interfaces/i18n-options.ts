@@ -1,0 +1,40 @@
+// i18n dictionary for engrid-scripts UI strings.
+// Keys are flat, dot-notation. Language buckets are keyed by the 2-letter
+// page language (see ENGrid.getPageLanguage()). Clients can override or extend
+// any string via the window.EngridI18n global, which is merged over these
+// defaults key-by-key, per language.
+export interface I18nOptions {
+  [lang: string]: { [key: string]: string };
+}
+export const I18nDefaults: I18nOptions = {
+  en: {
+    "rememberMe.label": "Remember Me",
+    "rememberMe.clearLabel": "(clear autofill)",
+    "rememberMe.tooltip":
+      'Check "{label}" to complete forms on this device faster. While your financial information won\'t be stored, you should only check this box from a personal device. Click "{clearLabel}" to remove the information from your device at any time.',
+    "rememberMe.iframeTitle": "Remember Me iframe",
+    "translateFields.state": "State",
+    "translateFields.stateGeneric": "Province / State",
+    "translateFields.stateRegion": "State/Region",
+    "translateFields.provinceTerritory": "Province / Territory",
+    "translateFields.selectState": "Select State",
+    "translateFields.select": "Select",
+    "translateFields.recipientTo": "To:",
+    "a11y.errorSummary": "There are {count} errors: {messages}.",
+  },
+  es: {
+    "rememberMe.label": "Recuérdame",
+    "rememberMe.clearLabel": "(borrar autocompletado)",
+    "rememberMe.tooltip":
+      'Marca "{label}" para completar los formularios en este dispositivo más rápido. Aunque tu información financiera no se almacenará, solo debes marcar esta casilla desde un dispositivo personal. Haz clic en "{clearLabel}" para eliminar la información de tu dispositivo en cualquier momento.',
+    "rememberMe.iframeTitle": "iframe de Recuérdame",
+    "translateFields.state": "Estado",
+    "translateFields.stateGeneric": "Provincia/Estado",
+    "translateFields.stateRegion": "Estado/Región",
+    "translateFields.provinceTerritory": "Provincia/Territorio",
+    "translateFields.selectState": "Seleccione Estado",
+    "translateFields.select": "Seleccione",
+    "translateFields.recipientTo": "Para:",
+    "a11y.errorSummary": "Hay {count} errores: {messages}.",
+  },
+};

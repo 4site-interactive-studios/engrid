@@ -2,6 +2,7 @@ export * from "./deprecated"; // Runs first so it can change the DOM markup befo
 export { OptionsDefaults } from "./interfaces/options";
 export { UpsellOptionsDefaults, } from "./interfaces/upsell-options";
 export { TranslateOptionsDefaults, } from "./interfaces/translate-options";
+export { I18nDefaults } from "./interfaces/i18n-options";
 export { ExitIntentOptionsDefaults, } from "./interfaces/exit-intent-options";
 export { FrequencyUpsellOptionsDefaults, } from "./interfaces/frequency-upsell-options";
 export { IframeQueueOptionsDefaults, } from "./interfaces/iframe-queue-options";

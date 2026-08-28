@@ -28,6 +28,8 @@ export declare abstract class ENGrid {
     static getClientID(): any;
     static getDataCenter(): "us2" | "us" | "ca";
     static getPageType(): "DONATION" | "ECARD" | "SURVEY" | "EMAILTOTARGET" | "ADVOCACY" | "SUBSCRIBEFORM" | "EVENT" | "SUPPORTERHUB" | "UNSUBSCRIBE" | "TWEETPAGE" | "UNKNOWN";
+    static getPageLanguage(): string;
+    static t(key: string, replacements?: Record<string, string | number>): string;
     static setBodyData(dataName: string, value: string | boolean): void;
     static getBodyData(dataName: string): string | null;
     static hasBodyData(dataName: string): boolean;

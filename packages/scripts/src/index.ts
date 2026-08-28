@@ -9,6 +9,7 @@ export {
   TranslateOptions,
   TranslateOptionsDefaults,
 } from "./interfaces/translate-options";
+export { I18nOptions, I18nDefaults } from "./interfaces/i18n-options";
 export {
   ExitIntentOptions,
   ExitIntentOptionsDefaults,

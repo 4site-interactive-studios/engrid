@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import * as cookie from "./cookie";
 import { EnForm, RememberMeEvents, DonationFrequency } from "./events";
+import { ENGrid } from "./engrid";
 const tippy = require("tippy.js").default;
 // localStorage key used to cache the per-device AES-GCM encryption key.
 // A random secret generated once per device and held in localStorage.
@@ -64,10 +65,10 @@ export class RememberMe {
                 : "before";
         this.fieldClearLabel = options.fieldClearLabel
             ? options.fieldClearLabel
-            : "(clear autofill)";
+            : ENGrid.t("rememberMe.clearLabel");
         this.rememberMeLabel = options.rememberMeLabel
             ? options.rememberMeLabel
-            : "Remember Me";
+            : ENGrid.t("rememberMe.label");
         this.fieldData = {};
         if (this.useRemote()) {
             this.createIframe(() => {
@@ -232,11 +233,10 @@ export class RememberMe {
         let rememberMeOptInField = document.getElementById("remember-me-opt-in");
         if (!rememberMeOptInField) {
             const rememberMeLabel = this.rememberMeLabel;
-            const rememberMeInfo = `
-				Check “${rememberMeLabel}” to complete forms on this device faster. 
-				While your financial information won’t be stored, you should only check this box from a personal device. 
-				Click “${this.fieldClearLabel}” to remove the information from your device at any time.
-			`;
+            const rememberMeInfo = ENGrid.t("rememberMe.tooltip", {
+                label: rememberMeLabel,
+                clearLabel: this.fieldClearLabel,
+            });
             const rememberMeOptInFieldChecked = this.rememberMeOptIn ? "checked" : "";
             const rememberMeOptInField = document.createElement("div");
             rememberMeOptInField.classList.add("en__field", "en__field--checkbox", "en__field--question", "rememberme-wrapper");
@@ -298,7 +298,7 @@ export class RememberMe {
                 "position:absolute;width:1px;height:1px;left:-9999px;";
             iframe.src = this.remoteUrl;
             iframe.setAttribute("sandbox", "allow-same-origin allow-scripts");
-            iframe.setAttribute("title", "Remember Me iframe");
+            iframe.setAttribute("title", ENGrid.t("rememberMe.iframeTitle"));
             this.iframe = iframe;
             document.body.appendChild(this.iframe);
             this.iframe.addEventListener("load", () => iframeLoaded(), false);
