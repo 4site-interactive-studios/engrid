@@ -11,7 +11,7 @@ export const I18nDefaults: I18nOptions = {
     "rememberMe.label": "Remember Me",
     "rememberMe.clearLabel": "(clear autofill)",
     "rememberMe.tooltip":
-      'Check "{label}" to complete forms on this device faster. While your financial information won\'t be stored, you should only check this box from a personal device. Click "{clearLabel}" to remove the information from your device at any time.',
+      "Check “{label}” to complete forms on this device faster. While your financial information won’t be stored, you should only check this box from a personal device. Click “{clearLabel}” to remove the information from your device at any time.",
     "rememberMe.iframeTitle": "Remember Me iframe",
     "translateFields.state": "State",
     "translateFields.stateGeneric": "Province / State",
@@ -26,7 +26,7 @@ export const I18nDefaults: I18nOptions = {
     "rememberMe.label": "Recuérdame",
     "rememberMe.clearLabel": "(borrar autocompletado)",
     "rememberMe.tooltip":
-      'Marca "{label}" para completar los formularios en este dispositivo más rápido. Aunque tu información financiera no se almacenará, solo debes marcar esta casilla desde un dispositivo personal. Haz clic en "{clearLabel}" para eliminar la información de tu dispositivo en cualquier momento.',
+      "Marque “{label}” para completar los formularios en este dispositivo más rápido. Aunque su información financiera no se almacenará, solo debe marcar esta casilla desde un dispositivo personal. Haga clic en “{clearLabel}” para eliminar la información de su dispositivo en cualquier momento.",
     "rememberMe.iframeTitle": "iframe de Recuérdame",
     "translateFields.state": "Estado",
     "translateFields.stateGeneric": "Provincia/Estado",

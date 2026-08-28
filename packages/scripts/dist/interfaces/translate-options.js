@@ -39,7 +39,7 @@ const esTranslation = [
     { field: "supporter.emailAddress", translation: "Correo electrónico" },
     { field: "supporter.phoneNumber", translation: "Teléfono" },
     { field: "supporter.address1", translation: "Dirección" },
-    { field: "supporter.address2", translation: "Complemento" },
+    { field: "supporter.address2", translation: "Departamento/Piso" },
     { field: "supporter.postcode", translation: "Código Postal" },
     { field: "supporter.city", translation: "Ciudad" },
     { field: "supporter.region", translation: "Provincia/Estado" },

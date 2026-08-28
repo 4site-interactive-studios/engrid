@@ -1,3 +1,7 @@
+// Keyed by UPPERCASE country code ("BR", "DE", "FR", "NL"…) for the country
+// layer, or by lowercase 2-letter language code ("es"…) for the page-language
+// layer applied on load (see ENGrid.getPageLanguage()). Both coexist in the
+// same map because keys are case-sensitive ("ES" country vs "es" language).
 export interface TranslateOptions {
   [key: string]: { field: string; translation: string }[];
 }
@@ -42,7 +46,7 @@ const esTranslation = [
   { field: "supporter.emailAddress", translation: "Correo electrónico" },
   { field: "supporter.phoneNumber", translation: "Teléfono" },
   { field: "supporter.address1", translation: "Dirección" },
-  { field: "supporter.address2", translation: "Complemento" },
+  { field: "supporter.address2", translation: "Departamento/Piso" },
   { field: "supporter.postcode", translation: "Código Postal" },
   { field: "supporter.city", translation: "Ciudad" },
   { field: "supporter.region", translation: "Provincia/Estado" },

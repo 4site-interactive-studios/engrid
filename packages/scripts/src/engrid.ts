@@ -315,14 +315,33 @@ export abstract class ENGrid {
   // pageJson.locale, lowercased (e.g. "es_US" -> "es"). Defaults to "en"
   // when pageJson or the locale is not available.
   static getPageLanguage(): string {
-    if (
-      "pageJson" in window &&
-      typeof window.pageJson.locale === "string" &&
-      window.pageJson.locale.length >= 2
-    ) {
-      return window.pageJson.locale.substring(0, 2).toLowerCase();
+    const locale = window.pageJson?.locale;
+    if (typeof locale === "string" && locale.length >= 2) {
+      return locale.substring(0, 2).toLowerCase();
     }
     return "en";
+  }
+
+  // Return the merged i18n dictionaries: window.EngridI18n merged over
+  // I18nDefaults, key-by-key per language, without mutating the defaults.
+  private static getI18nDictionaries(): I18nOptions {
+    const dictionaries: I18nOptions = { ...I18nDefaults };
+    if ("EngridI18n" in window && window.EngridI18n) {
+      for (const lang in window.EngridI18n) {
+        dictionaries[lang] = {
+          ...(I18nDefaults[lang] || {}),
+          ...window.EngridI18n[lang],
+        };
+      }
+    }
+    return dictionaries;
+  }
+
+  // Check if an i18n key is defined in the merged dictionary for the current
+  // page language (the English fallback does not count).
+  static hasI18nKey(key: string): boolean {
+    const language = ENGrid.getPageLanguage();
+    return key in (ENGrid.getI18nDictionaries()[language] ?? {});
   }
 
   // Translate a UI string key using the i18n dictionary: I18nDefaults merged
@@ -334,20 +353,13 @@ export abstract class ENGrid {
     key: string,
     replacements: Record<string, string | number> = {}
   ): string {
-    const dictionaries: I18nOptions = { ...I18nDefaults };
-    if ("EngridI18n" in window && window.EngridI18n) {
-      for (const lang in window.EngridI18n) {
-        dictionaries[lang] = {
-          ...(I18nDefaults[lang] || {}),
-          ...window.EngridI18n[lang],
-        };
-      }
-    }
+    const dictionaries = ENGrid.getI18nDictionaries();
     const language = ENGrid.getPageLanguage();
     let text = dictionaries[language]?.[key] ?? dictionaries["en"]?.[key] ?? key;
     for (const name in replacements) {
-      text = text.replace(
-        new RegExp(`\\{${name}\\}`, "g"),
+      // Function replacement: the value is inserted literally, so $-sequences
+      // ($&, $$, ...) in user-facing text are never interpreted.
+      text = text.replace(new RegExp(`\\{${name}\\}`, "g"), () =>
         String(replacements[name])
       );
     }

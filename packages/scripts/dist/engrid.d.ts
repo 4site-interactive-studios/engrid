@@ -29,6 +29,8 @@ export declare abstract class ENGrid {
     static getDataCenter(): "us2" | "us" | "ca";
     static getPageType(): "DONATION" | "ECARD" | "SURVEY" | "EMAILTOTARGET" | "ADVOCACY" | "SUBSCRIBEFORM" | "EVENT" | "SUPPORTERHUB" | "UNSUBSCRIBE" | "TWEETPAGE" | "UNKNOWN";
     static getPageLanguage(): string;
+    private static getI18nDictionaries;
+    static hasI18nKey(key: string): boolean;
     static t(key: string, replacements?: Record<string, string | number>): string;
     static setBodyData(dataName: string, value: string | boolean): void;
     static getBodyData(dataName: string): string | null;

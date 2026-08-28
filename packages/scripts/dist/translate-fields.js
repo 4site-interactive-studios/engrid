@@ -12,7 +12,9 @@ export class TranslateFields {
         };
         this.countriesSelect = document.querySelectorAll('select[name="supporter.country"], select[name="transaction.shipcountry"], select[name="supporter.billingCountry"], select[name="transaction.infcountry"]');
         let options = "EngridTranslate" in window ? window.EngridTranslate : {};
-        this.options = TranslateOptionsDefaults;
+        // Shallow clone: the EngridTranslate merge below concatenates arrays per
+        // key and must never mutate the shared TranslateOptionsDefaults.
+        this.options = Object.assign({}, TranslateOptionsDefaults);
         // Don't run this for US-only forms.
         if (document.querySelector(".en__component--formblock.us-only-form .en__field--country")) {
             return;
@@ -58,10 +60,11 @@ export class TranslateFields {
     translateFields(countryName = "supporter.country") {
         this.resetTranslatedFields();
         const countryValue = ENGrid.getFieldValue(countryName);
-        // Translate the State Field
-        this.setStateField(countryValue, this.countryToStateFields[countryName]);
         // Apply the page language as the base translation layer
         this.applyLanguageLayer();
+        // Translate the State Field (runs last so country-specific state labels
+        // like "Provincia" or "Estado" win over the language layer)
+        this.setStateField(countryValue, this.countryToStateFields[countryName]);
         if (countryName === "supporter.country") {
             if (countryValue in this.options) {
                 this.options[countryValue].forEach((field) => {
@@ -72,6 +75,14 @@ export class TranslateFields {
             // Translate the "To:"
             const recipient_block = document.querySelectorAll(".recipient-block");
             if (!!recipient_block.length) {
+                // Capture the original page-builder text once per cycle so
+                // resetTranslatedFields() can restore it — a country change never
+                // leaves a stale translation behind.
+                recipient_block.forEach((elem) => {
+                    const el = elem;
+                    if (!el.dataset.original)
+                        el.dataset.original = el.innerHTML;
+                });
                 switch (countryValue) {
                     case "FR":
                     case "FRA":
@@ -89,8 +100,11 @@ export class TranslateFields {
                         recipient_block.forEach((elem) => (elem.innerHTML = "Aan:"));
                         break;
                     default:
-                        // No country-specific rule: follow the page language
-                        if (ENGrid.getPageLanguage() === "es") {
+                        // No country-specific rule: use the page language string when the
+                        // language dictionary defines one (e.g. "es" -> "Para:"). English
+                        // pages keep the page-builder text, already restored above.
+                        if (ENGrid.getPageLanguage() !== "en" &&
+                            ENGrid.hasI18nKey("translateFields.recipientTo")) {
                             recipient_block.forEach((elem) => (elem.innerHTML = ENGrid.t("translateFields.recipientTo")));
                         }
                         break;

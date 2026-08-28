@@ -27,6 +27,7 @@
   "homepage": "https://github.com/4site-interactive-studios/engrid#readme",
   "gitHead": "f72c96b7127b4aad91d5a33a2fa0a29a5122e08e",
   "devDependencies": {
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "typescript": "^4.9.5"
   }
 }
