@@ -12,6 +12,9 @@
 import { ENGrid } from ".";
 export class InputPlaceholders {
     constructor() {
+        // NOTE: for selectors listed in selectorToI18nKey below, these English
+        // strings are shadowed by the i18n dictionary — edit
+        // interfaces/i18n-options.ts ("placeholders.*" keys) instead of here.
         this.defaultPlaceholders = {
             "input#en__field_supporter_firstName": "First Name",
             "input#en__field_supporter_lastName": "Last Name",
@@ -67,6 +70,7 @@ export class InputPlaceholders {
             "input#en__field_supporter_phoneNumber": "placeholders.phoneNumberOptional",
             ".en__mandatory input#en__field_supporter_phoneNumber": "placeholders.phoneNumber",
             ".i-required input#en__field_supporter_phoneNumber": "placeholders.phoneNumber",
+            "input#en__field_supporter_phoneNumber2": "placeholders.phoneNumber2Optional",
             "input#en__field_supporter_country": "placeholders.country",
             "input#en__field_supporter_address1": "placeholders.address1",
             "input#en__field_supporter_address2": "placeholders.address2",

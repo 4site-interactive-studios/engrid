@@ -193,12 +193,17 @@ export class TranslateFields {
         if (field instanceof HTMLInputElement && field.placeholder != "") {
           // Translate the placeholder when it mirrors the label (the common
           // case). Compare normalized visible text so template whitespace and
-          // required-marker markup don't break the match.
+          // required-marker markup don't break the match. Order matters:
+          // trim before stripping the marker, or labels like "Name *\n"
+          // keep the asterisk.
           const labelText = (fieldLabel?.textContent || "")
             .replace(/\s+/g, " ")
-            .replace(/\s*\*$/, "")
-            .trim();
-          const placeholderText = field.placeholder.replace(/\s+/g, " ").trim();
+            .trim()
+            .replace(/\s*\*$/, "");
+          const placeholderText = field.placeholder
+            .replace(/\s+/g, " ")
+            .trim()
+            .replace(/\s*\*$/, "");
           if (!fieldLabel || labelText === placeholderText) {
             field.dataset.original = field.placeholder;
             field.placeholder = translation;
