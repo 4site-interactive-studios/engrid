@@ -31,10 +31,15 @@ export class DonationAmount {
         // Load the current amount
         this.load();
     }
-    syncOtherAmount(field, formatValue = false) {
+    // The "other" radio is the one whose value isn't a numeric amount
+    // (EN renders it as value="other"), so it cleans to 0
+    isOtherAmountSelected() {
         const selectedAmount = document.querySelector(`input[name="${this._radios}"]:checked`);
-        const otherIsSelected = selectedAmount !== null &&
-            ENGrid.cleanAmount(selectedAmount.value) === 0;
+        return (selectedAmount !== null &&
+            ENGrid.cleanAmount(selectedAmount.value) === 0);
+    }
+    syncOtherAmount(field, formatValue = false) {
+        const otherIsSelected = this.isOtherAmountSelected();
         const amount = ENGrid.cleanAmount(field.value);
         if (!otherIsSelected || amount <= 0) {
             return;

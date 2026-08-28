@@ -23,6 +23,11 @@ export class OtherAmount {
             otherAmountField.setAttribute("autocomplete", "off");
             otherAmountField.setAttribute("data-lpignore", "true");
             otherAmountField.addEventListener("change", (e) => {
+                // Formatting only matters when entering a custom amount; skip
+                // unrelated change events (e.g. browser autofill firing on the
+                // field while a preset amount is selected)
+                if (!this._amount.isOtherAmountSelected())
+                    return;
                 const target = e.target;
                 const amount = target.value;
                 const cleanAmount = ENGrid.cleanAmount(amount);
