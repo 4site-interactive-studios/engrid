@@ -1,5 +1,5 @@
 import * as cookie from "./cookie";
-import { EnForm, RememberMeEvents, DonationFrequency } from "./events";
+import { EnForm, RememberMeEvents } from "./events";
 const tippy = require("tippy.js").default;
 
 interface DataObj {
@@ -13,7 +13,6 @@ const RM_ENCRYPTION_KEY_STORAGE_NAME = "engrid-remember-me-key";
 export class RememberMe {
   public _form: EnForm = EnForm.getInstance();
   public _events: RememberMeEvents = RememberMeEvents.getInstance();
-  private _frequency: DonationFrequency = DonationFrequency.getInstance();
 
   private remoteUrl: string | null;
   private cookieName: string;
@@ -28,7 +27,6 @@ export class RememberMe {
   private fieldDonationAmountRadioName: string;
   private fieldDonationAmountOtherName: string;
   private fieldDonationRecurrPayRadioName: string;
-  private fieldDonationRecurrFreqRadioName: string;
   private fieldDonationAmountOtherCheckboxID: string;
 
   private fieldOptInSelectorTarget: string;
@@ -45,7 +43,6 @@ export class RememberMe {
     fieldDonationAmountRadioName?: string;
     fieldDonationAmountOtherName?: string;
     fieldDonationRecurrPayRadioName?: string;
-    fieldDonationRecurrFreqRadioName?: string;
     fieldDonationAmountOtherCheckboxID?: string;
     fieldOptInSelectorTarget?: string;
     fieldOptInSelectorTargetLocation?: string;
@@ -80,10 +77,6 @@ export class RememberMe {
       options.fieldDonationRecurrPayRadioName
         ? options.fieldDonationRecurrPayRadioName
         : "transaction.recurrpay";
-    this.fieldDonationRecurrFreqRadioName =
-      options.fieldDonationRecurrFreqRadioName
-        ? options.fieldDonationRecurrFreqRadioName
-        : "transaction.recurrfreq";
     this.fieldDonationAmountOtherCheckboxID =
       options.fieldDonationAmountOtherCheckboxID
         ? options.fieldDonationAmountOtherCheckboxID
@@ -154,7 +147,6 @@ export class RememberMe {
               this.insertRememberMeOptin();
             } else {
               this.insertClearRememberMeLink();
-              this.reapplyDonationAmtAfterSwap();
             }
           }
         }
@@ -173,9 +165,6 @@ export class RememberMe {
           this.insertClearRememberMeLink();
         }
         this.writeFields();
-        if (hasFieldData) {
-          this.reapplyDonationAmtAfterSwap();
-        }
         this._form.onSubmit.subscribe(() => {
           if (this.rememberMeOptIn) {
             this.readFields();
@@ -192,9 +181,6 @@ export class RememberMe {
         this.insertClearRememberMeLink();
       }
       this.writeFields();
-      if (hasFieldData) {
-        this.reapplyDonationAmtAfterSwap();
-      }
       this._form.onSubmit.subscribe(() => {
         if (this.rememberMeOptIn) {
           this.readFields();
@@ -579,23 +565,6 @@ export class RememberMe {
               fieldSelector + ":checked"
             ) as HTMLInputElement;
           }
-          // When the donation amount radio is set to "Other", save the actual
-          // custom value from the .other text input instead of "Other".
-          if (
-            this.fieldNames[i] === this.fieldDonationAmountRadioName &&
-            field &&
-            field.value.toLowerCase() === "other"
-          ) {
-            const otherField = document.querySelector(
-              "input[name='" + this.fieldDonationAmountOtherName + "']"
-            ) as HTMLInputElement;
-            if (otherField && otherField.value) {
-              this.fieldData[this.fieldNames[i]] = encodeURIComponent(
-                otherField.value
-              );
-              continue;
-            }
-          }
           this.fieldData[this.fieldNames[i]] = encodeURIComponent(field.value);
         } else if (field.tagName === "SELECT") {
           this.fieldData[this.fieldNames[i]] = encodeURIComponent(field.value);
@@ -681,42 +650,24 @@ export class RememberMe {
             if (this.fieldData[this.fieldNames[i]] === "Y") {
               field.click();
             }
-          } else if (this.fieldNames[i] === this.fieldDonationRecurrFreqRadioName) {
-            // recurrfreq is a radio group — find the specific radio with the saved value and click it
-            const savedValue = this.fieldData[this.fieldNames[i]];
-            if (savedValue) {
-              const freqRadio = document.querySelector(
-                fieldSelector + "[value='" + CSS.escape(savedValue) + "']"
-              ) as HTMLInputElement;
-              if (freqRadio) {
-                freqRadio.click();
-              }
-            }
           } else if (this.fieldDonationAmountRadioName === this.fieldNames[i]) {
-            const savedAmt = this.fieldData[this.fieldNames[i]];
-            const escapedAmt = CSS.escape(savedAmt);
             field = document.querySelector(
-              fieldSelector + "[value='" + escapedAmt + "']"
+              fieldSelector +
+              "[value='" +
+              this.fieldData[this.fieldNames[i]] +
+              "']"
             ) as HTMLInputElement;
             if (field) {
-              // Saved value matches a predefined radio option — just click it
               field.click();
             } else {
-              // No matching radio: the value is a custom amount.
-              // Click the "Other" radio first so the text input becomes active,
-              // then fill in the numeric value.
-              const otherRadio = document.querySelector(
-                fieldSelector + "[value='Other'], " +
-                fieldSelector + "[value='other'], " +
-                fieldSelector + "[value='OTHER']"
-              ) as HTMLInputElement;
-              if (otherRadio) {
-                otherRadio.click();
-              }
-              const otherField = document.querySelector(
+              field = document.querySelector(
                 "input[name='" + this.fieldDonationAmountOtherName + "']"
               ) as HTMLInputElement;
-              this.setFieldValue(otherField, savedAmt, true);
+              this.setFieldValue(
+                field,
+                this.fieldData[this.fieldNames[i]],
+                true
+              );
             }
           } else {
             this.setFieldValue(
@@ -730,90 +681,6 @@ export class RememberMe {
         }
       }
     }
-  }
-  /**
-   * SwapAmounts replaces the donationAmt radio DOM nodes ~1 second after page
-   * load (triggered by DonationFrequency.load() setTimeout). When that happens
-   * the selection the RememberMe just wrote gets wiped out.
-   *
-   * This method subscribes to the first onFrequencyChange event and, after a
-   * short delay to let SwapAmounts finish its DOM update, re-applies only the
-   * donation amount. It unsubscribes immediately so it only fires once.
-   *
-   * To avoid overwriting a manual donor interaction, the handler checks
-   * whether the current amount selection is empty/wiped (as SwapAmounts does)
-   * OR still matches what writeFields originally set. If the donor already
-   * picked a different amount, we skip re-application.
-   */
-  private reapplyDonationAmtAfterSwap() {
-    const savedAmt = this.fieldData[this.fieldDonationAmountRadioName];
-    if (!savedAmt) return;
-
-    // Capture the amount that writeFields just set so we can detect manual changes
-    const amountAtRegistration = this.getCurrentSelectedAmount();
-
-    const handler = () => {
-      // SwapAmounts calls _amount.load() after swapList — give it a tick to settle
-      window.setTimeout(() => {
-        const currentAmt = this.getCurrentSelectedAmount();
-
-        // Only re-apply if the selection is now empty (DOM was swapped out)
-        // or still matches what we originally wrote. If the donor manually
-        // selected a different amount, respect their choice.
-        const selectionWiped = currentAmt === null || currentAmt === "";
-        const selectionUnchanged = currentAmt === amountAtRegistration;
-        if (!selectionWiped && !selectionUnchanged) {
-          return;
-        }
-
-        const fieldSelector =
-          "[name='" + this.fieldDonationAmountRadioName + "']";
-        const escapedAmt = CSS.escape(savedAmt);
-        let radio = document.querySelector(
-          fieldSelector + "[value='" + escapedAmt + "']"
-        ) as HTMLInputElement;
-        if (radio) {
-          radio.click();
-        } else {
-          // Custom amount: click "Other" radio then fill the text input
-          const otherRadio = document.querySelector(
-            fieldSelector + "[value='Other'], " +
-            fieldSelector + "[value='other'], " +
-            fieldSelector + "[value='OTHER']"
-          ) as HTMLInputElement;
-          if (otherRadio) otherRadio.click();
-          const otherField = document.querySelector(
-            "input[name='" + this.fieldDonationAmountOtherName + "']"
-          ) as HTMLInputElement;
-          this.setFieldValue(otherField, savedAmt, true);
-        }
-      }, 200);
-    };
-
-    // Subscribe once: fires on the first frequency change then auto-unsubscribes
-    this._frequency.onFrequencyChange.one(handler);
-  }
-
-  /**
-   * Returns the currently selected donation amount value, or null if nothing
-   * is selected. Checks both predefined radio buttons and the "Other" text input.
-   */
-  private getCurrentSelectedAmount(): string | null {
-    const fieldSelector =
-      "[name='" + this.fieldDonationAmountRadioName + "']";
-    const checkedRadio = document.querySelector(
-      fieldSelector + ":checked"
-    ) as HTMLInputElement;
-    if (!checkedRadio) return null;
-    if (
-      checkedRadio.value.toLowerCase() === "other"
-    ) {
-      const otherField = document.querySelector(
-        "input[name='" + this.fieldDonationAmountOtherName + "']"
-      ) as HTMLInputElement;
-      return otherField ? otherField.value : null;
-    }
-    return checkedRadio.value;
   }
   private isJson(str: string) {
     try {

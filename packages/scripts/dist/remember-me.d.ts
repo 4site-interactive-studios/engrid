@@ -2,7 +2,6 @@ import { EnForm, RememberMeEvents } from "./events";
 export declare class RememberMe {
     _form: EnForm;
     _events: RememberMeEvents;
-    private _frequency;
     private remoteUrl;
     private cookieName;
     private fieldNames;
@@ -15,7 +14,6 @@ export declare class RememberMe {
     private fieldDonationAmountRadioName;
     private fieldDonationAmountOtherName;
     private fieldDonationRecurrPayRadioName;
-    private fieldDonationRecurrFreqRadioName;
     private fieldDonationAmountOtherCheckboxID;
     private fieldOptInSelectorTarget;
     private fieldOptInSelectorTargetLocation;
@@ -30,7 +28,6 @@ export declare class RememberMe {
         fieldDonationAmountRadioName?: string;
         fieldDonationAmountOtherName?: string;
         fieldDonationRecurrPayRadioName?: string;
-        fieldDonationRecurrFreqRadioName?: string;
         fieldDonationAmountOtherCheckboxID?: string;
         fieldOptInSelectorTarget?: string;
         fieldOptInSelectorTargetLocation?: string;
@@ -102,25 +99,5 @@ export declare class RememberMe {
      * @param overwrite - A boolean indicating whether to overwrite the existing value of the fields. Defaults to false.
      */
     private writeFields;
-    /**
-     * SwapAmounts replaces the donationAmt radio DOM nodes ~1 second after page
-     * load (triggered by DonationFrequency.load() setTimeout). When that happens
-     * the selection the RememberMe just wrote gets wiped out.
-     *
-     * This method subscribes to the first onFrequencyChange event and, after a
-     * short delay to let SwapAmounts finish its DOM update, re-applies only the
-     * donation amount. It unsubscribes immediately so it only fires once.
-     *
-     * To avoid overwriting a manual donor interaction, the handler checks
-     * whether the current amount selection is empty/wiped (as SwapAmounts does)
-     * OR still matches what writeFields originally set. If the donor already
-     * picked a different amount, we skip re-application.
-     */
-    private reapplyDonationAmtAfterSwap;
-    /**
-     * Returns the currently selected donation amount value, or null if nothing
-     * is selected. Checks both predefined radio buttons and the "Other" text input.
-     */
-    private getCurrentSelectedAmount;
     private isJson;
 }
