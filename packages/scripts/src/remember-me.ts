@@ -272,7 +272,7 @@ export class RememberMe {
     const username = this.getUsernameFromFieldData();
     const label = username
       ? this.fieldClearLabel.replace(/\$username/g, username)
-      : this.fieldClearLabel.replace(/\s*\$username/g, "");
+      : this.fieldClearLabel.replace(/[^\S\r\n]?\$username/g, "");
 
     const match = label.match(/\{([^}]*)\}/);
     if (!match) {
