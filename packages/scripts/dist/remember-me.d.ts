@@ -43,6 +43,7 @@ export declare class RememberMe {
     private updateFieldData;
     private insertClearRememberMeLink;
     private getElementByFirstSelector;
+    private placeOnRightSide;
     private insertRememberMeOptin;
     private useRemote;
     private createIframe;

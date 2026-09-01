@@ -12,13 +12,13 @@ To enable, add a 'RememberMe' property to the 'options' object in your engrid th
 
 **fieldNames**: An array of strings, each one corresponding to a form input's name.  Each one will be saved and autofilled via rememberme.  All other fields will be ignored by RememberMe.  Example common names worth setting: 'supporter.firstName', 'supporter.lastName', 'supporter.address1', 'supporter.address2', 'supporter.city', 'supporter.country', 'supporter.region', 'supporter.postcode', 'supporter.emailAddress'. Defaults to [].
 
-**fieldOptInSelectorTarget**: A string containing a comma-delimited list of selectors.  The script will try each selector in turn, until it finds one that exists.  Then it will place the 'RememberMe' opt-in element relative to it (before or after, depending on the value of fieldOptInSelectorTargetLocation).  Defaults to '.en__field--emailAddress.en__field'.
+**fieldOptInSelectorTarget**: A string containing a comma-delimited list of selectors.  The script will try each selector in turn, until it finds one that exists.  Then it will place the 'RememberMe' opt-in element relative to it (before, after, or on the right side, depending on the value of fieldOptInSelectorTargetLocation).  Defaults to '.en__field--emailAddress.en__field'.
 
-**fieldOptInSelectorTargetLocation**: A string that is set to either 'before' or 'after'. Defaults to 'after'.
+**fieldOptInSelectorTargetLocation**: A string that is set to `'before'`, `'after'`, or `'rightSide'`. When set to `'rightSide'`, the target is wrapped in a flex container and the opt-in element is appended into that same wrapper so it sits on the right side of the target element. Defaults to 'after'.
 
-**fieldClearSelectorTarget**: A string containing a comma-delimited list of selectors.  The script will try each selector in turn, until it finds one that exists.  Then it will place the "Clear Autofill" link relative to it (before or after, depending on the value of fieldClearSelectorTargetLocation). Defaults to 'label[for="en__field_supporter_firstName"]'
+**fieldClearSelectorTarget**: A string containing a comma-delimited list of selectors.  The script will try each selector in turn, until it finds one that exists.  Then it will place the "Clear Autofill" link relative to it (before, after, or on the right side, depending on the value of fieldClearSelectorTargetLocation). Defaults to 'label[for="en__field_supporter_firstName"]'
 
-**fieldClearSelectorTargetLocation**: A string that is set to either 'before' or 'after'. Defaults to 'before'.
+**fieldClearSelectorTargetLocation**: A string that is set to `'before'`, `'after'`, or `'rightSide'`. When set to `'rightSide'`, the target is wrapped in a flex container and the "Clear Autofill" link is appended into that same wrapper so it sits on the right side of the target element. Defaults to 'before'.
 
 **fieldClearLabel**: A string containing the text for the "Clear Autofill" link that appears when data is being auto-filled. Defaults to `(clear autofill)`.
 

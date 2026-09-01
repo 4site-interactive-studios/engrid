@@ -174,7 +174,10 @@ export class RememberMe {
             clearRememberMeField.innerHTML = this.fieldClearLabel;
             const targetField = this.getElementByFirstSelector(this.fieldClearSelectorTarget);
             if (targetField) {
-                if (this.fieldClearSelectorTargetLocation === "after") {
+                if (this.fieldClearSelectorTargetLocation === "rightSide") {
+                    this.placeOnRightSide(targetField, clearRememberMeField);
+                }
+                else if (this.fieldClearSelectorTargetLocation === "after") {
                     targetField.appendChild(clearRememberMeField);
                 }
                 else {
@@ -217,6 +220,28 @@ export class RememberMe {
         }
         return targetField;
     }
+    placeOnRightSide(targetField, elementToPlace) {
+        const wrapperClass = "rememberme-right-side-wrapper";
+        let wrapper;
+        const targetMarginTop = window.getComputedStyle(targetField).marginTop;
+        if (targetField.parentElement &&
+            targetField.parentElement.classList.contains(wrapperClass)) {
+            wrapper = targetField.parentElement;
+        }
+        else {
+            wrapper = document.createElement("div");
+            wrapper.classList.add(wrapperClass);
+            wrapper.style.display = "flex";
+            wrapper.style.alignItems = "center";
+            wrapper.style.gap = "10px";
+            if (targetField.parentNode) {
+                targetField.parentNode.insertBefore(wrapper, targetField);
+            }
+            wrapper.appendChild(targetField);
+        }
+        elementToPlace.style.marginTop = targetMarginTop;
+        wrapper.appendChild(elementToPlace);
+    }
     insertRememberMeOptin() {
         let rememberMeOptInField = document.getElementById("remember-me-opt-in");
         if (!rememberMeOptInField) {
@@ -247,9 +272,14 @@ export class RememberMe {
 			`;
             const targetField = this.getElementByFirstSelector(this.fieldOptInSelectorTarget);
             if (targetField && targetField.parentNode) {
-                targetField.parentNode.insertBefore(rememberMeOptInField, this.fieldOptInSelectorTargetLocation == "before"
-                    ? targetField
-                    : targetField.nextSibling);
+                if (this.fieldOptInSelectorTargetLocation === "rightSide") {
+                    this.placeOnRightSide(targetField, rememberMeOptInField);
+                }
+                else {
+                    targetField.parentNode.insertBefore(rememberMeOptInField, this.fieldOptInSelectorTargetLocation == "before"
+                        ? targetField
+                        : targetField.nextSibling);
+                }
                 const rememberMeCheckbox = document.getElementById("remember-me-checkbox");
                 if (rememberMeCheckbox) {
                     rememberMeCheckbox.addEventListener("change", () => {
