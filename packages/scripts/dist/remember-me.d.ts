@@ -42,6 +42,8 @@ export declare class RememberMe {
     });
     private updateFieldData;
     private insertClearRememberMeLink;
+    private buildClearLabelMarkup;
+    private getUsernameFromFieldData;
     private getElementByFirstSelector;
     private placeOnRightSide;
     private insertRememberMeOptin;

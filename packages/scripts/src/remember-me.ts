@@ -216,12 +216,15 @@ export class RememberMe {
   }
   private insertClearRememberMeLink() {
     let clearRememberMeField = document.getElementById("clear-autofill-data");
+    const { html, hasInnerLink } = this.buildClearLabelMarkup();
     if (!clearRememberMeField) {
-      clearRememberMeField = document.createElement("a");
+      clearRememberMeField = document.createElement(hasInnerLink ? "span" : "a");
       clearRememberMeField.setAttribute("id", "clear-autofill-data");
       clearRememberMeField.classList.add("label-tooltip");
-      clearRememberMeField.setAttribute("style", "cursor: pointer;");
-      clearRememberMeField.innerHTML = this.fieldClearLabel;
+      if (!hasInnerLink) {
+        clearRememberMeField.setAttribute("style", "cursor: pointer;");
+      }
+      clearRememberMeField.innerHTML = html;
 
       const targetField = this.getElementByFirstSelector(
         this.fieldClearSelectorTarget
@@ -236,7 +239,12 @@ export class RememberMe {
         }
       }
     }
-    clearRememberMeField.addEventListener("click", (e) => {
+    const clickTarget = hasInnerLink
+      ? (clearRememberMeField.querySelector(
+          "#clear-autofill-data-link"
+        ) as HTMLElement | null) ?? clearRememberMeField
+      : clearRememberMeField;
+    clickTarget.addEventListener("click", (e) => {
       e.preventDefault();
       this.clearFields(["supporter.country" /*, 'supporter.emailAddress'*/]);
       if (this.useRemote()) {
@@ -259,6 +267,35 @@ export class RememberMe {
       new CustomEvent("RememberMe_Loaded", { detail: { withData: true } })
     );
   }
+
+  private buildClearLabelMarkup(): { html: string; hasInnerLink: boolean } {
+    const username = this.getUsernameFromFieldData();
+    const label = username
+      ? this.fieldClearLabel.replace(/\$username/g, username)
+      : this.fieldClearLabel.replace(/\s*\$username/g, "");
+
+    const match = label.match(/\{([^}]*)\}/);
+    if (!match) {
+      return { html: label, hasInnerLink: false };
+    }
+
+    const before = label.slice(0, match.index);
+    const linkText = match[1];
+    const after = label.slice((match.index ?? 0) + match[0].length);
+
+    const html =
+      `${before}` +
+      `<a id="clear-autofill-data-link" style="cursor: pointer;">${linkText}</a>` +
+      `${after}`;
+
+    return { html, hasInnerLink: true };
+  }
+
+  private getUsernameFromFieldData(): string {
+    const value = this.fieldData["supporter.firstName"];
+    return value ? value.trim() : "";
+  }
+
   private getElementByFirstSelector(selectorsString: string) {
     // iterate through the selectors until we find one that exists
     let targetField = null;

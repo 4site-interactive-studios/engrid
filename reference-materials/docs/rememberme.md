@@ -20,7 +20,12 @@ To enable, add a 'RememberMe' property to the 'options' object in your engrid th
 
 **fieldClearSelectorTargetLocation**: A string that is set to `'before'`, `'after'`, or `'rightSide'`. When set to `'rightSide'`, the target is wrapped in a flex container and the "Clear Autofill" link is appended into that same wrapper so it sits on the right side of the target element. Defaults to 'before'.
 
-**fieldClearLabel**: A string containing the text for the "Clear Autofill" link that appears when data is being auto-filled. Defaults to `(clear autofill)`.
+**fieldClearLabel**: A string containing the text for the "Clear Autofill" link that appears when data is being auto-filled. Defaults to `(clear autofill)`. This label supports two dynamic features:
+
+- **`$username` token**: Any occurrence of `$username` is replaced with the remembered supporter's first name (`supporter.firstName`). If no name is available for that supporter, the `$username` token (and a leading space, if any) is removed. Make sure `supporter.firstName` is included in `fieldNames` so its value is stored/restored by RememberMe.
+- **Clickable segment via `{...}`**: Any text wrapped in curly braces `{...}` becomes the clickable "clear" link, while the text outside the braces is rendered as plain, non-clickable text. When no braces are present, the entire element stays clickable (legacy behavior).
+
+  Example: setting `fieldClearLabel: "Welcome Back! {Not $username?}"` renders as `Welcome Back! ` followed by a clickable `Not John?` link (assuming the remembered first name is "John"). Clicking `Not John?` clears the autofilled data, exactly like the default "Clear Autofill" link.
 
 **cookieName**: String dictating the name of the cookie stores the autofill data.  Defaults to 'engrid-autofill'.
 

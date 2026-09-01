@@ -165,13 +165,17 @@ export class RememberMe {
         }
     }
     insertClearRememberMeLink() {
+        var _a;
         let clearRememberMeField = document.getElementById("clear-autofill-data");
+        const { html, hasInnerLink } = this.buildClearLabelMarkup();
         if (!clearRememberMeField) {
-            clearRememberMeField = document.createElement("a");
+            clearRememberMeField = document.createElement(hasInnerLink ? "span" : "a");
             clearRememberMeField.setAttribute("id", "clear-autofill-data");
             clearRememberMeField.classList.add("label-tooltip");
-            clearRememberMeField.setAttribute("style", "cursor: pointer;");
-            clearRememberMeField.innerHTML = this.fieldClearLabel;
+            if (!hasInnerLink) {
+                clearRememberMeField.setAttribute("style", "cursor: pointer;");
+            }
+            clearRememberMeField.innerHTML = html;
             const targetField = this.getElementByFirstSelector(this.fieldClearSelectorTarget);
             if (targetField) {
                 if (this.fieldClearSelectorTargetLocation === "rightSide") {
@@ -185,7 +189,10 @@ export class RememberMe {
                 }
             }
         }
-        clearRememberMeField.addEventListener("click", (e) => {
+        const clickTarget = hasInnerLink
+            ? (_a = clearRememberMeField.querySelector("#clear-autofill-data-link")) !== null && _a !== void 0 ? _a : clearRememberMeField
+            : clearRememberMeField;
+        clickTarget.addEventListener("click", (e) => {
             e.preventDefault();
             this.clearFields(["supporter.country" /*, 'supporter.emailAddress'*/]);
             if (this.useRemote()) {
@@ -207,6 +214,28 @@ export class RememberMe {
         });
         this._events.dispatchLoad(true);
         window.dispatchEvent(new CustomEvent("RememberMe_Loaded", { detail: { withData: true } }));
+    }
+    buildClearLabelMarkup() {
+        var _a;
+        const username = this.getUsernameFromFieldData();
+        const label = username
+            ? this.fieldClearLabel.replace(/\$username/g, username)
+            : this.fieldClearLabel.replace(/\s*\$username/g, "");
+        const match = label.match(/\{([^}]*)\}/);
+        if (!match) {
+            return { html: label, hasInnerLink: false };
+        }
+        const before = label.slice(0, match.index);
+        const linkText = match[1];
+        const after = label.slice(((_a = match.index) !== null && _a !== void 0 ? _a : 0) + match[0].length);
+        const html = `${before}` +
+            `<a id="clear-autofill-data-link" style="cursor: pointer;">${linkText}</a>` +
+            `${after}`;
+        return { html, hasInnerLink: true };
+    }
+    getUsernameFromFieldData() {
+        const value = this.fieldData["supporter.firstName"];
+        return value ? value.trim() : "";
     }
     getElementByFirstSelector(selectorsString) {
         // iterate through the selectors until we find one that exists
@@ -233,7 +262,7 @@ export class RememberMe {
             wrapper.classList.add(wrapperClass);
             wrapper.style.display = "flex";
             wrapper.style.alignItems = "center";
-            wrapper.style.gap = "10px";
+            wrapper.style.gap = "12px";
             if (targetField.parentNode) {
                 targetField.parentNode.insertBefore(wrapper, targetField);
             }
