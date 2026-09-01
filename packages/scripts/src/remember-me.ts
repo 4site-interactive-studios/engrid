@@ -318,7 +318,9 @@ export class RememberMe {
     const wrapperClass = "rememberme-right-side-wrapper";
     let wrapper: HTMLElement;
 
-    const targetMarginTop = window.getComputedStyle(targetField).marginTop;
+    const targetStyle = window.getComputedStyle(targetField);
+    const targetMarginTop = targetStyle.marginTop;
+    const targetPaddingLeft = targetStyle.paddingLeft;
 
     if (
       targetField.parentElement &&
@@ -330,7 +332,8 @@ export class RememberMe {
       wrapper.classList.add(wrapperClass);
       wrapper.style.display = "flex";
       wrapper.style.alignItems = "center";
-      wrapper.style.gap = "12px";
+      wrapper.style.gap = "8px";
+      wrapper.style.flexWrap = "wrap";
 
       if (targetField.parentNode) {
         targetField.parentNode.insertBefore(wrapper, targetField);
@@ -338,9 +341,15 @@ export class RememberMe {
       wrapper.appendChild(targetField);
     }
 
-    elementToPlace.style.marginTop = targetMarginTop;
-
     wrapper.appendChild(elementToPlace);
+
+    const wrapped = elementToPlace.offsetTop > targetField.offsetTop;
+    if (wrapped) {
+      elementToPlace.style.marginTop = "0px";
+      elementToPlace.style.marginLeft = targetPaddingLeft;
+    } else {
+      elementToPlace.style.marginTop = targetMarginTop;
+    }
   }
   private insertRememberMeOptin() {
     let rememberMeOptInField = document.getElementById(
