@@ -165,14 +165,16 @@ export class RememberMe {
         }
     }
     insertClearRememberMeLink() {
-        var _a;
         let clearRememberMeField = document.getElementById("clear-autofill-data");
         const { html, hasInnerLink } = this.buildClearLabelMarkup();
         if (!clearRememberMeField) {
             clearRememberMeField = document.createElement(hasInnerLink ? "span" : "a");
             clearRememberMeField.setAttribute("id", "clear-autofill-data");
-            clearRememberMeField.classList.add("label-tooltip");
-            if (!hasInnerLink) {
+            if (hasInnerLink) {
+                clearRememberMeField.classList.add("clear-autofill-data-wrapper");
+            }
+            else {
+                clearRememberMeField.classList.add("label-tooltip");
                 clearRememberMeField.setAttribute("style", "cursor: pointer;");
             }
             clearRememberMeField.innerHTML = html;
@@ -189,10 +191,11 @@ export class RememberMe {
                 }
             }
         }
-        const clickTarget = hasInnerLink
-            ? (_a = clearRememberMeField.querySelector("#clear-autofill-data-link")) !== null && _a !== void 0 ? _a : clearRememberMeField
-            : clearRememberMeField;
-        clickTarget.addEventListener("click", (e) => {
+        const innerLinks = hasInnerLink
+            ? Array.from(clearRememberMeField.querySelectorAll(".clear-autofill-data-link"))
+            : [];
+        const clickTargets = innerLinks.length > 0 ? innerLinks : [clearRememberMeField];
+        const onClear = (e) => {
             e.preventDefault();
             this.clearFields(["supporter.country" /*, 'supporter.emailAddress'*/]);
             if (this.useRemote()) {
@@ -211,31 +214,48 @@ export class RememberMe {
             this.rememberMeOptIn = false;
             this._events.dispatchClear();
             window.dispatchEvent(new CustomEvent("RememberMe_Cleared"));
-        });
+        };
+        clickTargets.forEach((target) => target.addEventListener("click", onClear));
         this._events.dispatchLoad(true);
         window.dispatchEvent(new CustomEvent("RememberMe_Loaded", { detail: { withData: true } }));
     }
+    escapeHtml(value) {
+        const map = {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;",
+        };
+        return value.replace(/[&<>"']/g, (c) => map[c]);
+    }
     buildClearLabelMarkup() {
-        var _a;
         const username = this.getUsernameFromFieldData();
         const label = username
-            ? this.fieldClearLabel.replace(/\$username/g, username)
-            : this.fieldClearLabel.replace(/\s*\$username/g, "");
-        const match = label.match(/\{([^}]*)\}/);
-        if (!match) {
-            return { html: label, hasInnerLink: false };
+            ? this.fieldClearLabel.replace(/\$username/g, () => this.escapeHtml(username))
+            : this.fieldClearLabel.replace(/[^\S\r\n]?\$username/g, "");
+        const hasInnerLink = /\{[^}]+\}/.test(label);
+        if (!hasInnerLink) {
+            return { html: label.replace(/\{\}/g, ""), hasInnerLink: false };
         }
-        const before = label.slice(0, match.index);
-        const linkText = match[1];
-        const after = label.slice(((_a = match.index) !== null && _a !== void 0 ? _a : 0) + match[0].length);
-        const html = `${before}` +
-            `<a id="clear-autofill-data-link" style="cursor: pointer;">${linkText}</a>` +
-            `${after}`;
+        let linkIndex = 0;
+        const html = label.replace(/\{([^}]+)\}/g, (_full, linkText) => {
+            const idAttr = linkIndex === 0 ? ' id="clear-autofill-data-link"' : "";
+            linkIndex++;
+            return `<a${idAttr} class="clear-autofill-data-link label-tooltip" style="cursor: pointer;">${linkText}</a>`;
+        });
         return { html, hasInnerLink: true };
     }
     getUsernameFromFieldData() {
         const value = this.fieldData["supporter.firstName"];
         return value ? value.trim() : "";
+    }
+    getClearLabelPlainText() {
+        const username = this.getUsernameFromFieldData();
+        const label = username
+            ? this.fieldClearLabel.replace(/\$username/g, () => username)
+            : this.fieldClearLabel.replace(/[^\S\r\n]?\$username/g, "");
+        return label.replace(/\{([^}]*)\}/g, "$1");
     }
     getElementByFirstSelector(selectorsString) {
         // iterate through the selectors until we find one that exists
@@ -252,33 +272,64 @@ export class RememberMe {
     placeOnRightSide(targetField, elementToPlace) {
         const wrapperClass = "rememberme-right-side-wrapper";
         let wrapper;
-        const targetStyle = window.getComputedStyle(targetField);
-        const targetMarginTop = targetStyle.marginTop;
-        const targetPaddingLeft = targetStyle.paddingLeft;
         if (targetField.parentElement &&
             targetField.parentElement.classList.contains(wrapperClass)) {
             wrapper = targetField.parentElement;
         }
         else {
+            // Read the target's computed styles BEFORE moving it into the flex
+            // wrapper. Once inside a flex container, margin collapsing no longer
+            // applies and the reported values can change. We transfer the original
+            // margin-top to the wrapper itself so the block retains its vertical
+            // spacing in the document flow, and zero out the target's own margin-top
+            // so it doesn't double-apply inside the flex row.
+            const targetStyle = window.getComputedStyle(targetField);
+            const targetMarginTop = targetStyle.marginTop;
+            const targetMarginBottom = targetStyle.marginBottom;
             wrapper = document.createElement("div");
             wrapper.classList.add(wrapperClass);
             wrapper.style.display = "flex";
             wrapper.style.alignItems = "center";
             wrapper.style.gap = "8px";
             wrapper.style.flexWrap = "wrap";
+            // Transfer vertical margins from the target to the wrapper so the
+            // surrounding layout is unchanged after the DOM move.
+            wrapper.style.marginTop = targetMarginTop;
+            wrapper.style.marginBottom = targetMarginBottom;
             if (targetField.parentNode) {
                 targetField.parentNode.insertBefore(wrapper, targetField);
             }
+            // Zero out the target's own margin-top/-bottom now that the wrapper
+            // owns them, so they don't double-apply inside the flex row.
+            targetField.style.marginTop = "0px";
+            targetField.style.marginBottom = "0px";
             wrapper.appendChild(targetField);
         }
+        // Read padding-left AFTER the wrapper exists but before any alignment
+        // logic, so it reflects the current computed value.
+        const targetPaddingLeft = window.getComputedStyle(targetField).paddingLeft;
         wrapper.appendChild(elementToPlace);
-        const wrapped = elementToPlace.offsetTop > targetField.offsetTop;
-        if (wrapped) {
-            elementToPlace.style.marginTop = "0px";
-            elementToPlace.style.marginLeft = targetPaddingLeft;
-        }
-        else {
-            elementToPlace.style.marginTop = targetMarginTop;
+        const applyAlignment = () => {
+            const wrapped = elementToPlace.offsetTop > targetField.offsetTop;
+            if (wrapped) {
+                // When wrapped below, left-align with the target's content area.
+                elementToPlace.style.marginTop = "0px";
+                elementToPlace.style.marginLeft = targetPaddingLeft;
+            }
+            else {
+                // When side-by-side, both items are already vertically centred by the
+                // flex container — no extra margin-top needed on elementToPlace.
+                elementToPlace.style.marginTop = "0px";
+                elementToPlace.style.marginLeft = "0px";
+            }
+        };
+        // Defer the first alignment check to the next animation frame so the
+        // browser has had a chance to perform layout. Without this, offsetTop on
+        // both elements is still 0 (or stale) at call time.
+        requestAnimationFrame(applyAlignment);
+        if (typeof window.ResizeObserver === "function") {
+            const observer = new window.ResizeObserver(() => applyAlignment());
+            observer.observe(wrapper);
         }
     }
     insertRememberMeOptin() {
@@ -287,7 +338,7 @@ export class RememberMe {
             const rememberMeLabel = this.rememberMeLabel;
             const rememberMeInfo = ENGrid.t("rememberMe.tooltip", {
                 label: rememberMeLabel,
-                clearLabel: this.fieldClearLabel,
+                clearLabel: this.getClearLabelPlainText(),
             });
             const rememberMeOptInFieldChecked = this.rememberMeOptIn ? "checked" : "";
             const rememberMeOptInField = document.createElement("div");
