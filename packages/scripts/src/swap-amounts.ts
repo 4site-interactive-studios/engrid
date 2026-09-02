@@ -50,12 +50,12 @@ interface NextSuggestedGiftConfig {
   currency: string;
   single: {
     nextSuggestedGift: boolean;
-    value: number,
+    value: number;
     id: number | string;
   }[];
   recurring: {
     nextSuggestedGift: boolean;
-    value: number,
+    value: number;
     id: number | string;
   }[];
 }
@@ -85,8 +85,17 @@ export class SwapAmounts {
       window.EngagingNetworks.suggestedGift.recurring &&
       window.EngagingNetworks.suggestedGift.recurring.length > 0
     );
+    if (this.hasOneTimeNSG) {
+      ENGrid.setBodyData("en-nsg-onetime", true);
+    }
+    if (this.hasRecurringNSG) {
+      ENGrid.setBodyData("en-nsg-recurring", true);
+    }
     if (this.hasOneTimeNSG || this.hasRecurringNSG) {
-      this.logger.log("Detected NSG amounts", { suggestedGift: window.EngagingNetworks.suggestedGift });
+      ENGrid.setBodyData("en-nsg", true);
+      this.logger.log("Detected NSG amounts", {
+        suggestedGift: window.EngagingNetworks.suggestedGift,
+      });
     }
     if (!this.shouldRun()) return;
 
@@ -149,7 +158,9 @@ export class SwapAmounts {
     const config = configs[freq];
     if (!config) return;
     if (this.shouldUseNSG(freq, config)) {
-      this.logger.log(`NSG present for ${freq}, using NSG amounts`, { suggestedGift: window.EngagingNetworks.suggestedGift });
+      this.logger.log(`NSG present for ${freq}, using NSG amounts`, {
+        suggestedGift: window.EngagingNetworks.suggestedGift,
+      });
       window.EngagingNetworks.require._defined.enjs.swapList(
         "donationAmt",
         this.toEnAmountListNSG(window.EngagingNetworks.suggestedGift, freq),

@@ -8,7 +8,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import * as cookie from "./cookie";
-import { EnForm, RememberMeEvents, DonationFrequency } from "./events";
+import { EnForm, RememberMeEvents } from "./events";
+import { ENGrid } from "./engrid";
 const tippy = require("tippy.js").default;
 // localStorage key used to cache the per-device AES-GCM encryption key.
 // A random secret generated once per device and held in localStorage.
@@ -17,7 +18,6 @@ export class RememberMe {
     constructor(options) {
         this._form = EnForm.getInstance();
         this._events = RememberMeEvents.getInstance();
-        this._frequency = DonationFrequency.getInstance();
         this.iframe = null;
         this.encryptData = options.encryptData ? options.encryptData : false;
         this.hide = options.hide ? options.hide : false;
@@ -40,10 +40,6 @@ export class RememberMe {
             options.fieldDonationRecurrPayRadioName
                 ? options.fieldDonationRecurrPayRadioName
                 : "transaction.recurrpay";
-        this.fieldDonationRecurrFreqRadioName =
-            options.fieldDonationRecurrFreqRadioName
-                ? options.fieldDonationRecurrFreqRadioName
-                : "transaction.recurrfreq";
         this.fieldDonationAmountOtherCheckboxID =
             options.fieldDonationAmountOtherCheckboxID
                 ? options.fieldDonationAmountOtherCheckboxID
@@ -64,10 +60,10 @@ export class RememberMe {
                 : "before";
         this.fieldClearLabel = options.fieldClearLabel
             ? options.fieldClearLabel
-            : "(clear autofill)";
+            : ENGrid.t("rememberMe.clearLabel");
         this.rememberMeLabel = options.rememberMeLabel
             ? options.rememberMeLabel
-            : "Remember Me";
+            : ENGrid.t("rememberMe.label");
         this.fieldData = {};
         if (this.useRemote()) {
             this.createIframe(() => {
@@ -105,7 +101,6 @@ export class RememberMe {
                     }
                     else {
                         this.insertClearRememberMeLink();
-                        this.reapplyDonationAmtAfterSwap();
                     }
                 }
             });
@@ -125,9 +120,6 @@ export class RememberMe {
                     this.insertClearRememberMeLink();
                 }
                 this.writeFields();
-                if (hasFieldData) {
-                    this.reapplyDonationAmtAfterSwap();
-                }
                 this._form.onSubmit.subscribe(() => {
                     if (this.rememberMeOptIn) {
                         this.readFields();
@@ -146,9 +138,6 @@ export class RememberMe {
                 this.insertClearRememberMeLink();
             }
             this.writeFields();
-            if (hasFieldData) {
-                this.reapplyDonationAmtAfterSwap();
-            }
             this._form.onSubmit.subscribe(() => {
                 if (this.rememberMeOptIn) {
                     this.readFields();
@@ -232,11 +221,10 @@ export class RememberMe {
         let rememberMeOptInField = document.getElementById("remember-me-opt-in");
         if (!rememberMeOptInField) {
             const rememberMeLabel = this.rememberMeLabel;
-            const rememberMeInfo = `
-				Check “${rememberMeLabel}” to complete forms on this device faster. 
-				While your financial information won’t be stored, you should only check this box from a personal device. 
-				Click “${this.fieldClearLabel}” to remove the information from your device at any time.
-			`;
+            const rememberMeInfo = ENGrid.t("rememberMe.tooltip", {
+                label: rememberMeLabel,
+                clearLabel: this.fieldClearLabel,
+            });
             const rememberMeOptInFieldChecked = this.rememberMeOptIn ? "checked" : "";
             const rememberMeOptInField = document.createElement("div");
             rememberMeOptInField.classList.add("en__field", "en__field--checkbox", "en__field--question", "rememberme-wrapper");
@@ -298,7 +286,7 @@ export class RememberMe {
                 "position:absolute;width:1px;height:1px;left:-9999px;";
             iframe.src = this.remoteUrl;
             iframe.setAttribute("sandbox", "allow-same-origin allow-scripts");
-            iframe.setAttribute("title", "Remember Me iframe");
+            iframe.setAttribute("title", ENGrid.t("rememberMe.iframeTitle"));
             this.iframe = iframe;
             document.body.appendChild(this.iframe);
             this.iframe.addEventListener("load", () => iframeLoaded(), false);
@@ -483,17 +471,6 @@ export class RememberMe {
                     if (type === "radio" || type === "checkbox") {
                         field = document.querySelector(fieldSelector + ":checked");
                     }
-                    // When the donation amount radio is set to "Other", save the actual
-                    // custom value from the .other text input instead of "Other".
-                    if (this.fieldNames[i] === this.fieldDonationAmountRadioName &&
-                        field &&
-                        field.value.toLowerCase() === "other") {
-                        const otherField = document.querySelector("input[name='" + this.fieldDonationAmountOtherName + "']");
-                        if (otherField && otherField.value) {
-                            this.fieldData[this.fieldNames[i]] = encodeURIComponent(otherField.value);
-                            continue;
-                        }
-                    }
                     this.fieldData[this.fieldNames[i]] = encodeURIComponent(field.value);
                 }
                 else if (field.tagName === "SELECT") {
@@ -577,36 +554,17 @@ export class RememberMe {
                             field.click();
                         }
                     }
-                    else if (this.fieldNames[i] === this.fieldDonationRecurrFreqRadioName) {
-                        // recurrfreq is a radio group — find the specific radio with the saved value and click it
-                        const savedValue = this.fieldData[this.fieldNames[i]];
-                        if (savedValue) {
-                            const freqRadio = document.querySelector(fieldSelector + "[value='" + CSS.escape(savedValue) + "']");
-                            if (freqRadio) {
-                                freqRadio.click();
-                            }
-                        }
-                    }
                     else if (this.fieldDonationAmountRadioName === this.fieldNames[i]) {
-                        const savedAmt = this.fieldData[this.fieldNames[i]];
-                        const escapedAmt = CSS.escape(savedAmt);
-                        field = document.querySelector(fieldSelector + "[value='" + escapedAmt + "']");
+                        field = document.querySelector(fieldSelector +
+                            "[value='" +
+                            this.fieldData[this.fieldNames[i]] +
+                            "']");
                         if (field) {
-                            // Saved value matches a predefined radio option — just click it
                             field.click();
                         }
                         else {
-                            // No matching radio: the value is a custom amount.
-                            // Click the "Other" radio first so the text input becomes active,
-                            // then fill in the numeric value.
-                            const otherRadio = document.querySelector(fieldSelector + "[value='Other'], " +
-                                fieldSelector + "[value='other'], " +
-                                fieldSelector + "[value='OTHER']");
-                            if (otherRadio) {
-                                otherRadio.click();
-                            }
-                            const otherField = document.querySelector("input[name='" + this.fieldDonationAmountOtherName + "']");
-                            this.setFieldValue(otherField, savedAmt, true);
+                            field = document.querySelector("input[name='" + this.fieldDonationAmountOtherName + "']");
+                            this.setFieldValue(field, this.fieldData[this.fieldNames[i]], true);
                         }
                     }
                     else {
@@ -618,74 +576,6 @@ export class RememberMe {
                 }
             }
         }
-    }
-    /**
-     * SwapAmounts replaces the donationAmt radio DOM nodes ~1 second after page
-     * load (triggered by DonationFrequency.load() setTimeout). When that happens
-     * the selection the RememberMe just wrote gets wiped out.
-     *
-     * This method subscribes to the first onFrequencyChange event and, after a
-     * short delay to let SwapAmounts finish its DOM update, re-applies only the
-     * donation amount. It unsubscribes immediately so it only fires once.
-     *
-     * To avoid overwriting a manual donor interaction, the handler checks
-     * whether the current amount selection is empty/wiped (as SwapAmounts does)
-     * OR still matches what writeFields originally set. If the donor already
-     * picked a different amount, we skip re-application.
-     */
-    reapplyDonationAmtAfterSwap() {
-        const savedAmt = this.fieldData[this.fieldDonationAmountRadioName];
-        if (!savedAmt)
-            return;
-        // Capture the amount that writeFields just set so we can detect manual changes
-        const amountAtRegistration = this.getCurrentSelectedAmount();
-        const handler = () => {
-            // SwapAmounts calls _amount.load() after swapList — give it a tick to settle
-            window.setTimeout(() => {
-                const currentAmt = this.getCurrentSelectedAmount();
-                // Only re-apply if the selection is now empty (DOM was swapped out)
-                // or still matches what we originally wrote. If the donor manually
-                // selected a different amount, respect their choice.
-                const selectionWiped = currentAmt === null || currentAmt === "";
-                const selectionUnchanged = currentAmt === amountAtRegistration;
-                if (!selectionWiped && !selectionUnchanged) {
-                    return;
-                }
-                const fieldSelector = "[name='" + this.fieldDonationAmountRadioName + "']";
-                const escapedAmt = CSS.escape(savedAmt);
-                let radio = document.querySelector(fieldSelector + "[value='" + escapedAmt + "']");
-                if (radio) {
-                    radio.click();
-                }
-                else {
-                    // Custom amount: click "Other" radio then fill the text input
-                    const otherRadio = document.querySelector(fieldSelector + "[value='Other'], " +
-                        fieldSelector + "[value='other'], " +
-                        fieldSelector + "[value='OTHER']");
-                    if (otherRadio)
-                        otherRadio.click();
-                    const otherField = document.querySelector("input[name='" + this.fieldDonationAmountOtherName + "']");
-                    this.setFieldValue(otherField, savedAmt, true);
-                }
-            }, 200);
-        };
-        // Subscribe once: fires on the first frequency change then auto-unsubscribes
-        this._frequency.onFrequencyChange.one(handler);
-    }
-    /**
-     * Returns the currently selected donation amount value, or null if nothing
-     * is selected. Checks both predefined radio buttons and the "Other" text input.
-     */
-    getCurrentSelectedAmount() {
-        const fieldSelector = "[name='" + this.fieldDonationAmountRadioName + "']";
-        const checkedRadio = document.querySelector(fieldSelector + ":checked");
-        if (!checkedRadio)
-            return null;
-        if (checkedRadio.value.toLowerCase() === "other") {
-            const otherField = document.querySelector("input[name='" + this.fieldDonationAmountOtherName + "']");
-            return otherField ? otherField.value : null;
-        }
-        return checkedRadio.value;
     }
     isJson(str) {
         try {

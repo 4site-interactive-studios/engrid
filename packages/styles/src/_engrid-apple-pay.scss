@@ -61,3 +61,19 @@
     }
   }
 }
+
+// Show/hide elements based on the applepay payment type being selected,
+// mirroring the showif/hideif pattern from _engrid-digital-wallets.scss.
+// Kept outside @supports so showif-applepay-selected stays hidden in browsers
+// without Apple Pay support.
+body:not(#en__pagebuilder) {
+  // Show If
+  &:not([data-engrid-payment-type="applepay"]) .showif-applepay-selected {
+    display: none;
+  }
+
+  // Hide If
+  &[data-engrid-payment-type="applepay"] .hideif-applepay-selected {
+    display: none;
+  }
+}

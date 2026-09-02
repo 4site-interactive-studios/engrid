@@ -12,6 +12,9 @@
 import { ENGrid } from ".";
 export class InputPlaceholders {
     constructor() {
+        // NOTE: for selectors listed in selectorToI18nKey below, these English
+        // strings are shadowed by the i18n dictionary — edit
+        // interfaces/i18n-options.ts ("placeholders.*" keys) instead of here.
         this.defaultPlaceholders = {
             "input#en__field_supporter_firstName": "First Name",
             "input#en__field_supporter_lastName": "Last Name",
@@ -57,10 +60,30 @@ export class InputPlaceholders {
             "input#en__field_supporter_billingRegion": "Billing Region",
             "input#en__field_supporter_billingPostcode": "Billing Postal Code",
         };
+        // Maps the default-placeholder selectors to i18n dictionary keys, so the
+        // built-in strings follow the page language. Selectors the client overrides
+        // via the Placeholders option are never translated.
+        this.selectorToI18nKey = {
+            "input#en__field_supporter_firstName": "placeholders.firstName",
+            "input#en__field_supporter_lastName": "placeholders.lastName",
+            "input#en__field_supporter_emailAddress": "placeholders.emailAddress",
+            "input#en__field_supporter_phoneNumber": "placeholders.phoneNumberOptional",
+            ".en__mandatory input#en__field_supporter_phoneNumber": "placeholders.phoneNumber",
+            ".i-required input#en__field_supporter_phoneNumber": "placeholders.phoneNumber",
+            "input#en__field_supporter_phoneNumber2": "placeholders.phoneNumber2Optional",
+            "input#en__field_supporter_country": "placeholders.country",
+            "input#en__field_supporter_address1": "placeholders.address1",
+            "input#en__field_supporter_address2": "placeholders.address2",
+            "input#en__field_supporter_city": "placeholders.city",
+            "input#en__field_supporter_region": "placeholders.region",
+            "input#en__field_supporter_postcode": "placeholders.postcode",
+        };
+        this.customSelectors = new Set();
         if (this.shouldRun()) {
             // If there's a Placeholders option, merge it with the default placeholders
             const placeholders = ENGrid.getOption("Placeholders");
             if (placeholders) {
+                this.customSelectors = new Set(Object.keys(placeholders));
                 this.defaultPlaceholders = Object.assign(Object.assign({}, this.defaultPlaceholders), placeholders);
             }
             this.run();
@@ -72,8 +95,17 @@ export class InputPlaceholders {
     run() {
         Object.keys(this.defaultPlaceholders).forEach((selector) => {
             if (selector in this.defaultPlaceholders)
-                this.addPlaceholder(selector, this.defaultPlaceholders[selector]);
+                this.addPlaceholder(selector, this.resolvePlaceholder(selector));
         });
+    }
+    // Built-in placeholder strings follow the page language; client-provided
+    // Placeholders options always win.
+    resolvePlaceholder(selector) {
+        const key = this.selectorToI18nKey[selector];
+        if (key && !this.customSelectors.has(selector)) {
+            return ENGrid.t(key);
+        }
+        return this.defaultPlaceholders[selector];
     }
     addPlaceholder(selector, placeholder) {
         const fieldEl = document.querySelector(selector);

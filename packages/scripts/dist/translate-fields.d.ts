@@ -4,6 +4,7 @@ export declare class TranslateFields {
     private options;
     constructor();
     private translateFields;
+    private applyLanguageLayer;
     private translateField;
     private resetTranslatedFields;
     private setStateField;

@@ -1,3 +1,7 @@
+// Keyed by UPPERCASE country code ("BR", "DE", "FR", "NL"…) for the country
+// layer, or by lowercase 2-letter language code ("es"…) for the page-language
+// layer applied on load (see ENGrid.getPageLanguage()). Both coexist in the
+// same map because keys are case-sensitive ("ES" country vs "es" language).
 export interface TranslateOptions {
   [key: string]: { field: string; translation: string }[];
 }
@@ -33,6 +37,21 @@ const nlTranslation = [
   { field: "supporter.region", translation: "Provincie" },
   { field: "supporter.country", translation: "Country" },
 ];
+// Page-language layer: keyed by lowercase 2-letter language code
+// (see ENGrid.getPageLanguage()), applied as the base translation layer
+// before any country-specific translations.
+const esTranslation = [
+  { field: "supporter.firstName", translation: "Nombre" },
+  { field: "supporter.lastName", translation: "Apellidos" },
+  { field: "supporter.emailAddress", translation: "Correo electrónico" },
+  { field: "supporter.phoneNumber", translation: "Teléfono" },
+  { field: "supporter.address1", translation: "Dirección" },
+  { field: "supporter.address2", translation: "Departamento/Piso" },
+  { field: "supporter.postcode", translation: "Código Postal" },
+  { field: "supporter.city", translation: "Ciudad" },
+  { field: "supporter.region", translation: "Provincia/Estado" },
+  { field: "supporter.country", translation: "País" },
+];
 export const TranslateOptionsDefaults: TranslateOptions = {
   BR: ptbrTranslation,
   BRA: ptbrTranslation,
@@ -42,4 +61,5 @@ export const TranslateOptionsDefaults: TranslateOptions = {
   FRA: frTranslation,
   NL: nlTranslation,
   NLD: nlTranslation,
+  es: esTranslation,
 };

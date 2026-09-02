@@ -3364,6 +3364,13 @@ body[data-engrid-live-currency=active] .en__field--donationAmt .en__field__item:
     display: none;
   }
 }
+body:not(#en__pagebuilder):not([data-engrid-payment-type=applepay]) .showif-applepay-selected {
+  display: none;
+}
+body:not(#en__pagebuilder)[data-engrid-payment-type=applepay] .hideif-applepay-selected {
+  display: none;
+}
+
 /************************************
 * Browser Form Autofill
 * REF: https://medium.com/@brunn/detecting-autofilled-fields-in-javascript-aed598d25da7

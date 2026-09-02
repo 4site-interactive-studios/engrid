@@ -32,8 +32,6 @@ To enable, add a 'RememberMe' property to the 'options' object in your engrid th
 
 **fieldDonationRecurrPayRadioName**: A string containing the name of the Engaging Networks frequency field.  You can probably let this stay defaulted. Defaults to 'transaction.recurrpay'
 
-**fieldDonationRecurrFreqRadioName**: A string containing the name of the Engaging Networks recurring frequency radio buttons. You can probably let this stay defaulted. Defaults to 'transaction.recurrfreq'
-
 **fieldDonationAmountOtherCheckboxID**: This is deprecated and will be removed.
 
 **hide**: Boolean. If set to `true`, the Remember Me opt-in element is rendered with the `hide` CSS class, effectively keeping it invisible while still allowing the component to function. Useful when clients want autofill behavior without displaying the opt-in checkbox to the donor. Defaults to `false`.
