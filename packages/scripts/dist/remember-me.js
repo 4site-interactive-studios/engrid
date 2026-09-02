@@ -165,6 +165,7 @@ export class RememberMe {
         }
     }
     insertClearRememberMeLink() {
+        var _a;
         let clearRememberMeField = document.getElementById("clear-autofill-data");
         const { html, hasInnerLink } = this.buildClearLabelMarkup();
         if (!clearRememberMeField) {
@@ -191,10 +192,9 @@ export class RememberMe {
                 }
             }
         }
-        const innerLinks = hasInnerLink
-            ? Array.from(clearRememberMeField.querySelectorAll(".clear-autofill-data-link"))
-            : [];
-        const clickTargets = innerLinks.length > 0 ? innerLinks : [clearRememberMeField];
+        const clickTarget = hasInnerLink
+            ? (_a = clearRememberMeField.querySelector("#clear-autofill-data-link")) !== null && _a !== void 0 ? _a : clearRememberMeField
+            : clearRememberMeField;
         const onClear = (e) => {
             e.preventDefault();
             this.clearFields(["supporter.country" /*, 'supporter.emailAddress'*/]);
@@ -215,7 +215,7 @@ export class RememberMe {
             this._events.dispatchClear();
             window.dispatchEvent(new CustomEvent("RememberMe_Cleared"));
         };
-        clickTargets.forEach((target) => target.addEventListener("click", onClear));
+        clickTarget.addEventListener("click", onClear);
         this._events.dispatchLoad(true);
         window.dispatchEvent(new CustomEvent("RememberMe_Loaded", { detail: { withData: true } }));
     }
@@ -230,20 +230,25 @@ export class RememberMe {
         return value.replace(/[&<>"']/g, (c) => map[c]);
     }
     buildClearLabelMarkup() {
+        var _a;
         const username = this.getUsernameFromFieldData();
         const label = username
             ? this.fieldClearLabel.replace(/\$username/g, () => this.escapeHtml(username))
             : this.fieldClearLabel.replace(/[^\S\r\n]?\$username/g, "");
-        const hasInnerLink = /\{[^}]+\}/.test(label);
-        if (!hasInnerLink) {
-            return { html: label.replace(/\{\}/g, ""), hasInnerLink: false };
+        // Only the first non-empty {...} segment becomes the clickable clear link.
+        // Any additional {...} segments remain as literal text (braces included),
+        // and empty {} braces are left as-is. When no non-empty braces are present,
+        // the entire element is clickable (legacy behaviour).
+        const match = label.match(/\{([^}]+)\}/);
+        if (!match) {
+            return { html: label, hasInnerLink: false };
         }
-        let linkIndex = 0;
-        const html = label.replace(/\{([^}]+)\}/g, (_full, linkText) => {
-            const idAttr = linkIndex === 0 ? ' id="clear-autofill-data-link"' : "";
-            linkIndex++;
-            return `<a${idAttr} class="clear-autofill-data-link label-tooltip" style="cursor: pointer;">${linkText}</a>`;
-        });
+        const before = label.slice(0, match.index);
+        const linkText = match[1];
+        const after = label.slice(((_a = match.index) !== null && _a !== void 0 ? _a : 0) + match[0].length);
+        const html = before +
+            `<a id="clear-autofill-data-link" class="label-tooltip" style="cursor: pointer;">${linkText}</a>` +
+            after;
         return { html, hasInnerLink: true };
     }
     getUsernameFromFieldData() {

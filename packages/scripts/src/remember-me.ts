@@ -241,15 +241,11 @@ export class RememberMe {
         }
       }
     }
-    const innerLinks = hasInnerLink
-      ? Array.from(
-          clearRememberMeField.querySelectorAll<HTMLElement>(
-            ".clear-autofill-data-link"
-          )
-        )
-      : [];
-    const clickTargets =
-      innerLinks.length > 0 ? innerLinks : [clearRememberMeField];
+    const clickTarget = hasInnerLink
+      ? (clearRememberMeField.querySelector(
+          "#clear-autofill-data-link"
+        ) as HTMLElement | null) ?? clearRememberMeField
+      : clearRememberMeField;
     const onClear = (e: Event) => {
       e.preventDefault();
       this.clearFields(["supporter.country" /*, 'supporter.emailAddress'*/]);
@@ -268,7 +264,7 @@ export class RememberMe {
       this._events.dispatchClear();
       window.dispatchEvent(new CustomEvent("RememberMe_Cleared"));
     };
-    clickTargets.forEach((target) => target.addEventListener("click", onClear));
+    clickTarget.addEventListener("click", onClear);
     this._events.dispatchLoad(true);
     window.dispatchEvent(
       new CustomEvent("RememberMe_Loaded", { detail: { withData: true } })
@@ -294,18 +290,23 @@ export class RememberMe {
         )
       : this.fieldClearLabel.replace(/[^\S\r\n]?\$username/g, "");
 
-    const hasInnerLink = /\{[^}]+\}/.test(label);
-    if (!hasInnerLink) {
-      return { html: label.replace(/\{\}/g, ""), hasInnerLink: false };
+    // Only the first non-empty {...} segment becomes the clickable clear link.
+    // Any additional {...} segments remain as literal text (braces included),
+    // and empty {} braces are left as-is. When no non-empty braces are present,
+    // the entire element is clickable (legacy behaviour).
+    const match = label.match(/\{([^}]+)\}/);
+    if (!match) {
+      return { html: label, hasInnerLink: false };
     }
 
-    let linkIndex = 0;
-    const html = label.replace(/\{([^}]+)\}/g, (_full, linkText) => {
-      const idAttr =
-        linkIndex === 0 ? ' id="clear-autofill-data-link"' : "";
-      linkIndex++;
-      return `<a${idAttr} class="clear-autofill-data-link label-tooltip" style="cursor: pointer;">${linkText}</a>`;
-    });
+    const before = label.slice(0, match.index);
+    const linkText = match[1];
+    const after = label.slice((match.index ?? 0) + match[0].length);
+
+    const html =
+      before +
+      `<a id="clear-autofill-data-link" class="label-tooltip" style="cursor: pointer;">${linkText}</a>` +
+      after;
 
     return { html, hasInnerLink: true };
   }
