@@ -216,25 +216,37 @@ export class RememberMe {
   }
   private insertClearRememberMeLink() {
     let clearRememberMeField = document.getElementById("clear-autofill-data");
+    const { html, hasInnerLink } = this.buildClearLabelMarkup();
     if (!clearRememberMeField) {
-      clearRememberMeField = document.createElement("a");
+      clearRememberMeField = document.createElement(hasInnerLink ? "span" : "a");
       clearRememberMeField.setAttribute("id", "clear-autofill-data");
-      clearRememberMeField.classList.add("label-tooltip");
-      clearRememberMeField.setAttribute("style", "cursor: pointer;");
-      clearRememberMeField.innerHTML = this.fieldClearLabel;
+      if (hasInnerLink) {
+        clearRememberMeField.classList.add("clear-autofill-data-wrapper");
+      } else {
+        clearRememberMeField.classList.add("label-tooltip");
+        clearRememberMeField.setAttribute("style", "cursor: pointer;");
+      }
+      clearRememberMeField.innerHTML = html;
 
       const targetField = this.getElementByFirstSelector(
         this.fieldClearSelectorTarget
       );
       if (targetField) {
-        if (this.fieldClearSelectorTargetLocation === "after") {
+        if (this.fieldClearSelectorTargetLocation === "rightSide") {
+          this.placeOnRightSide(targetField, clearRememberMeField);
+        } else if (this.fieldClearSelectorTargetLocation === "after") {
           targetField.appendChild(clearRememberMeField);
         } else {
           targetField.prepend(clearRememberMeField);
         }
       }
     }
-    clearRememberMeField.addEventListener("click", (e) => {
+    const clickTarget = hasInnerLink
+      ? (clearRememberMeField.querySelector(
+          "#clear-autofill-data-link"
+        ) as HTMLElement | null) ?? clearRememberMeField
+      : clearRememberMeField;
+    const onClear = (e: Event) => {
       e.preventDefault();
       this.clearFields(["supporter.country" /*, 'supporter.emailAddress'*/]);
       if (this.useRemote()) {
@@ -251,12 +263,67 @@ export class RememberMe {
       this.rememberMeOptIn = false;
       this._events.dispatchClear();
       window.dispatchEvent(new CustomEvent("RememberMe_Cleared"));
-    });
+    };
+    clickTarget.addEventListener("click", onClear);
     this._events.dispatchLoad(true);
     window.dispatchEvent(
       new CustomEvent("RememberMe_Loaded", { detail: { withData: true } })
     );
   }
+
+  private escapeHtml(value: string): string {
+    const map: DataObj = {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;",
+    };
+    return value.replace(/[&<>"']/g, (c) => map[c]);
+  }
+
+  private buildClearLabelMarkup(): { html: string; hasInnerLink: boolean } {
+    const username = this.getUsernameFromFieldData();
+    const label = username
+      ? this.fieldClearLabel.replace(/\$username/g, () =>
+          this.escapeHtml(username)
+        )
+      : this.fieldClearLabel.replace(/[^\S\r\n]?\$username/g, "");
+
+    // Only the first non-empty {...} segment becomes the clickable clear link.
+    // Any additional {...} segments remain as literal text (braces included),
+    // and empty {} braces are left as-is. When no non-empty braces are present,
+    // the entire element is clickable (legacy behaviour).
+    const match = label.match(/\{([^}]+)\}/);
+    if (!match) {
+      return { html: label, hasInnerLink: false };
+    }
+
+    const before = label.slice(0, match.index);
+    const linkText = match[1];
+    const after = label.slice((match.index ?? 0) + match[0].length);
+
+    const html =
+      before +
+      `<a id="clear-autofill-data-link" class="label-tooltip" style="cursor: pointer;">${linkText}</a>` +
+      after;
+
+    return { html, hasInnerLink: true };
+  }
+
+  private getUsernameFromFieldData(): string {
+    const value = this.fieldData["supporter.firstName"];
+    return value ? value.trim() : "";
+  }
+
+  private getClearLabelPlainText(): string {
+    const username = this.getUsernameFromFieldData();
+    const label = username
+      ? this.fieldClearLabel.replace(/\$username/g, () => username)
+      : this.fieldClearLabel.replace(/[^\S\r\n]?\$username/g, "");
+    return label.replace(/\{([^}]*)\}/g, "$1");
+  }
+
   private getElementByFirstSelector(selectorsString: string) {
     // iterate through the selectors until we find one that exists
     let targetField = null;
@@ -271,6 +338,83 @@ export class RememberMe {
     }
     return targetField;
   }
+
+  private placeOnRightSide(
+    targetField: HTMLElement,
+    elementToPlace: HTMLElement
+  ) {
+    const wrapperClass = "rememberme-right-side-wrapper";
+    let wrapper: HTMLElement;
+
+    if (
+      targetField.parentElement &&
+      targetField.parentElement.classList.contains(wrapperClass)
+    ) {
+      wrapper = targetField.parentElement;
+    } else {
+      // Read the target's computed styles BEFORE moving it into the flex
+      // wrapper. Once inside a flex container, margin collapsing no longer
+      // applies and the reported values can change. We transfer the original
+      // margin-top to the wrapper itself so the block retains its vertical
+      // spacing in the document flow, and zero out the target's own margin-top
+      // so it doesn't double-apply inside the flex row.
+      const targetStyle = window.getComputedStyle(targetField);
+      const targetMarginTop = targetStyle.marginTop;
+      const targetMarginBottom = targetStyle.marginBottom;
+
+      wrapper = document.createElement("div");
+      wrapper.classList.add(wrapperClass);
+      wrapper.style.display = "flex";
+      wrapper.style.alignItems = "center";
+      wrapper.style.gap = "8px";
+      wrapper.style.flexWrap = "wrap";
+      // Transfer vertical margins from the target to the wrapper so the
+      // surrounding layout is unchanged after the DOM move.
+      wrapper.style.marginTop = targetMarginTop;
+      wrapper.style.marginBottom = targetMarginBottom;
+
+      if (targetField.parentNode) {
+        targetField.parentNode.insertBefore(wrapper, targetField);
+      }
+
+      // Zero out the target's own margin-top/-bottom now that the wrapper
+      // owns them, so they don't double-apply inside the flex row.
+      targetField.style.marginTop = "0px";
+      targetField.style.marginBottom = "0px";
+
+      wrapper.appendChild(targetField);
+    }
+
+    // Read padding-left AFTER the wrapper exists but before any alignment
+    // logic, so it reflects the current computed value.
+    const targetPaddingLeft = window.getComputedStyle(targetField).paddingLeft;
+
+    wrapper.appendChild(elementToPlace);
+
+    const applyAlignment = () => {
+      const wrapped = elementToPlace.offsetTop > targetField.offsetTop;
+      if (wrapped) {
+        // When wrapped below, left-align with the target's content area.
+        elementToPlace.style.marginTop = "0px";
+        elementToPlace.style.marginLeft = targetPaddingLeft;
+      } else {
+        // When side-by-side, both items are already vertically centred by the
+        // flex container — no extra margin-top needed on elementToPlace.
+        elementToPlace.style.marginTop = "0px";
+        elementToPlace.style.marginLeft = "0px";
+      }
+    };
+
+    // Defer the first alignment check to the next animation frame so the
+    // browser has had a chance to perform layout. Without this, offsetTop on
+    // both elements is still 0 (or stale) at call time.
+    requestAnimationFrame(applyAlignment);
+
+    if (typeof window.ResizeObserver === "function") {
+      const observer = new window.ResizeObserver(() => applyAlignment());
+      observer.observe(wrapper);
+    }
+  }
   private insertRememberMeOptin() {
     let rememberMeOptInField = document.getElementById(
       "remember-me-opt-in"
@@ -279,7 +423,7 @@ export class RememberMe {
       const rememberMeLabel = this.rememberMeLabel;
       const rememberMeInfo = ENGrid.t("rememberMe.tooltip", {
         label: rememberMeLabel,
-        clearLabel: this.fieldClearLabel,
+        clearLabel: this.getClearLabelPlainText(),
       });
 
       const rememberMeOptInFieldChecked = this.rememberMeOptIn ? "checked" : "";
@@ -312,12 +456,16 @@ export class RememberMe {
         this.fieldOptInSelectorTarget
       );
       if (targetField && targetField.parentNode) {
-        targetField.parentNode.insertBefore(
-          rememberMeOptInField,
-          this.fieldOptInSelectorTargetLocation == "before"
-            ? targetField
-            : targetField.nextSibling
-        );
+        if (this.fieldOptInSelectorTargetLocation === "rightSide") {
+          this.placeOnRightSide(targetField, rememberMeOptInField);
+        } else {
+          targetField.parentNode.insertBefore(
+            rememberMeOptInField,
+            this.fieldOptInSelectorTargetLocation == "before"
+              ? targetField
+              : targetField.nextSibling
+          );
+        }
 
         const rememberMeCheckbox = document.getElementById(
           "remember-me-checkbox"
