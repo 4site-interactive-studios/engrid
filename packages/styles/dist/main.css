@@ -2429,8 +2429,8 @@ a:focus, a:hover {
   padding-right: 0;
   margin-bottom: var(--fields_spacing-block);
 }
-.en__component--formblock .en__field .en__field__element.en__field__element--checkbox, .en__component--formblock .en__field .en__field__element.en__field__element--radio, .en__component--formblock .en__field .en__field__element.en__field__element--rating, .en__component--formblock .en__field .en__field__element.en__field__element--imgselect, .en__component--formblock .en__field .en__field__element.en__field__element--splittext, .en__component--formblock .en__field .en__field__element.en__field__element--tripletext, .en__component--formblock .en__field .en__field__element.en__field__element--splitselect, .en__component--formblock .en__field .en__field__element.en__field__element--tripleselect, .en__component--formblock .en__field .en__field__element.en__field__element--withOther,
-.en__component--svblock .en__field .en__field__element.en__field__element--checkbox,
+.en__component--formblock .en__field .en__field__element.en__field__element--checkbox:not([class^=pbo]), .en__component--formblock .en__field .en__field__element.en__field__element--radio, .en__component--formblock .en__field .en__field__element.en__field__element--rating, .en__component--formblock .en__field .en__field__element.en__field__element--imgselect, .en__component--formblock .en__field .en__field__element.en__field__element--splittext, .en__component--formblock .en__field .en__field__element.en__field__element--tripletext, .en__component--formblock .en__field .en__field__element.en__field__element--splitselect, .en__component--formblock .en__field .en__field__element.en__field__element--tripleselect, .en__component--formblock .en__field .en__field__element.en__field__element--withOther,
+.en__component--svblock .en__field .en__field__element.en__field__element--checkbox:not([class^=pbo]),
 .en__component--svblock .en__field .en__field__element.en__field__element--radio,
 .en__component--svblock .en__field .en__field__element.en__field__element--rating,
 .en__component--svblock .en__field .en__field__element.en__field__element--imgselect,
@@ -2439,7 +2439,7 @@ a:focus, a:hover {
 .en__component--svblock .en__field .en__field__element.en__field__element--splitselect,
 .en__component--svblock .en__field .en__field__element.en__field__element--tripleselect,
 .en__component--svblock .en__field .en__field__element.en__field__element--withOther,
-.en__registrants__registrantDetails .en__field .en__field__element.en__field__element--checkbox,
+.en__registrants__registrantDetails .en__field .en__field__element.en__field__element--checkbox:not([class^=pbo]),
 .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--radio,
 .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--rating,
 .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--imgselect,
@@ -2451,8 +2451,8 @@ a:focus, a:hover {
   margin-left: calc(var(--fields_spacing-inline) * -1);
   margin-right: calc(var(--fields_spacing-inline) * -1);
 }
-.en__component--formblock .en__field .en__field__element.en__field__element--checkbox .en__field__item,
-.en__component--formblock .en__field .en__field__element.en__field__element--checkbox > [data-unhidden], .en__component--formblock .en__field .en__field__element.en__field__element--radio .en__field__item,
+.en__component--formblock .en__field .en__field__element.en__field__element--checkbox:not([class^=pbo]) .en__field__item,
+.en__component--formblock .en__field .en__field__element.en__field__element--checkbox:not([class^=pbo]) > [data-unhidden], .en__component--formblock .en__field .en__field__element.en__field__element--radio .en__field__item,
 .en__component--formblock .en__field .en__field__element.en__field__element--radio > [data-unhidden], .en__component--formblock .en__field .en__field__element.en__field__element--rating .en__field__item,
 .en__component--formblock .en__field .en__field__element.en__field__element--rating > [data-unhidden], .en__component--formblock .en__field .en__field__element.en__field__element--imgselect .en__field__item,
 .en__component--formblock .en__field .en__field__element.en__field__element--imgselect > [data-unhidden], .en__component--formblock .en__field .en__field__element.en__field__element--splittext .en__field__item,
@@ -2461,8 +2461,8 @@ a:focus, a:hover {
 .en__component--formblock .en__field .en__field__element.en__field__element--splitselect > [data-unhidden], .en__component--formblock .en__field .en__field__element.en__field__element--tripleselect .en__field__item,
 .en__component--formblock .en__field .en__field__element.en__field__element--tripleselect > [data-unhidden], .en__component--formblock .en__field .en__field__element.en__field__element--withOther .en__field__item,
 .en__component--formblock .en__field .en__field__element.en__field__element--withOther > [data-unhidden],
-.en__component--svblock .en__field .en__field__element.en__field__element--checkbox .en__field__item,
-.en__component--svblock .en__field .en__field__element.en__field__element--checkbox > [data-unhidden],
+.en__component--svblock .en__field .en__field__element.en__field__element--checkbox:not([class^=pbo]) .en__field__item,
+.en__component--svblock .en__field .en__field__element.en__field__element--checkbox:not([class^=pbo]) > [data-unhidden],
 .en__component--svblock .en__field .en__field__element.en__field__element--radio .en__field__item,
 .en__component--svblock .en__field .en__field__element.en__field__element--radio > [data-unhidden],
 .en__component--svblock .en__field .en__field__element.en__field__element--rating .en__field__item,
@@ -2479,8 +2479,8 @@ a:focus, a:hover {
 .en__component--svblock .en__field .en__field__element.en__field__element--tripleselect > [data-unhidden],
 .en__component--svblock .en__field .en__field__element.en__field__element--withOther .en__field__item,
 .en__component--svblock .en__field .en__field__element.en__field__element--withOther > [data-unhidden],
-.en__registrants__registrantDetails .en__field .en__field__element.en__field__element--checkbox .en__field__item,
-.en__registrants__registrantDetails .en__field .en__field__element.en__field__element--checkbox > [data-unhidden],
+.en__registrants__registrantDetails .en__field .en__field__element.en__field__element--checkbox:not([class^=pbo]) .en__field__item,
+.en__registrants__registrantDetails .en__field .en__field__element.en__field__element--checkbox:not([class^=pbo]) > [data-unhidden],
 .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--radio .en__field__item,
 .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--radio > [data-unhidden],
 .en__registrants__registrantDetails .en__field .en__field__element.en__field__element--rating .en__field__item,
@@ -2529,23 +2529,23 @@ a:focus, a:hover {
   padding-left: var(--fields_spacing-inline);
   padding-right: var(--fields_spacing-inline);
 }
-.en__component--formblock.direction-column .en__field--radio .en__field__element, .en__component--formblock.direction-column .en__field--checkbox .en__field__element,
+.en__component--formblock.direction-column .en__field--radio .en__field__element, .en__component--formblock.direction-column .en__field--checkbox:not([class^=pbo]) .en__field__element,
 .en__component--formblock .en__field.en__field--radio.en__field--survey .en__field__element,
-.en__component--formblock .en__field.en__field--checkbox.en__field--survey .en__field__element,
+.en__component--formblock .en__field.en__field--checkbox:not([class^=pbo]).en__field--survey .en__field__element,
 .en__component--formblock .en__field.en__field--radio.en__field--question .en__field__element,
-.en__component--formblock .en__field.en__field--checkbox.en__field--question .en__field__element,
+.en__component--formblock .en__field.en__field--checkbox:not([class^=pbo]).en__field--question .en__field__element,
 .en__component--svblock.direction-column .en__field--radio .en__field__element,
-.en__component--svblock.direction-column .en__field--checkbox .en__field__element,
+.en__component--svblock.direction-column .en__field--checkbox:not([class^=pbo]) .en__field__element,
 .en__component--svblock .en__field.en__field--radio.en__field--survey .en__field__element,
-.en__component--svblock .en__field.en__field--checkbox.en__field--survey .en__field__element,
+.en__component--svblock .en__field.en__field--checkbox:not([class^=pbo]).en__field--survey .en__field__element,
 .en__component--svblock .en__field.en__field--radio.en__field--question .en__field__element,
-.en__component--svblock .en__field.en__field--checkbox.en__field--question .en__field__element,
+.en__component--svblock .en__field.en__field--checkbox:not([class^=pbo]).en__field--question .en__field__element,
 .en__registrants__registrantDetails.direction-column .en__field--radio .en__field__element,
-.en__registrants__registrantDetails.direction-column .en__field--checkbox .en__field__element,
+.en__registrants__registrantDetails.direction-column .en__field--checkbox:not([class^=pbo]) .en__field__element,
 .en__registrants__registrantDetails .en__field.en__field--radio.en__field--survey .en__field__element,
-.en__registrants__registrantDetails .en__field.en__field--checkbox.en__field--survey .en__field__element,
+.en__registrants__registrantDetails .en__field.en__field--checkbox:not([class^=pbo]).en__field--survey .en__field__element,
 .en__registrants__registrantDetails .en__field.en__field--radio.en__field--question .en__field__element,
-.en__registrants__registrantDetails .en__field.en__field--checkbox.en__field--question .en__field__element {
+.en__registrants__registrantDetails .en__field.en__field--checkbox:not([class^=pbo]).en__field--question .en__field__element {
   display: grid;
   grid-auto-rows: auto;
   margin-bottom: var(--fields_spacing-block);
@@ -2562,37 +2562,37 @@ a:focus, a:hover {
   max-width: 100%;
 }
 
-.en__component--formblock.inline-other .en__field--radio.en__field--withOther--active .en__field__element, .en__component--formblock.inline-other .en__field--checkbox.en__field--withOther--active .en__field__element,
+.en__component--formblock.inline-other .en__field--radio.en__field--withOther--active .en__field__element, .en__component--formblock.inline-other .en__field--checkbox:not([class^=pbo]).en__field--withOther--active .en__field__element,
 .en__component--svblock.inline-other .en__field--radio.en__field--withOther--active .en__field__element,
-.en__component--svblock.inline-other .en__field--checkbox.en__field--withOther--active .en__field__element,
+.en__component--svblock.inline-other .en__field--checkbox:not([class^=pbo]).en__field--withOther--active .en__field__element,
 .en__registrants__registrantDetails.inline-other .en__field--radio.en__field--withOther--active .en__field__element,
-.en__registrants__registrantDetails.inline-other .en__field--checkbox.en__field--withOther--active .en__field__element {
+.en__registrants__registrantDetails.inline-other .en__field--checkbox:not([class^=pbo]).en__field--withOther--active .en__field__element {
   grid-template-columns: min-content;
 }
-.en__component--formblock.inline-other .en__field--radio.en__field--withOther--active .en__field__item, .en__component--formblock.inline-other .en__field--checkbox.en__field--withOther--active .en__field__item,
+.en__component--formblock.inline-other .en__field--radio.en__field--withOther--active .en__field__item, .en__component--formblock.inline-other .en__field--checkbox:not([class^=pbo]).en__field--withOther--active .en__field__item,
 .en__component--svblock.inline-other .en__field--radio.en__field--withOther--active .en__field__item,
-.en__component--svblock.inline-other .en__field--checkbox.en__field--withOther--active .en__field__item,
+.en__component--svblock.inline-other .en__field--checkbox:not([class^=pbo]).en__field--withOther--active .en__field__item,
 .en__registrants__registrantDetails.inline-other .en__field--radio.en__field--withOther--active .en__field__item,
-.en__registrants__registrantDetails.inline-other .en__field--checkbox.en__field--withOther--active .en__field__item {
+.en__registrants__registrantDetails.inline-other .en__field--checkbox:not([class^=pbo]).en__field--withOther--active .en__field__item {
   grid-column: span 2;
   /* If your label is not short (e.g. "Other") then you may need to hand-tune its width depending on the display scenarios */
 }
-.en__component--formblock.inline-other .en__field--radio.en__field--withOther--active .en__field__item:nth-last-child(2), .en__component--formblock.inline-other .en__field--radio.en__field--withOther--active .en__field__item:nth-last-child(1), .en__component--formblock.inline-other .en__field--checkbox.en__field--withOther--active .en__field__item:nth-last-child(2), .en__component--formblock.inline-other .en__field--checkbox.en__field--withOther--active .en__field__item:nth-last-child(1),
+.en__component--formblock.inline-other .en__field--radio.en__field--withOther--active .en__field__item:nth-last-child(2), .en__component--formblock.inline-other .en__field--radio.en__field--withOther--active .en__field__item:nth-last-child(1), .en__component--formblock.inline-other .en__field--checkbox:not([class^=pbo]).en__field--withOther--active .en__field__item:nth-last-child(2), .en__component--formblock.inline-other .en__field--checkbox:not([class^=pbo]).en__field--withOther--active .en__field__item:nth-last-child(1),
 .en__component--svblock.inline-other .en__field--radio.en__field--withOther--active .en__field__item:nth-last-child(2),
 .en__component--svblock.inline-other .en__field--radio.en__field--withOther--active .en__field__item:nth-last-child(1),
-.en__component--svblock.inline-other .en__field--checkbox.en__field--withOther--active .en__field__item:nth-last-child(2),
-.en__component--svblock.inline-other .en__field--checkbox.en__field--withOther--active .en__field__item:nth-last-child(1),
+.en__component--svblock.inline-other .en__field--checkbox:not([class^=pbo]).en__field--withOther--active .en__field__item:nth-last-child(2),
+.en__component--svblock.inline-other .en__field--checkbox:not([class^=pbo]).en__field--withOther--active .en__field__item:nth-last-child(1),
 .en__registrants__registrantDetails.inline-other .en__field--radio.en__field--withOther--active .en__field__item:nth-last-child(2),
 .en__registrants__registrantDetails.inline-other .en__field--radio.en__field--withOther--active .en__field__item:nth-last-child(1),
-.en__registrants__registrantDetails.inline-other .en__field--checkbox.en__field--withOther--active .en__field__item:nth-last-child(2),
-.en__registrants__registrantDetails.inline-other .en__field--checkbox.en__field--withOther--active .en__field__item:nth-last-child(1) {
+.en__registrants__registrantDetails.inline-other .en__field--checkbox:not([class^=pbo]).en__field--withOther--active .en__field__item:nth-last-child(2),
+.en__registrants__registrantDetails.inline-other .en__field--checkbox:not([class^=pbo]).en__field--withOther--active .en__field__item:nth-last-child(1) {
   grid-column: span 1;
 }
-.en__component--formblock.inline-other .en__field--radio.en__field--withOther--active .en__field__item:nth-last-child(2) label, .en__component--formblock.inline-other .en__field--checkbox.en__field--withOther--active .en__field__item:nth-last-child(2) label,
+.en__component--formblock.inline-other .en__field--radio.en__field--withOther--active .en__field__item:nth-last-child(2) label, .en__component--formblock.inline-other .en__field--checkbox:not([class^=pbo]).en__field--withOther--active .en__field__item:nth-last-child(2) label,
 .en__component--svblock.inline-other .en__field--radio.en__field--withOther--active .en__field__item:nth-last-child(2) label,
-.en__component--svblock.inline-other .en__field--checkbox.en__field--withOther--active .en__field__item:nth-last-child(2) label,
+.en__component--svblock.inline-other .en__field--checkbox:not([class^=pbo]).en__field--withOther--active .en__field__item:nth-last-child(2) label,
 .en__registrants__registrantDetails.inline-other .en__field--radio.en__field--withOther--active .en__field__item:nth-last-child(2) label,
-.en__registrants__registrantDetails.inline-other .en__field--checkbox.en__field--withOther--active .en__field__item:nth-last-child(2) label {
+.en__registrants__registrantDetails.inline-other .en__field--checkbox:not([class^=pbo]).en__field--withOther--active .en__field__item:nth-last-child(2) label {
   word-break: keep-all;
 }
 
@@ -2803,7 +2803,7 @@ input[type=radio]:checked + label:before {
 /************************************
 * Checkbox Fields
 ***********************************/
-input[type=checkbox] + label {
+input[type=checkbox]:not([class^=pbo]) + label {
   cursor: pointer;
   content: "";
   align-items: center;
@@ -2815,7 +2815,7 @@ input[type=checkbox] + label {
   line-height: var(--checkbox_line-height);
   text-transform: var(--checkbox_text-transform);
 }
-input[type=checkbox] + label:before {
+input[type=checkbox]:not([class^=pbo]) + label:before {
   content: "";
   justify-content: center;
   align-items: center;
@@ -2836,15 +2836,15 @@ input[type=checkbox] + label:before {
   padding-top: var(--checkbox_padding-top);
   padding-left: var(--checkbox_padding-left);
 }
-input[type=checkbox]:focus + label:before, input[type=checkbox]:hover + label:before {
+input[type=checkbox]:not([class^=pbo]):focus + label:before, input[type=checkbox]:not([class^=pbo]):hover + label:before {
   color: var(--checkbox_color_hover);
   background-color: var(--checkbox_background-color_hover);
   border-color: var(--checkbox_border-color_hover);
 }
-input[type=checkbox]:not(:checked) + label:before {
+input[type=checkbox]:not([class^=pbo]):not(:checked) + label:before {
   color: transparent;
 }
-input[type=checkbox]:checked + label:before {
+input[type=checkbox]:not([class^=pbo]):checked + label:before {
   content: var(--checkbox_content_checked);
   color: var(--checkbox_color_checked);
   background-color: var(--checkbox_background-color_checked);
@@ -2969,7 +2969,7 @@ input[type=checkbox]:checked + label:before {
 ***********************************/
 /* Custom Styling for Radio & Checkbox Inputs */
 input.en__field__input--radio,
-input.en__field__input--checkbox,
+input.en__field__input--checkbox:not([class^=pbo]),
 input.en__contactDetails__select {
   border: 0;
   clip: rect(0 0 0 0);
@@ -2985,14 +2985,14 @@ input.en__contactDetails__select {
 }
 
 .en__field__input--radio:focus + .en__field__label,
-.en__field__input--checkbox:focus + .en__field__label,
+.en__field__input--checkbox:not([class^=pbo]):focus + .en__field__label,
 .en__contactDetails__select:focus + .en__contactDetails__rows {
   outline: -webkit-focus-ring-color auto 1px;
   outline-offset: calc(max(var(--fields_spacing-inline), var(--fields_spacing-block)) - 3px);
 }
 
 .en__field--radio[class*=en__field--NOT_TAGGED_] .en__field__element,
-.en__field--checkbox[class*=en__field--NOT_TAGGED_] .en__field__element {
+.en__field--checkbox[class*=en__field--NOT_TAGGED_]:not([class^=pbo]) .en__field__element {
   flex-direction: column;
   align-items: flex-start;
 }
