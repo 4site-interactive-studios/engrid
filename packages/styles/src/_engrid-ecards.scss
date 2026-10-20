@@ -131,6 +131,13 @@ button.en__ecarditems__prevclose {
   }
 }
 
+// When the ecard page is embedded and the preview is delegated to the parent
+// window (see ecard-preview.ts), keep the native preview modal hidden inside
+// the iframe so it never flashes before being suppressed
+body.engrid-ecard-preview-delegated .en__ecarditems__preview {
+  display: none !important;
+}
+
 /**
   * This date entry field displays too wide on webkit iOS browsers. This is a fix for that.
   */
