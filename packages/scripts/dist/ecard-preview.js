@@ -15,6 +15,10 @@
  * - Listens for the handshake and the preview URL, builds a modal following
  *   the exact structure EN uses for their preview, and wires the close
  *   button and Escape key to close it.
+ *
+ * Both the delegated modal and EN's native modal on standalone ecard pages
+ * are widened to fit the preview content when it scrolls horizontally and
+ * the viewport is wide enough to display it all.
  */
 import { ENGrid, EngridLogger, A11y } from ".";
 export class EcardPreview {
@@ -27,6 +31,10 @@ export class EcardPreview {
         this.requestingIframe = null;
         if (this.isEmbeddedEcardPage()) {
             this.setupEmbeddedEcardPage();
+        }
+        else if (ENGrid.getPageType() === "ECARD" && !this.inIframe()) {
+            // Standalone ecard page - enhance EN's native preview modal
+            this.setupNativePreviewEnhancements();
         }
         // The parent-side listener runs on every ENgrid page so any embedded
         // ENgrid ecard iframe (EmbeddedEcard or a generic embed) is supported
@@ -89,6 +97,29 @@ export class EcardPreview {
             attributeFilter: ["class"],
         });
     }
+    /**
+     * Enhances EN's native preview modal on standalone (non-embedded) ecard
+     * pages: when the modal opens, widen it to fit the preview content if the
+     * viewport is wide enough.
+     */
+    setupNativePreviewEnhancements() {
+        const previewModal = document.querySelector(".en__ecarditems__preview");
+        if (!previewModal)
+            return;
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.type === "attributes" &&
+                    mutation.attributeName === "class" &&
+                    previewModal.classList.contains("preview--show")) {
+                    this.fitPreviewToContent(previewModal);
+                }
+            });
+        });
+        observer.observe(previewModal, {
+            attributes: true,
+            attributeFilter: ["class"],
+        });
+    }
     sendHandshake() {
         window.parent.postMessage({ action: "ecard_preview_handshake" }, location.origin);
         this.handshakeAttempts++;
@@ -140,6 +171,7 @@ export class EcardPreview {
         if (this.delegatedModal) {
             (_a = this.delegatedModal
                 .querySelector("iframe")) === null || _a === void 0 ? void 0 : _a.setAttribute("src", previewUrl);
+            this.fitPreviewToContent(this.delegatedModal);
             return;
         }
         // Follows the exact structure EN uses for their ecard preview modal so
@@ -162,20 +194,70 @@ export class EcardPreview {
             .querySelector(".en__ecarditems__prevclose")) === null || _b === void 0 ? void 0 : _b.addEventListener("click", () => this.closeDelegatedPreview());
         document.body.appendChild(modal);
         this.delegatedModal = modal;
-        // Center the wrap like EN does, with negative margins equal to half its
-        // dimensions, and flag overflow when the viewport is smaller than the wrap
-        const wrap = modal.querySelector(".en__ecarditems__prevwrap");
-        wrap.style.marginLeft = `-${wrap.offsetWidth / 2}px`;
-        wrap.style.marginTop = `-${wrap.offsetHeight / 2}px`;
-        if (wrap.offsetWidth > window.innerWidth) {
-            modal.classList.add("overflow--width");
-        }
-        if (wrap.offsetHeight > window.innerHeight) {
-            modal.classList.add("overflow--height");
-        }
+        // Center like EN does and widen to fit the preview content once the
+        // iframe has loaded
+        this.fitPreviewToContent(modal);
         A11y.inertPage(true, modal);
         (_c = modal.querySelector(".en__ecarditems__prevclose")) === null || _c === void 0 ? void 0 : _c.focus();
         this.logger.log("Displaying delegated ecard preview", previewUrl);
+    }
+    /**
+     * Centers the preview wrap like EN does (negative margins equal to half its
+     * dimensions) and flags overflow when the viewport is smaller than the wrap.
+     */
+    centerPreviewWrap(modal) {
+        const wrap = modal.querySelector(".en__ecarditems__prevwrap");
+        if (!wrap)
+            return;
+        wrap.style.marginLeft = `-${wrap.offsetWidth / 2}px`;
+        wrap.style.marginTop = `-${wrap.offsetHeight / 2}px`;
+        modal.classList.toggle("overflow--width", wrap.offsetWidth >= window.innerWidth);
+        modal.classList.toggle("overflow--height", wrap.offsetHeight > window.innerHeight);
+    }
+    /**
+     * Widens the preview modal to fit the ecard content when the preview iframe
+     * scrolls horizontally and the viewport is wide enough to display it all.
+     * The preview URL is same-origin, so the iframe content can be measured.
+     */
+    fitPreviewToContent(modal) {
+        var _a;
+        this.centerPreviewWrap(modal);
+        const wrap = modal.querySelector(".en__ecarditems__prevwrap");
+        const iframe = modal.querySelector("iframe");
+        if (!wrap || !iframe || iframe.dataset.engridFitBound)
+            return;
+        iframe.dataset.engridFitBound = "true";
+        const widen = () => {
+            var _a, _b, _c, _d;
+            let contentWidth = 0;
+            try {
+                const iframeDoc = iframe.contentDocument;
+                if (iframeDoc) {
+                    contentWidth = Math.max((_b = (_a = iframeDoc.documentElement) === null || _a === void 0 ? void 0 : _a.scrollWidth) !== null && _b !== void 0 ? _b : 0, (_d = (_c = iframeDoc.body) === null || _c === void 0 ? void 0 : _c.scrollWidth) !== null && _d !== void 0 ? _d : 0);
+                }
+            }
+            catch (e) {
+                // Cross-origin preview - cannot measure the content
+                return;
+            }
+            if (!contentWidth)
+                return;
+            // Leave a gutter so the modal never touches the viewport edges
+            const maxWidth = window.innerWidth - 32;
+            const targetWidth = Math.min(contentWidth, maxWidth);
+            if (targetWidth > wrap.offsetWidth) {
+                wrap.style.width = `${targetWidth}px`;
+                this.logger.log(`Widened ecard preview to fit content (${contentWidth}px content, ${targetWidth}px applied)`);
+            }
+            this.centerPreviewWrap(modal);
+        };
+        try {
+            if (((_a = iframe.contentDocument) === null || _a === void 0 ? void 0 : _a.readyState) === "complete") {
+                widen();
+            }
+        }
+        catch (e) { }
+        iframe.addEventListener("load", widen);
     }
     closeDelegatedPreview() {
         var _a, _b, _c;
