@@ -16,6 +16,7 @@ export declare class EcardPreview {
     private setupNativePreviewEnhancements;
     private sendHandshake;
     private setupParentPage;
+    private handlePreviewEscape;
     private showDelegatedPreview;
     /**
      * Centers the preview wrap like EN does (negative margins equal to half its

@@ -66,7 +66,11 @@ export class EcardPreview {
     previewButton.style.display = "none";
 
     window.addEventListener("message", (e) => {
-      if (e.origin !== location.origin || !e.data?.action) return;
+      if (
+        e.source !== window.parent ||
+        e.origin !== location.origin ||
+        !e.data?.action
+      ) return;
       if (e.data.action === "ecard_preview_available") {
         this.previewCapable = true;
         if (this.handshakeTimer) {
@@ -163,6 +167,12 @@ export class EcardPreview {
   }
 
   private setupParentPage() {
+    window.addEventListener("resize", () => {
+      document
+        .querySelectorAll<HTMLElement>(".en__ecarditems__preview.preview--show")
+        .forEach((modal) => this.fitPreviewToContent(modal));
+    });
+
     window.addEventListener("message", (e) => {
       if (e.origin !== location.origin || !e.data?.action) return;
       const iframe = this.getIframeBySource(e.source);
@@ -183,10 +193,14 @@ export class EcardPreview {
     });
 
     document.addEventListener("keydown", (e: KeyboardEvent) => {
-      if (e.key === "Escape" && this.delegatedModal) {
-        this.closeDelegatedPreview();
-      }
+      this.handlePreviewEscape(e);
     });
+  }
+
+  private handlePreviewEscape(e: KeyboardEvent) {
+    if (e.key === "Escape" && this.delegatedModal) {
+      this.closeDelegatedPreview();
+    }
   }
 
   private showDelegatedPreview(
@@ -232,6 +246,15 @@ export class EcardPreview {
     const previewIframe = modal.querySelector(
       "iframe"
     ) as HTMLIFrameElement;
+    const handleEscape = (e: KeyboardEvent) => this.handlePreviewEscape(e);
+    const bindIframeEscape = () => {
+      try {
+        previewIframe.contentDocument?.addEventListener("keydown", handleEscape);
+      } catch (e) {
+        // Cross-origin previews cannot expose their keyboard events.
+      }
+    };
+    previewIframe.addEventListener("load", bindIframeEscape);
     previewIframe.src = previewUrl;
 
     modal
@@ -240,6 +263,7 @@ export class EcardPreview {
 
     document.body.appendChild(modal);
     this.delegatedModal = modal;
+    bindIframeEscape();
 
     // Center like EN does and widen to fit the preview content once the
     // iframe has loaded
@@ -285,8 +309,7 @@ export class EcardPreview {
       ".en__ecarditems__prevwrap"
     ) as HTMLElement;
     const iframe = modal.querySelector("iframe") as HTMLIFrameElement;
-    if (!wrap || !iframe || iframe.dataset.engridFitBound) return;
-    iframe.dataset.engridFitBound = "true";
+    if (!wrap || !iframe) return;
 
     const widen = () => {
       let contentWidth = 0;
@@ -322,7 +345,10 @@ export class EcardPreview {
         widen();
       }
     } catch (e) {}
-    iframe.addEventListener("load", widen);
+    if (!iframe.dataset.engridFitBound) {
+      iframe.dataset.engridFitBound = "true";
+      iframe.addEventListener("load", widen);
+    }
   }
 
   private closeDelegatedPreview() {
