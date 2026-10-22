@@ -304,8 +304,9 @@ export class EcardPreview {
       }
       if (!contentWidth) return;
 
-      // Leave a gutter so the modal never touches the viewport edges
-      const maxWidth = window.innerWidth - 32;
+      // Never exceed 90vw (matches the CSS max-width on the wrap) and leave
+      // a gutter so the modal never touches the viewport edges
+      const maxWidth = Math.min(window.innerWidth * 0.9, window.innerWidth - 32);
       const targetWidth = Math.min(contentWidth, maxWidth);
       if (targetWidth > wrap.offsetWidth) {
         wrap.style.width = `${targetWidth}px`;
