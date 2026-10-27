@@ -1,9 +1,21 @@
 import { EnForm } from "./events";
 export declare class iFrame {
     _form: EnForm;
+    private resizeObserver;
     private logger;
     constructor();
     private onLoaded;
+    /**
+     * Observes document.body for size changes (DOM mutations, font/image
+     * loads, CSS transitions) and re-sends the iframe height to the parent.
+     *
+     * Uses a leading + trailing throttle via debounceWithImmediate: the
+     * first change is sent immediately, and the settled height is always
+     * re-sent once changes stop for 120ms. Animated transitions therefore
+     * don't flood the parent page with one message per frame, but the
+     * parent always ends up matching the final resolved height.
+     */
+    private observeHeightChanges;
     /**
      * Posts a `engrid-iframe-queue:thank-you` message to the parent window
      * when the embedded EN page reaches its Thank You page (the last page
