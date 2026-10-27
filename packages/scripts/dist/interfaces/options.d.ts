@@ -89,6 +89,17 @@ export interface Options {
         phone_date_field?: string;
         phone_status_field?: string;
     };
+    TidyContactEmail?: false | {
+        clientKey: string;
+        relayUrl?: string;
+        version?: string;
+        scriptUrl?: string;
+        timeoutMs?: number;
+        hardBlock?: boolean;
+        prefillSkip?: boolean;
+        enRecognition?: boolean;
+        pageTypes?: ("DONATION" | "ECARD" | "SURVEY" | "EMAILTOTARGET" | "ADVOCACY" | "SUBSCRIBEFORM" | "EVENT" | "SUPPORTERHUB" | "UNSUBSCRIBE" | "TWEETPAGE" | "UNKNOWN")[];
+    };
     MobileCTA?: false | {
         pageType: string;
         label: string;

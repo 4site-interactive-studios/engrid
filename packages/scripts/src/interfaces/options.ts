@@ -105,6 +105,31 @@ export interface Options {
         phone_date_field?: string; // TidyContact Date
         phone_status_field?: string; // TidyContact Status
       };
+  TidyContactEmail?:
+    | false
+    | {
+        clientKey: string; // Client UUID issued by the TC Email relay (required)
+        relayUrl?: string; // Default: https://email-validator.4sitestudios.com
+        version?: string; // Embed version in the URL. "v1" (default, floating) or an exact version like "1.0.0"
+        scriptUrl?: string; // Overrides the whole script URL (local or staging builds)
+        timeoutMs?: number; // data-timeout-ms. TC Email default: 3000
+        hardBlock?: boolean; // data-hard-block. TC Email default: false
+        prefillSkip?: boolean; // data-prefill-skip. TC Email default: true
+        enRecognition?: boolean; // data-en-recognition. TC Email default: false
+        pageTypes?: (
+          | "DONATION"
+          | "ECARD"
+          | "SURVEY"
+          | "EMAILTOTARGET"
+          | "ADVOCACY"
+          | "SUBSCRIBEFORM"
+          | "EVENT"
+          | "SUPPORTERHUB"
+          | "UNSUBSCRIBE"
+          | "TWEETPAGE"
+          | "UNKNOWN"
+        )[]; // Page types to load on. Empty or missing: all page types
+      };
   MobileCTA?: false | { pageType: string; label: string }[];
   PageLayouts?: string[];
   CountryDisable?: string[];
@@ -244,6 +269,7 @@ export const OptionsDefaults: Options = {
   Debug: false,
   RememberMe: false,
   TidyContact: false,
+  TidyContactEmail: false,
   RegionLongFormat: "",
   CountryDisable: [],
   Placeholders: false,

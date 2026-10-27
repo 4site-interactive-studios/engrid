@@ -90,6 +90,7 @@ import {
   StickyNSG,
   StickyPrepopulation,
   PreferredPaymentMethod,
+  TidyContactEmail,
 } from ".";
 
 export class App extends ENGrid {
@@ -382,6 +383,10 @@ export class App extends ENGrid {
 
     // FreshAddress
     if (this.options.FreshAddress) new FreshAddress();
+
+    // TidyContact Email. Must stay below the window.enOnValidate assignment,
+    // so the TC Email bundle wraps ENgrid's hook instead of being overwritten by it.
+    if (this.options.TidyContactEmail) new TidyContactEmail();
 
     new ShowIfAmount();
 
