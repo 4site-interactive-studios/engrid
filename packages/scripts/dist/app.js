@@ -1,5 +1,5 @@
 import { DonationAmount, DonationFrequency, EnForm, ProcessingFees, Country, } from "./events";
-import { AmountLabel, Loader, ProgressBar, UpsellLightbox, ENGrid, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, A11y, CapitalizeFields, Ecard, ClickToExpand, Advocacy, DataAttributes, LiveVariables, iFrame, InputPlaceholders, InputHasValueAndFocus, ShowHideRadioCheckboxes, AutoCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce, AutoYear, Autocomplete, RememberMe, TranslateFields, ShowIfAmount, EngridLogger, OtherAmount, MinMaxAmount, Ticker, DataReplace, DataHide, AddNameToMessage, ExpandRegionName, AppVersion, UrlToForm, RequiredIfVisible, TidyContact, DataLayer, LiveCurrency, Autosubmit, EventTickets, SwapAmounts, DebugPanel, DebugHiddenFields, FreshAddress, BrandingHtml, CountryDisable, PremiumGift, DigitalWallets, MobileCTA, LiveFrequency, UniversalOptIn, StripeFinancialConnections, GiveBySelect, UrlParamsToBodyAttrs, ExitIntentLightbox, SupporterHub, FastFormFill, SetAttr, ShowIfPresent, ENValidators, CustomCurrency, VGS, PostalCodeValidator, CountryRedirect, WelcomeBack, EcardToTarget, UsOnlyForm, ThankYouPageConditionalContent, EmbeddedEcard, CheckboxLabel, UpsellCheckbox, PostDonationEmbed, FrequencyUpsell, CustomPremium, StickyNSG, StickyPrepopulation, PreferredPaymentMethod, } from ".";
+import { AmountLabel, Loader, ProgressBar, UpsellLightbox, ENGrid, OptionsDefaults, setRecurrFreq, PageBackground, MediaAttribution, ApplePay, A11y, CapitalizeFields, Ecard, ClickToExpand, Advocacy, DataAttributes, LiveVariables, iFrame, InputPlaceholders, InputHasValueAndFocus, ShowHideRadioCheckboxes, AutoCountrySelect, SkipToMainContentLink, SrcDefer, NeverBounce, AutoYear, Autocomplete, RememberMe, TranslateFields, ShowIfAmount, EngridLogger, OtherAmount, MinMaxAmount, Ticker, DataReplace, DataHide, AddNameToMessage, ExpandRegionName, AppVersion, UrlToForm, RequiredIfVisible, TidyContact, DataLayer, LiveCurrency, Autosubmit, EventTickets, SwapAmounts, DebugPanel, DebugHiddenFields, FreshAddress, BrandingHtml, CountryDisable, PremiumGift, DigitalWallets, MobileCTA, LiveFrequency, UniversalOptIn, StripeFinancialConnections, GiveBySelect, UrlParamsToBodyAttrs, ExitIntentLightbox, SupporterHub, FastFormFill, SetAttr, ShowIfPresent, ENValidators, CustomCurrency, VGS, PostalCodeValidator, CountryRedirect, WelcomeBack, EcardToTarget, UsOnlyForm, ThankYouPageConditionalContent, EmbeddedEcard, CheckboxLabel, UpsellCheckbox, PostDonationEmbed, FrequencyUpsell, CustomPremium, StickyNSG, StickyPrepopulation, PreferredPaymentMethod, TidyContactEmail, } from ".";
 export class App extends ENGrid {
     constructor(options) {
         super();
@@ -225,6 +225,10 @@ export class App extends ENGrid {
         // FreshAddress
         if (this.options.FreshAddress)
             new FreshAddress();
+        // TidyContact Email. Must stay below the window.enOnValidate assignment,
+        // so the TC Email bundle wraps ENgrid's hook instead of being overwritten by it.
+        if (this.options.TidyContactEmail)
+            new TidyContactEmail();
         new ShowIfAmount();
         new OtherAmount();
         new MinMaxAmount();
