@@ -27,7 +27,8 @@ export class TidyContactEmail {
             return false;
         }
         const pageTypes = (_b = this.options.pageTypes) !== null && _b !== void 0 ? _b : [];
-        if (pageTypes.length > 0 && pageTypes.indexOf(ENGrid.getPageType()) === -1) {
+        if (pageTypes.length > 0 &&
+            pageTypes.indexOf(ENGrid.getPageType()) === -1) {
             this.logger.log("TidyContact Email is disabled on this page type");
             return false;
         }
