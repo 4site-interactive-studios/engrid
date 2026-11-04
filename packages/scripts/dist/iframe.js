@@ -3,6 +3,7 @@ import { EnForm } from "./events";
 export class iFrame {
     constructor() {
         this._form = EnForm.getInstance();
+        this.resizeObserver = null;
         this.logger = new EngridLogger("iFrame", "brown", "gray", "📡");
         if (this.inIframe()) {
             // Add the data-engrid-embedded attribute when inside an iFrame if it wasn't already added by a script in the Page Template
@@ -95,6 +96,7 @@ export class iFrame {
                 if (iframe) {
                     if (event.data.hasOwnProperty("frameHeight")) {
                         iframe.style.height = event.data.frameHeight + "px";
+                        this.logger.log(`iFrame Event - Resized iframe element to ${event.data.frameHeight}px`);
                         if (event.data.frameHeight > 0) {
                             iframe.classList.add("loaded");
                         }
@@ -134,6 +136,8 @@ export class iFrame {
         // Scroll to top of iFrame
         this.logger.log("iFrame Event - window.onload");
         this.sendIframeHeight();
+        // Continuously re-send the height whenever the body size changes
+        this.observeHeightChanges();
         window.parent.postMessage({
             scroll: this.shouldScroll(),
         }, "*");
@@ -142,15 +146,39 @@ export class iFrame {
         // matches it by Page ID to advance to the next queued iframe. Fires
         // exactly once per Thank-You-page load. See iframe-queue.ts.
         this.sendIframeQueueThankYouPing();
-        // On click fire the resize event
-        document.addEventListener("click", (e) => {
-            this.logger.log("iFrame Event - click");
-            setTimeout(() => {
-                this.sendIframeHeight();
-            }, 100);
-        });
         // Watch for errors and send the height
         ENGrid.watchForError(this.sendIframeHeight.bind(this));
+    }
+    /**
+     * Observes document.body for size changes (DOM mutations, font/image
+     * loads, CSS transitions) and re-sends the iframe height to the parent.
+     *
+     * Uses a leading + trailing throttle via debounceWithImmediate: the
+     * first change is sent immediately, and the settled height is always
+     * re-sent once changes stop for 120ms. Animated transitions therefore
+     * don't flood the parent page with one message per frame, but the
+     * parent always ends up matching the final resolved height.
+     */
+    observeHeightChanges() {
+        if (typeof ResizeObserver === "undefined") {
+            this.logger.log("ResizeObserver not supported in this browser");
+            return;
+        }
+        let lastSent = -1;
+        const throttledSend = this.debounceWithImmediate((_entries, _observer, immediate) => {
+            const height = document.body.offsetHeight;
+            // Skip redundant sends when the settled height is unchanged
+            if (height === lastSent) {
+                this.logger.log(`iFrame Event - ResizeObserver settled at unchanged height ${height}px, skipping send`);
+                return;
+            }
+            lastSent = height;
+            this.logger.log(`iFrame Event - ResizeObserver ${immediate ? "leading" : "trailing"} resize: sending height ${height}px`);
+            this.sendIframeHeight();
+        }, 120);
+        this.resizeObserver = new ResizeObserver(throttledSend);
+        this.resizeObserver.observe(document.body);
+        this.logger.log("iFrame Event - Observing body resize");
     }
     /**
      * Posts a `engrid-iframe-queue:thank-you` message to the parent window
@@ -299,11 +327,11 @@ export class iFrame {
         return (...args) => {
             clearTimeout(timer);
             if (firstEvent) {
-                func.apply(this, args);
+                func.apply(this, [...args, true]);
                 firstEvent = false;
             }
             timer = setTimeout(() => {
-                func.apply(this, args);
+                func.apply(this, [...args, false]);
                 firstEvent = true;
             }, timeout);
         };

@@ -42,7 +42,12 @@ export declare class RememberMe {
     });
     private updateFieldData;
     private insertClearRememberMeLink;
+    private escapeHtml;
+    private buildClearLabelMarkup;
+    private getUsernameFromFieldData;
+    private getClearLabelPlainText;
     private getElementByFirstSelector;
+    private placeOnRightSide;
     private insertRememberMeOptin;
     private useRemote;
     private createIframe;

@@ -30,6 +30,7 @@ export const OptionsDefaults = {
     Debug: false,
     RememberMe: false,
     TidyContact: false,
+    TidyContactEmail: false,
     RegionLongFormat: "",
     CountryDisable: [],
     Placeholders: false,
