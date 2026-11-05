@@ -5381,6 +5381,14 @@ button.en__ecarditems__prevclose {
   color: #ffffff;
 }
 
+body.engrid-ecard-preview-delegated .en__ecarditems__preview {
+  display: none !important;
+}
+
+.en__ecarditems__prevwrap {
+  max-width: 90vw;
+}
+
 /**
   * This date entry field displays too wide on webkit iOS browsers. This is a fix for that.
   */

@@ -82,6 +82,7 @@ import {
   UsOnlyForm,
   ThankYouPageConditionalContent,
   EmbeddedEcard,
+  EcardPreview,
   CheckboxLabel,
   UpsellCheckbox,
   PostDonationEmbed,
@@ -473,6 +474,8 @@ export class App extends ENGrid {
     new ThankYouPageConditionalContent();
 
     new EmbeddedEcard();
+
+    new EcardPreview();
 
     new CheckboxLabel();
 

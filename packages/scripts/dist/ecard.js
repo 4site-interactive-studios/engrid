@@ -97,12 +97,27 @@ export class Ecard {
             if (closeButton) {
                 closeButton.setAttribute("role", "button");
                 closeButton.setAttribute("aria-label", "Close Preview");
-                document.addEventListener("keydown", (e) => {
+                const handleEscape = (e) => {
                     if (e.key === "Escape" &&
                         previewModal.classList.contains("preview--show")) {
                         closeButton.click();
                     }
-                });
+                };
+                document.addEventListener("keydown", handleEscape);
+                const previewIframe = previewModal.querySelector("iframe");
+                if (previewIframe) {
+                    const bindIframeEscape = () => {
+                        var _a;
+                        try {
+                            (_a = previewIframe.contentDocument) === null || _a === void 0 ? void 0 : _a.addEventListener("keydown", handleEscape);
+                        }
+                        catch (e) {
+                            // Cross-origin previews cannot expose their keyboard events.
+                        }
+                    };
+                    previewIframe.addEventListener("load", bindIframeEscape);
+                    bindIframeEscape();
+                }
             }
             const iframe = previewModal.querySelector("iframe");
             if (iframe) {

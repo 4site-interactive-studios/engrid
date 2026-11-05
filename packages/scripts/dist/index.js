@@ -16,6 +16,7 @@ export * from "./capitalize-fields";
 export * from "./auto-year";
 export * from "./autocomplete";
 export * from "./ecard";
+export * from "./ecard-preview";
 export * from "./click-to-expand";
 export * from "./advocacy";
 export * from "./data-attributes";
