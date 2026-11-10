@@ -605,7 +605,14 @@ export class RememberMe {
         }
     }
     setFieldValue(field, value, overwrite = false) {
-        value = decodeURIComponent(value || "");
+        // No remembered value for this field: leave it alone. Turning undefined
+        // into "" here used to select the empty "Please select" option on
+        // <select> fields, wiping values EN pre-filled (e.g. supporter.region on
+        // a chained after-action donation page) for every visitor with no
+        // RememberMe data.
+        if (!field || value === undefined || value === null)
+            return;
+        value = decodeURIComponent(value);
         if (field && value !== undefined) {
             if ("type" in field) {
                 switch (field.type) {
@@ -697,7 +704,12 @@ export class RememberMe {
                     }
                 }
                 else if (field.tagName === "SELECT") {
-                    this.setFieldValue(field, this.fieldData[this.fieldNames[i]], true);
+                    // A select always has a value (its first option), so a remembered
+                    // value needs overwrite=true to win over the default. A remembered
+                    // empty value must not wipe a pre-filled select, though, unless we
+                    // are clearing (clearFields() calls writeFields(true)).
+                    const rememberedValue = this.fieldData[this.fieldNames[i]];
+                    this.setFieldValue(field, rememberedValue, overwrite || rememberedValue !== "");
                 }
             }
         }
