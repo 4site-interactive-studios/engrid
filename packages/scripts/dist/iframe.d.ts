@@ -38,6 +38,7 @@ export declare class iFrame {
     private shouldScroll;
     private inIframe;
     private isChained;
+    private cameFromChainedPage;
     private hideFormComponents;
     private showFormComponents;
     private debounceWithImmediate;

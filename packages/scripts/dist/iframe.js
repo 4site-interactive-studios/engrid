@@ -239,8 +239,10 @@ export class iFrame {
         if (document.querySelector(".en__errorHeader")) {
             return true;
         }
-        // If it's a chained iFrame, don't scroll
-        if (this.isChained()) {
+        // If it's a chained iFrame, don't scroll. EN form submissions drop the
+        // query string, so the page after a chained page (e.g. the Opt-In Ladder
+        // thank you page) loses "chain" from its URL; check the referrer as well.
+        if (this.isChained() || this.cameFromChainedPage()) {
             return false;
         }
         // Try to match the iframe referrer URL by testing valid EN Page URLs
@@ -260,6 +262,19 @@ export class iFrame {
     // This method checks if the URL has a parameter named "chain" and returns true if it exists, otherwise false.
     isChained() {
         return !!ENGrid.getUrlParameter("chain");
+    }
+    // Returns true if the referrer is a same-origin page that had the "chain" parameter
+    cameFromChainedPage() {
+        if (!document.referrer)
+            return false;
+        try {
+            const referrer = new URL(document.referrer);
+            return (referrer.origin === window.location.origin &&
+                referrer.searchParams.has("chain"));
+        }
+        catch (e) {
+            return false;
+        }
     }
     hideFormComponents() {
         this.logger.log("iFrame Event - Hiding Form Components");
