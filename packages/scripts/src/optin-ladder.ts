@@ -79,6 +79,10 @@ export class OptInLadder {
         return;
       }
       placement.appendChild(iframe);
+      // The iFrame collapses to 0px and regrows between ladder steps. Disable
+      // scroll anchoring so the browser doesn't shift the page to follow the
+      // content below the iFrame.
+      document.documentElement.style.overflowAnchor = "none";
       iframe.addEventListener("load", () => {
         if (iframe.contentWindow) {
           iframe.contentWindow.postMessage(
