@@ -78,7 +78,11 @@ export class EmbeddedEcard {
   }
 
   private onEmbeddedEcardPage(): boolean {
-    return ENGrid.getPageType() === "ECARD" && ENGrid.hasBodyData("embedded") && ENGrid.getPageNumber() === 1;
+    return (
+      ENGrid.getPageType() === "ECARD" &&
+      ENGrid.hasBodyData("embedded") &&
+      ENGrid.getPageNumber() === 1
+    );
   }
 
   private onPostActionPage(): boolean {
@@ -145,18 +149,22 @@ export class EmbeddedEcard {
       "en__field_embedded-ecard"
     ) as HTMLInputElement;
 
-    if(this.options.requireInMemCheckbox) {
+    if (this.options.requireInMemCheckbox) {
       const inMemoriamCheckbox = document.getElementById(
         "en__field_transaction_inmem"
       ) as HTMLInputElement;
 
       inMemoriamCheckbox?.addEventListener("change", (e) => {
         const checkbox = e.target as HTMLInputElement;
-        const _sendEcardCheckbox = document.getElementById("en__field_embedded-ecard") as HTMLInputElement;
+        const _sendEcardCheckbox = document.getElementById(
+          "en__field_embedded-ecard"
+        ) as HTMLInputElement;
         this.toggleEcardForm(checkbox.checked && _sendEcardCheckbox.checked);
       });
-      
-      this.toggleEcardForm((inMemoriamCheckbox?.checked ?? true) && sendEcardCheckbox.checked);
+
+      this.toggleEcardForm(
+        (inMemoriamCheckbox?.checked ?? true) && sendEcardCheckbox.checked
+      );
     } else {
       this.toggleEcardForm(sendEcardCheckbox.checked);
     }
@@ -345,6 +353,7 @@ export class EmbeddedEcard {
       recipientName,
       recipientEmail,
     ].forEach((el) => {
+      if (!el) return;
       el.addEventListener("input", () => {
         if (this.isSubmitting) return;
         this.setEmbeddedEcardSessionData();
