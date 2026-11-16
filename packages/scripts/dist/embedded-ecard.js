@@ -50,7 +50,9 @@ export class EmbeddedEcard {
             window.EngridEmbeddedEcard.pageUrl !== "");
     }
     onEmbeddedEcardPage() {
-        return ENGrid.getPageType() === "ECARD" && ENGrid.hasBodyData("embedded") && ENGrid.getPageNumber() === 1;
+        return (ENGrid.getPageType() === "ECARD" &&
+            ENGrid.hasBodyData("embedded") &&
+            ENGrid.getPageNumber() === 1);
     }
     onPostActionPage() {
         return (sessionStorage.getItem("engrid-embedded-ecard") !== null &&
@@ -229,6 +231,8 @@ export class EmbeddedEcard {
             recipientName,
             recipientEmail,
         ].forEach((el) => {
+            if (!el)
+                return;
             el.addEventListener("input", () => {
                 if (this.isSubmitting)
                     return;
