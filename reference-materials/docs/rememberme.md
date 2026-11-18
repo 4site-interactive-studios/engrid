@@ -10,7 +10,7 @@ To enable, add a 'RememberMe' property to the 'options' object in your engrid th
 
 **remoteUrl**: Should be set to a webpage that will work as a remote repository for your form details -- it will save them into a cookie on that remote URL's domain.  If this isn't provided, the cookie will be saved to the current page's domain. Defaults to null.
 
-**fieldNames**: An array of strings, each one corresponding to a form input's name.  Each one will be saved and autofilled via rememberme.  All other fields will be ignored by RememberMe.  Example common names worth setting: 'supporter.firstName', 'supporter.lastName', 'supporter.address1', 'supporter.address2', 'supporter.city', 'supporter.country', 'supporter.region', 'supporter.postcode', 'supporter.emailAddress'. Defaults to [].
+**fieldNames**: An array of strings, each one corresponding to a form input's name.  Each one will be saved and autofilled via rememberme.  All other fields will be ignored by RememberMe.  `transaction.donationAmt` and `transaction.recurrfreq` are ignored as they cause dangerous behavior.  Example common names worth setting: 'supporter.firstName', 'supporter.lastName', 'supporter.address1', 'supporter.address2', 'supporter.city', 'supporter.country', 'supporter.region', 'supporter.postcode', 'supporter.emailAddress'. Defaults to [].
 
 **fieldOptInSelectorTarget**: A string containing a comma-delimited list of selectors.  The script will try each selector in turn, until it finds one that exists.  Then it will place the 'RememberMe' opt-in element relative to it (before, after, or on the right side, depending on the value of fieldOptInSelectorTargetLocation).  Defaults to '.en__field--emailAddress.en__field'.
 
@@ -55,18 +55,6 @@ To enable, add a 'RememberMe' property to the 'options' object in your engrid th
 - **Older browsers**: Encryption/decryption relies on the Web Crypto API, which is not available in older browsers (e.g., Internet Explorer).
 
 ---
-
-**Bug Fixes**
-
-The following bug fixes were implemented in the RememberMe component:
-
-1. **Correctly restore `transaction.recurrfreq` radio selection**: Previously, the generic `setFieldValue` path was used for `transaction.recurrfreq`, which only checked the first radio in the DOM. If that radio did not match the saved value, nothing was selected. Now the component queries the exact radio by value and clicks it, matching the same pattern used for `transaction.donationAmt`.
-
-2. **Save and restore custom donation amount correctly**: When the donor selected the "Other" radio and typed a custom amount, `readFields()` was storing the radio's value (`Other`) instead of the numeric value the donor entered in the text input. On restore, `writeFields()` was filling the other text input without first clicking the Other radio, leaving it hidden/disabled. The fix now:
-   - Detects when the checked `donationAmt` radio has value `other` and persists the numeric value from `transaction.donationAmt.other`
-   - Clicks the Other radio first before populating the text input when no predefined radio matches
-
-3. **Reapply donation amount after SwapAmounts replaces the DOM**: `SwapAmounts` listens to `onFrequencyChange` and replaces the `donationAmt` radio nodes about 1 second after page load, which would wipe out RememberMe's earlier selections. A new handler `reapplyDonationAmtAfterSwap()` subscribes once (via `.one()`) to `onFrequencyChange`, waits 200ms for DOM updates, then re-clicks the correct donation amount radio (or fills the Other text input for custom amounts). The handler unsubscribes immediately so it only fires once and does not interfere with subsequent donor interactions.
 
 **Sample Remote URL Page Markup to be used as a cookie repository**
 

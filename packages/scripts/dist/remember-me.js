@@ -29,7 +29,14 @@ export class RememberMe {
             ? options.cookieExpirationDays
             : 365;
         this.rememberMeOptIn = options.checked ? options.checked : false;
-        this.fieldNames = options.fieldNames ? options.fieldNames : [];
+        this.fieldNames = (options.fieldNames || []).filter((fieldName) => {
+            if (fieldName === "transaction.donationAmt" ||
+                fieldName === "transaction.recurrfreq") {
+                console.warn(`[ENgrid RememberMe] fieldNames includes "${fieldName}", which is ignored.`);
+                return false;
+            }
+            return true;
+        });
         this.fieldDonationAmountRadioName = options.fieldDonationAmountRadioName
             ? options.fieldDonationAmountRadioName
             : "transaction.donationAmt";
