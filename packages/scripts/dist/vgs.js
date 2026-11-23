@@ -21,12 +21,37 @@
 //
 // The VGS component can also be set at the page level, if necessary
 //
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 import { ENGrid, EnForm, EngridLogger } from ".";
 export class VGS {
     constructor() {
         this.logger = new EngridLogger("VGS", "black", "pink", "💳");
         this.vgsField = document.querySelector(".en__field--vgs");
         this.options = ENGrid.getOption("VGS");
+        this.errorMessages = {
+            "transaction.ccnumber": {
+                empty: "Please enter a card number",
+                invalid: "Please enter a valid card number",
+            },
+            "transaction.ccvv": {
+                empty: "Please enter a CVV",
+                invalid: "Please enter a valid CVV",
+            },
+            "transaction.ccexpire": {
+                empty: "Please enter an expiration date",
+                invalid: "Please enter a valid expiration date",
+            },
+        };
         this.paymentTypeField = document.querySelector("#en__field_transaction_paymenttype");
         this._form = EnForm.getInstance();
         this.field_expiration_month = null;
@@ -129,7 +154,8 @@ export class VGS {
                     "normal",
             },
         };
-        const options = this.options;
+        const _a = this.options || {}, { errorMessages } = _a, options = __rest(_a, ["errorMessages"]);
+        this.errorMessages = ENGrid.deepMerge(this.errorMessages, errorMessages || {});
         const defaultOptions = {
             "transaction.ccnumber": {
                 showCardIcon: true,
@@ -141,7 +167,7 @@ export class VGS {
                 // Autocomplete is not customizable
                 autoComplete: "cc-number",
                 validations: ["required", "validCardNumber"],
-                validCardBrands: null
+                validCardBrands: null,
             },
             "transaction.ccvv": {
                 showCardIcon: false,
@@ -163,7 +189,8 @@ export class VGS {
         if (options &&
             options["transaction.ccnumber"] &&
             options["transaction.ccnumber"].validCardBrands) {
-            defaultOptions["transaction.ccnumber"].validCardBrands = options["transaction.ccnumber"].validCardBrands;
+            defaultOptions["transaction.ccnumber"].validCardBrands =
+                options["transaction.ccnumber"].validCardBrands;
         }
         // Deep merge the default options with the options set in the theme
         this.options = ENGrid.deepMerge(defaultOptions, options);
@@ -227,30 +254,51 @@ export class VGS {
         }, 1000);
     }
     validate() {
+        let isValid = true;
         if (this.paymentTypeField.value.toLowerCase() === "card" ||
             this.paymentTypeField.value.toLowerCase() === "visa" ||
             this.paymentTypeField.value.toLowerCase() === "vi") {
-            const cardContainer = document.querySelector(".en__field--vgs.en__field--ccnumber");
-            const cardEmpty = cardContainer === null || cardContainer === void 0 ? void 0 : cardContainer.querySelector(".vgs-collect-container__empty");
-            const cvvContainer = document.querySelector(".en__field--vgs.en__field--ccvv");
-            const cvvEmpty = cvvContainer === null || cvvContainer === void 0 ? void 0 : cvvContainer.querySelector(".vgs-collect-container__empty");
-            if (cardContainer && cardEmpty) {
+            const fields = [
+                {
+                    name: "transaction.ccnumber",
+                    selector: ".en__field--vgs.en__field--ccnumber",
+                },
+                {
+                    name: "transaction.ccvv",
+                    selector: ".en__field--vgs.en__field--ccvv",
+                },
+                {
+                    name: "transaction.ccexpire",
+                    selector: ".en__field--vgs.en__field--ccexpire",
+                },
+            ];
+            fields.forEach(({ name, selector }) => {
+                const container = document.querySelector(selector);
+                if (!container)
+                    return;
+                const empty = container.querySelector(".vgs-collect-container__empty");
+                const invalid = container.querySelector(".vgs-collect-container__invalid");
+                if (!empty && !invalid)
+                    return;
+                // An empty input is also invalid, so the empty message takes precedence.
+                const errorMessage = empty
+                    ? this.errorMessages[name].empty
+                    : this.errorMessages[name].invalid;
+                if (!errorMessage) {
+                    isValid = false;
+                    return;
+                }
+                const scrollToError = isValid;
                 window.setTimeout(() => {
-                    ENGrid.setError(cardContainer, "Please enter a valid card number");
-                    // Scroll to the error
-                    cardContainer.scrollIntoView({ behavior: "smooth" });
+                    ENGrid.setError(container, errorMessage);
+                    // Scroll to the first error
+                    if (scrollToError) {
+                        container.scrollIntoView({ behavior: "smooth" });
+                    }
                 }, 100);
-                return false;
-            }
-            if (cvvContainer && cvvEmpty) {
-                window.setTimeout(() => {
-                    ENGrid.setError(cvvContainer, "Please enter a valid CVV");
-                    // Scroll to the error
-                    cvvContainer.scrollIntoView({ behavior: "smooth" });
-                }, 100);
-                return false;
-            }
+                isValid = false;
+            });
         }
-        return true;
+        return isValid;
     }
 }
