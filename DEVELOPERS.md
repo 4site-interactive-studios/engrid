@@ -73,7 +73,7 @@ npm run watch
 | Page layouts | 6, plus an embedded layout |
 | Events you can subscribe to | 7 emitters |
 
-Counted from the source at v0.28.11.
+Counted from the source at v0.28.12.
 
 </details>
 
@@ -122,7 +122,7 @@ Issues and pull requests are welcome at [github.com/4site-interactive-studios/en
 | Stripe digital wallets (Apple Pay, Google Pay) | Donation and event pages with EN's wallet element | `digital-wallets.ts`, `_engrid-digital-wallets.scss` |
 | PayPal One Touch and Venmo | Donation and event pages with EN's wallet element | `digital-wallets.ts` |
 | Donor-advised fund giving (Chariot) | Donation and event pages with EN's wallet element | `digital-wallets.ts` |
-| VGS secure card fields | EN VGS fields on the page; `VGS` option for styling | `vgs.ts` |
+| VGS secure card fields | EN VGS fields on the page; `VGS` option for styling, with `errorMessages` for custom empty and invalid messages | `vgs.ts` |
 
 ### Upsells and conversion
 

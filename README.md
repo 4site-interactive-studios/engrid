@@ -38,8 +38,7 @@ ENgrid has 171 capabilities in 13 categories. A few from each category are below
 
 You switch these on per page and write the copy yourself.
 
-<!-- TODO before merge: confirm with NWF that these figures can be published here -->
-The National Wildlife Federation's opt-in ladder collected 45,710 opt-ins from 21,190 supporters between October 2025 and October 2026, as presented at ENCC DC 2026.
+The National Wildlife Federation's opt-in ladder collected 45,710 opt-ins from 21,190 supporters between October 2025 and October 2026, as presented at the Engaging Networks Community Conference (ENCC) in Washington, DC, in October 2026.
 
 ### Forms your supporters fill in
 
