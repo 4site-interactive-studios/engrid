@@ -2,6 +2,7 @@ export declare class VGS {
     private logger;
     private vgsField;
     private options;
+    private errorMessages;
     private paymentTypeField;
     private _form;
     private field_expiration_month;
