@@ -30,6 +30,20 @@ export class VGS {
     ".en__field--vgs"
   ) as HTMLDivElement;
   private options = ENGrid.getOption("VGS");
+  private errorMessages = {
+    "transaction.ccnumber": {
+      empty: "Credit Card Number is a mandatory form field.",
+      invalid: "Enter a valid card number",
+    },
+    "transaction.ccvv": {
+      empty: "CVV is a mandatory form field.",
+      invalid: "Enter a valid CVV",
+    },
+    "transaction.ccexpire": {
+      empty: "Expiration Date is a mandatory form field.",
+      invalid: "Enter a valid expiration date",
+    },
+  };
   private paymentTypeField = document.querySelector(
     "#en__field_transaction_paymenttype"
   ) as HTMLSelectElement;
@@ -100,7 +114,11 @@ export class VGS {
       },
     };
 
-    const options = this.options;
+    const { errorMessages, ...options } = this.options || {};
+    this.errorMessages = ENGrid.deepMerge(
+      this.errorMessages,
+      errorMessages || {}
+    );
     const defaultOptions = {
       "transaction.ccnumber": {
         showCardIcon: true,
@@ -113,7 +131,7 @@ export class VGS {
         // Autocomplete is not customizable
         autoComplete: "cc-number",
         validations: ["required", "validCardNumber"],
-        validCardBrands: <{ type: string }[]|null>null
+        validCardBrands: <{ type: string }[] | null>null,
       },
       "transaction.ccvv": {
         showCardIcon: false,
@@ -137,7 +155,8 @@ export class VGS {
       options["transaction.ccnumber"] &&
       options["transaction.ccnumber"].validCardBrands
     ) {
-      defaultOptions["transaction.ccnumber"].validCardBrands = options["transaction.ccnumber"].validCardBrands;
+      defaultOptions["transaction.ccnumber"].validCardBrands =
+        options["transaction.ccnumber"].validCardBrands;
     }
     // Deep merge the default options with the options set in the theme
     this.options = ENGrid.deepMerge(defaultOptions, options);
@@ -275,40 +294,56 @@ export class VGS {
     }
   };
   private validate() {
+    let isValid = true;
     if (
       this.paymentTypeField.value.toLowerCase() === "card" ||
       this.paymentTypeField.value.toLowerCase() === "visa" ||
       this.paymentTypeField.value.toLowerCase() === "vi"
     ) {
-      const cardContainer = document.querySelector(
-        ".en__field--vgs.en__field--ccnumber"
-      ) as HTMLDivElement;
-      const cardEmpty = cardContainer?.querySelector(
-        ".vgs-collect-container__empty"
-      ) as HTMLInputElement;
-      const cvvContainer = document.querySelector(
-        ".en__field--vgs.en__field--ccvv"
-      ) as HTMLDivElement;
-      const cvvEmpty = cvvContainer?.querySelector(
-        ".vgs-collect-container__empty"
-      ) as HTMLInputElement;
-      if (cardContainer && cardEmpty) {
+      const fields = [
+        {
+          name: "transaction.ccnumber",
+          selector: ".en__field--vgs.en__field--ccnumber",
+        },
+        {
+          name: "transaction.ccvv",
+          selector: ".en__field--vgs.en__field--ccvv",
+        },
+        {
+          name: "transaction.ccexpire",
+          selector: ".en__field--vgs.en__field--ccexpire",
+        },
+      ] as const;
+      fields.forEach(({ name, selector }) => {
+        const container = document.querySelector(selector) as HTMLDivElement;
+        if (!container) return;
+
+        const empty = container.querySelector(".vgs-collect-container__empty");
+        const invalid = container.querySelector(
+          ".vgs-collect-container__invalid"
+        );
+        if (!empty && !invalid) return;
+
+        // An empty input is also invalid, so the empty message takes precedence.
+        const errorMessage = empty
+          ? this.errorMessages[name].empty
+          : this.errorMessages[name].invalid;
+        if (!errorMessage) {
+          isValid = false;
+          return;
+        }
+
+        const scrollToError = isValid;
         window.setTimeout(() => {
-          ENGrid.setError(cardContainer, "Please enter a valid card number");
-          // Scroll to the error
-          cardContainer.scrollIntoView({ behavior: "smooth" });
+          ENGrid.setError(container, errorMessage);
+          // Scroll to the first error
+          if (scrollToError) {
+            container.scrollIntoView({ behavior: "smooth" });
+          }
         }, 100);
-        return false;
-      }
-      if (cvvContainer && cvvEmpty) {
-        window.setTimeout(() => {
-          ENGrid.setError(cvvContainer, "Please enter a valid CVV");
-          // Scroll to the error
-          cvvContainer.scrollIntoView({ behavior: "smooth" });
-        }, 100);
-        return false;
-      }
+        isValid = false;
+      });
     }
-    return true;
+    return isValid;
   }
 }

@@ -149,6 +149,20 @@ export interface Options {
   VGS?:
     | false
     | {
+        errorMessages?: {
+          "transaction.ccnumber"?: {
+            empty?: string;
+            invalid?: string;
+          };
+          "transaction.ccvv"?: {
+            empty?: string;
+            invalid?: string;
+          };
+          "transaction.ccexpire"?: {
+            empty?: string;
+            invalid?: string;
+          };
+        };
         "transaction.ccnumber"?: {
           showCardIcon?: boolean | object;
           css?: {
