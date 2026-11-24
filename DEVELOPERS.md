@@ -146,7 +146,6 @@ Issues and pull requests are welcome at [github.com/4site-interactive-studios/en
 | URL merge tags | `{engrid_data~[key]~[default]}` plus `engrid_data[key]` URL parameter | `data-replace.ts`, `_engrid-data-replace.scss` |
 | Live frequency merge tags | `[[frequency]]` | `live-frequency.ts` |
 | Remember Me | `RememberMe` (off by default) | `remember-me.ts` |
-| Remember Me across domains | `RememberMe.remoteUrl` | `remember-me.ts` |
 | Remember Me encryption | `RememberMe.encryptData` | `remember-me.ts` |
 | Click-to-reveal content | `setattr--{attr}--{value}` class | `set-attr.ts` |
 | Conditional content by radio or checkbox | `engrid__{field}-{value}` classes | `show-hide-radio-checkboxes.ts` |

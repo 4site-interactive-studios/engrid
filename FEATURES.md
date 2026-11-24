@@ -2,7 +2,7 @@
 
 This is the full list behind the summary in the [README](README.md). Developers can find how to turn each one on in [DEVELOPERS.md](DEVELOPERS.md#how-to-turn-each-feature-on).
 
-ENgrid has 72 features and 82 enhancements, plus 17 integration capabilities across nine services. All of them are listed below.
+ENgrid has 71 features and 82 enhancements, plus 17 integration capabilities across nine services. All of them are listed below.
 
 - **Feature**: something Engaging Networks (EN) pages can't do natively
 - **Enhancement**: something Engaging Networks does that ENgrid improves or fixes
@@ -13,7 +13,7 @@ ENgrid has 72 features and 82 enhancements, plus 17 integration capabilities acr
 | --- | --- | --- | --- | --- |
 | [Donations and payments](#donations-and-payments) | 11 | 20 | 5 | 36 |
 | [Upsells and conversion](#upsells-and-conversion) | 7 | 1 | 0 | 8 |
-| [Personalization and conditional content](#personalization-and-conditional-content) | 18 | 0 | 0 | 18 |
+| [Personalization and conditional content](#personalization-and-conditional-content) | 17 | 0 | 0 | 17 |
 | [Forms and fields](#forms-and-fields) | 10 | 9 | 0 | 19 |
 | [Advocacy, eCards and events](#advocacy-ecards-and-events) | 2 | 11 | 0 | 13 |
 | [Accessibility](#accessibility) | 1 | 13 | 0 | 14 |
@@ -24,7 +24,7 @@ ENgrid has 72 features and 82 enhancements, plus 17 integration capabilities acr
 | [Analytics and tracking](#analytics-and-tracking) | 0 | 0 | 8 | 8 |
 | [Branding and theming](#branding-and-theming) | 2 | 6 | 0 | 8 |
 | [Page Builder tools](#page-builder-tools) | 2 | 0 | 0 | 2 |
-| **Total** | **72** | **82** | **17** | **171** |
+| **Total** | **71** | **82** | **17** | **170** |
 
 ### Donations and payments
 
@@ -95,7 +95,6 @@ Show each supporter the content that fits what they chose, where they came from 
 | URL merge tags | Fills placeholders in page copy with values from the link | Feature | Opt-in |
 | Live frequency merge tags | Inserts the selected frequency into page copy, in lowercase, capitalized or uppercase | Feature | Opt-in |
 | Remember Me | Saves a supporter's details with their consent and fills them in on their next visit, with a link to clear them | Feature | Opt-in |
-| Remember Me across domains | Shares saved details between your web domains | Feature | Opt-in |
 | Remember Me encryption | Encrypts the saved details (AES-GCM) | Feature | Opt-in |
 | Click-to-reveal content | Lets a link or button reveal or swap content on the page | Feature | Opt-in |
 | Conditional content by radio or checkbox | Shows or hides content based on any selected option | Feature | Opt-in |

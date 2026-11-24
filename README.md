@@ -11,12 +11,12 @@ A donation page that loads slowly, fails with a screen reader, or makes a return
 | Cost | Free to use, change and share |
 | Where you work | Engaging Networks Page Builder, the same as today |
 | Who uses it day to day | Content admins. You need a developer for setup only |
-| What's included | 72 features, 82 enhancements and 17 integration capabilities across nine services |
+| What's included | 71 features, 82 enhancements and 17 integration capabilities across nine services |
 | Who maintains it | [4Site Studios](https://www.4sitestudios.com/engaging-networks/?ms=github), since 2017 |
 
 ## What ENgrid adds to your pages
 
-ENgrid has 171 capabilities in 13 categories. A few from each category are below, and the [full list](FEATURES.md) describes every one. Accessibility, speed and fixes apply to every page with no setup. You switch most of the others on per page or per theme.
+ENgrid has 170 capabilities in 13 categories. A few from each category are below, and the [full list](FEATURES.md) describes every one. Accessibility, speed and fixes apply to every page with no setup. You switch most of the others on per page or per theme.
 
 ### Donations and upsells
 
@@ -42,7 +42,7 @@ The National Wildlife Federation's opt-in ladder collected 45,710 opt-ins from 2
 
 ### Forms your supporters fill in
 
-**[Personalization and conditional content](FEATURES.md#personalization-and-conditional-content)** (18)
+**[Personalization and conditional content](FEATURES.md#personalization-and-conditional-content)** (17)
 
 - Supporters who agree to be remembered have their details filled in when they come back
 - Returning supporters are greeted by name
