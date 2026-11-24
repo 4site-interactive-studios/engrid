@@ -2,23 +2,25 @@
 
 # ENgrid: page template framework for Engaging Networks
 
-ENgrid is a free, open-source set of page templates for [Engaging Networks](https://www.engagingnetworks.net/) (EN). You keep building pages in EN's Page Builder the way you do today, and ENgrid adds 150+ features and enhancements that EN pages don't have out of the box.
+ENgrid is a free, open-source set of page templates for [Engaging Networks](https://www.engagingnetworks.net/) (EN). You keep building pages in Page Builder the way you do today, and ENgrid adds 150+ features and enhancements that Engaging Networks pages don't have out of the box.
 
 A donation page that loads slowly, fails with a screen reader, or makes a returning donor retype their address loses gifts you already paid to earn. More than 30 organizations run their donation, advocacy and event pages on ENgrid.
 
-| | |
+| At a glance | |
 | --- | --- |
 | Cost | Free to use, change and share |
 | Where you work | Engaging Networks Page Builder, the same as today |
-| Who uses it day to day | Content admins, with no developer needed after setup |
-| What's included | 72 features, 82 enhancements and 17 integration capabilities |
+| Who uses it day to day | Content admins. You need a developer for setup only |
+| What's included | 72 features, 82 enhancements and 17 integration capabilities across nine services |
 | Who maintains it | [4Site Studios](https://www.4sitestudios.com/engaging-networks/?ms=github), since 2017 |
 
-## What you can do with ENgrid
+## What ENgrid adds to your pages
 
-A selection from each category is below, and the [full list](FEATURES.md) describes all 171. Accessibility, speed and fixes apply to every page with no setup. Most other features are switched on per page or per theme.
+ENgrid has 171 capabilities in 13 categories. A few from each category are below, and the [full list](FEATURES.md) describes every one. Accessibility, speed and fixes apply to every page with no setup. You switch most of the others on per page or per theme.
 
-### Donations and payments
+### Donations and upsells
+
+**[Donations and payments](FEATURES.md#donations-and-payments)** (36)
 
 - The submit button shows the amount and frequency the donor has chosen
 - Each giving frequency can have its own set of gift amounts
@@ -27,31 +29,29 @@ A selection from each category is below, and the [full list](FEATURES.md) descri
 - A gift below your minimum or above your maximum shows an error before the donor can submit
 - Premium gifts are shown or hidden by gift amount and frequency
 
-[All 36 in donations and payments](FEATURES.md#donations-and-payments)
-
-### Upsells and conversion
+**[Upsells and conversion](FEATURES.md#upsells-and-conversion)** (8)
 
 - Ask one-time donors to switch to a suggested monthly amount when they submit
 - Show an offer when a visitor moves to leave the page
 - Ask for a second gift on the thank-you page
 - Ask opt-in questions one at a time on the thank-you page (the opt-in ladder)
 
+You switch these on per page and write the copy yourself.
+
 <!-- TODO before merge: confirm with NWF that these figures can be published here -->
 The National Wildlife Federation's opt-in ladder collected 45,710 opt-ins from 21,190 supporters between October 2025 and October 2026, as presented at ENCC DC 2026.
 
-[All 8 in upsells and conversion](FEATURES.md#upsells-and-conversion)
+### Forms your supporters fill in
 
-### Personalization and conditional content
+**[Personalization and conditional content](FEATURES.md#personalization-and-conditional-content)** (18)
 
-- Returning supporters who gave consent have their details filled in for them
+- Supporters who agree to be remembered have their details filled in when they come back
 - Returning supporters are greeted by name
-- Content is shown or hidden by gift amount, frequency, payment method or any option the supporter selects
-- A link can switch a page to a different layout or content variant, with no duplicate page to maintain
+- Show or hide content by gift amount, frequency, payment method or any option the supporter selects
+- A link can switch a page to a different layout or content variant, so you have no duplicate page to maintain
 - The supporter's country is selected for them
 
-[All 18 in personalization and conditional content](FEATURES.md#personalization-and-conditional-content)
-
-### Forms and fields
+**[Forms and fields](FEATURES.md#forms-and-fields)** (19)
 
 - A one-click link in an email can submit the form as soon as the page loads
 - A form section collapses when its required fields are already filled
@@ -59,82 +59,68 @@ The National Wildlife Federation's opt-in ladder collected 45,710 opt-ins from 2
 - Browser autofill works on supporter and card fields
 - A progress bar shows supporters how far they are through a multi-page form
 
-[All 19 in forms and fields](FEATURES.md#forms-and-fields)
-
-### Advocacy, eCards and events
-
-- Donors can send an eCard along with their gift
-- An eCard page can become an action sent to a fixed recipient
-- Event ticket prices are formatted in the local currency
-- Share buttons and the click-to-call, tweet-to-target and letter-to-target blocks are restyled
-
-[All 13 in advocacy, eCards and events](FEATURES.md#advocacy-ecards-and-events)
-
-### Accessibility
+**[Accessibility](FEATURES.md#accessibility)** (14)
 
 - Screen readers announce which fields are required, which have errors, and a summary of the errors
 - After a failed submit, focus moves to the first field that needs fixing
 - Every page has a skip to main content link and visible keyboard focus outlines
 - eCard and premium gift images get alt text
 
-No template can guarantee compliance by itself, but you start from a much stronger baseline than a stock page.
+These apply to every page with no setup. A template can't guarantee compliance by itself.
 
-[All 14 in accessibility](FEATURES.md#accessibility)
+**[International](FEATURES.md#international)** (7)
 
-### Layout, media and display
+- Address fields are relabeled for 10 countries
+- The currency list changes with the supporter's country
+- Supporters who choose a country you specify are sent to another page
+- ENgrid's own text is in English and Spanish and can be extended
+
+### Page design and editing
+
+**[Layout, media and display](FEATURES.md#layout-media-and-display)** (22)
 
 - Choose one of six page layouts, with one or two columns, for each page
 - Set a full-page background image or video, or cross-fade several images
 - Add photo credits, click-to-expand sections and a scrolling ticker
 - Images load only as they are needed, so pages appear sooner
 
-[All 22 in layout, media and display](FEATURES.md#layout-media-and-display)
+**[Branding and theming](FEATURES.md#branding-and-theming)** (8)
 
-### Data quality and validation
+- Colors, fonts, fields and buttons are set once and apply to every page
+- Sub-brands can have their own styling within the same theme
+
+**[Page Builder tools](FEATURES.md#page-builder-tools)** (2)
+
+- Hidden and conditional content is color-coded in Page Builder, so you can see what a supporter will and won't see before you publish
+- A shortcut opens a live page's edit screen in Page Builder
+
+**[Advocacy, eCards and events](FEATURES.md#advocacy-ecards-and-events)** (13)
+
+- Donors can send an eCard along with their gift
+- An eCard page can become an action sent to a fixed recipient
+- Event ticket prices are formatted in the local currency
+- Share buttons and the click-to-call, tweet-to-target and letter-to-target blocks are restyled
+
+**[Embeds](FEATURES.md#embeds)** (7)
+
+- Engaging Networks forms placed inside your website, or inside other Engaging Networks pages, resize to fit
+- Several embedded forms submit one after another so records are not lost
+
+### Data and tracking
+
+**[Data quality and validation](FEATURES.md#data-quality-and-validation)** (9)
 
 - Names, addresses and cities are capitalized on submit
 - Email addresses are checked in real time with FreshAddress or NeverBounce
 - US addresses and phone numbers are standardized with TidyContact, a paid service
 - US ZIP codes are validated and formatted
 
-[All 9 in data quality and validation](FEATURES.md#data-quality-and-validation)
-
-### International
-
-- Address fields are relabeled for 10 countries
-- The currency list changes with the supporter's country
-- Supporters who choose a country you specify are sent to another page
-- ENgrid's own text comes in English and Spanish and can be extended
-
-[All 7 in international](FEATURES.md#international)
-
-### Embeds
-
-- EN forms placed inside your website, or inside other EN pages, resize to fit
-- Several embedded forms submit one after another so records are not lost
-
-[All 7 in embeds](FEATURES.md#embeds)
-
-### Analytics and tracking
+**[Analytics and tracking](FEATURES.md#analytics-and-tracking)** (8)
 
 - Page details, campaign link parameters, opt-in choices and upsell events are sent to Google Tag Manager for you
-- Email, phone and address are hashed before they are sent for ad platform matching
+- Email, phone and address are sent in hashed form, never as plain text, for ad platform matching
 
 Your Tag Manager container still needs tags and triggers set up to use these events.
-
-[All 8 in analytics and tracking](FEATURES.md#analytics-and-tracking)
-
-### Branding and theming
-
-- Colors, fonts, fields and buttons are set once and apply to every page
-- Sub-brands can have their own styling within the same theme
-
-[All 8 in branding and theming](FEATURES.md#branding-and-theming)
-
-### Page Builder tools
-
-- Hidden and conditional content is color-coded in Page Builder, so you can see what a supporter will and won't see before you publish
-- A shortcut opens a live page's edit screen in Page Builder
 
 ## Services ENgrid works with
 
@@ -150,17 +136,22 @@ Your Tag Manager container still needs tags and triggers set up to use these eve
 | NeverBounce | Real-time email validation | Requires your own account |
 | TidyContact | Address standardization (US) and phone formatting | A paid 4Site service with its own agreement |
 
-## How ENgrid is built and shared
+## How to get ENgrid
 
-### Improvements are shared
+ENgrid needs a developer to set up your theme. After that, your content admins run it from Page Builder.
+
+1. With your own developer: the code is free, and [DEVELOPERS.md](DEVELOPERS.md) has the setup steps
+2. With 4Site: we offer theme builds, migrations and ongoing updates as services. [Contact us](#work-with-4site) to talk it through
+
+## Where ENgrid comes from
 
 Every ENgrid feature started as a problem on an organization's page. We fixed it, then open-sourced the fix. When one organization funds an accessibility improvement, every organization on ENgrid gets it in a later update, the way a WordPress or Drupal update includes improvements you didn't commission.
 
 ENgrid began in 2017 as a partnership between 4Site and Engaging Networks. That work became the Free & Flexible page templates that come with Engaging Networks, and ENgrid is the fuller version, maintained by the same team.
 
-### It's yours to keep
+## What you own
 
-ENgrid is released under [The Unlicense](https://github.com/4site-interactive-studios/engrid/blob/main/LICENSE). Your theme is in your own GitHub repository, the [documentation](https://engrid.4sitestudios.com/) is public, and any developer can pick it up. You are not locked in to 4Site.
+ENgrid is released under [The Unlicense](https://github.com/4site-interactive-studios/engrid/blob/main/LICENSE). Your theme is in your own GitHub repository, the [documentation](https://engrid.4sitestudios.com/) is public, and any developer can pick it up, so you are not tied to 4Site.
 
 ## Organizations using ENgrid
 
@@ -170,7 +161,7 @@ ENgrid is released under [The Unlicense](https://github.com/4site-interactive-st
 
 ### Does ENgrid replace Page Builder?
 
-No. ENgrid is the page template your EN pages use. You still log in to Engaging Networks and build pages in Page Builder the same way.
+No. ENgrid is the page template your Engaging Networks pages use. You still log in to Engaging Networks and build pages in Page Builder the same way.
 
 ### Do we need a developer?
 
