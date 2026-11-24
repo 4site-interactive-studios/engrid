@@ -12,6 +12,7 @@ export class Ecard {
   constructor() {
     if (!this.shouldRun()) return;
     this.altsAndArias();
+    this.enhanceRecipientFields();
     this._form.onValidate.subscribe(() => this.checkRecipientFields());
     const schedule = ENGrid.getUrlParameter("engrid_ecard.schedule");
     const scheduleField = ENGrid.getField("ecard.schedule") as HTMLInputElement;
@@ -62,6 +63,146 @@ export class Ecard {
 
   private shouldRun() {
     return ENGrid.getPageType() === "ECARD";
+  }
+
+  private enhanceRecipientFields() {
+    const recipients = document.querySelector(".en__ecardrecipients");
+    if (!recipients) return;
+
+    const nameField = recipients.querySelector(
+      ".en__ecardrecipients__name input"
+    ) as HTMLInputElement | null;
+    const emailField = recipients.querySelector(
+      ".en__ecardrecipients__email input"
+    ) as HTMLInputElement | null;
+    const addButton = recipients.querySelector(
+      ".en__ecarditems__addrecipient"
+    ) as HTMLButtonElement | null;
+    const recipientList = recipients.querySelector(
+      ".en__ecardrecipients__list"
+    );
+
+    if (!nameField || !emailField || !addButton || !recipientList) return;
+
+    recipientList
+      .querySelectorAll(".ecardrecipient__email")
+      .forEach((input) => input.setAttribute("type", "email"));
+
+    recipientList.addEventListener("input", (event) => {
+      const input = event.target as HTMLInputElement;
+      if (!input.matches(".ecardrecipient__email")) return;
+      input.setAttribute("type", "email");
+      const isInvalid = input.validity.typeMismatch;
+      input.classList.toggle("invalid", isInvalid);
+      if (isInvalid) {
+        this.showRecipientEmailError(input);
+      } else {
+        this.clearRecipientEmailError(input);
+      }
+    });
+
+    const emailErrorObserver = new MutationObserver(() => {
+      if (emailField.classList.contains("invalid")) {
+        this.showRecipientEmailError(emailField);
+      } else {
+        this.clearRecipientEmailError(emailField);
+      }
+    });
+    emailErrorObserver.observe(emailField, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+    if (emailField.classList.contains("invalid")) {
+      this.showRecipientEmailError(emailField);
+    }
+
+    // A hidden add button denotes a single-recipient form, where Enter should
+    // retain its normal form behavior.
+    if (addButton.offsetHeight === 0) return;
+
+    [nameField, emailField].forEach((input) => {
+      input.addEventListener("keydown", (event: KeyboardEvent) => {
+        if (event.key !== "Enter" || event.isComposing) return;
+        event.preventDefault();
+        addButton.click();
+      });
+    });
+
+    const recipientListObserver = new MutationObserver((mutations) => {
+      let recipientAdded = false;
+      mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach((node) => {
+          if (!(node instanceof HTMLElement)) return;
+          if (
+            node.matches(".en__ecardrecipients__recipient") ||
+            node.querySelector(".en__ecardrecipients__recipient")
+          ) {
+            recipientAdded = true;
+          }
+        });
+      });
+
+      if (!recipientAdded) return;
+      recipientList
+        .querySelectorAll(".ecardrecipient__email")
+        .forEach((input) => input.setAttribute("type", "email"));
+      nameField.value = "";
+      emailField.value = "";
+      emailField.classList.remove("invalid");
+      this.clearRecipientEmailError(emailField);
+      nameField.focus();
+    });
+    recipientListObserver.observe(recipientList, {
+      childList: true,
+      subtree: true,
+    });
+  }
+
+  private showRecipientEmailError(input: HTMLInputElement) {
+    const parent = input.parentElement;
+    if (!parent) return;
+
+    let error = Array.from(parent.children).find((child) =>
+      child.classList.contains("engrid__ecardrecipient__error")
+    ) as HTMLElement | undefined;
+    if (!error) {
+      error = document.createElement("div");
+      error.className = "en__field__error engrid__ecardrecipient__error";
+      error.id = `ecard-recipient-error-${Math.random()
+        .toString(36)
+        .substring(2, 9)}`;
+      error.setAttribute("role", "alert");
+      error.textContent = "Enter a valid email address";
+      parent.appendChild(error);
+    }
+
+    input.setAttribute("aria-invalid", "true");
+    const describedBy = (input.getAttribute("aria-describedby") || "")
+      .split(/\s+/)
+      .filter(Boolean);
+    if (!describedBy.includes(error.id)) describedBy.push(error.id);
+    input.setAttribute("aria-describedby", describedBy.join(" "));
+  }
+
+  private clearRecipientEmailError(input: HTMLInputElement) {
+    const parent = input.parentElement;
+    if (!parent) return;
+
+    const error = Array.from(parent.children).find((child) =>
+      child.classList.contains("engrid__ecardrecipient__error")
+    );
+    if (error) {
+      const describedBy = (input.getAttribute("aria-describedby") || "")
+        .split(/\s+/)
+        .filter((id) => id && id !== error.id);
+      if (describedBy.length) {
+        input.setAttribute("aria-describedby", describedBy.join(" "));
+      } else {
+        input.removeAttribute("aria-describedby");
+      }
+      error.remove();
+    }
+    input.removeAttribute("aria-invalid");
   }
 
   private checkRecipientFields() {

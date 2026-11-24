@@ -4,6 +4,9 @@ export declare class Ecard {
     private logger;
     constructor();
     private shouldRun;
+    private enhanceRecipientFields;
+    private showRecipientEmailError;
+    private clearRecipientEmailError;
     private checkRecipientFields;
     private altsAndArias;
     private altsAndAriasEcardItemsList;
