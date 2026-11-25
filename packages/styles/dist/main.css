@@ -5296,6 +5296,7 @@ button.en__ecarditems__addrecipient {
   color: #323232;
 }
 
+.en__ecardrecipients__name,
 .en__ecardrecipients__email {
   position: relative;
 }
@@ -5310,6 +5311,7 @@ button.en__ecarditems__addrecipient {
   width: 100%;
 }
 
+.en__ecardrecipients__name .engrid__ecardrecipient__error,
 .en__ecardrecipients__email .engrid__ecardrecipient__error {
   position: absolute;
   top: 100%;

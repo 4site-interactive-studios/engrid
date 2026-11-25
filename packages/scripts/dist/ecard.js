@@ -72,18 +72,47 @@ export class Ecard {
             const isInvalid = input.validity.typeMismatch;
             input.classList.toggle("invalid", isInvalid);
             if (isInvalid) {
-                this.showRecipientEmailError(input);
+                this.showRecipientError(input, "Enter a valid email address");
             }
             else {
-                this.clearRecipientEmailError(input);
+                this.clearRecipientError(input);
             }
+        });
+        recipientList.addEventListener("focusout", (event) => {
+            var _a;
+            const input = event.target;
+            if (!input.matches(".ecardrecipient__name, .ecardrecipient__email") ||
+                input.value.trim()) {
+                return;
+            }
+            (_a = input.closest(".en__ecardrecipients__recipient")) === null || _a === void 0 ? void 0 : _a.remove();
+        });
+        const nameErrorObserver = new MutationObserver(() => {
+            if (nameField.classList.contains("invalid") &&
+                emailField.value.trim() &&
+                !nameField.value.trim()) {
+                this.showRecipientError(nameField, "Enter a Recipient Name");
+            }
+            else {
+                this.clearRecipientError(nameField);
+            }
+        });
+        nameErrorObserver.observe(nameField, {
+            attributes: true,
+            attributeFilter: ["class"],
+        });
+        nameField.addEventListener("input", () => {
+            if (!nameField.value.trim())
+                return;
+            nameField.classList.remove("invalid");
+            this.clearRecipientError(nameField);
         });
         const emailErrorObserver = new MutationObserver(() => {
             if (emailField.classList.contains("invalid")) {
-                this.showRecipientEmailError(emailField);
+                this.showRecipientError(emailField, "Enter a valid email address");
             }
             else {
-                this.clearRecipientEmailError(emailField);
+                this.clearRecipientError(emailField);
             }
         });
         emailErrorObserver.observe(emailField, {
@@ -91,20 +120,33 @@ export class Ecard {
             attributeFilter: ["class"],
         });
         if (emailField.classList.contains("invalid")) {
-            this.showRecipientEmailError(emailField);
+            this.showRecipientError(emailField, "Enter a valid email address");
         }
         // A hidden add button denotes a single-recipient form, where Enter should
         // retain its normal form behavior.
         if (addButton.offsetHeight === 0)
             return;
-        [nameField, emailField].forEach((input) => {
-            input.addEventListener("keydown", (event) => {
-                if (event.key !== "Enter" || event.isComposing)
-                    return;
-                event.preventDefault();
-                addButton.click();
-            });
-        });
+        document.addEventListener("click", (event) => {
+            const target = event.target;
+            if (!addButton.contains(target))
+                return;
+            if (!emailField.value.trim() || nameField.value.trim())
+                return;
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            nameField.classList.add("invalid");
+            this.showRecipientError(nameField, "Enter a Recipient Name");
+        }, true);
+        document.addEventListener("keydown", (event) => {
+            if ((event.target !== nameField && event.target !== emailField) ||
+                event.key !== "Enter" ||
+                event.isComposing) {
+                return;
+            }
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            addButton.click();
+        }, true);
         const recipientListObserver = new MutationObserver((mutations) => {
             let recipientAdded = false;
             mutations.forEach((mutation) => {
@@ -124,8 +166,10 @@ export class Ecard {
                 .forEach((input) => input.setAttribute("type", "email"));
             nameField.value = "";
             emailField.value = "";
+            nameField.classList.remove("invalid");
             emailField.classList.remove("invalid");
-            this.clearRecipientEmailError(emailField);
+            this.clearRecipientError(nameField);
+            this.clearRecipientError(emailField);
             nameField.focus();
         });
         recipientListObserver.observe(recipientList, {
@@ -133,7 +177,7 @@ export class Ecard {
             subtree: true,
         });
     }
-    showRecipientEmailError(input) {
+    showRecipientError(input, message) {
         const parent = input.parentElement;
         if (!parent)
             return;
@@ -145,9 +189,9 @@ export class Ecard {
                 .toString(36)
                 .substring(2, 9)}`;
             error.setAttribute("role", "alert");
-            error.textContent = "Enter a valid email address";
             parent.appendChild(error);
         }
+        error.textContent = message;
         input.setAttribute("aria-invalid", "true");
         const describedBy = (input.getAttribute("aria-describedby") || "")
             .split(/\s+/)
@@ -156,7 +200,7 @@ export class Ecard {
             describedBy.push(error.id);
         input.setAttribute("aria-describedby", describedBy.join(" "));
     }
-    clearRecipientEmailError(input) {
+    clearRecipientError(input) {
         const parent = input.parentElement;
         if (!parent)
             return;
@@ -175,7 +219,20 @@ export class Ecard {
         }
         input.removeAttribute("aria-invalid");
     }
+    removeEmptyRecipientRows(recipientList) {
+        recipientList
+            .querySelectorAll(".en__ecardrecipients__recipient")
+            .forEach((recipient) => {
+            const name = recipient.querySelector(".ecardrecipient__name");
+            const email = recipient.querySelector(".ecardrecipient__email");
+            if (!(name === null || name === void 0 ? void 0 : name.value.trim()) || !(email === null || email === void 0 ? void 0 : email.value.trim()))
+                recipient.remove();
+        });
+    }
     checkRecipientFields() {
+        const recipientList = document.querySelector(".en__ecardrecipients__list");
+        if (recipientList)
+            this.removeEmptyRecipientRows(recipientList);
         const addRecipientButton = document.querySelector(".en__ecarditems__addrecipient");
         // If we find the "+" button and there's no hidden recipient field, click on the button
         if (addRecipientButton &&
