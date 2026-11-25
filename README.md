@@ -176,7 +176,7 @@ All the code in this repository is free to use, change and share. 4Site offers t
 
 ### How is security handled?
 
-See [PCI-COMPLIANCE.md](PCI-COMPLIANCE.md), and report anything you find through [GitHub issues](https://github.com/4site-interactive-studios/engrid/issues).
+See [PCI-COMPLIANCE.md](PCI-COMPLIANCE.md). To report a security problem, email support@4sitestudios.com.
 
 ## Documentation and resources
 
