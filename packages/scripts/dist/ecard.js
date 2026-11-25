@@ -79,13 +79,14 @@ export class Ecard {
             }
         });
         recipientList.addEventListener("focusout", (event) => {
-            var _a;
             const input = event.target;
             if (!input.matches(".ecardrecipient__name, .ecardrecipient__email") ||
                 input.value.trim()) {
                 return;
             }
-            (_a = input.closest(".en__ecardrecipients__recipient")) === null || _a === void 0 ? void 0 : _a.remove();
+            const recipient = input.closest(".en__ecardrecipients__recipient");
+            if (recipient)
+                this.removeRecipientRow(recipient);
         });
         const nameErrorObserver = new MutationObserver(() => {
             if (nameField.classList.contains("invalid") &&
@@ -219,14 +220,19 @@ export class Ecard {
         }
         input.removeAttribute("aria-invalid");
     }
+    removeRecipientRow(recipient) {
+        const removeButton = recipient.querySelector(".ecardrecipient__remove button");
+        removeButton === null || removeButton === void 0 ? void 0 : removeButton.click();
+    }
     removeEmptyRecipientRows(recipientList) {
         recipientList
             .querySelectorAll(".en__ecardrecipients__recipient")
             .forEach((recipient) => {
             const name = recipient.querySelector(".ecardrecipient__name");
             const email = recipient.querySelector(".ecardrecipient__email");
-            if (!(name === null || name === void 0 ? void 0 : name.value.trim()) || !(email === null || email === void 0 ? void 0 : email.value.trim()))
-                recipient.remove();
+            if (!(name === null || name === void 0 ? void 0 : name.value.trim()) || !(email === null || email === void 0 ? void 0 : email.value.trim())) {
+                this.removeRecipientRow(recipient);
+            }
         });
     }
     checkRecipientFields() {

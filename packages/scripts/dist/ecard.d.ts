@@ -7,6 +7,7 @@ export declare class Ecard {
     private enhanceRecipientFields;
     private showRecipientError;
     private clearRecipientError;
+    private removeRecipientRow;
     private removeEmptyRecipientRows;
     private checkRecipientFields;
     private altsAndArias;

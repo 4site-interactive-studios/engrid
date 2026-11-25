@@ -109,7 +109,8 @@ export class Ecard {
       ) {
         return;
       }
-      input.closest(".en__ecardrecipients__recipient")?.remove();
+      const recipient = input.closest(".en__ecardrecipients__recipient");
+      if (recipient) this.removeRecipientRow(recipient);
     });
 
     const nameErrorObserver = new MutationObserver(() => {
@@ -264,6 +265,13 @@ export class Ecard {
     input.removeAttribute("aria-invalid");
   }
 
+  private removeRecipientRow(recipient: Element) {
+    const removeButton = recipient.querySelector(
+      ".ecardrecipient__remove button"
+    ) as HTMLButtonElement | null;
+    removeButton?.click();
+  }
+
   private removeEmptyRecipientRows(recipientList: Element) {
     recipientList
       .querySelectorAll(".en__ecardrecipients__recipient")
@@ -274,7 +282,9 @@ export class Ecard {
         const email = recipient.querySelector(
           ".ecardrecipient__email"
         ) as HTMLInputElement | null;
-        if (!name?.value.trim() || !email?.value.trim()) recipient.remove();
+        if (!name?.value.trim() || !email?.value.trim()) {
+          this.removeRecipientRow(recipient);
+        }
       });
   }
 
