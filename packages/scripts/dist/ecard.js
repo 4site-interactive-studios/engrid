@@ -6,6 +6,7 @@ export class Ecard {
         if (!this.shouldRun())
             return;
         this.altsAndArias();
+        this.enhanceRecipientFields();
         this._form.onValidate.subscribe(() => this.checkRecipientFields());
         const schedule = ENGrid.getUrlParameter("engrid_ecard.schedule");
         const scheduleField = ENGrid.getField("ecard.schedule");
@@ -50,7 +51,194 @@ export class Ecard {
     shouldRun() {
         return ENGrid.getPageType() === "ECARD";
     }
+    enhanceRecipientFields() {
+        const recipients = document.querySelector(".en__ecardrecipients");
+        if (!recipients)
+            return;
+        const nameField = recipients.querySelector(".en__ecardrecipients__name input");
+        const emailField = recipients.querySelector(".en__ecardrecipients__email input");
+        const addButton = recipients.querySelector(".en__ecarditems__addrecipient");
+        const recipientList = recipients.querySelector(".en__ecardrecipients__list");
+        if (!nameField || !emailField || !addButton || !recipientList)
+            return;
+        recipientList
+            .querySelectorAll(".ecardrecipient__email")
+            .forEach((input) => input.setAttribute("type", "email"));
+        recipientList.addEventListener("input", (event) => {
+            const input = event.target;
+            if (!input.matches(".ecardrecipient__email"))
+                return;
+            input.setAttribute("type", "email");
+            const isInvalid = input.validity.typeMismatch;
+            input.classList.toggle("invalid", isInvalid);
+            if (isInvalid) {
+                this.showRecipientError(input, "Enter a valid email address");
+            }
+            else {
+                this.clearRecipientError(input);
+            }
+        });
+        recipientList.addEventListener("focusout", (event) => {
+            const input = event.target;
+            if (!input.matches(".ecardrecipient__name, .ecardrecipient__email") ||
+                input.value.trim()) {
+                return;
+            }
+            const recipient = input.closest(".en__ecardrecipients__recipient");
+            if (recipient)
+                this.removeRecipientRow(recipient);
+        });
+        const nameErrorObserver = new MutationObserver(() => {
+            if (nameField.classList.contains("invalid") &&
+                emailField.value.trim() &&
+                !nameField.value.trim()) {
+                this.showRecipientError(nameField, "Enter a Recipient Name");
+            }
+            else {
+                this.clearRecipientError(nameField);
+            }
+        });
+        nameErrorObserver.observe(nameField, {
+            attributes: true,
+            attributeFilter: ["class"],
+        });
+        nameField.addEventListener("input", () => {
+            if (!nameField.value.trim())
+                return;
+            nameField.classList.remove("invalid");
+            this.clearRecipientError(nameField);
+        });
+        const emailErrorObserver = new MutationObserver(() => {
+            if (emailField.classList.contains("invalid")) {
+                this.showRecipientError(emailField, "Enter a valid email address");
+            }
+            else {
+                this.clearRecipientError(emailField);
+            }
+        });
+        emailErrorObserver.observe(emailField, {
+            attributes: true,
+            attributeFilter: ["class"],
+        });
+        if (emailField.classList.contains("invalid")) {
+            this.showRecipientError(emailField, "Enter a valid email address");
+        }
+        // A hidden add button denotes a single-recipient form, where Enter should
+        // retain its normal form behavior.
+        if (addButton.offsetHeight === 0)
+            return;
+        document.addEventListener("click", (event) => {
+            const target = event.target;
+            if (!addButton.contains(target))
+                return;
+            if (!emailField.value.trim() || nameField.value.trim())
+                return;
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            nameField.classList.add("invalid");
+            this.showRecipientError(nameField, "Enter a Recipient Name");
+        }, true);
+        document.addEventListener("keydown", (event) => {
+            if ((event.target !== nameField && event.target !== emailField) ||
+                event.key !== "Enter" ||
+                event.isComposing) {
+                return;
+            }
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            addButton.click();
+        }, true);
+        const recipientListObserver = new MutationObserver((mutations) => {
+            let recipientAdded = false;
+            mutations.forEach((mutation) => {
+                mutation.addedNodes.forEach((node) => {
+                    if (!(node instanceof HTMLElement))
+                        return;
+                    if (node.matches(".en__ecardrecipients__recipient") ||
+                        node.querySelector(".en__ecardrecipients__recipient")) {
+                        recipientAdded = true;
+                    }
+                });
+            });
+            if (!recipientAdded)
+                return;
+            recipientList
+                .querySelectorAll(".ecardrecipient__email")
+                .forEach((input) => input.setAttribute("type", "email"));
+            nameField.value = "";
+            emailField.value = "";
+            nameField.classList.remove("invalid");
+            emailField.classList.remove("invalid");
+            this.clearRecipientError(nameField);
+            this.clearRecipientError(emailField);
+            nameField.focus();
+        });
+        recipientListObserver.observe(recipientList, {
+            childList: true,
+            subtree: true,
+        });
+    }
+    showRecipientError(input, message) {
+        const parent = input.parentElement;
+        if (!parent)
+            return;
+        let error = Array.from(parent.children).find((child) => child.classList.contains("engrid__ecardrecipient__error"));
+        if (!error) {
+            error = document.createElement("div");
+            error.className = "en__field__error engrid__ecardrecipient__error";
+            error.id = `ecard-recipient-error-${Math.random()
+                .toString(36)
+                .substring(2, 9)}`;
+            error.setAttribute("role", "alert");
+            parent.appendChild(error);
+        }
+        error.textContent = message;
+        input.setAttribute("aria-invalid", "true");
+        const describedBy = (input.getAttribute("aria-describedby") || "")
+            .split(/\s+/)
+            .filter(Boolean);
+        if (!describedBy.includes(error.id))
+            describedBy.push(error.id);
+        input.setAttribute("aria-describedby", describedBy.join(" "));
+    }
+    clearRecipientError(input) {
+        const parent = input.parentElement;
+        if (!parent)
+            return;
+        const error = Array.from(parent.children).find((child) => child.classList.contains("engrid__ecardrecipient__error"));
+        if (error) {
+            const describedBy = (input.getAttribute("aria-describedby") || "")
+                .split(/\s+/)
+                .filter((id) => id && id !== error.id);
+            if (describedBy.length) {
+                input.setAttribute("aria-describedby", describedBy.join(" "));
+            }
+            else {
+                input.removeAttribute("aria-describedby");
+            }
+            error.remove();
+        }
+        input.removeAttribute("aria-invalid");
+    }
+    removeRecipientRow(recipient) {
+        const removeButton = recipient.querySelector(".ecardrecipient__remove button");
+        removeButton === null || removeButton === void 0 ? void 0 : removeButton.click();
+    }
+    removeEmptyRecipientRows(recipientList) {
+        recipientList
+            .querySelectorAll(".en__ecardrecipients__recipient")
+            .forEach((recipient) => {
+            const name = recipient.querySelector(".ecardrecipient__name");
+            const email = recipient.querySelector(".ecardrecipient__email");
+            if (!(name === null || name === void 0 ? void 0 : name.value.trim()) || !(email === null || email === void 0 ? void 0 : email.value.trim())) {
+                this.removeRecipientRow(recipient);
+            }
+        });
+    }
     checkRecipientFields() {
+        const recipientList = document.querySelector(".en__ecardrecipients__list");
+        if (recipientList)
+            this.removeEmptyRecipientRows(recipientList);
         const addRecipientButton = document.querySelector(".en__ecarditems__addrecipient");
         // If we find the "+" button and there's no hidden recipient field, click on the button
         if (addRecipientButton &&

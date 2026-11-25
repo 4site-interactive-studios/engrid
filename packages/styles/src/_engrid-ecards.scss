@@ -45,8 +45,26 @@ button.en__ecarditems__addrecipient {
   color: #323232;
 }
 
+.en__ecardrecipients__name,
+.en__ecardrecipients__email {
+  position: relative;
+}
+
 .en__ecardrecipients__recipient {
   padding: 0;
+}
+
+.engrid__ecardrecipient__error {
+  display: block;
+  flex-basis: 100%;
+  width: 100%;
+}
+
+.en__ecardrecipients__name .engrid__ecardrecipient__error,
+.en__ecardrecipients__email .engrid__ecardrecipient__error {
+  position: absolute;
+  top: 100%;
+  left: 0;
 }
 
 .en__ecardrecipients__list {
