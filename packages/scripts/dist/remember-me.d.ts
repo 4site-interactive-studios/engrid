@@ -2,12 +2,10 @@ import { EnForm, RememberMeEvents } from "./events";
 export declare class RememberMe {
     _form: EnForm;
     _events: RememberMeEvents;
-    private remoteUrl;
     private cookieName;
     private fieldNames;
     private fieldData;
     private cookieExpirationDays;
-    private iframe;
     private rememberMeOptIn;
     private encryptData;
     private hide;
@@ -22,7 +20,6 @@ export declare class RememberMe {
     private fieldClearLabel;
     private rememberMeLabel;
     constructor(options: {
-        remoteUrl?: string;
         cookieName?: string;
         cookieExpirationDays?: number;
         fieldNames?: string[];
@@ -49,15 +46,11 @@ export declare class RememberMe {
     private getElementByFirstSelector;
     private placeOnRightSide;
     private insertRememberMeOptin;
-    private useRemote;
-    private createIframe;
     private clearCookie;
-    private clearCookieOnRemote;
-    private saveCookieToRemote;
     private readCookie;
     private saveCookie;
     /**
-     * Reads and decrypts the local (non-remote) Remember Me cookie using
+     * Reads and decrypts the Remember Me cookie using
      * browser-native AES-GCM (Web Crypto), with the key held in localStorage
      * on this device. If the key is absent (different device or cleared
      * storage) or decryption otherwise fails, the field data is left empty
