@@ -4,8 +4,15 @@
 // 3 - Check the premium gift when click on the title or description
 // 4 - Create new {$PREMIUMTITLE} merge tag that's replaced with the premium gift name
 // 5 - Add aria-label to the radio inputs and alt tags to the images
+// 6 - Persist the selection for conditional content on the Thank You page
 
 import { ENGrid, DonationFrequency, DonationAmount, EngridLogger } from ".";
+
+interface PremiumGiftSessionState {
+  page: number;
+  name: string;
+  maximize: boolean;
+}
 
 export class PremiumGift {
   private logger: EngridLogger = new EngridLogger(
@@ -15,6 +22,7 @@ export class PremiumGift {
     "🎁"
   );
   private enElements: Array<HTMLElement> = new Array<HTMLElement>();
+  private sessionStorageKey = "engrid_PremiumGiftState";
   private _frequency: DonationFrequency = DonationFrequency.getInstance();
   private _amount: DonationAmount = DonationAmount.getInstance();
   constructor() {
@@ -84,6 +92,7 @@ export class PremiumGift {
               ENGrid.setBodyData("premium-gift-maximize", false);
               ENGrid.setBodyData("premium-gift-name", false);
               this.setPremiumTitle("");
+              window.sessionStorage.removeItem(this.sessionStorageKey);
             }
           }
         }
@@ -117,16 +126,16 @@ export class PremiumGift {
         const premiumGiftName = premiumGiftContainer.querySelector(
           ".en__pg__name"
         ) as HTMLHeadingElement;
+        const premiumGiftSlug = ENGrid.slugify(premiumGiftName.innerText);
         ENGrid.setBodyData("premium-gift-maximize", "false");
-        ENGrid.setBodyData(
-          "premium-gift-name",
-          ENGrid.slugify(premiumGiftName.innerText)
-        );
+        ENGrid.setBodyData("premium-gift-name", premiumGiftSlug);
         this.setPremiumTitle(premiumGiftName.innerText);
+        this.storeSessionState(premiumGiftSlug, false);
       } else {
         ENGrid.setBodyData("premium-gift-maximize", "true");
         ENGrid.setBodyData("premium-gift-name", false);
         this.setPremiumTitle("");
+        this.storeSessionState("", true);
       }
       if (!premiumGiftContainer.classList.contains("en__pg--selected")) {
         const checkedPremiumGift = document.querySelector(
@@ -137,8 +146,41 @@ export class PremiumGift {
         }
         premiumGiftContainer.classList.add("en__pg--selected");
       }
+    } else if (ENGrid.isThankYouPage()) {
+      this.restoreSessionState();
     }
   }
+
+  private restoreSessionState() {
+    let state: PremiumGiftSessionState | null;
+    try {
+      state = JSON.parse(
+        window.sessionStorage.getItem(this.sessionStorageKey) || "null"
+      ) as PremiumGiftSessionState | null;
+    } catch {
+      window.sessionStorage.removeItem(this.sessionStorageKey);
+      return;
+    }
+    if (!state) return;
+    if (state.page !== ENGrid.getPageID()) {
+      window.sessionStorage.removeItem(this.sessionStorageKey);
+      return;
+    }
+
+    ENGrid.setBodyData(
+      "premium-gift-maximize",
+      state.maximize ? "true" : "false"
+    );
+    ENGrid.setBodyData("premium-gift-name", state.name || false);
+  }
+
+  private storeSessionState(name: string, maximize: boolean) {
+    window.sessionStorage.setItem(
+      this.sessionStorageKey,
+      JSON.stringify({ page: ENGrid.getPageID(), name, maximize })
+    );
+  }
+
   searchElements() {
     const enElements = document.querySelectorAll(
       `
@@ -200,14 +242,17 @@ export class PremiumGift {
       const premiumGiftInput = item.querySelector(
         'input[name="en__pg"]'
       ) as HTMLInputElement | null;
-      const premiumGiftId = premiumGiftInput?.value || ENGrid.slugify(titleText);
+      const premiumGiftId =
+        premiumGiftInput?.value || ENGrid.slugify(titleText);
       premiumTitle?.setAttribute("id", `premium-gift-option-${premiumGiftId}`);
       const details = item.querySelector(".en__pg__detail");
       const display = item.querySelector(".en__pg__display");
       const select = item.querySelector(".en__pg__select");
 
       if (select) {
-        const radioInput = select.querySelector('input[type="radio"]') as HTMLInputElement;
+        const radioInput = select.querySelector(
+          'input[type="radio"]'
+        ) as HTMLInputElement;
         if (radioInput) {
           radioInput.setAttribute("aria-labelledby", premiumTitle?.id || "");
         }
@@ -216,7 +261,11 @@ export class PremiumGift {
       if (details) {
         const optionTypesParent = details.querySelector(".en__pg__optionTypes");
         if (optionTypesParent) {
-          this.altsAndAriasForSelects(optionTypesParent, titleText, premiumGiftId);
+          this.altsAndAriasForSelects(
+            optionTypesParent,
+            titleText,
+            premiumGiftId
+          );
         }
       }
 
@@ -230,7 +279,6 @@ export class PremiumGift {
             img.style.height = "100px";
           }
         }
-
       }
     });
     this.syncOptionSelectStates();
@@ -251,21 +299,29 @@ export class PremiumGift {
     });
   }
 
-  altsAndAriasForSelects(optionTypesParent: Element, titleText: string, premiumGiftId: string) {
+  altsAndAriasForSelects(
+    optionTypesParent: Element,
+    titleText: string,
+    premiumGiftId: string
+  ) {
     optionTypesParent.setAttribute("aria-label", `Options for ${titleText}`);
-    const optionTypes = optionTypesParent.querySelectorAll(".en__pg__optionType");
+    const optionTypes = optionTypesParent.querySelectorAll(
+      ".en__pg__optionType"
+    );
     optionTypes.forEach((option, index) => {
       const label = option.querySelector("label");
-      const select = option.querySelector('select');
+      const select = option.querySelector("select");
       if (label && select) {
         const labelId = ENGrid.slugify(label.innerText) || index.toString();
-        select.setAttribute("id", `premium-gift-option-type-${premiumGiftId}-${labelId}`);
+        select.setAttribute(
+          "id",
+          `premium-gift-option-type-${premiumGiftId}-${labelId}`
+        );
         label.setAttribute("for", select.id);
         label.setAttribute("aria-label", `${label.innerText} for ${titleText}`);
       }
     });
   }
-
 
   // This is for the Maximize My Donation aria-label - the tree structure for it is slightly different.
   maxDonationAria() {

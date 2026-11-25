@@ -4,11 +4,13 @@
 // 3 - Check the premium gift when click on the title or description
 // 4 - Create new {$PREMIUMTITLE} merge tag that's replaced with the premium gift name
 // 5 - Add aria-label to the radio inputs and alt tags to the images
+// 6 - Persist the selection for conditional content on the Thank You page
 import { ENGrid, DonationFrequency, DonationAmount, EngridLogger } from ".";
 export class PremiumGift {
     constructor() {
         this.logger = new EngridLogger("PremiumGift", "#232323", "#f7b500", "🎁");
         this.enElements = new Array();
+        this.sessionStorageKey = "engrid_PremiumGiftState";
         this._frequency = DonationFrequency.getInstance();
         this._amount = DonationAmount.getInstance();
         if (!this.shoudRun())
@@ -65,6 +67,7 @@ export class PremiumGift {
                             ENGrid.setBodyData("premium-gift-maximize", false);
                             ENGrid.setBodyData("premium-gift-name", false);
                             this.setPremiumTitle("");
+                            window.sessionStorage.removeItem(this.sessionStorageKey);
                         }
                     }
                 }
@@ -90,14 +93,17 @@ export class PremiumGift {
             const premiumGiftContainer = premiumGift.closest(".en__pg");
             if (premiumGiftValue !== "0") {
                 const premiumGiftName = premiumGiftContainer.querySelector(".en__pg__name");
+                const premiumGiftSlug = ENGrid.slugify(premiumGiftName.innerText);
                 ENGrid.setBodyData("premium-gift-maximize", "false");
-                ENGrid.setBodyData("premium-gift-name", ENGrid.slugify(premiumGiftName.innerText));
+                ENGrid.setBodyData("premium-gift-name", premiumGiftSlug);
                 this.setPremiumTitle(premiumGiftName.innerText);
+                this.storeSessionState(premiumGiftSlug, false);
             }
             else {
                 ENGrid.setBodyData("premium-gift-maximize", "true");
                 ENGrid.setBodyData("premium-gift-name", false);
                 this.setPremiumTitle("");
+                this.storeSessionState("", true);
             }
             if (!premiumGiftContainer.classList.contains("en__pg--selected")) {
                 const checkedPremiumGift = document.querySelector(".en__pg--selected");
@@ -107,6 +113,30 @@ export class PremiumGift {
                 premiumGiftContainer.classList.add("en__pg--selected");
             }
         }
+        else if (ENGrid.isThankYouPage()) {
+            this.restoreSessionState();
+        }
+    }
+    restoreSessionState() {
+        let state;
+        try {
+            state = JSON.parse(window.sessionStorage.getItem(this.sessionStorageKey) || "null");
+        }
+        catch (_a) {
+            window.sessionStorage.removeItem(this.sessionStorageKey);
+            return;
+        }
+        if (!state)
+            return;
+        if (state.page !== ENGrid.getPageID()) {
+            window.sessionStorage.removeItem(this.sessionStorageKey);
+            return;
+        }
+        ENGrid.setBodyData("premium-gift-maximize", state.maximize ? "true" : "false");
+        ENGrid.setBodyData("premium-gift-name", state.name || false);
+    }
+    storeSessionState(name, maximize) {
+        window.sessionStorage.setItem(this.sessionStorageKey, JSON.stringify({ page: ENGrid.getPageID(), name, maximize }));
     }
     searchElements() {
         const enElements = document.querySelectorAll(`
@@ -199,7 +229,7 @@ export class PremiumGift {
         const optionTypes = optionTypesParent.querySelectorAll(".en__pg__optionType");
         optionTypes.forEach((option, index) => {
             const label = option.querySelector("label");
-            const select = option.querySelector('select');
+            const select = option.querySelector("select");
             if (label && select) {
                 const labelId = ENGrid.slugify(label.innerText) || index.toString();
                 select.setAttribute("id", `premium-gift-option-type-${premiumGiftId}-${labelId}`);
