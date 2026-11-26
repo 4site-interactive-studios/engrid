@@ -15,12 +15,10 @@ export class RememberMe {
   public _form: EnForm = EnForm.getInstance();
   public _events: RememberMeEvents = RememberMeEvents.getInstance();
 
-  private remoteUrl: string | null;
   private cookieName: string;
   private fieldNames: string[];
   private fieldData: DataObj;
   private cookieExpirationDays: number;
-  private iframe: HTMLIFrameElement | null;
   private rememberMeOptIn: boolean;
   private encryptData: boolean;
   private hide: boolean;
@@ -38,7 +36,6 @@ export class RememberMe {
   private rememberMeLabel: string;
 
   constructor(options: {
-    remoteUrl?: string;
     cookieName?: string;
     cookieExpirationDays?: number;
     fieldNames?: string[];
@@ -56,11 +53,9 @@ export class RememberMe {
     encryptData?: boolean;
     hide?: boolean;
   }) {
-    this.iframe = null;
     this.encryptData = options.encryptData ? options.encryptData : false;
     this.hide = options.hide ? options.hide : false;
 
-    this.remoteUrl = options.remoteUrl ? options.remoteUrl : null;
     this.cookieName = options.cookieName
       ? options.cookieName
       : "engrid-autofill";
@@ -110,55 +105,7 @@ export class RememberMe {
       : ENGrid.t("rememberMe.label");
 
     this.fieldData = {};
-    if (this.useRemote()) {
-      this.createIframe(
-        () => {
-          if (this.iframe && this.iframe.contentWindow) {
-            this.iframe.contentWindow.postMessage(
-              JSON.stringify({
-                key: this.cookieName,
-                operation: "read",
-                encryptData: this.encryptData,
-              }),
-              "*"
-            );
-            this._form.onSubmit.subscribe(() => {
-              if (this.rememberMeOptIn) {
-                this.readFields();
-                this.saveCookieToRemote();
-              }
-            });
-          }
-        },
-        (event) => {
-          let data: DataObj | undefined;
-          if (
-            event.data &&
-            typeof event.data === "string" &&
-            this.isJson(event.data)
-          ) {
-            data = JSON.parse(event.data);
-          }
-          if (
-            data &&
-            data.key &&
-            data.value !== undefined &&
-            data.key === this.cookieName
-          ) {
-            if (data.value !== null) {
-              this.updateFieldData(data.value);
-            }
-            this.writeFields();
-            let hasFieldData = Object.keys(this.fieldData).length > 0;
-            if (!hasFieldData) {
-              this.insertRememberMeOptin();
-            } else {
-              this.insertClearRememberMeLink();
-            }
-          }
-        }
-      );
-    } else if (this.encryptData) {
+    if (this.encryptData) {
       // Same flow as the unencrypted branch below, but the cookie payload is
       // AES-GCM encrypted/decrypted (browser-native Web Crypto), so reading
       // the cookie is asynchronous. A failed decrypt (foreign device or
@@ -249,9 +196,7 @@ export class RememberMe {
     const onClear = (e: Event) => {
       e.preventDefault();
       this.clearFields(["supporter.country" /*, 'supporter.emailAddress'*/]);
-      if (this.useRemote()) {
-        this.clearCookieOnRemote();
-      } else if (this.encryptData) {
+      if (this.encryptData) {
         this.clearCookieEncrypted();
       } else {
         this.clearCookie();
@@ -494,62 +439,9 @@ export class RememberMe {
       new CustomEvent("RememberMe_Loaded", { detail: { withData: false } })
     );
   }
-  private useRemote() {
-    return (
-      !!this.remoteUrl &&
-      typeof window.postMessage === "function" &&
-      window.JSON &&
-      window.localStorage
-    );
-  }
-  private createIframe(
-    iframeLoaded: () => void,
-    messageReceived: (event: {
-      data?: { key?: string; value?: string };
-    }) => void
-  ) {
-    if (this.remoteUrl) {
-      let iframe = document.createElement("iframe");
-      iframe.style.cssText =
-        "position:absolute;width:1px;height:1px;left:-9999px;";
-      iframe.src = this.remoteUrl;
-      iframe.setAttribute("sandbox", "allow-same-origin allow-scripts");
-      iframe.setAttribute("title", ENGrid.t("rememberMe.iframeTitle"));
-      this.iframe = iframe;
-      document.body.appendChild(this.iframe);
-      this.iframe.addEventListener("load", () => iframeLoaded(), false);
-      window.addEventListener(
-        "message",
-        (event) => {
-          if (this.iframe?.contentWindow === event.source) {
-            messageReceived(event);
-          }
-        },
-        false
-      );
-    }
-  }
   private clearCookie() {
     this.fieldData = {};
     this.saveCookie();
-  }
-  private clearCookieOnRemote() {
-    this.fieldData = {};
-    this.saveCookieToRemote();
-  }
-  private saveCookieToRemote() {
-    if (this.iframe && this.iframe.contentWindow) {
-      this.iframe.contentWindow.postMessage(
-        JSON.stringify({
-          key: this.cookieName,
-          value: this.fieldData,
-          operation: "write",
-          expires: this.cookieExpirationDays,
-          encryptData: this.encryptData,
-        }),
-        "*"
-      );
-    }
   }
   private readCookie() {
     this.updateFieldData(cookie.get(this.cookieName) || "");
@@ -560,7 +452,7 @@ export class RememberMe {
     });
   }
   /**
-   * Reads and decrypts the local (non-remote) Remember Me cookie using
+   * Reads and decrypts the Remember Me cookie using
    * browser-native AES-GCM (Web Crypto), with the key held in localStorage
    * on this device. If the key is absent (different device or cleared
    * storage) or decryption otherwise fails, the field data is left empty

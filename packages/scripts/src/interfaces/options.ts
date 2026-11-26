@@ -43,7 +43,6 @@ export interface Options {
   RememberMe?:
     | boolean
     | {
-        remoteUrl?: string;
         cookieName?: string;
         cookieExpirationDays?: number;
         fieldNames?: string[];

@@ -39,7 +39,6 @@ export interface Options {
     Debug?: boolean;
     RegionLongFormat?: string;
     RememberMe?: boolean | {
-        remoteUrl?: string;
         cookieName?: string;
         cookieExpirationDays?: number;
         fieldNames?: string[];
