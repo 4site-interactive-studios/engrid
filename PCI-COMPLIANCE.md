@@ -3,8 +3,8 @@
 
 # ENgrid Framework - PCI Compliance Documentation
 
-**Document Version:** 1.1    
-**Last Updated:** July 25, 2025    
+**Document Version:** 1.2    
+**Last Updated:** November 25, 2026    
 **Maintained by:** 4Site Studios    
 
 ## Overview
@@ -25,8 +25,8 @@ ENgrid compiles into four static assets:
 ## Key Security Considerations
 
 - **Secure by design:** ENgrid is a fully client-side integration using static assets compiled from TypeScript with strict type checking. It includes no server components or databases, never transmits or stores payment data, avoids `eval()` or dynamic script generation, has minimal dependencies, and loads all assets over HTTPS.
-- **No external calls:** ENgrid makes no outbound API requests or third-party analytics calls.
-- **No sensitive data handling:** ENgrid does not process or store sensitive user information. Payment fields are securely embedded by Engaging Networks via "Very Good Security" (VGS) hosted iframes and tokenization.
+- **No external calls unless you enable a third-party integration:** By default, ENgrid makes no outbound API requests or third-party analytics calls. The optional integrations that make requests when you turn them on are TidyContact (address and phone standardization, which also loads flag images from flagcdn.com), FreshAddress and NeverBounce (email validation), and custom Apple Pay. Country detection reads a path on the page's own domain.
+- **No sensitive data handling unless you enable it:** ENgrid does not process or store payment data. It stores supporter contact details only when you turn on Remember Me, which saves them in the supporter's browser with their consent. For Google Tag Manager, ENgrid hashes email, phone and address with SHA-256 before adding them to the page's data layer, and card and bank fields are excluded. Payment fields are securely embedded by Engaging Networks via "Very Good Security" (VGS) hosted iframes and tokenization.
 - **Strict content policies:** ENgrid supports strict Content Security Policies (CSP) without requiring unsafe directives.
 - **Open source transparency:** The full codebase is available for review and security audits, with all changes peer-reviewed and automated security scanning via GitHub Dependabot.
     - Source Code: [ENgrid GitHub Repository](https://github.com/4site-interactive-studios/engrid)

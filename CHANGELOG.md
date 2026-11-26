@@ -1,4 +1,7 @@
 Changelog (Newest to Oldest)
+
+This file covers older CSS property and class renames. For current versions, see the [release notes](https://www.4sitestudios.com/engrid-release-notes/).
+
 BREAKING: Replaced all instances of "--give-by-select__button-color_hover" with "--give-by-select__button_color_hover"
 BREAKING: Replaced all instances of "--donation-amount__button-color_hover" with "--donation-amount__button_color_hover"
 BREAKING: Replaced all instances of "--radio_selected-box-shadow" with "--radio_box-shadow_selected"

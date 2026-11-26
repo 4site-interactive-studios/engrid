@@ -30,7 +30,7 @@ Pattern: **block-name__elem-name_mod-name_mod-val**
 **--h2_font-family**
 - block-name: Not applicable
 - elem-name: h2
-- mod-name: font-fmaily
+- mod-name: font-family
 - mod-val: Not applicable
 
 **--scale-down_20pct**
@@ -39,11 +39,11 @@ Pattern: **block-name__elem-name_mod-name_mod-val**
 - mod-name: scale-down
 - mod-val: 20pct
 
-# HTML Data Attributes
+## HTML Data Attributes
 - Names are written in lowercase Latin letters.
 - Words are separated by a hyphen (-)
 - Do not use underscores or other special characters
 
-## Examples
+### Examples
 - [data-engrid-errors="fancy"]
 - [data-engrid-layout="centercenter1col"]
